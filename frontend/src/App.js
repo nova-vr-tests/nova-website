@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 
 const apiTest = async () => {
@@ -9,22 +9,21 @@ const apiTest = async () => {
   console.log(json)
 }
 
+class AppDumb extends Component {
+  render() {
+    return (
+      <div className="wrapper">
+        <img src={ logo } alt="logo" />
+      </div>
+    )
+  }
+}
+
 class App extends Component {
   render() {
-
     apiTest()
 
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Nova XR Media</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    return <AppDumb />
   }
 }
 
