@@ -5,6 +5,7 @@ script:
 - pwd
 - ls
 - cd frontend
+- npm install
 - npm run build
 before_install:
 - git config --global user.name "Travis CI"
