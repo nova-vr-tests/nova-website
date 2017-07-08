@@ -12,7 +12,7 @@ before_install:
 - git config --global user.email "thomas@novamedia.nyc"
 before_deploy:
 - chmod +x deploy.sh
-- "./deploy.sh"
+- ./deploy.sh
 deploy:
   provider: heroku
   api_key:
