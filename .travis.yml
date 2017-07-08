@@ -4,7 +4,6 @@ node_js:
 script:
 - pwd
 - ls
-- cd novawebsite
 - cd frontend
 - npm run build
 before_install:
