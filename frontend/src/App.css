@@ -3,4 +3,9 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+  background-color: black;
+}
+
+.logo {
+  filter: invert(100%);
 }

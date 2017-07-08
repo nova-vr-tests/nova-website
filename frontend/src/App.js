@@ -13,7 +13,7 @@ class AppDumb extends Component {
   render() {
     return (
       <div className="wrapper">
-        <img src={ logo } alt="logo" />
+        <img src={ logo } alt="logo" className="logo" />
       </div>
     )
   }
