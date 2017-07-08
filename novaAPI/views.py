@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from .models import BusinessProposition
+from .serializers import BusinessPropositionSerializer
+from rest_framework import generics
 
-# Create your views here.
+
+class BusinessPropositionList(generics.ListCreateAPIView):
+    queryset = BusinessProposition.objects.all()
+    serializer_class = BusinessPropositionSerializer
+
+
+class BusinessPropositionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = BusinessProposition.objects.all()
+    serializer_class = BusinessProposition
