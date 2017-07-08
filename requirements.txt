@@ -1,4 +1,4 @@
-django=1.11.3
+django==1.11.3
 dj-database-url==0.4.2
 gunicorn==19.7.1
 virtualenv==15.1.0
