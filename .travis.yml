@@ -12,7 +12,7 @@ before_install:
 - git config --global user.name "Travis CI"
 - git config --global user.email "thomas@novamedia.nyc"
 before_deploy:
-- git status
+- git checkout dev
 - chmod +x deploy.sh
 - ./deploy.sh
 deploy:
