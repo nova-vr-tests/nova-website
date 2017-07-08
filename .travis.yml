@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- 7.9.0
+script:
+- npm run build
+before_install:
+- git config --global user.name "Travis CI"
+- git config --global user.email "thomas@novamedia.nyc"
+before_deploy:
+- chmod +x deploy.sh
+- "./deploy.sh"
+deploy:
+  provider: heroku
+  api_key:
+    secure: C0n4GZySiRTbUZEx5GI9mBiX5YXJntR/VxEOWJ7LsMW4DoL9MGUdW3LuniHSNXvg7bLJVGVxLnCk4iSxIks2yLzJt4w0jeL2f6Ain+4NdOTIrmu6i+Hvhsgto/7Jg2BhlGtIVoL7uESOagVR2JZdGNBxht3+mkWcnfOL3nb3cN5/8mw5WSEwBAJihgrLPDHhPb08lKgT5CKizU6TpbyHDMzqXELj4x9KOksN5WGRoqwcRwXpIvyN9xxjiXmOEPxuZlE5qmv6cwshnFzS5FXh9HFLQipkM/GBdJwB96EY8F02CprUj0f7wPxMUiFoHf0zGTij4ieWkwYdEC5qSHV/HA96kvwQWzne/AjYs9UUKX0f7Y/L9uJxS7DPNG0b5VLpDm09qiNwXKkFT6ZBsb5Gz6XJ4pK6bnvLCA89acc/zGH+lF45EsoS+yajKbQPJGVnF+lM+wFgcrx0J5J51ng9G4GGjVHMtJ4TKWdBic9GfEmoaY2/2MN4PypjUoasxxOtWs2HcnsCf4Rkk9VpWThMyCm4Zt56sZCNSDWayz9QEmait+bjEXdiuQ24AOU8YhFtX3809OyuGP7BjtmrHq1e9KJuVVWV3SV1dKIZSqJRpJqFylwSU0P9wNtqnOCShUFup+To5OiCfWusJ/hdADUjcaGI1aDls7u/PxRv0LaO4uk=
+  on: prod
