@@ -12,7 +12,6 @@ before_install:
 before_deploy:
 - git checkout dev
 - cd ../
-- chmod +x deploy.sh
 - ./deploy.sh
 deploy:
   provider: heroku
