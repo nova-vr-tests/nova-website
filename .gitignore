@@ -4,3 +4,4 @@ frontend/build
 novawebsite/__pycache__/
 db.sqlite3
 local.sh
+.DS_Store
