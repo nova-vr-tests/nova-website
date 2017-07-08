@@ -2,8 +2,6 @@ language: node_js
 node_js:
 - 7.9.0
 script:
-- pwd
-- ls
 - cd frontend
 - npm install
 - npm run build
@@ -13,6 +11,7 @@ before_install:
 - git config --global user.email "thomas@novamedia.nyc"
 before_deploy:
 - git checkout dev
+- cd ../
 - chmod +x deploy.sh
 - ./deploy.sh
 deploy:
