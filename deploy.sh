@@ -3,7 +3,7 @@
 
 git status
 
-git checkout -b prod
+git checkout -b master
 git add -f frontend/build
 git status
 
