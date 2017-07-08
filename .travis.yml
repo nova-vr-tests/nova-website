@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - 7.9.0
 script:
-- npm run build
+- cd novawebsite/frontend && npm run build
 before_install:
 - git config --global user.name "Travis CI"
 - git config --global user.email "thomas@novamedia.nyc"
