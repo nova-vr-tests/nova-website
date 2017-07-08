@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const apiTest = async () => {
+  const r = await fetch("api/businessprops/")
+  const json = await r.json()
+
+  console.log(json)
+}
+
 class App extends Component {
   render() {
+
+    apiTest()
+
     return (
       <div className="App">
         <div className="App-header">
