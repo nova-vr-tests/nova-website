@@ -3,3 +3,4 @@ frontend/build
 *.pyc 
 novawebsite/__pycache__/
 db.sqlite3
+local.sh
