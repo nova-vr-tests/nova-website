@@ -138,7 +138,7 @@ STATICFILES_DIRS = [
     os.path.join(REACT_APP_DIR, 'build', 'static'),
 ]
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
