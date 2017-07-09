@@ -5,7 +5,8 @@ import './IntroAnimation.css';
 import frame1 from './img/intro-logo/frame1.svg';
 import frame2 from './img/intro-logo/frame2.svg';
 import frame3 from './img/intro-logo/frame3.svg';
-import { LOGO_FRAME1, LOGO_FRAME2, LOGO_FRAME3 } from '../constants'
+import { LOGO_FRAME1, LOGO_FRAME2, LOGO_FRAME3, INTRO_FINISHED } from '../constants'
+import { incrementIntroKeyframe } from '../reducer/actions/App'
 
 const reduxStatePropTypes = {
     introKeyframe: PropTypes.number,
@@ -18,10 +19,12 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
+  incrementIntroKeyframe: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
+    incrementIntroKeyframe: () => dispatch(incrementIntroKeyframe()),
   }
 }
 
@@ -58,6 +61,15 @@ IntroAnimationDumb.defaultProps = {
 
 class IntroAnimation extends Component {
   componentDidMount() {
+    let i = 0;
+    const j = setInterval(() => {
+      i = i + 1
+      this.props.incrementIntroKeyframe()
+
+      if(i >= INTRO_FINISHED) {
+        clearInterval(j)
+      }
+    }, 4000)
   }
 
   render() {

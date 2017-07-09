@@ -7,7 +7,6 @@ import About from './components/About.jsx'
 import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'
 import IntroAnimation from './components/IntroAnimation.jsx'
-import { incrementIntroKeyframe } from './reducer/actions/App'
 import { INTRO_FINISHED } from './constants.js'
 
 const apiTest = async () => {
@@ -30,12 +29,10 @@ const mapStateToProps = function(state) {
 }
 
 const reduxDispatchPropTypes = {
-  incrementIntroKeyframe: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
-    incrementIntroKeyframe: () => dispatch(incrementIntroKeyframe()),
   }
 }
 
@@ -59,15 +56,6 @@ AppDumb.propTypes = {
 
 class App extends Component {
   componentDidMount() {
-    let i = 0;
-    const j = setInterval(() => {
-      i = i + 1
-      this.props.incrementIntroKeyframe()
-
-      if(i >= INTRO_FINISHED) {
-        clearInterval(j)
-      }
-    }, 4000)
   }
 
   render() {
