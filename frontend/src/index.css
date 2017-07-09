@@ -5,9 +5,9 @@ body {
   height: 100vh;
   display: flex;
   flex: 1;
-  background-color: black;
   color: white;
   font-family: TTNorms-regular;
+  background-image: url("components/img/background.jpg")
 }
 
 #root {
