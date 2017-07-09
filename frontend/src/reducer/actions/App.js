@@ -1,5 +1,13 @@
-import { INCREMENT_INTRO_KEYFRAME, RESET_INTRO_KEYFRAME } from '../App'
+import {
+    INCREMENT_INTRO_KEYFRAME,
+    RESET_INTRO_KEYFRAME,
+    TOGGLE_SIDEBAR,
+} from '../App'
 
+
+const toggleSidebar = () => ({
+    type: TOGGLE_SIDEBAR,
+})
 const incrementIntroKeyframe = () => ({
     type: INCREMENT_INTRO_KEYFRAME
 })
@@ -11,4 +19,5 @@ const resetIntroKeyframe = () => ({
 export {
     incrementIntroKeyframe,
     resetIntroKeyframe,
+    toggleSidebar,
 }

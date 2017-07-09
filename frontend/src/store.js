@@ -5,7 +5,6 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducer/reducers.js'
 
 export const history = createHistory()
-console.log(history)
 
 const initialState = {}
 const enhancers = []

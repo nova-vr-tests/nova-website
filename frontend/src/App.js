@@ -8,6 +8,7 @@ import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'
 import IntroAnimation from './components/IntroAnimation.jsx'
 import { INTRO_FINISHED } from './constants.js'
+import Sidebar from './components/Sidebar.jsx'
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -40,6 +41,7 @@ const AppDumb = props => (
   <div id="app--wrapper">
     <IntroAnimation />
     <div className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
+      <Sidebar />
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route exact path="/about-us" component={ About } />
@@ -56,11 +58,10 @@ AppDumb.propTypes = {
 
 class App extends Component {
   componentDidMount() {
+    apiTest()
   }
 
   render() {
-    apiTest()
-
     return <AppDumb
       introKeyframe={ this.props.introKeyframe }
       />
