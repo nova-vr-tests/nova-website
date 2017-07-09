@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect }from 'react-redux';
 import './App.css';
 import PropTypes from 'prop-types';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import About from './components/About.jsx'
 import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'

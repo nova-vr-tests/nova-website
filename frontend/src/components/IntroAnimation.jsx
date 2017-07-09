@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect }from 'react-redux';
-import { push } from 'react-router-redux';
 import './IntroAnimation.css';
 import logo from '../logo.png';
 
