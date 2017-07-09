@@ -9,6 +9,7 @@
     transition: opacity 1s linear;
     display: flex;
     flex: 1;
+    margin-left: 10rem; /* same as sidebar width */
 }
 
 .router--wrapper.transparent {
