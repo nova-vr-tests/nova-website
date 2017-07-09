@@ -30,8 +30,6 @@ const HomeDumb = props => (
       alt="logo"
       className="logo"
       onClick={ props.changePage } />
-    <div className="footer-background init-position">
-    </div>
   </div>
 )
 

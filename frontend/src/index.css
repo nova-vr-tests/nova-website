@@ -5,6 +5,7 @@ body {
   height: 100vh;
   display: flex;
   flex: 1;
+  background-color: black;
 }
 
 #root {

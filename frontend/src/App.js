@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Route, Link, Switch } from 'react-router-dom';
 import About from './components/About.jsx'
 import Home from './components/Home.jsx'
+import Footer from './components/Footer.jsx'
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -32,11 +33,12 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const AppDumb = props => (
-  <div id="router--wrapper">
+  <div id="app--wrapper">
     <Switch>
       <Route exact path="/" component={ Home } />
       <Route exact path="/about-us" component={ About } />
     </Switch>
+    <Footer />
   </div>
 )
 
