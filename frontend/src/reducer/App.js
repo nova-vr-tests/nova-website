@@ -2,7 +2,7 @@ export const INCREMENT_INTRO_KEYFRAME = 'app/increment intro keyframe'
 export const RESET_INTRO_KEYFRAME = 'app/reset intro keyframe'
 
 const initialState = {
-  introKeyframe: 0,
+  introKeyframe: 1,
 }
 
 export default (state = initialState, action) => {

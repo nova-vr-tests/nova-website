@@ -9,6 +9,7 @@
   right: 0;
   opacity: 1;
   transition: opacity 1s linear;
+  z-index: 100;
 }
 
 .intro--wrapper.transparent {
@@ -17,10 +18,14 @@
 }
 
 .logo {
-  filter: invert(100%);
-  transition: opacity 2s linear;
-  opacity: 1;
-  height: 5rem;
+    filter: invert(100%);
+    transition: opacity 2s linear;
+    opacity: 1;
+    height: 10rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
 .logo.transparent {

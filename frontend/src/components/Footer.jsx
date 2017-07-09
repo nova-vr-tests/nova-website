@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect }from 'react-redux';
 import './Footer.css';
+import { FOOTER_FINAL } from '../constants.js'
 
 const reduxStatePropTypes = {
   introKeyframe: PropTypes.number,
@@ -25,8 +26,7 @@ const FooterDumb = props => (
     <div className="footer--wrapper">
         <div className={
           "footer-background "
-          + (props.introKeyframe === 0 ? " init-position " : "")
-          + (props.introKeyframe >= 1 ? " final-position " : "")
+          + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
           }>
         </div>
     </div>

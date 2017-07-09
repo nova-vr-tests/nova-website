@@ -8,7 +8,7 @@ import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'
 import IntroAnimation from './components/IntroAnimation.jsx'
 import { incrementIntroKeyframe } from './reducer/actions/App'
-console.log(incrementIntroKeyframe())
+import { INTRO_FINISHED } from './constants.js'
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -42,7 +42,7 @@ const mapDispatchToProps = function(dispatch) {
 const AppDumb = props => (
   <div id="app--wrapper">
     <IntroAnimation />
-    <div className={ "router--wrapper " + (props.introKeyframe < 2 ? "transparent" : "") }>
+    <div className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route exact path="/about-us" component={ About } />
@@ -59,10 +59,15 @@ AppDumb.propTypes = {
 
 class App extends Component {
   componentDidMount() {
-    setTimeout(() => {
+    let i = 0;
+    const j = setInterval(() => {
+      i = i + 1
       this.props.incrementIntroKeyframe()
-      setTimeout(() => this.props.incrementIntroKeyframe(), 2500)
-    }, 1000)
+
+      if(i >= INTRO_FINISHED) {
+        clearInterval(j)
+      }
+    }, 4000)
   }
 
   render() {
