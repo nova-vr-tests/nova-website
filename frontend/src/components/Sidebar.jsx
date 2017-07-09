@@ -77,10 +77,9 @@ const SidebarDumb = props => (
     <div className={ "sidebar--wrapper " + (props.isSiderbarOpened ? "" : " closed ") }>
         <img src={ logo } alt="logo" className="logo" />
         <div className="links--wrapper">
-            <LinksDrawer />
-            <div className="link">
-                about us
-            </div>
+            <LinksDrawer
+                links={ ["What is Nova ?", "The team"] }
+                header="about us"/>
             <div className="link">
                 services
             </div>

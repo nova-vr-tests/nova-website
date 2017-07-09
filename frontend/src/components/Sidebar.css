@@ -9,7 +9,7 @@
     flex: 1;
     width: var(--sidebar-width);
 	border-right: 1px solid rgba(255, 255, 255, 0.6);
-    align-items: center;
+    padding-top: 10rem;
 }
 
 .links--wrapper {
@@ -44,6 +44,8 @@ Link drawer
 */
 .link-drawer--wrapper.opened {
     background-color: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .link-drawer--wrapper .header {
@@ -68,10 +70,12 @@ Link drawer
 }
 
 .link-drawer--wrapper .links--wrapper.opened{
-    height: 5rem;
+    height: 3.5rem;
 }
 
 .link-drawer--wrapper .links--wrapper .link {
-    height: 1rem;
-    min-height: 1rem;
+    height: 1.5rem;
+    min-height: 1.5rem;
+    font-size: 0.8rem;
+    text-transform: capitalize;
 }
