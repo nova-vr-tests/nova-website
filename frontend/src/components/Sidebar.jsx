@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect }from 'react-redux';
 import { push } from 'react-router-redux';
 import './Sidebar.css';
+import logo from './img/intro-logo/frame1.svg';
 
 const reduxStatePropTypes = {
     isSiderbarOpened: PropTypes.bool.isRequired,
@@ -26,6 +27,7 @@ const mapDispatchToProps = function(dispatch) {
 
 const SidebarDumb = props => (
     <div className={ "sidebar--wrapper " + (props.isSiderbarOpened ? "" : " closed ") }>
+        <img src={ logo } alt="logo" className="logo" />
         <div className="links--wrapper">
             <div className="link">
                 about us
