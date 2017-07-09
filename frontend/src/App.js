@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.png';
+import { connect }from 'react-redux';
 import './App.css';
 import PropTypes from 'prop-types';
+import { Route, Link, Switch } from 'react-router-dom';
+import About from './components/About.jsx'
+import Home from './components/Home.jsx'
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -10,21 +13,34 @@ const apiTest = async () => {
   console.log(json)
 }
 
-class AppDumb extends Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <img src={ logo } alt="logo" className="logo" />
-        <div className="footer-background init-position">
-        </div>
-      </div>
-    )
+const reduxStatePropTypes = {
+}
+
+const mapStateToProps = function(state) {
+	return {
   }
 }
 
+const reduxDispatchPropTypes = {
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+  }
+}
+
+const AppDumb = props => (
+  <div id="router--wrapper">
+    <Switch>
+      <Route exact path="/" component={ Home } />
+      <Route exact path="/about-us" component={ About } />
+    </Switch>
+  </div>
+)
+
 AppDumb.propTypes = {
-  footerBgPos: 0,
-  logoPos: 0,
+  ...reduxStatePropTypes,
+  ...reduxDispatchPropTypes,
 }
 
 class App extends Component {
@@ -39,4 +55,11 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  ...AppDumb.propTypes,
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App)
