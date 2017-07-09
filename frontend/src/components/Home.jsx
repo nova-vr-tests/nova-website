@@ -39,6 +39,11 @@ HomeDumb.propTypes = {
   ...reduxStatePropTypes,
   ...reduxDispatchPropTypes,
 
+  footerBgPos: PropTypes.number,
+  logoPos: PropTypes.number,
+}
+
+HomeDumb.defaultProps = {
   footerBgPos: 0,
   logoPos: 0,
 }

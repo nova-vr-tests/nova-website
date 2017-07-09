@@ -14,10 +14,12 @@ const apiTest = async () => {
 }
 
 const reduxStatePropTypes = {
+  routing: PropTypes.object,
 }
 
 const mapStateToProps = function(state) {
 	return {
+    routing: state.routing,
   }
 }
 
