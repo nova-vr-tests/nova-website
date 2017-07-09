@@ -8,12 +8,20 @@
   bottom: 0;
   left: 0;
   right: 0;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+.intro--wrapper.transparent {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .logo {
   filter: invert(100%);
-  transition: opacity 1s linear;
+  transition: opacity 2s linear;
   opacity: 1;
+  height: 5rem;
 }
 
 .logo.transparent {

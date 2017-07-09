@@ -23,6 +23,7 @@ const mapDispatchToProps = function(dispatch) {
 
 const HomeDumb = props => (
   <div className="home--wrapper">
+    <h1>Coming Soon</h1>
   </div>
 )
 

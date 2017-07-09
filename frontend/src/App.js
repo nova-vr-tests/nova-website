@@ -57,7 +57,10 @@ AppDumb.propTypes = {
 
 class App extends Component {
   componentDidMount() {
-    setTimeout(() => this.props.incrementIntroKeyframe(), 1000)
+    setTimeout(() => {
+      this.props.incrementIntroKeyframe()
+      setTimeout(() => this.props.incrementIntroKeyframe(), 2500)
+    }, 1000)
   }
 
   render() {
