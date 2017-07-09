@@ -7,9 +7,18 @@ body {
   flex: 1;
   background-color: black;
   color: white;
+  font-family: TTNorms-regular;
 }
 
 #root {
   display: flex;
   flex: 1
+}
+
+/*
+  Fonts
+*/
+@font-face {
+    font-family: TTNorms-regular;
+    src: url("./fonts/TT_Norms/TTNorms-Regular.otf") format("opentype");
 }
