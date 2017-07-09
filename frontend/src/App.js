@@ -6,6 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import About from './components/About.jsx'
 import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'
+import IntroAnimation from './components/IntroAnimation.jsx'
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -34,6 +35,7 @@ const mapDispatchToProps = function(dispatch) {
 
 const AppDumb = props => (
   <div id="app--wrapper">
+    <IntroAnimation />
     <Switch>
       <Route exact path="/" component={ Home } />
       <Route exact path="/about-us" component={ About } />

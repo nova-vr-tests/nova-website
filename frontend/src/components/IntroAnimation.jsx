@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect }from 'react-redux';
 import { push } from 'react-router-redux';
-import './Home.css';
+import './IntroAnimation.css';
+import logo from '../logo.png';
 
 const reduxStatePropTypes = {
 }
@@ -17,44 +18,45 @@ const reduxDispatchPropTypes = {
 
 const mapDispatchToProps = function(dispatch) {
 	return {
-    changePage: () => dispatch(push('/about-us')),
   }
 }
 
-const HomeDumb = props => (
-  <div className="home--wrapper">
+const IntroAnimationDumb = props => (
+  <div className="intro--wrapper">
+    <img
+      src={ logo }
+      alt="logo"
+      className="logo"
+    />
   </div>
 )
 
-HomeDumb.propTypes = {
+IntroAnimationDumb.propTypes = {
   ...reduxStatePropTypes,
   ...reduxDispatchPropTypes,
 
-  footerBgPos: PropTypes.number,
-  logoPos: PropTypes.number,
+  keyframe: PropTypes.number,
 }
 
-HomeDumb.defaultProps = {
-  footerBgPos: 0,
-  logoPos: 0,
+IntroAnimationDumb.defaultProps = {
+    keyframe: 0,
 }
 
-class Home extends Component {
+class IntroAnimation extends Component {
   componentDidMount() {
 
   }
 
   render() {
-    return <HomeDumb
-      changePage={ this.props.changePage } />
+    return <IntroAnimationDumb />
   }
 }
 
-Home.propTypes = {
-  ...HomeDumb.propTypes,
+IntroAnimation.propTypes = {
+  ...IntroAnimationDumb.propTypes,
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Home)
+)(IntroAnimation)
