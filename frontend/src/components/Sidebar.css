@@ -38,3 +38,40 @@
     top: calc(var(--sidebar-width) / 2);
     left: calc(var(--sidebar-width) / 2);
 }
+
+/*
+Link drawer
+*/
+.link-drawer--wrapper.opened {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.link-drawer--wrapper .header {
+    height: 3.5rem;
+    display: flex;
+    height: 3.5rem;
+    width: 100%;
+    justify-content: center;
+	align-items: center;
+    text-transform: uppercase;
+}
+
+.link-drawer--wrapper .header:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.link-drawer--wrapper .links--wrapper {
+    overflow-y: hidden;
+    transition: height 0.2s linear;
+    height: 0rem;
+}
+
+.link-drawer--wrapper .links--wrapper.opened{
+    height: 5rem;
+}
+
+.link-drawer--wrapper .links--wrapper .link {
+    height: 1rem;
+    min-height: 1rem;
+}

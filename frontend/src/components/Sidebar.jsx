@@ -5,6 +5,54 @@ import { push } from 'react-router-redux';
 import './Sidebar.css';
 import logo from './img/intro-logo/frame1.svg';
 
+class LinksDrawer extends Component {
+    constructor(props) {
+        super()
+
+        this.state = {
+            isOpened: false,
+        }
+
+        this.getLinks = this.getLinks.bind(this)
+        this.toggleDrawer = this.toggleDrawer.bind(this)
+    }
+
+    componentDidMount() {
+    }
+
+    getLinks() {
+        return this.props.links.map((link, i) => <div className="link" key={ i }>{ link }</div>)
+    }
+
+    toggleDrawer() {
+        this.setState({ isOpened: !this.state.isOpened })
+    }
+
+    render() {
+        return (
+            <div className={ "link-drawer--wrapper" + (this.state.isOpened ? " opened" : "")}>
+                <div className="header" onClick={ this.toggleDrawer }>
+                    { this.props.header }
+                </div>
+                <div className={ "links--wrapper" + (this.state.isOpened ? " opened" : "") }>
+                    { this.getLinks() }
+                </div>
+            </div>
+        )
+    }
+}
+
+LinksDrawer.propTypes = {
+    header: PropTypes.string,
+    links: PropTypes.array,
+}
+
+LinksDrawer.defaultProps = {
+    header: "test",
+    links: ["foo", "bar"],
+}
+
+
 const reduxStatePropTypes = {
     isSiderbarOpened: PropTypes.bool.isRequired,
 }
@@ -29,6 +77,7 @@ const SidebarDumb = props => (
     <div className={ "sidebar--wrapper " + (props.isSiderbarOpened ? "" : " closed ") }>
         <img src={ logo } alt="logo" className="logo" />
         <div className="links--wrapper">
+            <LinksDrawer />
             <div className="link">
                 about us
             </div>
