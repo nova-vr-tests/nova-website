@@ -6,10 +6,12 @@ import './IntroAnimation.css';
 import logo from '../logo.png';
 
 const reduxStatePropTypes = {
+    introKeyframe: PropTypes.number,
 }
 
 const mapStateToProps = function(state) {
 	return {
+        keyframe: state.appReducer.introKeyframe,
   }
 }
 
@@ -22,13 +24,13 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const IntroAnimationDumb = props => (
-  <div className="intro--wrapper">
-    <img
-      src={ logo }
-      alt="logo"
-      className="logo"
-    />
-  </div>
+    <div className="intro--wrapper">
+        <img
+            src={ logo }
+            alt="logo"
+            className={ "logo " + (props.keyframe === 1 ? " transparent " : "") }
+        />
+    </div>
 )
 
 IntroAnimationDumb.propTypes = {
@@ -44,11 +46,11 @@ IntroAnimationDumb.defaultProps = {
 
 class IntroAnimation extends Component {
   componentDidMount() {
-
   }
 
   render() {
-    return <IntroAnimationDumb />
+    return <IntroAnimationDumb
+        keyframe={ this.props.keyframe } />
   }
 }
 

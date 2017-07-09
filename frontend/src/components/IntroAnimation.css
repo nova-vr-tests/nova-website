@@ -12,4 +12,10 @@
 
 .logo {
   filter: invert(100%);
+  transition: opacity 1s linear;
+  opacity: 1;
+}
+
+.logo.transparent {
+    opacity: 0;
 }

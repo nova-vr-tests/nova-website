@@ -7,6 +7,8 @@ import About from './components/About.jsx'
 import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'
 import IntroAnimation from './components/IntroAnimation.jsx'
+import { incrementIntroKeyframe } from './reducer/actions/App'
+console.log(incrementIntroKeyframe())
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -17,19 +19,23 @@ const apiTest = async () => {
 
 const reduxStatePropTypes = {
   routing: PropTypes.object,
+  introKeyframe: PropTypes.number,
 }
 
 const mapStateToProps = function(state) {
 	return {
     routing: state.routing,
+    introKeyframe: state.appReducer.introKeyframe,
   }
 }
 
 const reduxDispatchPropTypes = {
+  incrementIntroKeyframe: PropTypes.func,
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
+    incrementIntroKeyframe: () => dispatch(incrementIntroKeyframe()),
   }
 }
 
@@ -51,7 +57,7 @@ AppDumb.propTypes = {
 
 class App extends Component {
   componentDidMount() {
-
+    setTimeout(() => this.props.incrementIntroKeyframe(), 1000)
   }
 
   render() {

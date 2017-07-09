@@ -4,7 +4,7 @@
 }
 
 .footer-background {
-  --radius: 30vh;
+  --radius: 1130vh;
   --diam: calc(var(--radius) * 2);
   background-color: white;
   position: absolute;
@@ -26,7 +26,16 @@
   /*
     Distances to top left zero coord
   */
+  --center-x: 100vw;
+  --center-y: 1200vh;
+  transform: translateY(var(--center-y))translateX(var(--center-x));
+}
+
+.footer-background.final-position {
+  /*
+    Distances to top left zero coord
+  */
   --center-x: 50vw;
-  --center-y: 120vh;
+  --center-y: calc(1130vh + 100vh - 100px);
   transform: translateY(var(--center-y))translateX(var(--center-x));
 }

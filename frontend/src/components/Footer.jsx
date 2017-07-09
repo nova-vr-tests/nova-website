@@ -4,10 +4,12 @@ import { connect }from 'react-redux';
 import './Footer.css';
 
 const reduxStatePropTypes = {
+  introKeyframe: PropTypes.number,
 }
 
 const mapStateToProps = function(state) {
 	return {
+        introKeyframe: state.appReducer.introKeyframe,
   }
 }
 
@@ -21,7 +23,11 @@ const mapDispatchToProps = function(dispatch) {
 
 const FooterDumb = props => (
     <div className="footer--wrapper">
-        <div className="footer-background init-position">
+        <div className={
+          "footer-background "
+          + (props.introKeyframe === 0 ? " init-position " : "")
+          + (props.introKeyframe === 1 ? " final-position " : "")
+          }>
         </div>
     </div>
 )
@@ -40,7 +46,8 @@ class Footer extends Component {
   }
 
   render() {
-    return <FooterDumb />
+    return <FooterDumb
+      introKeyframe={ this.props.introKeyframe }/>
   }
 }
 
