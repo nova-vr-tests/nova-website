@@ -3,3 +3,14 @@
     flex: 1;
     flex-direction: column;
 }
+
+.router--wrapper {
+    opacity: 1;
+    transition: opacity 1s linear;
+    display: flex;
+    flex: 1;
+}
+
+.router--wrapper.transparent {
+    opacity: 0;
+}

@@ -42,10 +42,12 @@ const mapDispatchToProps = function(dispatch) {
 const AppDumb = props => (
   <div id="app--wrapper">
     <IntroAnimation />
-    <Switch>
-      <Route exact path="/" component={ Home } />
-      <Route exact path="/about-us" component={ About } />
-    </Switch>
+    <div className={ "router--wrapper " + (props.introKeyframe < 2 ? "transparent" : "") }>
+      <Switch>
+        <Route exact path="/" component={ Home } />
+        <Route exact path="/about-us" component={ About } />
+      </Switch>
+    </div>
     <Footer />
   </div>
 )
@@ -66,7 +68,9 @@ class App extends Component {
   render() {
     apiTest()
 
-    return <AppDumb />
+    return <AppDumb
+      introKeyframe={ this.props.introKeyframe }
+      />
   }
 }
 

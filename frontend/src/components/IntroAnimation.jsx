@@ -23,7 +23,7 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const IntroAnimationDumb = props => (
-    <div className={"intro--wrapper " + (props.keyframe === 2 ? "transparent" : "") }>
+    <div className="intro--wrapper ">
         <img
             src={ logo }
             alt="logo"
