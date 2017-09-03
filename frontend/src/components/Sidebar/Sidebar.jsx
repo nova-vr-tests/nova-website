@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect }from 'react-redux';
 import { push } from 'react-router-redux';
-import './Sidebar.css';
-import logo from './img/intro-logo/frame1.svg';
+import './styles/Sidebar.css';
+import logo from '../img/intro-logo/frame1.svg';
 
 class LinksDrawer extends Component {
     constructor(props) {

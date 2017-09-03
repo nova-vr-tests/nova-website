@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect }from 'react-redux';
-import './Footer.css';
-import { FOOTER_FINAL } from '../constants.js'
+import './styles/Footer.css';
+import { FOOTER_FINAL } from '../../constants.js'
 
 const reduxStatePropTypes = {
   introKeyframe: PropTypes.number,
