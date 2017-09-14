@@ -26,7 +26,7 @@ SECRET_KEY = 'g!3nya-wys7)mnj=g0_&sib%=14l39_i8hsqy57u&m41fvpf#r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['nova-xr-media.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['nova-xr-media.herokuapp.com', 'localhost', 'www.novamedia.nyc']
 
 
 # Application definition
