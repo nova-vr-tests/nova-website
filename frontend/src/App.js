@@ -40,12 +40,10 @@ const mapDispatchToProps = function(dispatch) {
 const AppDumb = props => (
   <div id="app--wrapper">
     <IntroAnimation />
-    <div className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
-      <Sidebar />
-      <Switch>
-        <Route exact path="/" component={ Home } />
-        <Route exact path="/about-us" component={ About } />
-      </Switch>
+    <div
+        style={{ margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
+        <h1>Coming Soon</h1>
     </div>
     <Footer />
   </div>
