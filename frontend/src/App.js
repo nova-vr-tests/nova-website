@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { connect }from 'react-redux';
 import './App.css';
 import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
+import About from './components/About/About.jsx'
+import Home from './components/Home/Home.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 import { INTRO_FINISHED } from './constants.js'
+import Sidebar from './components/Sidebar/Sidebar.jsx'
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -36,10 +40,12 @@ const mapDispatchToProps = function(dispatch) {
 const AppDumb = props => (
   <div id="app--wrapper">
     <IntroAnimation />
-    <div
-        style={{ margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-        className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
-        <h1>Coming Soon</h1>
+    <div className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
+      <Sidebar />
+      <Switch>
+        <Route exact path="/" component={ Home } />
+        <Route exact path="/about-us" component={ About } />
+      </Switch>
     </div>
     <Footer />
   </div>
