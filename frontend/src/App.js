@@ -39,7 +39,6 @@ const mapDispatchToProps = function(dispatch) {
 
 const AppDumb = props => (
   <div id="app--wrapper">
-    <IntroAnimation />
     <div className={ "router--wrapper " + (props.introKeyframe < INTRO_FINISHED ? "transparent" : "") }>
       <Sidebar />
       <Switch>
