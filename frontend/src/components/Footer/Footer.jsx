@@ -26,7 +26,7 @@ const FooterDumb = props => (
     <div className="footer--wrapper">
         <div className={
           "footer-background "
-          + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
+          + (props.introKeyframe <= FOOTER_FINAL ? " final-position " : "init-position")
           }>
         </div>
     </div>
