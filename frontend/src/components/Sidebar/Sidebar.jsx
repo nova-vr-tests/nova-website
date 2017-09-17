@@ -16,6 +16,12 @@ const constants = {
         unitWidth: '60px',
         sidebar: {
             widthFactor: 3,
+            sectionHeightFactor: 2,
+            subSectionHeightFactor: 4 / 3,
+            transition: {
+                length: ' 0.3s ',
+                type: ' linear',
+            },
         },
     },
 }
@@ -34,17 +40,13 @@ const SidebarSubSection = props => {
             wrapper: {
                 display: 'flex',
                 flexDirection: 'row',
-                minHeight: unitHeight,
-                overflowY: 'hidden',
-                transition: 'height 0.2s linear',
-                overflow: 'visible',
+                minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
             },
             opened: {
-                height: unitHeight,
             },
             title: {
                 minWidth: 'calc(' + sidebarWidth + ')',
-                minHeight: unitHeight,
+                minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -52,7 +54,7 @@ const SidebarSubSection = props => {
                 flex: 1,
             },
             link: {
-                minHeight: unitHeight,
+                minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -76,7 +78,7 @@ const SidebarSubSection = props => {
                 pointerEvents: 'inherit',
             },
             link: {
-                minHeight: unitHeight,
+                minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -145,7 +147,7 @@ const SidebarSection = props => {
         viewWrapper: {
             overflow: 'hidden',
             width: 'calc(3 * ' + unitWidth + ')',
-            transition: 'width 1s linear',
+            transition: 'width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
         },
         viewWrapperOpened: {
             width: 'calc(6 * ' + unitWidth + ')',
@@ -155,21 +157,22 @@ const SidebarSection = props => {
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
-                height: 'calc(4 * ' + unitHeight + ')',
-                maxHeight: unitHeight,
+                height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ' + 3 * ' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
+                maxHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 overflow: 'visible',
-                transition: 'max-height 1s linear',
+                transition: 'max-height' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
             },
             title: {
-                minHeight: unitHeight,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'rgba(255, 255, 255, 0.3)',
                 width: 'calc(3 * ' + unitWidth + ')',
+                height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
+                minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
             },
             opened: {
-                maxHeight: 'calc(4 * ' + unitHeight + ')',
+                maxHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ' + 3 * ' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
             }
         },
         subSections: {
@@ -245,7 +248,7 @@ const SidebarDumb = props => {
             width: 'calc(' + sidebarWidth + ' * 2)',
             maxWidth: 'calc(' + sidebarWidth + ' + 1px)', // 1px is for borderDiv border
             paddingTop: '10rem',
-            transition: 'max-width 1s linear',
+            transition: 'max-width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
             overflow: 'hidden',
         },
         logo: {
