@@ -4,76 +4,15 @@ import { connect }from 'react-redux';
 import { push } from 'react-router-redux';
 import './styles/Sidebar.css';
 import logo from '../img/intro-logo/frame1.svg';
-
-class LinksDrawer extends Component {
-    constructor(props) {
-        super()
-
-        this.state = {
-            isOpened: false,
-        }
-
-        this.getLinks = this.getLinks.bind(this)
-        this.toggleDrawer = this.toggleDrawer.bind(this)
-    }
-
-    componentDidMount() {
-    }
-
-    getLinks() {
-        return this.props.links.map((link, i) => <div className="link" key={ i }>{ link }</div>)
-    }
-
-    toggleDrawer() {
-        this.setState({ isOpened: !this.state.isOpened })
-    }
-
-    render() {
-        return (
-            <div className={ "link-drawer--wrapper" + (this.state.isOpened ? " opened" : "")}>
-                <div className="header" onClick={ this.toggleDrawer }>
-                    { this.props.header }
-                </div>
-                <div className={ "links--wrapper" + (this.state.isOpened ? " opened" : "") }>
-                    { this.getLinks() }
-                </div>
-            </div>
-        )
-    }
-}
-
-LinksDrawer.propTypes = {
-    header: PropTypes.string,
-    links: PropTypes.array,
-}
-
-LinksDrawer.defaultProps = {
-    header: "test",
-    links: ["foo", "bar"],
-}
+import {
+    initSidebarLinkStates,
+    toggleSidebarSection,
+    toggleSidebarSubSection
+} from '../../reducer/actions/Sidebar.js'
 
 
-const reduxStatePropTypes = {
-    isSiderbarOpened: PropTypes.bool.isRequired,
-}
-
-const mapStateToProps = function(state) {
-	return {
-        isSiderbarOpened: state.appReducer.isSidebarOpened,
-    }
-}
-
-const reduxDispatchPropTypes = {
-  changePage: PropTypes.func,
-}
-
-const mapDispatchToProps = function(dispatch) {
-	return {
-    goTo: page => dispatch(push(page)),
-  }
-}
-
-const SidebarSubSection = ({ subSection }) => {
+const SidebarSubSection = props => {
+    const { subSection } = props
     const subSubSections = subSection.links
 
     if(subSubSections.length > 0){
@@ -82,12 +21,20 @@ const SidebarSubSection = ({ subSection }) => {
         // Loop subsub sections
         for(let i = 0; i < subSubSections.length; i++) {
             const subSubSection = subSubSections[i]
-            components[i] = <div className="sub-sub-section--link" key={ i }>{ subSubSection }</div>
+            components[i] = <div
+                                className="sub-sub-section--link"
+                                key={ i }>
+                                { subSubSection }
+                            </div>
         }
 
         return (
             <div className="sub-section--wrapper">
-                <div className="sub-section--title">{ subSection.title }</div>
+                <div
+                    className="sub-section--title"
+                    onClick={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }>
+                    { subSection.title }
+                </div>
                 <div className="sub-sub-sections--wrapper">
                     { components }
                 </div>
@@ -99,7 +46,8 @@ const SidebarSubSection = ({ subSection }) => {
     }
 }
 
-const SidebarSection = ({ section }) => {
+const SidebarSection = props => {
+    const { section } = props
     const subSections = section.links
     const components = []
 
@@ -108,7 +56,12 @@ const SidebarSection = ({ section }) => {
         for(let i = 0; i < subSections.length; i++) {
             const subSection = subSections[i]
 
-            components[i] = <SidebarSubSection subSection={ subSection } key={ i } />
+            components[i] = <SidebarSubSection
+                                isOpened={ props.sectionState.subSections[i] }
+                                subSection={ subSection }
+                                dispatch={ props.dispatch }
+                                key={ i }
+                                id={ {section: props.id.section, subSection: i} } />
         }
 
         return components
@@ -116,7 +69,11 @@ const SidebarSection = ({ section }) => {
 
     return (
         <div className="section--wrapper">
-            <div className="section--title">{ section.title }</div>
+            <div
+                className="section--title"
+                onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
+                { section.title }
+            </div>
             <div className="sub-sections--wrapper">
                 { parseSection(section) }
             </div>
@@ -132,7 +89,13 @@ const SidebarDumb = props => {
         for(let i = 0; i < sections.length; i++) {
             const section = sections[i]
 
-            components[i] = <SidebarSection section={ section } key={ i } />
+            components[i] = <SidebarSection
+                                sectionState={ props.linkStates[i] }
+                                isOpened={ props.linkStates[i].isOpened }
+                                section={ section }
+                                dispatch={ props.dispatch }
+                                id={ {section: i} }
+                                key={ i } />
         }
 
         return components
@@ -149,18 +112,31 @@ const SidebarDumb = props => {
 }
 
 SidebarDumb.propTypes = {
-  ...reduxStatePropTypes,
-  ...reduxDispatchPropTypes,
 }
 
 SidebarDumb.defaultProps = {
 }
 
-class Sidebar extends Component {
-    componentDidMount() {
+const sidebarState = function(state) {
+	return {
+      isSiderbarOpened: state.sidebarReducer.isSidebarOpened,
+      linkStates: state.sidebarReducer.linkStates,
     }
+}
 
-    render() {
+const sidebarDispatch = function(dispatch) {
+	return {
+    goTo: page => dispatch(push(page)),
+    initLinkStates: links => dispatch(initSidebarLinkStates(links)),
+    toggleSection: i => dispatch(toggleSidebarSection(i)),
+    toggleSubSection: (i, j) => dispatch(toggleSidebarSubSection(i, j)),
+  }
+}
+
+class Sidebar extends Component {
+    constructor(props) {
+        super(props)
+
         const category1 = {
             title: "Nova XR",
             links: [
@@ -248,9 +224,30 @@ class Sidebar extends Component {
             category3,
         ]
 
+        this.state = {
+            links,
+        }
+    }
+
+    componentWillMount() {
+        this.props.initLinkStates(this.state.links)
+    }
+
+    render() {
+        const dispatch = {
+            toggleSidebarSection: this.props.toggleSection,
+            toggleSidebarSubSection: this.props.toggleSubSection,
+        }
+
+        if(this.props.linkStates.length === 0)
+            return <div></div>
+
+
         return <SidebarDumb
+            dispatch={ dispatch }
+            linkStates={ this.props.linkStates }
             goTo={ this.props.goTo }
-            links={ links }
+            links={ this.state.links }
             isSiderbarOpened={ this.props.isSiderbarOpened } />
     }
 }
@@ -260,6 +257,6 @@ Sidebar.propTypes = {
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    sidebarState,
+    sidebarDispatch,
 )(Sidebar)
