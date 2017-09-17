@@ -33,10 +33,24 @@ const initSidebarLinkStates = sections => {
     }
 }
 
-const toggleSidebarSection = i => {
-    const linkStates = { ...store.getState().sidebarReducer.linkStates }
+const resetLinkStates = _links => {
+    const links = [ ..._links ]
+    for(let i = 0; i < links.length; i++) {
+        links[i].isOpened = false
 
-    linkStates[i].isOpened = !linkStates[i].isOpened
+        for(let j = 0; j < links[i].subSections.length; j++) {
+            links[i].subSections[j] = false
+        }
+    }
+
+    return links
+}
+
+const toggleSidebarSection = i => {
+    const currentLinkStates = [ ...store.getState().sidebarReducer.linkStates ]
+    const linkStates = resetLinkStates(currentLinkStates)
+
+    linkStates[i].isOpened = !currentLinkStates[i].isOpened
 
     return {
         type: TOGGLE_SIDEBAR_SECTION,
@@ -45,9 +59,11 @@ const toggleSidebarSection = i => {
 }
 
 const toggleSidebarSubSection = (i, j) => {
-    const linkStates = { ...store.getState().sidebarReducer.linkStates }
+    const currentLinkStates = [ ...store.getState().sidebarReducer.linkStates ]
+    const linkStates = resetLinkStates(currentLinkStates)
 
-    linkStates[i].subSections[j] = !linkStates[i].subSections[j]
+    linkStates[i].isOpened = !currentLinkStates[i].isOpened
+    linkStates[i].subSections[j] = !currentLinkStates[i].subSections[j]
 
     return {
         type: TOGGLE_SIDEBAR_SUBSECTION,
