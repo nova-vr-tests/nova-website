@@ -15,7 +15,7 @@ const SidebarSubSection = props => {
     const { subSection } = props
     const subSubSections = subSection.links
 
-    if(subSubSections.length > 0){
+    if(subSubSections.length > 0) {
         const components = []
 
         // Loop subsub sections
@@ -29,7 +29,7 @@ const SidebarSubSection = props => {
         }
 
         return (
-            <div className="sub-section--wrapper">
+            <div className={ "sub-section--wrapper" + (props.isOpened ? " opened" : "") }>
                 <div
                     className="sub-section--title"
                     onClick={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }>
@@ -68,7 +68,7 @@ const SidebarSection = props => {
     }
 
     return (
-        <div className="section--wrapper">
+        <div className={ "section--wrapper" + (props.isOpened ? " opened" : "") }>
             <div
                 className="section--title"
                 onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
@@ -151,9 +151,9 @@ class Sidebar extends Component {
                 {
                     title: "Technology",
                     links: [
-                        "Virtual Reality",
-                        "Augmented Reality",
-                        "Related technology",
+                        "VR",
+                        "AR",
+                        "Related techs",
                     ],
                 },
                 {
