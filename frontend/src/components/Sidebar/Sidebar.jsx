@@ -229,6 +229,8 @@ const SidebarSection = props => {
         },
         subSections: {
             wrapper: {
+                transition: 'opacity' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
+                opacity: (props.linePosition === props.id.section && !props.isOpened ? 0 : 1),
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
