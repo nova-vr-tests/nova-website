@@ -146,8 +146,6 @@ const SidebarSection = props => {
     const getSectionPosition = (linkStates, linePosition, section) => {
         let marginTop = '-'
 
-        if(section > 0)
-            return 0
 
         // if section is above line position
         if(section < linePosition) {
@@ -166,7 +164,6 @@ const SidebarSection = props => {
             // is this section opened ?
             let i = section + 1
             while(i < linePosition) {
-    debugger
                 marginTop =
                     constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
                     + ' - ' +
@@ -181,16 +178,21 @@ const SidebarSection = props => {
                 i++
             }
 
-            return 'calc(' + marginTop + ')'
+            // return 'calc(' + marginTop + ')'
         } else if (section == linePosition) {
             // line height menu is opened ? => subtract section height from top margin
-            if(linkStates[linePosition].isOpened) {
+            if(linkStates[linePosition].isOpened && section === 0) {
                 marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
-                return 'calc(' + marginTop + ')'
+                // return 'calc(' + marginTop + ')'
             }
+
         }
 
-        return 0
+
+        if(marginTop !== '-')
+            return 'calc(' + marginTop + ')'
+        else
+            return 0
     }
 
     const unitHeight = constants.styles.unitHeight
@@ -321,7 +323,7 @@ const SidebarDumb = props => {
         sectionsWrapper: {
             display: 'flex',
             flexDirection: 'column',
-            marginTop: 'calc(' + (9 + 2 * props.linePosition) * 100/24 + 'vh)',
+            marginTop: 'calc(' + (9 + 0 * props.linePosition) * 100/24 + 'vh)',
         },
         opened: {
         },
