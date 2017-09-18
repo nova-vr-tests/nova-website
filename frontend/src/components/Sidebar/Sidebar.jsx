@@ -204,6 +204,7 @@ const SidebarSection = props => {
             width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
             transition: 'width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
             marginTop: getSectionPosition(props.linkStates, props.linePosition, props.id.section),
+            transition: 'margin-top 0.3s linear',
         },
         viewWrapperOpened: {
             width: 'calc(2 * ' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
@@ -219,7 +220,7 @@ const SidebarSection = props => {
                 overflow: 'visible',
                 transition: 'max-height' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
                 minHeight: 'calc('
-                      + (props.linePosition === props.id.section && !props.isOpened ? '2 * ' : '') +
+                      + (props.linePosition === props.id.section ? '2 * ' : '') +
                       + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight
                       + ')',
             },
