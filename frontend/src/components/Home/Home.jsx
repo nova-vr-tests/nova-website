@@ -35,7 +35,7 @@ const HomeDumb = props => {
             height: 'calc(4 * ' + 100/24 + 'vh)',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             display: 'flex',
-            width: '100vh',
+            width: '100vw',
         },
     }
 
