@@ -10,6 +10,7 @@ import {
     toggleSidebarSubSection
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
+import Pages from '../pages/pages.js'
 
 const constants = { styles }
 
@@ -85,6 +86,7 @@ const SidebarSubSection = props => {
             const subSubSection = subSubSections[i]
             components[i] = <div
                                 className="sidebar-subsection--hover"
+                                onClick={ () => props.dispatch.goTo(Pages[props.id.section][props.id.subSection][i][1]) }
                                 style={ styles.subSubSection.link }
                                 key={ i }>
                                 { subSubSection }
@@ -173,7 +175,6 @@ const SidebarSection = props => {
                         +
                         marginTop
                 }
-                debugger
             }
 
 
@@ -494,6 +495,7 @@ class Sidebar extends Component {
         const dispatch = {
             toggleSidebarSection: this.props.toggleSection,
             toggleSidebarSubSection: this.props.toggleSubSection,
+            goTo: this.props.goTo,
         }
 
         if(this.props.linkStates.length === 0)

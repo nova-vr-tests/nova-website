@@ -6,10 +6,12 @@ import { Route, Switch } from 'react-router-dom';
 import About from './components/About/About.jsx'
 import Home from './components/Home/Home.jsx'
 import Footer from './components/Footer/Footer.jsx'
+import Line from './components/Line/Line.jsx'
 import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 import { INTRO_FINISHED } from './constants.js'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
 import { styles } from './constants.js'
+import NovaRouter from './router.jsx'
 
 const constants = { styles }
 
@@ -58,10 +60,7 @@ const AppDumb = props => (
           style={ _styles.routerWrapper }
           className={ "ruter--wrapper " + (props.introKeyframe > INTRO_FINISHED ? "transparent" : "") }>
       <Sidebar />
-      <Switch>
-        <Route exact path="/" component={ Home } />
-        <Route exact path="/about-us" component={ About } />
-      </Switch>
+      <NovaRouter />
     </div>
     <Footer />
   </div>
