@@ -30,7 +30,7 @@ const HomeDumb = props => {
         wrapper: {
             marginTop: 'calc(' + (9 + 2 * props.linePosition) * 100/24 + 'vh)',
             height: 'calc(4 * ' + 100/24 + 'vh)',
-            backgroundColor: 'white',
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
             display: 'flex',
             width: '100vh',
         },

@@ -63,7 +63,7 @@ const toggleSidebarSubSection = (i, j) => {
     const currentLinkStates = [ ...store.getState().sidebarReducer.linkStates ]
     const linkStates = resetLinkStates(currentLinkStates)
 
-    linkStates[i].isOpened = !currentLinkStates[i].isOpened
+    linkStates[i].isOpened = currentLinkStates[i].isOpened
     linkStates[i].subSections[j] = !currentLinkStates[i].subSections[j]
 
     return {
