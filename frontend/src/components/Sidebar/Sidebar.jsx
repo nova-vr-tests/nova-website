@@ -38,15 +38,15 @@ const SidebarSubSection = props => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 flex: 1,
+                transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
             },
             link: {
                 minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
             },
         },
         subSubSection:{
@@ -70,11 +70,12 @@ const SidebarSubSection = props => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
                 width: 'calc(' + sidebarWidth + ')',
+                transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
             },
         },
     }
+
 
     if(subSubSections.length > 0) {
         const components = []
@@ -83,6 +84,7 @@ const SidebarSubSection = props => {
         for(let i = 0; i < subSubSections.length; i++) {
             const subSubSection = subSubSections[i]
             components[i] = <div
+                                className="sidebar-subsection--hover"
                                 style={ styles.subSubSection.link }
                                 key={ i }>
                                 { subSubSection }
@@ -97,17 +99,23 @@ const SidebarSubSection = props => {
                 style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
                     <div
                         style={ styles.subSection.title }
+                        className={ !props.isOpened ? "sidebar-subsection--hover" : "sidebar-subsection--active" }
                         onClick={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }>
                         { subSection.title }
                     </div>
-                    <div style={ {...styles.subSubSection.wrapper, ...(props.isOpened ? styles.subSubSection.opened: {})} }>
+                    <div
+                        style={ {...styles.subSubSection.wrapper, ...(props.isOpened ? styles.subSubSection.opened: {})} }>
                         { components }
                     </div>
             </div>
         )
     } else {
         // Return sub section as link
-        return <div style={ styles.subSection.link }>{ subSection.title }</div>
+        return <div
+                   className="sidebar-subsection--hover"
+                   style={ styles.subSection.link }>
+                   { subSection.title }
+               </div>
     }
 }
 
@@ -123,6 +131,7 @@ const SidebarSection = props => {
             const subSection = subSections[i]
 
             components[i] = <SidebarSubSection
+                                linkStates={ props.linkStates }
                                 linePosition={ props.linePosition }
                                 isOpened={ props.sectionState.subSections[i] }
                                 subSection={ subSection }
@@ -218,10 +227,14 @@ const SidebarSection = props => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.3)',
                 width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
                 height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
+                transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
+                borderTop: '1px solid rgba(255, 255, 255, 0.3)',
+            },
+            titleActive: {
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
             },
             opened: {
                 maxHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ' + 3 * ' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
@@ -246,7 +259,7 @@ const SidebarSection = props => {
             style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
             <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
                 <div
-                    style={ styles.section.title }
+                    style={ { ...styles.section.title, ...(props.isOpened ? styles.section.titleActive : {})} }
                     onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
                     { section.title }
                 </div>
@@ -345,6 +358,8 @@ const SidebarDumb = props => {
             <img src={ logo } alt="logo" style={ styles.logo } />
             <div style={ styles.sectionsWrapper }>
                 { parseSections(props.links) }
+                <div style={ { borderBottom: '1px solid rgba(255, 255, 255, 0.3)', maxWidth: 'calc(' + sidebarWidth + ')'} }>
+                </div>
             </div>
             <div style={ styles.borderDiv }>
             </div>

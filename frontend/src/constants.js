@@ -18,6 +18,10 @@ const styles = {
             length: ' 0.3s ',
             type: ' linear',
         },
+        hoverTransition: {
+            length: ' 0.3s ',
+            type: ' linear',
+        },
     },
 }
 
