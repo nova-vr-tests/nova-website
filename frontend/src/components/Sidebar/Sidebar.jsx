@@ -145,38 +145,37 @@ const SidebarSection = props => {
 
     const getSectionPosition = (linkStates, linePosition, section) => {
         let marginTop = '-'
+        let m0 = marginTop
 
 
         // if section is above line position
-        if(section < linePosition) {
-            // line height menu is opened ? => subtract section height from top margin
-            if(linkStates[linePosition].isOpened)
-                marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
+        if(section < linePosition && linePosition <= 2) {
+            if(section === 0) {
+                // line height menu is opened ? => subtract section height from top margin
+                if(linkStates[linePosition].isOpened)
+                    marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
 
-            if(linkStates[section].isOpened)
-                marginTop =
-                    marginTop
-                    +
-                    3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
-
+                if(linkStates[section].isOpened)
+                    marginTop =
+                        marginTop
+                        +
+                        3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
+            }
 
             // is there section after between current section and line ?
             // is this section opened ?
-            let i = section + 1
-            while(i < linePosition) {
-                marginTop =
-                    constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
-                    + ' - ' +
-                    marginTop
-
-                if(linkStates[i].isOpened)
+            if(section === 0 && linePosition === 2) {
+                console.log(linkStates[1].isOpened)
+                if(linkStates[1].isOpened) {
+                    marginTop = (marginTop === m0 ? '' : ' - ' + marginTop)
                     marginTop =
-                        3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
-                        + ' - ' +
+                        -3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
+                        +
                         marginTop
-
-                i++
+                }
+                debugger
             }
+
 
             // return 'calc(' + marginTop + ')'
         } else if (section == linePosition) {
@@ -221,7 +220,7 @@ const SidebarSection = props => {
                 transition: 'max-height' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
                 minHeight: 'calc('
                       + (props.linePosition === props.id.section && !props.isOpened ? '2 * ' : '') +
-                      + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight 
+                      + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight
                       + ')',
             },
             title: {
