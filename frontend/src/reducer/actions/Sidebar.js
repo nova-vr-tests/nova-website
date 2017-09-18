@@ -34,7 +34,7 @@ const initSidebarLinkStates = sections => {
 }
 
 const resetLinkStates = _links => {
-    const links = [ ..._links ]
+    const links = JSON.parse(JSON.stringify(_links))
     for(let i = 0; i < links.length; i++) {
         links[i].isOpened = false
 
@@ -50,7 +50,8 @@ const toggleSidebarSection = i => {
     const currentLinkStates = [ ...store.getState().sidebarReducer.linkStates ]
     const linkStates = resetLinkStates(currentLinkStates)
 
-    linkStates[i].isOpened = !currentLinkStates[i].isOpened
+    if(!currentLinkStates[i].isOpened)
+        linkStates[i].isOpened = !currentLinkStates[i].isOpened
 
     return {
         type: TOGGLE_SIDEBAR_SECTION,

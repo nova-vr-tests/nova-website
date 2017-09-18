@@ -31,8 +31,8 @@ const SidebarSubSection = props => {
     const { subSection } = props
     const subSubSections = subSection.links
 
-    const unitHeight = constants.styles.unitHeight
 
+    const unitHeight = constants.styles.unitHeight
     const sidebarWidth =  constants.styles.sidebar.widthFactor + ' * ' + constants.styles.unitWidth
 
     const styles = {
@@ -101,6 +101,7 @@ const SidebarSubSection = props => {
                             </div>
         }
 
+
         return (
             <div style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
                     <div
@@ -124,12 +125,14 @@ const SidebarSection = props => {
     const subSections = section.links
     const components = []
 
+
     const parseSection = section => {
         // Loop subsections
         for(let i = 0; i < subSections.length; i++) {
             const subSection = subSections[i]
 
             components[i] = <SidebarSubSection
+                                linePosition={ props.linePosition }
                                 isOpened={ props.sectionState.subSections[i] }
                                 subSection={ subSection }
                                 dispatch={ props.dispatch }
@@ -140,17 +143,70 @@ const SidebarSection = props => {
         return components
     }
 
+    const getSectionPosition = (linkStates, linePosition, section) => {
+        let marginTop = '-'
+
+        if(section > 0)
+            return 0
+
+        // if section is above line position
+        if(section < linePosition) {
+            // line height menu is opened ? => subtract section height from top margin
+            if(linkStates[linePosition].isOpened)
+                marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
+
+            if(linkStates[section].isOpened)
+                marginTop =
+                    marginTop
+                    +
+                    3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
+
+
+            // is there section after between current section and line ?
+            // is this section opened ?
+            let i = section + 1
+            while(i < linePosition) {
+    debugger
+                marginTop =
+                    constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
+                    + ' - ' +
+                    marginTop
+
+                if(linkStates[i].isOpened)
+                    marginTop =
+                        3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
+                        + ' - ' +
+                        marginTop
+
+                i++
+            }
+
+            return 'calc(' + marginTop + ')'
+        } else if (section == linePosition) {
+            // line height menu is opened ? => subtract section height from top margin
+            if(linkStates[linePosition].isOpened) {
+                marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
+                return 'calc(' + marginTop + ')'
+            }
+        }
+
+        return 0
+    }
+
     const unitHeight = constants.styles.unitHeight
     const unitWidth = constants.styles.unitWidth
+
 
     const styles = {
         viewWrapper: {
             overflow: 'hidden',
-            width: 'calc(3 * ' + unitWidth + ')',
+            width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
             transition: 'width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
+            marginTop: getSectionPosition(props.linkStates, props.linePosition, props.id.section),
         },
         viewWrapperOpened: {
-            width: 'calc(6 * ' + unitWidth + ')',
+            width: 'calc(2 * ' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
+            //marginTop: '-2rem',
         },
         section: {
             wrapper: {
@@ -161,13 +217,17 @@ const SidebarSection = props => {
                 maxHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 overflow: 'visible',
                 transition: 'max-height' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
+                minHeight: 'calc('
+                      + (props.linePosition === props.id.section && !props.isOpened ? '2 * ' : '') +
+                      + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight 
+                      + ')',
             },
             title: {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                width: 'calc(3 * ' + unitWidth + ')',
+                width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
                 height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
             },
@@ -180,23 +240,23 @@ const SidebarSection = props => {
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
-                width: 'calc(3 * ' + unitWidth + ')',
+                width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
             },
         },
     }
 
     return (
         <div style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
-        <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
-            <div
-                style={ styles.section.title }
-                onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
-                { section.title }
+            <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
+                <div
+                    style={ styles.section.title }
+                    onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
+                    { section.title }
+                </div>
+                <div style={ styles.subSections.wrapper }>
+                    { parseSection(section) }
+                </div>
             </div>
-            <div style={ styles.subSections.wrapper }>
-                { parseSection(section) }
-            </div>
-        </div>
         </div>
     )
 }
@@ -210,6 +270,8 @@ const SidebarDumb = props => {
             const section = sections[i]
 
             components[i] = <SidebarSection
+                                linkStates={ props.linkStates }
+                                linePosition={ props.linePosition }
                                 sectionState={ props.linkStates[i] }
                                 isOpened={ props.linkStates[i].isOpened }
                                 section={ section }
@@ -245,26 +307,26 @@ const SidebarDumb = props => {
             height: '100vh',
             display: 'flex',
             flex: 1,
-            width: 'calc(' + sidebarWidth + ' * 2)',
+            width: 'calc(' + sidebarWidth + ' * 2)', // * 2 b/c of space needed for sub sub sections to appear on the side of sub sections (see SidebarSection styles.opened)
             maxWidth: 'calc(' + sidebarWidth + ' + 1px)', // 1px is for borderDiv border
-            paddingTop: '10rem',
             transition: 'max-width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
             overflow: 'hidden',
         },
         logo: {
             height: '10rem',
             position: 'absolute',
-            width: 'calc(' + sidebarWidth + ' ' + '/ 1)',
+            width: 'calc(' + sidebarWidth + ')',
             top: 0,
         },
         sectionsWrapper: {
             display: 'flex',
             flexDirection: 'column',
+            marginTop: 'calc(' + (9 + 2 * props.linePosition) * 100/24 + 'vh)',
         },
         opened: {
         },
         large: {
-            maxWidth: 'calc(' + sidebarWidth + ' * 2)',
+            maxWidth: 'calc(' + sidebarWidth + ' * 2)', // see wrapper width
         },
         borderDiv: {
             position: 'absolute',
@@ -284,7 +346,7 @@ const SidebarDumb = props => {
                 ...(isSubSectionOpened() ? styles.large : {}),
         } }>
             <img src={ logo } alt="logo" style={ styles.logo } />
-            <div>
+            <div style={ styles.sectionsWrapper }>
                 { parseSections(props.links) }
             </div>
             <div style={ styles.borderDiv }>
@@ -303,6 +365,7 @@ const sidebarState = function(state) {
 	return {
       isSiderbarOpened: state.sidebarReducer.isSidebarOpened,
       linkStates: state.sidebarReducer.linkStates,
+      linePosition: state.appReducer.linePosition,
     }
 }
 
@@ -426,6 +489,7 @@ class Sidebar extends Component {
 
 
         return <SidebarDumb
+            linePosition={ this.props.linePosition }
             dispatch={ dispatch }
             linkStates={ this.props.linkStates }
             goTo={ this.props.goTo }

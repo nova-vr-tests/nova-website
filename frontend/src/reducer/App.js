@@ -2,9 +2,17 @@ export const INCREMENT_INTRO_KEYFRAME = 'app/increment intro keyframe'
 export const RESET_INTRO_KEYFRAME = 'app/reset intro keyframe'
 export const TOGGLE_SIDEBAR = 'app/toggle sidebar'
 
+export const sectionPosition = {
+    // values are position in sidebar links section array
+    TOP: 0,
+    MIDDLE: 1,
+    BOTTOM: 2,
+}
+
 const initialState = {
   introKeyframe: 1,
   isSidebarOpened: true,
+  linePosition: 0, // position of current page in sidebar tree
 }
 
 export default (state = initialState, action) => {

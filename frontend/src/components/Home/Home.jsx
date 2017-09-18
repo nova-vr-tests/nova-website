@@ -10,6 +10,7 @@ const reduxStatePropTypes = {
 
 const mapStateToProps = function(state) {
 	return {
+      linePosition: state.appReducer.linePosition,
   }
 }
 
@@ -22,33 +23,24 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-const HomeDumb = props => (
-  <div className="home--wrapper">
-    <div className="text--wrapper">
-      <h1>New Year's Eve in VR</h1>
-      <h2>Anywhere Anytime</h2>
-      <div className="text--content">
-        <p>
-          Live from around the world, in stereoscopic 3D virtual reality,
-          we will bring you to 10 of the most iconic locations on Earth to
-          celebrate with locals.
-        </p>
-        <p>
-          All you need is the internet.
-        </p>
-        <p>
-          Imagine jumping from one city to another with the click of your controller. This New Year's Eve you can travel the globe without ever leaving your living room. Teleport, fly, or transform into a mega-robot with friends and strangers alike.
-        </p>
-        <p>
-          This year will be like none other !
-        </p>
-      </div>
-    </div>
-    <div className="image--wrapper">
-      <img src={ decoration } className="supporting-image" alt="decoration" />
-    </div>
-  </div>
-)
+
+const HomeDumb = props => {
+    console.log(props.linePosition)
+    const styles = {
+        wrapper: {
+            marginTop: 'calc(' + (9 + 2 * props.linePosition) * 100/24 + 'vh)',
+            height: 'calc(4 * ' + 100/24 + 'vh)',
+            backgroundColor: 'white',
+            display: 'flex',
+            width: '100vh',
+        },
+    }
+
+    return (
+        <div style={ styles.wrapper }>
+        </div>
+    )
+}
 
 HomeDumb.propTypes = {
   ...reduxStatePropTypes,
@@ -70,7 +62,8 @@ class Home extends Component {
 
   render() {
     return <HomeDumb
-      changePage={ this.props.changePage } />
+        linePosition={ this.props.linePosition }
+        changePage={ this.props.changePage } />
   }
 }
 
