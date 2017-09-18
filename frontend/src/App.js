@@ -9,6 +9,9 @@ import Footer from './components/Footer/Footer.jsx'
 import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 import { INTRO_FINISHED } from './constants.js'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
+import { styles } from './constants.js'
+
+const constants = { styles }
 
 const apiTest = async () => {
   const r = await fetch("api/businessprops/")
@@ -37,9 +40,23 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+const _styles = {
+    routerWrapper: {
+        opacity: 1,
+        transition: 'opacity 1s linear',
+        display: 'flex',
+        flex: 1,
+        marginLeft: 'calc(3 * ' + constants.styles.unitWidth + ')', /* same as sidebar width */
+    },
+    transparent: {
+        opacity: 0,
+    },
+}
 const AppDumb = props => (
   <div id="app--wrapper">
-    <div className={ "router--wrapper " + (props.introKeyframe > INTRO_FINISHED ? "transparent" : "") }>
+      <div
+          style={ _styles.routerWrapper }
+          className={ "ruter--wrapper " + (props.introKeyframe > INTRO_FINISHED ? "transparent" : "") }>
       <Sidebar />
       <Switch>
         <Route exact path="/" component={ Home } />

@@ -9,22 +9,10 @@ import {
     toggleSidebarSection,
     toggleSidebarSubSection
 } from '../../reducer/actions/Sidebar.js'
+import { styles } from '../../constants.js'
 
-const constants = {
-    styles: {
-        unitHeight: 100/24 + 'vh',
-        unitWidth: '60px',
-        sidebar: {
-            widthFactor: 3,
-            sectionHeightFactor: 2,
-            subSectionHeightFactor: 4 / 3,
-            transition: {
-                length: ' 0.3s ',
-                type: ' linear',
-            },
-        },
-    },
-}
+const constants = { styles }
+
 
 
 const SidebarSubSection = props => {
@@ -103,7 +91,10 @@ const SidebarSubSection = props => {
 
 
         return (
-            <div style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
+            <div
+                onMouseEnter={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }
+                onMouseLeave={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }
+                style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
                     <div
                         style={ styles.subSection.title }
                         onClick={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }>
@@ -202,9 +193,8 @@ const SidebarSection = props => {
         viewWrapper: {
             overflow: 'hidden',
             width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
-            transition: 'width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
+            transition: 'width, margin-top ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
             marginTop: getSectionPosition(props.linkStates, props.linePosition, props.id.section),
-            transition: 'margin-top 0.3s linear',
         },
         viewWrapperOpened: {
             width: 'calc(2 * ' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
@@ -248,7 +238,10 @@ const SidebarSection = props => {
     }
 
     return (
-        <div style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
+        <div
+            onMouseEnter={ () => props.dispatch.toggleSidebarSection(props.id.section) }
+            onMouseLeave={ () => props.dispatch.toggleSidebarSection(props.id.section) }
+            style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
             <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
                 <div
                     style={ styles.section.title }

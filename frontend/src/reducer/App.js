@@ -12,7 +12,7 @@ export const sectionPosition = {
 const initialState = {
   introKeyframe: 1,
   isSidebarOpened: true,
-  linePosition: 1, // position of current page in sidebar tree
+  linePosition: 2, // position of current page in sidebar tree
 }
 
 export default (state = initialState, action) => {

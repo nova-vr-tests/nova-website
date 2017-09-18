@@ -4,6 +4,9 @@ import { connect }from 'react-redux';
 import { push } from 'react-router-redux';
 import './styles/Home.css';
 import decoration from '../img/home/decoration1.jpg';
+import { styles } from '../../constants.js'
+
+const constants = { styles }
 
 const reduxStatePropTypes = {
 }
@@ -28,7 +31,7 @@ const HomeDumb = props => {
     console.log(props.linePosition)
     const styles = {
         wrapper: {
-            marginTop: 'calc(' + (9 + 2 * props.linePosition) * 100/24 + 'vh)',
+            marginTop: 'calc(' + (9 + 2 * props.linePosition) + ' * ' + constants.styles.unitHeight + ')',
             height: 'calc(4 * ' + 100/24 + 'vh)',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             display: 'flex',
