@@ -7,3 +7,4 @@ local.sh
 .DS_Store
 venv
 *.pdf
+*.swp
