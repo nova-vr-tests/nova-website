@@ -80,10 +80,11 @@ class App extends Component {
     apiTest()
   }
 
-    render() {
-        console.log(this.props.pathname)
-        this.props.updateLinePosition(getLinePosition(this.props.pathname))
+    componentWillReceiveProps(newProps, newState) {
+        this.props.updateLinePosition(getLinePosition(newProps.pathname))
+    }
 
+    render() {
         return <AppDumb
             introKeyframe={ this.props.introKeyframe }
         />
