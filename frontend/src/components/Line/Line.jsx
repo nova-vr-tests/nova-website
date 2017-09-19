@@ -47,7 +47,7 @@ const LineDumb = props => {
                 paddingLeft: '25rem',
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 opacity: 0,
-                transition: 'opacity 0.3s linear',
+                transition: 'opacity ' + constants.styles.sidebar.transition.length + constants.styles.sidebar.transition.type,
             },
             wrapper2Opened: {
                 height: 'calc(4 * ' + 100/24 + 'vh)',
