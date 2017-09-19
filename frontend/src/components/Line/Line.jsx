@@ -32,7 +32,8 @@ const LineDumb = props => {
             display: 'flex',
             flexDirection: 'column',
             flex: 1,
-                marginTop: 'calc(' + (9 + 0 * props.linePosition) + ' * ' + constants.styles.unitHeight + ')',
+            marginTop: 'calc(' + (9 + 2 * props.linePosition) + ' * ' + constants.styles.unitHeight + ')',
+            transition: 'margin-top 0.3s linear'
         },
         line: {
             wrapper: {
@@ -60,17 +61,9 @@ const LineDumb = props => {
     return (
         <div style={ styles.wrapper }>
             <div style={ styles.line.wrapper }>
-                <div style={ { ...styles.line.wrapper2, ...(props.linePosition === 0 ? styles.line.wrapper2Opened : {}) } }>
+                <div style={ { ...styles.line.wrapper2, ...styles.line.wrapper2Opened } }>
                     { props.lines[0] }
-                </div>
-            </div>
-            <div style={ styles.line.wrapper }>
-                <div style={ { ...styles.line.wrapper2, ...(props.linePosition === 1 ? styles.line.wrapper2Opened : {}) } }>
                     { props.lines[1] }
-                </div>
-            </div>
-            <div style={ styles.line.wrapper }>
-                <div style={ { ...styles.line.wrapper2, ...(props.linePosition === 2 ? styles.line.wrapper2Opened : {}) } }>
                     { props.lines[2] }
                 </div>
             </div>

@@ -12,6 +12,8 @@ import { INTRO_FINISHED } from './constants.js'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
 import { styles } from './constants.js'
 import NovaRouter from './router.jsx'
+import { getLinePosition } from './components/pages/pages.js'
+import { updateLinePosition } from './reducer/actions/App.js'
 
 const constants = { styles }
 
@@ -31,6 +33,7 @@ const mapStateToProps = function(state) {
 	return {
     routing: state.routing,
     introKeyframe: state.appReducer.introKeyframe,
+    pathname: state.routing.location.pathname,
   }
 }
 
@@ -39,6 +42,7 @@ const reduxDispatchPropTypes = {
 
 const mapDispatchToProps = function(dispatch) {
 	return {
+    updateLinePosition: linePosition => dispatch(updateLinePosition(linePosition)),
   }
 }
 
@@ -77,10 +81,12 @@ class App extends Component {
   }
 
     render() {
+        console.log(this.props.pathname)
+        this.props.updateLinePosition(getLinePosition(this.props.pathname))
 
-    return <AppDumb
-      introKeyframe={ this.props.introKeyframe }
-      />
+        return <AppDumb
+            introKeyframe={ this.props.introKeyframe }
+        />
   }
 }
 

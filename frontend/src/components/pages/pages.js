@@ -48,18 +48,19 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
 	  return {
-        updateLinePosition: linePosition => dispatch(updateLinePosition(linePosition)),
+        updateLinePosition: () => {} //linePosition => dispatch(updateLinePosition(linePosition)),
     }
 }
 
-const connectToStore = Comp => connect(
+const connectToStore = Comp =>
+connect(
     mapStateToProps,
     mapDispatchToProps
 )(Comp)
 
 
 
-export default [
+const pageStructure = [
     [
         [
             [connectToStore(World), "/world"],
@@ -100,3 +101,32 @@ export default [
         [connectToStore(Strengthen), "/strengthen"],
     ],
 ]
+
+const getLinkList = pageStructure => {
+    const linkList = []
+
+    for(let i = 0; i < pageStructure.length; i++) {
+        for(let j = 0; j < pageStructure[i].length; j++) {
+            // if sub-section has sub-sub-sections
+            if(pageStructure[i][j].length > 2) {
+                for(let k = 0; k < pageStructure[i][j].length; k++) {
+                    linkList.push([pageStructure[i][j][k][1], i])
+                }
+            } else {
+                linkList.push([pageStructure[i][j][1], i])
+            }
+        }
+    }
+
+    linkList.push(['/', 0])
+
+    return linkList
+}
+
+const linkList = getLinkList(pageStructure)
+const getLinePosition = path => linkList.filter(e => e[0] === path).pop()[1]
+
+export default pageStructure
+export {
+    getLinePosition,
+}

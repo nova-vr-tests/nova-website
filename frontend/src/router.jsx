@@ -14,6 +14,8 @@ import { styles } from './constants.js'
 
 import Pages from './components/pages/pages.js'
 
+import { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition'
+
 const constants = { styles }
 
 
@@ -35,8 +37,36 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+
+
+const mapStyles = styles => {
+  return {
+    opacity: styles.opacity,
+    transform: 'scale(${styles.scale})',
+  };
+}
+
+const bounceTransition = {
+  atEnter: {
+    opacity: 0,
+    scale: 1.2,
+  },
+  atLeave: {
+    opacity: 0,
+    scale: 0.8,
+  },
+  atActive: {
+    opacity: 1,
+    scale: 1,
+  },
+}
+
 const createRoutesForSection = i => (
-    <Switch>
+    <AnimatedSwitch
+        atEnter={{ opacity: 0 }}
+        atLeave={{ opacity: 0 }}
+        atActive={{ opacity: 1 }}
+    >
         <Route exact path={ Pages[i][0][0][1] } component={ Pages[i][0][0][0] } />
         <Route exact path={ Pages[i][0][1][1] } component={ Pages[i][0][1][0] } />
         <Route exact path={ Pages[i][0][2][1] } component={ Pages[i][0][2][0] } />
@@ -48,15 +78,20 @@ const createRoutesForSection = i => (
         <Route exact path={ Pages[i][2][0][1] } component={ Pages[i][2][0][0] } />
         <Route exact path={ Pages[i][2][1][1] } component={ Pages[i][2][1][0] } />
         <Route exact path={ Pages[i][2][2][1] } component={ Pages[i][2][2][0] } />
-    </Switch>
+    </AnimatedSwitch>
 )
 
 const createRoutesForSubSection = i => (
-    <Switch>
+    <AnimatedSwitch
+        atEnter={bounceTransition.atEnter}
+        atLeave={bounceTransition.atLeave}
+        atActive={bounceTransition.atActive}
+        mapStyles={mapStyles}
+    >
         <Route exact path={ Pages[i][0][1] } component={ Pages[i][0][0] } />
         <Route exact path={ Pages[i][1][1] } component={ Pages[i][1][0] } />
         <Route exact path={ Pages[i][2][1] } component={ Pages[i][2][0] } />
-    </Switch>
+    </AnimatedSwitch>
 )
 const Router = props => {
     const Line1 = createRoutesForSection(0)
