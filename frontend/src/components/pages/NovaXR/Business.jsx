@@ -7,8 +7,6 @@ import {
 } from '../UI.jsx'
 
 const Influence = props => {
-    props.updateLinePosition(0)
-
     return (
         <PageWrapper>
             <H1>Influence</H1>
@@ -19,8 +17,6 @@ const Influence = props => {
 }
 
 const Revolution = props => {
-    props.updateLinePosition(0)
-
     return (
         <PageWrapper>
             <H1>Revolution</H1>
@@ -32,8 +28,6 @@ const Revolution = props => {
 }
 
 const Solution = props => {
-    props.updateLinePosition(0)
-
     return (
         <PageWrapper>
             <H1>Solution</H1>

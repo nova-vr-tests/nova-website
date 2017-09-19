@@ -1,21 +1,39 @@
 import React from 'react'
+import {
+    P,
+    H1,
+    H2,
+    PageWrapper,
+} from '../UI.jsx'
 
 const NewsProject1 = props => {
-    props.updateLinePosition(1)
-
-    return <h1>News Project 1</h1>
+    return (
+        <PageWrapper>
+            <H1>News Project 1</H1>
+            <P>
+            </P>
+        </PageWrapper>
+    )
 }
 
 const NewsProject2 = props => {
-    props.updateLinePosition(1)
-
-    return <h1>News Project 2</h1>
+    return (
+        <PageWrapper>
+            <H1>News Project 2</H1>
+            <P>
+            </P>
+        </PageWrapper>
+    )
 }
 
 const NewsProject3 = props => {
-    props.updateLinePosition(1)
-
-    return <h1>News Project 3</h1>
+    return (
+        <PageWrapper>
+            <H1>News Project 3</H1>
+            <P>
+            </P>
+        </PageWrapper>
+    )
 }
 
 export {

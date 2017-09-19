@@ -8,8 +8,6 @@ import {
 } from '../UI.jsx'
 
 const World = props => {
-    props.updateLinePosition(0)
-
     return (
         <PageWrapper>
             <H1>World</H1>
@@ -21,8 +19,6 @@ const World = props => {
 }
 
 const Interface = props => {
-    props.updateLinePosition(0)
-
     return (
         <PageWrapper>
             <H1>Interface</H1>
@@ -34,8 +30,6 @@ const Interface = props => {
 }
 
 const Story = props => {
-    props.updateLinePosition(0)
-
     return (
         <PageWrapper>
             <H1>Story</H1>

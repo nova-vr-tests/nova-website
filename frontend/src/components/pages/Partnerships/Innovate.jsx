@@ -1,9 +1,19 @@
 import React from 'react'
+import {
+    P,
+    H1,
+    H2,
+    PageWrapper,
+} from '../UI.jsx'
 
 const Innovate = props => {
-    props.updateLinePosition(2)
-
-    return <h1>Innovate</h1>
+    return (
+        <PageWrapper>
+            <H1>Innovate</H1>
+            <P>
+            </P>
+        </PageWrapper>
+    )
 }
 
 export {

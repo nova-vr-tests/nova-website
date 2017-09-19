@@ -3,8 +3,14 @@ import {
     RESET_INTRO_KEYFRAME,
     TOGGLE_SIDEBAR,
     UPDATE_LINE_POSITION,
+    UPDATE_BG,
 } from '../App'
 
+
+const updateBg = bgUrl => ({
+    type: UPDATE_BG,
+    bgUrl,
+})
 
 const updateLinePosition = linePosition => ({
     type: UPDATE_LINE_POSITION,
@@ -27,4 +33,5 @@ export {
     resetIntroKeyframe,
     toggleSidebar,
     updateLinePosition,
+    updateBg,
 }

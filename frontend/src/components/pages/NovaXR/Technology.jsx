@@ -8,7 +8,7 @@ import {
 } from '../UI.jsx'
 
 const VR = props => {
-        return (
+    return (
         <PageWrapper>
             <H1>Virtual Reality</H1>
             <P>

@@ -38,34 +38,18 @@ import { Strengthen } from './Partnerships/Strengthen.jsx'
 import React from 'react'
 import { connect }from 'react-redux'
 import { updateLinePosition } from '../../reducer/actions/App.js'
+import connectToStore from './PageSmart.jsx'
 
-
-const mapStateToProps = function(state) {
-	  return {
-        linePosition: state.appReducer.linePosition,
-    }
-}
-
-const mapDispatchToProps = function(dispatch) {
-	  return {
-        updateLinePosition: () => {} //linePosition => dispatch(updateLinePosition(linePosition)),
-    }
-}
-
-const connectToStore = Comp =>
-connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Comp)
-
-
+import bg1 from '../img/design/1.jpg'
+import bg2 from '../img/design/2.jpg'
+import bg3 from '../img/design/3.png'
 
 const pageStructure = [
     [
         [
-            [connectToStore(World), "/world"],
-            [connectToStore(Interface), "/interface"],
-            [connectToStore(Story), "/story"],
+            [connectToStore(World, bg1), "/world"],
+            [connectToStore(Interface, bg2), "/interface"],
+            [connectToStore(Story, bg3), "/story"],
         ],
         [
             [connectToStore(VR), "/vr"],
@@ -96,8 +80,8 @@ const pageStructure = [
         ],
     ],
     [
-        [connectToStore(Improve), "/improve"],
         [connectToStore(Innovate), "/innovate"],
+        [connectToStore(Improve), "/improve"],
         [connectToStore(Strengthen), "/strengthen"],
     ],
 ]
