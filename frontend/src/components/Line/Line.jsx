@@ -26,7 +26,6 @@ const mapDispatchToProps = function(dispatch) {
 
 
 const LineDumb = props => {
-    console.log(props.linePosition)
     const styles = {
         wrapper: {
             display: 'flex',
@@ -56,7 +55,6 @@ const LineDumb = props => {
             },
         },
     }
-    console.log(props.linePosition, "=======")
 
     return (
         <div style={ styles.wrapper }>

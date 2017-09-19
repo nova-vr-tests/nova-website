@@ -76,9 +76,13 @@ AppDumb.propTypes = {
 }
 
 class App extends Component {
-  componentDidMount() {
-    apiTest()
-  }
+    componentWillMount() {
+        this.props.updateLinePosition(getLinePosition(this.props.pathname))
+    }
+
+    componentDidMount() {
+        apiTest()
+    }
 
     componentWillReceiveProps(newProps, newState) {
         this.props.updateLinePosition(getLinePosition(newProps.pathname))
@@ -88,11 +92,11 @@ class App extends Component {
         return <AppDumb
             introKeyframe={ this.props.introKeyframe }
         />
-  }
+    }
 }
 
 App.propTypes = {
-  ...AppDumb.propTypes,
+    ...AppDumb.propTypes,
 }
 
 export default connect(

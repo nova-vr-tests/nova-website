@@ -168,7 +168,6 @@ const SidebarSection = props => {
             // is there section after between current section and line ?
             // is this section opened ?
             if(section === 0 && linePosition === 2) {
-                console.log(linkStates[1].isOpened)
                 if(linkStates[1].isOpened) {
                     marginTop = (marginTop === m0 ? '' : ' - ' + marginTop)
                     marginTop =
