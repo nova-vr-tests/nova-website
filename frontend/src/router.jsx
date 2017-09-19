@@ -35,15 +35,31 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+const createRoutesForSection = i => (
+    <Switch>
+        <Route exact path={ Pages[i][0][0][1] } component={ Pages[i][0][0][0] } />
+        <Route exact path={ Pages[i][0][1][1] } component={ Pages[i][0][1][0] } />
+        <Route exact path={ Pages[i][0][2][1] } component={ Pages[i][0][2][0] } />
+
+        <Route exact path={ Pages[i][1][0][1] } component={ Pages[i][1][0][0] } />
+        <Route exact path={ Pages[i][1][1][1] } component={ Pages[i][1][1][0] } />
+        <Route exact path={ Pages[i][1][2][1] } component={ Pages[i][1][2][0] } />
+
+        <Route exact path={ Pages[i][2][0][1] } component={ Pages[i][2][0][0] } />
+        <Route exact path={ Pages[i][2][1][1] } component={ Pages[i][2][1][0] } />
+        <Route exact path={ Pages[i][2][2][1] } component={ Pages[i][2][2][0] } />
+    </Switch>
+)
+
 const Router = props => {
+    const Line1 = createRoutesForSection(0)
+    const Line2 = createRoutesForSection(1)
+    const Line3 = <div></div>
+
     return (
-        <Line>
-            <Switch>
-                <Route exact path={ Pages[0][0][0][1] } component={ Pages[0][0][0][0] } />
-                <Route exact path={ Pages[0][0][1][1] } component={ Pages[0][0][1][0] } />
-                <Route exact path={ Pages[0][0][2][1] } component={ Pages[0][0][2][0] } />
-            </Switch>
-        </Line>
+        <Line
+            lines={ [Line1, Line2, Line3] }
+        />
     )
 }
 

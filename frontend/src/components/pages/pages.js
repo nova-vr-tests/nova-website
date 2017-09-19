@@ -34,44 +34,69 @@ import { Improve } from './Partnerships/Improve.jsx'
 import { Innovate } from './Partnerships/Innovate.jsx'
 import { Strengthen } from './Partnerships/Strengthen.jsx'
 
+
+import React from 'react'
+import { connect }from 'react-redux'
+import { updateLinePosition } from '../../reducer/actions/App.js'
+
+
+const mapStateToProps = function(state) {
+	  return {
+        linePosition: state.appReducer.linePosition,
+    }
+}
+
+const mapDispatchToProps = function(dispatch) {
+	  return {
+        updateLinePosition: linePosition => dispatch(updateLinePosition(linePosition)),
+    }
+}
+
+const connectToStore = Comp => connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Comp)
+
+
+
 export default [
     [
         [
-            [World, "/world"],
-            [Interface, "/interface"],
-            [Story, "/story"],
+            [connectToStore(World), "/world"],
+            [connectToStore(Interface), "/interface"],
+            [connectToStore(Story), "/story"],
         ],
         [
-            [VR, "/vr"],
-            [AR, "/ar"],
-            [RelatedTechs, "/related-techs"],
+            [connectToStore(VR), "/vr"],
+            [connectToStore(AR), "/ar"],
+            [connectToStore(RelatedTechs), "/related-techs"],
         ],
         [
-            [Influence, "/influence"],
-            [Revolution, "/revolution"],
-            [Solution, "/solution"],
+            [connectToStore(Influence), "/influence"],
+            [connectToStore(Revolution), "/revolution"],
+            [connectToStore(Solution), "/solution"],
         ],
     ],
     [
         [
-            [LabProject1, "/lab-project-1"],
-            [LabProject2, "/lab-project-2"],
-            [LabProject3, "/lab-project-3"],
+            [connectToStore(LabProject1), "/lab-project-1"],
+            [connectToStore(LabProject2), "/lab-project-2"],
+            [connectToStore(LabProject3), "/lab-project-3"],
         ],
         [
-            [NewsProject1, "/news-project-1"],
-            [NewsProject2, "/news-project-2"],
-            [NewsProject3, "/news-project-3"],
+            [connectToStore(NewsProject1), "/news-project-1"],
+            [connectToStore(NewsProject2), "/news-project-2"],
+            [connectToStore(NewsProject3), "/news-project-3"],
         ],
         [
-            [EdProject1, "/ed-project-1"],
-            [EdProject2, "/ed-project-2"],
-            [EdProject3, "/ed-project-3"],
+            [connectToStore(EdProject1), "/ed-project-1"],
+            [connectToStore(EdProject2), "/ed-project-2"],
+            [connectToStore(EdProject3), "/ed-project-3"],
         ],
     ],
     [
-        [Improve, "/improve"],
-        [Innovate, "/innovate"],
-        [Strengthen, "/strengthen"],
+        [connectToStore(Improve), "/improve"],
+        [connectToStore(Innovate), "/innovate"],
+        [connectToStore(Strengthen), "/strengthen"],
     ],
 ]

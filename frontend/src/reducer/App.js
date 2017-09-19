@@ -1,6 +1,7 @@
 export const INCREMENT_INTRO_KEYFRAME = 'app/increment intro keyframe'
 export const RESET_INTRO_KEYFRAME = 'app/reset intro keyframe'
 export const TOGGLE_SIDEBAR = 'app/toggle sidebar'
+export const UPDATE_LINE_POSITION = 'app/update_line_position'
 
 export const sectionPosition = {
     // values are position in sidebar links section array
@@ -17,6 +18,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_LINE_POSITION:
+        return {
+            ...state,
+            linePosition: action.linePosition,
+        }
       case INCREMENT_INTRO_KEYFRAME:
         return {
             ...state,
