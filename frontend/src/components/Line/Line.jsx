@@ -45,10 +45,13 @@ const LineDumb = props => {
                 display: 'flex',
                 flex: 1,
                 paddingLeft: '25rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                opacity: 0,
+                transition: 'opacity 0.3s linear',
             },
             wrapper2Opened: {
                 height: 'calc(4 * ' + 100/24 + 'vh)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                opacity: 1,
             },
         },
     }
