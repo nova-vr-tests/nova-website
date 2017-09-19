@@ -11,6 +11,7 @@ import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 import { INTRO_FINISHED } from './constants.js'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
 import { styles } from './constants.js'
+import './router.css'
 
 import Pages from './components/pages/pages.js'
 
@@ -66,6 +67,7 @@ const createRoutesForSection = i => (
         atEnter={{ opacity: 0 }}
         atLeave={{ opacity: 0 }}
         atActive={{ opacity: 1 }}
+        className="animated-switch--wrapper"
     >
         <Route exact path={ Pages[i][0][0][1] } component={ Pages[i][0][0][0] } />
         <Route exact path={ Pages[i][0][1][1] } component={ Pages[i][0][1][0] } />
@@ -87,6 +89,7 @@ const createRoutesForSubSection = i => (
         atLeave={bounceTransition.atLeave}
         atActive={bounceTransition.atActive}
         mapStyles={mapStyles}
+        className="animated-switch--wrapper"
     >
         <Route exact path={ Pages[i][0][1] } component={ Pages[i][0][0] } />
         <Route exact path={ Pages[i][1][1] } component={ Pages[i][1][0] } />

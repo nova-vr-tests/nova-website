@@ -7,8 +7,11 @@ const styles = {
         flex: 1,
         height: '100%',
         position: 'relative',
+        alignItems: 'center',
     },
     P: {
+        width: '30rem',
+        height: 'min-content',
     },
     H1: {
         position: 'absolute',

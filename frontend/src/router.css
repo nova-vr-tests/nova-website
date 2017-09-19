@@ -1,0 +1,10 @@
+.animated-switch--wrapper {
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+
+.animated-switch--wrapper > div {
+    position: absolute;
+    height: 100%;
+}

@@ -20,7 +20,6 @@ const reduxDispatchPropTypes = {
 
 const mapDispatchToProps = function(dispatch) {
 	return {
-    changePage: () => dispatch(push('/about-us')),
   }
 }
 

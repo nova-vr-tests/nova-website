@@ -52,7 +52,6 @@ const _styles = {
         transition: 'opacity 1s linear',
         display: 'flex',
         flex: 1,
-        // marginLeft: 'calc(3 * ' + constants.styles.unitWidth + ')', /* same as sidebar width */
     },
     transparent: {
         opacity: 0,
