@@ -55,7 +55,7 @@ const HeaderDumb = props => {
             top: 'calc(' + appStyles.unitHeight + ' / 2)',
             left: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ' / 2 - 2 * ' + appStyles.unitHeight + ' / 6)',
             zIndex: 1,
-            transition: 'transform 0.3s linear',
+            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
         },
         logoSidebarClosed: {
             transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',
