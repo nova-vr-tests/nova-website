@@ -310,6 +310,7 @@ const SidebarDumb = props => {
         return i ? true : false
     }
 
+    debugger
     const styles = {
         wrapper: {
             position: 'absolute',
@@ -320,8 +321,10 @@ const SidebarDumb = props => {
             flex: 1,
             width: 'calc(' + sidebarWidth + ' * 2)', // * 2 b/c of space needed for sub sub sections to appear on the side of sub sections (see SidebarSection styles.opened)
             maxWidth: 'calc(' + sidebarWidth + ' + 1px)', // 1px is for borderDiv border
-            transition: 'max-width ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
+            transition: 'all ' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
             overflow: 'hidden',
+            transform: 'translateX(calc(-' + sidebarWidth + '))',
+            opacity: 0,
         },
         logo: {
             height: '10rem',
@@ -335,6 +338,8 @@ const SidebarDumb = props => {
             marginTop: 'calc(' + (9 + 0 * props.linePosition) * 100/24 + 'vh)',
         },
         opened: {
+            transform: 'translateX(0)',
+            opacity: 1,
         },
         large: {
             maxWidth: 'calc(' + sidebarWidth + ' * 2)', // see wrapper width
@@ -353,8 +358,8 @@ const SidebarDumb = props => {
     return (
         <div style={ {
                 ...styles.wrapper,
-                ...(props.isSiderbarOpened ? styles.opened : {}),
                 ...(isSubSectionOpened() ? styles.large : {}),
+                ...(props.isSidebarOpened ? styles.opened : {}),
         } }>
             <div style={ styles.sectionsWrapper }>
                 { parseSections(props.links) }
@@ -375,7 +380,7 @@ SidebarDumb.defaultProps = {
 
 const sidebarState = function(state) {
 	return {
-      isSiderbarOpened: state.sidebarReducer.isSidebarOpened,
+      isSidebarOpened: state.sidebarReducer.isSidebarOpened,
       linkStates: state.sidebarReducer.linkStates,
       linePosition: state.appReducer.linePosition,
       headerIntersection: state.headerReducer.sidebarIntersection,
@@ -509,7 +514,7 @@ class Sidebar extends Component {
             linkStates={ this.props.linkStates }
             goTo={ this.props.goTo }
             links={ this.state.links }
-            isSiderbarOpened={ this.props.isSiderbarOpened } />
+            isSidebarOpened={ this.props.isSidebarOpened } />
     }
 }
 
