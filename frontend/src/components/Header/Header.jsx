@@ -78,9 +78,17 @@ class Header extends React.Component {
     constructor(props) {
         super(props)
 
-        const a = this.updateSidebarIntersection()
-        console.log(a)
         this.updateSidebarIntersection = this.updateSidebarIntersection.bind(this)
+    }
+
+    componentDidMount() {
+        this.updateSidebarIntersection()
+
+        window.addEventListener("resize", this.updateSidebarIntersection)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateSidebarIntersection)
     }
 
     updateSidebarIntersection() {
@@ -104,7 +112,6 @@ class Header extends React.Component {
         const borderOffset = ((2*Cy) + Math.sqrt(delta)) / 2
 
         this.props.updateSidebarIntersection(borderOffset)
-        console.log(borderOffset)
     }
 
     render() {
