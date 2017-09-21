@@ -5,6 +5,7 @@ import './styles/Footer.css'
 import { FOOTER_FINAL } from '../../constants.js'
 import { toggleSidebar } from '../../reducer/actions/Sidebar.js'
 import toggleButton from '../img/toggle-sidebar.svg'
+import { styles as appStyles } from '../../constants.js'
 
 const reduxStatePropTypes = {
   introKeyframe: PropTypes.number,
@@ -27,15 +28,19 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const FooterDumb = props => {
+    const height = appStyles.unitHeight
+    const width = height
+
+
     const styles = {
         toggleSidebarButton: {
             position: 'absolute',
-            height: '3rem',
-            width: '3rem',
-            transition: 'transform 0.3s linear',
-            bottom: '1.5rem',
-            left: '1.5rem',
-            transform: 'rotateZ(-45deg)translateX(-0.99rem)translateY(-0.38rem)',
+            height,
+            width,
+            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
+            bottom: 'calc(' + appStyles.unitHeight + ' / 2)',
+            left: 'calc(' + appStyles.sidebar.widthFactor + ' / 2 * ' + appStyles.unitWidth + ' - ' + height + ' / 2 - ' + width + ' / 3)',
+            transform: 'rotateZ(45deg)translateX(calc(0.99 / 3 * ' + width + '))translateY(calc(-0.50 / 3 * ' + height + '))',
         },
         rotatedCloseButton: {
             transform: 'inherit',
