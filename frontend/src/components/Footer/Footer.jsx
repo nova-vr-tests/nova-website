@@ -38,7 +38,7 @@ const FooterDumb = props => {
             height,
             width,
             transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
-            bottom: 'calc(' + appStyles.unitHeight + ' / 2)',
+            bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
             left: 'calc(' + appStyles.sidebar.widthFactor + ' / 2 * ' + appStyles.unitWidth + ' - ' + height + ' / 2 - ' + width + ' / 3)',
             transform: 'rotateZ(45deg)translateX(calc(0.99 / 3 * ' + width + '))translateY(calc(-0.50 / 3 * ' + height + '))',
         },

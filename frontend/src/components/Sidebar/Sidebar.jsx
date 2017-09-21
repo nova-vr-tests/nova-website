@@ -310,7 +310,6 @@ const SidebarDumb = props => {
         return i ? true : false
     }
 
-    debugger
     const styles = {
         wrapper: {
             position: 'absolute',

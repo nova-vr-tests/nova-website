@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect }from 'react-redux'
 
-import logo from '../img/intro-logo/frame1.svg'
+import logo from '../img/nova-logo.svg'
 import Bg from '../Bg/Bg.jsx'
 
 import { styles as appStyles } from '../../constants.js'
@@ -9,6 +9,7 @@ import { updateSidebarIntersection } from '../../reducer/actions/Header.js'
 
 const mapStateToProps = function(state) {
 	return {
+      isSidebarOpened: state.sidebarReducer.isSidebarOpened,
     }
 }
 
@@ -47,13 +48,17 @@ const HeaderDumb = props => {
         },
         logo: {
             position: 'absolute',
-            height: '13rem',
-            width: '13rem',
+            height: appStyles.unitHeight,
+            width: appStyles.unitHeight,
             filter: 'invert(100%)',
             pointerEvents: 'none',
-            top: '-3.9rem',
-            left: '-1rem',
+            top: 'calc(' + appStyles.unitHeight + ' / 2)',
+            left: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ' / 2 - 2 * ' + appStyles.unitHeight + ' / 6)',
             zIndex: 1,
+            transition: 'transform 0.3s linear',
+        },
+        logoSidebarClosed: {
+            transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',
         },
     }
 
@@ -62,7 +67,10 @@ const HeaderDumb = props => {
             <img
                 src={ logo }
                 alt="logo"
-                style={ styles.logo }
+                style={{
+                    ...styles.logo,
+                    ...(props.isSidebarOpened ? {} : styles.logoSidebarClosed),
+                }}
             />
             <div
                 className="header--wrapepr"
