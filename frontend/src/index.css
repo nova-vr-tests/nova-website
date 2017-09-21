@@ -7,7 +7,6 @@ body {
   flex: 1;
   color: white;
   font-family: TTNorms-regular;
-  background-image: url("components/img/background.jpg");
   overflow: hidden;
 }
 

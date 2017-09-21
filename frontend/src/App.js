@@ -13,7 +13,9 @@ import Sidebar from './components/Sidebar/Sidebar.jsx'
 import { styles } from './constants.js'
 import NovaRouter from './router.jsx'
 import { getLinePosition } from './components/pages/pages.js'
+import Bg from './components/Bg/Bg.jsx'
 import { updateLinePosition } from './reducer/actions/App.js'
+import Header from './components/Header/Header.jsx'
 
 const constants = { styles }
 
@@ -61,9 +63,12 @@ const AppDumb = props => (
   <div id="app--wrapper">
       <div
           style={ _styles.routerWrapper }
-          className={ "ruter--wrapper " + (props.introKeyframe > INTRO_FINISHED ? "transparent" : "") }>
-      <Sidebar />
-      <NovaRouter />
+          className={ "router--wrapper " + (props.introKeyframe > INTRO_FINISHED ? "transparent" : "") }>
+
+            <Header />
+            <Bg />
+            <Sidebar />
+        <NovaRouter />
     </div>
     <Footer />
   </div>

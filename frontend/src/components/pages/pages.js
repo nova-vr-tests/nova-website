@@ -40,8 +40,8 @@ import { connect }from 'react-redux'
 import { updateLinePosition } from '../../reducer/actions/App.js'
 import connectToStore from './PageSmart.jsx'
 
-import bg1 from '../img/design/1.jpg'
-import bg2 from '../img/design/2.jpg'
+import bg1 from '../img/design/1.png'
+import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
 const pageStructure = [

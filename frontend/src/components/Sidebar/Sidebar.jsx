@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import { connect }from 'react-redux';
-import { push } from 'react-router-redux';
-import './styles/Sidebar.css';
-import logo from '../img/intro-logo/frame1.svg';
+import PropTypes from 'prop-types'
+import { connect }from 'react-redux'
+import { push } from 'react-router-redux'
+import './styles/Sidebar.css'
 import {
     initSidebarLinkStates,
     toggleSidebarSection,
@@ -11,6 +10,7 @@ import {
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
 import Pages from '../pages/pages.js'
+import { styleConstants as headerStyles } from '../Header/Header.jsx'
 
 const constants = { styles }
 
@@ -341,7 +341,7 @@ const SidebarDumb = props => {
         },
         borderDiv: {
             position: 'absolute',
-            top: 0,
+            top: props.headerIntersection + 'px',
             left: 0,
             height: '100vh',
             minWidth: 'calc(' + sidebarWidth + ')',
@@ -356,7 +356,6 @@ const SidebarDumb = props => {
                 ...(props.isSiderbarOpened ? styles.opened : {}),
                 ...(isSubSectionOpened() ? styles.large : {}),
         } }>
-            <img src={ logo } alt="logo" style={ styles.logo } />
             <div style={ styles.sectionsWrapper }>
                 { parseSections(props.links) }
                 <div style={ { borderBottom: '1px solid rgba(255, 255, 255, 0.3)', maxWidth: 'calc(' + sidebarWidth + ')'} }>
@@ -379,6 +378,7 @@ const sidebarState = function(state) {
       isSiderbarOpened: state.sidebarReducer.isSidebarOpened,
       linkStates: state.sidebarReducer.linkStates,
       linePosition: state.appReducer.linePosition,
+      headerIntersection: state.headerReducer.sidebarIntersection,
     }
 }
 
@@ -503,6 +503,7 @@ class Sidebar extends Component {
 
 
         return <SidebarDumb
+            headerIntersection={ this.props.headerIntersection }
             linePosition={ this.props.linePosition }
             dispatch={ dispatch }
             linkStates={ this.props.linkStates }

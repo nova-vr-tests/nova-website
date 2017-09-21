@@ -10,6 +10,8 @@ const INTRO_FINISHED = 5
 const styles = {
     unitHeight: 100/24 + 'vh',
     unitWidth: '60px',
+    unitHeightJs: 100 / 24,  // vh
+    unitWidthJs: 60,   // px
     sidebar: {
         widthFactor: 3,
         sectionHeightFactor: 2,

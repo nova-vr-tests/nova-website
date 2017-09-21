@@ -15,7 +15,7 @@ const initialState = {
   introKeyframe: 1,
   isSidebarOpened: true,
   linePosition: 2, // position of current page in sidebar tree
-    bgUrl: '',
+  bgUrl: '',
 }
 
 export default (state = initialState, action) => {
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
   case UPDATE_BG:
       return {
           ...state,
-          bgURL: action.bgUrl,
+          bgUrl: action.bgUrl,
       }
     case UPDATE_LINE_POSITION:
         return {
