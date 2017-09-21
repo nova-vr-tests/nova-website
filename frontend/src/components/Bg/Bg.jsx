@@ -5,6 +5,8 @@ import defaultBg from '../img/default.jpg'
 const mapStateToProps = function(state) {
 	return {
       bgUrl: state.appReducer.bgUrl,
+      frontBg: state.bgReducer.frontBg,
+      backBg: state.bgReducer.backBg,
   }
 }
 
