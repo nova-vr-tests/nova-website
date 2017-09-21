@@ -4,7 +4,7 @@ export const UPDATE_BACK_BG_URL = 'bg/update_back_bg_url'
 export const UPDATE_BACK_BG_STYLE = 'bg/update_back_bg_style'
 
 const initialState = {
-    fronBg: {
+    frontBg: {
         url: '',
         style: {},
     },

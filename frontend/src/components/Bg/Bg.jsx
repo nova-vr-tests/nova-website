@@ -19,6 +19,8 @@ const mapDispatchToProps = function(dispatch) {
 const BgDumb = props => {
 
     console.log(props)
+    const getBg = bgUrl => bgUrl === '' ? defaultBg : bgUrl
+
     const styles = {
         wrapper: {
             position: 'absolute',
@@ -27,7 +29,7 @@ const BgDumb = props => {
             width: '100vw',
         },
         frontBg: {
-            backgroundImage: 'url(' + props.frontBg + ')',
+            backgroundImage: 'url(' + getBg(props.frontBg.url) + ')',
             backgroundSize: 'cover',
             zIndex: -1,
             height: '100vh',
@@ -35,7 +37,7 @@ const BgDumb = props => {
             position: 'absolute',
         },
         backBg: {
-            backgroundImage: 'url(' + props.backBg + ')',
+            backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
             backgroundSize: 'cover',
             zIndex: -2,
             height: '100vh',
@@ -53,9 +55,9 @@ const BgDumb = props => {
 
     return (
         <div style={ styles.wrapper }>
-            <div style={ styles.frontBg }>
+            <div style={ { ...styles.frontBg, ...props.frontBg.style } }>
             </div>
-            <div style={ styles.backBg }>
+            <div style={ { ...styles.backBg, ...props.backBg.style } }>
             </div>
             <div style={ styles.overlay }>
             </div>
@@ -66,33 +68,10 @@ const BgDumb = props => {
 class Bg extends React.Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            frontBg: this.getBg(props.bgUrl),
-            backBg: '',
-        }
-
-        this.getBg = this.getBg.bind(this)
-    }
-
-    componentWillReceiveProps(newProps, newState) {
-        if(newProps.bgUrl !== this.props.bgUrl)
-            this.setState({
-                backBg: this.getBg(this.props.bgUrl),
-                frontBg: this.getBg(newProps.bgUrl),
-            })
-    }
-
-    getBg(bgUrl) {
-        return bgUrl === '' ? defaultBg : bgUrl
-    }
-
-    componentDidMount() {
-
     }
 
     render() {
-        return <BgDumb { ...this.props } frontBg={ this.state.frontBg } backBg={ this.state.backBg }/>
+        return <BgDumb { ...this.props } />
     }
 }
 
