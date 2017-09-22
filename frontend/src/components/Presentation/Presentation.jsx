@@ -7,6 +7,7 @@ import {
     updateFrontBgStyle,
     updateBackBgUrl,
     updateBackBgStyle,
+    updateTransitionProgress
 } from '../../reducer/actions/Bg.js'
 
 const mapStateToProps = state => ({
@@ -18,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
     updateBackBgUrl: url => dispatch(updateBackBgUrl(url)),
     updateFrontBgStyle: style => dispatch(updateFrontBgStyle(style)),
     updateBackBgStyle: style => dispatch(updateBackBgStyle(style)),
+    updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
 })
 
 const PresentationDumb = props => {
@@ -85,6 +87,7 @@ class Presentation extends React.Component {
         const opacity = (this.state.scrollY % clientHeight) / clientHeight
 
         this.props.updateFrontBgStyle({ opacity })
+        this.props.updateTransitionProgress(opacity)
     }
 
     getPageFromScroll() {
