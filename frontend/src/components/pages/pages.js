@@ -54,7 +54,7 @@ const pageStructure = [
             [connectToStore(Story, bg3), "/story"],
         ],
         [
-            [connectToStore(VR), "/vr"],
+            [DesignPresentation, "/vr"],
             [connectToStore(AR), "/ar"],
             [connectToStore(RelatedTechs), "/related-techs"],
         ],
@@ -66,7 +66,7 @@ const pageStructure = [
     ],
     [
         [
-            [connectToStore(LabProject1), "/lab-project-1"],
+            [DesignPresentation, "/lab-project-1"],
             [connectToStore(LabProject2), "/lab-project-2"],
             [connectToStore(LabProject3), "/lab-project-3"],
         ],
@@ -82,7 +82,7 @@ const pageStructure = [
         ],
     ],
     [
-        [connectToStore(Innovate), "/innovate"],
+        [DesignPresentation, "/innovate"],
         [connectToStore(Improve), "/improve"],
         [connectToStore(Strengthen), "/strengthen"],
     ],

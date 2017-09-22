@@ -23,7 +23,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const PresentationDumb = props => {
-    const Comp = props.pages[props.currentPage].comp
+    let currentPage = props.currentPage < 0 ? 0 : props.currentPage
+    currentPage = currentPage > props.pages.length - 1 ? props.pages.length - 1 : currentPage
+
+    const Comp = props.pages[currentPage].comp
     return (
         <Comp />
     )
@@ -41,6 +44,8 @@ class Presentation extends React.Component {
         this.onScroll = this.onScroll.bind(this)
         this.getPageFromScroll = this.getPageFromScroll.bind(this)
         this.updateBackgrounds = this.updateBackgrounds.bind(this)
+        this.animateProgress = this.animateProgress.bind(this)
+        this.getPageHeights = this.getPageHeights.bind(this)
     }
 
     componentDidMount() {
@@ -55,8 +60,11 @@ class Presentation extends React.Component {
         window.removeEventListener("wheel", this.onScroll)
     }
 
+    componentWillUpdate() {
+        this.updateBackgrounds()
+    }
+
     onScroll(e) {
-        console.log(e)
         // update state scrollY
 
         // check if next slide has background
@@ -67,12 +75,21 @@ class Presentation extends React.Component {
         const newY2= newY >= 0 ? newY : 0
         const scrollY = newY2 > document.documentElement.clientHeight * (this.props.pages.length) ? this.state.scrollY : newY2
 
-        this.setState({
-            scrollY,
-        })
+        if(e.deltaY < 0 || this.state.scrollY < this.getPageHeights()[this.props.pages.length - 1][0])
+            this.setState({
+                scrollY,
+            })
 
         this.props.updateFrontBgUrl(this.props.pages[this.getPageFromScroll()].bgUrl)
         this.updateBackgrounds()
+
+        if(
+            this.state.scrollY % document.documentElement.clientHeight > 0.5 * document.documentElement.clientHeight &&
+            !this.transitionTimer &&
+            Math.floor(this.props.scrollY / document.documentElement.clientHeight) !== this.props.pages.length - 1
+        ) {
+            this.animateProgress(e.deltaY > 0 ? 1 : -1)
+        }
     }
 
     updateBackgrounds() {
@@ -87,12 +104,66 @@ class Presentation extends React.Component {
         const opacity = (this.state.scrollY % clientHeight) / clientHeight
 
         this.props.updateFrontBgStyle({ opacity: opacity * 2 })
-        this.props.updateTransitionProgress(opacity < 0.5 ? 0 : (opacity - 0.5) * 2)
+        this.props.updateTransitionProgress(opacity < 0.5 ? 0 :  (opacity - 0.5) * 2)
+
+    }
+
+    getPageHeights() {
+        return this.props.pages.map((e, i) => [i * document.documentElement.clientHeight, '/path'])
+    }
+
+    animateProgress(sign) {
+        const currentPage = Math.floor(this.state.scrollY / document.documentElement.clientHeight)
+        window.removeEventListener("wheel", this.onScroll)
+
+        console.log(currentPage, this.getPageFromScroll())
+
+
+        const targetPage = sign > 0 ?
+                           (currentPage + 1 > this.props.pages.length - 1 ? this.props.pages.length - 1 : currentPage + 1)
+                         :
+                           currentPage
+        const targetPageHeight = this.getPageHeights()[targetPage][0]
+
+        const offset = 4
+
+
+
+        this.transitionTimer = window.setInterval(() => {
+            const currentPageHeight = this.state.scrollY 
+
+            const condition = sign > 0 ? currentPageHeight > targetPageHeight : currentPageHeight < targetPageHeight
+            console.log(currentPageHeight, targetPageHeight)
+
+            //if(this.state.scrollY % document.documentElement.clientHeight < document.documentElement.clientHeight / 2) {
+            if(
+                condition ||
+                this.state.scrollY < 1 ||
+                this.state.scrollY > document.documentElement.clientHeight * this.props.pages.length
+            ) {
+                window.clearInterval(this.transitionTimer)
+                this.transitionTimer = undefined
+                window.addEventListener("wheel", this.onScroll)
+
+                this.setState({ scrollY: targetPageHeight   })
+
+                if(this.state.scrollY < 0)
+                    this.setState({ scrollY: 0 })
+                else if(this.state.scrollY > document.documentElement.clientHeight * this.props.pages.length)
+                    this.setState({ scrollY: document.documentElement.clientHeight * this.props.pages.length - 10 })
+            } else {
+                this.setState({ scrollY: this.state.scrollY + offset * sign })
+                console.log(this.state.scrollY)
+            }
+
+        }, 5)
     }
 
     getPageFromScroll() {
         const windowHeight = document.documentElement.clientHeight
-        const currentPage = Math.floor(this.state.scrollY / windowHeight)
+        let currentPage = Math.floor(this.state.scrollY / windowHeight)
+        currentPage = currentPage < 0 ? 0 : currentPage
+        currentPage = currentPage > this.props.pages.length - 1 ? this.props.pages.length - 1 : currentPage
 
         return currentPage
     }
