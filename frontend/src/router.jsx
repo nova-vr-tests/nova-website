@@ -17,6 +17,7 @@ import Pages from './components/pages/pages.js'
 
 import { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition'
 
+import { DesignPresentation } from './components/pages/NovaXR/Design.jsx'
 const constants = { styles }
 
 
@@ -96,14 +97,68 @@ const createRoutesForSubSection = i => (
         <Route exact path={ Pages[i][2][1] } component={ Pages[i][2][0] } />
     </AnimatedSwitch>
 )
+
+const routeUrls = [
+    [
+        ['/design', '/world', '/interface', '/story'],
+        ['/technology', '/vr', '/ar', '/related-techs'],
+        ['/business', '/influence', '/revolution', '/solution']
+    ],
+    [
+        ['/lab-live', '/project-1', '/project-2', '/project-3'],
+        ['/news', '/project-1', '/project-2', '/project-3'],
+        ['/ed', '/project-1', '/project-2', '/project-3']
+    ],
+    [
+        ['/innovate'],
+        ['/improve'],
+        ['/strengthen']
+    ]
+]
+
+const mapUrlsToComp = (Comp, i, j) => {
+    const urls = routeUrls[i][j]
+
+    return props => <Comp routeUrls={ urls } />
+}
+
+const createRoutes = routes => (
+    <AnimatedSwitch
+        atEnter={{ opacity: 0 }}
+        atLeave={{ opacity: 0 }}
+        atActive={{ opacity: 1 }}
+        className="animated-switch--wrapper"
+    >
+        <Route path={ routes[0][1] } component={ routes[0][0] } />
+        <Route path={ routes[1][1] } component={ routes[1][0] } />
+        <Route path={ routes[2][1] } component={ routes[2][0] } />
+        <Route path={ routes[3][1] } component={ routes[3][0] } />
+        <Route path={ routes[4][1] } component={ routes[4][0] } />
+        <Route path={ routes[5][1] } component={ routes[5][0] } />
+        <Route path={ routes[6][1] } component={ routes[6][0] } />
+        <Route path={ routes[7][1] } component={ routes[7][0] } />
+        <Route path={ routes[8][1] } component={ routes[8][0] } />
+    </AnimatedSwitch>
+)
+
+const routes = [
+    [mapUrlsToComp(DesignPresentation, 0, 0), routeUrls[0][0][0]],
+    [mapUrlsToComp(DesignPresentation, 0, 1), routeUrls[0][1][0]],
+    [mapUrlsToComp(DesignPresentation, 0, 2), routeUrls[0][2][0]],
+    [mapUrlsToComp(DesignPresentation, 1, 0), routeUrls[1][0][0]],
+    [mapUrlsToComp(DesignPresentation, 1, 1), routeUrls[1][1][0]],
+    [mapUrlsToComp(DesignPresentation, 1, 2), routeUrls[1][2][0]],
+    [mapUrlsToComp(DesignPresentation, 2, 0), routeUrls[2][0][0]],
+    [mapUrlsToComp(DesignPresentation, 2, 1), routeUrls[2][1][0]],
+    [mapUrlsToComp(DesignPresentation, 2, 2), routeUrls[2][2][0]],
+]
+
 const Router = props => {
-    const Line1 = createRoutesForSection(0)
-    const Line2 = createRoutesForSection(1)
-    const Line3 = createRoutesForSubSection(2)
+    const Line1 = createRoutes(routes)
 
     return (
         <Line
-            lines={ [Line1, Line2, Line3] }
+            lines={ [Line1, '', ''] }
         />
     )
 }
@@ -112,3 +167,7 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Router)
+
+export {
+    routeUrls,
+}

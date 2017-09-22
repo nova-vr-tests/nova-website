@@ -82,7 +82,7 @@ const DesignPresentation = props => {
     ]
 
     return (
-        <Presentation pages={ pages } />
+        <Presentation pages={ pages } routeUrls={ props.routeUrls } />
     )
 }
 

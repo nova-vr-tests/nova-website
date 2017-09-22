@@ -11,6 +11,7 @@ import {
 import { styles } from '../../constants.js'
 import Pages from '../pages/pages.js'
 import { styleConstants as headerStyles } from '../Header/Header.jsx'
+import { routeUrls } from '../../router.jsx'
 
 const constants = { styles }
 
@@ -84,9 +85,10 @@ const SidebarSubSection = props => {
         // Loop subsub sections
         for(let i = 0; i < subSubSections.length; i++) {
             const subSubSection = subSubSections[i]
+            const href = routeUrls[props.id.section][props.id.subSection][0] + routeUrls[props.id.section][props.id.subSection][i + 1]
             components[i] = <div
                                 className="sidebar-subsection--hover"
-                                onClick={ () => props.dispatch.goTo(Pages[props.id.section][props.id.subSection][i][1]) }
+                                onClick={ () => props.dispatch.goTo(href) }
                                 style={ styles.subSubSection.link }
                                 key={ i }>
                                 { subSubSection }
@@ -115,7 +117,7 @@ const SidebarSubSection = props => {
         // Return sub section as link
         return <div
                    className="sidebar-subsection--hover"
-                   onClick={ () => props.dispatch.goTo(Pages[props.id.section][props.id.subSection][1]) }
+                   onClick={ () => props.dispatch.goTo(routeUrls[props.id.section][props.id.subSection][0]) }
                    style={ styles.subSection.link }>
                    { subSection.title }
                </div>

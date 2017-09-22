@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import { Route, Switch } from 'react-router-dom';
 
 import {
     updateFrontBgUrl,
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
     updateFrontBgStyle: style => dispatch(updateFrontBgStyle(style)),
     updateBackBgStyle: style => dispatch(updateBackBgStyle(style)),
     updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
+    goTo: url => dispatch(push(url)),
 })
 
 const PresentationDumb = props => {
@@ -109,7 +111,7 @@ class Presentation extends React.Component {
     }
 
     getPageHeights() {
-        return this.props.pages.map((e, i) => [i * document.documentElement.clientHeight, '/path'])
+        return this.props.pages.map((e, i) => [i * document.documentElement.clientHeight, this.props.routeUrls[i]])
     }
 
     animateProgress(sign) {
@@ -121,6 +123,10 @@ class Presentation extends React.Component {
                            (currentPage + 1 > this.props.pages.length - 1 ? this.props.pages.length - 1 : currentPage + 1)
                          :
                            currentPage
+
+        this.props.goTo(this.props.routeUrls[0] + (this.props.routeUrls[targetPage] === this.props.routeUrls[0] ? '' : this.props.routeUrls[targetPage]))
+        console.log(this.props.routeUrls[targetPage])
+
         const targetPageHeight = this.getPageHeights()[targetPage][0]
 
         const offset = 4
