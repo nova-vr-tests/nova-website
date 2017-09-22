@@ -44,10 +44,12 @@ import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
+import { DesignPresentation } from './NovaXR/Design.jsx'
+
 const pageStructure = [
     [
         [
-            [connectToStore(World, bg1), "/world"],
+            [DesignPresentation, "/world"],
             [connectToStore(Interface, bg2), "/interface"],
             [connectToStore(Story, bg3), "/story"],
         ],

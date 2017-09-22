@@ -1,11 +1,28 @@
 import React from 'react'
 
+import Presentation from '../../Presentation/Presentation.jsx'
+
 import {
     P,
     H1,
     H2,
     PageWrapper,
 } from '../UI.jsx'
+
+import bg1 from '../../img/design/1.png'
+import bg2 from '../../img/design/2.png'
+import bg3 from '../../img/design/3.png'
+
+const DesignIntro = props => {
+    return (
+        <PageWrapper>
+            <H1>Intro</H1>
+            <P>
+                Hey all
+            </P>
+        </PageWrapper>
+    )
+}
 
 const World = props => {
     return (
@@ -40,7 +57,37 @@ const Story = props => {
     )
 }
 
+const DesignPresentation = props => {
+    const pages = [
+        {
+            comp: DesignIntro,
+            bgUrl: '',
+            path: '/intro',
+        },
+        {
+            comp: World,
+            bgUrl: bg1,
+            path: '/world',
+        },
+        {
+            comp: Interface,
+            bgUrl: bg2,
+            path: '/interface',
+        },
+        {
+            comp: Story,
+            bgUrl: bg3,
+            path: '/story',
+        },
+    ]
+
+    return (
+        <Presentation pages={ pages } />
+    )
+}
+
 export {
+    DesignPresentation,
     World,
     Interface,
     Story,

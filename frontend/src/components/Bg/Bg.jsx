@@ -18,7 +18,6 @@ const mapDispatchToProps = function(dispatch) {
 
 const BgDumb = props => {
 
-    console.log(props)
     const getBg = bgUrl => bgUrl === '' ? defaultBg : bgUrl
 
     const styles = {

@@ -15,7 +15,7 @@ const updateBackBgUrl = url => ({
     url
 })
 
-const updateFronBgStyle = style => ({
+const updateFrontBgStyle = style => ({
     type: UPDATE_FRONT_BG_STYLE,
     style,
 })
@@ -26,7 +26,7 @@ const updateBackBgStyle = style => ({
 })
 
 export {
-    updateFronBgStyle,
+    updateFrontBgStyle,
     updateFrontBgUrl,
     updateBackBgStyle,
     updateBackBgUrl,
