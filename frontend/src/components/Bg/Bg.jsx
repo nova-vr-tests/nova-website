@@ -39,10 +39,12 @@ const BgDumb = props => {
                 position: 'absolute',
                 overflow: 'hidden',
                 zIndex: 2,
+                transform: 'translateY(-' + props.slideTransitionProgress * 100 / 2 + 'vh)',
             },
             wrapperBottom: {
                 top: 'calc(' + lineTop + ' + ' + lineHeight + ')',
                 height: '100vh',
+                transform: 'translateY(' + props.slideTransitionProgress * 100 / 2 + 'vh)',
             },
             top: {
                 backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
@@ -100,9 +102,15 @@ const BgDumb = props => {
                 <div style={ styles.split.bottom }>
                 </div>
             </div>
-            <div style={ { ...styles.frontBg, ...props.frontBg.style } }>
+            <div style={ {
+                    ...styles.frontBg,
+                    ...props.frontBg.style,
+            } }>
             </div>
-            <div style={ { ...styles.backBg } }>
+            <div style={ {
+                    ...styles.backBg,
+                    opacity: props.slideTransitionProgress > 0.5 ? 0 : 1,
+            } }>
             </div>
             <div style={ styles.overlay }>
             </div>

@@ -86,8 +86,8 @@ class Presentation extends React.Component {
         const { clientHeight } = document.documentElement
         const opacity = (this.state.scrollY % clientHeight) / clientHeight
 
-        this.props.updateFrontBgStyle({ opacity })
-        this.props.updateTransitionProgress(opacity)
+        this.props.updateFrontBgStyle({ opacity: opacity * 2 })
+        this.props.updateTransitionProgress(opacity < 0.5 ? 0 : (opacity - 0.5) * 2)
     }
 
     getPageFromScroll() {
