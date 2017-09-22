@@ -22,8 +22,21 @@ const BgDumb = props => {
 
     const getBg = bgUrl => bgUrl === '' ? defaultBg : bgUrl
 
-    const lineTop = (9 + 2 * props.linePosition) / 24 * 100 + 'vh'
-    const lineHeight = 4 * 100 / 24 + 'vh'
+    const headerHeight = 200 / 24
+    const footerHeight = headerHeight
+
+    const lineTopFactor = (9 + 2 * props.linePosition) / 24 * 100
+    const lineTop = lineTopFactor + 'vh'
+    const lineHeightFactor = 4 * 100 / 24
+    const lineHeight = lineHeightFactor + 'vh'
+    const pageHeight = document.documentElement.clientHeight
+    const progress = props.slideTransitionProgress
+    const vh = pageHeight / 100
+    const heightBottomFactor = 100 - (lineTopFactor + lineHeightFactor + footerHeight)
+    const heightBottom = heightBottomFactor + 'vh'
+
+    const transformTop = 'calc(-' + progress + ' * ' + lineTop + ')'
+    const transformBottom = 'calc(' + progress + ' * ' + heightBottom + ')'
 
     const styles = {
         wrapper: {
@@ -39,12 +52,12 @@ const BgDumb = props => {
                 position: 'absolute',
                 overflow: 'hidden',
                 zIndex: 2,
-                transform: 'translateY(-' + props.slideTransitionProgress * 100 / 2 + 'vh)',
+                transform: 'translateY(' + transformTop + ')',
             },
             wrapperBottom: {
                 top: 'calc(' + lineTop + ' + ' + lineHeight + ')',
                 height: '100vh',
-                transform: 'translateY(' + props.slideTransitionProgress * 100 / 2 + 'vh)',
+                transform: 'translateY(' + transformBottom + ')',
             },
             top: {
                 backgroundImage: 'url(' + getBg(props.backBg.url) + ')',

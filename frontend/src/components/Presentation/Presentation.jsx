@@ -116,8 +116,6 @@ class Presentation extends React.Component {
         const currentPage = Math.floor(this.state.scrollY / document.documentElement.clientHeight)
         window.removeEventListener("wheel", this.onScroll)
 
-        console.log(currentPage, this.getPageFromScroll())
-
 
         const targetPage = sign > 0 ?
                            (currentPage + 1 > this.props.pages.length - 1 ? this.props.pages.length - 1 : currentPage + 1)
@@ -130,10 +128,9 @@ class Presentation extends React.Component {
 
 
         this.transitionTimer = window.setInterval(() => {
-            const currentPageHeight = this.state.scrollY 
+            const currentPageHeight = this.state.scrollY
 
             const condition = sign > 0 ? currentPageHeight > targetPageHeight : currentPageHeight < targetPageHeight
-            console.log(currentPageHeight, targetPageHeight)
 
             //if(this.state.scrollY % document.documentElement.clientHeight < document.documentElement.clientHeight / 2) {
             if(
@@ -153,7 +150,6 @@ class Presentation extends React.Component {
                     this.setState({ scrollY: document.documentElement.clientHeight * this.props.pages.length - 10 })
             } else {
                 this.setState({ scrollY: this.state.scrollY + offset * sign })
-                console.log(this.state.scrollY)
             }
 
         }, 5)
