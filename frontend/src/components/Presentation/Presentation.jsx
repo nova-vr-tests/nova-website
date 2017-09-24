@@ -172,6 +172,7 @@ class Presentation extends React.Component {
 
 
     render() {
+
         return (
             <PresentationDumb
                 { ...this.props }
