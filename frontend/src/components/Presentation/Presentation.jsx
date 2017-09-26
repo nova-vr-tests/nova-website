@@ -40,7 +40,7 @@ class Presentation extends React.Component {
         super(props)
 
         this.state = {
-            scrollY: 0,
+            scrollY: this.initScrollY(),
         }
 
         this.onScroll = this.onScroll.bind(this)
@@ -48,6 +48,27 @@ class Presentation extends React.Component {
         this.updateBackgrounds = this.updateBackgrounds.bind(this)
         this.animateProgress = this.animateProgress.bind(this)
         this.getPageHeights = this.getPageHeights.bind(this)
+        this.initScrollY = this.initScrollY.bind(this)
+    }
+
+    initScrollY(url = '') {
+        let { pathname } = this.props.routing.location
+        if(url !== '')
+            pathname = url
+
+        const pageHeights = this.getPageHeights()
+
+        if(
+            pageHeights.filter((e, i) => pathname === e[1]).length === 0 &&
+            pageHeights.filter((e, i) => pathname === pageHeights[0][1] + e[1]).length === 0 && url !== ''
+        )
+            return this.state.scrollY
+
+        let scrollY = 0
+        if(pathname !== pageHeights[0][1])
+            scrollY = pageHeights.filter((e, i) => pageHeights[0][1] + pageHeights[i][1] === pathname)[0][0]
+
+        return scrollY
     }
 
     componentDidMount() {
@@ -55,6 +76,8 @@ class Presentation extends React.Component {
 
         // attach scroll event
         window.addEventListener("wheel", this.onScroll)
+
+        window.setTimeout(this.updateBackgrounds(), 0)
     }
 
     componentWillUnmount() {
@@ -64,6 +87,18 @@ class Presentation extends React.Component {
 
     componentWillUpdate() {
         this.updateBackgrounds()
+    }
+
+    componentWillReceiveProps(newProps) {
+        if(
+            this.props.routing.location.pathname !== newProps.routing.location.pathname &&
+            !this.getPageHeights().splice(0,1).filter(e => e === newProps.routing.location.pathname).length
+        ) {
+            this.setState({ scrollY: this.initScrollY(newProps.routing.location.pathname) })
+
+            // otherwise state update isn't taken into account by next render
+            window.setTimeout(() => this.updateBackgrounds(), 0)
+        }
     }
 
     onScroll(e) {
@@ -124,12 +159,11 @@ class Presentation extends React.Component {
                          :
                            currentPage
 
-        this.props.goTo(this.props.routeUrls[0] + (this.props.routeUrls[targetPage] === this.props.routeUrls[0] ? '' : this.props.routeUrls[targetPage]))
         console.log(this.props.routeUrls[targetPage])
 
         const targetPageHeight = this.getPageHeights()[targetPage][0]
 
-        const offset = 4
+        const offset = 4 // scroll speed coef
 
 
 
@@ -154,6 +188,9 @@ class Presentation extends React.Component {
                     this.setState({ scrollY: 0 })
                 else if(this.state.scrollY > document.documentElement.clientHeight * this.props.pages.length)
                     this.setState({ scrollY: document.documentElement.clientHeight * this.props.pages.length - 10 })
+
+                this.props.goTo(this.props.routeUrls[0] + (targetPage === 0 ? '' : this.props.routeUrls[targetPage]))
+                console.log(targetPage)
             } else {
                 this.setState({ scrollY: this.state.scrollY + offset * sign })
             }
