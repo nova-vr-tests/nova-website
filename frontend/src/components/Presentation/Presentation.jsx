@@ -145,9 +145,10 @@ class Presentation extends React.Component {
     **/
     updateBackgroundUrls(sign) {
         const { currentPage } = this.state
+        const totalPages = this.props.pages.length
+
 
         const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
-        const totalPages = this.props.pages.length
         const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
         const frontBgUrl = sign < 0 ? this.props.pages[currentPage].bgUrl : this.props.pages[nextPage].bgUrl
@@ -191,6 +192,10 @@ class Presentation extends React.Component {
                            (currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1)
                          :
                            currentPage
+
+        // boundary condition: don't animate backgrounds when going back on first page and going forward on last page
+        if((sign < 0 && currentPage <= 0) || (sign > 0 && currentPage >= totalPages - 1))
+            return this.attachScrollEvent()
 
         // Animation handle
         let transitionProgress = 0
