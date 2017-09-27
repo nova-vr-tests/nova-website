@@ -135,7 +135,7 @@ const PresentationDumb = props => {
     const Comp = props.pages[currentPage].comp
 
     return (
-        <Comp />
+        <Comp { ...props } />
     )
 }
 
@@ -152,6 +152,8 @@ class Presentation extends React.Component {
         this.goToPreviousPage = this.goToPreviousPage.bind(this)
         this.attachScrollEvent = this.attachScrollEvent.bind(this)
         this.detachScrollEvent = this.detachScrollEvent.bind(this)
+        this.isFirstPage = this.isFirstPage.bind(this)
+        this.isLastPage = this.isLastPage.bind(this)
     }
 
     componentDidMount() {
@@ -168,7 +170,33 @@ class Presentation extends React.Component {
     componentWillUpdate() {
     }
 
-    componentWillReceiveProps(newProps) {
+    componentWillReceiveProps() {
+    }
+
+    /*
+       Returns true if currentPage is first page in pages array
+    **/
+    isFirstPage() {
+        return this.state.currentPage === 0 ? true : false
+    }
+
+    /*
+       Returns true if currentPage is last page in pages array
+    **/
+    isLastPage() {
+        return this.state.currentPage === this.props.pages.length - 1 ? true : false
+    }
+
+    goToNextPresentation() {
+        this.detachScrollEvent()
+
+        this.props.parentPresentationNextSlide()
+    }
+
+    goToPreviousPresentation() {
+        this.detachScrollEvent()
+
+        this.props.parentPresentationPresviousSlide()
     }
 
     /*
@@ -218,14 +246,16 @@ class Presentation extends React.Component {
        Attach wheel event to page change
     **/
     attachScrollEvent() {
-        window.addEventListener("wheel", this.onScroll)
+        if(this.props.attachToMouseScroll)
+            window.addEventListener("wheel", this.onScroll)
     }
 
     /*
        Detach wheel event from page change
     **/
     detachScrollEvent() {
-        window.removeEventListener("wheel", this.onScroll)
+        if(this.props.attachToMouseScroll)
+            window.removeEventListener("wheel", this.onScroll)
     }
 
     /*
@@ -246,6 +276,8 @@ class Presentation extends React.Component {
         return (
             <PresentationDumb
                 { ...this.props }
+                parentPresentationNextSlide={ this.goToNextPage }
+                parentPresentationPreviousSlide={ this.goToPreviousPage }
                 currentPage={ this.state.currentPage }
             />
         )
@@ -255,8 +287,9 @@ class Presentation extends React.Component {
 Presentation.defaultProps = {
     goToNextPage: () => {},
     goToPreviousPage: () => {},
-    nextOnLastPage: () => console.log('next pres'),
-    previousOnFirstPage: () => console.log('prev pres'),
+    parentPresentationNextSlide: () => console.log('next pres'),
+    parentPresentationPreviousSlide: () => console.log('prev pres'),
+    attachToMouseScroll: true,
 }
 
 export default connect(

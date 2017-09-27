@@ -24,8 +24,13 @@ const DesignIntro = props => {
     )
 
     const slides = [{ comp: slide1, url: '' }]
+    const { parentPresentationNextSlide, parentPresentationPreviousSlide } = props
+    const newProps = { parentPresentationNextSlide, parentPresentationPreviousSlide}
 
-    return <Presentation pages={ slides } />
+    return <Presentation
+                { ...newProps }
+                pages={ slides }
+            />
 }
 
 const World = props => {
@@ -39,8 +44,13 @@ const World = props => {
     )
 
     const slides = [{ comp: slide1, bgUrl: bg1 }]
+    const { parentPresentationNextSlide, parentPresentationPreviousSlide } = props
+    const newProps = { parentPresentationNextSlide, parentPresentationPreviousSlide}
 
-    return <Presentation pages={ slides } />
+    return <Presentation
+                { ...newProps }
+                pages={ slides }
+            />
 }
 
 const Interface = props => {
@@ -54,8 +64,13 @@ const Interface = props => {
     )
 
     const slides = [{ comp: slide1, bgUrl: bg2 }]
+    const { parentPresentationNextSlide, parentPresentationPreviousSlide } = props
+    const newProps = { parentPresentationNextSlide, parentPresentationPreviousSlide}
 
-    return <Presentation pages={ slides } />
+    return <Presentation
+                { ...newProps }
+                pages={ slides }
+            />
 }
 
 const Story = props => {
@@ -69,8 +84,13 @@ const Story = props => {
     )
 
     const slides = [{ comp: slide1, bgUrl: bg3 }]
+    const { parentPresentationNextSlide, parentPresentationPreviousSlide } = props
+    const newProps = { parentPresentationNextSlide, parentPresentationPreviousSlide}
 
-    return <Presentation pages={ slides } />
+    return <Presentation
+                { ...newProps }
+                pages={ slides }
+            />
 }
 
 const DesignPresentation = props => {
@@ -98,7 +118,9 @@ const DesignPresentation = props => {
     ]
 
     return (
-        <Presentation pages={ pages } />
+        <Presentation
+            attachToMouseScroll={ false }
+            pages={ pages } />
     )
 }
 
