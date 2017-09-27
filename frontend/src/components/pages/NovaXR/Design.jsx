@@ -14,7 +14,7 @@ import bg2 from '../../img/design/2.png'
 import bg3 from '../../img/design/3.png'
 
 const DesignIntro = props => {
-    return (
+    const slide1 = props => (
         <PageWrapper>
             <H1>Intro</H1>
             <P>
@@ -22,10 +22,14 @@ const DesignIntro = props => {
             </P>
         </PageWrapper>
     )
+
+    const slides = [{ comp: slide1, url: '' }]
+
+    return <Presentation pages={ slides } />
 }
 
 const World = props => {
-    return (
+    const slide1 = props => (
         <PageWrapper>
             <H1>World</H1>
             <P>
@@ -33,10 +37,14 @@ const World = props => {
             </P>
         </PageWrapper>
     )
+
+    const slides = [{ comp: slide1, bgUrl: bg1 }]
+
+    return <Presentation pages={ slides } />
 }
 
 const Interface = props => {
-    return (
+    const slide1 = props => (
         <PageWrapper>
             <H1>Interface</H1>
             <P>
@@ -44,10 +52,14 @@ const Interface = props => {
             </P>
         </PageWrapper>
     )
+
+    const slides = [{ comp: slide1, bgUrl: bg2 }]
+
+    return <Presentation pages={ slides } />
 }
 
 const Story = props => {
-    return (
+    const slide1 = props => (
         <PageWrapper>
             <H1>Story</H1>
             <P>
@@ -55,6 +67,10 @@ const Story = props => {
             </P>
         </PageWrapper>
     )
+
+    const slides = [{ comp: slide1, bgUrl: bg3 }]
+
+    return <Presentation pages={ slides } />
 }
 
 const DesignPresentation = props => {
@@ -82,7 +98,7 @@ const DesignPresentation = props => {
     ]
 
     return (
-        <Presentation pages={ pages } routeUrls={ props.routeUrls } />
+        <Presentation pages={ pages } />
     )
 }
 
