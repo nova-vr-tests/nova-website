@@ -50,6 +50,7 @@ class Presentation extends React.Component {
         this.goToPreviousPage = this.goToPreviousPage.bind(this)
         this.attachScrollEvent = this.attachScrollEvent.bind(this)
         this.detachScrollEvent = this.detachScrollEvent.bind(this)
+        this.resetBackgroundStyles = this.resetBackgroundStyles.bind(this)
     }
 
     componentDidMount() {
@@ -117,9 +118,10 @@ class Presentation extends React.Component {
     onScroll(e) {
         const sign = e.deltaY
 
+        console.log(sign)
         if(sign > 0)
             this.goToNextPage()
-        else
+        else if(sign < 0)
             this.goToPreviousPage()
     }
 
@@ -142,8 +144,19 @@ class Presentation extends React.Component {
         this.props.updateBackBgUrl(backBgUrl)
     }
 
+    resetBackgroundStyles(sign) {
+        if(sign > 0) {
+            this.props.updateFrontBgStyle({ opacity: 0 })
+            this.props.updateTransitionProgress(0)
+        } else if (sign < 0) {
+            this.props.updateFrontBgStyle({ opacity: 1 })
+            this.props.updateTransitionProgress(100)
+        }
+    }
+
     splitBackgroundSlideTransition(sign) {
-        console.log(sign, 'sign')
+        this.resetBackgroundStyles(sign)
+
         // Upgrade backgrounds
         this.updateBackgroundUrls(sign)
 
@@ -182,6 +195,7 @@ class Presentation extends React.Component {
                     this.setState({ currentPage: totalPages - 1 })
 
                 // update URL
+
 
             } else {
                 ////// Continue scrolling
