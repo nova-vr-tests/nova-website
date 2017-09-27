@@ -107,20 +107,20 @@ const BgDumb = props => {
 
     return (
         <div style={ styles.wrapper } className="bar">
-            <div className="foo" style={ styles.split.wrapper }>
+            <div className="split-top" style={ styles.split.wrapper }>
                 <div style={ styles.split.top }>
                 </div>
             </div>
-            <div className="foo" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
+            <div className="split-bottom" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
                 <div style={ styles.split.bottom }>
                 </div>
             </div>
-            <div style={ {
+            <div className="front-bg" style={ {
                     ...styles.frontBg,
                     ...props.frontBg.style,
             } }>
             </div>
-            <div style={ {
+            <div className="back-bg" style={ {
                     ...styles.backBg,
                     opacity: props.slideTransitionProgress > 0.5 ? 0 : 1,
             } }>
