@@ -93,16 +93,6 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
             // Clear interval
             window.clearInterval(transitionTimer)
             transitionTimer = undefined
-
-            // Border conditions
-            // if(currentPage < 0)
-                //this.setState({ currentPage: 0 })
-            //else if(currentPage > totalPages - 1)
-             //   this.setState({ currentPage: totalPages - 1 })
-
-            // update URL
-
-
         } else {
             ////// Continue scrolling
 
@@ -143,6 +133,7 @@ const PresentationDumb = props => {
     currentPage = currentPage > props.pages.length - 1 ? props.pages.length - 1 : currentPage
 
     const Comp = props.pages[currentPage].comp
+
     return (
         <Comp />
     )
