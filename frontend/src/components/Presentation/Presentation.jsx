@@ -70,6 +70,9 @@ class Presentation extends React.Component {
     componentWillReceiveProps(newProps) {
     }
 
+    /*
+       Goes to next slide
+    **/
     goToNextPage() {
         // Get next page
         const { currentPage } = this.state
@@ -80,7 +83,7 @@ class Presentation extends React.Component {
         nextPage = nextPage >= totalPages ? totalPages - 1 : nextPage
 
         // User callback
-        this.props.goToNextPage()
+        this.props.goToNextPage(currentPage)
 
         // Background transitions
         this.splitBackgroundSlideTransition(1)
@@ -89,6 +92,9 @@ class Presentation extends React.Component {
         this.setState({ currentPage: nextPage })
     }
 
+    /*
+       Goes to previous slide
+    **/
     goToPreviousPage() {
         // Get previous page
         const { currentPage } = this.state
@@ -98,7 +104,7 @@ class Presentation extends React.Component {
         previousPage = previousPage < 0 ? 0 : previousPage
 
         // User callback
-        this.props.goToPreviousPage()
+        this.props.goToPreviousPage(currentPage)
 
         // Background transitions
         this.splitBackgroundSlideTransition(-1)
@@ -107,43 +113,53 @@ class Presentation extends React.Component {
         this.setState({ currentPage: previousPage })
     }
 
+    /*
+       Attach wheel event to page change
+    **/
     attachScrollEvent() {
         window.addEventListener("wheel", this.onScroll)
     }
 
+    /*
+       Detach wheel event from page change
+    **/
     detachScrollEvent() {
         window.removeEventListener("wheel", this.onScroll)
     }
 
+    /*
+       Change slide on user scroll
+    **/
     onScroll(e) {
         const sign = e.deltaY
 
-        console.log(sign)
         if(sign > 0)
             this.goToNextPage()
         else if(sign < 0)
             this.goToPreviousPage()
     }
 
+    /*
+       Updates the backgrounds between slides prior to the slide transition
+       - param sign {number} positive for next slide and negative for previous slide
+    **/
     updateBackgroundUrls(sign) {
         const { currentPage } = this.state
-
-
 
         const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
         const totalPages = this.props.pages.length
         const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
-
         const frontBgUrl = sign < 0 ? this.props.pages[currentPage].bgUrl : this.props.pages[nextPage].bgUrl
         const backBgUrl = sign < 0 ? this.props.pages[previousPage].bgUrl : this.props.pages[currentPage].bgUrl
-
-        console.log(currentPage, previousPage, nextPage, totalPages, frontBgUrl, backBgUrl, this.props.pages.map(e => e.bgUrl))
 
         this.props.updateFrontBgUrl(frontBgUrl)
         this.props.updateBackBgUrl(backBgUrl)
     }
 
+    /*
+       Reset background styles so next transition appears smoothly
+    **/
     resetBackgroundStyles(sign) {
         if(sign > 0) {
             this.props.updateFrontBgStyle({ opacity: 0 })
@@ -154,6 +170,9 @@ class Presentation extends React.Component {
         }
     }
 
+    /*
+       Split background slide transition
+    **/
     splitBackgroundSlideTransition(sign) {
         this.resetBackgroundStyles(sign)
 
@@ -173,13 +192,12 @@ class Presentation extends React.Component {
                          :
                            currentPage
 
+        // Animation handle
         let transitionProgress = 0
         this.transitionTimer = window.setInterval(() => {
             const condition = sign > 0 ? currentPage > targetPage : currentPage < targetPage
 
-            if(
-                transitionProgress > 100
-            ) {
+            if(transitionProgress > 100) {
                 ////// Stop animation
 
                 // Attach scroll event to page change
@@ -189,6 +207,7 @@ class Presentation extends React.Component {
                 window.clearInterval(this.transitionTimer)
                 this.transitionTimer = undefined
 
+                // Border conditions
                 if(this.state.currentPage < 0)
                     this.setState({ currentPage: 0 })
                 else if(this.state.pages > totalPages - 1)
@@ -212,11 +231,8 @@ class Presentation extends React.Component {
                 // Increment transition progress
                 transitionProgress = transitionProgress + 1
             }
-
         }, 5)
     }
-
-
 
     render() {
 
