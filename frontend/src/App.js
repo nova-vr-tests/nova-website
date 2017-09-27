@@ -20,7 +20,7 @@ import Header from './components/Header/Header.jsx'
 const constants = { styles }
 
 const apiTest = async () => {
-  const r = await fetch("api/businessprops/")
+  const r = await fetch("/api/businessprops/")
   const json = await r.json()
 
   console.log(json)
