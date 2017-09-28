@@ -38,9 +38,8 @@ const BgDumb = props => {
     const transformTop = 'calc(-' + progress + ' * ' + lineTop + ')'
     const transformBottom = 'calc(' + progress + ' * ' + heightBottom + ')'
 
-    const paralaxBgFront = 'translateX(' + props.frontBg.paralax + 'px)'
-    const paralaxBgBack = 'translateX(' + props.backBg.paralax + 'px)'
-    console.log(paralaxBgBack, paralaxBgFront)
+    const paralaxBgFront = props.frontBg.paralax + 'px'
+    const paralaxBgBack = props.backBg.paralax + 'px'
 
     const styles = {
         wrapper: {
@@ -70,7 +69,7 @@ const BgDumb = props => {
                 height: '100vh',
                 width: '100vw',
                 position: 'absolute',
-                transform: paralaxBgBack,
+                backgroundPosition: paralaxBgBack,
             },
             bottom: {
                 backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
@@ -79,7 +78,8 @@ const BgDumb = props => {
                 height: '100vh',
                 width: '100vw',
                 position: 'absolute',
-                transform: 'translateY(calc(-' + lineTop + ' - ' + lineHeight + '))' + paralaxBgBack,
+                transform: 'translateY(calc(-' + lineTop + ' - ' + lineHeight + '))',
+                backgroundPosition: paralaxBgBack,
             },
         },
         frontBg: {
@@ -89,7 +89,7 @@ const BgDumb = props => {
             height: '100vh',
             width: '100vw',
             position: 'absolute',
-            transform: paralaxBgFront,
+            backgroundPosition: paralaxBgFront,
         },
         backBg: {
             backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
@@ -98,7 +98,7 @@ const BgDumb = props => {
             height: '100vh',
             width: '100vw',
             position: 'absolute',
-            transform: paralaxBgBack,
+            backgroundPosition: paralaxBgBack,
 
             ...props.backBg.style,
         },
