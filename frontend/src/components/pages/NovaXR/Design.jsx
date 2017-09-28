@@ -145,10 +145,52 @@ const DesignPresentation = props => {
             paralax: 0,
             transitions: {
                 nextSlide: {
-                    bg: transitions.types.BG_SPLIT,
+                    bg: transitions.types.BG_PARALAX,
                 },
                 previousSlide: {
                     bg: transitions.types.BG_SPLIT,
+                }
+            },
+        },
+        {
+            comp: Interface,
+            bgUrl: bg2,
+            path: '/interface',
+            paralax: 50,
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                }
+            },
+        },
+        {
+            comp: Interface,
+            bgUrl: bg2,
+            path: '/interface',
+            paralax: 100,
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                }
+            },
+        },
+        {
+            comp: Interface,
+            bgUrl: bg2,
+            path: '/interface',
+            paralax: 150,
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_PARALAX,
                 }
             },
         },
