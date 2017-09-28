@@ -3,21 +3,41 @@ export const UPDATE_FRONT_BG_STYLE = 'bg/update_front_bg_style'
 export const UPDATE_BACK_BG_URL = 'bg/update_back_bg_url'
 export const UPDATE_BACK_BG_STYLE = 'bg/update_back_bg_style'
 export const UPDATE_TRANSITION_PROGRESS = 'bg/update_transition_progress'
+export const UPDATE_FRONT_BG_PARALAX = 'bg/update_front_bg_paralax'
+export const UPDATE_BACK_BG_PARALAX = 'bg/update_back_bg_paralax'
 
 const initialState = {
     frontBg: {
         url: '',
         style: {},
+        paralax: 0,
     },
     backBg: {
         url: '',
         style: {},
+        paralax: 0,
     },
     transitionProgress: 0,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+  case UPDATE_FRONT_BG_PARALAX:
+      return {
+          ...state,
+          frontBg: {
+              ...state.frontBg,
+              paralax: action.paralax,
+          },
+      }
+  case UPDATE_BACK_BG_PARALAX:
+      return {
+          ...state,
+          backBg: {
+              ...state.backBg,
+              paralax: action.paralax,
+          },
+      }
   case UPDATE_TRANSITION_PROGRESS:
       return {
           ...state,

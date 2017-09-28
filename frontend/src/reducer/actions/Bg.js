@@ -4,7 +4,19 @@ import {
     UPDATE_BACK_BG_URL,
     UPDATE_BACK_BG_STYLE,
     UPDATE_TRANSITION_PROGRESS,
+    UPDATE_FRONT_BG_PARALAX,
+    UPDATE_BACK_BG_PARALAX,
 } from '../Bg'
+
+const updateFrontBgParalax = paralax => ({
+    type: UPDATE_FRONT_BG_PARALAX,
+    paralax,
+})
+
+const updateBackBgParalax = paralax => ({
+    type: UPDATE_BACK_BG_PARALAX,
+    paralax,
+})
 
 const updateTransitionProgress = transitionProgress => ({
     type: UPDATE_TRANSITION_PROGRESS,
@@ -37,4 +49,6 @@ export {
     updateBackBgStyle,
     updateBackBgUrl,
     updateTransitionProgress,
+    updateBackBgParalax,
+    updateFrontBgParalax,
 }

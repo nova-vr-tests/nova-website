@@ -35,7 +35,7 @@ const PresentationDumb = props => {
     const Comp = props.pages[currentPage].comp
 
     return (
-        <Comp { ...props } parentCurrentPage={ currentPage } />
+        <Comp { ...props } />
     )
 }
 
@@ -102,7 +102,17 @@ class Presentation extends React.Component {
         nextPage = nextPage >= totalPages ? totalPages - 1 : nextPage
 
         // Background transitions
-        transitions.splitBackground.slideTransition(1, this.props.pages, currentPage, this.attachScrollEvent, this.detachScrollEvent)
+        const transitionParams = {
+            sign: 1,
+            pages: this.props.pages,
+            currentPage,
+            attachScrollEvent: this.attachScrollEvent,
+            detachScrollEvent: this.detachScrollEvent,
+        }
+
+        const transitionType = this.props.pages[currentPage].transitions.nextSlide.bg
+
+        transitions.startTransition(transitionType, transitionParams)
 
         // Update state
         this.setState({ currentPage: nextPage })
@@ -120,7 +130,17 @@ class Presentation extends React.Component {
         previousPage = previousPage < 0 ? 0 : previousPage
 
         // Background transitions
-        transitions.splitBackground.slideTransition(-1, this.props.pages, currentPage, this.attachScrollEvent, this.detachScrollEvent)
+        const transitionParams = {
+            sign: -1,
+            pages: this.props.pages,
+            currentPage,
+            attachScrollEvent: this.attachScrollEvent,
+            detachScrollEvent: this.detachScrollEvent,
+        }
+
+        const transitionType = this.props.pages[currentPage].transitions.previousSlide.bg
+
+        transitions.startTransition(transitionType, transitionParams)
 
         // Update state
         this.setState({ currentPage: previousPage })
@@ -171,10 +191,7 @@ class Presentation extends React.Component {
         return (
             <PresentationDumb
                 { ...this.props }
-                parentPresentationNextSlide={ this.goToNextPage }
-                parentPresentationPreviousSlide={ this.goToPreviousPage }
                 currentPage={ this.state.currentPage }
-                parentTotalPages={ this.props.pages.length }
             />
         )
     }

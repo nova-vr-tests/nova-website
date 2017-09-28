@@ -3,13 +3,15 @@ import {
     updateFrontBgStyle,
     updateBackBgUrl,
     updateBackBgStyle,
-    updateTransitionProgress
+    updateTransitionProgress,
+    updateFrontBgParalax,
+    updateBackBgParalax,
 } from '../../reducer/actions/Bg.js'
 
 import store from '../../store.js'
 const dispatch = store.dispatch
 
-const transitions = { splitBackground: {} }
+const transitions = { splitBackground: {}, bgParalax: {} }
 
 /*
     Updates the backgrounds between slides prior to the slide transition
@@ -104,6 +106,72 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
             transitionProgress = transitionProgress + 1
         }
     }, 5)
+}
+
+transitions.types = {
+    BG_PARALAX: 0,
+    BG_SPLIT: 1,
+}
+
+
+const translateFrontBg = (progress, deltaX) => {
+    dispatch(updateFrontBgParalax(-progress / 100 * deltaX))
+}
+
+const translateBackBg = (progress, deltaX) => {
+    dispatch(updateBackBgParalax(-progress / 100 * deltaX))
+}
+
+transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
+    detachScrollEvent()
+
+    const bgState = store.getState().bgReducer
+
+    let translate = bgState.transitionProgress !== 0 ? translateFrontBg : translateBackBg
+    console.log(bgState.transitionProgress)
+
+    // Animation handle
+    let transitionProgress = 0
+    let transitionTimer = 0
+    transitionTimer = window.setInterval(() => {
+        if(transitionProgress > 100) {
+            ////// Stop animation
+
+            // Attach scroll event to page change
+            attachScrollEvent()
+
+            // Clear interval
+            window.clearInterval(transitionTimer)
+            transitionTimer = undefined
+        } else {
+            ////// Continue scrolling
+
+            // Call background controls
+            if (sign > 0) {
+                translate(transitionProgress, 100)
+            } else {
+                translate(100-transitionProgress, 100)
+            }
+
+            // Increment transition progress
+            transitionProgress = transitionProgress + 1
+        }
+    }, 5)
+}
+
+transitions.startTransition = (type, params) => {
+    const { sign, pages, currentPage, attachScrollEvent, detachScrollEvent } = params
+    const { BG_PARALAX, BG_SPLIT } = transitions.types
+
+    switch(type){
+        case BG_SPLIT:
+            return transitions.splitBackground.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent)
+        case BG_PARALAX:
+            return transitions.bgParalax.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent)
+            break
+        default:
+            return
+    }
 }
 
 
