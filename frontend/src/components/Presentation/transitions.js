@@ -89,11 +89,13 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
     if((sign < 0 && currentPage <= 0) || (sign > 0 && currentPage >= totalPages - 1))
         return attachScrollEvent()
 
-    // Init paralax (to be refactored into single function)
+    // Init paralax
     if(sign > 0) {
         // sign > 0 => back background is current page
         //          => front background is next page
 
+        dispatch(updateBackBgParalax(-pages[currentPage].paralax))
+        dispatch(updateFrontBgParalax(pages[targetPage].paralax))
     } else if(sign < 0) {
         // sign < 0 => back background is previous page
         //          => front bg is current page
@@ -155,7 +157,6 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
 
     // Choose which bg to translate
     let translate = bgState.transitionProgress !== 0 ? translateFrontBg : translateBackBg
-    console.log(bgState.transitionProgress)
 
     // Animation handle
     let transitionProgress = 0
@@ -181,9 +182,9 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
             }
 
             // Increment transition progress
-            transitionProgress = transitionProgress + 1
+            transitionProgress = transitionProgress + 5
         }
-    }, 5)
+    }, 15)
 }
 
 transitions.startTransition = (type, params) => {
