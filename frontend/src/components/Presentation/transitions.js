@@ -143,17 +143,28 @@ transitions.types = {
 
 
 const translateFrontBg = (progress, deltaX) => {
-    dispatch(updateFrontBgParalax(-progress / 100 * deltaX))
+    dispatch(updateFrontBgParalax(-progress))
 }
 
 const translateBackBg = (progress, deltaX) => {
-    dispatch(updateBackBgParalax(-progress / 100 * deltaX))
+    dispatch(updateBackBgParalax(-progress))
 }
 
 transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
     detachScrollEvent()
 
     const bgState = store.getState().bgReducer
+
+    // boundary condition
+    const totalPages = pages.length
+    const targetPage = sign > 0 ?
+          (currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1)
+          :
+          currentPage - 1
+
+    const currentParalax = pages[currentPage].paralax
+    const targetParalax = pages[targetPage].paralax
+    const deltaParalax = Math.abs(targetParalax - currentParalax)
 
     // Choose which bg to translate
     let translate = bgState.transitionProgress !== 0 ? translateFrontBg : translateBackBg
@@ -175,10 +186,13 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
             ////// Continue scrolling
 
             // Call background controls
+            let x
             if (sign > 0) {
-                translate(transitionProgress, 100)
+                x = currentParalax + transitionProgress / 100 * deltaParalax
+                translate(x, deltaParalax)
             } else {
-                translate(100-transitionProgress, 100)
+                x = targetParalax + (1 - transitionProgress / 100) * deltaParalax
+                translate(x, deltaParalax)
             }
 
             // Increment transition progress

@@ -47,6 +47,17 @@ const World2 = props => {
     )
 }
 
+const World3 = props => {
+    return (
+        <PageWrapper>
+            <H1>World 3</H1>
+            <P>
+                When we first stepped into the virtual world it was open space. It felt like a dream in the making. The restrictions here are none. When knowledge seems elusive, come to an infinite source of awareness. The next step for curiosity.
+            </P>
+        </PageWrapper>
+    )
+}
+
 const Interface = props => {
     return (
         <PageWrapper>
@@ -100,8 +111,22 @@ const DesignPresentation = props => {
             },
         },
         {
-            paralax: 100,
+            paralax: 50,
             comp: World2,
+            bgUrl: bg1,
+            path: '/world',
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                }
+            },
+        },
+        {
+            paralax: 120,
+            comp: World3,
             bgUrl: bg1,
             path: '/world',
             transitions: {
