@@ -75,6 +75,7 @@ const DesignPresentation = props => {
             comp: DesignIntro,
             bgUrl: '',
             path: '/intro',
+            paralax: 0,
             transitions: {
                 nextSlide: {
                     bg: transitions.types.BG_SPLIT,
@@ -88,6 +89,7 @@ const DesignPresentation = props => {
             comp: World1,
             bgUrl: bg1,
             path: '/world',
+            paralax: 0,
             transitions: {
                 nextSlide: {
                     bg: transitions.types.BG_PARALAX,
@@ -98,6 +100,7 @@ const DesignPresentation = props => {
             },
         },
         {
+            paralax: 100,
             comp: World2,
             bgUrl: bg1,
             path: '/world',
@@ -114,6 +117,7 @@ const DesignPresentation = props => {
             comp: Interface,
             bgUrl: bg2,
             path: '/interface',
+            paralax: 0,
             transitions: {
                 nextSlide: {
                     bg: transitions.types.BG_SPLIT,
@@ -127,6 +131,7 @@ const DesignPresentation = props => {
             comp: Story,
             bgUrl: bg3,
             path: '/story',
+            paralax: 0,
             transitions: {
                 previousSlide: {
                     bg: transitions.types.BG_SPLIT,

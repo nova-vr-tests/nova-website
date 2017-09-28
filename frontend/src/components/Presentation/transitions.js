@@ -13,6 +13,13 @@ const dispatch = store.dispatch
 
 const transitions = { splitBackground: {}, bgParalax: {} }
 
+const inverseParalax = () => {
+    const { frontBg, backBg } = store.getState().bgReducer
+
+    dispatch(updateFrontBgParalax(backBg.paralax))
+    dispatch(updateBackBgParalax(frontBg.paralax))
+}
+
 /*
     Updates the backgrounds between slides prior to the slide transition
     - param sign {number} positive for next slide and negative for previous slide
@@ -20,6 +27,7 @@ const transitions = { splitBackground: {}, bgParalax: {} }
     - currentPage {number} index
 **/
 transitions.splitBackground.updateBackgroundUrls = (sign, pages, currentPage) => {
+
     const totalPages = pages.length
 
     const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
@@ -40,9 +48,15 @@ transitions.splitBackground.resetBackgroundStyles = (sign) => {
     if(sign > 0) {
         dispatch(updateFrontBgStyle({ opacity: 0 }))
         dispatch(updateTransitionProgress(0))
+
+        dispatch(updateFrontBgParalax(0))
+        dispatch(updateBackBgParalax(0))
     } else if (sign < 0) {
         dispatch(updateFrontBgStyle({ opacity: 1 }))
         dispatch(updateTransitionProgress(100))
+
+        dispatch(updateFrontBgParalax(0))
+        dispatch(updateBackBgParalax(0))
     }
 }
 
@@ -69,17 +83,29 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
     const targetPage = sign > 0 ?
                         (currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1)
                         :
-                        currentPage
+                        currentPage - 1
 
     // boundary condition: don't animate backgrounds when going back on first page and going forward on last page
     if((sign < 0 && currentPage <= 0) || (sign > 0 && currentPage >= totalPages - 1))
         return attachScrollEvent()
 
+    // Init paralax (to be refactored into single function)
+    if(sign > 0) {
+        // sign > 0 => back background is current page
+        //          => front background is next page
+
+    } else if(sign < 0) {
+        // sign < 0 => back background is previous page
+        //          => front bg is current page
+
+        dispatch(updateBackBgParalax(-pages[targetPage].paralax))
+        dispatch(updateFrontBgParalax(pages[currentPage].paralax))
+    }
+
     // Animation handle
     let transitionProgress = 0
     let transitionTimer = 0
     transitionTimer = window.setInterval(() => {
-        const condition = sign > 0 ? currentPage > targetPage : currentPage < targetPage
 
         if(transitionProgress > 100) {
             ////// Stop animation
@@ -127,6 +153,7 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
 
     const bgState = store.getState().bgReducer
 
+    // Choose which bg to translate
     let translate = bgState.transitionProgress !== 0 ? translateFrontBg : translateBackBg
     console.log(bgState.transitionProgress)
 
