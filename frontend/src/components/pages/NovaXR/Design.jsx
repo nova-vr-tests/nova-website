@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Presentation from '../../Presentation/Presentation.jsx'
+import transitions from '../../Presentation/transitions.js'
 
 import {
     P,
@@ -24,10 +25,21 @@ const DesignIntro = props => {
     )
 }
 
-const World = props => {
+const World1 = props => {
     return (
         <PageWrapper>
             <H1>World 1</H1>
+            <P>
+                When we first stepped into the virtual world it was open space. It felt like a dream in the making. The restrictions here are none. When knowledge seems elusive, come to an infinite source of awareness. The next step for curiosity.
+            </P>
+        </PageWrapper>
+    )
+}
+
+const World2 = props => {
+    return (
+        <PageWrapper>
+            <H1>World 2</H1>
             <P>
                 When we first stepped into the virtual world it was open space. It felt like a dream in the making. The restrictions here are none. When knowledge seems elusive, come to an infinite source of awareness. The next step for curiosity.
             </P>
@@ -63,21 +75,66 @@ const DesignPresentation = props => {
             comp: DesignIntro,
             bgUrl: '',
             path: '/intro',
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                },
+                previousSlide: {
+                    bg: -1
+                }
+            },
         },
         {
-            comp: World,
+            comp: World1,
             bgUrl: bg1,
             path: '/world',
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                }
+            },
+        },
+        {
+            comp: World2,
+            bgUrl: bg1,
+            path: '/world',
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_PARALAX,
+                }
+            },
         },
         {
             comp: Interface,
             bgUrl: bg2,
             path: '/interface',
+            transitions: {
+                nextSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                },
+                previousSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                }
+            },
         },
         {
             comp: Story,
             bgUrl: bg3,
             path: '/story',
+            transitions: {
+                previousSlide: {
+                    bg: transitions.types.BG_SPLIT,
+                },
+                nextSlide: {
+                    bg: -1
+                }
+            },
         },
     ]
 
@@ -89,7 +146,8 @@ const DesignPresentation = props => {
 
 export {
     DesignPresentation,
-    World,
+    World1,
+    World2,
     Interface,
     Story,
 }
