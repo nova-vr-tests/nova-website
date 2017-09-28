@@ -135,7 +135,7 @@ const PresentationDumb = props => {
     const Comp = props.pages[currentPage].comp
 
     return (
-        <Comp { ...props } />
+        <Comp { ...props } parentCurrentPage={ currentPage } />
     )
 }
 
@@ -146,6 +146,8 @@ class Presentation extends React.Component {
         this.state = {
             currentPage: 0,
         }
+
+        this.eventCounter = 0
 
         this.onScroll = this.onScroll.bind(this)
         this.goToNextPage = this.goToNextPage.bind(this)
@@ -167,7 +169,7 @@ class Presentation extends React.Component {
         this.detachScrollEvent()
     }
 
-    componentWillUpdate() {
+    componentWillUpdate(nextProps) {
     }
 
     componentWillReceiveProps() {
@@ -187,18 +189,6 @@ class Presentation extends React.Component {
         return this.state.currentPage === this.props.pages.length - 1 ? true : false
     }
 
-    goToNextPresentation() {
-        this.detachScrollEvent()
-
-        this.props.parentPresentationNextSlide()
-    }
-
-    goToPreviousPresentation() {
-        this.detachScrollEvent()
-
-        this.props.parentPresentationPresviousSlide()
-    }
-
     /*
        Goes to next slide
     **/
@@ -210,9 +200,6 @@ class Presentation extends React.Component {
         // Boundary conditions
         const totalPages = this.props.pages.length
         nextPage = nextPage >= totalPages ? totalPages - 1 : nextPage
-
-        // User callback
-        this.props.goToNextPage(currentPage)
 
         // Background transitions
         transitions.splitBackground.slideTransition(1, this.props.pages, currentPage, this.attachScrollEvent, this.detachScrollEvent)
@@ -232,9 +219,6 @@ class Presentation extends React.Component {
         // Boundary conditions
         previousPage = previousPage < 0 ? 0 : previousPage
 
-        // User callback
-        this.props.goToPreviousPage(currentPage)
-
         // Background transitions
         transitions.splitBackground.slideTransition(-1, this.props.pages, currentPage, this.attachScrollEvent, this.detachScrollEvent)
 
@@ -246,16 +230,24 @@ class Presentation extends React.Component {
        Attach wheel event to page change
     **/
     attachScrollEvent() {
-        if(this.props.attachToMouseScroll)
+        this.detachScrollEvent()
+
+        if(this.props.attachToMouseScroll) {
             window.addEventListener("wheel", this.onScroll)
+            this.eventCounter++
+        }
     }
 
     /*
        Detach wheel event from page change
     **/
     detachScrollEvent() {
-        if(this.props.attachToMouseScroll)
+        let i = 0
+        for(i = 0; i < this.eventCounter; i++) {
             window.removeEventListener("wheel", this.onScroll)
+        }
+
+        this.eventCounter = this.eventCounter - i
     }
 
     /*
@@ -263,6 +255,9 @@ class Presentation extends React.Component {
     **/
     onScroll(e) {
         const sign = e.deltaY
+
+        const totalPages = this.props.pages.length
+        const { currentPage } = this.state
 
         if(sign > 0)
             this.goToNextPage()
@@ -279,16 +274,13 @@ class Presentation extends React.Component {
                 parentPresentationNextSlide={ this.goToNextPage }
                 parentPresentationPreviousSlide={ this.goToPreviousPage }
                 currentPage={ this.state.currentPage }
+                parentTotalPages={ this.props.pages.length }
             />
         )
     }
 }
 
 Presentation.defaultProps = {
-    goToNextPage: () => {},
-    goToPreviousPage: () => {},
-    parentPresentationNextSlide: () => console.log('next pres'),
-    parentPresentationPreviousSlide: () => console.log('prev pres'),
     attachToMouseScroll: true,
 }
 
