@@ -65,7 +65,7 @@ class SlideTransition extends React.Component {
         const timer = window.setInterval(e => {
             if(this.state.transitionProgress < 1)
                 this.setState({
-                    transitionProgress: this.state.transitionProgress + 5 / 100,
+                    transitionProgress: this.state.transitionProgress + 45 / 1000 > 1 ? 1 : this.state.transitionProgress + 45 / 1000,
                     currentPage: this.state.targetPage,
                 })
             else {
@@ -73,7 +73,7 @@ class SlideTransition extends React.Component {
                 window.clearInterval(this.timer)
             }
 
-        }, 5)
+        }, 15)
         this.updateTimerPointer(timer)
 
     }
