@@ -26,6 +26,139 @@ const mapDispatchToProps = dispatch => ({
     goTo: url => dispatch(push(url)),
 })
 
+class SlideTransition extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            currentPage: this.props.currentPage,
+            targetPage: this.props.currentPage,
+            currentPageStyle: {},
+            targetPageStyle: {},
+            transitionProgress: 0,
+            transitionDirection: 0,
+        }
+
+        this.timer = 0
+
+        this.getOpacityStyles = this.getOpacityStyles.bind(this)
+        this.getTranslationStyles = this.getTranslationStyles.bind(this)
+        this.updateTimerPointer = this.updateTimerPointer.bind(this)
+    }
+
+    componentDidMount() {
+        // Start transition
+    }
+
+    componentWillReceiveProps(newProps) {
+        // Check if slide has changed
+        if(newProps.currentPage !== this.props.currentPage) {
+            this.setState({
+                currentPage: this.props.currentPage,
+                targetPage: newProps.currentPage,
+                transitionProgress: 0,
+                transitionDirection: this.props.currentPage > newProps.currentPage ? -1 : 1,
+            })
+        }
+
+        // Start transition
+        const timer = window.setInterval(e => {
+            if(this.state.transitionProgress < 1)
+                this.setState({
+                    transitionProgress: this.state.transitionProgress + 5 / 100,
+                    currentPage: this.state.targetPage,
+                })
+            else {
+                this.setState({ transitionProgress: 0 })
+                window.clearInterval(this.timer)
+            }
+
+        }, 5)
+        this.updateTimerPointer(timer)
+
+    }
+
+    updateTimerPointer(timer) {
+        window.clearInterval(this.timer)
+        this.timer = timer
+    }
+
+    componentDidUpdate() {
+
+    }
+
+    getOpacityStyles() {
+        return this.getTranslationStyles()
+
+        const currentSlide = {
+        }
+        const targetSlide = {
+            position: 'absolute',
+        }
+
+        return {
+            currentSlide: {
+                opacity: 1 - this.state.transitionProgress,
+                position: 'absolute',
+            },
+            targetSlide: {
+                opacity: this.state.transitionProgress,
+                position: 'absolute',
+            },
+        }
+    }
+
+    getTranslationStyles() {
+        const currentSlide = {
+        }
+        const targetSlide = {
+            position: 'absolute',
+        }
+
+        let currentSlideTransform = 'translateX(-' + this.state.transitionProgress * 100 + 'vw)'
+        let targetSlideTransform = 'translateX(calc(100vw - ' + this.state.transitionProgress * 100 + 'vw))'
+        if(this.state.transitionDirection < 0) {
+            currentSlideTransform = 'translateX(' + this.state.transitionProgress * 100 + 'vw)'
+            targetSlideTransform = 'translateX(calc(-100vw + ' + this.state.transitionProgress * 100 + 'vw))'
+        }
+
+        return {
+            currentSlide: {
+                position: 'absolute',
+                transform: currentSlideTransform,
+            },
+            targetSlide: {
+                position: 'absolute',
+                transform: targetSlideTransform
+            },
+        }
+    }
+
+    getStyles() {
+    }
+
+    render() {
+        const { pages, currentPage } = this.props
+
+        const currentSlideStyle = this.getOpacityStyles().currentSlide
+        const targetSlideStyle = this.getOpacityStyles().targetSlide
+
+        const CurrentSlide = this.props.pages[this.state.currentPage].comp
+        const TargetSlide = this.props.pages[this.state.targetPage].comp
+
+        return (
+            <div className='slide-transition--wrapper'>
+                <div className='current-slide--wrapper' style={ currentSlideStyle }>
+                    <CurrentSlide { ...this.props } />
+                </div>
+                <div className='target-slide--wrapper' style={ targetSlideStyle }>
+                    <TargetSlide { ...this.props } />
+                </div>
+            </div>
+        )
+    }
+}
+
 
 
 const PresentationDumb = props => {
@@ -35,7 +168,7 @@ const PresentationDumb = props => {
     const Comp = props.pages[currentPage].comp
 
     return (
-        <Comp { ...props } />
+        <SlideTransition { ...props } />
     )
 }
 
