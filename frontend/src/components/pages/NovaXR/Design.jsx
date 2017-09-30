@@ -80,34 +80,67 @@ const Story = props => {
     )
 }
 
-const makePresentation = slides => {
-    const presentation = []
+const makePresentationSlide = (slide, i, slides) => {
+    const Text = slide.content
+    const { bgUrl, path, paralax } = slide
 
-    for(let i = 0; i < slides.length; i++) {
-        const slide = slides[i]
-        const Text = slide.content
-        const comp = props => (
-            <PageWrapper>
-                <H1>{ slide.h1 }</H1>
-                <H2>{ slide.h2 }</H2>
-                <P>
-                    <Text />
-                </P>
-            </PageWrapper>
-        )
+    const comp = props => (
+        <PageWrapper>
+            <H1>{ slide.h1 }</H1>
+            <H2>{ slide.h2 }</H2>
+            <P>
+                <Text />
+            </P>
+        </PageWrapper>
+    )
 
-        const { bgUrl, path, paralax, transitions } = slide
-        presentation[i] = {
-            comp,
-            bgUrl,
-            path,
-            paralax,
-            transitions
-        }
+    // Default transitions
+    let nextSlideTransition = transitions.types.BG_SPLIT
+    let previousSlideTransition = transitions.types.BG_SPLIT
+
+    if(i === 0) {
+        // Border conditions
+        previousSlideTransition = -1
+
+        // Check next slide
+        if(bgUrl === slides[i + 1].bgUrl)
+            nextSlideTransition = transitions.types.BG_PARALAX
+
+    } else if(i === slides.length - 1) {
+        // Border conditions
+        nextSlideTransition = -1
+
+        // Check previous slide
+        if(bgUrl === slides[i - 1].bgUrl)
+            previousSlideTransition = transitions.types.BG_PARALAX
+
+    } else {
+        // Compare next slide bgUrl
+        if(bgUrl === slides[i + 1].bgUrl)
+            nextSlideTransition = transitions.types.BG_PARALAX
+
+        // Compare previous slide bgUrl
+        if(bgUrl === slides[i - 1].bgUrl)
+            previousSlideTransition = transitions.types.BG_PARALAX
+
     }
 
 
-    return presentation
+
+    return {
+        comp,
+        bgUrl,
+        path,
+        paralax,
+        transitions: {
+            nextSlide: {
+                bg: nextSlideTransition,
+            },
+            previousSlide: {
+                bg: previousSlideTransition,
+            }
+        }
+    }
 }
 
 const slides = [
@@ -118,14 +151,6 @@ const slides = [
         path: '/design',
         paralax: 0,
         bgUrl: bg1,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: -1
-            }
-        },
     },
     {
         h1: 'World',
@@ -134,14 +159,6 @@ const slides = [
         path: '/world',
         paralax: 0,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Interface',
@@ -150,14 +167,6 @@ const slides = [
         path: '/interface',
         paralax: 0,
         bgUrl: bg3,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Story',
@@ -166,14 +175,6 @@ const slides = [
         path: '/story',
         paralax: 0,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Business',
@@ -182,14 +183,6 @@ const slides = [
         path: '/business',
         paralax: 0,
         bgUrl: bg1,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Services',
@@ -198,14 +191,6 @@ const slides = [
         path: '/services',
         paralax: 0,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Disciplines',
@@ -214,14 +199,6 @@ const slides = [
         path: '/disciplines',
         paralax: 0,
         bgUrl: bg3,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_PARALAX
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: '',
@@ -230,14 +207,6 @@ const slides = [
         path: '/disciplines',
         paralax: 100,
         bgUrl: bg3,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_PARALAX
-            }
-        },
     },
     {
         h1: 'Technology',
@@ -246,14 +215,6 @@ const slides = [
         path: '/technology',
         paralax: 0,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Virtual Reality',
@@ -262,14 +223,6 @@ const slides = [
         path: '/vr',
         paralax: 0,
         bgUrl: bg1,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Augmented Reality',
@@ -278,14 +231,6 @@ const slides = [
         path: '/ar',
         paralax: 0,
         bgUrl: bg3,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'Exponential Technology',
@@ -294,14 +239,6 @@ const slides = [
         path: '/expentional-technology',
         paralax: 0,
         bgUrl: bg1,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_SPLIT,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: 'New Years Eve',
@@ -310,14 +247,6 @@ const slides = [
         path: '/nye',
         paralax: 0,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_PARALAX,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_SPLIT,
-            }
-        },
     },
     {
         h1: '',
@@ -326,14 +255,6 @@ const slides = [
         path: '/nye',
         paralax: 100,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: transitions.types.BG_PARALAX,
-            },
-            previousSlide: {
-                bg: transitions.types.BG_PARALAX,
-            }
-        },
     },
     {
         h1: '',
@@ -342,25 +263,13 @@ const slides = [
         path: '/nye',
         paralax: 200,
         bgUrl: bg2,
-        transitions: {
-            nextSlide: {
-                bg: -1
-            },
-            previousSlide: {
-                bg: transitions.types.BG_PARALAX,
-            }
-        },
     },
 ]
-
-const presentation = makePresentation(slides)
-console.log(presentation)
-
 
 const DesignPresentation = props => {
     return (
         <Presentation
-            pages={ presentation } />
+            pages={ slides.map(makePresentationSlide) } />
     )
 }
 
