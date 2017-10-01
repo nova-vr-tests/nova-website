@@ -9,12 +9,10 @@ import {
     toggleSidebarSubSection
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
-import Pages from '../pages/pages.js'
 import { styleConstants as headerStyles } from '../Header/Header.jsx'
-import { routeUrls } from '../../router.jsx'
+import Pages, { routeUrls } from '../pages/pages.jsx'
 
 const constants = { styles }
-
 
 
 const SidebarSubSection = props => {

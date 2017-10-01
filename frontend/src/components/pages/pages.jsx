@@ -1,15 +1,24 @@
-
 import React from 'react'
-
 import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
-import novaXr from './page1.js'
+import novaXr from './page1.jsx'
 
-const resoures = [
-]
+import {
+    pageWrapper,
+    H1,
+    H2,
+    P,
+    Text,
+    PageWrapper,
+} from './UI.jsx'
 
-const makeMenu = (slide, i, slides) => {
+const makeMenu = (section, i, sections) => {
+    return section.map(subSection =>
+        subSection.map(presentation =>
+            presentation[0].path
+        )
+    )
 }
 
 
@@ -80,16 +89,61 @@ return {
 */
 const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ? flatten(flat) : flat)()
 
-const slides = flatten([
+const resources = [
+    [
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+    ],
+    [
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+    ],
+    [
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+    ],
+]
+const partnership = [
+    [
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+    ],
+    [
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+    ],
+    [
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
+    ],
+]
+const sitePages = [
     novaXr,
-])
+    resources,
+    partnership,
+]
+console.log(sitePages)
 
-const DesignPresentation = props => {
+const slides = flatten(sitePages)
+
+const Pages = props => {
     return (
         <Presentation
             pages={ slides.map(makePresentationSlide) } />
     )
 }
 
+const routeUrls = sitePages.map(makeMenu)
+console.log(routeUrls)
+
+export default Pages
+
 export {
+    routeUrls,
 }

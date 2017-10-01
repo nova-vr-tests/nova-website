@@ -12,7 +12,6 @@ import { INTRO_FINISHED } from './constants.js'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
 import { styles } from './constants.js'
 import NovaRouter from './router.jsx'
-import { getLinePosition } from './components/pages/pages.js'
 import Bg from './components/Bg/Bg.jsx'
 import { updateLinePosition } from './reducer/actions/App.js'
 import Header from './components/Header/Header.jsx'
@@ -81,7 +80,6 @@ AppDumb.propTypes = {
 
 class App extends Component {
     componentWillMount() {
-        this.props.updateLinePosition(getLinePosition(this.props.pathname))
     }
 
     componentDidMount() {
@@ -89,7 +87,6 @@ class App extends Component {
     }
 
     componentWillReceiveProps(newProps, newState) {
-        this.props.updateLinePosition(getLinePosition(newProps.pathname))
     }
 
     render() {
