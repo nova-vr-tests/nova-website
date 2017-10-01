@@ -13,13 +13,11 @@ import Sidebar from './components/Sidebar/Sidebar.jsx'
 import { styles } from './constants.js'
 import './router.css'
 
-import Presentation from './components/pages/pages.jsx'
+import Presentation from './components/pages/Pages.jsx'
 
 import { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition'
 
-import slides from './components/pages/pages.jsx'
 const constants = { styles }
-
 
 const reduxStatePropTypes = {
   routing: PropTypes.object,

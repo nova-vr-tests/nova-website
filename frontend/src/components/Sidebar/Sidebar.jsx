@@ -10,7 +10,7 @@ import {
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
 import { styleConstants as headerStyles } from '../Header/Header.jsx'
-import Pages, { routeUrls } from '../pages/pages.jsx'
+import Pages, { routeUrls } from '../pages/Pages.jsx'
 
 const constants = { styles }
 

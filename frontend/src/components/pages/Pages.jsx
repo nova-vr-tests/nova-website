@@ -3,6 +3,8 @@ import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
 import novaXr from './page1.jsx'
+import resources from './page2.jsx'
+import partnership from './page3.jsx'
 
 import {
     pageWrapper,
@@ -89,40 +91,6 @@ return {
 */
 const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ? flatten(flat) : flat)()
 
-const resources = [
-    [
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-    ],
-    [
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-    ],
-    [
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-    ],
-]
-const partnership = [
-    [
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-    ],
-    [
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-    ],
-    [
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-        [{path: '/'}, {path: '/'}, {path: '/'}, {path: '/'}],
-    ],
-]
 const sitePages = [
     novaXr,
     resources,
