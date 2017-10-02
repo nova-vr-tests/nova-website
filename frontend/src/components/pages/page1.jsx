@@ -11,6 +11,8 @@ import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
+import arLayer1 from '../img/Technology/ar-layer1.png'
+import arLayer2 from '../img/Technology/ar-layer2.png'
 
 /************************************
 
@@ -29,9 +31,31 @@ const Design = [
         bgUrl: bg1,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: arLayer1,
                 paralax: 0,
-            }
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Design 2',
+        h2: '',
+        content: () => 'The adslkfjhads;lkfjdsakfja',
+        path: '/design',
+        paralax: 0,
+        bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: -100,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: 0,
+            },
         ]
     },
 ]

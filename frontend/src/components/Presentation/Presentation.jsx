@@ -89,7 +89,6 @@ class SlideTransition extends React.Component {
 
     updateLinePosition(props = this.props) {
         this.props.updateLinePosition(props.pages[props.currentPage].linePosition)
-        console.log(props.pages[props.currentPage])
     }
 
     updateTimerPointer(timer) {

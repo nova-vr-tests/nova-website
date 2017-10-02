@@ -155,6 +155,47 @@ const translateBackBg = (progress, deltaX) => {
     dispatch(updateBackBgParalax(-progress))
 }
 
+
+const updateFrontBg = (progress, pages, currentPage, targetPage) => {
+    const currentLayers = pages[currentPage].layers
+    const targetLayers = pages[targetPage].layers
+
+    const updatedLayers = currentLayers.map((layer, i) => {
+        let deltaParalax = targetLayers[i].paralax - currentLayers[i].paralax
+        let paralax = currentLayers[i].paralax + deltaParalax * progress / 100
+
+        if(targetPage < currentPage)
+            paralax = targetLayers[i].paralax - (1 - progress / 100) * deltaParalax
+
+        return {
+            ...layer,
+            paralax,
+        }
+    })
+
+    dispatch(updateFrontLayers(updatedLayers))
+}
+
+const updateBackBg = (progress, pages, currentPage, targetPage) => {
+    const currentLayers = pages[currentPage].layers
+    const targetLayers = pages[targetPage].layers
+
+    const updatedLayers = currentLayers.map((layer, i) => {
+        let deltaParalax = targetLayers[i].paralax - currentLayers[i].paralax
+        let paralax = currentLayers[i].paralax + deltaParalax * progress / 100
+
+        if(targetPage < currentPage)
+            paralax = targetLayers[i].paralax - (1 - progress / 100) * deltaParalax
+
+        return {
+            ...layer,
+            paralax,
+        }
+    })
+
+    dispatch(updateBackLayers(updatedLayers))
+}
+
 /**
    Paralax slide transitions
 */
@@ -178,6 +219,14 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     // Choose which bg to translate
     let translate = bgState.transitionProgress !== 0 ? translateFrontBg : translateBackBg
 
+
+    // Layers
+    const frontLayer = pages[currentPage].layers
+    const targetLayer = pages[targetPage].layers
+
+    // Choose which layers to update
+    let updateLayers = bgState.transitionProgress !== 0 ? updateFrontBg : updateBackBg
+
     // Animation handle
     let transitionProgress = 0
     let transitionTimer = 0
@@ -194,11 +243,14 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
         } else {
             ////// Continue scrolling
 
+            updateLayers(transitionProgress, pages, currentPage, targetPage)
+
             // Call background controls
             let x
             if (sign > 0) {
                 x = currentParalax + transitionProgress / 100 * deltaParalax
                 translate(x, deltaParalax)
+
             } else {
                 x = targetParalax + (1 - transitionProgress / 100) * deltaParalax
                 translate(x, deltaParalax)

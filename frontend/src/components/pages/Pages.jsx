@@ -107,8 +107,8 @@ const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ?
 */
 const sitePages = [
     novaXr,
-    resources,
-    partnership,
+    //resources,
+    // partnership,
 ]
 
 /**
