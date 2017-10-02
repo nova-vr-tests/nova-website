@@ -17,6 +17,69 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+const Layer = props => {
+    const styles = {
+        layer: {
+            backgroundImage: 'url(' + props.imgUrl + ')',
+            backgroundSize: 'cover',
+            zIndex: -1,
+            height: '100vh',
+            width: '100vw',
+            position: 'absolute',
+            backgroundPosition: props.layerParalax,
+            opacity: props.layerOpacity,
+            transform: 'translateY(' + props.translateY + ')',
+            ...props.layerStyles,
+        },
+    }
+
+    return (
+        <div style={ styles.layer }>
+        </div>
+    )
+}
+
+Layer.defaultProps = {
+    layerOpacity: 1,
+    layerParalax: 0,
+    layerStyles: {},
+    imgUrl: '',
+    translateY: 0,
+}
+
+const LayerAssembly = props => {
+    const styles = {
+        wrapper: {
+            zIndex: -1,
+            height: '100vh',
+            width: '100vw',
+            position: 'absolute',
+        }
+    }
+
+    const getLayers = layers => {
+        return layers.map((e, i) => (
+            <Layer
+                imgUrl={ e.imgUrl }
+                layerStyles={ e.styles }
+                layerParalax={ e.paralax }
+                translateY={ props.translateY }
+                key={ i }
+            />
+        ))
+    }
+
+    return (
+        <div style={ styles.wrapper }>
+            { getLayers(props.layers) }
+        </div>
+    )
+}
+
+LayerAssembly.defaultProps = {
+    layers: [],
+    translateY: 0,
+}
 
 const BgDumb = props => {
 
@@ -62,43 +125,18 @@ const BgDumb = props => {
                 height: '100vh',
                 transform: 'translateY(' + transformBottom + ')',
             },
-            top: {
-                backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
-                backgroundSize: 'cover',
-                zIndex: -1,
-                height: '100vh',
-                width: '100vw',
-                position: 'absolute',
-                backgroundPosition: paralaxBgBack,
-            },
-            bottom: {
-                backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
-                backgroundSize: 'cover',
-                zIndex: -1,
-                height: '100vh',
-                width: '100vw',
-                position: 'absolute',
-                transform: 'translateY(calc(-' + lineTop + ' - ' + lineHeight + '))',
-                backgroundPosition: paralaxBgBack,
-            },
         },
         frontBg: {
-            backgroundImage: 'url(' + getBg(props.frontBg.url) + ')',
-            backgroundSize: 'cover',
             zIndex: -1,
             height: '100vh',
             width: '100vw',
             position: 'absolute',
-            backgroundPosition: paralaxBgFront,
         },
         backBg: {
-            backgroundImage: 'url(' + getBg(props.backBg.url) + ')',
-            backgroundSize: 'cover',
             zIndex: -2,
             height: '100vh',
             width: '100vw',
             position: 'absolute',
-            backgroundPosition: paralaxBgBack,
 
             ...props.backBg.style,
         },
@@ -111,28 +149,61 @@ const BgDumb = props => {
         }
     }
 
+    const frontLayers = [
+        {
+            imgUrl: getBg(props.frontBg.url),
+            paralax: paralaxBgFront,
+        },
+    ]
+
+    const backLayers = [
+        {
+            imgUrl: getBg(props.backBg.url),
+            paralax: paralaxBgBack,
+        },
+    ]
+
     return (
         <div style={ styles.wrapper } className="bar">
+
+
             <div className="split-top" style={ styles.split.wrapper }>
-                <div style={ styles.split.top }>
-                </div>
+                <LayerAssembly
+                    layers={ backLayers }
+                />
             </div>
             <div className="split-bottom" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
-                <div style={ styles.split.bottom }>
-                </div>
+                <LayerAssembly
+                    translateY={ 'calc(-' + lineTop + ' - ' + lineHeight + ')' }
+                    layers={ backLayers }
+                />
             </div>
+
+
             <div className="front-bg" style={ {
                     ...styles.frontBg,
                     ...props.frontBg.style,
             } }>
+                <LayerAssembly
+                    layers={ frontLayers }
+                />
             </div>
+
+
             <div className="back-bg" style={ {
                     ...styles.backBg,
                     opacity: props.slideTransitionProgress > 0.5 ? 0 : 1,
             } }>
+                <LayerAssembly
+                    layers={ backLayers }
+                />
             </div>
+
+
             <div style={ styles.overlay }>
             </div>
+
+
         </div>
     )
 }
