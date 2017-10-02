@@ -32,7 +32,7 @@ const makeMenu = (section, i, sections) => {
 */
 const makePresentationSlide = (slide, i, slides) => {
     const Text = slide.content
-    const { bgUrl, path, paralax, linePosition } = slide
+    const { bgUrl, path, paralax, linePosition, layers } = slide
 
     const comp = props => (
         <PageWrapper>
@@ -81,6 +81,7 @@ return {
         path,
         paralax,
         linePosition,
+        layers,
         transitions: {
             nextSlide: {
                 bg: nextSlideTransition,

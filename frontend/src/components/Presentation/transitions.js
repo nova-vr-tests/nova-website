@@ -6,6 +6,8 @@ import {
     updateTransitionProgress,
     updateFrontBgParalax,
     updateBackBgParalax,
+    updateFrontLayers,
+    updateBackLayers,
 } from '../../reducer/actions/Bg.js'
 
 import store from '../../store.js'
@@ -19,18 +21,17 @@ const transitions = { splitBackground: {}, bgParalax: {} }
     - pages {object[]} array of pages
     - currentPage {number} index
 **/
-transitions.splitBackground.updateBackgroundUrls = (sign, pages, currentPage) => {
-
+transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) => {
     const totalPages = pages.length
 
     const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
     const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
-    const frontBgUrl = sign < 0 ? pages[currentPage].bgUrl : pages[nextPage].bgUrl
-    const backBgUrl = sign < 0 ? pages[previousPage].bgUrl : pages[currentPage].bgUrl
+    const frontLayers = sign < 0 ? pages[currentPage].layers : pages[nextPage].layers
+    const backLayers = sign < 0 ? pages[previousPage].layers  : pages[currentPage].layers
 
-    dispatch(updateFrontBgUrl(frontBgUrl))
-    dispatch(updateBackBgUrl(backBgUrl))
+    dispatch(updateFrontLayers(frontLayers))
+    dispatch(updateBackLayers(backLayers))
 }
 
 /*
@@ -44,6 +45,9 @@ transitions.splitBackground.resetBackgroundStyles = (sign) => {
 
         dispatch(updateFrontBgParalax(0))
         dispatch(updateBackBgParalax(0))
+
+
+
     } else if (sign < 0) {
         dispatch(updateFrontBgStyle({ opacity: 1 }))
         dispatch(updateTransitionProgress(100))
@@ -61,10 +65,12 @@ transitions.splitBackground.resetBackgroundStyles = (sign) => {
  transition
 **/
 transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
-    transitions.splitBackground.resetBackgroundStyles(sign)
+    console.log(pages[currentPage].layers)
+
+    // transitions.splitBackground.resetBackgroundStyles(sign)
 
     // Upgrade backgrounds
-    transitions.splitBackground.updateBackgroundUrls(sign, pages, currentPage)
+    transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
 
     // Detach scroll event
     detachScrollEvent()
@@ -153,6 +159,7 @@ const translateBackBg = (progress, deltaX) => {
    Paralax slide transitions
 */
 transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
+    console.log(pages[currentPage].layers)
     detachScrollEvent()
 
     const bgState = store.getState().bgReducer
