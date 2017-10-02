@@ -15,6 +15,9 @@ import {
     PageWrapper,
 } from './UI.jsx'
 
+/**
+   Generate menu links and titles
+*/
 const makeMenu = (section, i, sections) => {
     return section.map(subSection =>
         subSection.map(presentation =>
@@ -24,9 +27,12 @@ const makeMenu = (section, i, sections) => {
 }
 
 
+/**
+   Links slides with appropriate transitions
+*/
 const makePresentationSlide = (slide, i, slides) => {
     const Text = slide.content
-    const { bgUrl, path, paralax } = slide
+    const { bgUrl, path, paralax, linePosition } = slide
 
     const comp = props => (
         <PageWrapper>
@@ -74,6 +80,7 @@ return {
         bgUrl,
         path,
         paralax,
+        linePosition,
         transitions: {
             nextSlide: {
                 bg: nextSlideTransition,
@@ -91,14 +98,35 @@ return {
 */
 const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ? flatten(flat) : flat)()
 
+/**
+   Site input. From this structure is infered:
+   - urls
+   - menu links and title
+   - slide transitions
+*/
 const sitePages = [
     novaXr,
     resources,
     partnership,
 ]
-console.log(sitePages)
 
-const slides = flatten(sitePages)
+/**
+   Adds line height to each slide based on where it is in sitePages
+*/
+const pages = sitePages.map((section, i) =>
+    section.map(subsection =>
+        subsection.map(presentation =>
+            presentation.map(slide =>
+                ({
+                    ...slide,
+                    linePosition: i,
+                })
+            )
+        )
+    )
+)
+
+const slides = flatten(pages)
 
 const Pages = props => {
     return (

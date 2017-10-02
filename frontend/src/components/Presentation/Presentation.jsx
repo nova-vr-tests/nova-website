@@ -11,6 +11,8 @@ import {
     updateTransitionProgress
 } from '../../reducer/actions/Bg.js'
 
+import { updateLinePosition } from '../../reducer/actions/App.js'
+
 import transitions from './transitions.js'
 
 const mapStateToProps = state => ({
@@ -24,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
     updateBackBgStyle: style => dispatch(updateBackBgStyle(style)),
     updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
     goTo: url => dispatch(push(url)),
+    updateLinePosition: position => dispatch(updateLinePosition(position)),
 })
 
 class SlideTransition extends React.Component {
@@ -44,10 +47,12 @@ class SlideTransition extends React.Component {
         this.getOpacityStyles = this.getOpacityStyles.bind(this)
         this.getTranslationStyles = this.getTranslationStyles.bind(this)
         this.updateTimerPointer = this.updateTimerPointer.bind(this)
+        this.updateLinePosition = this.updateLinePosition.bind(this)
     }
 
     componentDidMount() {
         // Start transition
+        this.updateLinePosition()
     }
 
     componentWillReceiveProps(newProps) {
@@ -76,6 +81,13 @@ class SlideTransition extends React.Component {
         }, 15)
         this.updateTimerPointer(timer)
 
+        // Update line position
+        this.updateLinePosition(newProps)
+    }
+
+    updateLinePosition(props = this.props) {
+        this.props.updateLinePosition(props.pages[props.currentPage].linePosition)
+        console.log(props.pages[props.currentPage])
     }
 
     updateTimerPointer(timer) {
