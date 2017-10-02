@@ -9,6 +9,8 @@ const mapStateToProps = function(state) {
       backBg: state.bgReducer.backBg,
       slideTransitionProgress: state.bgReducer.transitionProgress,
       linePosition: state.appReducer.linePosition,
+      frontLayers: state.bgReducer.frontLayers,
+      backLayers: state.bgReducer.backLayers,
   }
 }
 
@@ -149,6 +151,8 @@ const BgDumb = props => {
         }
     }
 
+    /**
+
     const frontLayers = [
         {
             imgUrl: getBg(props.frontBg.url),
@@ -163,19 +167,21 @@ const BgDumb = props => {
         },
     ]
 
+    */
+
     return (
         <div style={ styles.wrapper } className="bar">
 
 
             <div className="split-top" style={ styles.split.wrapper }>
                 <LayerAssembly
-                    layers={ backLayers }
+                    layers={ props.backLayers }
                 />
             </div>
             <div className="split-bottom" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
                 <LayerAssembly
                     translateY={ 'calc(-' + lineTop + ' - ' + lineHeight + ')' }
-                    layers={ backLayers }
+                    layers={ props.backLayers }
                 />
             </div>
 
@@ -185,7 +191,7 @@ const BgDumb = props => {
                     ...props.frontBg.style,
             } }>
                 <LayerAssembly
-                    layers={ frontLayers }
+                    layers={ props.frontLayers }
                 />
             </div>
 
@@ -195,7 +201,7 @@ const BgDumb = props => {
                     opacity: props.slideTransitionProgress > 0.5 ? 0 : 1,
             } }>
                 <LayerAssembly
-                    layers={ backLayers }
+                    layers={ props.backLayers }
                 />
             </div>
 

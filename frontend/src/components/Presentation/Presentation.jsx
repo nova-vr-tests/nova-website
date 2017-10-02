@@ -8,7 +8,9 @@ import {
     updateFrontBgStyle,
     updateBackBgUrl,
     updateBackBgStyle,
-    updateTransitionProgress
+    updateTransitionProgress,
+    updateFrontLayers,
+    updateBackTransitions,
 } from '../../reducer/actions/Bg.js'
 
 import { updateLinePosition } from '../../reducer/actions/App.js'

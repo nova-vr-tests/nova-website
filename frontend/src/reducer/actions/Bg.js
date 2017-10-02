@@ -6,15 +6,26 @@ import {
     UPDATE_TRANSITION_PROGRESS,
     UPDATE_FRONT_BG_PARALAX,
     UPDATE_BACK_BG_PARALAX,
+    UPDATE_FRONT_LAYERS,
+    UPDATE_BACK_LAYERS,
 } from '../Bg'
 
-const updateFrontBgParalax = paralax => ({
-    type: UPDATE_FRONT_BG_PARALAX,
-    paralax,
+const updateFrontLayers = frontLayers => ({
+    type: UPDATE_FRONT_LAYERS,
+    frontLayers,
+})
+const updateBackLayers = backLayers => ({
+    type: UPDATE_BACK_LAYERS,
+    backLayers,
 })
 
 const updateBackBgParalax = paralax => ({
     type: UPDATE_BACK_BG_PARALAX,
+    paralax,
+})
+
+const updateFrontBgParalax = paralax => ({
+    type: UPDATE_FRONT_BG_PARALAX,
     paralax,
 })
 
@@ -51,4 +62,6 @@ export {
     updateTransitionProgress,
     updateBackBgParalax,
     updateFrontBgParalax,
+    updateFrontLayers,
+    updateBackLayers,
 }

@@ -27,6 +27,12 @@ const Design = [
         path: '/design',
         paralax: 0,
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+            }
+        ]
     },
 ]
 
@@ -38,6 +44,12 @@ const World = [
         path: '/world',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+            }
+        ]
     }
 ]
 
@@ -213,8 +225,8 @@ const NYE = [
 const designSlides = [
         Design,
         World,
-        Interface,
-        Story,
+        // Interface,
+        // Story,
 ]
 
 const businessSlides = [
@@ -233,6 +245,6 @@ const technologySlides = [
 
 export default [
     designSlides,
-    businessSlides,
-    technologySlides,
+    // businessSlides,
+    // technologySlides,
 ]
