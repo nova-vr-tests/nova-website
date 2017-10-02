@@ -13,13 +13,6 @@ const dispatch = store.dispatch
 
 const transitions = { splitBackground: {}, bgParalax: {} }
 
-const inverseParalax = () => {
-    const { frontBg, backBg } = store.getState().bgReducer
-
-    dispatch(updateFrontBgParalax(backBg.paralax))
-    dispatch(updateBackBgParalax(frontBg.paralax))
-}
-
 /*
     Updates the backgrounds between slides prior to the slide transition
     - param sign {number} positive for next slide and negative for previous slide
@@ -142,14 +135,23 @@ transitions.types = {
 }
 
 
+/**
+   Translate front Bg
+**/
 const translateFrontBg = (progress, deltaX) => {
     dispatch(updateFrontBgParalax(-progress))
 }
 
+/**
+   Translate back Bg
+**/
 const translateBackBg = (progress, deltaX) => {
     dispatch(updateBackBgParalax(-progress))
 }
 
+/**
+   Paralax slide transitions
+*/
 transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
     detachScrollEvent()
 
@@ -201,6 +203,9 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     }, 15)
 }
 
+/**
+   Pick which transition to apply
+*/
 transitions.startTransition = (type, params) => {
     const { sign, pages, currentPage, attachScrollEvent, detachScrollEvent } = params
     const { BG_PARALAX, BG_SPLIT } = transitions.types
