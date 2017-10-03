@@ -294,6 +294,7 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     let transitionTimer = 0
 
     const startTime = new Date()
+    const deltaTime = 500
 
     let rafId = 0
     const transitionFunction = () => {
@@ -327,7 +328,7 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
             }
 
             // Increment transition progress
-            transitionProgress = transitionProgress + 1
+            transitionProgress = (new Date() - startTime) / deltaTime * 100
 
             // Requstion animation frame
             rafId = requestAnimationFrame(transitionFunction)
