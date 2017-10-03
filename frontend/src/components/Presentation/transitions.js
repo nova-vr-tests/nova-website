@@ -8,6 +8,7 @@ import {
     updateBackBgParalax,
     updateFrontLayers,
     updateBackLayers,
+    updateCacheLayers,
 } from '../../reducer/actions/Bg.js'
 
 import store from '../../store.js'
@@ -27,34 +28,84 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
     const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
     const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
-    const frontLayers = sign < 0 ? pages[currentPage].layers : pages[nextPage].layers
-    const backLayers = sign < 0 ? pages[previousPage].layers  : pages[currentPage].layers
+    let frontLayers = sign < 0 ? pages[currentPage].layers : pages[nextPage].layers
+    let backLayers = sign < 0 ? pages[previousPage].layers  : pages[currentPage].layers
 
-    dispatch(updateFrontLayers(frontLayers))
-    dispatch(updateBackLayers(backLayers))
+    const frontLayers2 = sign > 0 ? transitions.splitBackground.resetBackgroundStyles(frontLayers, 0) : transitions.splitBackground.resetBackgroundStyles(frontLayers, 1)
+    const backLayers2 = sign > 0 ? transitions.splitBackground.resetBackgroundStyles(backLayers, 0) : transitions.splitBackground.resetBackgroundStyles(backLayers, 1)
+
+    const isBackLayerVisible = store.getState().bgReducer.transitionProgress < 0.9 ? true : false
+    console.log(isBackLayerVisible)
+
+
+    const currentSlideLayers = pages[currentPage].layers
+    const nextSlideLayers = pages[nextPage].layers
+    const previousSlideLayers = pages[previousPage].layers
+
+
+    const { resetBackgroundStyles } = transitions.splitBackground
+    if(sign > 0) {
+        if(isBackLayerVisible) {
+            dispatch(updateCacheLayers(backLayers2))
+            dispatch(updateBackLayers(backLayers))
+        } else {
+            console.log(frontLayers)
+            dispatch(updateCacheLayers(resetBackgroundStyles(frontLayers, 1)))
+            dispatch(updateFrontLayers(frontLayers2))
+            dispatch(updateBackLayers(backLayers))
+        }
+    } else {
+        if(!isBackLayerVisible) {
+            // user currently sees front layer which we need to cache and pass to the back layer to split
+            dispatch(updateCacheLayers(resetBackgroundStyles(currentSlideLayers, 1)))
+            dispatch(updateBackLayers(previousSlideLayers))
+            dispatch(updateFrontLayers(resetBackgroundStyles(currentSlideLayers, 1)))
+        } else {
+            // user currently sees back layer which we need to move to the front layer and close back layer with previous slide over it
+            dispatch(updateCacheLayers(updateFrontLayersOpacity(currentSlideLayers, 1)))
+            dispatch(updateFrontLayers(updateFrontLayersOpacity(currentSlideLayers, 1)))
+            dispatch(updateBackLayers(updateBackLayersOpacity(previousSlideLayers, 0)))
+        }
+    }
+
+    window.setTimeout( () => {
+        // dispatch(updateBackLayers(backLayers))
+        // dispatch(updateFrontLayers(frontLayers2))
+        dispatch(updateCacheLayers([]))
+    }, 100)
+
+
+    return { frontLayers, backLayers }
 }
 
 /*
     Reset background styles so next transition appears smoothly
     - param sign {number} positive for next slide and negative for previous slide
 **/
-transitions.splitBackground.resetBackgroundStyles = (sign) => {
-    if(sign > 0) {
-        dispatch(updateFrontBgStyle({ opacity: 0 }))
-        dispatch(updateTransitionProgress(0))
+transitions.splitBackground.resetBackgroundStyles = (layers, progress = 0) => {
+        return store.getState().bgReducer.frontLayers.map(e => ({
+            ...e,
+            opacity: e.opacity * progress,
+        }))
 
-        dispatch(updateFrontBgParalax(0))
-        dispatch(updateBackBgParalax(0))
+}
 
+const updateFrontLayersOpacity = (layers, progress) => {
+    const targetLayers = layers.map(e => ({
+        ...e,
+        opacity: e.opacity * progress,
+    }))
 
+    dispatch(updateFrontLayers(targetLayers))
+}
 
-    } else if (sign < 0) {
-        dispatch(updateFrontBgStyle({ opacity: 1 }))
-        dispatch(updateTransitionProgress(100))
+const updateBackLayersOpacity = (layers, progress) => {
+    const targetLayers = layers.map(e => ({
+        ...e,
+        opacity: e.opacity * progress,
+    }))
 
-        dispatch(updateFrontBgParalax(0))
-        dispatch(updateBackBgParalax(0))
-    }
+    dispatch(updateBackLayers(targetLayers))
 }
 
 /*
@@ -65,12 +116,13 @@ transitions.splitBackground.resetBackgroundStyles = (sign) => {
  transition
 **/
 transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
-    console.log(pages[currentPage].layers)
 
-    // transitions.splitBackground.resetBackgroundStyles(sign)
 
     // Upgrade backgrounds
-    transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
+    const { frontLayers, backLayers } = transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
+
+    // transitions.splitBackground.resetBackgroundStyles(sign)
+    // updateFrontLayersOpacity(0)
 
     // Detach scroll event
     detachScrollEvent()
@@ -88,20 +140,6 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
     if((sign < 0 && currentPage <= 0) || (sign > 0 && currentPage >= totalPages - 1))
         return attachScrollEvent()
 
-    // Init paralax
-    if(sign > 0) {
-        // sign > 0 => back background is current page
-        //          => front background is next page
-
-        dispatch(updateBackBgParalax(-pages[currentPage].paralax))
-        dispatch(updateFrontBgParalax(pages[targetPage].paralax))
-    } else if(sign < 0) {
-        // sign < 0 => back background is previous page
-        //          => front bg is current page
-
-        dispatch(updateBackBgParalax(-pages[targetPage].paralax))
-        dispatch(updateFrontBgParalax(pages[currentPage].paralax))
-    }
 
     // Animation handle
     let transitionProgress = 0
@@ -117,15 +155,18 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
             // Clear interval
             window.clearInterval(transitionTimer)
             transitionTimer = undefined
+
         } else {
             ////// Continue scrolling
 
             // Call background controls
             if (sign > 0) {
-                dispatch(updateFrontBgStyle({ opacity: transitionProgress / 100 * 2 }))
+                updateFrontLayersOpacity(frontLayers, transitionProgress / 100 * 2)
+
                 dispatch(updateTransitionProgress(transitionProgress / 100 < 0.5 ? 0 :  (transitionProgress / 100 - 0.5) * 2))
             } else {
-                dispatch(updateFrontBgStyle({ opacity: transitionProgress < 50 ? 1 : 1 - (transitionProgress / 100 - 0.5) * 2 }))
+                updateFrontLayersOpacity(frontLayers, transitionProgress < 50 ? 1 : 1 - (transitionProgress / 100 - 0.5) * 2)
+
                 dispatch(updateTransitionProgress(1 - transitionProgress / 100 < 0.5 ? 0 :  (1 - transitionProgress / 100 - 0.5) * 2))
             }
 
@@ -212,7 +253,6 @@ const updateBackBg = (progress, pages, currentPage, targetPage) => {
    Paralax slide transitions
 */
 transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
-    console.log(pages[currentPage].layers)
     detachScrollEvent()
 
     const bgState = store.getState().bgReducer
