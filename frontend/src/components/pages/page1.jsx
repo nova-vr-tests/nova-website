@@ -13,7 +13,11 @@ import bg3 from '../img/design/3.png'
 
 import arLayer1 from '../img/Technology/ar-layer1.png'
 import arLayer2 from '../img/Technology/ar-layer2.png'
+import arLayer3 from '../img/Technology/ar-layer3.png'
 
+import interfaceLayer1 from '../img/Technology/interface-layer1.png'
+import interfaceLayer2 from '../img/Technology/interface-layer2.png'
+import interfaceLayer3 from '../img/Technology/interface-layer3.png'
 /************************************
 
     DESIGN
@@ -33,10 +37,17 @@ const Design = [
             {
                 imgUrl: arLayer1,
                 paralax: 0,
+                opacity: 1,
             },
             {
                 imgUrl: arLayer2,
                 paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -50,11 +61,43 @@ const Design = [
         layers: [
             {
                 imgUrl: arLayer1,
-                paralax: -100,
+                paralax: -50,
+                opacity: 1,
             },
             {
                 imgUrl: arLayer2,
-                paralax: 0,
+                paralax: 50,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: 50,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Design 3',
+        h2: '',
+        content: () => 'The adslkfjhads;lkfjdsakfja',
+        path: '/design',
+        paralax: 0,
+        bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: 100,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: 100,
+                opacity: 1,
             },
         ]
     },
@@ -70,11 +113,72 @@ const World = [
         bgUrl: bg2,
         layers: [
             {
-                imgUrl: bg2,
+                imgUrl: interfaceLayer1,
                 paralax: 0,
-            }
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
         ]
-    }
+    },
+    {
+        h1: 'World',
+        h2: '',
+        content: () => 'What more is there? You’ll soon wonder which was a digital world and which was a dream. Jump into the light. There are no limits. When knowhow grows elusive, look to the sky.  The more you know the more amazing the would seems. The',
+        path: '/world',
+        paralax: 0,
+        bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'World',
+        h2: '',
+        content: () => 'What more is there? You’ll soon wonder which was a digital world and which was a dream. Jump into the light. There are no limits. When knowhow grows elusive, look to the sky.  The more you know the more amazing the would seems. The',
+        path: '/world',
+        paralax: 0,
+        bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
 ]
 
 const Interface = [

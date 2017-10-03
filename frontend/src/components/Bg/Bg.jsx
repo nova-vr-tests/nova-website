@@ -66,6 +66,7 @@ const LayerAssembly = props => {
                 layerStyles={ e.styles }
                 layerParalax={ e.paralax }
                 translateY={ props.translateY }
+                layerOpacity={ e.opacity }
                 key={ i }
             />
         ))

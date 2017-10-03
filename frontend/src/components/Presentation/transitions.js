@@ -162,14 +162,20 @@ const updateFrontBg = (progress, pages, currentPage, targetPage) => {
 
     const updatedLayers = currentLayers.map((layer, i) => {
         let deltaParalax = targetLayers[i].paralax - currentLayers[i].paralax
-        let paralax = currentLayers[i].paralax + deltaParalax * progress / 100
+        let deltaOpacity = targetLayers[i].opacity - currentLayers[i].opacity
 
-        if(targetPage < currentPage)
+        let paralax = currentLayers[i].paralax + deltaParalax * progress / 100
+        let opacity = currentLayers[i].opacity + deltaOpacity * progress / 100
+
+        if(targetPage < currentPage) {
             paralax = targetLayers[i].paralax - (1 - progress / 100) * deltaParalax
+            opacity = targetLayers[i].opacity - (1 - progress / 100) * deltaOpacity
+        }
 
         return {
             ...layer,
             paralax,
+            opacity,
         }
     })
 
@@ -182,14 +188,20 @@ const updateBackBg = (progress, pages, currentPage, targetPage) => {
 
     const updatedLayers = currentLayers.map((layer, i) => {
         let deltaParalax = targetLayers[i].paralax - currentLayers[i].paralax
-        let paralax = currentLayers[i].paralax + deltaParalax * progress / 100
+        let deltaOpacity = targetLayers[i].opacity - currentLayers[i].opacity
 
-        if(targetPage < currentPage)
+        let paralax = currentLayers[i].paralax + deltaParalax * progress / 100
+        let opacity = currentLayers[i].opacity + deltaOpacity * progress / 100
+
+        if(targetPage < currentPage) {
             paralax = targetLayers[i].paralax - (1 - progress / 100) * deltaParalax
+            opacity = targetLayers[i].opacity - (1 - progress / 100) * deltaOpacity
+        }
 
         return {
             ...layer,
             paralax,
+            opacity,
         }
     })
 
