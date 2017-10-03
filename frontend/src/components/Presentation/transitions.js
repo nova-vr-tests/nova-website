@@ -47,7 +47,8 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
     if(sign > 0) {
         if(isBackLayerVisible) {
             dispatch(updateCacheLayers(backLayers2))
-            dispatch(updateBackLayers(backLayers))
+            // dispatch(updateBackLayers(backLayers))
+            dispatch(updateBackLayers(currentSlideLayers))
         } else {
             console.log(frontLayers)
             dispatch(updateCacheLayers(resetBackgroundStyles(frontLayers, 1)))
@@ -72,7 +73,10 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
         // dispatch(updateBackLayers(backLayers))
         // dispatch(updateFrontLayers(frontLayers2))
         dispatch(updateCacheLayers([]))
-        dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 1)))
+
+        // Otherwise paralax goes back when splitting to next page on back layer
+        if(sign < 0)
+            dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 1)))
     }, 100)
 
 
