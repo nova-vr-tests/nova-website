@@ -62,9 +62,9 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
             dispatch(updateFrontLayers(resetBackgroundStyles(currentSlideLayers, 1)))
         } else {
             // user currently sees back layer which we need to move to the front layer and close back layer with previous slide over it
-            dispatch(updateCacheLayers(updateFrontLayersOpacity(currentSlideLayers, 1)))
-            dispatch(updateFrontLayers(updateFrontLayersOpacity(currentSlideLayers, 1)))
-            dispatch(updateBackLayers(updateBackLayersOpacity(previousSlideLayers, 0)))
+            dispatch(updateCacheLayers(updateLayersOpacity(currentSlideLayers, 1)))
+            dispatch(updateFrontLayers(updateLayersOpacity(currentSlideLayers, 1)))
+            dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 0)))
         }
     }
 
@@ -72,11 +72,17 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
         // dispatch(updateBackLayers(backLayers))
         // dispatch(updateFrontLayers(frontLayers2))
         dispatch(updateCacheLayers([]))
+        dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 1)))
     }, 100)
 
 
     return { frontLayers, backLayers }
 }
+
+const updateLayersOpacity = (layers, opacity) => layers.map(e => ({
+    ...e,
+    opacity: e.opacity * opacity,
+}))
 
 /*
     Reset background styles so next transition appears smoothly
