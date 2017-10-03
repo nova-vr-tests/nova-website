@@ -589,7 +589,7 @@ const VR = [
     {
         h1: 'Technology',
         h2: 'Virtual Reality',
-        content: () => '<span>We can divide VR into two main categories: <br /> 1) High-fidelity: Ideal for creating premium experiences with positional tracking, haptic feedback and deep software integrations. Developing this caliber of content is a multi-year investment and project.</span>,',
+        content: () => <span>We can divide VR into two main categories: <br /> 1) High-fidelity: Ideal for creating premium experiences with positional tracking, haptic feedback and deep software integrations. Developing this caliber of content is a multi-year investment and project.</span>,
         path: '/vr',
         bgUrl: vrLayer1,
         layers: [
