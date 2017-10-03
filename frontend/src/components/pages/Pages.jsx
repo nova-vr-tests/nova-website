@@ -106,9 +106,9 @@ const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ?
    - slide transitions
 */
 const sitePages = [
+    partnership,
     novaXr,
     //resources,
-    // partnership,
 ]
 
 /**

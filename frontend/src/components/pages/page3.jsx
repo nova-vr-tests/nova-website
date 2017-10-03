@@ -11,60 +11,91 @@ import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
+import nyeLayer1 from '../img/partnership/nye/nye-layer1.png'
+import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
+import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
 
 /************************************
 
-    Partnership 1
+    NYE
 
 ************************************/
 
 
-const PartnershipIntro1 = [
+const Nye = [
     {
-        h1: 'Partnership 1',
-        h2: 'Intro',
+        h1: 'Partnership',
+        h2: 'New Year\'s Eve',
         content: () => '',
-        path: '/partnership-1',
-        paralax: 0,
-        bgUrl: bg3,
+        path: '/nye',
+        bgUrl: nyeLayer1,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Partnership',
+        h2: 'New Year\'s Eve',
+        content: () => '2',
+        path: '/nye',
+        bgUrl: nyeLayer1,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: -50,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: -200,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Partnership',
+        h2: 'New Year\'s Eve',
+        content: () => ' last',
+        path: '/nye',
+        bgUrl: nyeLayer1,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: -400,
+                opacity: 1,
+            },
+        ]
     },
 ]
-
-const Partnership11 = [
-    {
-        h1: 'Partnership 1',
-        h2: 'section 1',
-        content: () => '',
-        path: '/partnership-1-1',
-        paralax: 0,
-        bgUrl: bg2,
-    },
-]
-
-
-const Partnership12 = [
-    {
-        h1: 'Partnership 1',
-        h2: 'Section 2',
-        content: () => '',
-        path: '/partnership-1-2',
-        paralax: 0,
-        bgUrl: bg3,
-    },
-]
-const Partnership13 = [
-    {
-        h1: 'Partnership 1',
-        h2: 'Section 3',
-        content: () => '',
-        path: '/partnership-1-3',
-        paralax: 0,
-        bgUrl: bg2,
-    },
-]
-
-
-
 
 
 /************************************
@@ -181,11 +212,8 @@ const Partnership33 = [
 ************************************/
 
 
-const partnerhip1 = [
-    PartnershipIntro1,
-    Partnership11,
-    Partnership12,
-    Partnership13,
+const nyeSlides = [
+    Nye,
 ]
 
 const partnerhip2 = [
@@ -203,8 +231,5 @@ const partnerhip3 = [
 ]
 
 export default [
-    partnerhip1,
-    partnerhip2,
-    partnerhip3,
+    nyeSlides,
 ]
- 
