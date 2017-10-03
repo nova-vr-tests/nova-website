@@ -99,7 +99,7 @@ const BgDumb = props => {
     const pageHeight = document.documentElement.clientHeight
     const progress = props.slideTransitionProgress
     const vh = pageHeight / 100
-    const heightBottomFactor = 100 - (lineTopFactor + lineHeightFactor + footerHeight)
+    const heightBottomFactor = 100 - (lineTopFactor + lineHeightFactor)
     const heightBottom = heightBottomFactor + 'vh'
 
     const transformTop = 'calc(-' + progress + ' * ' + lineTop + ')'
