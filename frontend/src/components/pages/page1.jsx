@@ -11,13 +11,27 @@ import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
+import designIntro from '../img/design/intro.png'
+import worldLayer1 from '../img/design/world-layer1.png'
+import worldLayer2 from '../img/design/world-layer2.png'
+import storyLayer1 from '../img/design/story-layer1.png'
+import storyLayer2 from '../img/design/story-layer2.png'
+import storyLayer4 from '../img/design/story-layer3.png'
+import storyLayer3 from '../img/design/story-layer4.png'
+import interfaceLayer1 from '../img/design/interface-layer1.png'
+import interfaceLayer2 from '../img/design/interface-layer2.png'
+import interfaceLayer3 from '../img/design/interface-layer3.png'
+
+import technologyIntro from '../img/Technology/intro.png'
+import vrLayer1 from '../img/Technology/vr-layer1.png'
+import vrLayer2 from '../img/Technology/vr-layer2.png'
+import vrLayer3 from '../img/Technology/vr-layer3.png'
 import arLayer1 from '../img/Technology/ar-layer1.png'
 import arLayer2 from '../img/Technology/ar-layer2.png'
 import arLayer3 from '../img/Technology/ar-layer3.png'
 
-import interfaceLayer1 from '../img/Technology/interface-layer1.png'
-import interfaceLayer2 from '../img/Technology/interface-layer2.png'
-import interfaceLayer3 from '../img/Technology/interface-layer3.png'
+import philoLayer1 from '../img/business/philo-layer1.png'
+
 /************************************
 
     DESIGN
@@ -29,152 +43,55 @@ const Design = [
     {
         h1: 'Design',
         h2: '',
-        content: () => 'The physical world has been a masterful designer. It is infinite in beauty and complexity, veiling mysteries and provoking our wonder. Inexplicable yet endlessly enchanting.  The quest for knowledge and understanding never gets dull, and these unanswerable questions keep pulling us forward.  We are only limited by our imaginations.',
+        content: () => 'Gravity sculpts the physical world - creating complex beauty, masking great mystery and pulling us toward innovation. Through generations, we’ve arrived at a point at which we can experience a world that defies all forms of physics.',
         path: '/design',
-        paralax: 0,
-        bgUrl: bg1,
+        bgUrl: designIntro,
         layers: [
             {
-                imgUrl: arLayer1,
+                imgUrl: designIntro,
                 paralax: 0,
                 opacity: 1,
-            },
-            {
-                imgUrl: arLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: arLayer3,
-                paralax: 0,
-                opacity: 0,
             },
         ]
     },
     {
-        h1: 'Design 2',
+        h1: 'Design ',
         h2: '',
-        content: () => 'The adslkfjhads;lkfjdsakfja',
+        content: () => 'Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when. To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a /story/, a /world/, and an /interface/.',
         path: '/design',
-        paralax: 0,
-        bgUrl: bg1,
+        bgUrl: designIntro,
         layers: [
             {
-                imgUrl: arLayer1,
-                paralax: -50,
+                imgUrl: designIntro,
+                paralax: -30,
                 opacity: 1,
-            },
-            {
-                imgUrl: arLayer2,
-                paralax: 50,
-                opacity: 1,
-            },
-            {
-                imgUrl: arLayer3,
-                paralax: 50,
-                opacity: 0,
             },
         ]
     },
     {
-        h1: 'Design 3',
+        h1: 'Design ',
         h2: '',
-        content: () => 'The adslkfjhads;lkfjdsakfja',
+        content: () => 'You play an important role in designing /tomorrow/. Together we will build your story, architect your world and design intuitive interactions with everything you develop.',
         path: '/design',
-        paralax: 0,
-        bgUrl: bg1,
+        bgUrl: designIntro,
         layers: [
             {
-                imgUrl: arLayer1,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: arLayer2,
-                paralax: 100,
-                opacity: 1,
-            },
-            {
-                imgUrl: arLayer3,
-                paralax: 100,
+                imgUrl: designIntro,
+                paralax: -60,
                 opacity: 1,
             },
         ]
     },
-]
-
-const World = [
     {
-        h1: 'World',
+        h1: 'Design ',
         h2: '',
-        content: () => 'What more is there? You’ll soon wonder which was a digital world and which was a dream. Jump into the light. There are no limits. When knowhow grows elusive, look to the sky.  The more you know the more amazing the would seems. The',
-        path: '/world',
-        paralax: 0,
-        bgUrl: bg2,
+        content: () => 'Join us in designing tomorrow.',
+        path: '/design',
+        bgUrl: designIntro,
         layers: [
             {
-                imgUrl: interfaceLayer1,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: interfaceLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: interfaceLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-        ]
-    },
-    {
-        h1: 'World',
-        h2: '',
-        content: () => 'What more is there? You’ll soon wonder which was a digital world and which was a dream. Jump into the light. There are no limits. When knowhow grows elusive, look to the sky.  The more you know the more amazing the would seems. The',
-        path: '/world',
-        paralax: 0,
-        bgUrl: bg2,
-        layers: [
-            {
-                imgUrl: interfaceLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: interfaceLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: interfaceLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-        ]
-    },
-    {
-        h1: 'World',
-        h2: '',
-        content: () => 'What more is there? You’ll soon wonder which was a digital world and which was a dream. Jump into the light. There are no limits. When knowhow grows elusive, look to the sky.  The more you know the more amazing the would seems. The',
-        path: '/world',
-        paralax: 0,
-        bgUrl: bg2,
-        layers: [
-            {
-                imgUrl: interfaceLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: interfaceLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: interfaceLayer3,
-                paralax: 0,
+                imgUrl: designIntro,
+                paralax: -90,
                 opacity: 1,
             },
         ]
@@ -183,25 +100,311 @@ const World = [
 
 const Interface = [
     {
-        h1: 'Interface',
-        h2: '',
-        content: () => 'We designed a new way to interact with digital space. We’ve named the interface Flowwer. Explore, grow, and flow info. , guided by a seamless flow of information. This design is innate to human observation and learns from your choices. With the Flowwer we will navigate unchartered dimensions.',
+        h1: 'Design',
+        h2: 'Interface',
+        content: () => 'Information, volume, color, light, time, space, transparency... In XR, all these perceptions of the human experience are available at all times.',
         path: '/interface',
-        paralax: 0,
-        bgUrl: bg3,
+        bgUrl: interfaceLayer1,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Interface',
+        content: () => 'We are redefining the grammar of interface to accommodate the era of multidimensional media. We are building interfaces that flow based on your attention and intentions.',
+        path: '/interface',
+        bgUrl: interfaceLayer1,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Interface',
+        content: () => 'In XR you can zoom, scale, rotate, delete, cut and interact in all ways with all places at all times.',
+        path: '/interface',
+        bgUrl: interfaceLayer1,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Interface',
+        content: () => 'We simplify complex technologies through intuitive design.',
+        path: '/interface',
+        bgUrl: interfaceLayer1,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: -100,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
 const Story = [
     {
+        h1: 'Design',
+        h2: 'Story',
+        content: () => 'In XR you live the story.',
+        path: '/story',
+        bgUrl: storyLayer1,
+        layers: [
+            {
+                imgUrl: storyLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: storyLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Story',
+        content: () => 'Choose your world.',
+        path: '/story',
+        bgUrl: storyLayer1,
+        layers: [
+            {
+                imgUrl: storyLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: storyLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Story',
+        content: () => 'Our writers understand XR\'s technical intricacies and have the skills to adapt any scenario into an experience in Extended Reality.',
+        path: '/story',
+        bgUrl: storyLayer1,
+        layers: [
+            {
+                imgUrl: storyLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: storyLayer4,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
         h1: 'Story',
         h2: '',
-        content: () => 'We are the story. More now than ever, we can transcend our organic self however we choose. The future in our hands, the past in our pocket; it’s always sunny in VR if you want it to be. Live without limits.',
+        content: () => 'In XR you live the story.',
         path: '/story',
-        paralax: 0,
-        bgUrl: bg2,
+        bgUrl: storyLayer1,
+        layers: [
+            {
+                imgUrl: storyLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer3,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: storyLayer4,
+                paralax: -50,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Story',
+        content: () => 'They will tell your story',
+        path: '/story',
+        bgUrl: storyLayer1,
+        layers: [
+            {
+                imgUrl: storyLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: storyLayer3,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: storyLayer4,
+                paralax: -100,
+                opacity: 1,
+            },
+        ]
     },
 ]
+
+const World = [
+    {
+        h1: 'Design',
+        h2: 'World',
+        content: () => 'XR marks a new era of exploration. When we first stepped into the virtual world it was open space - a dream in the making.',
+        path: '/world',
+        bgUrl: worldLayer1,
+        layers: [
+            {
+                imgUrl: worldLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: worldLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'World',
+        content: () => 'We began to build. The potential was endless. We can build beyond physical world constraints.',
+        path: '/world',
+        bgUrl: worldLayer1,
+        layers: [
+            {
+                imgUrl: worldLayer1,
+                paralax: -50,
+                opacity: 1,
+            },
+            {
+                imgUrl: worldLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'World',
+        content: () => 'We began to build. The potential was endless.We can build beyond physical world constraints.',
+        path: '/world',
+        bgUrl: worldLayer1,
+        layers: [
+            {
+                imgUrl: worldLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: worldLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+
 
 
 
@@ -217,50 +420,66 @@ const Business = [
     {
         h1: 'Business',
         h2: '',
-        content: () => 'We provide access to advanced technologies and advise on related markets. Our work includes creating technical specifications, sourcing development and managing project execution. Through primary research and academic relationships, we keep you ahead of the curve and beyond your competition. We provide access.',
+        content: () => 'TBD',
         path: '/business',
-        paralax: 0,
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
 const Services = [
     {
-        h1: 'Services',
-        h2: '',
-        content: () => 'As pioneers our duty is to explore new media, publish our findings and map routes to follow. We explore beyond ambit reality. The fringe of technology is full of ethical complexities and it is our responsibility to set a high moral standard for the industry. We lead by example, challenge traditional structures and fight for underdogs. We Dream Awake',
+        h1: 'Business',
+        h2: 'Services',
+        content: () => 'TBD',
         path: '/services',
-        paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 const Philosophy = [
     {
-        h1: 'Philosophy',
-        h2: '',
+        h1: 'Business',
+        h2: 'Philosophy',
         content: () => 'TBD',
         path: '/services',
-        paralax: 0,
-        bgUrl: bg1,
+        bgUrl: philoLayer1,
+        layers: [
+            {
+                imgUrl: philoLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
 const Disciplines = [
     {
-        h1: 'Disciplines',
-        h2: '',
-        content: () => 'We design new media. Whether your are architecting a virtual world or executing a marketing campaign, we help you implement the latest technological breakthroughs, artfully.  We pride ourselves on a swift ability to design and execute. We will help you pilot the use of engines, software and design to“Extend Reality” (XR).',
+        h1: 'Business',
+        h2: 'Disciplines',
+        content: () => 'TBD',
         path: '/disciplines',
-        paralax: 0,
         bgUrl: bg3,
-    },
-    {
-        h1: '',
-        h2: '',
-        content: () => 'We will help you see further, move faster and achieve more.',
-        path: '/disciplines',
-        paralax: 100,
-        bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -277,70 +496,333 @@ const Technology = [
     {
         h1: 'Technology',
         h2: '',
-        content: () => 'XR will enhance our lives more than any media prior. However, this is only the beginning and we’re responsible for writing the future.',
+        content: () => 'We use technology as an artist uses paint.',
         path: '/technology',
-        paralax: 0,
-        bgUrl: bg2,
+        bgUrl: technologyIntro,
+        layers: [
+            {
+                imgUrl: technologyIntro,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: '',
+        content: () => 'XR media promises to enhance our lives more than any media prior. We are embarking on a new frontier of connectivity.',
+        path: '/technology',
+        bgUrl: technologyIntro,
+        layers: [
+            {
+                imgUrl: technologyIntro,
+                paralax: -100,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: '',
+        content: () => 'We’re responsible for writing the future.',
+        path: '/technology',
+        bgUrl: technologyIntro,
+        layers: [
+            {
+                imgUrl: technologyIntro,
+                paralax: -200,
+                opacity: 1,
+            },
+        ]
     },
 ]
+
 const VR = [
     {
-        h1: 'Virtual Reality',
-        h2: '',
-        content: () => 'An emerging technology that empowers people to dream together. You will travel to places, and consider perspectives, you might otherwise not.   The possibilities are infinite.  Mirages into miracles.   Together, let’s architect new digital words, transcending time and space at will.',
+        h1: 'Technology',
+        h2: 'Virtual Reality',
+        content: () => 'Virtual Reality (VR) is an emerging technology empowering people to dream together. VR let\'s you go places you otherwise could not go. Together we architect new digital worlds while transcending time and space.',
         path: '/vr',
-        paralax: 0,
-        bgUrl: bg1,
+        bgUrl: vrLayer1,
+        layers: [
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Virtual Reality',
+        content: () => 'By putting on goggles and artificially stimulating our senses, our mind accept another version of reality, an entirely man made world.',
+        path: '/vr',
+        bgUrl: vrLayer1,
+        layers: [
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Virtual Reality',
+        content: () => '<span>We can divide VR into two main categories: <br /> 1) High-fidelity: Ideal for creating premium experiences with positional tracking, haptic feedback and deep software integrations. Developing this caliber of content is a multi-year investment and project.</span>,',
+        path: '/vr',
+        bgUrl: vrLayer1,
+        layers: [
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Virtual Reality',
+        content: () => '2) Mobile. Ideal for quick replicas of real-world images, easy to consume, easy to distribute. Mobile VR will be a low-cost and accessible solution.',
+        path: '/vr',
+        bgUrl: vrLayer1,
+        layers: [
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Virtual Reality',
+        content: () => 'We are entering a new era of media and its standards are still being established.',
+        path: '/vr',
+        bgUrl: vrLayer1,
+        layers: [
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Virtual Reality',
+        content: () => 'Nova XR helps you stay on the cutting edge of technology, by applying the latest computer sciences to your current strategies.',
+        path: '/vr',
+        bgUrl: vrLayer1,
+        layers: [
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer3,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
+
 const AR = [
     {
-        h1: 'Augmented Reality',
-        h2: '',
-        content: () => 'A advancement that will bring renaissance to computing. Your surrounding environment will feature all your smartphone amenities. AR let’s us blur the line of the physical and digital, weaving the internet into the fabric of life. AR will be a powerful tool to simplify complex ideas and democratize education.',
+        h1: 'Technology',
+        h2: 'Augmented Reality',
+        content: () => 'Augmented Reality (AR) is a powerful tool to simplify complex ideas and democratize education.',
         path: '/ar',
-        paralax: 0,
-        bgUrl: bg3,
+        bgUrl: arLayer1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Augmented Reality',
+        content: () => 'AR is a technology that superimposes digital graphics on top of our physical environment. It is ideal for collaborative work or training.',
+        path: '/ar',
+        bgUrl: arLayer1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: -50,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: -50,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Augmented Reality',
+        content: () => 'Through computer vision we can model the world around you. Turn everyday scenarios into interactive experinces.',
+        path: '/ar',
+        bgUrl: arLayer1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: -100,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Augmented Reality',
+        content: () => 'By weaving the internet into the fabric of life we must examine our traditional constructs of reality.',
+        path: '/ar',
+        bgUrl: arLayer1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: -300,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: -150,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: -150,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Technology',
+        h2: 'Augmented Reality',
+        content: () => 'Nova XR will assist you in adapting the world to your workflow.',
+        path: '/ar',
+        bgUrl: arLayer1,
+        layers: [
+            {
+                imgUrl: arLayer1,
+                paralax: -400,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer2,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: arLayer3,
+                paralax: -200,
+                opacity: 1,
+            },
+        ]
     },
 ]
+
 const expTech = [
     {
-        h1: 'Exponential Technology',
-        h2: '',
-        content: () => 'A medley of solutions from artificial intelligence to biometric softwares, robotics, drones, blockchain, cryptography, and other intense techs that are revolutionizing the world as we know it. We help you prepare plans, integrate strategies and drive the change you want to see in the world. ',
-        path: '/expentional-technology',
-        paralax: 0,
+        h1: 'Technology',
+        h2: 'Exponential Technologies',
+        content: () => 'TBD',
+        path: '/expentional-technologies',
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ],
     },
 ]
-const NYE = [
-    {
-        h1: 'New Years Eve',
-        h2: '',
-        content: () => 'Live from around the world, in stereoscopic 3D virtual reality, we will bring you to 10 iconic cities to celebrate with locals. All you need is the internet',
-        path: '/nye',
-        paralax: 0,
-        bgUrl: bg2,
-    },
-    {
-        h1: '',
-        h2: 'Imagine',
-        content: () => 'Teleporting (dreamscaping) from one city to another with the click of your controller. ',
-        path: '/nye',
-        paralax: 100,
-        bgUrl: bg2,
-    },
-    {
-        h1: '',
-        h2: '',
-        content: () => 'This New Year\'s Eve you can travel the globe without ever leaving your living room. Live, with friends and strangers alike, explore the world.',
-        path: '/nye',
-        paralax: 200,
-        bgUrl: bg2,
-    },
-]
-
-
 
 
 /************************************
@@ -353,8 +835,8 @@ const NYE = [
 const designSlides = [
         Design,
         World,
-        // Interface,
-        // Story,
+        Interface,
+        Story,
 ]
 
 const businessSlides = [
@@ -373,6 +855,6 @@ const technologySlides = [
 
 export default [
     designSlides,
-    // businessSlides,
-    // technologySlides,
+    technologySlides,
+    businessSlides,
 ]
