@@ -292,7 +292,11 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     // Animation handle
     let transitionProgress = 0
     let transitionTimer = 0
-    transitionTimer = window.setInterval(() => {
+
+    const startTime = new Date()
+
+    let rafId = 0
+    const transitionFunction = () => {
         if(transitionProgress > 100) {
             ////// Stop animation
 
@@ -302,6 +306,10 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
             // Clear interval
             window.clearInterval(transitionTimer)
             transitionTimer = undefined
+
+            // cancel animation frame
+            cancelAnimationFrame(rafId)
+            console.log(new Date() - startTime)
         } else {
             ////// Continue scrolling
 
@@ -319,9 +327,14 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
             }
 
             // Increment transition progress
-            transitionProgress = transitionProgress + 5
+            transitionProgress = transitionProgress + 1
+
+            // Requstion animation frame
+            rafId = requestAnimationFrame(transitionFunction)
         }
-    }, 15)
+    }
+
+    rafId = requestAnimationFrame(transitionFunction)
 }
 
 /**
