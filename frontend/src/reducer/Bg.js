@@ -7,6 +7,7 @@ export const UPDATE_FRONT_BG_PARALAX = 'bg/update_front_bg_paralax'
 export const UPDATE_BACK_BG_PARALAX = 'bg/update_back_bg_paralax'
 export const UPDATE_FRONT_LAYERS = 'bg/update_front_layers'
 export const UPDATE_BACK_LAYERS = 'bg/update_back_layers'
+export const UPDATE_CACHE_LAYERS = 'bg/update_cache_layers'
 
 const initialState = {
     frontBg: {
@@ -21,11 +22,17 @@ const initialState = {
     },
     frontLayers: [],
     backLayers: [],
+    cacheLayers: [],
     transitionProgress: 0,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+  case UPDATE_CACHE_LAYERS:
+      return {
+          ...state,
+          cacheLayers: action.cacheLayers,
+      }
   case UPDATE_BACK_LAYERS:
       return {
           ...state,

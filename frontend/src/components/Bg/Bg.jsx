@@ -11,6 +11,7 @@ const mapStateToProps = function(state) {
       linePosition: state.appReducer.linePosition,
       frontLayers: state.bgReducer.frontLayers,
       backLayers: state.bgReducer.backLayers,
+      cacheLayers: state.bgReducer.cacheLayers,
   }
 }
 
@@ -173,6 +174,10 @@ const BgDumb = props => {
     return (
         <div style={ styles.wrapper } className="bar">
 
+
+                <LayerAssembly
+                    layers={ props.cacheLayers }
+                />
 
             <div className="split-top" style={ styles.split.wrapper }>
                 <LayerAssembly

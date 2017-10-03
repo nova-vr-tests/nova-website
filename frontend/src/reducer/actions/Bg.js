@@ -8,7 +8,13 @@ import {
     UPDATE_BACK_BG_PARALAX,
     UPDATE_FRONT_LAYERS,
     UPDATE_BACK_LAYERS,
+    UPDATE_CACHE_LAYERS,
 } from '../Bg'
+
+const updateCacheLayers = cacheLayers => ({
+    type: UPDATE_CACHE_LAYERS,
+    cacheLayers,
+})
 
 const updateFrontLayers = frontLayers => ({
     type: UPDATE_FRONT_LAYERS,
@@ -64,4 +70,5 @@ export {
     updateFrontBgParalax,
     updateFrontLayers,
     updateBackLayers,
+    updateCacheLayers,
 }
