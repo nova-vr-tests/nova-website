@@ -299,8 +299,6 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     let rafId = 0
     const transitionFunction = () => {
         if(transitionProgress > 100) {
-            ////// Stop animation
-
             // Attach scroll event to page change
             attachScrollEvent()
 
@@ -310,10 +308,8 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
 
             // cancel animation frame
             cancelAnimationFrame(rafId)
-            console.log(new Date() - startTime)
         } else {
             ////// Continue scrolling
-
             updateLayers(transitionProgress, pages, currentPage, targetPage)
 
             // Call background controls
