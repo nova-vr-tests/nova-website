@@ -166,17 +166,30 @@ class SlideTransition extends React.Component {
     getStyles() {
     }
 
-    translateTitle(currentTitle, targetTitle) {
-        console.log(currentTitle, targetTitle)
-        if(currentTitle !== targetTitle) {
-            // translate
-            return {
-                transform: 'inherit',
+    translateTitle(currentTitle, targetTitle, sign) {
+        if(sign >= 0) {
+            if(currentTitle !== targetTitle) {
+                // translate
+                return {
+                    transform: 'inherit',
+                }
+            } else {
+                // inverse translate
+                return {
+                    transform: 'translateX(' + this.state.transitionProgress * 100 + 'vw)'
+                }
             }
         } else {
-            // inverse translate
-            return {
-                transform: 'translateX(' + this.state.transitionProgress * 100 + 'vw)'
+            if(currentTitle !== targetTitle) {
+                // translate
+                return {
+                    transform: 'inherit',
+                }
+            } else {
+                // inverse translate
+                return {
+                    transform: 'translateX(-' + this.state.transitionProgress * 100 + 'vw)'
+                }
             }
         }
     }
@@ -195,9 +208,10 @@ class SlideTransition extends React.Component {
         const targetH1 = this.props.pages[this.state.targetPage].h1
         const targetH2 = this.props.pages[this.state.targetPage].h2
 
+        const sign = this.state.targetPage - this.state.currentPage
         let translates = {
-            H1: this.translateTitle(currentH1, targetH1),
-            H2: this.translateTitle(currentH2, targetH2),
+            H1: this.translateTitle(currentH1, targetH1, sign),
+            H2: this.translateTitle(currentH2, targetH2, sign),
         }
 
         return (
