@@ -51,9 +51,7 @@ const LineDumb = props => {
         <div style={ styles.wrapper }>
             <div style={ styles.line.wrapper }>
                 <div style={ { ...styles.line.wrapper2, ...styles.line.wrapper2Opened } }>
-                    { props.lines[0] }
-                    { props.lines[1] }
-                    { props.lines[2] }
+                    { props.comp }
                 </div>
             </div>
         </div>
@@ -74,9 +72,8 @@ class Line extends Component {
   render() {
       return (
         <LineDumb
-            lines={ this.props.lines }
+            comp={ this.props.comp }
             linePosition={ this.props.linePosition } >
-          { this.props.children }
           </LineDumb>
       )
   }
