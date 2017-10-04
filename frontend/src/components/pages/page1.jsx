@@ -65,7 +65,7 @@ const Design = [
         ]
     },
     {
-        h1: 'Design ',
+        h1: 'Design',
         h2: '',
         content: () => 'Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when. To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a /story/, a /world/, and an /interface/.',
         path: '/design',
@@ -79,7 +79,7 @@ const Design = [
         ]
     },
     {
-        h1: 'Design ',
+        h1: 'Design',
         h2: '',
         content: () => 'You play an important role in designing /tomorrow/. Together we will build your story, architect your world and design intuitive interactions with everything you develop.',
         path: '/design',
@@ -93,7 +93,7 @@ const Design = [
         ]
     },
     {
-        h1: 'Design ',
+        h1: 'Design',
         h2: '',
         content: () => 'Join us in designing tomorrow.',
         path: '/design',
@@ -296,8 +296,8 @@ const Story = [
         ]
     },
     {
-        h1: 'Story',
-        h2: '',
+        h1: 'Design',
+        h2: 'Story',
         content: () => 'In XR you live the story.',
         path: '/story',
         bgUrl: storyLayer1,
