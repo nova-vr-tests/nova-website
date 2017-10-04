@@ -69,19 +69,27 @@ class SlideTransition extends React.Component {
         }
 
         // Start transition
-        const timer = window.setInterval(e => {
-            if(this.state.transitionProgress < 1)
+
+        const startTime = new Date()
+        const deltaTime = 500
+
+        let rafId = 0
+        const transitionFunction = () => {
+            if(this.state.transitionProgress < 1) {
+                const deltaProgress = (new Date() - startTime) / deltaTime - this.state.transitionProgress
                 this.setState({
-                    transitionProgress: this.state.transitionProgress + 45 / 1000 > 1 ? 1 : this.state.transitionProgress + 45 / 1000,
+                    transitionProgress: this.state.transitionProgress + deltaProgress > 1 ? 1 : this.state.transitionProgress + deltaProgress,
                     currentPage: this.state.targetPage,
                 })
-            else {
+
+                rafId = requestAnimationFrame(transitionFunction)
+            } else {
                 this.setState({ transitionProgress: 0 })
-                window.clearInterval(this.timer)
+                cancelAnimationFrame(rafId)
             }
 
-        }, 15)
-        this.updateTimerPointer(timer)
+        }
+        requestAnimationFrame(transitionFunction)
 
         // Update line position
         this.updateLinePosition(newProps)
