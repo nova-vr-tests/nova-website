@@ -24,13 +24,23 @@ import interfaceLayer3 from '../img/design/interface-layer3.png'
 
 import technologyIntro from '../img/Technology/intro.png'
 import vrLayer1 from '../img/Technology/vr-layer1.png'
-import vrLayer2 from '../img/Technology/vr-layer2.png'
+import vrLayer2 from '../img/Technology/vr-layer2.jpg'
 import vrLayer3 from '../img/Technology/vr-layer3.png'
+import vrLayer4 from '../img/Technology/vr-layer4.png'
+import vrLayer5 from '../img/Technology/vr-layer5.png'
+import vrLayer6 from '../img/Technology/vr-layer6.png'
 import arLayer1 from '../img/Technology/ar-layer1.png'
 import arLayer2 from '../img/Technology/ar-layer2.png'
 import arLayer3 from '../img/Technology/ar-layer3.png'
 
 import philoLayer1 from '../img/business/philo-layer1.png'
+import disciplinesLayer6 from '../img/business/disciplines-layer1.png'
+import disciplinesLayer5 from '../img/business/disciplines-layer2.png'
+import disciplinesLayer4 from '../img/business/disciplines-layer3.png'
+import disciplinesLayer3 from '../img/business/disciplines-layer4.png'
+import disciplinesLayer2 from '../img/business/disciplines-layer5.png'
+import disciplinesLayer1 from '../img/business/disciplines-layer6.png'
+
 
 /************************************
 
@@ -472,11 +482,153 @@ const Disciplines = [
         h2: 'Disciplines',
         content: () => 'TBD',
         path: '/disciplines',
-        bgUrl: bg3,
+        bgUrl: disciplinesLayer1,
         layers: [
             {
-                imgUrl: bg3,
+                imgUrl: disciplinesLayer1,
                 paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer4,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer5,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer6,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Business',
+        h2: 'Disciplines',
+        content: () => 'TBD',
+        path: '/disciplines',
+        bgUrl: disciplinesLayer1,
+        layers: [
+            {
+                imgUrl: disciplinesLayer1,
+                paralax: -50,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer2,
+                paralax: -75,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer3,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer4,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer5,
+                paralax: -150,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer6,
+                paralax: -200,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Business',
+        h2: 'Disciplines',
+        content: () => 'TBD',
+        path: '/disciplines',
+        bgUrl: disciplinesLayer1,
+        layers: [
+            {
+                imgUrl: disciplinesLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer2,
+                paralax: -150,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer3,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer4,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer5,
+                paralax: -300,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer6,
+                paralax: -400,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Business',
+        h2: 'Disciplines',
+        content: () => 'TBD',
+        path: '/disciplines',
+        bgUrl: disciplinesLayer1,
+        layers: [
+            {
+                imgUrl: disciplinesLayer1,
+                paralax: -150,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer2,
+                paralax: -225,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer3,
+                paralax: -300,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer4,
+                paralax: -300,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer5,
+                paralax: -500,
+                opacity: 1,
+            },
+            {
+                imgUrl: disciplinesLayer6,
+                paralax: -600,
                 opacity: 1,
             },
         ]
@@ -546,19 +698,34 @@ const VR = [
         bgUrl: vrLayer1,
         layers: [
             {
-                imgUrl: vrLayer2,
+                imgUrl: vrLayer1,
                 paralax: 0,
                 opacity: 1,
             },
             {
-                imgUrl: vrLayer3,
+                imgUrl: vrLayer2,
                 paralax: 0,
                 opacity: 0,
             },
             {
-                imgUrl: vrLayer1,
+                imgUrl: vrLayer3,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: vrLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer5,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer6,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -570,9 +737,14 @@ const VR = [
         bgUrl: vrLayer1,
         layers: [
             {
-                imgUrl: vrLayer2,
+                imgUrl: vrLayer1,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 0,
             },
             {
                 imgUrl: vrLayer3,
@@ -580,9 +752,19 @@ const VR = [
                 opacity: 0,
             },
             {
-                imgUrl: vrLayer1,
+                imgUrl: vrLayer4,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: vrLayer5,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer6,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -594,9 +776,14 @@ const VR = [
         bgUrl: vrLayer1,
         layers: [
             {
-                imgUrl: vrLayer2,
+                imgUrl: vrLayer1,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 0,
             },
             {
                 imgUrl: vrLayer3,
@@ -604,9 +791,19 @@ const VR = [
                 opacity: 0,
             },
             {
-                imgUrl: vrLayer1,
+                imgUrl: vrLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer5,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: vrLayer6,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -618,9 +815,14 @@ const VR = [
         bgUrl: vrLayer1,
         layers: [
             {
-                imgUrl: vrLayer2,
+                imgUrl: vrLayer1,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: vrLayer2,
+                paralax: 0,
+                opacity: 0,
             },
             {
                 imgUrl: vrLayer3,
@@ -628,7 +830,17 @@ const VR = [
                 opacity: 0,
             },
             {
-                imgUrl: vrLayer1,
+                imgUrl: vrLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer5,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer6,
                 paralax: 0,
                 opacity: 1,
             },
@@ -642,6 +854,11 @@ const VR = [
         bgUrl: vrLayer1,
         layers: [
             {
+                imgUrl: vrLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
                 imgUrl: vrLayer2,
                 paralax: 0,
                 opacity: 1,
@@ -649,10 +866,20 @@ const VR = [
             {
                 imgUrl: vrLayer3,
                 paralax: 0,
-                opacity: 1,
+                opacity: 0,
             },
             {
-                imgUrl: vrLayer1,
+                imgUrl: vrLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer5,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer6,
                 paralax: 0,
                 opacity: 1,
             },
@@ -666,17 +893,32 @@ const VR = [
         bgUrl: vrLayer1,
         layers: [
             {
-                imgUrl: vrLayer2,
+                imgUrl: vrLayer1,
                 paralax: 0,
-                opacity: 1,
+                opacity: 0,
             },
             {
-                imgUrl: vrLayer3,
+                imgUrl: vrLayer2,
                 paralax: -100,
                 opacity: 1,
             },
             {
-                imgUrl: vrLayer1,
+                imgUrl: vrLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer5,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: vrLayer6,
                 paralax: 0,
                 opacity: 1,
             },

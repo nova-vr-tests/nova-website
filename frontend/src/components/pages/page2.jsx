@@ -11,6 +11,10 @@ import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
+import nyeLayer1 from '../img/partnership/nye/nye-layer1.png'
+import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
+import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
+
 
 /************************************
 
@@ -117,61 +121,83 @@ const News3 = [
 ]
 /************************************
 
-    Third Category
+    NYE
 
 ************************************/
 
 
-const missingSectionIntro = [
+const Nye = [
     {
-        h1: 'Section 2.3',
-        h2: 'intro',
+        h1: 'Partnership',
+        h2: 'New Year\'s Eve',
         content: () => '',
-        path: '/new-section',
-        paralax: 0,
-        bgUrl: bg1,
-    },
-]
-
-
-const missingSection1 = [
-    {
-        h1: 'Section 2.3',
-        h2: 'Section 1',
-        content: () => '',
-        path: '/new-section-1',
-        paralax: 0,
-        bgUrl: bg2,
-    },
-]
-
-const missingSection2 = [
-    {
-        h1: 'Section 2.3',
-        h2: 'Section 2',
-        content: () => '',
-        path: '/new-section-2',
-        paralax: 0,
-        bgUrl: bg3,
+        path: '/nye',
+        bgUrl: nyeLayer1,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
     {
-        h1: 'Section 2.3',
-        h2: 'Section 2 part deux',
+        h1: 'Partnership',
+        h2: 'New Year\'s Eve',
         content: () => '',
-        path: '/new-section-2',
-        paralax: 100,
-        bgUrl: bg3,
+        path: '/nye',
+        bgUrl: nyeLayer1,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: -50,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
-]
-
-const missingSection3 = [
     {
-        h1: 'Section 2.3',
-        h2: 'Section 3',
+        h1: 'Partnership',
+        h2: 'New Year\'s Eve',
         content: () => '',
-        path: '/new-section-3',
-        paralax: 0,
-        bgUrl: bg1,
+        path: '/nye',
+        bgUrl: nyeLayer1,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: -200,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: -200,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -198,15 +224,12 @@ const newsSlides = [
     News3,
 ]
 
-const missingSlides = [
-    missingSectionIntro,
-    missingSection1,
-    missingSection2,
-    missingSection3,
+const nyeSlides = [
+    Nye,
 ]
 
 export default [
     edSlides,
     newsSlides,
-    missingSlides,
+    nyeSlides,
 ]
