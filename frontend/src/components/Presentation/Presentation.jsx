@@ -17,6 +17,11 @@ import { updateLinePosition } from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
 
+import {
+    H1,
+    H2,
+} from '../pages/UI.jsx'
+
 const mapStateToProps = state => ({
     routing: state.routing,
 })
@@ -50,6 +55,7 @@ class SlideTransition extends React.Component {
         this.getTranslationStyles = this.getTranslationStyles.bind(this)
         this.updateTimerPointer = this.updateTimerPointer.bind(this)
         this.updateLinePosition = this.updateLinePosition.bind(this)
+        this.translateTitle = this.translateTitle.bind(this)
     }
 
     componentDidMount() {
@@ -79,12 +85,14 @@ class SlideTransition extends React.Component {
                 const deltaProgress = (new Date() - startTime) / deltaTime - this.state.transitionProgress
                 this.setState({
                     transitionProgress: this.state.transitionProgress + deltaProgress > 1 ? 1 : this.state.transitionProgress + deltaProgress,
-                    currentPage: this.state.targetPage,
                 })
 
                 rafId = requestAnimationFrame(transitionFunction)
             } else {
-                this.setState({ transitionProgress: 0 })
+                this.setState({
+                    transitionProgress: 0,
+                    currentPage: this.state.targetPage,
+                })
                 cancelAnimationFrame(rafId)
             }
 
@@ -158,6 +166,21 @@ class SlideTransition extends React.Component {
     getStyles() {
     }
 
+    translateTitle(currentTitle, targetTitle) {
+        console.log(currentTitle, targetTitle)
+        if(currentTitle !== targetTitle) {
+            // translate
+            return {
+                transform: 'inherit',
+            }
+        } else {
+            // inverse translate
+            return {
+                transform: 'translateX(' + this.state.transitionProgress * 100 + 'vw)'
+            }
+        }
+    }
+
     render() {
         const { pages, currentPage } = this.props
 
@@ -167,12 +190,26 @@ class SlideTransition extends React.Component {
         const CurrentSlide = this.props.pages[this.state.currentPage].comp
         const TargetSlide = this.props.pages[this.state.targetPage].comp
 
+        const currentH1 = this.props.pages[this.state.currentPage].h1
+        const currentH2 = this.props.pages[this.state.currentPage].h2
+        const targetH1 = this.props.pages[this.state.targetPage].h1
+        const targetH2 = this.props.pages[this.state.targetPage].h2
+
+        let translates = {
+            H1: this.translateTitle(currentH1, targetH1),
+            H2: this.translateTitle(currentH2, targetH2),
+        }
+
         return (
             <div className='slide-transition--wrapper'>
                 <div className='current-slide--wrapper' style={ currentSlideStyle }>
+                    <H1 style={ translates.H1 }>{ currentH1 }</H1>
+                    <H2 style={ translates.H2 }>{ currentH2 }</H2>
                     <CurrentSlide { ...this.props } />
                 </div>
                 <div className='target-slide--wrapper' style={ targetSlideStyle }>
+                    <H1 style={ translates.H1 }>{ targetH1 }</H1>
+                    <H2 style={ translates.H2 }>{ targetH2 }</H2>
                     <TargetSlide { ...this.props } />
                 </div>
             </div>

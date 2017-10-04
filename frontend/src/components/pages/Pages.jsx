@@ -32,12 +32,17 @@ const makeMenu = (section, i, sections) => {
 */
 const makePresentationSlide = (slide, i, slides) => {
     const Text = slide.content
-    const { bgUrl, path, paralax, linePosition, layers } = slide
+    const { bgUrl, path, paralax, linePosition, layers, h1, h2 } = slide
 
+    const styles = {
+        h2: {
+            transform: 'none',
+            position: 'absolute',
+            color: 'green'
+        }
+    }
     const comp = props => (
         <PageWrapper>
-            <H1>{ slide.h1 }</H1>
-            <H2>{ slide.h2 }</H2>
             <P>
                 <Text />
             </P>
@@ -80,6 +85,8 @@ return {
         bgUrl,
         path,
         paralax,
+        h1,
+        h2,
         linePosition,
         layers,
         transitions: {

@@ -52,7 +52,7 @@ const P = props => {
 
 const H1  = props => {
     return (
-        <h1 style={ styles.H1 }>
+        <h1 style={ { ...styles.H1, ...props.style } }>
             { props.children }
         </h1>
     )
@@ -60,7 +60,7 @@ const H1  = props => {
 
 const H2 = props => {
     return (
-        <h2 style={ styles.H2 }>
+        <h2 style={ { ...styles.H2, ...props.style } }>
             { props.children }
         </h2>
     )
