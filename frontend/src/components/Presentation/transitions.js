@@ -308,6 +308,8 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
 
             // cancel animation frame
             cancelAnimationFrame(rafId)
+
+            updateLayers(100, pages, currentPage, targetPage)
         } else {
             ////// Continue scrolling
             updateLayers(transitionProgress, pages, currentPage, targetPage)
