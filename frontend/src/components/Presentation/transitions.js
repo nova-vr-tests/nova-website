@@ -192,21 +192,6 @@ transitions.types = {
 }
 
 
-/**
-   Translate front Bg
-**/
-const translateFrontBg = (progress, deltaX) => {
-    dispatch(updateFrontBgParalax(-progress))
-}
-
-/**
-   Translate back Bg
-**/
-const translateBackBg = (progress, deltaX) => {
-    dispatch(updateBackBgParalax(-progress))
-}
-
-
 const updateFrontBg = (progress, pages, currentPage, targetPage) => {
     const currentLayers = pages[currentPage].layers
     const targetLayers = pages[targetPage].layers
@@ -263,11 +248,12 @@ const updateBackBg = (progress, pages, currentPage, targetPage) => {
    Paralax slide transitions
 */
 transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
+    // Detach scroll event
     detachScrollEvent()
 
     const bgState = store.getState().bgReducer
 
-    // boundary condition
+    // Boundary condition
     const totalPages = pages.length
     const targetPage = sign > 0 ?
           (currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1)
@@ -278,10 +264,6 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     const targetParalax = pages[targetPage].paralax
     const deltaParalax = Math.abs(targetParalax - currentParalax)
 
-    // Choose which bg to translate
-    let translate = bgState.transitionProgress !== 0 ? translateFrontBg : translateBackBg
-
-
     // Layers
     const frontLayer = pages[currentPage].layers
     const targetLayer = pages[targetPage].layers
@@ -289,10 +271,11 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
     // Choose which layers to update
     let updateLayers = bgState.transitionProgress !== 0 ? updateFrontBg : updateBackBg
 
-    // Animation handle
+    // Animation
     let transitionProgress = 0
     let transitionTimer = 0
 
+    // Animation timer
     const startTime = new Date()
     const deltaTime = 500
 
@@ -302,28 +285,15 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
             // Attach scroll event to page change
             attachScrollEvent()
 
-            // Clear interval
-            window.clearInterval(transitionTimer)
-            transitionTimer = undefined
-
             // cancel animation frame
             cancelAnimationFrame(rafId)
 
+            // update layers to final paralax
             updateLayers(100, pages, currentPage, targetPage)
         } else {
             ////// Continue scrolling
             updateLayers(transitionProgress, pages, currentPage, targetPage)
 
-            // Call background controls
-            let x
-            if (sign > 0) {
-                x = currentParalax + transitionProgress / 100 * deltaParalax
-                translate(x, deltaParalax)
-
-            } else {
-                x = targetParalax + (1 - transitionProgress / 100) * deltaParalax
-                translate(x, deltaParalax)
-            }
 
             // Increment transition progress
             transitionProgress = (new Date() - startTime) / deltaTime * 100
