@@ -1,27 +1,10 @@
-import React, { Component } from 'react';
-import { connect }from 'react-redux';
-import './App.css';
-import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
-import About from './components/About/About.jsx'
-import Home from './components/Home/Home.jsx'
-import Footer from './components/Footer/Footer.jsx'
-import Line from './components/Line/Line.jsx'
-import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
-import { INTRO_FINISHED } from './constants.js'
-import Sidebar from './components/Sidebar/Sidebar.jsx'
-import { styles } from './constants.js'
+import React from 'react'
+import { connect }from 'react-redux'
+import './App.css'
 import './router.css'
 
 import Presentation from './components/pages/Pages.jsx'
-
-import { AnimatedSwitch } from 'react-router-transition/lib/react-router-transition'
-
-const constants = { styles }
-
-const reduxStatePropTypes = {
-  routing: PropTypes.object,
-}
+import Line from './components/Line/Line.jsx'
 
 const mapStateToProps = function(state) {
 	return {
@@ -29,22 +12,21 @@ const mapStateToProps = function(state) {
   }
 }
 
-const reduxDispatchPropTypes = {
-}
-
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function() {
 	return {
   }
 }
 
-const Router = props => {
+const Router = () => {
 
     return (
         <Line
-            lines={ [<Presentation />, '', ''] }
+            comp={ <Presentation /> }
         />
     )
 }
+
+
 
 export default connect(
     mapStateToProps,
