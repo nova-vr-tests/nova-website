@@ -7,7 +7,7 @@
     "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
       jsx: true,
@@ -18,7 +18,7 @@
     "no-console": "off",
     "strict": ["error", "global"],
     "curly": "warn", 
-    "semi": 0,
+    "semi": [2, "never"],
     "react/prop-types": "off",
     "react/display-name": "off"
   },
