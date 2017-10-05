@@ -230,6 +230,7 @@ const SidebarSection = props => {
                 borderTop: props.themeStyles.menuBorder,
                 display: 'flex',
                 width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
+                minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
             },
             title: {
                 display: 'flex',
