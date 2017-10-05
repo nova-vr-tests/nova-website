@@ -1,22 +1,15 @@
-import React, { Component } from 'react';
-import { connect }from 'react-redux';
-import './App.css';
-import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
-import About from './components/About/About.jsx'
-import Home from './components/Home/Home.jsx'
+import React, { Component } from 'react'
+import { connect }from 'react-redux'
+import './App.css'
+import PropTypes from 'prop-types'
 import Footer from './components/Footer/Footer.jsx'
-import Line from './components/Line/Line.jsx'
-import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 import { INTRO_FINISHED } from './constants.js'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
-import { styles } from './constants.js'
 import NovaRouter from './router.jsx'
 import Bg from './components/Bg/Bg.jsx'
 import { updateLinePosition } from './reducer/actions/App.js'
 import Header from './components/Header/Header.jsx'
 
-const constants = { styles }
 
 const apiTest = async () => {
   const r = await fetch("/api/businessprops/")
@@ -84,9 +77,6 @@ class App extends Component {
 
     componentDidMount() {
         apiTest()
-    }
-
-    componentWillReceiveProps(newProps, newState) {
     }
 
     render() {
