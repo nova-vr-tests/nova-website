@@ -244,7 +244,7 @@ class Presentation extends React.Component {
         super(props)
 
         this.state = {
-            currentPage: 0,
+            currentPage: this.pathnameToSlideNumber(this.props.routing.location.pathname),
         }
 
         this.eventCounter = 0
@@ -258,6 +258,7 @@ class Presentation extends React.Component {
         this.isLastPage = this.isLastPage.bind(this)
         this.pathnameToSlideNumber = this.pathnameToSlideNumber.bind(this)
         this.goToPage = this.goToPage.bind(this)
+        this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
     }
 
     componentDidMount() {
@@ -279,8 +280,12 @@ class Presentation extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const currentPathname = this.props.routing.location.pathname
         const nextPathname = nextProps.routing.location.pathname
+        this.updateSlideFromUrl(nextPathname)
+    }
+
+    updateSlideFromUrl(nextPathname) {
+        const currentPathname = this.props.routing.location.pathname
 
         if(currentPathname !== nextPathname) {
             const nextSlide = this.pathnameToSlideNumber(nextPathname)
