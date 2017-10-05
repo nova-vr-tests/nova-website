@@ -200,7 +200,6 @@ const SidebarSection = props => {
     const unitHeight = constants.styles.unitHeight
     const unitWidth = constants.styles.unitWidth
 
-
     const styles = {
         viewWrapper: {
             overflow: 'hidden',
@@ -234,10 +233,10 @@ const SidebarSection = props => {
                 height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
-                borderTop: '1px solid rgba(255, 255, 255, 0.3)',
+                borderTop: props.themeStyles.menuBorder,
             },
             titleActive: {
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                backgroundColor: props.themeStyles.menuTitleActive,
             },
             opened: {
                 maxHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ' + 3 * ' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
@@ -328,6 +327,7 @@ const SidebarDumb = props => {
             overflow: 'hidden',
             transform: 'translateX(calc(-' + sidebarWidth + '))',
             opacity: 0,
+            color: props.themeStyles.menuFontColor,
         },
         logo: {
             height: '10rem',
@@ -353,7 +353,7 @@ const SidebarDumb = props => {
             left: 0,
             height: '100vh',
             minWidth: 'calc(' + sidebarWidth + ')',
-            borderRight: '1px solid rgba(255, 255, 255, 0.6)',
+            borderRight: props.themeStyles.fatMenuBorder,
             pointerEvents: 'none',
         }
     }
@@ -366,7 +366,7 @@ const SidebarDumb = props => {
         } }>
             <div style={ styles.sectionsWrapper }>
                 { parseSections(props.links) }
-                <div style={ { borderBottom: '1px solid rgba(255, 255, 255, 0.3)', maxWidth: 'calc(' + sidebarWidth + ')'} }>
+                <div style={ { borderBottom: props.themeStyles.menuBorder, maxWidth: 'calc(' + sidebarWidth + ')'} }>
                 </div>
             </div>
             <div style={ styles.borderDiv }>
@@ -388,6 +388,7 @@ const sidebarState = function(state) {
       linePosition: state.appReducer.linePosition,
       headerIntersection: state.headerReducer.sidebarIntersection,
       routing: state.routing,
+      appTheme: state.appReducer.appTheme,
     }
 }
 
@@ -430,6 +431,7 @@ class Sidebar extends Component {
 
         return <SidebarDumb
             { ...this.props }
+            themeStyles={ constants.styles.themes[this.props.appTheme] }
             dispatch={ dispatch }
             links={ this.state.links } />
     }

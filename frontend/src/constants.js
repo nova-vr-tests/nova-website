@@ -8,6 +8,10 @@ const FOOTER_FINAL = 4
 const INTRO_FINISHED = 5
 
 const styles = {
+    themeTypes: {
+        defaultTheme: 'default',
+        inverseTheme: 'inverse',
+    },
     unitHeight: 100/24 + 'vh',
     unitWidth: '60px',
     unitHeightJs: 100 / 24,  // vh
@@ -25,7 +29,30 @@ const styles = {
             type: ' linear',
         },
     },
+    themes: {
+        default: {
+            lineBgColor: 'rgba(255, 255, 255, 0.1)',
+            menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
+            fatMenuBorder: '1px solid rgba(255, 255, 255, 0.6)',
+            menuTitleActive: 'rgba(0, 0, 0, 0.6)',
+            menuFontColor: '#FFF',
+            footerBgColor: 'rgba(255, 255, 255, 1)',
+            titleColor: 'white',
+            fontColor: '#FFF',
+        },
+        inverse: {
+            lineBgColor: 'rgba(0, 0, 0, 0.1)',
+            menuBorder: '1px solid rgba(0, 0, 0, 0.3)',
+            fatMenuBorder: '1px solid rgba(0, 0, 0, 0.6)',
+            menuTitleActive: 'rgba(255, 255, 255, 0.6)',
+            menuFontColor: '#333',
+            footerBgColor: 'rgba(0, 0, 0, 0.6)',
+            titleColor: 'black',
+            fontColor: '#333',
+        }
+    }
 }
+
 
 export {
     LOGO_FRAME1,

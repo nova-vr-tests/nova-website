@@ -15,6 +15,7 @@ const mapStateToProps = function(state) {
     return {
         introKeyframe: state.appReducer.introKeyframe,
         isSidebarOpened: state.sidebarReducer.isSidebarOpened,
+        appTheme: state.appReducer.appTheme,
     }
 }
 
@@ -32,7 +33,12 @@ const FooterDumb = props => {
     const width = height
 
 
+    const theme = appStyles.themes[props.appTheme]
+
     const styles = {
+        wrapper: {
+            backgroundColor: theme.footerBgColor,
+        },
         toggleSidebarButton: {
             position: 'absolute',
             height,
@@ -50,7 +56,9 @@ const FooterDumb = props => {
 
     return (
         <div className="footer--wrapper">
-            <div className={
+            <div
+                style={ styles.wrapper }
+                className={
             "footer-background "
             + (props.introKeyframe <= FOOTER_FINAL ? " final-position " : "init-position")
             }>

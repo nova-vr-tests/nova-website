@@ -20,8 +20,11 @@ import {
     H2,
 } from '../pages/UI.jsx'
 
+import { styles as appStyles } from '../../constants.js'
+
 const mapStateToProps = state => ({
     routing: state.routing,
+    appTheme: state.appReducer.appTheme,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -197,14 +200,18 @@ class SlideTransition extends React.Component {
             H2: this.translateTitle(currentH2, targetH2, sign),
         }
 
+        const theme = appStyles.themes[this.props.appTheme]
+
         return (
-            <div className='slide-transition--wrapper'>
+            <div className='slide-transition--wrapper' style={{ color: theme.fontColor }}>
                 <div className='current-slide--wrapper' style={ currentSlideStyle }>
-                    <H1 style={ translates.H1 }>{ currentH1 }</H1>
-                    <H2 style={ translates.H2 }>{ currentH2 }</H2>
+                    <H1 style={ { ...translates.H1, ...{ color: theme.titleColor } } }>{ currentH1 }</H1>
+                    <H2 style={ { ...translates.H2, ...{ color: theme.titleColor } } }>{ currentH2 }</H2>
                     <CurrentSlide { ...this.props } />
                 </div>
                 <div className='target-slide--wrapper' style={ targetSlideStyle }>
+                    <H1 style={ { ...translates.H1, ...{ color: theme.titleColor } } }>{ targetH1 }</H1>
+                    <H2 style={ { ...translates.H2, ...{ color: theme.titleColor } } }>{ targetH2 }</H2>
                     <H1 style={ translates.H1 }>{ targetH1 }</H1>
                     <H2 style={ translates.H2 }>{ targetH2 }</H2>
                     <TargetSlide { ...this.props } />

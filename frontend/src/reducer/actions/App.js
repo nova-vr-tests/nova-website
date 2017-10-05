@@ -4,8 +4,13 @@ import {
     TOGGLE_SIDEBAR,
     UPDATE_LINE_POSITION,
     UPDATE_BG,
+    UPDATE_THEME,
 } from '../App'
 
+const updateAppTheme = appTheme => ({
+    type: UPDATE_THEME,
+    appTheme,
+})
 
 const updateBg = bgUrl => ({
     type: UPDATE_BG,
@@ -34,4 +39,5 @@ export {
     toggleSidebar,
     updateLinePosition,
     updateBg,
+    updateAppTheme,
 }

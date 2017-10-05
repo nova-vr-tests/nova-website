@@ -7,6 +7,7 @@ const constants = { styles }
 const mapStateToProps = function(state) {
 	return {
       linePosition: state.appReducer.linePosition,
+      appTheme: state.appReducer.appTheme,
   }
 }
 
@@ -17,6 +18,8 @@ const mapDispatchToProps = function() {
 
 
 const LineDumb = props => {
+    const theme = constants.styles.themes[props.appTheme]
+
     const styles = {
         wrapper: {
             display: 'flex',
@@ -36,7 +39,7 @@ const LineDumb = props => {
                 display: 'flex',
                 flex: 1,
                 paddingLeft: '25rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                backgroundColor: theme.lineBgColor,
                 opacity: 0,
                 transition: 'opacity ' + constants.styles.sidebar.transition.length + constants.styles.sidebar.transition.type,
             },
@@ -72,6 +75,7 @@ class Line extends Component {
   render() {
       return (
         <LineDumb
+            { ...this.props }
             comp={ this.props.comp }
             linePosition={ this.props.linePosition } >
           </LineDumb>
