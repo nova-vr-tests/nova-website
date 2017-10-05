@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect }from 'react-redux'
-import defaultBg from '../img/default.jpg'
 
 const mapStateToProps = function(state) {
 	return {
@@ -15,7 +14,7 @@ const mapStateToProps = function(state) {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function() {
 	return {
   }
 }
@@ -87,26 +86,17 @@ LayerAssembly.defaultProps = {
 
 const BgDumb = props => {
 
-    const getBg = bgUrl => bgUrl === '' ? defaultBg : bgUrl
-
-    const headerHeight = 200 / 24
-    const footerHeight = headerHeight
 
     const lineTopFactor = (9 + 2 * props.linePosition) / 24 * 100
     const lineTop = lineTopFactor + 'vh'
     const lineHeightFactor = 4 * 100 / 24
     const lineHeight = lineHeightFactor + 'vh'
-    const pageHeight = document.documentElement.clientHeight
     const progress = props.slideTransitionProgress
-    const vh = pageHeight / 100
     const heightBottomFactor = 100 - (lineTopFactor + lineHeightFactor)
     const heightBottom = heightBottomFactor + 'vh'
 
     const transformTop = 'calc(-' + progress + ' * ' + lineTop + ')'
     const transformBottom = 'calc(' + progress + ' * ' + heightBottom + ')'
-
-    const paralaxBgFront = props.frontBg.paralax + 'px'
-    const paralaxBgBack = props.backBg.paralax + 'px'
 
     const styles = {
         wrapper: {
@@ -152,24 +142,6 @@ const BgDumb = props => {
             position: 'absolute',
         }
     }
-
-    /**
-
-    const frontLayers = [
-        {
-            imgUrl: getBg(props.frontBg.url),
-            paralax: paralaxBgFront,
-        },
-    ]
-
-    const backLayers = [
-        {
-            imgUrl: getBg(props.backBg.url),
-            paralax: paralaxBgBack,
-        },
-    ]
-
-    */
 
     return (
         <div style={ styles.wrapper } className="bar">

@@ -103,11 +103,10 @@ class Header extends React.Component {
         const vh = document.documentElement.clientHeight / 100
         const vw = document.documentElement.clientWidth / 100
         const { radius, centerX, centerY } = styleConstants
-        const { unitHeightJs, unitWidthJs } = appStyles
+        const { unitWidthJs } = appStyles
 
         // unite conversions
         const unitWidth = unitWidthJs
-        const unitHeight = unitHeightJs * vh
         const r = radius * vh
         const Cx = centerX * vw
         const Cy = centerY * vh
@@ -129,7 +128,7 @@ class Header extends React.Component {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
 )(Header)
 
 export {

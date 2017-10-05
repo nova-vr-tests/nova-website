@@ -116,14 +116,6 @@ class SlideTransition extends React.Component {
     }
 
     getOpacityStyles() {
-        return this.getTranslationStyles()
-
-        const currentSlide = {
-        }
-        const targetSlide = {
-            position: 'absolute',
-        }
-
         return {
             currentSlide: {
                 opacity: 1 - this.state.transitionProgress,
@@ -137,12 +129,6 @@ class SlideTransition extends React.Component {
     }
 
     getTranslationStyles() {
-        const currentSlide = {
-        }
-        const targetSlide = {
-            position: 'absolute',
-        }
-
         let currentSlideTransform = 'translateX(-' + this.state.transitionProgress * 100 + 'vw)'
         let targetSlideTransform = 'translateX(calc(100vw - ' + this.state.transitionProgress * 100 + 'vw))'
         if(this.state.transitionDirection < 0) {
@@ -194,10 +180,8 @@ class SlideTransition extends React.Component {
     }
 
     render() {
-        const { pages, currentPage } = this.props
-
-        const currentSlideStyle = this.getOpacityStyles().currentSlide
-        const targetSlideStyle = this.getOpacityStyles().targetSlide
+        const currentSlideStyle = this.getTranslationStyles().currentSlide
+        const targetSlideStyle = this.getTranslationStyles().targetSlide
 
         const CurrentSlide = this.props.pages[this.state.currentPage].comp
         const TargetSlide = this.props.pages[this.state.targetPage].comp
@@ -233,9 +217,6 @@ class SlideTransition extends React.Component {
 
 
 const PresentationDumb = props => {
-    let currentPage = props.currentPage < 0 ? 0 : props.currentPage
-    currentPage = currentPage > props.pages.length - 1 ? props.pages.length - 1 : currentPage
-
     return (
         <SlideTransition { ...props } />
     )
@@ -429,13 +410,12 @@ class Presentation extends React.Component {
     onScroll(e) {
         const sign = e.deltaY
 
-        const totalPages = this.props.pages.length
-        const { currentPage } = this.state
 
-        if(sign > 0)
+        if(sign > 0) {
             this.goToNextPage()
-        else if(sign < 0)
+        } else if(sign < 0) {
             this.goToPreviousPage()
+        }
     }
 
 

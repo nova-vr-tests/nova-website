@@ -1,11 +1,5 @@
 import {
-    updateFrontBgUrl,
-    updateFrontBgStyle,
-    updateBackBgUrl,
-    updateBackBgStyle,
     updateTransitionProgress,
-    updateFrontBgParalax,
-    updateBackBgParalax,
     updateFrontLayers,
     updateBackLayers,
     updateCacheLayers,

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect }from 'react-redux'
 import { push } from 'react-router-redux'
 import './styles/Home.css'
-import decoration from '../img/home/decoration1.jpg'
 import { styles } from '../../constants.js'
 
 const constants = { styles }

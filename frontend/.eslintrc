@@ -18,6 +18,8 @@
     "no-console": "off",
     "strict": ["error", "global"],
     "curly": "warn", 
+    "react/prop-types": "off",
+    "semi": 0
   },
   "plugins": [
     "react"

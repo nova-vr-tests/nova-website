@@ -1,15 +1,8 @@
 import React from 'react'
 
-import {
-    P,
-    H1,
-    H2,
-    PageWrapper,
-} from './UI.jsx'
 
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
-import bg3 from '../img/design/3.png'
 
 import designIntro from '../img/design/intro.png'
 import worldLayer1 from '../img/design/world-layer1.png'

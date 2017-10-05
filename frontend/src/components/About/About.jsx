@@ -7,7 +7,7 @@ import './styles/About.css';
 const reduxStatePropTypes = {
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function() {
 	return {
   }
 }

@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateLinePosition, updateBg } from '../../reducer/actions/App.js'
+import { updateBg } from '../../reducer/actions/App.js'
 
 
 const mapStateToProps = function(state) {
-	  return {
+    return {
         linePosition: state.appReducer.linePosition,
     }
 }
 
 const mapDispatchToProps = function(dispatch) {
-	  return {
+    return {
         updateBg: bgUrl => dispatch(updateBg(bgUrl)),
     }
 }
