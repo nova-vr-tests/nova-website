@@ -359,6 +359,7 @@ const World = [
         content: () => 'XR marks a new era of exploration. When we first stepped into the virtual world it was open space - a dream in the making.',
         path: '/world',
         bgUrl: worldLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: worldLayer1,
@@ -378,6 +379,7 @@ const World = [
         content: () => 'We began to build. The potential was endless. We can build beyond physical world constraints.',
         path: '/world',
         bgUrl: worldLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: worldLayer1,
@@ -397,6 +399,7 @@ const World = [
         content: () => 'We began to build. The potential was endless.We can build beyond physical world constraints.',
         path: '/world',
         bgUrl: worldLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: worldLayer1,

@@ -11,6 +11,7 @@ const styles = {
     themeTypes: {
         defaultTheme: 'default',
         inverseTheme: 'inverse',
+        noFooterTheme: 'no-footer',
     },
     unitHeight: 100/24 + 'vh',
     unitWidth: '60px',
@@ -31,30 +32,35 @@ const styles = {
             type: ' linear',
         },
     },
-    themes: {
-        default: {
-            lineBgColor: 'rgba(255, 255, 255, 0.1)',
-            menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
-            fatMenuBorder: '1px solid rgba(255, 255, 255, 0.6)',
-            menuTitleActive: 'rgba(0, 0, 0, 0.6)',
-            menuFontColor: '#FFF',
-            footerBgColor: 'rgba(255, 255, 255, 1)',
-            titleColor: 'white',
-            fontColor: '#FFF',
-        },
-        inverse: {
-            lineBgColor: 'rgba(0, 0, 0, 0.1)',
-            menuBorder: '1px solid rgba(0, 0, 0, 0.3)',
-            fatMenuBorder: '1px solid rgba(0, 0, 0, 0.6)',
-            menuTitleActive: 'rgba(255, 255, 255, 0.6)',
-            menuFontColor: '#333',
-            footerBgColor: 'rgba(0, 0, 0, 0.6)',
-            titleColor: 'black',
-            fontColor: '#333',
-        }
-    }
+    themes: {},
 }
 
+styles.themes[styles.themeTypes.defaultTheme] = {
+    lineBgColor: 'rgba(255, 255, 255, 0.1)',
+    menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
+    fatMenuBorder: '1px solid rgba(255, 255, 255, 0.6)',
+    menuTitleActive: 'rgba(0, 0, 0, 0.6)',
+    menuFontColor: '#FFF',
+    footerBgColor: 'rgba(255, 255, 255, 1)',
+    titleColor: 'white',
+    fontColor: '#FFF',
+},
+
+styles.themes[styles.themeTypes.inverseTheme] = {
+    lineBgColor: 'rgba(0, 0, 0, 0.1)',
+    menuBorder: '1px solid rgba(0, 0, 0, 0.3)',
+    fatMenuBorder: '1px solid rgba(0, 0, 0, 0.6)',
+    menuTitleActive: 'rgba(255, 255, 255, 0.6)',
+    menuFontColor: '#333',
+    footerBgColor: 'rgba(0, 0, 0, 0.6)',
+    titleColor: 'black',
+    fontColor: '#333',
+}
+
+styles.themes[styles.themeTypes.noFooterTheme] = {
+    ...styles.themes[styles.themeTypes.defaultTheme],
+    footerBgColor: 'rgba(130, 130, 130, 0)'
+}
 
 export {
     LOGO_FRAME1,
