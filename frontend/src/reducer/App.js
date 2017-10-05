@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
   case UPDATE_THEME:
       return {
           ...state,
-          appTheme: action.theme
+          appTheme: action.appTheme
       }
   case UPDATE_BG:
       return {

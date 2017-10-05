@@ -11,7 +11,10 @@ import {
     updateTransitionProgress,
 } from '../../reducer/actions/Bg.js'
 
-import { updateLinePosition } from '../../reducer/actions/App.js'
+import {
+    updateLinePosition,
+    updateAppTheme,
+} from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
 
@@ -36,6 +39,7 @@ const mapDispatchToProps = dispatch => ({
     updateBackLayers: l => dispatch(updateBackLayers(l)),
     goTo: url => dispatch(push(url)),
     updateLinePosition: position => dispatch(updateLinePosition(position)),
+    updateAppTheme: appTheme => dispatch(updateAppTheme(appTheme)),
 })
 
 class SlideTransition extends React.Component {
@@ -238,6 +242,7 @@ class Presentation extends React.Component {
         }
 
         this.props.updateBackLayers(this.props.pages[this.state.currentPage].layers)
+        this.updateAppTheme(this.state.currentPage)
 
         this.eventCounter = 0
 
@@ -264,7 +269,13 @@ class Presentation extends React.Component {
         this.detachScrollEvent()
     }
 
-    componentWillUpdate() {
+    componentWillUpdate(nextProps, nextState) {
+        // update app theme on current page state update
+        this.updateAppTheme(nextState.currentPage)
+    }
+
+    updateAppTheme(currentPage) {
+        this.props.updateAppTheme(this.props.pages[currentPage].theme)
     }
 
     pathnameToSlideNumber(pathname) {

@@ -11,6 +11,8 @@ import {
     PageWrapper,
 } from './UI.jsx'
 
+import { styles as appStyles } from '../../constants.js'
+
 
 
 const category1 = {
@@ -104,7 +106,16 @@ const makeMenu = (section, i) => {
 */
 const makePresentationSlide = (slide, i, slides) => {
     const Text = slide.content
-    const { bgUrl, path, paralax, linePosition, layers, h1, h2 } = slide
+    const {
+        bgUrl,
+        path,
+        paralax,
+        linePosition,
+        layers,
+        h1,
+        h2,
+        theme,
+    } = slide
 
     const comp = () => (
         <PageWrapper>
@@ -158,6 +169,7 @@ return {
         h2,
         linePosition,
         layers,
+        theme: theme ? theme : appStyles.themeTypes.defaultTheme,
         transitions: {
             nextSlide: {
                 bg: nextSlideTransition,
