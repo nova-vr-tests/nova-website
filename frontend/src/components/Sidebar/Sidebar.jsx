@@ -116,7 +116,7 @@ const SidebarSubSection = props => {
     } else {
         // Return sub section as link
         return <div
-                   className="sidebar-subsection--hover"
+                   className={ "sidebar-subsection--hover " + props.appTheme }
                    onClick={ () => goTo(subSection.paths[0]) }
                    style={ styles.subSection.link }>
                    { subSection.title }
