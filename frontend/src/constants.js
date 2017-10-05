@@ -16,6 +16,8 @@ const styles = {
     unitWidth: '60px',
     unitHeightJs: 100 / 24,  // vh
     unitWidthJs: 60,   // px
+    slideTransitionTime: 500, // ms
+    slideTransitionFunc: 'linear',
     sidebar: {
         widthFactor: 3,
         sectionHeightFactor: 2,

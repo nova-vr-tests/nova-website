@@ -225,6 +225,11 @@ const SidebarSection = props => {
                       + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight
                       + ')',
             },
+            titleWrapper: {
+                transition: 'border ' + constants.styles.slideTransitionTime / 1000 + 's ' + constants.styles.slideTransitionFunc,
+                borderTop: props.themeStyles.menuBorder,
+                display: 'flex',
+            },
             title: {
                 display: 'flex',
                 justifyContent: 'center',
@@ -233,7 +238,6 @@ const SidebarSection = props => {
                 height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
-                borderTop: props.themeStyles.menuBorder,
             },
             titleActive: {
                 backgroundColor: props.themeStyles.menuTitleActive,
@@ -260,10 +264,12 @@ const SidebarSection = props => {
             onMouseLeave={ () => props.dispatch.toggleSidebarSection(props.id.section) }
             style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
             <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
-                <div
-                    style={ { ...styles.section.title, ...(props.isOpened ? styles.section.titleActive : {})} }
-                    onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
-                    { section.title }
+                <div style={ styles.section.titleWrapper }>
+                    <div
+                        style={ { ...styles.section.title, ...(props.isOpened ? styles.section.titleActive : {})} }
+                        onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
+                        { section.title }
+                    </div>
                 </div>
                 <div style={ styles.subSections.wrapper }>
                     { parseSection(section) }
@@ -355,8 +361,11 @@ const SidebarDumb = props => {
             minWidth: 'calc(' + sidebarWidth + ')',
             borderRight: props.themeStyles.fatMenuBorder,
             pointerEvents: 'none',
+            transition: 'border ' + constants.styles.slideTransitionTime / 1000 + 's ' + constants.styles.slideTransitionFunc,
         }
     }
+
+    const borderTransition = 'border ' + constants.styles.slideTransitionTime / 1000 + 's ' + constants.styles.slideTransitionFunc
 
     return (
         <div style={ {
@@ -366,7 +375,11 @@ const SidebarDumb = props => {
         } }>
             <div style={ styles.sectionsWrapper }>
                 { parseSections(props.links) }
-                <div style={ { borderBottom: props.themeStyles.menuBorder, maxWidth: 'calc(' + sidebarWidth + ')'} }>
+                <div style={ {
+                        borderBottom: props.themeStyles.menuBorder,
+                        maxWidth: 'calc(' + sidebarWidth + ')',
+                        transition: borderTransition
+                } }>
                 </div>
             </div>
             <div style={ styles.borderDiv }>

@@ -205,17 +205,18 @@ class SlideTransition extends React.Component {
         }
 
         const theme = appStyles.themes[this.props.appTheme]
+        const fontColorTransition = 'color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc
 
         return (
             <div className='slide-transition--wrapper' style={{ color: theme.fontColor }}>
                 <div className='current-slide--wrapper' style={ currentSlideStyle }>
-                    <H1 style={ { ...translates.H1, ...{ color: theme.titleColor } } }>{ currentH1 }</H1>
-                    <H2 style={ { ...translates.H2, ...{ color: theme.titleColor } } }>{ currentH2 }</H2>
+                    <H1 style={ { ...translates.H1, ...{ color: theme.titleColor, transition: fontColorTransition } } }>{ currentH1 }</H1>
+                    <H2 style={ { ...translates.H2, ...{ color: theme.titleColor, transition: fontColorTransition } } }>{ currentH2 }</H2>
                     <CurrentSlide { ...this.props } />
                 </div>
                 <div className='target-slide--wrapper' style={ targetSlideStyle }>
-                    <H1 style={ { ...translates.H1, ...{ color: theme.titleColor } } }>{ targetH1 }</H1>
-                    <H2 style={ { ...translates.H2, ...{ color: theme.titleColor } } }>{ targetH2 }</H2>
+                    <H1 style={ { ...translates.H1, ...{ color: theme.titleColor, fontColorTransition } } }>{ targetH1 }</H1>
+                    <H2 style={ { ...translates.H2, ...{ color: theme.titleColor, fontColorTransition } } }>{ targetH2 }</H2>
                     <H1 style={ translates.H1 }>{ targetH1 }</H1>
                     <H2 style={ translates.H2 }>{ targetH2 }</H2>
                     <TargetSlide { ...this.props } />

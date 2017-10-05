@@ -38,6 +38,7 @@ const FooterDumb = props => {
     const styles = {
         wrapper: {
             backgroundColor: theme.footerBgColor,
+            transition: 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc,
         },
         toggleSidebarButton: {
             position: 'absolute',
