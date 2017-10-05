@@ -257,6 +257,7 @@ class Presentation extends React.Component {
         this.isFirstPage = this.isFirstPage.bind(this)
         this.isLastPage = this.isLastPage.bind(this)
         this.pathnameToSlideNumber = this.pathnameToSlideNumber.bind(this)
+        this.goToPage = this.goToPage.bind(this)
     }
 
     componentDidMount() {
@@ -284,7 +285,32 @@ class Presentation extends React.Component {
         if(currentPathname !== nextPathname) {
             const nextSlide = this.pathnameToSlideNumber(nextPathname)
 
-            this.setState({ currentPage: nextSlide })
+            this.goToPage(nextSlide)
+        }
+    }
+
+    goToPage(targetPage) {
+        const { currentPage } = this.state
+        const { pages } = this.props
+
+        if(targetPage !== currentPage) {
+            const sign = targetPage > currentPage ? 1 : -1
+            const _pages = [pages[currentPage], pages[targetPage]]
+            const pages2 = sign < 0 ? _pages.reverse() : _pages
+
+            const transitionParams = {
+                sign,
+                pages: pages2,
+                currentPage: sign > 0 ? 0 : 1,
+                attachScrollEvent: this.attachScrollEvent,
+                detachScrollEvent: this.detachScrollEvent,
+            }
+
+            const transitionType = transitions.types.BG_SPLIT
+
+            transitions.startTransition(transitionType, transitionParams)
+
+            this.setState({ currentPage: targetPage })
         }
     }
 
