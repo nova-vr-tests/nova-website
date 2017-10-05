@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect }from 'react-redux'
 import { push } from 'react-router-redux'
 import './styles/Sidebar.css'
@@ -9,8 +8,7 @@ import {
     toggleSidebarSubSection
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
-import { styleConstants as headerStyles } from '../Header/Header.jsx'
-import Pages, { routeUrls, menuLinks, menuInput } from '../pages/Pages.jsx'
+import { menuInput } from '../pages/Pages.jsx'
 
 const constants = { styles }
 
@@ -18,7 +16,7 @@ const constants = { styles }
 const SidebarSubSection = props => {
     const { subSection } = props
     const _subSubSections = subSection.links
-    const subSubSections = _subSubSections.slice(1, _subSubSections.length) 
+    const subSubSections = _subSubSections.slice(1, _subSubSections.length)
     const _subSubSectionsPaths = subSection.paths
     const subSubSectionsPaths = _subSubSectionsPaths.slice(1, _subSubSectionsPaths.length)
 
@@ -88,7 +86,6 @@ const SidebarSubSection = props => {
         // Loop subsub sections
         for(let i = 0; i < subSubSections.length; i++) {
             const subSubSection = subSubSections[i]
-            const href = routeUrls[props.id.section][props.id.subSection][0] + routeUrls[props.id.section][props.id.subSection][i + 1]
             components[i] = <div
                                 className="sidebar-subsection--hover"
                                 onClick={ () => goTo(subSubSectionsPaths[i]) }
@@ -133,7 +130,7 @@ const SidebarSection = props => {
     const components = []
 
 
-    const parseSection = section => {
+    const parseSection = () => {
         // Loop subsections
         for(let i = 0; i < subSections.length; i++) {
             const subSection = subSections[i]
@@ -158,14 +155,16 @@ const SidebarSection = props => {
         if(section < linePosition && linePosition <= 2) {
             if(section === 0) {
                 // line height menu is opened ? => subtract section height from top margin
-                if(linkStates[linePosition].isOpened)
+                if(linkStates[linePosition].isOpened) {
                     marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
+                }
 
-                if(linkStates[section].isOpened)
+                if(linkStates[section].isOpened) {
                     marginTop =
                         marginTop
                         +
                         3 * constants.styles.sidebar.subSectionHeightFactor + ' * ' + constants.styles.unitHeight
+                }
             }
 
             // is there section after between current section and line ?
@@ -191,11 +190,11 @@ const SidebarSection = props => {
 
         }
 
-
-        if(marginTop !== '-')
+        if(marginTop !== '-') {
             return 'calc(' + marginTop + ')'
-        else
+        } else {
             return 0
+        }
     }
 
     const unitHeight = constants.styles.unitHeight
@@ -303,10 +302,14 @@ const SidebarDumb = props => {
 
         let i = 0
 
-        for(let j = 0; j < linkStates.length; j++)
-            for(let k = 0; k < linkStates[j].subSections.length; k++)
-                if(linkStates[j].subSections[k])
+        for(let j = 0; j < linkStates.length; j++) {
+            for(let k = 0; k < linkStates[j].subSections.length; k++) {
+                if(linkStates[j].subSections[k]) {
                     i++
+                }
+            }
+        }
+
 
         return i ? true : false
     }
@@ -420,8 +423,9 @@ class Sidebar extends Component {
             goTo: this.props.goTo,
         }
 
-        if(this.props.linkStates.length === 0)
+        if(this.props.linkStates.length === 0) {
             return <div></div>
+        }
 
 
         return <SidebarDumb
@@ -437,5 +441,5 @@ Sidebar.propTypes = {
 
 export default connect(
     sidebarState,
-    sidebarDispatch,
+    sidebarDispatch
 )(Sidebar)
