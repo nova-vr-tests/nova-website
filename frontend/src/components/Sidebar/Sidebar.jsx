@@ -10,14 +10,17 @@ import {
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
 import { styleConstants as headerStyles } from '../Header/Header.jsx'
-import Pages, { routeUrls } from '../pages/Pages.jsx'
+import Pages, { routeUrls, menuLinks, menuInput } from '../pages/Pages.jsx'
 
 const constants = { styles }
 
 
 const SidebarSubSection = props => {
     const { subSection } = props
-    const subSubSections = subSection.links
+    const _subSubSections = subSection.links
+    const subSubSections = _subSubSections.slice(1, _subSubSections.length)
+    const _subSubSectionsPaths = subSection.paths
+    const subSubSectionsPaths = _subSubSectionsPaths.slice(1, _subSubSectionsPaths.length)
 
 
     const unitHeight = constants.styles.unitHeight
@@ -86,7 +89,7 @@ const SidebarSubSection = props => {
             const href = routeUrls[props.id.section][props.id.subSection][0] + routeUrls[props.id.section][props.id.subSection][i + 1]
             components[i] = <div
                                 className="sidebar-subsection--hover"
-                                onClick={ () => props.dispatch.goTo(href) }
+                                onClick={ () => props.dispatch.goTo(subSubSectionsPaths[i]) }
                                 style={ styles.subSubSection.link }
                                 key={ i }>
                                 { subSubSection }
@@ -399,92 +402,8 @@ class Sidebar extends Component {
     constructor(props) {
         super(props)
 
-        const category1 = {
-            title: "Nova XR",
-            links: [
-                {
-                    title: "Design",
-                    links: [
-                        "World",
-                        "Interface",
-                        "Story",
-                    ],
-                },
-                {
-                    title: "Technology",
-                    links: [
-                        "VR",
-                        "AR",
-                        "Related techs",
-                    ],
-                },
-                {
-                    title: "Business",
-                    links: [
-                        "Influence",
-                        "Revolution",
-                        "Solution",
-                    ],
-                },
-            ],
-        }
 
-        const category2 = {
-            title: "Resources",
-            links: [
-                {
-                    title: "Lab Live",
-                    links: [
-                        "Project 1",
-                        "Project 2",
-                        "Project 3",
-                    ],
-                },
-                {
-                    title: "News Insights",
-                    links: [
-                        "Project 1",
-                        "Project 2",
-                        "Project 3",
-                    ],
-                },
-                {
-                    title: "Educational portal",
-                    links: [
-                        "Project 1",
-                        "Project 2",
-                        "Project 3",
-                    ],
-                },
-            ],
-        }
-
-        const category3 = {
-            title: "Partnership",
-            links: [
-                {
-                    title: "Innovate",
-                    links: [
-                    ],
-                },
-                {
-                    title: "Improve",
-                    links: [
-                    ],
-                },
-                {
-                    title: "Strengthen",
-                    links: [
-                    ],
-                },
-            ],
-        }
-
-        const links = [
-            category1,
-            category2,
-            category3,
-        ]
+        const links = menuInput // menuLinks
 
         this.state = {
             links,

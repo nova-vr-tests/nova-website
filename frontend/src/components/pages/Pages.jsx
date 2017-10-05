@@ -11,10 +11,101 @@ import {
     PageWrapper,
 } from './UI.jsx'
 
+
+
+const category1 = {
+    title: "Nova XR",
+    links: [
+        {
+            title: "Design",
+            links: [
+                "World",
+                "Interface",
+                "Story",
+            ],
+        },
+        {
+            title: "Technology",
+            links: [
+                "VR",
+                "AR",
+                "Related techs",
+            ],
+        },
+        {
+            title: "Business",
+            links: [
+                "Influence",
+                "Revolution",
+                "Solution",
+            ],
+        },
+    ],
+}
+
+const category2 = {
+    title: "Resources",
+    links: [
+        {
+            title: "Lab Live",
+            links: [
+                "Project 1",
+                "Project 2",
+                "Project 3",
+            ],
+        },
+        {
+            title: "News Insights",
+            links: [
+                "Project 1",
+                "Project 2",
+                "Project 3",
+            ],
+        },
+        {
+            title: "Educational portal",
+            links: [
+                "Project 1",
+                "Project 2",
+                "Project 3",
+            ],
+        },
+    ],
+}
+
+const category3 = {
+    title: "Partnership",
+    links: [
+        {
+            title: "Innovate",
+            links: [
+            ],
+        },
+        {
+            title: "Improve",
+            links: [
+            ],
+        },
+        {
+            title: "Strengthen",
+            links: [
+            ],
+        },
+    ],
+}
+
+const menuLinks = [
+    category1,
+    category2,
+    category3,
+]
+
+
+
 /**
    Generate menu links and titles
 */
-const makeMenu = section => {
+const getMenuLinks = section => {
     return section.map(subSection =>
         subSection.map(presentation =>
             presentation[0].path
@@ -22,6 +113,27 @@ const makeMenu = section => {
     )
 }
 
+const makeMenu = (section, i) => {
+    const links = section.map((subsection, j) => {
+        const subLinks = subsection.map(presentation => {
+            return {
+                links: presentation[0].h2,
+                paths: presentation[0].path,
+            }
+        })
+
+        return {
+            title: menuLinks[i].links[j].title,
+            links: subLinks.map(e => e.links),
+            paths: subLinks.map(e => e.paths),
+        }
+    })
+
+    return {
+        title: menuLinks[i].title,
+        links: links,
+    }
+}
 
 /**
    Links slides with appropriate transitions
@@ -128,6 +240,8 @@ const pages = sitePages.map((section, i) =>
 )
 
 const slides = flatten(pages)
+const menuInput = pages.map(makeMenu)
+console.log(menuInput)
 
 const Pages = () => {
     return (
@@ -136,11 +250,12 @@ const Pages = () => {
     )
 }
 
-const routeUrls = sitePages.map(makeMenu)
-console.log(routeUrls)
+const routeUrls = sitePages.map(getMenuLinks)
 
 export default Pages
 
 export {
     routeUrls,
+    menuLinks,
+    menuInput,
 }
