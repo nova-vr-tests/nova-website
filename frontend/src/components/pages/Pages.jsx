@@ -18,27 +18,12 @@ const category1 = {
     links: [
         {
             title: "Design",
-            links: [
-                "World",
-                "Interface",
-                "Story",
-            ],
         },
         {
             title: "Technology",
-            links: [
-                "VR",
-                "AR",
-                "Related techs",
-            ],
         },
         {
             title: "Business",
-            links: [
-                "Influence",
-                "Revolution",
-                "Solution",
-            ],
         },
     ],
 }
@@ -47,28 +32,13 @@ const category2 = {
     title: "Resources",
     links: [
         {
-            title: "Lab Live",
-            links: [
-                "Project 1",
-                "Project 2",
-                "Project 3",
-            ],
+            title: "Educational portal",
         },
         {
             title: "News Insights",
-            links: [
-                "Project 1",
-                "Project 2",
-                "Project 3",
-            ],
         },
         {
-            title: "Educational portal",
-            links: [
-                "Project 1",
-                "Project 2",
-                "Project 3",
-            ],
+            title: "Login",
         },
     ],
 }
@@ -77,19 +47,13 @@ const category3 = {
     title: "Partnership",
     links: [
         {
-            title: "Innovate",
-            links: [
-            ],
+            title: "New Years Eve",
         },
         {
             title: "Improve",
-            links: [
-            ],
         },
         {
             title: "Strengthen",
-            links: [
-            ],
         },
     ],
 }

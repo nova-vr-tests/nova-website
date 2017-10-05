@@ -18,7 +18,7 @@ const constants = { styles }
 const SidebarSubSection = props => {
     const { subSection } = props
     const _subSubSections = subSection.links
-    const subSubSections = _subSubSections.slice(1, _subSubSections.length)
+    const subSubSections = _subSubSections.slice(1, _subSubSections.length) 
     const _subSubSectionsPaths = subSection.paths
     const subSubSectionsPaths = _subSubSectionsPaths.slice(1, _subSubSectionsPaths.length)
 
@@ -118,7 +118,7 @@ const SidebarSubSection = props => {
         // Return sub section as link
         return <div
                    className="sidebar-subsection--hover"
-                   onClick={ () => props.dispatch.goTo(routeUrls[props.id.section][props.id.subSection][0]) }
+                   onClick={ () => props.dispatch.goTo(subSection.paths[0]) }
                    style={ styles.subSection.link }>
                    { subSection.title }
                </div>

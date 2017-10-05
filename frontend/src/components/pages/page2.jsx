@@ -2,10 +2,6 @@ import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
 
-import nyeLayer1 from '../img/partnership/nye/nye-layer1.png'
-import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
-import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
-
 
 /************************************
 
@@ -166,6 +162,7 @@ const News3 = [
         ]
     },
 ]
+
 /************************************
 
     LOGIN
