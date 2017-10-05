@@ -1,12 +1,3 @@
-import React from 'react'
-
-import {
-    P,
-    H1,
-    H2,
-    PageWrapper,
-} from './UI.jsx'
-
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
@@ -31,6 +22,13 @@ const EdPortalIntro = [
         path: '/educational-portal',
         paralax: 0,
         bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -42,6 +40,13 @@ const EdPortal1 = [
         path: '/educational-portal-1',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -54,6 +59,13 @@ const EdPortal2 = [
         path: '/educational-portal-2',
         paralax: 0,
         bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 const EdPortal3 = [
@@ -64,6 +76,13 @@ const EdPortal3 = [
         path: '/educational-portal-3',
         paralax: 0,
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -83,6 +102,13 @@ const NewsIntro = [
         path: '/news-insights',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -95,6 +121,13 @@ const News1 = [
         path: '/news-insights-1',
         paralax: 0,
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -106,6 +139,13 @@ const News2 = [
         path: '/news-insights-2',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -117,84 +157,33 @@ const News3 = [
         path: '/news-insights-3',
         paralax: 0,
         bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 /************************************
 
-    NYE
+    LOGIN
 
 ************************************/
 
 
-const Nye = [
+const Login = [
     {
-        h1: 'Partnership',
-        h2: 'New Year\'s Eve',
-        content: () => '',
-        path: '/nye',
-        bgUrl: nyeLayer1,
+        h1: 'Login',
+        h2: '',
+        content: () => 'Login',
+        path: '/login',
+        bgUrl: bg1,
         layers: [
             {
-                imgUrl: nyeLayer1,
+                imgUrl: bg1,
                 paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Partnership',
-        h2: 'New Year\'s Eve',
-        content: () => '',
-        path: '/nye',
-        bgUrl: nyeLayer1,
-        layers: [
-            {
-                imgUrl: nyeLayer1,
-                paralax: -50,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Partnership',
-        h2: 'New Year\'s Eve',
-        content: () => '',
-        path: '/nye',
-        bgUrl: nyeLayer1,
-        layers: [
-            {
-                imgUrl: nyeLayer1,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -200,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -200,
                 opacity: 1,
             },
         ]
@@ -224,12 +213,12 @@ const newsSlides = [
     News3,
 ]
 
-const nyeSlides = [
-    Nye,
+const loginSlides = [
+    Login,
 ]
 
 export default [
     edSlides,
     newsSlides,
-    nyeSlides,
+    loginSlides,
 ]

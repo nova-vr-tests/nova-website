@@ -1,12 +1,3 @@
-import React from 'react'
-
-import {
-    P,
-    H1,
-    H2,
-    PageWrapper,
-} from './UI.jsx'
-
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
@@ -113,6 +104,13 @@ const PartnershipIntro2 = [
         path: '/partnership-2',
         paralax: 0,
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -124,6 +122,13 @@ const Partnership21 = [
         path: '/partnership-2-1',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -136,6 +141,13 @@ const Partnership22 = [
         path: '/partnership-2-2',
         paralax: 0,
         bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 const Partnership23 = [
@@ -146,6 +158,13 @@ const Partnership23 = [
         path: '/partnership-2-3',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -165,6 +184,13 @@ const PartnershipIntro3 = [
         path: '/partnership-3',
         paralax: 0,
         bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -176,6 +202,13 @@ const Partnership31 = [
         path: '/partnership-3-1',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -188,6 +221,13 @@ const Partnership32 = [
         path: '/partnership-3-2',
         paralax: 0,
         bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 const Partnership33 = [
@@ -198,6 +238,13 @@ const Partnership33 = [
         path: '/partnership-3-3',
         paralax: 0,
         bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
     },
 ]
 
@@ -216,15 +263,15 @@ const nyeSlides = [
     Nye,
 ]
 
-const partnerhip2 = [
+const partnership2 = [
     PartnershipIntro2,
     Partnership21,
     Partnership22,
     Partnership23,
 ]
 
-const partnerhip3 = [
-    PartnershipIntro2,
+const partnership3 = [
+    PartnershipIntro3,
     Partnership31,
     Partnership32,
     Partnership33,
@@ -232,4 +279,6 @@ const partnerhip3 = [
 
 export default [
     nyeSlides,
+    partnership2,
+    partnership3,
 ]

@@ -3,6 +3,7 @@ import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
 import novaXr from './page1.jsx'
+import resources from './page2.jsx'
 import partnership from './page3.jsx'
 
 import {
@@ -105,9 +106,9 @@ const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ?
    - slide transitions
 */
 const sitePages = [
-    partnership,
     novaXr,
-    //resources,
+    resources,
+    partnership,
 ]
 
 /**
