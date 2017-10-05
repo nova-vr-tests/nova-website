@@ -7,6 +7,7 @@ import {
     updateFrontBgStyle,
     updateBackBgUrl,
     updateBackBgStyle,
+    updateBackLayers,
     updateTransitionProgress,
 } from '../../reducer/actions/Bg.js'
 
@@ -29,6 +30,7 @@ const mapDispatchToProps = dispatch => ({
     updateFrontBgStyle: style => dispatch(updateFrontBgStyle(style)),
     updateBackBgStyle: style => dispatch(updateBackBgStyle(style)),
     updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
+    updateBackLayers: l => dispatch(updateBackLayers(l)),
     goTo: url => dispatch(push(url)),
     updateLinePosition: position => dispatch(updateLinePosition(position)),
 })
@@ -247,6 +249,8 @@ class Presentation extends React.Component {
             currentPage: this.pathnameToSlideNumber(this.props.routing.location.pathname),
         }
 
+        this.props.updateBackLayers(this.props.pages[this.state.currentPage].layers)
+
         this.eventCounter = 0
 
         this.onScroll = this.onScroll.bind(this)
@@ -276,6 +280,10 @@ class Presentation extends React.Component {
     }
 
     pathnameToSlideNumber(pathname) {
+        if(pathname === '/') {
+            return 0
+        }
+
         return this.props.pages.map((e, i) => pathname === e.path ? i : -1).filter(e => e >= 0)[0]
     }
 
@@ -288,7 +296,7 @@ class Presentation extends React.Component {
         const currentPathname = this.props.routing.location.pathname
 
         if(currentPathname !== nextPathname) {
-            const nextSlide = this.pathnameToSlideNumber(nextPathname)
+            let nextSlide = this.pathnameToSlideNumber(nextPathname)
 
             this.goToPage(nextSlide)
         }
