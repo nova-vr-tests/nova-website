@@ -1,3 +1,7 @@
 .sidebar-subsection--hover:hover, .sidebar-subsection--active {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+.sidebar-subsection--hover:hover.inverse, .sidebar-subsection--active.inverse {
+    background-color: rgba(5, 5, 5, 0.3);
+}

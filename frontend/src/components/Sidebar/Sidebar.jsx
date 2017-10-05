@@ -87,7 +87,7 @@ const SidebarSubSection = props => {
         for(let i = 0; i < subSubSections.length; i++) {
             const subSubSection = subSubSections[i]
             components[i] = <div
-                                className="sidebar-subsection--hover"
+                                className={ "sidebar-subsection--hover " + props.appTheme }
                                 onClick={ () => goTo(subSubSectionsPaths[i]) }
                                 style={ styles.subSubSection.link }
                                 key={ i }>
@@ -103,7 +103,7 @@ const SidebarSubSection = props => {
                 style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
                     <div
                         style={ styles.subSection.title }
-                        className={ !props.isOpened ? "sidebar-subsection--hover" : "sidebar-subsection--active" }
+                        className={ !props.isOpened ? "sidebar-subsection--hover " + props.appTheme : "sidebar-subsection--active " + props.appTheme }
                         onClick={ () => goTo(subSection.paths[0]) }>
                         { subSection.title }
                     </div>
