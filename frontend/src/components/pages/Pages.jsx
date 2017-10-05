@@ -3,22 +3,17 @@ import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
 import novaXr from './page1.jsx'
-import resources from './page2.jsx'
 import partnership from './page3.jsx'
 
 import {
-    pageWrapper,
-    H1,
-    H2,
     P,
-    Text,
     PageWrapper,
 } from './UI.jsx'
 
 /**
    Generate menu links and titles
 */
-const makeMenu = (section, i, sections) => {
+const makeMenu = section => {
     return section.map(subSection =>
         subSection.map(presentation =>
             presentation[0].path
@@ -34,14 +29,7 @@ const makePresentationSlide = (slide, i, slides) => {
     const Text = slide.content
     const { bgUrl, path, paralax, linePosition, layers, h1, h2 } = slide
 
-    const styles = {
-        h2: {
-            transform: 'none',
-            position: 'absolute',
-            color: 'green'
-        }
-    }
-    const comp = props => (
+    const comp = () => (
         <PageWrapper>
             <P>
                 <Text />
@@ -58,25 +46,29 @@ const makePresentationSlide = (slide, i, slides) => {
         previousSlideTransition = -1
 
         // Check next slide
-        if(bgUrl === slides[i + 1].bgUrl)
+        if(bgUrl === slides[i + 1].bgUrl) {
             nextSlideTransition = transitions.types.BG_PARALAX
+        }
 
     } else if(i === slides.length - 1) {
         // Border conditions
         nextSlideTransition = -1
 
         // Check previous slide
-        if(bgUrl === slides[i - 1].bgUrl)
+        if(bgUrl === slides[i - 1].bgUrl) {
             previousSlideTransition = transitions.types.BG_PARALAX
+        }
 
     } else {
         // Compare next slide bgUrl
-        if(bgUrl === slides[i + 1].bgUrl)
+        if(bgUrl === slides[i + 1].bgUrl) {
             nextSlideTransition = transitions.types.BG_PARALAX
+        }
 
         // Compare previous slide bgUrl
-        if(bgUrl === slides[i - 1].bgUrl)
+        if(bgUrl === slides[i - 1].bgUrl) {
             previousSlideTransition = transitions.types.BG_PARALAX
+        }
 
     }
 
@@ -136,7 +128,7 @@ const pages = sitePages.map((section, i) =>
 
 const slides = flatten(pages)
 
-const Pages = props => {
+const Pages = () => {
     return (
         <Presentation
             pages={ slides.map(makePresentationSlide) } />
