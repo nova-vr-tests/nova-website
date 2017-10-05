@@ -111,7 +111,6 @@ const Interface = [
         content: () => 'Information, volume, color, light, time, space, transparency... In XR, all these perceptions of the human experience are available at all times.',
         path: '/interface',
         bgUrl: interfaceLayer1,
-        theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -464,7 +463,7 @@ const Philosophy = [
         h1: 'Business',
         h2: 'Philosophy',
         content: () => 'TBD',
-        path: '/services',
+        path: '/philosophy',
         bgUrl: philoLayer1,
         layers: [
             {
