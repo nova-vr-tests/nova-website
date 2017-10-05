@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { Route, Switch } from 'react-router-dom'
 
 import {
     updateFrontBgUrl,
@@ -9,8 +8,6 @@ import {
     updateBackBgUrl,
     updateBackBgStyle,
     updateTransitionProgress,
-    updateFrontLayers,
-    updateBackTransitions,
 } from '../../reducer/actions/Bg.js'
 
 import { updateLinePosition } from '../../reducer/actions/App.js'
@@ -237,8 +234,6 @@ const PresentationDumb = props => {
     let currentPage = props.currentPage < 0 ? 0 : props.currentPage
     currentPage = currentPage > props.pages.length - 1 ? props.pages.length - 1 : currentPage
 
-    const Comp = props.pages[currentPage].comp
-
     return (
         <SlideTransition { ...props } />
     )
@@ -261,6 +256,7 @@ class Presentation extends React.Component {
         this.detachScrollEvent = this.detachScrollEvent.bind(this)
         this.isFirstPage = this.isFirstPage.bind(this)
         this.isLastPage = this.isLastPage.bind(this)
+        this.pathnameToSlideNumber = this.pathnameToSlideNumber.bind(this)
     }
 
     componentDidMount() {
@@ -274,10 +270,22 @@ class Presentation extends React.Component {
         this.detachScrollEvent()
     }
 
-    componentWillUpdate(nextProps) {
+    componentWillUpdate() {
     }
 
-    componentWillReceiveProps() {
+    pathnameToSlideNumber(pathname) {
+        return this.props.pages.map((e, i) => pathname === e.path ? i : -1).filter(e => e >= 0)[0]
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const currentPathname = this.props.routing.location.pathname
+        const nextPathname = nextProps.routing.location.pathname
+
+        if(currentPathname !== nextPathname) {
+            const nextSlide = this.pathnameToSlideNumber(nextPathname)
+
+            this.setState({ currentPage: nextSlide })
+        }
     }
 
     /*
