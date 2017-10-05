@@ -696,6 +696,7 @@ const VR = [
         content: () => 'Virtual Reality (VR) is an emerging technology empowering people to dream together. VR let\'s you go places you otherwise could not go. Together we architect new digital worlds while transcending time and space.',
         path: '/vr',
         bgUrl: vrLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: vrLayer1,
@@ -735,6 +736,7 @@ const VR = [
         content: () => 'By putting on goggles and artificially stimulating our senses, our mind accept another version of reality, an entirely man made world.',
         path: '/vr',
         bgUrl: vrLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: vrLayer1,
@@ -774,6 +776,7 @@ const VR = [
         content: () => <span>We can divide VR into two main categories: <br /> 1) High-fidelity: Ideal for creating premium experiences with positional tracking, haptic feedback and deep software integrations. Developing this caliber of content is a multi-year investment and project.</span>,
         path: '/vr',
         bgUrl: vrLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: vrLayer1,
@@ -813,6 +816,7 @@ const VR = [
         content: () => '2) Mobile. Ideal for quick replicas of real-world images, easy to consume, easy to distribute. Mobile VR will be a low-cost and accessible solution.',
         path: '/vr',
         bgUrl: vrLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: vrLayer1,
@@ -852,6 +856,7 @@ const VR = [
         content: () => 'We are entering a new era of media and its standards are still being established.',
         path: '/vr',
         bgUrl: vrLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: vrLayer1,
@@ -891,6 +896,7 @@ const VR = [
         content: () => 'Nova XR helps you stay on the cutting edge of technology, by applying the latest computer sciences to your current strategies.',
         path: '/vr',
         bgUrl: vrLayer1,
+        theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
                 imgUrl: vrLayer1,

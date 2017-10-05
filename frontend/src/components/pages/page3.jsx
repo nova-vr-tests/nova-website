@@ -1,6 +1,7 @@
 import nyeLayer1 from '../img/partnership/nye/nye-layer1.png'
 import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
 import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
+import loginLayer1 from '../img/partnership/login/login-layer1.png'
 
 /************************************
 
@@ -85,6 +86,29 @@ const Nye = [
 ]
 
 
+/************************************
+
+    LOGIN
+
+************************************/
+
+
+const Login = [
+    {
+        h1: 'Login',
+        h2: '',
+        content: () => 'Login',
+        path: '/login',
+        bgUrl: loginLayer1,
+        layers: [
+            {
+                imgUrl: loginLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
 
 /************************************
 
@@ -97,6 +121,11 @@ const nyeSlides = [
     Nye,
 ]
 
+const loginSlides = [
+    Login,
+]
+
 export default [
     nyeSlides,
+    loginSlides,
 ]

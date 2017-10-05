@@ -40,7 +40,7 @@ const category2 = {
             title: "News Insights",
         },
         {
-            title: "Login",
+            title: "Publishing",
         },
     ],
 }
@@ -52,10 +52,10 @@ const category3 = {
             title: "New Years Eve",
         },
         {
-            title: "Improve",
+            title: "Login",
         },
         {
-            title: "Strengthen",
+            title: "TBD",
         },
     ],
 }

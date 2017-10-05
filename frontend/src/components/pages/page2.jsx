@@ -28,12 +28,12 @@ const EdPortalIntro = [
     },
 ]
 
-const EdPortal1 = [
+const Education = [
     {
         h1: 'Educational Portal',
-        h2: 'section 1',
+        h2: 'Education',
         content: () => '',
-        path: '/educational-portal-1',
+        path: '/education',
         paralax: 0,
         bgUrl: bg2,
         layers: [
@@ -47,12 +47,12 @@ const EdPortal1 = [
 ]
 
 
-const EdPortal2 = [
+const Solutions = [
     {
         h1: 'Educational Portal',
-        h2: 'Section 2',
+        h2: 'Solutions',
         content: () => '',
-        path: '/educational-portal-2',
+        path: '/ed-solutions',
         paralax: 0,
         bgUrl: bg3,
         layers: [
@@ -64,12 +64,12 @@ const EdPortal2 = [
         ]
     },
 ]
-const EdPortal3 = [
+const Insights = [
     {
         h1: 'Educational Portal',
-        h2: 'Section 3',
+        h2: 'Insights',
         content: () => '',
-        path: '/educational-portal-3',
+        path: '/ed-insights',
         paralax: 0,
         bgUrl: bg1,
         layers: [
@@ -93,7 +93,7 @@ const EdPortal3 = [
 const NewsIntro = [
     {
         h1: 'News Insights',
-        h2: 'Intro',
+        h2: '',
         content: () => '',
         path: '/news-insights',
         paralax: 0,
@@ -109,12 +109,12 @@ const NewsIntro = [
 ]
 
 
-const News1 = [
+const FeaturedContent = [
     {
         h1: 'News Insights',
-        h2: 'Section 1',
+        h2: 'Featured Content',
         content: () => '',
-        path: '/news-insights-1',
+        path: '/featured-content',
         paralax: 0,
         bgUrl: bg1,
         layers: [
@@ -127,12 +127,12 @@ const News1 = [
     },
 ]
 
-const News2 = [
+const TwitterFeed = [
     {
         h1: 'News Insights',
-        h2: 'Section 2',
+        h2: 'Twitter Feed',
         content: () => '',
-        path: '/news-insights-2',
+        path: '/twitter',
         paralax: 0,
         bgUrl: bg2,
         layers: [
@@ -145,12 +145,12 @@ const News2 = [
     },
 ]
 
-const News3 = [
+const LabLive = [
     {
         h1: 'News Insights',
-        h2: 'Section 3',
+        h2: 'Lab Live',
         content: () => '',
-        path: '/news-insights-3',
+        path: '/lab-live',
         paralax: 0,
         bgUrl: bg3,
         layers: [
@@ -165,17 +165,66 @@ const News3 = [
 
 /************************************
 
-    LOGIN
+    PUBLISHING
 
 ************************************/
 
 
-const Login = [
+const PublishingIntro = [
     {
-        h1: 'Login',
+        h1: 'Publishing',
         h2: '',
-        content: () => 'Login',
-        path: '/login',
+        content: () => 'TBD',
+        path: '/publishing',
+        bgUrl: bg1,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+
+const Design = [
+    {
+        h1: 'Publishing',
+        h2: 'Design',
+        content: () => 'TBD',
+        path: '/design-publications',
+        bgUrl: bg2,
+        layers: [
+            {
+                imgUrl: bg2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+const Interactions = [
+    {
+        h1: 'Publishing',
+        h2: 'Interactions',
+        content: () => 'TBD',
+        path: '/interaction-publications',
+        bgUrl: bg3,
+        layers: [
+            {
+                imgUrl: bg3,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+const Strategy = [
+    {
+        h1: 'Publishing',
+        h2: 'Strategy',
+        content: () => 'TBD',
+        path: '/strategy-publications',
         bgUrl: bg1,
         layers: [
             {
@@ -198,24 +247,27 @@ const Login = [
 
 const edSlides = [
     EdPortalIntro,
-    EdPortal1,
-    EdPortal2,
-    EdPortal3,
+    Education,
+    Solutions,
+    Insights,
 ]
 
 const newsSlides = [
     NewsIntro,
-    News1,
-    News2,
-    News3,
+    FeaturedContent,
+    TwitterFeed,
+    LabLive,
 ]
 
-const loginSlides = [
-    Login,
+const publicationSlides = [
+    PublishingIntro,
+    Design,
+    Interactions,
+    Strategy,
 ]
 
 export default [
     edSlides,
     newsSlides,
-    loginSlides,
+    publicationSlides,
 ]
