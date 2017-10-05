@@ -79,6 +79,8 @@ const SidebarSubSection = props => {
         },
     }
 
+    // don't push page if already on location
+    const goTo = path => path !== props.routing.location.pathname ? props.dispatch.goTo(path) : 0
 
     if(subSubSections.length > 0) {
         const components = []
@@ -89,7 +91,7 @@ const SidebarSubSection = props => {
             const href = routeUrls[props.id.section][props.id.subSection][0] + routeUrls[props.id.section][props.id.subSection][i + 1]
             components[i] = <div
                                 className="sidebar-subsection--hover"
-                                onClick={ () => props.dispatch.goTo(subSubSectionsPaths[i]) }
+                                onClick={ () => goTo(subSubSectionsPaths[i]) }
                                 style={ styles.subSubSection.link }
                                 key={ i }>
                                 { subSubSection }
@@ -105,7 +107,7 @@ const SidebarSubSection = props => {
                     <div
                         style={ styles.subSection.title }
                         className={ !props.isOpened ? "sidebar-subsection--hover" : "sidebar-subsection--active" }
-                        onClick={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }>
+                        onClick={ () => goTo(subSection.paths[0]) }>
                         { subSection.title }
                     </div>
                     <div
@@ -118,7 +120,7 @@ const SidebarSubSection = props => {
         // Return sub section as link
         return <div
                    className="sidebar-subsection--hover"
-                   onClick={ () => props.dispatch.goTo(subSection.paths[0]) }
+                   onClick={ () => goTo(subSection.paths[0]) }
                    style={ styles.subSection.link }>
                    { subSection.title }
                </div>
@@ -137,11 +139,9 @@ const SidebarSection = props => {
             const subSection = subSections[i]
 
             components[i] = <SidebarSubSection
-                                linkStates={ props.linkStates }
-                                linePosition={ props.linePosition }
+                                { ...props }
                                 isOpened={ props.sectionState.subSections[i] }
                                 subSection={ subSection }
-                                dispatch={ props.dispatch }
                                 key={ i }
                                 id={ {section: props.id.section, subSection: i} } />
         }
@@ -284,12 +284,10 @@ const SidebarDumb = props => {
             const section = sections[i]
 
             components[i] = <SidebarSection
-                                linkStates={ props.linkStates }
-                                linePosition={ props.linePosition }
+                                { ...props }
                                 sectionState={ props.linkStates[i] }
                                 isOpened={ props.linkStates[i].isOpened }
                                 section={ section }
-                                dispatch={ props.dispatch }
                                 id={ {section: i} }
                                 key={ i } />
         }
@@ -386,6 +384,7 @@ const sidebarState = function(state) {
       linkStates: state.sidebarReducer.linkStates,
       linePosition: state.appReducer.linePosition,
       headerIntersection: state.headerReducer.sidebarIntersection,
+      routing: state.routing,
     }
 }
 
@@ -426,13 +425,9 @@ class Sidebar extends Component {
 
 
         return <SidebarDumb
-            headerIntersection={ this.props.headerIntersection }
-            linePosition={ this.props.linePosition }
+            { ...this.props }
             dispatch={ dispatch }
-            linkStates={ this.props.linkStates }
-            goTo={ this.props.goTo }
-            links={ this.state.links }
-            isSidebarOpened={ this.props.isSidebarOpened } />
+            links={ this.state.links } />
     }
 }
 

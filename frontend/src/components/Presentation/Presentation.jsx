@@ -296,6 +296,7 @@ class Presentation extends React.Component {
         const currentPathname = this.props.routing.location.pathname
 
         if(currentPathname !== nextPathname) {
+            console.log(currentPathname, nextPathname)
             let nextSlide = this.pathnameToSlideNumber(nextPathname)
 
             this.goToPage(nextSlide)
