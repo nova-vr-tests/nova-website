@@ -33,7 +33,6 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
 
 
     const currentSlideLayers = pages[currentPage].layers
-    const nextSlideLayers = pages[nextPage].layers
     const previousSlideLayers = pages[previousPage].layers
 
 
@@ -103,15 +102,6 @@ const updateFrontLayersOpacity = (layers, progress) => {
     dispatch(updateFrontLayers(targetLayers))
 }
 
-const updateBackLayersOpacity = (layers, progress) => {
-    const targetLayers = layers.map(e => ({
-        ...e,
-        opacity: e.opacity * progress,
-    }))
-
-    dispatch(updateBackLayers(targetLayers))
-}
-
 /*
     Split background slid
     - param sign {number} positive for next slide and negative for previous slide
@@ -123,7 +113,7 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
 
 
     // Upgrade backgrounds
-    const { frontLayers, backLayers } = transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
+    const { frontLayers } = transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
 
     // transitions.splitBackground.resetBackgroundStyles(sign)
     // updateFrontLayersOpacity(0)
@@ -134,15 +124,11 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
     // Get target page
     const totalPages = pages.length
 
-    // boundary condition
-    const targetPage = sign > 0 ?
-                        (currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1)
-                        :
-                        currentPage - 1
 
     // boundary condition: don't animate backgrounds when going back on first page and going forward on last page
-    if((sign < 0 && currentPage <= 0) || (sign > 0 && currentPage >= totalPages - 1))
+    if((sign < 0 && currentPage <= 0) || (sign > 0 && currentPage >= totalPages - 1)) {
         return attachScrollEvent()
+    }
 
 
     // Animation handle
@@ -254,20 +240,12 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
           :
           currentPage - 1
 
-    const currentParalax = pages[currentPage].paralax
-    const targetParalax = pages[targetPage].paralax
-    const deltaParalax = Math.abs(targetParalax - currentParalax)
-
-    // Layers
-    const frontLayer = pages[currentPage].layers
-    const targetLayer = pages[targetPage].layers
 
     // Choose which layers to update
     let updateLayers = bgState.transitionProgress !== 0 ? updateFrontBg : updateBackBg
 
     // Animation
     let transitionProgress = 0
-    let transitionTimer = 0
 
     // Animation timer
     const startTime = new Date()
@@ -312,7 +290,6 @@ transitions.startTransition = (type, params) => {
             return transitions.splitBackground.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent)
         case BG_PARALAX:
             return transitions.bgParalax.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent)
-            break
         default:
             return
     }

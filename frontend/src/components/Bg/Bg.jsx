@@ -193,10 +193,6 @@ const BgDumb = props => {
 }
 
 class Bg extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return <BgDumb { ...this.props } />
     }

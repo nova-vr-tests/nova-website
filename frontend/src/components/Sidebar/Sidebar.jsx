@@ -181,7 +181,7 @@ const SidebarSection = props => {
 
 
             // return 'calc(' + marginTop + ')'
-        } else if (section == linePosition) {
+        } else if (section === linePosition) {
             // line height menu is opened ? => subtract section height from top margin
             if(linkStates[linePosition].isOpened && section === 0) {
                 marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight

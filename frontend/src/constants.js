@@ -44,7 +44,7 @@ styles.themes[styles.themeTypes.defaultTheme] = {
     footerBgColor: 'rgba(255, 255, 255, 1)',
     titleColor: 'white',
     fontColor: '#FFF',
-},
+}
 
 styles.themes[styles.themeTypes.inverseTheme] = {
     lineBgColor: 'rgba(0, 0, 0, 0.1)',

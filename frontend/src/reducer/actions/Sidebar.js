@@ -20,9 +20,6 @@ const initSidebarLinkStates = sections => {
         }
 
         for(let j = 0; j < subSections.length; j++) {
-            const subSection = subSections[j]
-            const subSubSections = subSection.links
-
             sidebarState[i].subSections[j] = false
         }
     }

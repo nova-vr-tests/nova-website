@@ -20,7 +20,7 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 const styleConstants = {}
-styleConstants.radius = 1340, // vh
+styleConstants.radius = 1340 // vh
 styleConstants.diam = 'calc(' + styleConstants.radius + 'vh * 2)'
 styleConstants.centerX = 50 // vw
 styleConstants.centerY = -1329 // vh
