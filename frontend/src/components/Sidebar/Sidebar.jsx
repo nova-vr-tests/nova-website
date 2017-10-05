@@ -229,6 +229,7 @@ const SidebarSection = props => {
                 transition: 'border ' + constants.styles.slideTransitionTime / 1000 + 's ' + constants.styles.slideTransitionFunc,
                 borderTop: props.themeStyles.menuBorder,
                 display: 'flex',
+                width: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + unitWidth + ')',
             },
             title: {
                 display: 'flex',
