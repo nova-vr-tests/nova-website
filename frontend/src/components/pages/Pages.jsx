@@ -217,7 +217,6 @@ const pages = sitePages.map((section, i) =>
 
 const slides = flatten(pages)
 const menuInput = pages.map(makeMenu)
-console.log(menuInput)
 
 const Pages = () => {
     return (
@@ -234,4 +233,5 @@ export {
     routeUrls,
     menuLinks,
     menuInput,
+    slides,
 }

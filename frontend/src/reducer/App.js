@@ -5,6 +5,7 @@ export const TOGGLE_SIDEBAR = 'app/toggle sidebar'
 export const UPDATE_LINE_POSITION = 'app/update_line_position'
 export const UPDATE_BG = 'app/updateBg'
 export const UPDATE_THEME = 'app/update_app_theme'
+export const UPDATE_CURRENT_PAGE = 'app/update_current_page'
 
 export const sectionPosition = {
     // values are position in sidebar links section array
@@ -15,15 +16,21 @@ export const sectionPosition = {
 
 
 const initialState = {
-  introKeyframe: 1,
-  isSidebarOpened: true,
-  linePosition: 2, // position of current page in sidebar tree
-  bgUrl: '',
-  appTheme: appStyles.themeTypes.defaultTheme,
+    introKeyframe: 1,
+    isSidebarOpened: true,
+    linePosition: 2, // position of current page in sidebar tree
+    bgUrl: '',
+    appTheme: appStyles.themeTypes.defaultTheme,
+    currentPage: 0,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+  case UPDATE_CURRENT_PAGE:
+      return {
+          ...state,
+          currentPage: action.currentPage,
+      }
   case UPDATE_THEME:
       return {
           ...state,

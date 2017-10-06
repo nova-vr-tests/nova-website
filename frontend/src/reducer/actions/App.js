@@ -5,7 +5,13 @@ import {
     UPDATE_LINE_POSITION,
     UPDATE_BG,
     UPDATE_THEME,
+    UPDATE_CURRENT_PAGE,
 } from '../App'
+
+const updateCurrentPage = currentPage => ({
+    type: UPDATE_CURRENT_PAGE,
+    currentPage,
+})
 
 const updateAppTheme = appTheme => ({
     type: UPDATE_THEME,
@@ -40,4 +46,5 @@ export {
     updateLinePosition,
     updateBg,
     updateAppTheme,
+    updateCurrentPage,
 }

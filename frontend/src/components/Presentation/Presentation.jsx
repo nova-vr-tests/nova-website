@@ -14,6 +14,7 @@ import {
 import {
     updateLinePosition,
     updateAppTheme,
+    updateCurrentPage,
 } from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
@@ -28,6 +29,7 @@ import { styles as appStyles } from '../../constants.js'
 const mapStateToProps = state => ({
     routing: state.routing,
     appTheme: state.appReducer.appTheme,
+    currentPage: state.appReducer.currentPage,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -40,6 +42,7 @@ const mapDispatchToProps = dispatch => ({
     goTo: url => dispatch(push(url)),
     updateLinePosition: position => dispatch(updateLinePosition(position)),
     updateAppTheme: appTheme => dispatch(updateAppTheme(appTheme)),
+    updateCurrentPage: currentPage => dispatch(updateCurrentPage(currentPage)),
 })
 
 class SlideTransition extends React.Component {
@@ -238,12 +241,11 @@ class Presentation extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            currentPage: this.pathnameToSlideNumber(this.props.routing.location.pathname),
-        }
+        const currentPage = this.pathnameToSlideNumber(this.props.routing.location.pathname)
+        this.props.updateCurrentPage(currentPage)
 
-        this.props.updateBackLayers(this.props.pages[this.state.currentPage].layers)
-        this.updateAppTheme(this.state.currentPage)
+        this.props.updateBackLayers(this.props.pages[currentPage].layers)
+        this.updateAppTheme(currentPage)
 
         this.eventCounter = 0
 
@@ -271,9 +273,9 @@ class Presentation extends React.Component {
         this.detachScrollEvent()
     }
 
-    componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate(nextProps) {
         // update app theme on current page state update
-        this.updateAppTheme(nextState.currentPage)
+        this.updateAppTheme(nextProps.currentPage)
     }
 
     updateAppTheme(currentPage) {
@@ -313,8 +315,7 @@ class Presentation extends React.Component {
     }
 
     goToPage(targetPage) {
-        const { currentPage } = this.state
-        const { pages } = this.props
+        const { pages, currentPage } = this.props
 
         if(targetPage !== currentPage) {
             const sign = targetPage > currentPage ? 1 : -1
@@ -333,7 +334,7 @@ class Presentation extends React.Component {
 
             transitions.startTransition(transitionType, transitionParams)
 
-            this.setState({ currentPage: targetPage })
+            this.props.updateCurrentPage(targetPage)
         }
     }
 
@@ -341,28 +342,28 @@ class Presentation extends React.Component {
        Returns true if currentPage is first page in pages array
     **/
     isFirstPage() {
-        return this.state.currentPage === 0 ? true : false
+        return this.props.currentPage === 0 ? true : false
     }
 
     /*
        Returns true if currentPage is last page in pages array
     **/
     isLastPage() {
-        return this.state.currentPage === this.props.pages.length - 1 ? true : false
+        return this.props.currentPage === this.props.pages.length - 1 ? true : false
     }
 
     /*
        Goes to next slide
     **/
     goToNextPage() {
-        return this.goToPage(this.state.currentPage + 1)
+        return this.goToPage(this.props.currentPage + 1)
     }
 
     /*
        Goes to previous slide
     **/
     goToPreviousPage() {
-        return this.goToPage(this.state.currentPage - 1)
+        return this.goToPage(this.props.currentPage - 1)
     }
 
     /*
@@ -409,7 +410,6 @@ class Presentation extends React.Component {
         return (
             <PresentationDumb
                 { ...this.props }
-                currentPage={ this.state.currentPage }
             />
         )
     }
