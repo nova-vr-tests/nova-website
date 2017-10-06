@@ -10,3 +10,13 @@
 .router--wrapper.transparent {
     opacity: 0;
 }
+
+
+
+.transform-on-hover {
+    transition: transform 0.1s linear;
+}
+
+.transform-on-hover:hover {
+    transform: scale(1.2);
+}

@@ -62,6 +62,7 @@ const PresentationControls = ({ updateCurrentPage, currentPage }) => {
     const ControlButton = props => (
         <div
             onClick={ () => updateCurrentPage(props.targetPage) }
+            className="transform-on-hover"
             style={ { ...styles.controlButtonWrapper, ...(props.isActive ? styles.controlButtonActive : {}) } }>
         </div>
     )
@@ -128,7 +129,7 @@ const FooterDumb = props => {
                 }}
                 onClick={ props.toggleSidebar }
             >
-                <img src={ toggleButton } alt="toggle sidebar" />
+                <img src={ toggleButton } alt="toggle sidebar" className="transform-on-hover" />
             </div>
             <PresentationControls {...props} />
         </div>
