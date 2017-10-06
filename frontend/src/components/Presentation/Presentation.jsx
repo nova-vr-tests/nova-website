@@ -257,6 +257,7 @@ class Presentation extends React.Component {
         this.pathnameToSlideNumber = this.pathnameToSlideNumber.bind(this)
         this.goToPage = this.goToPage.bind(this)
         this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
+        this.getTransitionType, this.getTransitionType.bind(this)
     }
 
     componentDidMount() {
@@ -303,6 +304,14 @@ class Presentation extends React.Component {
         }
     }
 
+    getTransitionType(currentPage, targetPage) {
+        if(this.props.pages[currentPage].pid === this.props.pages[targetPage].pid) {
+            return transitions.types.BG_PARALAX
+        } else {
+            return transitions.types.BG_SPLIT
+        }
+    }
+
     goToPage(targetPage) {
         const { currentPage } = this.state
         const { pages } = this.props
@@ -320,7 +329,7 @@ class Presentation extends React.Component {
                 detachScrollEvent: this.detachScrollEvent,
             }
 
-            const transitionType = transitions.types.BG_SPLIT
+            const transitionType = this.getTransitionType(currentPage, targetPage)
 
             transitions.startTransition(transitionType, transitionParams)
 
@@ -346,57 +355,14 @@ class Presentation extends React.Component {
        Goes to next slide
     **/
     goToNextPage() {
-        // Get next page
-        const { currentPage } = this.state
-        let nextPage = currentPage + 1
-
-        // Boundary conditions
-        const totalPages = this.props.pages.length
-        nextPage = nextPage >= totalPages ? totalPages - 1 : nextPage
-
-        // Background transitions
-        const transitionParams = {
-            sign: 1,
-            pages: this.props.pages,
-            currentPage,
-            attachScrollEvent: this.attachScrollEvent,
-            detachScrollEvent: this.detachScrollEvent,
-        }
-
-        const transitionType = this.props.pages[currentPage].transitions.nextSlide.bg
-
-        transitions.startTransition(transitionType, transitionParams)
-
-        // Update state
-        this.setState({ currentPage: nextPage })
+        return this.goToPage(this.state.currentPage + 1)
     }
 
     /*
        Goes to previous slide
     **/
     goToPreviousPage() {
-        // Get previous page
-        const { currentPage } = this.state
-        let previousPage = currentPage - 1
-
-        // Boundary conditions
-        previousPage = previousPage < 0 ? 0 : previousPage
-
-        // Background transitions
-        const transitionParams = {
-            sign: -1,
-            pages: this.props.pages,
-            currentPage,
-            attachScrollEvent: this.attachScrollEvent,
-            detachScrollEvent: this.detachScrollEvent,
-        }
-
-        const transitionType = this.props.pages[currentPage].transitions.previousSlide.bg
-
-        transitions.startTransition(transitionType, transitionParams)
-
-        // Update state
-        this.setState({ currentPage: previousPage })
+        return this.goToPage(this.state.currentPage - 1)
     }
 
     /*
