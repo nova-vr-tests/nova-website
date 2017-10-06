@@ -20,19 +20,13 @@ import {
 
 import transitions from './transitions.js'
 
-import {
-    H1,
-    H2,
-} from '../pages/UI.jsx'
-
-import { styles as appStyles } from '../../constants.js'
-
 import SlideTransition from './SlideTransition.jsx'
 
 const mapStateToProps = state => ({
     routing: state.routing,
     appTheme: state.appReducer.appTheme,
     currentPage: state.appReducer.currentPage,
+    windowWidth: state.appReducer.windowWidth,
 })
 
 const mapDispatchToProps = dispatch => ({

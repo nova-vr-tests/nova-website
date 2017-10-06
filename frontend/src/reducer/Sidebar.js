@@ -1,10 +1,14 @@
+import {
+    styles,
+} from '../constants.js'
+
 export const TOGGLE_SIDEBAR = 'sidebar/toggle sidebar'
 export const CREATE_SIDEBAR_STATE = 'sidebar/create_sidebar_state'
 export const TOGGLE_SIDEBAR_SECTION = 'sidebar/toggle_sidebar_section'
 export const TOGGLE_SIDEBAR_SUBSECTION = 'sidebar/toggle_sidebar_subsection'
 
 const initialState = {
-    isSidebarOpened: true,
+    isSidebarOpened: window.innerWidth < styles.mediaQueries.phone ? false : true,
     linkStates: [],
 }
 

@@ -70,6 +70,10 @@ styles.themes[styles.themeTypes.noFooterTheme] = {
     footerBgColor: 'rgba(130, 130, 130, 0)'
 }
 
+styles.mediaQueries = {
+    phone: 600, // px
+}
+
 export {
     LOGO_FRAME1,
     LOGO_FRAME2,

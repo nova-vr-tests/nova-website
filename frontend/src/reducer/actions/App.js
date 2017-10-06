@@ -7,8 +7,13 @@ import {
     UPDATE_THEME,
     UPDATE_CURRENT_PAGE,
     UPDATE_GO_TO_PAGE,
+    UPDATE_WINDOW_WIDTH,
 } from '../App'
 
+const updateWindowWidth = windowWidth => ({
+    type: UPDATE_WINDOW_WIDTH,
+    windowWidth,
+})
 const updateGoToPage = goToPage => ({
     type: UPDATE_GO_TO_PAGE,
     goToPage,
@@ -54,4 +59,5 @@ export {
     updateAppTheme,
     updateCurrentPage,
     updateGoToPage,
+    updateWindowWidth,
 }

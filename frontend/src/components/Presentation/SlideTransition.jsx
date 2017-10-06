@@ -184,6 +184,15 @@ class SlideTransition extends React.Component {
             const sidebarWidth = appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth
             const availableWidth = '100vw - ' + sidebarWidth
             const paragraphWidth = appStyles.slideParagraphWidth
+
+            if(this.props.windowWidth < appStyles.mediaQueries.phone) {
+                return {
+                    ...style,
+                    left: 'calc(-' + sidebarWidth + ')',
+                    right: 0,
+                }
+            }
+
             const left = 'calc((' + availableWidth + ' - ' + paragraphWidth + ') / 2)'
             switch(align) {
                 case alignments.farRight:

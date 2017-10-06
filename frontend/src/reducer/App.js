@@ -7,6 +7,7 @@ export const UPDATE_BG = 'app/updateBg'
 export const UPDATE_THEME = 'app/update_app_theme'
 export const UPDATE_CURRENT_PAGE = 'app/update_current_page'
 export const UPDATE_GO_TO_PAGE = 'app/update_go_to_page'
+export const UPDATE_WINDOW_WIDTH = 'app/update_window_width'
 
 export const sectionPosition = {
     // values are position in sidebar links section array
@@ -24,10 +25,16 @@ const initialState = {
     appTheme: appStyles.themeTypes.defaultTheme,
     currentPage: 0,
     goToPage: () => {},
+    windowWidth: window.innerWidth, // number
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+  case UPDATE_WINDOW_WIDTH:
+      return {
+          ...state,
+          windowWidth: action.windowWidth,
+      }
   case UPDATE_GO_TO_PAGE:
       return {
           ...state,
