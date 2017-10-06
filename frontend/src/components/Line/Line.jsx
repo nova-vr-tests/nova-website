@@ -8,6 +8,8 @@ const mapStateToProps = function(state) {
 	return {
       linePosition: state.appReducer.linePosition,
       appTheme: state.appReducer.appTheme,
+      windowWidth: state.appReducer.windowWidth,
+      isSidebarOpened: state.sidebarReducer.isSidebarOpened,
   }
 }
 
@@ -26,7 +28,8 @@ const LineDumb = props => {
             flexDirection: 'column',
             flex: 1,
             marginTop: 'calc(' + (9 + 2 * props.linePosition) + ' * ' + constants.styles.unitHeight + ')',
-            transition: 'margin-top 0.3s linear'
+            transition: 'margin-top, opacity ' + constants.styles.sidebar.transition.length + constants.styles.sidebar.transition.type,
+            opacity: props.windowWidth < constants.styles.mediaQueries.phone && props.isSidebarOpened ? 0 : 1,
         },
         line: {
             wrapper: {

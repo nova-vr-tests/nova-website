@@ -39,7 +39,7 @@ styles.lineDimensions = {
     height: 'calc(4 * ' + styles.unitHeight + ')',
 }
 
-styles.slideParagraphWidth = 'calc(' + styles.lineDimensions.height + ' * 3.5)',
+styles.slideParagraphWidth = 'calc(' + styles.lineDimensions.height + ' * 3.5)'
 
 styles.themes[styles.themeTypes.defaultTheme] = {
     lineBgColor: 'rgba(255, 255, 255, 0.1)',
