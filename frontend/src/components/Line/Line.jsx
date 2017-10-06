@@ -45,7 +45,7 @@ const LineDumb = props => {
                 transition: 'opacity ' + constants.styles.sidebar.transition.length + constants.styles.sidebar.transition.type,
             },
             wrapper2Opened: {
-                height: 'calc(4 * ' + 100/24 + 'vh)',
+                height: constants.styles.lineDimensions.height,
                 opacity: 1,
             },
         },
