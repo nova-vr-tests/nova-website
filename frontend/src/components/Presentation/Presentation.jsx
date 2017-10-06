@@ -74,7 +74,7 @@ class Presentation extends React.Component {
         this.pathnameToSlideNumber = this.pathnameToSlideNumber.bind(this)
         this.goToPage = this.goToPage.bind(this)
         this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
-        this.getTransitionType, this.getTransitionType.bind(this)
+        this.getTransitionType = this.getTransitionType.bind(this)
 
         this.props.updateGoToPage(this.goToPage)
     }
@@ -215,8 +215,16 @@ class Presentation extends React.Component {
 
 
         if(sign > 0) {
+            if(this.props.pages[this.props.currentPage] === this.props.pages[this.props.pages.length - 1]) {
+                return
+            }
+
             this.goToNextPage()
         } else if(sign < 0) {
+            if(this.props.pages[this.props.currentPage] === this.props.pages[0]) {
+                return
+            }
+
             this.goToPreviousPage()
         }
     }
