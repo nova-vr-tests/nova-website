@@ -12,6 +12,7 @@ const styles = {
     P: {
         width: '30rem',
         height: 'min-content',
+        fontSize: '2.1vh',
     },
     H1: {
         position: 'absolute',
