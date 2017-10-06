@@ -16,7 +16,7 @@ const Nye = [
         h2: 'New Year\'s Eve',
         content: () => '',
         path: '/nye',
-        bgUrl: nyeLayer1,
+        pid: nyeLayer1,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -40,7 +40,7 @@ const Nye = [
         h2: 'New Year\'s Eve',
         content: () => '2',
         path: '/nye',
-        bgUrl: nyeLayer1,
+        pid: nyeLayer1,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -64,7 +64,7 @@ const Nye = [
         h2: 'New Year\'s Eve',
         content: () => ' last',
         path: '/nye',
-        bgUrl: nyeLayer1,
+        pid: nyeLayer1,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -99,7 +99,7 @@ const Login = [
         h2: '',
         content: () => 'Login',
         path: '/login',
-        bgUrl: loginLayer1,
+        pid: loginLayer1,
         layers: [
             {
                 imgUrl: loginLayer1,

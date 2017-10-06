@@ -30,7 +30,7 @@ const EducationIntro = [
         content: () => '',
         path: '/education-portal',
         paralax: 0,
-        bgUrl: bg1,
+        pid: bg1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -49,7 +49,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        bgUrl: educationIntroIntroLayer1,
+        pid: educationIntroIntroLayer1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -85,7 +85,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        bgUrl: educationIntroIntroLayer1,
+        pid: educationIntroIntroLayer1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -121,7 +121,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        bgUrl: educationIntroIntroLayer1,
+        pid: educationIntroIntroLayer1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -157,7 +157,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        bgUrl: educationIntroIntroLayer1,
+        pid: educationIntroIntroLayer1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -193,7 +193,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        bgUrl: educationIntroIntroLayer1,
+        pid: educationIntroIntroLayer1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -233,7 +233,7 @@ const Solutions = [
         content: () => '',
         path: '/ed-solutions',
         paralax: 0,
-        bgUrl: bg3,
+        pid: bg3,
         layers: [
             {
                 imgUrl: bg1,
@@ -250,7 +250,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        bgUrl: insightsLayers1,
+        pid: insightsLayers1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -281,7 +281,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        bgUrl: insightsLayers1,
+        pid: insightsLayers1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -312,7 +312,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        bgUrl: insightsLayers1,
+        pid: insightsLayers1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -343,7 +343,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        bgUrl: insightsLayers1,
+        pid: insightsLayers1,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -385,7 +385,7 @@ const NewsIntro = [
         content: () => '',
         path: '/news-insights',
         paralax: 0,
-        bgUrl: bg2,
+        pid: bg2,
         layers: [
             {
                 imgUrl: bg2,
@@ -404,7 +404,7 @@ const FeaturedContent = [
         content: () => '',
         path: '/featured-content',
         paralax: 0,
-        bgUrl: bg1,
+        pid: bg1,
         layers: [
             {
                 imgUrl: bg1,
@@ -422,7 +422,7 @@ const TwitterFeed = [
         content: () => '',
         path: '/twitter',
         paralax: 0,
-        bgUrl: bg2,
+        pid: bg2,
         layers: [
             {
                 imgUrl: bg2,
@@ -440,7 +440,7 @@ const LabLive = [
         content: () => '',
         path: '/lab-live',
         paralax: 0,
-        bgUrl: bg3,
+        pid: bg3,
         layers: [
             {
                 imgUrl: bg3,
@@ -464,7 +464,7 @@ const PublishingIntro = [
         h2: '',
         content: () => 'TBD',
         path: '/publishing',
-        bgUrl: bg1,
+        pid: bg1,
         layers: [
             {
                 imgUrl: bg1,
@@ -481,7 +481,7 @@ const Design = [
         h2: 'Design',
         content: () => 'TBD',
         path: '/design-publications',
-        bgUrl: bg2,
+        pid: bg2,
         layers: [
             {
                 imgUrl: bg2,
@@ -497,7 +497,7 @@ const Interactions = [
         h2: 'Interactions',
         content: () => 'TBD',
         path: '/interaction-publications',
-        bgUrl: bg3,
+        pid: bg3,
         layers: [
             {
                 imgUrl: bg3,
@@ -513,7 +513,7 @@ const Strategy = [
         h2: 'Strategy',
         content: () => 'TBD',
         path: '/strategy-publications',
-        bgUrl: bg1,
+        pid: bg1,
         layers: [
             {
                 imgUrl: bg1,

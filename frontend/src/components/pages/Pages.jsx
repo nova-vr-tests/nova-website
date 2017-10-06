@@ -107,7 +107,7 @@ const makeMenu = (section, i) => {
 const makePresentationSlide = (slide, i, slides) => {
     const Text = slide.content
     const {
-        bgUrl,
+        pid,
         path,
         paralax,
         linePosition,
@@ -134,7 +134,7 @@ const makePresentationSlide = (slide, i, slides) => {
         previousSlideTransition = -1
 
         // Check next slide
-        if(bgUrl === slides[i + 1].bgUrl) {
+        if(pid === slides[i + 1].pid) {
             nextSlideTransition = transitions.types.BG_PARALAX
         }
 
@@ -143,18 +143,18 @@ const makePresentationSlide = (slide, i, slides) => {
         nextSlideTransition = -1
 
         // Check previous slide
-        if(bgUrl === slides[i - 1].bgUrl) {
+        if(pid === slides[i - 1].pid) {
             previousSlideTransition = transitions.types.BG_PARALAX
         }
 
     } else {
-        // Compare next slide bgUrl
-        if(bgUrl === slides[i + 1].bgUrl) {
+        // Compare next slide pid
+        if(pid === slides[i + 1].pid) {
             nextSlideTransition = transitions.types.BG_PARALAX
         }
 
-        // Compare previous slide bgUrl
-        if(bgUrl === slides[i - 1].bgUrl) {
+        // Compare previous slide pid
+        if(pid === slides[i - 1].pid) {
             previousSlideTransition = transitions.types.BG_PARALAX
         }
 
@@ -162,7 +162,7 @@ const makePresentationSlide = (slide, i, slides) => {
 
 return {
         comp,
-        bgUrl,
+        pid,
         path,
         paralax,
         h1,
