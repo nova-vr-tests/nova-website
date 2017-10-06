@@ -42,24 +42,45 @@ const PresentationControls = ({ updateCurrentPage, currentPage }) => {
             bottom: 0,
             transform: 'translateX(-50%)',
             left: '50%',
+            display: 'flex',
+            marginBottom: 'calc(' + appStyles.unitHeight + ' / 2)',
         },
         controlButtonWrapper: {
             width: '1rem',
             height: '1rem',
-            backgroundColor: 'red',
+            borderRadius: '0.5rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            margin: '0.5rem',
+            transition: 'background-color 5s linear',
+            cursor: 'pointer',
+        },
+        controlButtonActive: {
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
         }
     }
 
     const ControlButton = props => (
         <div
             onClick={ () => updateCurrentPage(props.targetPage) }
-            style={ styles.controlButtonWrapper }>
+            style={ { ...styles.controlButtonWrapper, ...(props.isActive ? styles.controlButtonActive : {}) } }>
         </div>
     )
 
+    const presentationSlides = slides.map((e, i) => [e, i]).filter(e => e[0].pid === slides[currentPage].pid)
+
+    const buttons = presentationSlides.map((e, i) => presentationSlides.length === 1 ? '' : (
+        <ControlButton
+            key={ i }
+            targetPage={ e[1] }
+            isActive={ e[1] === currentPage ? true : false }
+        />
+    ))
+
+    console.log(presentationSlides)
+
     return (
         <div style={ styles.wrapper }>
-            <ControlButton targetPage={ currentPage + 1 } />
+            { buttons }
         </div>
     )
 }
