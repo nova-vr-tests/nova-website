@@ -9,6 +9,7 @@ import partnership from './page3.jsx'
 import {
     P,
     PageWrapper,
+    alignments,
 } from './UI.jsx'
 
 import { styles as appStyles } from '../../constants.js'
@@ -170,7 +171,7 @@ return {
         h2,
         linePosition,
         layers,
-        align,
+        align: align ? align : alignments.left,
         theme: theme ? theme : appStyles.themeTypes.defaultTheme,
         transitions: {
             nextSlide: {

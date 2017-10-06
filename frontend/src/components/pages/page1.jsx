@@ -54,6 +54,7 @@ const Design = [
         content: () => 'Gravity sculpts the physical world - creating complex beauty, masking great mystery and pulling us toward innovation. Through generations, we’ve arrived at a point at which we can experience a world that defies all forms of physics.',
         path: '/design',
         pid: designPid,
+        align: alignments.farLeft,
         layers: [
             {
                 imgUrl: designIntro,
@@ -68,6 +69,7 @@ const Design = [
         content: () => <span>Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when. To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a <em>story</em>, a <em>world</em>, and an <em>interface</em>.</span>,
         path: '/design',
         pid: designPid,
+        align: alignments.left,
         layers: [
             {
                 imgUrl: designIntro,
@@ -82,6 +84,7 @@ const Design = [
         content: () => <span>You play an important role in designing <em>tomorrow</em>. Together we will build your story, architect your world and design intuitive interactions with everything you develop.</span>,
         path: '/design',
         pid: designPid,
+        align: alignments.center,
         layers: [
             {
                 imgUrl: designIntro,
@@ -96,6 +99,7 @@ const Design = [
         content: () => 'Join us in designing tomorrow.',
         path: '/design',
         pid: designPid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: designIntro,
@@ -115,7 +119,6 @@ const Interface = [
         content: () => 'Information, volume, color, light, time, space, transparency... In XR, all these perceptions of the human experience are available at all times.',
         path: '/interface',
         pid: interfacePid,
-        align: alignments.right,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -369,6 +372,7 @@ const World = [
         path: '/world',
         pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
+        align: alignments.farRight,
         layers: [
             {
                 imgUrl: worldLayer1,

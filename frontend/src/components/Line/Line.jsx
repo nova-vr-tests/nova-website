@@ -40,7 +40,7 @@ const LineDumb = props => {
                 height: 0,
                 display: 'flex',
                 flex: 1,
-                paddingLeft: '25rem',
+                paddingLeft: 'calc(' + constants.styles.sidebar.widthFactor + ' * ' + constants.styles.unitWidth + ')',
                 opacity: 0,
                 transition: 'opacity ' + constants.styles.sidebar.transition.length + constants.styles.sidebar.transition.type,
             },

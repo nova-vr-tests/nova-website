@@ -3,6 +3,7 @@ import React from 'react'
 import {
     H1,
     H2,
+    alignments,
 } from '../pages/UI.jsx'
 
 import { styles as appStyles } from '../../constants.js'
@@ -174,6 +175,47 @@ class SlideTransition extends React.Component {
         }
         const fontColorTransition = 'color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc
 
+        const getSlideAlignment = align => {
+            const style = {
+                right: 'inherit',
+                left: 'inherit',
+            }
+
+            const sidebarWidth = appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth
+            const availableWidth = '100vw - ' + sidebarWidth
+            const paragraphWidth = appStyles.slideParagraphWidth
+            const left = 'calc((' + availableWidth + ' - ' + paragraphWidth + ') / 2)'
+            switch(align) {
+                case alignments.farRight:
+                    return {
+                        ...style,
+                        left: 'calc(' + left + ' * 2)',
+                    }
+                case alignments.right:
+                    return {
+                        ...style,
+                        left: 'calc(' + left + ' * 2 - ' + sidebarWidth + ')',
+                    }
+                case alignments.center:
+                    return {
+                        ...style,
+                        left,
+                    }
+                case alignments.left:
+                    return {
+                        ...style,
+                        left: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')',
+                    }
+                case alignments.farLeft:
+                    return {
+                        ...style,
+                        left: 0,
+                    }
+                default:
+                    return style
+            }
+        }
+
         const styles = {
             wrapper: {
                 color: theme.fontColor,
@@ -183,12 +225,12 @@ class SlideTransition extends React.Component {
             currentSlideStyle: {
                 ...this.getTranslationStyles().currentSlide,
                 height: appStyles.lineDimensions.height,
-                right: currentPage.align === 'right' ? 0 : 'inherit',
+                ...getSlideAlignment(currentPage.align),
             },
             targetSlideStyle: {
                 ...this.getTranslationStyles().targetSlide,
                 height: appStyles.lineDimensions.height,
-                right: targetPage.align === 'right' ? 0 : 'inherit',
+                ...getSlideAlignment(targetPage.align),
             },
             H1: {
                 ...translates.H1,

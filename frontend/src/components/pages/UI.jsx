@@ -7,7 +7,11 @@ type IAligments = {
     right: string,
 }
 const alignments: IAligments = {
+    farRight: 'far-right',
     right: 'right',
+    center: 'center',
+    left: 'left',
+    farLeft: 'far-left',
 }
 
 const styles = {
@@ -19,7 +23,7 @@ const styles = {
         alignItems: 'center',
     },
     P: {
-        width: 'calc(' + appStyles.lineDimensions.height + ' * 3.5)',
+        width: appStyles.slideParagraphWidth,
         height: 'min-content',
         fontSize: '2.5vh',
     },
