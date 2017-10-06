@@ -163,9 +163,9 @@ class SlideTransition extends React.Component {
     getStyles() {
     }
 
-    translateTitle(currentTitle, targetTitle, sign) {
+    translateTitle(currentTitle, currentAlign, targetTitle, targetAlign, sign) {
         if(sign >= 0) {
-            if(currentTitle !== targetTitle) {
+            if(currentTitle !== targetTitle || currentAlign !== targetAlign) {
                 // translate
                 return {
                     transform: 'inherit',
@@ -177,7 +177,7 @@ class SlideTransition extends React.Component {
                 }
             }
         } else {
-            if(currentTitle !== targetTitle) {
+            if(currentTitle !== targetTitle || currentAlign !== targetAlign) {
                 // translate
                 return {
                     transform: 'inherit',
@@ -192,35 +192,40 @@ class SlideTransition extends React.Component {
     }
 
     render() {
+        const currentPage = this.props.pages[this.state.currentPage]
+        const targetPage = this.props.pages[this.state.targetPage]
+
         const currentSlideStyle = {
             ...this.getTranslationStyles().currentSlide,
             height: appStyles.lineDimensions.height,
+            right: currentPage.align === 'right' ? 0 : 'inherit',
         }
 
         const targetSlideStyle = {
             ...this.getTranslationStyles().targetSlide,
             height: appStyles.lineDimensions.height,
+            right: targetPage.align === 'right' ? 0 : 'inherit',
         }
 
-        const CurrentSlide = this.props.pages[this.state.currentPage].comp
-        const TargetSlide = this.props.pages[this.state.targetPage].comp
+        const CurrentSlide = currentPage.comp
+        const TargetSlide = targetPage.comp
 
-        const currentH1 = this.props.pages[this.state.currentPage].h1
-        const currentH2 = this.props.pages[this.state.currentPage].h2
-        const targetH1 = this.props.pages[this.state.targetPage].h1
-        const targetH2 = this.props.pages[this.state.targetPage].h2
+        const currentH1 = currentPage.h1
+        const currentH2 = currentPage.h2
+        const targetH1 = targetPage.h1
+        const targetH2 = targetPage.h2
 
         const sign = this.state.targetPage - this.state.currentPage
         let translates = {
-            H1: this.translateTitle(currentH1, targetH1, sign),
-            H2: this.translateTitle(currentH2, targetH2, sign),
+            H1: this.translateTitle(currentH1, currentPage.align, targetH1, targetPage.align, sign),
+            H2: this.translateTitle(currentH2, currentPage.align, targetH2, targetPage.align, sign),
         }
 
         const theme = appStyles.themes[this.props.appTheme]
         const fontColorTransition = 'color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc
 
         return (
-            <div className='slide-transition--wrapper' style={{ color: theme.fontColor }}>
+            <div className='slide-transition--wrapper' style={{ color: theme.fontColor, position: 'relative', width: '100%' }}>
                 <div className='current-slide--wrapper' style={ currentSlideStyle }>
                     <H1 style={ { ...translates.H1, ...{ color: theme.titleColor, transition: fontColorTransition } } }>{ currentH1 }</H1>
                     <H2 style={ { ...translates.H2, ...{ color: theme.titleColor, transition: fontColorTransition } } }>{ currentH2 }</H2>

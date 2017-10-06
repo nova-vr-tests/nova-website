@@ -115,10 +115,11 @@ const makePresentationSlide = (slide, i, slides) => {
         h1,
         h2,
         theme,
+        align,
     } = slide
 
     const comp = () => (
-        <PageWrapper>
+        <PageWrapper align={ align }>
             <P>
                 <Text />
             </P>
@@ -169,6 +170,7 @@ return {
         h2,
         linePosition,
         layers,
+        align,
         theme: theme ? theme : appStyles.themeTypes.defaultTheme,
         transitions: {
             nextSlide: {

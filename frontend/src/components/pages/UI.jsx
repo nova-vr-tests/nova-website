@@ -19,9 +19,9 @@ const styles = {
         alignItems: 'center',
     },
     P: {
-        width: '45rem',
+        width: 'calc(' + appStyles.lineDimensions.height + ' * 3.5)',
         height: 'min-content',
-        fontSize: '2.1vh',
+        fontSize: '2.5vh',
     },
     H1: {
         position: 'absolute',
@@ -52,16 +52,19 @@ const BigText = props => (
 )
 
 const PageWrapper = props => {
+    const right = props.align === alignments.right ? 0 : 'inherit'
+
     return (
-        <div style={ styles.pageWrapper }>
+        <div style={ { ...styles.pageWrapper, ...{ right } } }>
             { props.children }
         </div>
     )
 }
 
 const P = props => {
+    const marginLeft = props.align === alignments.right ? '40vw' : ''
     return (
-        <p style={ styles.P }>
+        <p style={ { ...styles.P, ...{ marginLeft } } }>
             { props.children }
         </p>
     )
@@ -84,6 +87,7 @@ const H2 = props => {
 }
 
 export {
+    alignments,
     BigText,
     P,
     PageWrapper,

@@ -36,7 +36,7 @@ import disciplinesLayer1 from '../img/business/disciplines-layer6.png'
 
 import { styles as appStyles } from '../../constants.js'
 
-import { BigText } from './UI.jsx'
+import { BigText, alignments } from './UI.jsx'
 
 
 /************************************
@@ -115,6 +115,7 @@ const Interface = [
         content: () => 'Information, volume, color, light, time, space, transparency... In XR, all these perceptions of the human experience are available at all times.',
         path: '/interface',
         pid: interfacePid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -139,6 +140,7 @@ const Interface = [
         content: () => 'We are redefining the grammar of interface to accommodate the era of multidimensional media. We are building interfaces that flow based on your attention and intentions.',
         path: '/interface',
         pid: interfacePid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -163,6 +165,7 @@ const Interface = [
         content: () => <BigText>In XR you can zoom, scale, rotate, delete, cut and interact in all ways with all places at all times.</BigText>,
         path: '/interface',
         pid: interfacePid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -187,6 +190,7 @@ const Interface = [
         content: () => 'We simplify complex technologies through intuitive design.',
         path: '/interface',
         pid: interfacePid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -952,6 +956,7 @@ const AR = [
         content: () => 'Augmented Reality (AR) is a powerful tool to simplify complex ideas and democratize education.',
         path: '/ar',
         pid: arPid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -976,6 +981,7 @@ const AR = [
         content: () => 'AR is a technology that superimposes digital graphics on top of our physical environment. It is ideal for collaborative work or training.',
         path: '/ar',
         pid: arPid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -1000,6 +1006,7 @@ const AR = [
         content: () => 'Through computer vision we can model the world around you. Turn everyday scenarios into interactive experinces.',
         path: '/ar',
         pid: arPid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -1024,6 +1031,7 @@ const AR = [
         content: () => 'By weaving the internet into the fabric of life we must examine our traditional constructs of reality.',
         path: '/ar',
         pid: arPid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -1048,6 +1056,7 @@ const AR = [
         content: () => 'Nova XR will assist you in adapting the world to your workflow.',
         path: '/ar',
         pid: arPid,
+        align: alignments.right,
         layers: [
             {
                 imgUrl: arLayer1,
