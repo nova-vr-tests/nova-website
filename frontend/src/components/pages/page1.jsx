@@ -63,7 +63,7 @@ const Design = [
     {
         h1: 'Design',
         h2: '',
-        content: () => 'Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when. To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a /story/, a /world/, and an /interface/.',
+        content: () => <span>Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when. To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a <em>story</em>, a <em>world</em>, and an <em>interface</em>.</span>,
         path: '/design',
         pid: designPid,
         layers: [
@@ -77,7 +77,7 @@ const Design = [
     {
         h1: 'Design',
         h2: '',
-        content: () => 'You play an important role in designing /tomorrow/. Together we will build your story, architect your world and design intuitive interactions with everything you develop.',
+        content: () => <span>You play an important role in designing <em>tomorrow</em>. Together we will build your story, architect your world and design intuitive interactions with everything you develop.</span>,
         path: '/design',
         pid: designPid,
         layers: [

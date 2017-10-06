@@ -10,7 +10,7 @@ const styles = {
         alignItems: 'center',
     },
     P: {
-        width: '30rem',
+        width: '45rem',
         height: 'min-content',
         fontSize: '2.1vh',
     },
