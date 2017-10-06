@@ -27,6 +27,7 @@ const SidebarSubSection = props => {
     const styles = {
         subSection:{
             wrapper: {
+                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'row',
                 minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
@@ -48,10 +49,12 @@ const SidebarSubSection = props => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
+                cursor: 'pointer',
             },
         },
         subSubSection:{
             wrapper: {
+                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 left: '100%',
