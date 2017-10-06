@@ -49,7 +49,7 @@ const PresentationControls = ({ updateCurrentPage, currentPage }) => {
             width: '1rem',
             height: '1rem',
             borderRadius: '0.5rem',
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backgroundColor: 'rgba(220, 220, 220, 0.9)',
             margin: '0.5rem',
             transition: 'background-color 5s linear',
             cursor: 'pointer',
