@@ -1,5 +1,6 @@
 import React from 'react'
-import { connect }from 'react-redux'
+import { connect } from 'react-redux'
+import { styles as appStyles } from '../../constants.js'
 
 const mapStateToProps = function(state) {
 	return {
@@ -11,6 +12,7 @@ const mapStateToProps = function(state) {
       frontLayers: state.bgReducer.frontLayers,
       backLayers: state.bgReducer.backLayers,
       cacheLayers: state.bgReducer.cacheLayers,
+      appTheme: state.appReducer.appTheme,
   }
 }
 
@@ -137,9 +139,10 @@ const BgDumb = props => {
         overlay: {
             height: '100vh',
             width: '100vw',
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backgroundColor: appStyles.themes[props.appTheme].bgOverlayColor,
             zIndex: 3,
             position: 'absolute',
+            transition: 'background-color 0.5s linear',
         }
     }
 

@@ -44,6 +44,7 @@ styles.themes[styles.themeTypes.defaultTheme] = {
     footerBgColor: 'rgba(255, 255, 255, 1)',
     titleColor: 'white',
     fontColor: '#FFF',
+    bgOverlayColor: 'rgba(0, 0, 0, 0.1)',
 }
 
 styles.themes[styles.themeTypes.inverseTheme] = {
@@ -55,6 +56,7 @@ styles.themes[styles.themeTypes.inverseTheme] = {
     footerBgColor: 'rgba(0, 0, 0, 0.6)',
     titleColor: 'black',
     fontColor: '#333',
+    bgOverlayColor: 'rgba(255, 255, 255, 0.1)',
 }
 
 styles.themes[styles.themeTypes.noFooterTheme] = {
