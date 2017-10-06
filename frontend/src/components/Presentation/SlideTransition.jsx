@@ -1,24 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
-
-import {
-    updateFrontBgUrl,
-    updateFrontBgStyle,
-    updateBackBgUrl,
-    updateBackBgStyle,
-    updateBackLayers,
-    updateTransitionProgress,
-} from '../../reducer/actions/Bg.js'
-
-import {
-    updateLinePosition,
-    updateAppTheme,
-    updateCurrentPage,
-    updateGoToPage,
-} from '../../reducer/actions/App.js'
-
-import transitions from './transitions.js'
 
 import {
     H1,
