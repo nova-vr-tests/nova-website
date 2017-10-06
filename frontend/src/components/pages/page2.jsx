@@ -23,6 +23,7 @@ import { styles as appStyles } from '../../constants.js'
 
 
 
+const edIntroPid = Symbol()
 const EducationIntro = [
     {
         h1: 'Educational Portal',
@@ -30,7 +31,7 @@ const EducationIntro = [
         content: () => '',
         path: '/education-portal',
         paralax: 0,
-        pid: bg1,
+        pid: edIntroPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -42,6 +43,7 @@ const EducationIntro = [
     },
 ]
 
+const edPid = Symbol()
 const Education = [
     {
         h1: 'Educational Portal',
@@ -49,7 +51,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        pid: educationIntroIntroLayer1,
+        pid: edPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -85,7 +87,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        pid: educationIntroIntroLayer1,
+        pid: edPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -121,7 +123,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        pid: educationIntroIntroLayer1,
+        pid: edPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -157,7 +159,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        pid: educationIntroIntroLayer1,
+        pid: edPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -193,7 +195,7 @@ const Education = [
         content: () => '',
         path: '/education',
         paralax: 0,
-        pid: educationIntroIntroLayer1,
+        pid: edPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -226,6 +228,7 @@ const Education = [
 ]
 
 
+const solutionsPid = Symbol()
 const Solutions = [
     {
         h1: 'Educational Portal',
@@ -233,7 +236,7 @@ const Solutions = [
         content: () => '',
         path: '/ed-solutions',
         paralax: 0,
-        pid: bg3,
+        pid: solutionsPid,
         layers: [
             {
                 imgUrl: bg1,
@@ -243,6 +246,8 @@ const Solutions = [
         ]
     },
 ]
+
+const insightsPid = Symbol()
 const Insights = [
     {
         h1: 'Educational Portal',
@@ -250,7 +255,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        pid: insightsLayers1,
+        pid: insightsPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -281,7 +286,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        pid: insightsLayers1,
+        pid: insightsPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -312,7 +317,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        pid: insightsLayers1,
+        pid: insightsPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -343,7 +348,7 @@ const Insights = [
         content: () => '',
         path: '/ed-insights',
         paralax: 0,
-        pid: insightsLayers1,
+        pid: insightsPid,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
@@ -378,6 +383,7 @@ const Insights = [
 
 
 
+const newsPid = Symbol()
 const NewsIntro = [
     {
         h1: 'News Insights',
@@ -385,7 +391,7 @@ const NewsIntro = [
         content: () => '',
         path: '/news-insights',
         paralax: 0,
-        pid: bg2,
+        pid: newsPid,
         layers: [
             {
                 imgUrl: bg2,
@@ -397,6 +403,7 @@ const NewsIntro = [
 ]
 
 
+const contentPid = Symbol()
 const FeaturedContent = [
     {
         h1: 'News Insights',
@@ -404,7 +411,7 @@ const FeaturedContent = [
         content: () => '',
         path: '/featured-content',
         paralax: 0,
-        pid: bg1,
+        pid: contentPid,
         layers: [
             {
                 imgUrl: bg1,
@@ -415,6 +422,7 @@ const FeaturedContent = [
     },
 ]
 
+const twitterPid = Symbol()
 const TwitterFeed = [
     {
         h1: 'News Insights',
@@ -422,7 +430,7 @@ const TwitterFeed = [
         content: () => '',
         path: '/twitter',
         paralax: 0,
-        pid: bg2,
+        pid: twitterPid,
         layers: [
             {
                 imgUrl: bg2,
@@ -433,6 +441,7 @@ const TwitterFeed = [
     },
 ]
 
+const labPid = Symbol()
 const LabLive = [
     {
         h1: 'News Insights',
@@ -440,7 +449,7 @@ const LabLive = [
         content: () => '',
         path: '/lab-live',
         paralax: 0,
-        pid: bg3,
+        pid: labPid,
         layers: [
             {
                 imgUrl: bg3,
@@ -458,13 +467,14 @@ const LabLive = [
 ************************************/
 
 
+const pubPid = Symbol()
 const PublishingIntro = [
     {
         h1: 'Publishing',
         h2: '',
         content: () => 'TBD',
         path: '/publishing',
-        pid: bg1,
+        pid: pubPid,
         layers: [
             {
                 imgUrl: bg1,
@@ -475,13 +485,14 @@ const PublishingIntro = [
     },
 ]
 
+const designPid = Symbol()
 const Design = [
     {
         h1: 'Publishing',
         h2: 'Design',
         content: () => 'TBD',
         path: '/design-publications',
-        pid: bg2,
+        pid: designPid,
         layers: [
             {
                 imgUrl: bg2,
@@ -491,13 +502,15 @@ const Design = [
         ]
     },
 ]
+
+const interactionsPid = Symbol()
 const Interactions = [
     {
         h1: 'Publishing',
         h2: 'Interactions',
         content: () => 'TBD',
         path: '/interaction-publications',
-        pid: bg3,
+        pid: interactionsPid,
         layers: [
             {
                 imgUrl: bg3,
@@ -507,13 +520,15 @@ const Interactions = [
         ]
     },
 ]
+
+const strategyPid = Symbol()
 const Strategy = [
     {
         h1: 'Publishing',
         h2: 'Strategy',
         content: () => 'TBD',
         path: '/strategy-publications',
-        pid: bg1,
+        pid: strategyPid,
         layers: [
             {
                 imgUrl: bg1,

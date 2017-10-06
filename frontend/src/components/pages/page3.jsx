@@ -10,13 +10,14 @@ import loginLayer1 from '../img/partnership/login/login-layer1.png'
 ************************************/
 
 
+const nyePid = Symbol()
 const Nye = [
     {
         h1: 'Partnership',
         h2: 'New Year\'s Eve',
         content: () => '',
         path: '/nye',
-        pid: nyeLayer1,
+        pid: nyePid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -40,7 +41,7 @@ const Nye = [
         h2: 'New Year\'s Eve',
         content: () => '2',
         path: '/nye',
-        pid: nyeLayer1,
+        pid: nyePid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -64,7 +65,7 @@ const Nye = [
         h2: 'New Year\'s Eve',
         content: () => ' last',
         path: '/nye',
-        pid: nyeLayer1,
+        pid: nyePid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -93,13 +94,14 @@ const Nye = [
 ************************************/
 
 
+const loginPid = Symbol()
 const Login = [
     {
         h1: 'Login',
         h2: '',
         content: () => 'Login',
         path: '/login',
-        pid: loginLayer1,
+        pid: loginPid,
         layers: [
             {
                 imgUrl: loginLayer1,

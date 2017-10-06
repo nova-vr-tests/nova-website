@@ -44,13 +44,14 @@ import { styles as appStyles } from '../../constants.js'
 ************************************/
 
 
+const designPid = Symbol()
 const Design = [
     {
         h1: 'Design',
         h2: '',
         content: () => 'Gravity sculpts the physical world - creating complex beauty, masking great mystery and pulling us toward innovation. Through generations, we’ve arrived at a point at which we can experience a world that defies all forms of physics.',
         path: '/design',
-        pid: designIntro,
+        pid: designPid,
         layers: [
             {
                 imgUrl: designIntro,
@@ -64,7 +65,7 @@ const Design = [
         h2: '',
         content: () => 'Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when. To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a /story/, a /world/, and an /interface/.',
         path: '/design',
-        pid: designIntro,
+        pid: designPid,
         layers: [
             {
                 imgUrl: designIntro,
@@ -78,7 +79,7 @@ const Design = [
         h2: '',
         content: () => 'You play an important role in designing /tomorrow/. Together we will build your story, architect your world and design intuitive interactions with everything you develop.',
         path: '/design',
-        pid: designIntro,
+        pid: designPid,
         layers: [
             {
                 imgUrl: designIntro,
@@ -92,7 +93,7 @@ const Design = [
         h2: '',
         content: () => 'Join us in designing tomorrow.',
         path: '/design',
-        pid: designIntro,
+        pid: designPid,
         layers: [
             {
                 imgUrl: designIntro,
@@ -104,13 +105,14 @@ const Design = [
 ]
 
 
+const interfacePid = Symbol()
 const Interface = [
     {
         h1: 'Design',
         h2: 'Interface',
         content: () => 'Information, volume, color, light, time, space, transparency... In XR, all these perceptions of the human experience are available at all times.',
         path: '/interface',
-        pid: interfaceLayer1,
+        pid: interfacePid,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -134,7 +136,7 @@ const Interface = [
         h2: 'Interface',
         content: () => 'We are redefining the grammar of interface to accommodate the era of multidimensional media. We are building interfaces that flow based on your attention and intentions.',
         path: '/interface',
-        pid: interfaceLayer1,
+        pid: interfacePid,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -158,7 +160,7 @@ const Interface = [
         h2: 'Interface',
         content: () => 'In XR you can zoom, scale, rotate, delete, cut and interact in all ways with all places at all times.',
         path: '/interface',
-        pid: interfaceLayer1,
+        pid: interfacePid,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -182,7 +184,7 @@ const Interface = [
         h2: 'Interface',
         content: () => 'We simplify complex technologies through intuitive design.',
         path: '/interface',
-        pid: interfaceLayer1,
+        pid: interfacePid,
         layers: [
             {
                 imgUrl: interfaceLayer1,
@@ -203,13 +205,14 @@ const Interface = [
     },
 ]
 
+const storyPid = Symbol()
 const Story = [
     {
         h1: 'Design',
         h2: 'Story',
         content: () => 'In XR you live the story.',
         path: '/story',
-        pid: storyLayer1,
+        pid: storyPid,
         layers: [
             {
                 imgUrl: storyLayer1,
@@ -238,7 +241,7 @@ const Story = [
         h2: 'Story',
         content: () => 'Choose your world.',
         path: '/story',
-        pid: storyLayer1,
+        pid: storyPid,
         layers: [
             {
                 imgUrl: storyLayer1,
@@ -267,7 +270,7 @@ const Story = [
         h2: 'Story',
         content: () => 'Our writers understand XR\'s technical intricacies and have the skills to adapt any scenario into an experience in Extended Reality.',
         path: '/story',
-        pid: storyLayer1,
+        pid: storyPid,
         layers: [
             {
                 imgUrl: storyLayer1,
@@ -296,7 +299,7 @@ const Story = [
         h2: 'Story',
         content: () => 'In XR you live the story.',
         path: '/story',
-        pid: storyLayer1,
+        pid: storyPid,
         layers: [
             {
                 imgUrl: storyLayer1,
@@ -325,7 +328,7 @@ const Story = [
         h2: 'Story',
         content: () => 'They will tell your story',
         path: '/story',
-        pid: storyLayer1,
+        pid: storyPid,
         layers: [
             {
                 imgUrl: storyLayer1,
@@ -351,13 +354,14 @@ const Story = [
     },
 ]
 
+const worldPid = Symbol()
 const World = [
     {
         h1: 'Design',
         h2: 'World',
         content: () => 'XR marks a new era of exploration. When we first stepped into the virtual world it was open space - a dream in the making.',
         path: '/world',
-        pid: worldLayer1,
+        pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -377,7 +381,7 @@ const World = [
         h2: 'World',
         content: () => 'We began to build. The potential was endless. We can build beyond physical world constraints.',
         path: '/world',
-        pid: worldLayer1,
+        pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -397,7 +401,7 @@ const World = [
         h2: 'World',
         content: () => 'We began to build. The potential was endless.We can build beyond physical world constraints.',
         path: '/world',
-        pid: worldLayer1,
+        pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -425,13 +429,14 @@ const World = [
 
 
 
+const businessPid = Symbol()
 const Business = [
     {
         h1: 'Business',
         h2: '',
         content: () => 'TBD',
         path: '/business',
-        pid: bg1,
+        pid: businessPid,
         layers: [
             {
                 imgUrl: bg1,
@@ -442,13 +447,14 @@ const Business = [
     },
 ]
 
+const servicesPid = Symbol()
 const Services = [
     {
         h1: 'Business',
         h2: 'Services',
         content: () => 'TBD',
         path: '/services',
-        pid: bg2,
+        pid: servicesPid,
         layers: [
             {
                 imgUrl: bg2,
@@ -458,13 +464,15 @@ const Services = [
         ]
     },
 ]
+
+const philoPid = Symbol()
 const Philosophy = [
     {
         h1: 'Business',
         h2: 'Philosophy',
         content: () => 'TBD',
         path: '/philosophy',
-        pid: philoLayer1,
+        pid: philoPid,
         layers: [
             {
                 imgUrl: philoLayer1,
@@ -475,13 +483,14 @@ const Philosophy = [
     },
 ]
 
+const disciplinesPid = Symbol()
 const Disciplines = [
     {
         h1: 'Business',
         h2: 'Disciplines',
         content: () => 'TBD',
         path: '/disciplines',
-        pid: disciplinesLayer1,
+        pid: disciplinesPid,
         layers: [
             {
                 imgUrl: disciplinesLayer1,
@@ -520,7 +529,7 @@ const Disciplines = [
         h2: 'Disciplines',
         content: () => 'TBD',
         path: '/disciplines',
-        pid: disciplinesLayer1,
+        pid: disciplinesPid,
         layers: [
             {
                 imgUrl: disciplinesLayer1,
@@ -559,7 +568,7 @@ const Disciplines = [
         h2: 'Disciplines',
         content: () => 'TBD',
         path: '/disciplines',
-        pid: disciplinesLayer1,
+        pid: disciplinesPid,
         layers: [
             {
                 imgUrl: disciplinesLayer1,
@@ -598,7 +607,7 @@ const Disciplines = [
         h2: 'Disciplines',
         content: () => 'TBD',
         path: '/disciplines',
-        pid: disciplinesLayer1,
+        pid: disciplinesPid,
         layers: [
             {
                 imgUrl: disciplinesLayer1,
@@ -643,13 +652,14 @@ const Disciplines = [
 ************************************/
 
 
+const techPid = Symbol()
 const Technology = [
     {
         h1: 'Technology',
         h2: '',
         content: () => 'We use technology as an artist uses paint.',
         path: '/technology',
-        pid: technologyIntro,
+        pid: techPid,
         layers: [
             {
                 imgUrl: technologyIntro,
@@ -663,7 +673,7 @@ const Technology = [
         h2: '',
         content: () => 'XR media promises to enhance our lives more than any media prior. We are embarking on a new frontier of connectivity.',
         path: '/technology',
-        pid: technologyIntro,
+        pid: techPid,
         layers: [
             {
                 imgUrl: technologyIntro,
@@ -677,7 +687,7 @@ const Technology = [
         h2: '',
         content: () => 'We’re responsible for writing the future.',
         path: '/technology',
-        pid: technologyIntro,
+        pid: techPid,
         layers: [
             {
                 imgUrl: technologyIntro,
@@ -688,13 +698,14 @@ const Technology = [
     },
 ]
 
+const vrPid = Symbol()
 const VR = [
     {
         h1: 'Technology',
         h2: 'Virtual Reality',
         content: () => 'Virtual Reality (VR) is an emerging technology empowering people to dream together. VR let\'s you go places you otherwise could not go. Together we architect new digital worlds while transcending time and space.',
         path: '/vr',
-        pid: vrLayer1,
+        pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -734,7 +745,7 @@ const VR = [
         h2: 'Virtual Reality',
         content: () => 'By putting on goggles and artificially stimulating our senses, our mind accept another version of reality, an entirely man made world.',
         path: '/vr',
-        pid: vrLayer1,
+        pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -774,7 +785,7 @@ const VR = [
         h2: 'Virtual Reality',
         content: () => <span>We can divide VR into two main categories: <br /> 1) High-fidelity: Ideal for creating premium experiences with positional tracking, haptic feedback and deep software integrations. Developing this caliber of content is a multi-year investment and project.</span>,
         path: '/vr',
-        pid: vrLayer1,
+        pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -814,7 +825,7 @@ const VR = [
         h2: 'Virtual Reality',
         content: () => '2) Mobile. Ideal for quick replicas of real-world images, easy to consume, easy to distribute. Mobile VR will be a low-cost and accessible solution.',
         path: '/vr',
-        pid: vrLayer1,
+        pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -854,7 +865,7 @@ const VR = [
         h2: 'Virtual Reality',
         content: () => 'We are entering a new era of media and its standards are still being established.',
         path: '/vr',
-        pid: vrLayer1,
+        pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -894,7 +905,7 @@ const VR = [
         h2: 'Virtual Reality',
         content: () => 'Nova XR helps you stay on the cutting edge of technology, by applying the latest computer sciences to your current strategies.',
         path: '/vr',
-        pid: vrLayer1,
+        pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             {
@@ -931,13 +942,14 @@ const VR = [
     },
 ]
 
+const arPid = Symbol()
 const AR = [
     {
         h1: 'Technology',
         h2: 'Augmented Reality',
         content: () => 'Augmented Reality (AR) is a powerful tool to simplify complex ideas and democratize education.',
         path: '/ar',
-        pid: arLayer1,
+        pid: arPid,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -961,7 +973,7 @@ const AR = [
         h2: 'Augmented Reality',
         content: () => 'AR is a technology that superimposes digital graphics on top of our physical environment. It is ideal for collaborative work or training.',
         path: '/ar',
-        pid: arLayer1,
+        pid: arPid,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -985,7 +997,7 @@ const AR = [
         h2: 'Augmented Reality',
         content: () => 'Through computer vision we can model the world around you. Turn everyday scenarios into interactive experinces.',
         path: '/ar',
-        pid: arLayer1,
+        pid: arPid,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -1009,7 +1021,7 @@ const AR = [
         h2: 'Augmented Reality',
         content: () => 'By weaving the internet into the fabric of life we must examine our traditional constructs of reality.',
         path: '/ar',
-        pid: arLayer1,
+        pid: arPid,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -1033,7 +1045,7 @@ const AR = [
         h2: 'Augmented Reality',
         content: () => 'Nova XR will assist you in adapting the world to your workflow.',
         path: '/ar',
-        pid: arLayer1,
+        pid: arPid,
         layers: [
             {
                 imgUrl: arLayer1,
@@ -1054,13 +1066,14 @@ const AR = [
     },
 ]
 
+const expPid = Symbol()
 const expTech = [
     {
         h1: 'Technology',
         h2: 'Exponential Technologies',
         content: () => 'TBD',
         path: '/expentional-technologies',
-        pid: bg1,
+        pid: expPid,
         layers: [
             {
                 imgUrl: bg1,
