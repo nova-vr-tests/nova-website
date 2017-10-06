@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store, { history } from './store';
-import { ConnectedRouter } from 'react-router-redux';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import store, { history } from './store'
+import { ConnectedRouter } from 'react-router-redux'
+import './index.css'
+import App from './App'
+import registerServiceWorker from './registerServiceWorker'
 
 
 
@@ -20,4 +20,4 @@ ReactDOM.render(
     mountPoint
 )
 
-registerServiceWorker();
+registerServiceWorker()
