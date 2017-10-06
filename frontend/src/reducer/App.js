@@ -6,6 +6,7 @@ export const UPDATE_LINE_POSITION = 'app/update_line_position'
 export const UPDATE_BG = 'app/updateBg'
 export const UPDATE_THEME = 'app/update_app_theme'
 export const UPDATE_CURRENT_PAGE = 'app/update_current_page'
+export const UPDATE_GO_TO_PAGE = 'app/update_go_to_page'
 
 export const sectionPosition = {
     // values are position in sidebar links section array
@@ -22,10 +23,16 @@ const initialState = {
     bgUrl: '',
     appTheme: appStyles.themeTypes.defaultTheme,
     currentPage: 0,
+    goToPage: () => {},
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+  case UPDATE_GO_TO_PAGE:
+      return {
+          ...state,
+          goToPage: action.goToPage,
+      }
   case UPDATE_CURRENT_PAGE:
       return {
           ...state,

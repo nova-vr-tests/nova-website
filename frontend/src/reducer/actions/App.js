@@ -6,7 +6,13 @@ import {
     UPDATE_BG,
     UPDATE_THEME,
     UPDATE_CURRENT_PAGE,
+    UPDATE_GO_TO_PAGE,
 } from '../App'
+
+const updateGoToPage = goToPage => ({
+    type: UPDATE_GO_TO_PAGE,
+    goToPage,
+})
 
 const updateCurrentPage = currentPage => ({
     type: UPDATE_CURRENT_PAGE,
@@ -47,4 +53,5 @@ export {
     updateBg,
     updateAppTheme,
     updateCurrentPage,
+    updateGoToPage,
 }

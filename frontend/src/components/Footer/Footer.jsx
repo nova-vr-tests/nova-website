@@ -6,6 +6,7 @@ import { FOOTER_FINAL } from '../../constants.js'
 import { toggleSidebar } from '../../reducer/actions/Sidebar.js'
 import toggleButton from '../img/toggle-sidebar.svg'
 import { styles as appStyles } from '../../constants.js'
+import { slides } from '../pages/Pages.jsx'
 
 const reduxStatePropTypes = {
   introKeyframe: PropTypes.number,
@@ -16,6 +17,8 @@ const mapStateToProps = function(state) {
         introKeyframe: state.appReducer.introKeyframe,
         isSidebarOpened: state.sidebarReducer.isSidebarOpened,
         appTheme: state.appReducer.appTheme,
+        currentPage: state.appReducer.currentPage,
+        updateCurrentPage: state.appReducer.goToPage,
     }
 }
 
@@ -26,6 +29,39 @@ const mapDispatchToProps = function(dispatch) {
 	return {
       toggleSidebar: () => dispatch(toggleSidebar()),
   }
+}
+
+
+const PresentationControls = ({ updateCurrentPage, currentPage }) => {
+    const styles = {
+        wrapper: {
+            fontSize: '5rem',
+            color: 'red',
+            zIndex: 1,
+            position: 'absolute',
+            bottom: 0,
+            transform: 'translateX(-50%)',
+            left: '50%',
+        },
+        controlButtonWrapper: {
+            width: '1rem',
+            height: '1rem',
+            backgroundColor: 'red',
+        }
+    }
+
+    const ControlButton = props => (
+        <div
+            onClick={ () => updateCurrentPage(props.targetPage) }
+            style={ styles.controlButtonWrapper }>
+        </div>
+    )
+
+    return (
+        <div style={ styles.wrapper }>
+            <ControlButton targetPage={ currentPage + 1 } />
+        </div>
+    )
 }
 
 const FooterDumb = props => {
@@ -73,6 +109,7 @@ const FooterDumb = props => {
             >
                 <img src={ toggleButton } alt="toggle sidebar" />
             </div>
+            <PresentationControls {...props} />
         </div>
     )
 }

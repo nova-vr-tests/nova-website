@@ -15,6 +15,7 @@ import {
     updateLinePosition,
     updateAppTheme,
     updateCurrentPage,
+    updateGoToPage,
 } from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
@@ -43,6 +44,7 @@ const mapDispatchToProps = dispatch => ({
     updateLinePosition: position => dispatch(updateLinePosition(position)),
     updateAppTheme: appTheme => dispatch(updateAppTheme(appTheme)),
     updateCurrentPage: currentPage => dispatch(updateCurrentPage(currentPage)),
+    updateGoToPage: goToPage => dispatch(updateGoToPage(goToPage)),
 })
 
 class SlideTransition extends React.Component {
@@ -245,7 +247,9 @@ class Presentation extends React.Component {
         this.props.updateCurrentPage(currentPage)
 
         this.props.updateBackLayers(this.props.pages[currentPage].layers)
+
         this.updateAppTheme(currentPage)
+
 
         this.eventCounter = 0
 
@@ -260,6 +264,8 @@ class Presentation extends React.Component {
         this.goToPage = this.goToPage.bind(this)
         this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
         this.getTransitionType, this.getTransitionType.bind(this)
+
+        this.props.updateGoToPage(this.goToPage)
     }
 
     componentDidMount() {
