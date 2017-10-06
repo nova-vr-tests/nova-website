@@ -39,9 +39,12 @@ AboutDumb.propTypes = {
 AboutDumb.defaultProps = {
 }
 
-class About extends Component {
-  componentDidMount() {
+type Props = {
+    changePage: function,
+}
 
+class About extends Component<Props> {
+  componentDidMount() {
   }
 
   render() {

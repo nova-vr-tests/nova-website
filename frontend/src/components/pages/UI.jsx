@@ -1,5 +1,14 @@
+// @flow
+
 import React from 'react'
 import { styles as appStyles } from '../../constants.js'
+
+type IAligments = {
+    right: string,
+}
+const alignments: IAligments = {
+    right: 'right',
+}
 
 const styles = {
     pageWrapper: {
