@@ -192,8 +192,15 @@ class SlideTransition extends React.Component {
     }
 
     render() {
-        const currentSlideStyle = this.getTranslationStyles().currentSlide
-        const targetSlideStyle = this.getTranslationStyles().targetSlide
+        const currentSlideStyle = {
+            ...this.getTranslationStyles().currentSlide,
+            height: appStyles.lineDimensions.height,
+        }
+
+        const targetSlideStyle = {
+            ...this.getTranslationStyles().targetSlide,
+            height: appStyles.lineDimensions.height,
+        }
 
         const CurrentSlide = this.props.pages[this.state.currentPage].comp
         const TargetSlide = this.props.pages[this.state.targetPage].comp
