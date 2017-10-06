@@ -32,8 +32,15 @@ const styles = {
         display: 'flex',
         margin: 0,
         marginLeft: appStyles.unitWidth,
-    }
+    },
+    BigText: {
+        fontSize: '3vh',
+    },
 }
+
+const BigText = props => (
+    <span style={ styles.BigText }>{ props.children }</span>
+)
 
 const PageWrapper = props => {
     return (
@@ -68,6 +75,7 @@ const H2 = props => {
 }
 
 export {
+    BigText,
     P,
     PageWrapper,
     H1,

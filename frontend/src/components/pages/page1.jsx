@@ -36,6 +36,8 @@ import disciplinesLayer1 from '../img/business/disciplines-layer6.png'
 
 import { styles as appStyles } from '../../constants.js'
 
+import { BigText } from './UI.jsx'
+
 
 /************************************
 
@@ -158,7 +160,7 @@ const Interface = [
     {
         h1: 'Design',
         h2: 'Interface',
-        content: () => 'In XR you can zoom, scale, rotate, delete, cut and interact in all ways with all places at all times.',
+        content: () => <BigText>In XR you can zoom, scale, rotate, delete, cut and interact in all ways with all places at all times.</BigText>,
         path: '/interface',
         pid: interfacePid,
         layers: [
@@ -326,7 +328,7 @@ const Story = [
     {
         h1: 'Design',
         h2: 'Story',
-        content: () => 'They will tell your story',
+        content: () => <BigText>They will tell your story</BigText>,
         path: '/story',
         pid: storyPid,
         layers: [
