@@ -339,6 +339,7 @@ const SidebarDumb = props => {
             transform: 'translateX(calc(-' + sidebarWidth + '))',
             opacity: 0,
             color: props.themeStyles.menuFontColor,
+            zIndex: 1,
         },
         logo: {
             height: '10rem',
