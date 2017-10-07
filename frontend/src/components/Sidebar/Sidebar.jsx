@@ -81,7 +81,7 @@ const SidebarSubSection = props => {
     }
 
     // don't push page if already on location
-    const goTo = path => path !== props.routing.location.pathname ? props.dispatch.goTo(path) : 0
+    const goTo = path => props.dispatch.goTo(path)
 
     if(subSubSections.length > 0) {
         const components = []
