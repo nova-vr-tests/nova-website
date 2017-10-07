@@ -1,9 +1,6 @@
 import React from 'react'
 
 
-import bg1 from '../img/design/1.png'
-import bg2 from '../img/design/2.png'
-
 import intro from '../img/default.jpg'
 
 import designIntro from '../img/design/intro.png'
@@ -27,7 +24,16 @@ import vrLayer6 from '../img/Technology/vr-layer6.png'
 import arLayer1 from '../img/Technology/ar-layer1.png'
 import arLayer2 from '../img/Technology/ar-layer2.png'
 import arLayer3 from '../img/Technology/ar-layer3.png'
+import expTechLayer1 from '../img/Technology/exp-techs-layer1.jpg'
+import expTechLayer2 from '../img/Technology/exp-techs-layer2.jpg'
+import expTechLayer3 from '../img/Technology/exp-techs-layer3.jpg'
+import expTechLayer4 from '../img/Technology/exp-techs-layer4.jpg'
 
+import businessIntroLayer1 from '../img/business/business-intro-layer1.jpg'
+import businessIntroLayer2 from '../img/business/business-intro-layer2.jpg'
+import businessIntroLayer3 from '../img/business/business-intro-layer3.jpg'
+import servicesLayer1 from '../img/business/services-layer1.png'
+import servicesLayer2 from '../img/business/services-layer2.png'
 import philoLayer1 from '../img/business/philo-layer1.png'
 import disciplinesLayer6 from '../img/business/disciplines-layer1.png'
 import disciplinesLayer5 from '../img/business/disciplines-layer2.png'
@@ -53,10 +59,9 @@ const SiteIntro = [
     {
         h1: 'Dream Awake',
         h2: '',
-        content: () => 'Intro.',
+        content: () => 'We provide access to advanced technologies and advise on related markets.',
         path: '/',
         pid: introPid,
-        align: alignments.farLeft,
         linePosition: 0,
         layers: [
             {
@@ -122,7 +127,7 @@ const Design = [
     {
         h1: 'Design',
         h2: '',
-        content: () => 'To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a /story/, a /world/, and an /interface/.',
+        content: () => <span>To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a <em>story</em>, a <em>world</em>, and an <em>interface</em>.</span>,
         path: '/design',
         pid: designPid,
         layers: [
@@ -138,7 +143,7 @@ const Design = [
         h2: '',
         path: '/design',
         pid: designPid,
-        content: () => 'You play an important role in designing /tomorrow/. Together we will build your story, architect your world and design intuitive interactions with everything you develop.',
+        content: () => <span>You play an important role in designing <em>tomorrow</em>. Together we will build your story, architect your world and design intuitive interactions with everything you develop.</span>,
         layers: [
             {
                 imgUrl: designIntro,
@@ -153,7 +158,6 @@ const Design = [
         content: () => <BigText>Join us in designing tomorrow.</BigText>,
         path: '/design',
         pid: designPid,
-        align: alignments.right,
         layers: [
             {
                 imgUrl: designIntro,
@@ -474,9 +478,19 @@ const Business = [
         pid: businessPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: businessIntroLayer1,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: businessIntroLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: businessIntroLayer3,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -488,9 +502,19 @@ const Business = [
         pid: businessPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: businessIntroLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: businessIntroLayer2,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: businessIntroLayer3,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -502,7 +526,17 @@ const Business = [
         pid: businessPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: businessIntroLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: businessIntroLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: businessIntroLayer3,
                 paralax: 0,
                 opacity: 1,
             },
@@ -520,9 +554,14 @@ const Services = [
         pid: servicesPid,
         layers: [
             {
-                imgUrl: bg2,
+                imgUrl: servicesLayer1,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: servicesLayer2,
+                paralax: 0,
+                opacity: 0,
             },
         ]
     },
@@ -534,7 +573,12 @@ const Services = [
         pid: servicesPid,
         layers: [
             {
-                imgUrl: bg2,
+                imgUrl: servicesLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: servicesLayer2,
                 paralax: 0,
                 opacity: 1,
             },
@@ -567,7 +611,7 @@ const Philosophy = [
         layers: [
             {
                 imgUrl: philoLayer1,
-                paralax: 0,
+                paralax: -50,
                 opacity: 1,
             },
         ]
@@ -581,7 +625,7 @@ const Philosophy = [
         layers: [
             {
                 imgUrl: philoLayer1,
-                paralax: 0,
+                paralax: -100,
                 opacity: 1,
             },
         ]
@@ -595,7 +639,7 @@ const Philosophy = [
         layers: [
             {
                 imgUrl: philoLayer1,
-                paralax: 0,
+                paralax: -150,
                 opacity: 1,
             },
         ]
@@ -609,7 +653,7 @@ const Philosophy = [
         layers: [
             {
                 imgUrl: philoLayer1,
-                paralax: 0,
+                paralax: -200,
                 opacity: 1,
             },
         ]
@@ -1294,9 +1338,24 @@ const expTech = [
         pid: expPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: expTechLayer1,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: expTechLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer4,
+                paralax: 0,
+                opacity: 0,
             },
         ],
     },
@@ -1308,9 +1367,24 @@ const expTech = [
         pid: expPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: expTechLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer2,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: expTechLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer4,
+                paralax: 0,
+                opacity: 0,
             },
         ],
     },
@@ -1322,9 +1396,24 @@ const expTech = [
         pid: expPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: expTechLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer3,
                 paralax: 0,
                 opacity: 1,
+            },
+            {
+                imgUrl: expTechLayer4,
+                paralax: 0,
+                opacity: 0,
             },
         ],
     },
@@ -1336,7 +1425,22 @@ const expTech = [
         pid: expPid,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: expTechLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer3,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: expTechLayer4,
                 paralax: 0,
                 opacity: 1,
             },

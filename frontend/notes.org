@@ -1,3 +1,8 @@
 * Frontend
+** TB TODO slide boundary conditions :TB:website:
+** TB TODO isolate transition functions :TB:website:
+** TB TODO map arrow keys to slide transitions :TB:website:
+** TB TODO hook up the line height to the slide presentation transitions :TB:website:
+Could probably have the router deal with line heights
 
 * Backend
