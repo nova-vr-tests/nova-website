@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect }from 'react-redux'
 import './styles/Footer.css'
-import { FOOTER_FINAL } from '../../constants.js'
+import { FOOTER_FINAL, INTRO_FINISHED } from '../../constants.js'
 import { toggleSidebar } from '../../reducer/actions/Sidebar.js'
 import toggleButton from '../img/toggle-sidebar.svg'
 import { styles as appStyles } from '../../constants.js'
@@ -94,19 +94,22 @@ const FooterDumb = props => {
     const theme = appStyles.themes[props.appTheme]
 
     const styles = {
+        footerWrapper: {
+        },
         wrapper: {
-            backgroundColor: theme.footerBgColor,
-            transition: 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc,
+            backgroundColor: props.introKeyframe >= INTRO_FINISHED ? theme.footerBgColor : 'white',
+            transition: props.introKeyframe >= INTRO_FINISHED ? 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc : 'transform 2s linear'
         },
         toggleSidebarButton: {
             position: 'absolute',
             height,
             width,
-            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
+            transition: 'transform, opacity ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
             bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
             left: 'calc(' + appStyles.sidebar.widthFactor + ' / 2 * ' + appStyles.unitWidth + ' - ' + height + ' / 2 - ' + width + ' / 3)',
             transform: 'rotateZ(45deg)translateX(calc(0.99 / 3 * ' + width + '))translateY(calc(-0.50 / 3 * ' + height + '))',
             cursor: 'pointer',
+            opacity: props.introKeyframe >= FOOTER_FINAL ? 1 : 0,
         },
         rotatedCloseButton: {
             transform: 'inherit',
@@ -119,7 +122,7 @@ const FooterDumb = props => {
                 style={ styles.wrapper }
                 className={
             "footer-background "
-            + (props.introKeyframe <= FOOTER_FINAL ? " final-position " : "init-position")
+            + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
             }>
             </div>
             <div

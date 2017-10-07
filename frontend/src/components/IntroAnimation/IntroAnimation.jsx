@@ -61,7 +61,7 @@ IntroAnimationDumb.defaultProps = {
 
 class IntroAnimation extends Component {
   componentDidMount() {
-    let i = 0;
+    let i = 0
     const j = setInterval(() => {
       i = i + 1
       this.props.incrementIntroKeyframe()

@@ -14,6 +14,7 @@ import {
 import Header from './components/Header/Header.jsx'
 import { toggleSidebar } from './reducer/actions/Sidebar.js'
 import { styles as appStyles } from './constants.js'
+import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 
 const apiTest = async () => {
   const r = await fetch("/api/businessprops/")
@@ -59,6 +60,7 @@ const _styles = {
         opacity: 0,
     },
 }
+
 const AppDumb = props => (
   <div id="app--wrapper">
       <div
@@ -69,6 +71,7 @@ const AppDumb = props => (
             <Bg />
             <Sidebar />
         <NovaRouter />
+        <IntroAnimation />
     </div>
     <Footer />
   </div>
