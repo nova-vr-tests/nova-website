@@ -52,7 +52,6 @@ const PresentationControls = ({ updateCurrentPage, currentPage, opacity }) => {
             borderRadius: '0.5rem',
             backgroundColor: 'rgba(220, 220, 220, 0.9)',
             margin: '0.5rem',
-            transition: 'background-color 5s linear',
             cursor: 'pointer',
         },
         controlButtonActive: {
@@ -105,7 +104,7 @@ const FooterDumb = props => {
             position: 'absolute',
             height,
             width,
-            transition: 'transform, opacity ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
+            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + ', opacity ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
             bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
             left: 'calc(' + appStyles.sidebar.widthFactor + ' / 2 * ' + appStyles.unitWidth + ' - ' + height + ' / 2 - ' + width + ' / 3)',
             transform: 'rotateZ(45deg)translateX(calc(0.99 / 3 * ' + width + '))translateY(calc(-0.50 / 3 * ' + height + '))',

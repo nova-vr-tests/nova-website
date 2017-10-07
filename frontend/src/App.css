@@ -14,9 +14,19 @@
 
 
 .transform-on-hover {
-    transition: transform 0.1s linear;
+    transition: transform 0.1s, background-color 0.1s linear;
 }
 
 .transform-on-hover:hover {
     transform: scale(1.2);
+}
+
+html {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    position: absolute;
 }
