@@ -1,3 +1,5 @@
+import React from 'react'
+
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
@@ -15,6 +17,8 @@ import insightsLayers4 from '../img/resources/insights/insights-layer4.jpg'
 
 import { styles as appStyles } from '../../constants.js'
 
+import { BigText, alignments } from './UI.jsx'
+
 /************************************
 
     Educational Portal
@@ -28,7 +32,7 @@ const EducationIntro = [
     {
         h1: 'Educational Portal',
         h2: '',
-        content: () => '',
+        content: () => 'We source knowledge from across the globe. From academia to groundbreaking technology, we collect solutions so you can advance.',
         path: '/education-portal',
         paralax: 0,
         pid: edIntroPid,
@@ -48,7 +52,7 @@ const Education = [
     {
         h1: 'Educational Portal',
         h2: 'Education',
-        content: () => '',
+        content: () => 'We provide access to resources from top Universities to underground innovation labs.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -84,7 +88,7 @@ const Education = [
     {
         h1: 'Educational Portal',
         h2: 'Education',
-        content: () => '',
+        content: () => 'We are currently developing a VR Education Portal, which will provide instant access to a wealth of interactive content.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -120,7 +124,7 @@ const Education = [
     {
         h1: 'Educational Portal',
         h2: 'Education',
-        content: () => '',
+        content: () => 'You will learn from professors, experiment with tinkerers, and match wits with the anonymous avatars of subculture innovation.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -156,7 +160,7 @@ const Education = [
     {
         h1: 'Educational Portal',
         h2: 'Education',
-        content: () => '',
+        content: () => <BigText>Together we will push the limits of information technologies</BigText>,
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -186,42 +190,6 @@ const Education = [
                 imgUrl: educationLayer4,
                 paralax: 0,
                 opacity: 0,
-            },
-        ]
-    },
-    {
-        h1: 'Educational Portal',
-        h2: 'Education',
-        content: () => '',
-        path: '/education',
-        paralax: 0,
-        pid: edPid,
-        theme: appStyles.themeTypes.inverseTheme,
-        layers: [
-            {
-                imgUrl: educationIntroIntroLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: educationLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: educationLayer2,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: educationLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: educationLayer4,
-                paralax: 0,
-                opacity: 1,
             },
         ]
     },
@@ -233,7 +201,22 @@ const Solutions = [
     {
         h1: 'Educational Portal',
         h2: 'Solutions',
-        content: () => '',
+        content: () => 'Education, Public Health, Travel, Entertainment, Space Exploration, Real Estate, Architecture, Design, and many more industries are finding solutions to their gravest challenges by applying XR (Extended Reality) media.',
+        path: '/ed-solutions',
+        paralax: 0,
+        pid: solutionsPid,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Educational Portal',
+        h2: 'Solutions',
+        content: () => 'Soon, XR will be as ubiquitous as mobile devices are today. However, uncovering solutions and making use of the technology is up to those on the ground level.  Share your challenge and we can find a solution together.',
         path: '/ed-solutions',
         paralax: 0,
         pid: solutionsPid,
@@ -252,7 +235,7 @@ const Insights = [
     {
         h1: 'Educational Portal',
         h2: 'Insights',
-        content: () => '',
+        content: () => 'Nova is dedicated to sourcing emerging technologies from around the world.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -283,7 +266,7 @@ const Insights = [
     {
         h1: 'Educational Portal',
         h2: 'Insights',
-        content: () => '',
+        content: () => 'Our aim is to make these information technologies available and applicable for you to achieve your goals.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -314,7 +297,7 @@ const Insights = [
     {
         h1: 'Educational Portal',
         h2: 'Insights',
-        content: () => '',
+        content: () => 'Stay current on a spectrum of technologies that are intertwining in the new era of augmented experiences.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -345,7 +328,7 @@ const Insights = [
     {
         h1: 'Educational Portal',
         h2: 'Insights',
-        content: () => '',
+        content: () => 'As mechanical and biological blend, we’ll keep the light shining on programs that matter.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -388,7 +371,7 @@ const NewsIntro = [
     {
         h1: 'News Insights',
         h2: '',
-        content: () => '',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/news-insights',
         paralax: 0,
         pid: newsPid,
@@ -408,7 +391,7 @@ const FeaturedContent = [
     {
         h1: 'News Insights',
         h2: 'Featured Content',
-        content: () => '',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/featured-content',
         paralax: 0,
         pid: contentPid,
@@ -427,7 +410,7 @@ const TwitterFeed = [
     {
         h1: 'News Insights',
         h2: 'Twitter Feed',
-        content: () => '',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/twitter',
         paralax: 0,
         pid: twitterPid,
@@ -446,7 +429,7 @@ const LabLive = [
     {
         h1: 'News Insights',
         h2: 'Lab Live',
-        content: () => '',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/lab-live',
         paralax: 0,
         pid: labPid,
@@ -472,7 +455,7 @@ const PublishingIntro = [
     {
         h1: 'Publishing',
         h2: '',
-        content: () => 'TBD',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/publishing',
         pid: pubPid,
         layers: [
@@ -490,7 +473,7 @@ const Design = [
     {
         h1: 'Publishing',
         h2: 'Design',
-        content: () => 'TBD',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/design-publications',
         pid: designPid,
         layers: [
@@ -508,7 +491,7 @@ const Interactions = [
     {
         h1: 'Publishing',
         h2: 'Interactions',
-        content: () => 'TBD',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/interaction-publications',
         pid: interactionsPid,
         layers: [
@@ -526,7 +509,7 @@ const Strategy = [
     {
         h1: 'Publishing',
         h2: 'Strategy',
-        content: () => 'TBD',
+        content: () => <BigText>Coming soon</BigText>,
         path: '/strategy-publications',
         pid: strategyPid,
         layers: [
