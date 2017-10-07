@@ -2,7 +2,7 @@ import React from 'react'
 import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
-import novaXr from './page1.jsx'
+import novaXr, { SiteIntro } from './page1.jsx'
 import resources from './page2.jsx'
 import partnership from './page3.jsx'
 
@@ -218,8 +218,9 @@ const pages = sitePages.map((section, i) =>
     )
 )
 
-const slides = flatten(pages)
+let slides = flatten(pages)
 const menuInput = pages.map(makeMenu)
+slides = [...SiteIntro, ...slides]
 
 const Pages = () => {
     return (

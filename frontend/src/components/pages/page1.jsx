@@ -4,6 +4,8 @@ import React from 'react'
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 
+import intro from '../img/default.jpg'
+
 import designIntro from '../img/design/intro.png'
 import worldLayer1 from '../img/design/world-layer1.png'
 import worldLayer2 from '../img/design/world-layer2.png'
@@ -38,6 +40,33 @@ import { styles as appStyles } from '../../constants.js'
 
 import { BigText, alignments } from './UI.jsx'
 
+
+/************************************
+
+    SITE INTRO
+
+************************************/
+
+
+const introPid = Symbol()
+const SiteIntro = [
+    {
+        h1: 'Dream Awake',
+        h2: '',
+        content: () => 'Intro.',
+        path: '/',
+        pid: introPid,
+        align: alignments.farLeft,
+        linePosition: 0,
+        layers: [
+            {
+                imgUrl: intro,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
 
 /************************************
 
@@ -1133,3 +1162,7 @@ export default [
     technologySlides,
     businessSlides,
 ]
+
+export {
+    SiteIntro,
+}
