@@ -32,7 +32,7 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 
-const PresentationControls = ({ updateCurrentPage, currentPage }) => {
+const PresentationControls = ({ updateCurrentPage, currentPage, opacity }) => {
     const styles = {
         wrapper: {
             fontSize: '5rem',
@@ -46,6 +46,7 @@ const PresentationControls = ({ updateCurrentPage, currentPage }) => {
             marginBottom: 'calc(' + appStyles.unitHeight + ' / 2)',
         },
         controlButtonWrapper: {
+            opacity: opacity,
             width: '1rem',
             height: '1rem',
             borderRadius: '0.5rem',
@@ -109,7 +110,7 @@ const FooterDumb = props => {
             left: 'calc(' + appStyles.sidebar.widthFactor + ' / 2 * ' + appStyles.unitWidth + ' - ' + height + ' / 2 - ' + width + ' / 3)',
             transform: 'rotateZ(45deg)translateX(calc(0.99 / 3 * ' + width + '))translateY(calc(-0.50 / 3 * ' + height + '))',
             cursor: 'pointer',
-            opacity: props.introKeyframe >= FOOTER_FINAL ? 1 : 0,
+            opacity: props.introKeyframe >= INTRO_FINISHED ? 1 : 0,
         },
         rotatedCloseButton: {
             transform: 'inherit',
@@ -134,7 +135,7 @@ const FooterDumb = props => {
             >
                 <img src={ toggleButton } alt="toggle sidebar" className="transform-on-hover" />
             </div>
-            <PresentationControls {...props} />
+            <PresentationControls {...props} opacity={ props.introKeyframe >= INTRO_FINISHED ? 1 : 0 } />
         </div>
     )
 }

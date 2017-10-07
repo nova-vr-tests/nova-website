@@ -22,9 +22,9 @@
     filter: invert(100%);
     transition: opacity 2s linear;
     opacity: 1;
-    height: 10rem;
+    height: 20rem;
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -70%);
     top: 50%;
     left: 50%;
 }
