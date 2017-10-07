@@ -129,7 +129,7 @@ class SlideTransition extends React.Component {
 
     translateTitle(currentTitle, currentAlign, targetTitle, targetAlign, sign) {
         if(sign >= 0) {
-            if(currentTitle !== targetTitle || currentAlign !== targetAlign) {
+            if(currentTitle !== targetTitle || (currentAlign !== targetAlign && this.props.windowWidth > appStyles.mediaQueries.phone))  {
                 // translate
                 return {
                     transform: 'inherit',
@@ -141,7 +141,7 @@ class SlideTransition extends React.Component {
                 }
             }
         } else {
-            if(currentTitle !== targetTitle || currentAlign !== targetAlign) {
+            if(currentTitle !== targetTitle || (currentAlign !== targetAlign && this.props.windowWidth > appStyles.mediaQueries.phone))  {
                 // translate
                 return {
                     transform: 'inherit',
