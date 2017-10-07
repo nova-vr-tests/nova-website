@@ -45,6 +45,8 @@ class SlideTransition extends React.Component {
                 transitionProgress: 0,
                 transitionDirection: this.props.currentPage > newProps.currentPage ? -1 : 1,
             })
+        } else {
+            return
         }
 
         // Start transition
