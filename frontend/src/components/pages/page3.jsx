@@ -5,7 +5,7 @@ import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
 import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
 import loginLayer1 from '../img/partnership/login/login-layer1.png'
 
-import { BigText, alignments } from './UI.jsx'
+import { BigText } from './UI.jsx'
 
 /************************************
 

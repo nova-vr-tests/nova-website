@@ -17,7 +17,7 @@ import insightsLayers4 from '../img/resources/insights/insights-layer4.jpg'
 
 import { styles as appStyles } from '../../constants.js'
 
-import { BigText, alignments } from './UI.jsx'
+import { BigText } from './UI.jsx'
 
 /************************************
 
