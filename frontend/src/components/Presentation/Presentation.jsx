@@ -28,6 +28,7 @@ const mapStateToProps = state => ({
     currentPage: state.appReducer.currentPage,
     windowWidth: state.appReducer.windowWidth,
     isFooterOpened: state.appReducer.isFooterOpened,
+    goToPage: state.appReducer.goToPage,
 })
 
 const mapDispatchToProps = dispatch => ({

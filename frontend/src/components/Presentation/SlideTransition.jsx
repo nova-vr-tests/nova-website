@@ -8,6 +8,8 @@ import {
 
 import { styles as appStyles } from '../../constants.js'
 
+import arrowImg from '../img/arrow.svg'
+
 /**
    Takes slides as props and stores them in state to handle slide transition.
 */
@@ -254,6 +256,24 @@ class SlideTransition extends React.Component {
                 color: theme.titleColor,
                 transition: fontColorTransition,
             },
+            arrowWrapper1: {
+                ...this.getTranslationStyles().currentSlide,
+                position: 'absolute',
+                width: '2rem',
+                right: 0,
+                height: '100%',
+                display: 'flex',
+                marginRight: appStyles.unitWidth,
+            },
+            arrowWrapper2: {
+                ...this.getTranslationStyles().targetSlide,
+                position: 'absolute',
+                height: '100%',
+                width: '2rem',
+                right: 0,
+                display: 'flex',
+                marginRight: appStyles.unitWidth,
+            },
         }
 
         return (
@@ -267,6 +287,22 @@ class SlideTransition extends React.Component {
                     <H1 style={ styles.H1 }>{ targetH1 }</H1>
                     <H2 style={ styles.H2 }>{ targetH2 }</H2>
                     <TargetSlide { ...this.props } />
+                </div>
+                <div style={ styles.arrowWrapper1 }>
+                    <img
+                        src={ arrowImg }
+                        alt='next-slide'
+                        style={ styles.nextSlideButton1  }
+                        onClick={ () => this.props.goToPage(this.props.currentPage + 1)}
+                    />
+                </div>
+                <div style={ styles.arrowWrapper2 }>
+                    <img
+                        src={ arrowImg }
+                        alt='next-slide'
+                        style={ styles.nextSlideButton2 }
+                        onClick={ () => this.props.goToPage(this.props.currentPage + 1)}
+                    />
                 </div>
             </div>
         )
