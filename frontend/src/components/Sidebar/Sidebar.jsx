@@ -9,7 +9,9 @@ import {
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
 import { menuInput } from '../pages/Pages.jsx'
-
+import {
+    updateIsFooterOpened,
+} from '../../reducer/actions/App.js'
 const constants = { styles }
 
 
@@ -413,7 +415,7 @@ const sidebarState = function(state) {
 
 const sidebarDispatch = function(dispatch) {
 	return {
-    goTo: page => dispatch(push(page)),
+    goTo: page => { dispatch(push(page)); dispatch(updateIsFooterOpened(false)) },
     initLinkStates: links => dispatch(initSidebarLinkStates(links)),
     toggleSection: i => dispatch(toggleSidebarSection(i)),
     toggleSubSection: (i, j) => dispatch(toggleSidebarSubSection(i, j)),

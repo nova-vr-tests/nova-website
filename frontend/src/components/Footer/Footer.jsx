@@ -4,6 +4,7 @@ import { connect }from 'react-redux'
 import './styles/Footer.css'
 import { FOOTER_FINAL, INTRO_FINISHED } from '../../constants.js'
 import { toggleSidebar } from '../../reducer/actions/Sidebar.js'
+import { updateIsFooterOpened } from '../../reducer/actions/App.js'
 import toggleButton from '../img/toggle-sidebar.svg'
 import { styles as appStyles } from '../../constants.js'
 import { slides } from '../pages/Pages.jsx'
@@ -19,6 +20,7 @@ const mapStateToProps = function(state) {
         appTheme: state.appReducer.appTheme,
         currentPage: state.appReducer.currentPage,
         updateCurrentPage: state.appReducer.goToPage,
+        isFooterOpened: state.appReducer.isFooterOpened,
     }
 }
 
@@ -28,6 +30,7 @@ const reduxDispatchPropTypes = {
 const mapDispatchToProps = function(dispatch) {
 	return {
       toggleSidebar: () => dispatch(toggleSidebar()),
+      updateIsFooterOpened: isFooterOpened => dispatch(updateIsFooterOpened(isFooterOpened)),
   }
 }
 
@@ -89,12 +92,35 @@ const PresentationControls = ({ updateCurrentPage, currentPage, opacity }) => {
 const FooterDumb = props => {
     const height = appStyles.unitHeight
     const width = height
+    const isIntroFinished = props.introKeyframe >= FOOTER_FINAL ? true : false
 
 
     const theme = appStyles.themes[props.appTheme]
+    let footerOffset = props.isFooterOpened && isIntroFinished ? '80vh' : '0vh'
+
+    const footerBgCenter = {
+        x: '50vw',
+        y: '1430vh',
+        radius: '1340vh',
+    }
+    footerBgCenter.diam = 'calc(' + footerBgCenter.radius + ' * 2)'
+
+    if(!isIntroFinished) {
+        footerBgCenter.x = '100vw'
+        footerBgCenter.y = '1400vh'
+    }
 
     const styles = {
-        footerWrapper: {
+        footerBackground: {
+            backgroundColor: 'white',
+            position: 'absolute',
+            height: footerBgCenter.diam,
+            width: footerBgCenter.diam,
+            borderRadius: footerBgCenter.diam,
+            transition: 'transform 0.3s linear',
+            top: 'calc(0vh - ' + footerBgCenter.radius + '))',
+            left: 'calc(0vh - ' + footerBgCenter.radius + '))',
+            transform: 'translateY(calc(' + footerBgCenter.y + ' - ' + footerOffset + '))translateX(' + footerBgCenter.x + ')',
         },
         wrapper: {
             backgroundColor: props.introKeyframe >= INTRO_FINISHED ? theme.footerBgColor : 'white',
@@ -117,13 +143,16 @@ const FooterDumb = props => {
     }
 
     return (
-        <div className="footer--wrapper">
-            <div
-                style={ styles.wrapper }
-                className={
-            "footer-background "
-            + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
-            }>
+        <div className="footer--wrapper" onClick={ () => props.updateIsFooterOpened(!props.isFooterOpened)}>
+            <div>
+                <div
+                    style={ styles.footerBackground }
+                    className={
+                        "footer-background "
+                        + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
+                    }
+                >
+                </div>
             </div>
             <div
                 style={{

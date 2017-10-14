@@ -27,6 +27,7 @@ const mapStateToProps = state => ({
     appTheme: state.appReducer.appTheme,
     currentPage: state.appReducer.currentPage,
     windowWidth: state.appReducer.windowWidth,
+    isFooterOpened: state.appReducer.isFooterOpened,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -91,8 +92,11 @@ class Presentation extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        // update app theme on current page state update
-        this.updateAppTheme(nextProps.currentPage)
+        // Let footer update app theme when openeing but handle it from here when it closes
+        if(!nextProps.isFooterOpened) {
+            // update app theme on current page state update
+            this.updateAppTheme(nextProps.currentPage)
+        }
     }
 
     updateAppTheme(currentPage) {

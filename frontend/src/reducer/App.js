@@ -8,6 +8,7 @@ export const UPDATE_THEME = 'app/update_app_theme'
 export const UPDATE_CURRENT_PAGE = 'app/update_current_page'
 export const UPDATE_GO_TO_PAGE = 'app/update_go_to_page'
 export const UPDATE_WINDOW_WIDTH = 'app/update_window_width'
+export const UPDATE_IS_FOOTER_OPENED = 'footer/update_is_footer_opened'
 
 export const sectionPosition = {
     // values are position in sidebar links section array
@@ -26,10 +27,19 @@ const initialState = {
     currentPage: 0,
     goToPage: () => {},
     windowWidth: window.innerWidth, // number
+    isFooterOpened: false,
 }
 
 export default (state = initialState, action) => {
+  const { inverseTheme } = appStyles.themeTypes
+
   switch (action.type) {
+  case UPDATE_IS_FOOTER_OPENED:
+      return {
+          ...state,
+          appTheme: action.isFooterOpened ? inverseTheme : state.appTheme,
+          isFooterOpened: action.isFooterOpened,
+      }
   case UPDATE_WINDOW_WIDTH:
       return {
           ...state,

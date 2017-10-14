@@ -1,7 +1,6 @@
 .footer--wrapper {
     display: flex;
     height: 7rem;
-    z-index: 101;
 }
 
 .footer-background {

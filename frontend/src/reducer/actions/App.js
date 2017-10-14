@@ -8,7 +8,13 @@ import {
     UPDATE_CURRENT_PAGE,
     UPDATE_GO_TO_PAGE,
     UPDATE_WINDOW_WIDTH,
+    UPDATE_IS_FOOTER_OPENED,
 } from '../App'
+
+const updateIsFooterOpened = isFooterOpened => ({
+    type: UPDATE_IS_FOOTER_OPENED,
+    isFooterOpened,
+})
 
 const updateWindowWidth = windowWidth => ({
     type: UPDATE_WINDOW_WIDTH,
@@ -60,4 +66,5 @@ export {
     updateCurrentPage,
     updateGoToPage,
     updateWindowWidth,
+    updateIsFooterOpened,
 }
