@@ -110,15 +110,16 @@ const FooterDumb = props => {
         footerBgCenter.y = '1400vh'
     }
 
-    const footerHeight = '7rem'
+    const vh = document.documentElement.clientHeight / 100
+    const vw = document.documentElement.clientWidth / 100
+    const footerHeight = 2.4 * appStyles.unitHeightJs * vh
     console.log(props.sidebarHeaderIntersection)
     let footerRadiusOffset = (() => {
-        const vh = document.documentElement.clientHeight / 100
-        const vw = document.documentElement.clientWidth / 100
         const radius = 1340 //footerBgCenter
         const { unitWidthJs } = appStyles
         const centerX = 50 //footerBgCenter.x
         const centerY = 1340 //footerBgCenter.y
+        const diam = radius * 2
 
         // unite conversions
         const unitWidth = unitWidthJs
@@ -133,10 +134,10 @@ const FooterDumb = props => {
         const delta = Math.pow(2 * Cy, 2) - 4 * (x*x - 2*x*Cx + Cx*Cx + Cy*Cy - r*r)
         const borderOffset = ((2*Cy) + Math.sqrt(delta)) / 2
 
-        return borderOffset - 2 * Cy
+        return (borderOffset - 2 * Cy)
     })()
     console.log(footerRadiusOffset, 'sss')
-    let footerOffset = props.isFooterOpened && isIntroFinished ? 'calc(100vh - ' + footerHeight + ' - ' + footerRadiusOffset + 'px - ' + props.sidebarHeaderIntersection + 'px)' : '0vh'
+    let footerOffset = props.isFooterOpened && isIntroFinished ? 'calc(100vh - ' + footerHeight + 'px - ' + footerRadiusOffset + 'px - ' + props.sidebarHeaderIntersection + 'px)' : '0vh'
 
 
     const styles = {
