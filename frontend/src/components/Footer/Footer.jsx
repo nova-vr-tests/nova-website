@@ -125,7 +125,7 @@ const PresentationControls = ({ updateCurrentPage, currentPage, opacity, isFoote
 const FooterDumb = props => {
     const height = appStyles.unitHeight
     const width = height
-    const isIntroFinished = props.introKeyframe >= FOOTER_FINAL ? true : false
+    const isIntroFinished = props.introKeyframe >= INTRO_FINISHED ? true : false
 
 
     const theme = appStyles.themes[props.appTheme]
@@ -145,6 +145,8 @@ const FooterDumb = props => {
     const vh = document.documentElement.clientHeight / 100
     const vw = document.documentElement.clientWidth / 100
     const footerHeight = 2.4 * appStyles.unitHeightJs * vh // 2.4 * unitHeight seems to be header height on all screen sizes (vs 3 as coef which is what it's supposed to be...)
+
+    // To find intersection point of header and sidebar offset caused by border radius
     let footerRadiusOffset = (() => {
         const radius = 1340 //footerBgCenter
         const { unitWidthJs } = appStyles
@@ -173,6 +175,7 @@ const FooterDumb = props => {
         footerWrapper: {
             display: 'flex',
             height: footerHeight,
+            zIndex: props.introKeyframe >= INTRO_FINISHED + 1 ? 'inherit' : 100,
         },
         footerBackground: {
             position: 'absolute',
@@ -205,7 +208,6 @@ const FooterDumb = props => {
             transform: 'inherit',
         },
         quickLinks: {
-            opacity: props.isFooterOpened ? 0 : 1,
             transition: 'opacity 0.5s linear',
             position: 'absolute',
             bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
@@ -216,6 +218,7 @@ const FooterDumb = props => {
             display: 'flex',
             alignItems:'center',
             cursor: 'pointer',
+            opacity: (props.introKeyframe >= INTRO_FINISHED + 1 && !props.isFooterOpened) ? 1 : 0,
         },
         closeFooterArrowWrapper: {
             transition: 'transform 0.5s, background-color 0.5s linear',
@@ -250,7 +253,12 @@ const FooterDumb = props => {
                         + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
                     }
                 >
-                    <AboutUs />
+                    {
+                        props.introKeyframe >= INTRO_FINISHED + 1 ?
+                            <AboutUs />
+                        :
+                            ''
+                    }
                 </div>
             </div>
             <div

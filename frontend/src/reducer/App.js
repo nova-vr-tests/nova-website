@@ -19,7 +19,7 @@ export const sectionPosition = {
 
 
 const initialState = {
-    introKeyframe: 1,
+    introKeyframe: 2,
     isSidebarOpened: true,
     linePosition: 2, // position of current page in sidebar tree
     bgUrl: '',

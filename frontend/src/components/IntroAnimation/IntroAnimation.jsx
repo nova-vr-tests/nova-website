@@ -69,7 +69,7 @@ class IntroAnimation extends Component {
       if(i >= INTRO_FINISHED) {
         clearInterval(j)
       }
-    }, 4000)
+    }, 1000)
   }
 
   render() {
