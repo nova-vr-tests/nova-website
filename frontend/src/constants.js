@@ -76,7 +76,9 @@ styles.themes[styles.themeTypes.noFooterTheme] = {
 styles.themes[styles.themeTypes.openedFooterTheme] = {
     ...styles.themes[styles.themeTypes.inverseTheme],
     footerBgColor: 'white',
-    headerBgColor: 'rgba(0, 0, 0, 0)'
+    headerBgColor: 'rgba(0, 0, 0, 0)',
+    titleColor: 'rgba(0, 0, 0, 0)',
+    fontColor: 'rgba(0, 0, 0, 0)',
 }
 
 styles.mediaQueries = {
