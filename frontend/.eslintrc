@@ -22,7 +22,8 @@
     "curly": "warn", 
     "semi": [2, "never"],
     "react/prop-types": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/no-unescaped-entities": "off"
   },
   "plugins": [
     "react"
