@@ -63,8 +63,6 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
     }
 
     window.setTimeout( () => {
-        // dispatch(updateBackLayers(backLayers))
-        // dispatch(updateFrontLayers(frontLayers2))
         dispatch(updateCacheLayers([]))
 
         // Otherwise paralax goes back when splitting to next page on back layer
