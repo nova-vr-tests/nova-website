@@ -84,6 +84,7 @@ styles.themes[styles.themeTypes.openedFooterTheme] = {
     headerBgColor: 'rgba(0, 0, 0, 0)',
     titleColor: 'rgba(0, 0, 0, 0)',
     fontColor: 'rgba(0, 0, 0, 0)',
+    bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
 }
 
 styles.mediaQueries = {
