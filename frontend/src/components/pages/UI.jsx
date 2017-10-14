@@ -25,7 +25,7 @@ const styles = {
     P: {
         width: appStyles.slideParagraphWidth,
         height: 'min-content',
-        fontSize: '2.5vh',
+        fontSize: appStyles.UI.P.fontSize,
     },
     H1: {
         position: 'absolute',

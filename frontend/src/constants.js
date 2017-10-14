@@ -20,6 +20,11 @@ const styles = {
     unitWidthJs: 60,   // px
     slideTransitionTime: 500, // ms
     slideTransitionFunc: 'linear',
+    UI: {
+        P: {
+            fontSize: '2.5vh',
+        },
+    },
     sidebar: {
         widthFactor: 3,
         sectionHeightFactor: 2,
