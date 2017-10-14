@@ -59,7 +59,7 @@ const SiteIntro = [
     {
         h1: 'Dream Awake',
         h2: '',
-        content: () => 'We provide access to advanced technologies and advise on related markets.',
+        content: () => <BigText>We design XR solutions for businesses.</BigText>,
         path: '/',
         pid: introPid,
         linePosition: 0,
@@ -85,7 +85,7 @@ const Design = [
     {
         h1: 'Design',
         h2: '',
-        content: () => 'gravity sculpts the physical world -creating complex beauty, masking great mystery and pulling us toward innovation.',
+        content: () => 'Nova XR provides world, interface and story design. Gravity has sculpted all of our physical world - from its beauty to its mystery.',
         path: '/design',
         pid: designPid,
         layers: [
@@ -99,69 +99,13 @@ const Design = [
     {
         h1: 'Design',
         h2: '',
-        content: () => 'Through generations, we’ve arrived at a point at which  we can experience a world that defies all forms of physics.',
+        content: () => 'In XR, we build the world around us and construction is only limited by the confines of our imagination. Nova XR designs succinct and intuitive worlds.  You live your own story.',
         path: '/design',
         pid: designPid,
         layers: [
             {
                 imgUrl: designIntro,
                 paralax: -30,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: '',
-        content: () => 'Limited only by the confines of our mind, XR tools afford us full control over which dimensions we visit and when.',
-        path: '/design',
-        pid: designPid,
-        layers: [
-            {
-                imgUrl: designIntro,
-                paralax: -60,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: '',
-        content: () => <span>To maximize our benefit from these new virtual tools, we must build XR on these foundational elements: a <em>story</em>, a <em>world</em>, and an <em>interface</em>.</span>,
-        path: '/design',
-        pid: designPid,
-        layers: [
-            {
-                imgUrl: designIntro,
-                paralax: -90,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: '',
-        path: '/design',
-        pid: designPid,
-        content: () => <span>You play an important role in designing <em>tomorrow</em>. Together we will build your story, architect your world and design intuitive interactions with everything you develop.</span>,
-        layers: [
-            {
-                imgUrl: designIntro,
-                paralax: -90,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: '',
-        content: () => <BigText>Join us in designing tomorrow.</BigText>,
-        path: '/design',
-        pid: designPid,
-        layers: [
-            {
-                imgUrl: designIntro,
-                paralax: -90,
                 opacity: 1,
             },
         ]
@@ -174,7 +118,7 @@ const Interface = [
     {
         h1: 'Design',
         h2: 'Interface',
-        content: () => 'Information, volume, color, light, time, space, transparency. In XR, all these perceptions of the human experience are available at all times.',
+        content: () => <BigText>We simplify complex technologies into intuitive designs.</BigText>,
         path: '/interface',
         pid: interfacePid,
         align: alignments.right,
@@ -199,7 +143,7 @@ const Interface = [
     {
         h1: 'Design',
         h2: 'Interface',
-        content: () => 'We are redefining the grammar of interface to accommodate the era of multidimensional media. We are building interfaces that flow based on your attention and intentions.',
+        content: () => 'Navigation and interaction within XR Media is enriching, empowering, and seemingly void of all technical interfacing, making it the smoothest and most lifelike experience.',
         path: '/interface',
         pid: interfacePid,
         align: alignments.right,
@@ -224,7 +168,7 @@ const Interface = [
     {
         h1: 'Design',
         h2: 'Interface',
-        content: () => 'In XR you can zoom, scale, rotate, delete, cut and interact in all ways with all places at all times.',
+        content: () => 'With media becoming multidimensional, interfaces are evolving. We program into the world around us everything from graphics to functionalities to high-tech learning strategies. XR is opening new doors.',
         path: '/interface',
         pid: interfacePid,
         align: alignments.right,
@@ -249,7 +193,32 @@ const Interface = [
     {
         h1: 'Design',
         h2: 'Interface',
-        content: () => <BigText>We simplify complex technologies through intuitive design.</BigText>,
+        content: () => <span>Players will expect to  zoom, scale, rotate, delete, cut <em>et cetera</em> everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.</span>,
+        path: '/interface',
+        pid: interfacePid,
+        align: alignments.right,
+        layers: [
+            {
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: interfaceLayer2,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer3,
+                paralax: -100,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'Interface',
+        content: () => <BigText>It's about the journey.</BigText>,
         path: '/interface',
         pid: interfacePid,
         align: alignments.right,
@@ -307,7 +276,7 @@ const Story = [
     {
         h1: 'Design',
         h2: 'Story',
-        content: () => <BigText>Build your world.</BigText>,
+        content: () => 'Our writers understand XR\'s technical intricacies and have the skills to adapt any scenario into an Extended Reality experience.',
         path: '/story',
         pid: storyPid,
         layers: [
@@ -336,7 +305,7 @@ const Story = [
     {
         h1: 'Design',
         h2: 'Story',
-        content: () => 'Our writers understand XR\'s technical intricacies and have the skills to adapt any scenario into an experience in Extended Reality.',
+        content: () => 'We live on the virtual frontier and know first hand the implications of tomorrow. Whatever your story, we can build it in XR.',
         path: '/story',
         pid: storyPid,
         layers: [
@@ -358,35 +327,6 @@ const Story = [
             {
                 imgUrl: storyLayer4,
                 paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'Story',
-        content: () => <BigText>They will tell your story.</BigText>,
-        path: '/story',
-        pid: storyPid,
-        layers: [
-            {
-                imgUrl: storyLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: storyLayer2,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: storyLayer3,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: storyLayer4,
-                paralax: -50,
                 opacity: 1,
             },
         ]
@@ -398,7 +338,7 @@ const World = [
     {
         h1: 'Design',
         h2: 'World',
-        content: () => <BigText>XR marks a new era of exploration.</BigText>,
+        content: () => 'XR ushers in a new era of exploration - a dream in the making. Nova builds customized XR worlds for you.',
         path: '/world',
         pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
@@ -418,7 +358,7 @@ const World = [
     {
         h1: 'Design',
         h2: 'World',
-        content: () => 'When we first stepped into the virtual world it was open space a dream in the making. We began to build.The potential was endless.',
+        content: () => 'Whether you want to showcase your art work, re-create a story, or build a fantasy land, we can advise and implement everything from interface to cryptography.',
         path: '/world',
         pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
@@ -438,7 +378,47 @@ const World = [
     {
         h1: 'Design',
         h2: 'World',
-        content: () => 'We can build beyond physical world constraints. Nova XR will build intuitive and succinct world designs for you.',
+        content: () => <BigText>Build your dream in XR.</BigText>,
+        path: '/world',
+        pid: worldPid,
+        theme: appStyles.themeTypes.noFooterTheme,
+        layers: [
+            {
+                imgUrl: worldLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: worldLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'World',
+        content: () => 'Pioneer infinity - endless landscapes, innumerable dimensions, warps of time and space.',
+        path: '/world',
+        pid: worldPid,
+        theme: appStyles.themeTypes.noFooterTheme,
+        layers: [
+            {
+                imgUrl: worldLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: worldLayer2,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'Design',
+        h2: 'World',
+        content: () => <BigText>We venture further and bring our findings to you.</BigText>,
         path: '/world',
         pid: worldPid,
         theme: appStyles.themeTypes.noFooterTheme,
@@ -473,7 +453,7 @@ const Business = [
     {
         h1: 'Business',
         h2: '',
-        content: () => 'We provide access to advanced technologies and advise on related markets.',
+        content: () => <BigText>We provide access to advanced technologies and advise on related markets.</BigText>,
         path: '/business',
         pid: businessPid,
         layers: [
@@ -521,7 +501,7 @@ const Business = [
     {
         h1: 'Business',
         h2: '',
-        content: () => <BigText>We provide access</BigText>,
+        content: () => <BigText>We provide access.</BigText>,
         path: '/business',
         pid: businessPid,
         layers: [
@@ -591,7 +571,7 @@ const Philosophy = [
     {
         h1: 'Business',
         h2: 'Philosophy',
-        content: () => <BigText><em>Do Unto Others</em></BigText>,
+        content: () => <BigText><em>Do unto others.</em></BigText>,
         path: '/philosophy',
         pid: philoPid,
         layers: [
@@ -619,7 +599,7 @@ const Philosophy = [
     {
         h1: 'Business',
         h2: 'Philosophy',
-        content: () => 'We explore beyond ambit reality. The fringe of technology is full of ethical complexities and it is our responsibility to set a high moral standard for the industry.',
+        content: () => 'The fringe of technology is full of ethical complexities and it is our responsibility to set a high moral standard for the industry.',
         path: '/philosophy',
         pid: philoPid,
         layers: [
@@ -633,7 +613,7 @@ const Philosophy = [
     {
         h1: 'Business',
         h2: 'Philosophy',
-        content: () => 'We lead by example, challenge traditional structures and fight for underdogs',
+        content: () => 'We lead by example, challenge traditional structures and fight for underdogs.',
         path: '/philosophy',
         pid: philoPid,
         layers: [
@@ -647,7 +627,7 @@ const Philosophy = [
     {
         h1: 'Business',
         h2: 'Philosophy',
-        content: () => <BigText>We <em>Dream Awake</em></BigText>,
+        content: () => <BigText>We <em>Dream Awake</em>.</BigText>,
         path: '/philosophy',
         pid: philoPid,
         layers: [
@@ -834,7 +814,7 @@ const Technology = [
     {
         h1: 'Technology',
         h2: '',
-        content: () => <BigText>We use technology as an artist uses paint.</BigText>,
+        content: () => 'We use technology as an artist uses paint. XR media promises to enhance our lives through shared experiences developed by real people.',
         path: '/technology',
         pid: techPid,
         layers: [
@@ -848,7 +828,7 @@ const Technology = [
     {
         h1: 'Technology',
         h2: '',
-        content: () => 'XR media promises to enhance our lives more than any media prior. We are embarking on a new frontier of connectivity.',
+        content: () => 'As the internet democratized information, XR will democratize experience. We are embarking on a new frontier of connectivity.',
         path: '/technology',
         pid: techPid,
         layers: [
@@ -862,7 +842,7 @@ const Technology = [
     {
         h1: 'Technology',
         h2: '',
-        content: () => <BigText>We’re responsible for writing the future.</BigText>,
+        content: () => 'Nova XR sources new applications of scientific knowledge from around the world - compiling it for your use.',
         path: '/technology',
         pid: techPid,
         layers: [
@@ -880,7 +860,7 @@ const VR = [
     {
         h1: 'Technology',
         h2: 'Virtual Reality',
-        content: () => 'Virtual Reality (VR) is an emerging technology empowering people to dream together.',
+        content: () => 'Virtual Reality (VR) is an emerging technology empowering people to dream together. VR allows you to go places you otherwise could not. VR allows us architect new digital worlds while transcending time and space.',
         path: '/vr',
         pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
@@ -920,7 +900,7 @@ const VR = [
     {
         h1: 'Technology',
         h2: 'Virtual Reality',
-        content: () => 'Nova XR helps you stay on the cutting edge of technology, by applying the latest computer sciences to your current strategies.',
+        content: () => 'By putting on goggles and artificially stimulating our senses, our mind accepts another version of reality, an entirely man made world. Like any new form of exploration, you begin with the basics.',
         path: '/vr',
         pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
@@ -960,7 +940,7 @@ const VR = [
     {
         h1: 'Technology',
         h2: 'Virtual Reality',
-        content: () => 'VR let\'s you go places you otherwise could not go. Together we architect new digital worlds while transcending time and space.',
+        content: () => 'Nova XR helps you stay on the cutting edge of technology by applying the latest computer sciences to your current strategies.',
         path: '/vr',
         pid: vrPid,
         theme: appStyles.themeTypes.noFooterTheme,
@@ -994,206 +974,6 @@ const VR = [
                 imgUrl: vrLayer6,
                 paralax: 0,
                 opacity: 0,
-            },
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        content: () => <BigText>We can divide VR into two main categories</BigText>,
-        path: '/vr',
-        pid: vrPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            {
-                imgUrl: vrLayer1,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: vrLayer2,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer4,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer5,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer6,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        content: () => '1.  High-fidelity: Ideal for creating premium experiences with positional tracking, haptic feedback and deep software integrations.',
-        path: '/vr',
-        pid: vrPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            {
-                imgUrl: vrLayer1,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: vrLayer2,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer4,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer5,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer6,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        path: '/vr',
-        pid: vrPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        content: () => '2.  Mobile: Ideal for quick replicas of real-world images, easy to consume, easy to distribute. Mobile VR will be a low-cost and accessible solution.',
-        layers: [
-            {
-                imgUrl: vrLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: vrLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer4,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer5,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer6,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        path: '/vr',
-        pid: vrPid,
-        content: () => 'We are entering a new era of media and its standards are still being established.',
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            {
-                imgUrl: vrLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer2,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: vrLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer4,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer5,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer6,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        path: '/vr',
-        pid: vrPid,
-        content: () => 'Nova XR helps you stay on the cutting edge of technology, by applying the latest computer sciences to your current strategies.',
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            {
-                imgUrl: vrLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer2,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: vrLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer4,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer5,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: vrLayer6,
-                paralax: 0,
-                opacity: 1,
             },
         ]
     },
@@ -1229,7 +1009,7 @@ const AR = [
     {
         h1: 'Technology',
         h2: 'Augmented Reality',
-        content: () => 'AR is a technology that superimposes digital graphics on top of our physical environment. It is ideal for collaborative work or training.',
+        content: () => 'AR superimposes digital graphics atop our physical environment. It is ideal for collaborative work or training, because it enables easy visual sharing.',
         path: '/ar',
         pid: arPid,
         align: alignments.right,
@@ -1254,7 +1034,7 @@ const AR = [
     {
         h1: 'Technology',
         h2: 'Augmented Reality',
-        content: () => 'Through computer vision we can model the world around you. Turn everyday scenarios into interactive experinces.',
+        content: () => 'Through computer vision we can model the world around you and turn everyday scenarios into interactive experiences.',
         path: '/ar',
         pid: arPid,
         align: alignments.right,
@@ -1279,7 +1059,7 @@ const AR = [
     {
         h1: 'Technology',
         h2: 'Augmented Reality',
-        content: () => 'By weaving the internet into the fabric of life we must examine our traditional constructs of reality.',
+        content: () => 'AR forces you to reconsider how media and content serve the user. Your work, your creations, and your activities can all be digitized into your surroundings.',
         path: '/ar',
         pid: arPid,
         align: alignments.right,
@@ -1304,7 +1084,7 @@ const AR = [
     {
         h1: 'Technology',
         h2: 'Augmented Reality',
-        content: () => <BigText>Nova XR will assist you in adapting the world to your workflow.</BigText>,
+        content: () => 'Nova XR will assist you in adapting the world to your workflow.',
         path: '/ar',
         pid: arPid,
         align: alignments.right,
@@ -1334,7 +1114,7 @@ const expTech = [
     {
         h1: 'Technology',
         h2: expH2,
-        content: () => 'Digital innovations that develop at an exponential rate, such as artificial intelligence, biometric softwares, robotics, drones, blockchain, cryptography, /et cetera/ ',
+        content: () => <span>Digital innovations that develop at an exponential rate, such as artificial intelligence, biometric softwares, robotics, drones, blockchain, cryptography, <em>et cetera</em>.</span>,
         path: '/expentional-technologies',
         pid: expPid,
         layers: [
@@ -1415,35 +1195,6 @@ const expTech = [
                 imgUrl: expTechLayer4,
                 paralax: 0,
                 opacity: 0,
-            },
-        ],
-    },
-    {
-        h1: 'Technology',
-        h2: expH2,
-        content: () => <BigText>Inside the exponential.</BigText>,
-        path: '/expentional-technologies',
-        pid: expPid,
-        layers: [
-            {
-                imgUrl: expTechLayer1,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: expTechLayer2,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: expTechLayer3,
-                paralax: 0,
-                opacity: 0,
-            },
-            {
-                imgUrl: expTechLayer4,
-                paralax: 0,
-                opacity: 1,
             },
         ],
     },

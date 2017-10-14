@@ -19,7 +19,7 @@ const NyeIntro = [
     {
         h1: 'New Year\'s Eve',
         h2: '',
-        content: () => <BigText>The Next Light</BigText>,
+        content: () => <BigText>The Next Light.</BigText>,
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -46,7 +46,7 @@ const NyeLiveStream = [
     {
         h1: 'New Year\'s Eve',
         h2: '360 Live Stream',
-        content: () => 'From around the world, in stereoscopic 3D virtual reality, we will bring you to 10 iconic cities.',
+        content: () => 'In stereoscopic 3D virtual reality we will bring you to 10 iconic cities around the world. All you need is the internet.',
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -70,7 +70,7 @@ const NyeLiveStream = [
     {
         h1: 'New Year\'s Eve',
         h2: '360 Live Stream',
-        content: () => 'All you need is the internet. Imagine teleporting from one city to another at a glance! This New Year’s Eve you can travel the world without leaving your living room.',
+        content: () => 'Imagine teleporting from one city to another at a glance!',
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -94,7 +94,31 @@ const NyeLiveStream = [
     {
         h1: 'New Year\'s Eve',
         h2: '360 Live Stream',
-        content: () => 'The streams will centralized into a computer graphic game engine, where you can access all 36 consecutive hours of New Year’s Eve festivities.',
+        content: () => 'This New Year’s Eve you can travel the world without leaving your living room.',
+        path: '/nye',
+        pid: nyePid,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: -50,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer2,
+                paralax: -100,
+                opacity: 1,
+            },
+            {
+                imgUrl: nyeLayer3,
+                paralax: -200,
+                opacity: 1,
+            },
+        ]
+    },
+    {
+        h1: 'New Year\'s Eve',
+        h2: '360 Live Stream',
+        content: () => 'The streams will be centralized into a computer graphic game engine where you can access all 36 consecutive hours of New Year’s Eve festivities.',
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -172,7 +196,7 @@ const Destinations = [
     {
         h1: 'New Year\'s Eve',
         h2: 'Destinations',
-        content: () => 'Limited to 10 destinations we will decide locations based on scouting reports, opinion, and sponsorships. The content will live live across  twelve time zones. If we had to bring the production to market tomorrow, the destinations would be:',
+        content: () => 'We decided on these 10 locations based on our advanced and data-driven scouting report.   The content will live live across twelve time zones.',
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -196,31 +220,7 @@ const Destinations = [
     {
         h1: 'New Year\'s Eve',
         h2: 'Destinations',
-        content: () => 'If we had to bring the production to market tomorrow, the destinations would be:',
-        path: '/nye',
-        pid: nyePid,
-        layers: [
-            {
-                imgUrl: nyeLayer1,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -200,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -400,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'New Year\'s Eve',
-        h2: 'Destinations',
-        content: () => <BigText>Bikini Taipei, Dubai, Istanbul, Kiev, Paris, New York, Buenos Aires, San Francisco and Juno.</BigText>,
+        content: () => 'If we had to bring the production to market tomorrow, the destinations would be:  Bikini Taipei, Dubai, Istanbul, Kiev, Paris, New York, Buenos Aires, San Francisco and Juno.',
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -256,7 +256,7 @@ const Login = [
     {
         h1: 'Login',
         h2: '',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/login',
         pid: loginPid,
         layers: [

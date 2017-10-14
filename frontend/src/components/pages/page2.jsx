@@ -160,7 +160,43 @@ const Education = [
     {
         h1: 'Educational Portal',
         h2: 'Education',
-        content: () => <BigText>Together we will push the limits of information technologies</BigText>,
+        content: () => 'If the medium is the message, as philosopher Marshall McLuhan suggested, then XR communicates the idea that everything is accessible.',
+        path: '/education',
+        paralax: 0,
+        pid: edPid,
+        theme: appStyles.themeTypes.inverseTheme,
+        layers: [
+            {
+                imgUrl: educationIntroIntroLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: educationLayer1,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: educationLayer2,
+                paralax: 0,
+                opacity: 0,
+            },
+            {
+                imgUrl: educationLayer3,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: educationLayer4,
+                paralax: 0,
+                opacity: 0,
+            },
+        ]
+    },
+    {
+        h1: 'Educational Portal',
+        h2: 'Education',
+        content: () => 'Today, we can truly experience /anything/. Because of advancements in microprocessors and computer vision, we design and develop the world to the tune of our imagination\'s insatiable dreams.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -371,7 +407,7 @@ const NewsIntro = [
     {
         h1: 'News Insights',
         h2: '',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/news-insights',
         paralax: 0,
         pid: newsPid,
@@ -391,7 +427,7 @@ const FeaturedContent = [
     {
         h1: 'News Insights',
         h2: 'Featured Content',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/featured-content',
         paralax: 0,
         pid: contentPid,
@@ -410,7 +446,7 @@ const TwitterFeed = [
     {
         h1: 'News Insights',
         h2: 'Twitter Feed',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/twitter',
         paralax: 0,
         pid: twitterPid,
@@ -429,7 +465,7 @@ const LabLive = [
     {
         h1: 'News Insights',
         h2: 'Lab Live',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/lab-live',
         paralax: 0,
         pid: labPid,
@@ -455,7 +491,7 @@ const PublishingIntro = [
     {
         h1: 'Publishing',
         h2: '',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/publishing',
         pid: pubPid,
         layers: [
@@ -473,7 +509,7 @@ const Design = [
     {
         h1: 'Publishing',
         h2: 'Design',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/design-publications',
         pid: designPid,
         layers: [
@@ -491,7 +527,7 @@ const Interactions = [
     {
         h1: 'Publishing',
         h2: 'Interactions',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/interaction-publications',
         pid: interactionsPid,
         layers: [
@@ -509,7 +545,7 @@ const Strategy = [
     {
         h1: 'Publishing',
         h2: 'Strategy',
-        content: () => <BigText>Coming soon</BigText>,
+        content: () => <BigText>Coming soon.</BigText>,
         path: '/strategy-publications',
         pid: strategyPid,
         layers: [
