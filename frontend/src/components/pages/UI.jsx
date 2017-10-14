@@ -31,7 +31,7 @@ const styles = {
         position: 'absolute',
         bottom: '100%',
         margin: 0,
-        marginBottom: 'calc(2 * ' + appStyles.unitHeight + ')',
+        marginBottom: 'calc(3 * ' + appStyles.unitHeight + ')',
         marginLeft: 'calc(2 * ' + appStyles.unitWidth + ')',
         height: 'calc(2 * ' + appStyles.unitHeight + ')',
         alignItems: 'flex-end',
@@ -45,6 +45,7 @@ const styles = {
         display: 'flex',
         margin: 0,
         marginLeft: appStyles.unitWidth,
+        marginBottom: 'calc(0.5 * ' + appStyles.unitHeight + ')',
     },
     BigText: {
         fontSize: '3vh',
