@@ -2,6 +2,7 @@
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-.sidebar-subsection--hover:hover.inverse, .sidebar-subsection--active.inverse {
+.sidebar-subsection--hover:hover.inverse, .sidebar-subsection--active.inverse,
+.sidebar-subsection--hover:hover.footer-is-opened, .sidebar-subsection--active.footer-is-opened {
     background-color: rgba(5, 5, 5, 0.3);
 }
