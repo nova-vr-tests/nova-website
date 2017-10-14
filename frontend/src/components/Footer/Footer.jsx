@@ -36,6 +36,35 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+const AboutUs = () => {
+    const sidebarWidth = 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')'
+    const styles = {
+        wrapper: {
+            width: 'calc(100vw - ' + sidebarWidth + ')',
+            marginLeft: sidebarWidth,
+            color: 'black',
+            marginTop: '8rem', // footer height
+        },
+        p: {
+            padding: appStyles.unitHeight + ' ' + appStyles.unitWidth
+        },
+        h1: {
+            padding: appStyles.unitHeight + ' ' + appStyles.unitWidth
+        },
+    }
+
+    return (
+        <div style={ styles.wrapper }>
+            <h1 style={ styles.h1 }>
+                About Us
+            </h1>
+            <p style={ styles.p }>
+                Email us at : <a href="mailto:joey@novamedia.nyc">joey@novamedia.nyc</a>
+            </p>
+        </div>
+    )
+}
+
 
 const PresentationControls = ({ updateCurrentPage, currentPage, opacity, isFooterOpened }) => {
     const styles = {
@@ -155,6 +184,8 @@ const FooterDumb = props => {
             left: 'calc(0vh - ' + footerBgCenter.radius + '))',
             transform: 'translateY(calc(' + footerBgCenter.y + ' - ' + footerOffset + '))translateX(' + footerBgCenter.x + ')',
             backgroundColor: isIntroFinished ? theme.footerBgColor : 'white',
+            display: 'flex',
+            justifyContent: 'center',
         },
         wrapper: {
             transition: props.introKeyframe >= INTRO_FINISHED ? 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc : 'transform 2s linear'
@@ -219,6 +250,7 @@ const FooterDumb = props => {
                         + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
                     }
                 >
+                    <AboutUs />
                 </div>
             </div>
             <div
