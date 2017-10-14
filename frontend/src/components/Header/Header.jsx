@@ -7,6 +7,8 @@ import Bg from '../Bg/Bg.jsx'
 import { styles as appStyles } from '../../constants.js'
 import { updateSidebarIntersection } from '../../reducer/actions/Header.js'
 
+import { push } from 'react-router-redux'
+
 const mapStateToProps = function(state) {
 	return {
       isSidebarOpened: state.sidebarReducer.isSidebarOpened,
@@ -17,6 +19,7 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch) {
 	return {
       updateSidebarIntersection: sidebarInterserction => dispatch(updateSidebarIntersection(sidebarInterserction)),
+      goTo: url => dispatch(push(url)),
   }
 }
 
@@ -53,11 +56,11 @@ const HeaderDumb = props => {
             height: appStyles.unitHeight,
             width: appStyles.unitHeight,
             filter: 'invert(100%)',
-            pointerEvents: 'none',
             top: 'calc(' + appStyles.unitHeight + ' / 2)',
             left: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ' / 2 - 2 * ' + appStyles.unitHeight + ' / 6)',
             zIndex: 1,
             transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
+            cursor: 'pointer',
         },
         logoSidebarClosed: {
             transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',
@@ -69,6 +72,7 @@ const HeaderDumb = props => {
             <img
                 src={ logo }
                 alt="logo"
+                onClick={ () => props.goTo('/') }
                 style={{
                     ...styles.logo,
                     ...(props.isSidebarOpened ? {} : styles.logoSidebarClosed),
@@ -78,7 +82,6 @@ const HeaderDumb = props => {
                 className="header--wrapepr"
                 style={ styles.circle }
             >
-        <Bg />
             </div>
         </div>
     )
