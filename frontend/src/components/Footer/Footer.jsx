@@ -21,6 +21,7 @@ const mapStateToProps = function(state) {
         currentPage: state.appReducer.currentPage,
         updateCurrentPage: state.appReducer.goToPage,
         isFooterOpened: state.appReducer.isFooterOpened,
+        sidebarHeaderIntersection: state.headerReducer.sidebarIntersection,
     }
 }
 
@@ -96,7 +97,6 @@ const FooterDumb = props => {
 
 
     const theme = appStyles.themes[props.appTheme]
-    let footerOffset = props.isFooterOpened && isIntroFinished ? '80vh' : '0vh'
 
     const footerBgCenter = {
         x: '50vw',
@@ -110,7 +110,40 @@ const FooterDumb = props => {
         footerBgCenter.y = '1400vh'
     }
 
+    const footerHeight = '7rem'
+    console.log(props.sidebarHeaderIntersection)
+    let footerRadiusOffset = (() => {
+        const vh = document.documentElement.clientHeight / 100
+        const vw = document.documentElement.clientWidth / 100
+        const radius = 1340 //footerBgCenter
+        const { unitWidthJs } = appStyles
+        const centerX = 50 //footerBgCenter.x
+        const centerY = 1340 //footerBgCenter.y
+
+        // unite conversions
+        const unitWidth = unitWidthJs
+        const r = radius * vh
+        const Cx = centerX * vw
+        const Cy = centerY * vh
+
+        // solve for x = sidebar width
+        const x =  3 * unitWidth
+
+        // solve for the determinant
+        const delta = Math.pow(2 * Cy, 2) - 4 * (x*x - 2*x*Cx + Cx*Cx + Cy*Cy - r*r)
+        const borderOffset = ((2*Cy) + Math.sqrt(delta)) / 2
+
+        return borderOffset - 2 * Cy
+    })()
+    console.log(footerRadiusOffset, 'sss')
+    let footerOffset = props.isFooterOpened && isIntroFinished ? 'calc(100vh - ' + footerHeight + ' - ' + footerRadiusOffset + 'px - ' + props.sidebarHeaderIntersection + 'px)' : '0vh'
+
+
     const styles = {
+        footerWrapper: {
+            display: 'flex',
+            height: footerHeight,
+        },
         footerBackground: {
             position: 'absolute',
             height: footerBgCenter.diam,
@@ -142,7 +175,10 @@ const FooterDumb = props => {
     }
 
     return (
-        <div className="footer--wrapper" onClick={ () => props.updateIsFooterOpened(!props.isFooterOpened)}>
+        <div
+            className="footer--wrapper"
+            style={ styles.footerWrapper }
+            onClick={ () => props.updateIsFooterOpened(!props.isFooterOpened)}>
             <div>
                 <div
                     style={ styles.footerBackground }
