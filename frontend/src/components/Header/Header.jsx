@@ -2,7 +2,6 @@ import React from 'react'
 import { connect }from 'react-redux'
 
 import logo from '../img/nova-logo.svg'
-import Bg from '../Bg/Bg.jsx'
 
 import { styles as appStyles } from '../../constants.js'
 import { updateSidebarIntersection } from '../../reducer/actions/Header.js'
