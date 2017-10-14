@@ -31,13 +31,13 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  const { inverseTheme } = appStyles.themeTypes
+  const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
   case UPDATE_IS_FOOTER_OPENED:
       return {
           ...state,
-          appTheme: action.isFooterOpened ? inverseTheme : state.appTheme,
+          appTheme: action.isFooterOpened ? openedFooterTheme : state.appTheme,
           isFooterOpened: action.isFooterOpened,
       }
   case UPDATE_WINDOW_WIDTH:

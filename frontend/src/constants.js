@@ -12,6 +12,7 @@ const styles = {
         defaultTheme: 'default',
         inverseTheme: 'inverse',
         noFooterTheme: 'no-footer',
+        openedFooterTheme: 'footer-is-opened',
     },
     unitHeight: 100/24 + 'vh',
     unitWidth: '60px',
@@ -68,6 +69,12 @@ styles.themes[styles.themeTypes.inverseTheme] = {
 styles.themes[styles.themeTypes.noFooterTheme] = {
     ...styles.themes[styles.themeTypes.defaultTheme],
     footerBgColor: 'rgba(130, 130, 130, 0)'
+}
+
+styles.themes[styles.themeTypes.openedFooterTheme] = {
+    ...styles.themes[styles.themeTypes.inverseTheme],
+    footerBgColor: 'white',
+    headerBgColor: 'rgba(0, 0, 0, 0)'
 }
 
 styles.mediaQueries = {

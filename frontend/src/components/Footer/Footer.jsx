@@ -112,18 +112,17 @@ const FooterDumb = props => {
 
     const styles = {
         footerBackground: {
-            backgroundColor: 'white',
             position: 'absolute',
             height: footerBgCenter.diam,
             width: footerBgCenter.diam,
             borderRadius: footerBgCenter.diam,
-            transition: 'transform 0.3s linear',
+            transition: 'transform 0.5s, background-color 0.5s linear',
             top: 'calc(0vh - ' + footerBgCenter.radius + '))',
             left: 'calc(0vh - ' + footerBgCenter.radius + '))',
             transform: 'translateY(calc(' + footerBgCenter.y + ' - ' + footerOffset + '))translateX(' + footerBgCenter.x + ')',
+            backgroundColor: isIntroFinished ? theme.footerBgColor : 'white',
         },
         wrapper: {
-            backgroundColor: props.introKeyframe >= INTRO_FINISHED ? theme.footerBgColor : 'white',
             transition: props.introKeyframe >= INTRO_FINISHED ? 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc : 'transform 2s linear'
         },
         toggleSidebarButton: {
