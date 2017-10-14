@@ -8,6 +8,7 @@ import { updateIsFooterOpened } from '../../reducer/actions/App.js'
 import toggleButton from '../img/toggle-sidebar.svg'
 import { styles as appStyles } from '../../constants.js'
 import { slides } from '../pages/Pages.jsx'
+import arrowImg from '../img/arrow.svg'
 
 const reduxStatePropTypes = {
   introKeyframe: PropTypes.number,
@@ -43,11 +44,11 @@ const PresentationControls = ({ updateCurrentPage, currentPage, opacity }) => {
             color: 'red',
             zIndex: 1,
             position: 'absolute',
-            bottom: 0,
             transform: 'translateX(-50%)',
             left: '50%',
             display: 'flex',
-            marginBottom: 'calc(' + appStyles.unitHeight + ' / 2)',
+            bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
+            height: 'calc(2.1 * ' + appStyles.unitHeight + ' / 3)',
         },
         controlButtonWrapper: {
             opacity: opacity,
@@ -170,13 +171,44 @@ const FooterDumb = props => {
         rotatedCloseButton: {
             transform: 'inherit',
         },
+        quickLinks: {
+            opacity: props.isFooterOpened ? 0 : 1,
+            transition: 'opacity 0.5s linear',
+            position: 'absolute',
+            bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
+            height: 'calc(2.1 * ' + appStyles.unitHeight + ' / 3)',
+            right: 'calc(' + appStyles.unitWidth + ')',
+            fontSize: appStyles.UI.P.fontSize,
+            color: 'rgba(200, 200, 200, 0.9)',
+            display: 'flex',
+            alignItems:'center',
+            cursor: 'pointer',
+        },
+        closeFooterArrowWrapper: {
+            transition: 'transform 0.5s, background-color 0.5s linear',
+            transform: 'translateY(calc(-' + appStyles.unitHeight + ' / 4 - ' + footerOffset + '))translateX(' + footerBgCenter.x + ')',
+            height: '0px',
+            color: 'red',
+            position: 'relative',
+        },
+        closeFooterArrowImg: {
+            height: '2rem',
+            width: '2rem',
+            position: 'absolute',
+            bottom: '100%',
+            cursor: 'pointer',
+            opacity: props.isFooterOpened ? 1 : 0,
+            transform: 'translateX(-50%)rotateZ(90deg)',
+        }
     }
 
     return (
         <div
             className="footer--wrapper"
-            style={ styles.footerWrapper }
-            onClick={ () => props.updateIsFooterOpened(!props.isFooterOpened)}>
+            style={ styles.footerWrapper }>
+            <div style={ styles.closeFooterArrowWrapper } onClick={ () => props.updateIsFooterOpened(false) }>
+                <img src={ arrowImg } alt="close" style={ styles.closeFooterArrowImg }/>
+            </div>
             <div>
                 <div
                     style={ styles.footerBackground }
@@ -197,6 +229,9 @@ const FooterDumb = props => {
                 <img src={ toggleButton } alt="toggle sidebar" className="transform-on-hover" />
             </div>
             <PresentationControls {...props} opacity={ props.introKeyframe >= INTRO_FINISHED ? 1 : 0 } />
+            <div style={ styles.quickLinks }>
+                <span onClick={ () => props.updateIsFooterOpened(true) }>About Us</span>
+            </div>
         </div>
     )
 }
