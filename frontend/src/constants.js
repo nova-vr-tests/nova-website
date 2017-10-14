@@ -52,9 +52,11 @@ styles.themes[styles.themeTypes.defaultTheme] = {
     titleColor: 'white',
     fontColor: '#FFF',
     bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
+    headerBgColor: 'rgba(0, 0, 0, 0.3)'
 }
 
 styles.themes[styles.themeTypes.inverseTheme] = {
+    ...styles.themes[styles.themeTypes.defaultTheme],
     lineBgColor: 'rgba(0, 0, 0, 0.1)',
     menuBorder: '1px solid rgba(0, 0, 0, 0.3)',
     fatMenuBorder: '1px solid rgba(0, 0, 0, 0.6)',

@@ -10,6 +10,7 @@ import { updateSidebarIntersection } from '../../reducer/actions/Header.js'
 const mapStateToProps = function(state) {
 	return {
       isSidebarOpened: state.sidebarReducer.isSidebarOpened,
+      appTheme: state.appReducer.appTheme,
     }
 }
 
@@ -38,7 +39,8 @@ const HeaderDumb = props => {
         },
         circle: {
             transform: 'translateY(' + centerY + 'vh)translateX(' + centerX + 'vw)',
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backgroundColor: appStyles.themes[props.appTheme].headerBgColor,
+            transition: 'background-color 0.5s linear',
             position: 'absolute',
             height: diam,
             width: diam,
@@ -111,7 +113,7 @@ class Header extends React.Component {
         const Cx = centerX * vw
         const Cy = centerY * vh
 
-        // solve for x = half of screen minus sidebar width
+        // solve for x = sidebar width
         const x =  3 * unitWidth
 
         // solve for the determinant
