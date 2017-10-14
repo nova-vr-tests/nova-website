@@ -264,6 +264,7 @@ class SlideTransition extends React.Component {
                 height: '100%',
                 display: 'flex',
                 marginRight: appStyles.unitWidth,
+                opacity: this.props.currentPage === 0 ? 1 : 0,
             },
             arrowWrapper2: {
                 ...this.getTranslationStyles().targetSlide,
@@ -287,22 +288,6 @@ class SlideTransition extends React.Component {
                     <H1 style={ styles.H1 }>{ targetH1 }</H1>
                     <H2 style={ styles.H2 }>{ targetH2 }</H2>
                     <TargetSlide { ...this.props } />
-                </div>
-                <div style={ styles.arrowWrapper1 }>
-                    <img
-                        src={ arrowImg }
-                        alt='next-slide'
-                        style={ styles.nextSlideButton1  }
-                        onClick={ () => this.props.goToPage(this.props.currentPage + 1)}
-                    />
-                </div>
-                <div style={ styles.arrowWrapper2 }>
-                    <img
-                        src={ arrowImg }
-                        alt='next-slide'
-                        style={ styles.nextSlideButton2 }
-                        onClick={ () => this.props.goToPage(this.props.currentPage + 1)}
-                    />
                 </div>
             </div>
         )
