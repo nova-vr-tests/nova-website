@@ -37,7 +37,7 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 
-const PresentationControls = ({ updateCurrentPage, currentPage, opacity }) => {
+const PresentationControls = ({ updateCurrentPage, currentPage, opacity, isFooterOpened }) => {
     const styles = {
         wrapper: {
             fontSize: '5rem',
@@ -49,6 +49,8 @@ const PresentationControls = ({ updateCurrentPage, currentPage, opacity }) => {
             display: 'flex',
             bottom: 'calc(' + appStyles.unitHeight + ' / 3)',
             height: 'calc(2.1 * ' + appStyles.unitHeight + ' / 3)',
+            opacity: isFooterOpened ? 0 : 1,
+            transition: 'opacity 0.5s linear',
         },
         controlButtonWrapper: {
             opacity: opacity,
