@@ -1329,10 +1329,11 @@ const AR = [
 ]
 
 const expPid = Symbol()
+const expH2 = 'Exponential Techs'
 const expTech = [
     {
         h1: 'Technology',
-        h2: 'Exponential Technologies',
+        h2: expH2,
         content: () => 'Digital innovations that develop at an exponential rate, such as artificial intelligence, biometric softwares, robotics, drones, blockchain, cryptography, /et cetera/ ',
         path: '/expentional-technologies',
         pid: expPid,
@@ -1361,7 +1362,7 @@ const expTech = [
     },
     {
         h1: 'Technology',
-        h2: 'Exponential Technologies',
+        h2: expH2,
         content: () => <BigText>These techs integrated into VR and AR will revolutionize the world as we know it.</BigText>,
         path: '/expentional-technologies',
         pid: expPid,
@@ -1390,7 +1391,7 @@ const expTech = [
     },
     {
         h1: 'Technology',
-        h2: 'Exponential Technologies',
+        h2: expH2,
         content: () => 'We help you prepare specifications, develop strategies and drive the change you want to see in the world.',
         path: '/expentional-technologies',
         pid: expPid,
@@ -1419,7 +1420,7 @@ const expTech = [
     },
     {
         h1: 'Technology',
-        h2: 'Exponential Technologies',
+        h2: expH2,
         content: () => <BigText>Inside the exponential.</BigText>,
         path: '/expentional-technologies',
         pid: expPid,
