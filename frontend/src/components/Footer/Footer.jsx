@@ -36,7 +36,7 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-const AboutUs = () => {
+const AboutUs = props => {
     const sidebarWidth = 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')'
     const styles = {
         wrapper: {
@@ -44,12 +44,14 @@ const AboutUs = () => {
             marginLeft: sidebarWidth,
             color: 'black',
             marginTop: '8rem', // footer height
+            opacity: props.opacity,
+            transition: 'opacity 0.5s linear',
         },
         p: {
-            padding: appStyles.unitHeight + ' ' + appStyles.unitWidth
+            padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
         h1: {
-            padding: appStyles.unitHeight + ' ' + appStyles.unitWidth
+            padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
     }
 
@@ -255,7 +257,9 @@ const FooterDumb = props => {
                 >
                     {
                         props.introKeyframe >= INTRO_FINISHED + 1 ?
-                            <AboutUs />
+                            <AboutUs
+                                opacity={ props.isFooterOpened ? 1 : 0 }
+                            />
                         :
                             ''
                     }
