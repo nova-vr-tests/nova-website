@@ -112,14 +112,12 @@ const FooterDumb = props => {
 
     const vh = document.documentElement.clientHeight / 100
     const vw = document.documentElement.clientWidth / 100
-    const footerHeight = 2.4 * appStyles.unitHeightJs * vh
-    console.log(props.sidebarHeaderIntersection)
+    const footerHeight = 2.4 * appStyles.unitHeightJs * vh // 2.4 * unitHeight seems to be header height on all screen sizes (vs 3 as coef which is what it's supposed to be...)
     let footerRadiusOffset = (() => {
         const radius = 1340 //footerBgCenter
         const { unitWidthJs } = appStyles
         const centerX = 50 //footerBgCenter.x
         const centerY = 1340 //footerBgCenter.y
-        const diam = radius * 2
 
         // unite conversions
         const unitWidth = unitWidthJs
@@ -136,7 +134,6 @@ const FooterDumb = props => {
 
         return (borderOffset - 2 * Cy)
     })()
-    console.log(footerRadiusOffset, 'sss')
     let footerOffset = props.isFooterOpened && isIntroFinished ? 'calc(100vh - ' + footerHeight + 'px - ' + footerRadiusOffset + 'px - ' + props.sidebarHeaderIntersection + 'px)' : '0vh'
 
 
