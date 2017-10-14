@@ -231,7 +231,8 @@ class SlideTransition extends React.Component {
             wrapper: {
                 color: theme.fontColor,
                 position: 'relative',
-                width: '100%'
+                width: '100%',
+                transition: fontColorTransition,
             },
             currentSlideStyle: {
                 ...this.getTranslationStyles().currentSlide,
