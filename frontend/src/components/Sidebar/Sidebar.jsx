@@ -229,6 +229,7 @@ const SidebarSection = props => {
                       + (props.linePosition === props.id.section ? '2 * ' : '') +
                       + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight
                       + ')',
+                pointerEvents: 'auto', // reactivate pointer events on links which don't block toggle sidebar button (see SidebarDumb.styles.wrapper.pointerEvents)
             },
             titleWrapper: {
                 transition: 'border ' + constants.styles.slideTransitionTime / 1000 + 's ' + constants.styles.slideTransitionFunc,
@@ -342,6 +343,7 @@ const SidebarDumb = props => {
             opacity: 0,
             color: props.themeStyles.menuFontColor,
             zIndex: 1,
+            pointerEvents: 'none', // to let click through sidebar and on toggle sidebar button
         },
         logo: {
             height: '10rem',
@@ -386,7 +388,7 @@ const SidebarDumb = props => {
                 <div style={ {
                         borderBottom: props.themeStyles.menuBorder,
                         maxWidth: 'calc(' + sidebarWidth + ')',
-                        transition: borderTransition
+                        transition: borderTransition,
                 } }>
                 </div>
             </div>
