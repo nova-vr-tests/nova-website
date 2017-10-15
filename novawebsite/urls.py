@@ -26,6 +26,10 @@ urlpatterns = [
     # BRF login/out
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
+    # Let's encrypt
+    url(r'^.well-known/acme-challenge/.*$',
+        views.acme_challenge, name='acme-challenge'),
+
     # React frontend
     url(r'^', views.FrontendAppView.as_view()),
 ]

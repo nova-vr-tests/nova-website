@@ -144,3 +144,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# Let's encrypt
+ACME_CHALLENGE_CONTENT = os.environ.get('ACME_CHALLENGE_CONTENT', '')

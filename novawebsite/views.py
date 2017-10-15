@@ -25,3 +25,8 @@ class FrontendAppView(View):
                 """,
                 status=501,
             )
+
+
+# Let's encrypt challenge
+def acme_challenge(request):
+    return HttpResponse(settings.ACME_CHALLENGE_CONTENT)
