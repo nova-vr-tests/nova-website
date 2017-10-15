@@ -8,8 +8,6 @@ import {
 
 import { styles as appStyles } from '../../constants.js'
 
-import arrowImg from '../img/arrow.svg'
-
 /**
    Takes slides as props and stores them in state to handle slide transition.
 */
