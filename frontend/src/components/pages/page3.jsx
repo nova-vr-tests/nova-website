@@ -19,7 +19,7 @@ const NyeIntro = [
     {
         h1: 'New Year\'s Eve',
         h2: '',
-        content: () => <BigText>The Next Light.</BigText>,
+        content: () => 'In stereoscopic 3D virtual reality we will bring you to 10 iconic cities around the world. All you need is the internet.',
         path: '/nye',
         pid: nyePid,
         layers: [
@@ -43,30 +43,6 @@ const NyeIntro = [
 ]
 
 const NyeLiveStream = [
-    {
-        h1: 'New Year\'s Eve',
-        h2: '360 Live Stream',
-        content: () => 'In stereoscopic 3D virtual reality we will bring you to 10 iconic cities around the world. All you need is the internet.',
-        path: '/nye',
-        pid: nyePid,
-        layers: [
-            {
-                imgUrl: nyeLayer1,
-                paralax: -50,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -200,
-                opacity: 1,
-            },
-        ]
-    },
     {
         h1: 'New Year\'s Eve',
         h2: '360 Live Stream',

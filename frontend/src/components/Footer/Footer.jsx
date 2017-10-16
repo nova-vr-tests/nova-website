@@ -61,7 +61,7 @@ const AboutUs = props => {
                 About Us
             </h1>
             <p style={ styles.p }>
-                Email us at : <a href="mailto:joey@novamedia.nyc">joey@novamedia.nyc</a>
+                Email us at : <a href="mailto:joe@novamedia.nyc">joe@novamedia.nyc</a>
             </p>
         </div>
     )
