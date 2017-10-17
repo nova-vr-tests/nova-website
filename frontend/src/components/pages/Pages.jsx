@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
@@ -14,9 +16,18 @@ import {
 
 import { styles as appStyles } from '../../constants.js'
 
+import type {
+    IPage,
+    ISlide,
+    IMenuSection,
+    IMakeMenuOutput,
+    IFlatten,
+} from './types.jsx'
 
 
-const category1 = {
+
+// Menu Section and subsection titles
+const category1: IMenuSection = {
     title: "Nova XR",
     links: [
         {
@@ -31,7 +42,7 @@ const category1 = {
     ],
 }
 
-const category2 = {
+const category2: IMenuSection = {
     title: "Resources",
     links: [
         {
@@ -46,7 +57,7 @@ const category2 = {
     ],
 }
 
-const category3 = {
+const category3: IMenuSection = {
     title: "Partnership",
     links: [
         {
@@ -61,7 +72,8 @@ const category3 = {
     ],
 }
 
-const menuLinks = [
+// Structure containing menu section and subsection titles
+const menuLinks: Array<IMenuSection> = [
     category1,
     category2,
     category3,
@@ -70,9 +82,9 @@ const menuLinks = [
 
 
 /**
-   Generate menu links and titles
+   Get menu subsubsection link paths from pages
 */
-const getMenuLinks = section => {
+const getMenuLinks = (section: IPage) => {
     return section.map(subSection =>
         subSection.map(presentation =>
             presentation[0].path
@@ -80,7 +92,9 @@ const getMenuLinks = section => {
     )
 }
 
-const makeMenu = (section, i) => {
+
+// Create menu component input structure with all (sub(sub))section links and titles
+const makeMenu = (section: IPage, i: number): IMakeMenuOutput => {
     const links = section.map((subsection, j) => {
         const subLinks = subsection.map(presentation => {
             return {
@@ -103,14 +117,13 @@ const makeMenu = (section, i) => {
 }
 
 /**
-   Links slides with appropriate transitions
+   Returns a slide linked to surrounding slides with appropriate transitions
 */
-const makePresentationSlide = (slide, i, slides) => {
+const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>) => {
     const Text = slide.content
     const {
         pid,
         path,
-        paralax,
         linePosition,
         layers,
         h1,
@@ -166,7 +179,6 @@ return {
         comp,
         pid,
         path,
-        paralax,
         h1,
         h2,
         linePosition,
@@ -188,7 +200,7 @@ return {
 /**
   Dark magic functional prog, flattens an array
 */
-const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ? flatten(flat) : flat)()
+const flatten: IFlatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ? flatten(flat) : flat)()
 
 /**
    Site input. From this structure is infered:
@@ -196,11 +208,14 @@ const flatten = arr => ((flat = [].concat(...arr)) => flat.some(Array.isArray) ?
    - menu links and title
    - slide transitions
 */
-const sitePages = [
+const sitePages: Array<IPage> = [
     novaXr,
     resources,
     partnership,
 ]
+
+// Store all site paths in flat array
+const routeUrls = sitePages.map(getMenuLinks)
 
 /**
    Adds line height to each slide based on where it is in sitePages
@@ -218,9 +233,17 @@ const pages = sitePages.map((section, i) =>
     )
 )
 
-let slides = flatten(pages)
+// Creating menu from page array structure
 const menuInput = pages.map(makeMenu)
+
+
+
+// Now that site structure was infered from slide array nesting structure, we can flatten the slides array. This will be the presentation input
+let slides: Array<ISlide> = flatten(pages)
+
+// Adding site root before all other slides
 slides = [...SiteIntro, ...slides]
+
 
 const Pages = () => {
     return (
@@ -229,7 +252,6 @@ const Pages = () => {
     )
 }
 
-const routeUrls = sitePages.map(getMenuLinks)
 
 export default Pages
 
