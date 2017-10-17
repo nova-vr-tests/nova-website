@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import { styles as appStyles } from '../../constants.js'
 
 type IAligments = {
@@ -52,11 +52,17 @@ const styles = {
     },
 }
 
-const BigText = props => (
+
+type UIprops = {
+    children: React.Node,
+    style?: CSSStyleDeclaration,
+}
+
+const BigText = (props: UIprops) => (
     <span style={ styles.BigText }>{ props.children }</span>
 )
 
-const PageWrapper = props => {
+const PageWrapper = (props: UIprops) => {
     const right = props.align === alignments.right ? 0 : 'inherit'
 
     return (
@@ -66,7 +72,7 @@ const PageWrapper = props => {
     )
 }
 
-const P = props => {
+const P = (props: UIprops) => {
     const marginLeft = props.align === alignments.right ? '40vw' : ''
     return (
         <p style={ { ...styles.P, ...{ marginLeft } } }>
@@ -75,7 +81,7 @@ const P = props => {
     )
 }
 
-const H1  = props => {
+const H1  = (props: UIprops)  => {
     return (
         <h1 style={ { ...styles.H1, ...props.style } }>
             { props.children }
@@ -83,7 +89,7 @@ const H1  = props => {
     )
 }
 
-const H2 = props => {
+const H2 = (props: UIprops) => {
     return (
         <h2 style={ { ...styles.H2, ...props.style } }>
             { props.children }
