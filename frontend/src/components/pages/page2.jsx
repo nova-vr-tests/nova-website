@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
@@ -19,6 +21,8 @@ import { styles as appStyles } from '../../constants.js'
 
 import { BigText } from './UI.jsx'
 
+import type { ISlide, IPage } from './types.jsx'
+
 /************************************
 
     Educational Portal
@@ -28,7 +32,7 @@ import { BigText } from './UI.jsx'
 
 
 const edIntroPid = Symbol()
-const EducationIntro = [
+const EducationIntro: Array<ISlide> = [
     {
         h1: 'Educational Portal',
         h2: '',
@@ -48,7 +52,7 @@ const EducationIntro = [
 ]
 
 const edPid = Symbol()
-const Education = [
+const Education: Array<ISlide> = [
     {
         h1: 'Educational Portal',
         h2: 'Education',
@@ -233,7 +237,7 @@ const Education = [
 
 
 const solutionsPid = Symbol()
-const Solutions = [
+const Solutions: Array<ISlide> = [
     {
         h1: 'Educational Portal',
         h2: 'Solutions',
@@ -267,7 +271,7 @@ const Solutions = [
 ]
 
 const insightsPid = Symbol()
-const Insights = [
+const Insights: Array<ISlide> = [
     {
         h1: 'Educational Portal',
         h2: 'Insights',
@@ -403,7 +407,7 @@ const Insights = [
 
 
 const newsPid = Symbol()
-const NewsIntro = [
+const NewsIntro: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: '',
@@ -423,7 +427,7 @@ const NewsIntro = [
 
 
 const contentPid = Symbol()
-const FeaturedContent = [
+const FeaturedContent: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Featured Content',
@@ -442,7 +446,7 @@ const FeaturedContent = [
 ]
 
 const twitterPid = Symbol()
-const TwitterFeed = [
+const TwitterFeed: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Twitter Feed',
@@ -461,7 +465,7 @@ const TwitterFeed = [
 ]
 
 const labPid = Symbol()
-const LabLive = [
+const LabLive: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Lab Live',
@@ -487,7 +491,7 @@ const LabLive = [
 
 
 const pubPid = Symbol()
-const PublishingIntro = [
+const PublishingIntro: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: '',
@@ -505,7 +509,7 @@ const PublishingIntro = [
 ]
 
 const designPid = Symbol()
-const Design = [
+const Design: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: 'Design',
@@ -523,7 +527,7 @@ const Design = [
 ]
 
 const interactionsPid = Symbol()
-const Interactions = [
+const Interactions: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: 'Interactions',
@@ -541,7 +545,7 @@ const Interactions = [
 ]
 
 const strategyPid = Symbol()
-const Strategy = [
+const Strategy: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: 'Strategy',
@@ -567,7 +571,7 @@ const Strategy = [
 ************************************/
 
 
-const edSlides = [
+const edSlides: Array<Array<ISlide>> = [
     EducationIntro,
     Education,
     Solutions,
@@ -588,8 +592,10 @@ const publicationSlides = [
     Strategy,
 ]
 
-export default [
+const page2: IPage = [
     edSlides,
     newsSlides,
     publicationSlides,
 ]
+
+export default page2

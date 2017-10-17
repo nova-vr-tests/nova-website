@@ -5,7 +5,12 @@ import { styles as appStyles } from '../../constants.js'
 
 type IAligments = {
     right: string,
+    farRight: string,
+    center: string,
+    left: string,
+    farLeft: string,
 }
+
 const alignments: IAligments = {
     farRight: 'far-right',
     right: 'right',

@@ -1,5 +1,6 @@
-import React from 'react'
+// @flow
 
+import * as React from 'react'
 
 import intro from '../img/default.jpg'
 
@@ -46,6 +47,8 @@ import { styles as appStyles } from '../../constants.js'
 
 import { BigText, alignments } from './UI.jsx'
 
+import type { ISlide, IPage } from './types.jsx'
+
 
 /************************************
 
@@ -55,7 +58,7 @@ import { BigText, alignments } from './UI.jsx'
 
 
 const introPid = Symbol()
-const SiteIntro = [
+const SiteIntro: Array<ISlide> = [
     {
         h1: 'Dream Awake',
         h2: '',
@@ -73,6 +76,7 @@ const SiteIntro = [
     },
 ]
 
+
 /************************************
 
     DESIGN
@@ -81,7 +85,7 @@ const SiteIntro = [
 
 
 const designPid = Symbol()
-const Design = [
+const Design: Array<ISlide> = [
     {
         h1: 'Design',
         h2: '',
@@ -114,7 +118,7 @@ const Design = [
 
 
 const interfacePid = Symbol()
-const Interface = [
+const Interface: Array<ISlide> = [
     {
         h1: 'Design',
         h2: 'Interface',
@@ -243,7 +247,7 @@ const Interface = [
 ]
 
 const storyPid = Symbol()
-const Story = [
+const Story: Array<ISlide> = [
     {
         h1: 'Design',
         h2: 'Story',
@@ -334,7 +338,7 @@ const Story = [
 ]
 
 const worldPid = Symbol()
-const World = [
+const World: Array<ISlide> = [
     {
         h1: 'Design',
         h2: 'World',
@@ -449,7 +453,7 @@ const World = [
 
 
 const businessPid = Symbol()
-const Business = [
+const Business: Array<ISlide> = [
     {
         h1: 'Business',
         h2: '',
@@ -525,7 +529,7 @@ const Business = [
 ]
 
 const servicesPid = Symbol()
-const Services = [
+const Services: Array<ISlide> = [
     {
         h1: 'Business',
         h2: 'Services',
@@ -567,7 +571,7 @@ const Services = [
 ]
 
 const philoPid = Symbol()
-const Philosophy = [
+const Philosophy: Array<ISlide> = [
     {
         h1: 'Business',
         h2: 'Philosophy',
@@ -641,7 +645,7 @@ const Philosophy = [
 ]
 
 const disciplinesPid = Symbol()
-const Disciplines = [
+const Disciplines: Array<ISlide> = [
     {
         h1: 'Business',
         h2: 'Disciplines',
@@ -810,7 +814,7 @@ const Disciplines = [
 
 
 const techPid = Symbol()
-const Technology = [
+const Technology: Array<ISlide> = [
     {
         h1: 'Technology',
         h2: '',
@@ -856,7 +860,7 @@ const Technology = [
 ]
 
 const vrPid = Symbol()
-const VR = [
+const VR: Array<ISlide> = [
     {
         h1: 'Technology',
         h2: 'Virtual Reality',
@@ -980,7 +984,7 @@ const VR = [
 ]
 
 const arPid = Symbol()
-const AR = [
+const AR: Array<ISlide> = [
     {
         h1: 'Technology',
         h2: 'Augmented Reality',
@@ -1110,7 +1114,7 @@ const AR = [
 
 const expPid = Symbol()
 const expH2 = 'Exponential Techs'
-const expTech = [
+const expTech: Array<ISlide> = [
     {
         h1: 'Technology',
         h2: expH2,
@@ -1229,11 +1233,13 @@ const technologySlides = [
     expTech,
 ]
 
-export default [
+const page1: IPage = [
     designSlides,
     technologySlides,
     businessSlides,
 ]
+
+export default page1
 
 export {
     SiteIntro,

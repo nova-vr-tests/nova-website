@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import nyeLayer1 from '../img/partnership/nye/nye-layer1.png'
@@ -7,6 +9,8 @@ import loginLayer1 from '../img/partnership/login/login-layer1.png'
 
 import { BigText } from './UI.jsx'
 
+import type { ISlide, IPage } from './types.jsx'
+
 /************************************
 
     NYE
@@ -15,7 +19,7 @@ import { BigText } from './UI.jsx'
 
 
 const nyePid = Symbol()
-const NyeIntro = [
+const NyeIntro: Array<ISlide> = [
     {
         h1: 'New Year\'s Eve',
         h2: '',
@@ -42,7 +46,7 @@ const NyeIntro = [
     },
 ]
 
-const NyeLiveStream = [
+const NyeLiveStream: Array<ISlide> = [
     {
         h1: 'New Year\'s Eve',
         h2: '360 Live Stream',
@@ -117,7 +121,7 @@ const NyeLiveStream = [
     },
 ]
 
-const Distribution = [
+const Distribution: Array<ISlide> = [
     {
         h1: 'New Year\'s Eve',
         h2: 'Distribution',
@@ -168,7 +172,7 @@ const Distribution = [
     },
 ]
 
-const Destinations = [
+const Destinations: Array<ISlide> = [
     {
         h1: 'New Year\'s Eve',
         h2: 'Destinations',
@@ -228,7 +232,7 @@ const Destinations = [
 
 
 const loginPid = Symbol()
-const Login = [
+const Login: Array<ISlide> = [
     {
         h1: 'Login',
         h2: '',
@@ -263,7 +267,9 @@ const loginSlides = [
     Login,
 ]
 
-export default [
+const page3: IPage = [
     nyeSlides,
     loginSlides,
 ]
+
+export default page3
