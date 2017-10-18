@@ -43,7 +43,6 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
             // dispatch(updateBackLayers(backLayers))
             dispatch(updateBackLayers(currentSlideLayers))
         } else {
-            console.log(frontLayers)
             dispatch(updateCacheLayers(resetBackgroundStyles(frontLayers, 1)))
             dispatch(updateFrontLayers(frontLayers2))
             dispatch(updateBackLayers(backLayers))
