@@ -1,3 +1,5 @@
+// @flow
+
 /*
     Intro animation keyframes
 */
@@ -7,7 +9,70 @@ const LOGO_FRAME3 = 3
 const FOOTER_FINAL = 4
 const INTRO_FINISHED = 5
 
-const styles = {
+type ThemeTypes = {
+    defaultTheme: 'default',
+    inverseTheme: 'inverse',
+    noFooterTheme: 'no-footer',
+    openedFooterTheme: 'footer-is-opened',
+}
+
+type UIStyles = {
+    P: {
+        fontSize: string
+    },
+}
+
+type SidebarStyles = {
+    widthFactor: number,
+    sectionHeightFactor: number,
+    subSectionHeightFactor: number,
+    transition: {
+        length: string,
+        type: string,
+    },
+    hoverTransition: {
+        length: string,
+        type: string,
+    }
+}
+
+type AppThemeStyles = {
+    lineBgColor: string,
+    menuBorder: string,
+    fatMenuBorder: string,
+    menuTitleActive: string,
+    menuFontColor: string,
+    footerBgColor: string,
+    titleColor: string,
+    fontColor: string,
+    bgOverlayColor: string,
+    headerBgColor: string,
+}
+
+type AppStyles = {
+    themeTypes: ThemeTypes,
+    unitHeight: string,
+    unitWidth: string,
+    unitHeightJs: number,
+    unitWidthJs: number,
+    slideTransitionTime: number,
+    slideTransitionFunc: string,
+    UI: UIStyles,
+    sidebar: SidebarStyles,
+    lineDimensions?: { height: string },
+    slideParagraphWidth?: string,
+    themes: {
+        default?: AppThemeStyles,
+        inverse?: AppThemeStyles,
+        'no-footer'?: AppThemeStyles,
+        'footer-is-opened'?: AppThemeStyles,
+    },
+    mediaQueries?: {
+        phone: number,
+    }
+}
+
+const styles: AppStyles = {
     themeTypes: {
         defaultTheme: 'default',
         inverseTheme: 'inverse',
@@ -46,6 +111,7 @@ styles.lineDimensions = {
 }
 
 styles.slideParagraphWidth = 'calc(' + styles.lineDimensions.height + ' * 3.5)'
+
 
 styles.themes[styles.themeTypes.defaultTheme] = {
     lineBgColor: 'rgba(255, 255, 255, 0.1)',
