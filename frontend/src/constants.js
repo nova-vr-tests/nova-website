@@ -67,7 +67,7 @@ type AppStyles = {
         'no-footer'?: AppThemeStyles,
         'footer-is-opened'?: AppThemeStyles,
     },
-    mediaQueries?: {
+    mediaQueries: {
         phone: number,
     }
 }
@@ -104,6 +104,9 @@ const styles: AppStyles = {
         },
     },
     themes: {},
+    mediaQueries: {
+        phone: 600, // px
+    }
 }
 
 styles.lineDimensions = {
@@ -153,9 +156,6 @@ styles.themes[styles.themeTypes.openedFooterTheme] = {
     bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
 }
 
-styles.mediaQueries = {
-    phone: 600, // px
-}
 
 export {
     LOGO_FRAME1,
