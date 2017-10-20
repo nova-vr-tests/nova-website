@@ -1,9 +1,7 @@
+// @flow
+
 import {
-    INCREMENT_INTRO_KEYFRAME,
-    RESET_INTRO_KEYFRAME,
-    TOGGLE_SIDEBAR,
     UPDATE_LINE_POSITION,
-    UPDATE_BG,
     UPDATE_THEME,
     UPDATE_CURRENT_PAGE,
     UPDATE_GO_TO_PAGE,
@@ -11,49 +9,53 @@ import {
     UPDATE_IS_FOOTER_OPENED,
 } from '../App'
 
-const updateIsFooterOpened = isFooterOpened => ({
+import type {
+    Action as AppAction,
+} from '../App.js'
+
+const updateIsFooterOpened = (isFooterOpened: boolean): AppAction => ({
     type: UPDATE_IS_FOOTER_OPENED,
     isFooterOpened,
 })
 
-const updateWindowWidth = windowWidth => ({
+const updateWindowWidth = (windowWidth: number): AppAction => ({
     type: UPDATE_WINDOW_WIDTH,
     windowWidth,
 })
-const updateGoToPage = goToPage => ({
+const updateGoToPage = (goToPage: void => void): AppAction => ({
     type: UPDATE_GO_TO_PAGE,
     goToPage,
 })
 
-const updateCurrentPage = currentPage => ({
+const updateCurrentPage = (currentPage: number): AppAction => ({
     type: UPDATE_CURRENT_PAGE,
     currentPage,
 })
 
-const updateAppTheme = appTheme => ({
+const updateAppTheme = (appTheme: string): AppAction => ({
     type: UPDATE_THEME,
     appTheme,
 })
 
-const updateBg = bgUrl => ({
-    type: UPDATE_BG,
-    bgUrl,
-})
 
-const updateLinePosition = linePosition => ({
+const updateLinePosition = (linePosition: number): AppAction => ({
     type: UPDATE_LINE_POSITION,
     linePosition,
 })
 
-const toggleSidebar = () => ({
-    type: TOGGLE_SIDEBAR,
-})
-const incrementIntroKeyframe = () => ({
-    type: INCREMENT_INTRO_KEYFRAME
+// Flow doesn't distinguish AppAction case if type is from file import
+const toggleSidebar = (): AppAction => ({
+    type: 'app/toggle_sidebar',
 })
 
-const resetIntroKeyframe = () => ({
-    type: RESET_INTRO_KEYFRAME
+// Flow doesn't distinguish AppAction case if type is from file import
+const incrementIntroKeyframe = (): AppAction => ({
+    type: 'app/increment_intro_keyframe',
+})
+
+// Flow doesn't distinguish AppAction case if type is from file import
+const resetIntroKeyframe = (): AppAction => ({
+    type: 'app/reset_intro_keyframe',
 })
 
 export {
@@ -61,7 +63,6 @@ export {
     resetIntroKeyframe,
     toggleSidebar,
     updateLinePosition,
-    updateBg,
     updateAppTheme,
     updateCurrentPage,
     updateGoToPage,
