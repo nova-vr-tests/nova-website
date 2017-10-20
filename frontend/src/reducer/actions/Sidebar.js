@@ -1,14 +1,22 @@
+// @flow
+
 import {
     TOGGLE_SIDEBAR,
-    CREATE_SIDEBAR_STATE,
-    TOGGLE_SIDEBAR_SECTION,
-    TOGGLE_SIDEBAR_SUBSECTION,
 } from '../Sidebar'
+
+import type {
+    Action as SidebarAction,
+    LinkState,
+} from '../Sidebar.js'
+
+import type {
+    MenuInput
+} from '../../components/pages/types.jsx'
 
 import store from '../../store.js'
 
-const initSidebarLinkStates = sections => {
-    const sidebarState = []
+const initSidebarLinkStates = (sections: MenuInput): SidebarAction => {
+    const sidebarState: Array<LinkState> = []
 
     for(let i = 0; i < sections.length; i++) {
         const section = sections[i]
@@ -25,13 +33,14 @@ const initSidebarLinkStates = sections => {
     }
 
     return {
-        type: CREATE_SIDEBAR_STATE,
+        type: 'sidebar/create_sidebar_state', // flow doesn't seem to work if type is from variable
         linkStates: sidebarState,
     }
 }
 
-const resetLinkStates = _links => {
-    const links = JSON.parse(JSON.stringify(_links))
+const resetLinkStates = (_links: Array<LinkState>): Array<LinkState> => {
+    const links: Array<LinkState> = JSON.parse(JSON.stringify(_links)) // object deep copy
+
     for(let i = 0; i < links.length; i++) {
         links[i].isOpened = false
 
@@ -43,20 +52,21 @@ const resetLinkStates = _links => {
     return links
 }
 
-const toggleSidebarSection = i => {
+const toggleSidebarSection = (i: number): SidebarAction => {
     const currentLinkStates = [ ...store.getState().sidebarReducer.linkStates ]
     const linkStates = resetLinkStates(currentLinkStates)
 
-    if(!currentLinkStates[i].isOpened)
+    if(!currentLinkStates[i].isOpened) {
         linkStates[i].isOpened = !currentLinkStates[i].isOpened
+    }
 
     return {
-        type: TOGGLE_SIDEBAR_SECTION,
+        type: 'sidebar/toggle_sidebar_section', // flow doesn't recognize from variable
         linkStates,
     }
 }
 
-const toggleSidebarSubSection = (i, j) => {
+const toggleSidebarSubSection = (i: number, j: number): SidebarAction => {
     const currentLinkStates = [ ...store.getState().sidebarReducer.linkStates ]
     const linkStates = resetLinkStates(currentLinkStates)
 
@@ -64,12 +74,12 @@ const toggleSidebarSubSection = (i, j) => {
     linkStates[i].subSections[j] = !currentLinkStates[i].subSections[j]
 
     return {
-        type: TOGGLE_SIDEBAR_SUBSECTION,
+        type: 'sidebar/toggle_sidebar_subsection', // flow doesn't recognize from variable
         linkStates,
     }
 }
 
-const toggleSidebar = () => ({
+const toggleSidebar = (): SidebarAction => ({
     type: TOGGLE_SIDEBAR,
 })
 

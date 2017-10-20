@@ -2,7 +2,11 @@ import {
     UPDATE_SIDEBAR_INTERSECTION,
 } from '../Header'
 
-const updateSidebarIntersection = sidebarIntersection => ({
+import type {
+    Action as HeaderAction,
+} from '../Header.js'
+
+const updateSidebarIntersection = (sidebarIntersection: number): HeaderAction => ({
     type: UPDATE_SIDEBAR_INTERSECTION,
     sidebarIntersection,
 })

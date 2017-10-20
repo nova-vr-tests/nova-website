@@ -11,7 +11,7 @@ export const sectionPosition = {
 
 
 type VoidFunc = (void) => void
-type State = {
+export type State = {
     introKeyframe: number,
     isSidebarOpened: boolean,
     linePosition: number,

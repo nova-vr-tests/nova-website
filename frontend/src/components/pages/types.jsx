@@ -53,4 +53,6 @@ export type IMakeMenuOutput = {
     links: Array<ILink>,
 }
 
+export type MenuInput = Array<IMakeMenuOutput>
+
 export type IFlatten = Array<any> => Array<any>
