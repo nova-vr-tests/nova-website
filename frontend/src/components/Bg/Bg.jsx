@@ -4,9 +4,6 @@ import { styles as appStyles } from '../../constants.js'
 
 const mapStateToProps = function(state) {
 	return {
-      bgUrl: state.appReducer.bgUrl,
-      frontBg: state.bgReducer.frontBg,
-      backBg: state.bgReducer.backBg,
       slideTransitionProgress: state.bgReducer.transitionProgress,
       linePosition: state.appReducer.linePosition,
       frontLayers: state.bgReducer.frontLayers,
@@ -133,8 +130,6 @@ const BgDumb = props => {
             height: '100vh',
             width: '100vw',
             position: 'absolute',
-
-            ...props.backBg.style,
         },
         overlay: {
             height: '100vh',
@@ -169,7 +164,6 @@ const BgDumb = props => {
 
             <div className="front-bg" style={ {
                     ...styles.frontBg,
-                    ...props.frontBg.style,
             } }>
                 <LayerAssembly
                     layers={ props.frontLayers }

@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import {
-    updateFrontBgUrl,
-    updateFrontBgStyle,
-    updateBackBgUrl,
-    updateBackBgStyle,
     updateBackLayers,
     updateTransitionProgress,
 } from '../../reducer/actions/Bg.js'
@@ -32,10 +28,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updateFrontBgUrl: url => dispatch(updateFrontBgUrl(url)),
-    updateBackBgUrl: url => dispatch(updateBackBgUrl(url)),
-    updateFrontBgStyle: style => dispatch(updateFrontBgStyle(style)),
-    updateBackBgStyle: style => dispatch(updateBackBgStyle(style)),
     updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
     updateBackLayers: l => dispatch(updateBackLayers(l)),
     goTo: url => dispatch(push(url)),
