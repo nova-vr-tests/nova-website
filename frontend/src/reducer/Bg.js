@@ -1,54 +1,30 @@
 // @flow
+import type {
+    State,
+    Action
+} from './BgTypes.jsx'
 
-export type BgLayer = {
-    imgUrl: string,
-    paralax: number,
-    opacity: number,
-}
-
-export type State = {
-    frontLayers: Array<BgLayer>,
-    backLayers: Array<BgLayer>,
-    cacheLayers: Array<BgLayer>,
-    transitionProgress: number,
-}
-
-export const UPDATE_TRANSITION_PROGRESS = 'bg/update_transition_progress'
-export type UpdateTransitionProgress = {
-    type: 'bg/update_transition_progress',
-    transitionProgress: number,
-}
-
-export const UPDATE_FRONT_LAYERS = 'bg/update_front_layers'
-export type UpdateFrontLayers = {
-    type: 'bg/update_front_layers',
-    frontLayers: Array<BgLayer>,
-}
-
-export const UPDATE_BACK_LAYERS = 'bg/update_back_layers'
-export type UpdateBackLayers = {
-    type: 'bg/update_back_layers',
-    backLayers: Array<BgLayer>,
-}
-
-export const UPDATE_CACHE_LAYERS = 'bg/update_cache_layers'
-export type UpdateCacheLayers = {
-    type: 'bg/update_cache_layers',
-    cacheLayers: Array<BgLayer>,
-}
-
-export type Action = UpdateTransitionProgress
-    | UpdateFrontLayers
-    | UpdateBackLayers
-    | UpdateCacheLayers
-
-const initialState: State = {
+/**
+   Initial state
+*/
+export const initialState: State = {
     frontLayers: [],
     backLayers: [],
     cacheLayers: [],
     transitionProgress: 0,
 }
 
+/**
+   Action types
+*/
+export const UPDATE_TRANSITION_PROGRESS = 'bg/update_transition_progress'
+export const UPDATE_FRONT_LAYERS = 'bg/update_front_layers'
+export const UPDATE_BACK_LAYERS = 'bg/update_back_layers'
+export const UPDATE_CACHE_LAYERS = 'bg/update_cache_layers'
+
+/**
+   Reducer
+*/
 export default (state: State = initialState, action: Action) => {
     switch (action.type) {
         case UPDATE_CACHE_LAYERS:

@@ -1,6 +1,10 @@
 // @flow
 
 import { styles as appStyles } from '../constants.js'
+import type {
+    State,
+    Action,
+} from './AppTypes.jsx'
 
 export const sectionPosition = {
     // values are position in sidebar links section array
@@ -10,17 +14,6 @@ export const sectionPosition = {
 }
 
 
-type VoidFunc = (void) => void
-export type State = {
-    introKeyframe: number,
-    isSidebarOpened: boolean,
-    linePosition: number,
-    appTheme: string,
-    currentPage: number,
-    windowWidth: number,
-    isFooterOpened: boolean,
-    goToPage: VoidFunc,
-}
 
 export const initialState: State = {
     introKeyframe: 2,
@@ -33,67 +26,15 @@ export const initialState: State = {
     isFooterOpened: false,
 }
 
-export const UPDATE_IS_FOOTER_OPENED: 'footer/update_is_footer_opened' = 'footer/update_is_footer_opened'
-export type UpdateIsFooterOpenedAction = {
-    type: 'footer/update_is_footer_opened',
-    isFooterOpened: boolean,
-}
-
+export const UPDATE_IS_FOOTER_OPENED = 'footer/update_is_footer_opened'
 export const UPDATE_WINDOW_WIDTH = 'app/update_window_width'
-export type UpdateWindowWidthAction = {
-    type: 'app/update_window_width',
-    windowWidth: number,
-}
-
 export const UPDATE_GO_TO_PAGE = 'app/update_go_to_page'
-export type UpdateGoToPageAction = {
-    type: 'app/update_go_to_page',
-    goToPage: VoidFunc,
-}
-
 export const UPDATE_CURRENT_PAGE = 'app/update_current_page'
-export type UpdateCurrentPageAction = {
-    type: 'app/update_current_page',
-    currentPage: number,
-}
-
 export const UPDATE_THEME = 'app/update_app_theme'
-export type UpdateThemeAction = {
-    type: 'app/update_app_theme',
-    appTheme: string,
-}
-
 export const UPDATE_LINE_POSITION = 'app/update_line_position'
-export type UpdateLinePositionAction = {
-    type: 'app/update_line_position',
-    linePosition: number,
-}
-
 export const INCREMENT_INTRO_KEYFRAME = 'app/increment_intro_keyframe'
-export type IncrementIntrokeyframeAction = {|
-    type: 'app/increment_intro_keyframe',
-|}
-
 export const RESET_INTRO_KEYFRAME = 'app/reset_intro_keyframe'
-export type ResetIntroKeyframeAction = {|
-    type: 'app/reset_intro_keyframe',
-|}
-
 export const TOGGLE_SIDEBAR = 'app/toggle_sidebar'
-export type ToggleSidebarAction = {|
-    type: 'app/toggle_sidebar',
-|}
-
-export type Action =  UpdateIsFooterOpenedAction
-    | UpdateWindowWidthAction
-    | UpdateGoToPageAction
-    | UpdateCurrentPageAction
-    | UpdateThemeAction
-    | UpdateLinePositionAction
-    | UpdateLinePositionAction
-    | IncrementIntrokeyframeAction
-    | ResetIntroKeyframeAction
-    | ToggleSidebarAction
 
 
 export default (state: State = initialState, action: Action): State => {

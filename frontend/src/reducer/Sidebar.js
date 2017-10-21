@@ -3,45 +3,20 @@ import {
     styles,
 } from '../constants.js'
 
-export type LinkState = {
-    isOpened: boolean,
-    subSections: Array<boolean>,
-}
+import type {
+    State,
+    Action,
+} from './SidebarTypes.jsx'
 
 export const TOGGLE_SIDEBAR = 'sidebar/toggle_sidebar'
-type ToggleSidebar = {|
-    type: 'sidebar/toggle_sidebar',
-|}
 
 export const CREATE_SIDEBAR_STATE = 'sidebar/create_sidebar_state'
-type CreateSidebarState = {
-    type: 'sidebar/create_sidebar_state',
-    linkStates: Array<LinkState>,
-}
 
 export const TOGGLE_SIDEBAR_SECTION = 'sidebar/toggle_sidebar_section'
-export type ToggleSidebarSection = {
-    type: 'sidebar/toggle_sidebar_section',
-    linkStates: Array<LinkState>,
-}
 
 export const TOGGLE_SIDEBAR_SUBSECTION = 'sidebar/toggle_sidebar_subsection'
-export type ToggleSidebarSubsection = {
-    type: 'sidebar/toggle_sidebar_subsection',
-    linkStates: Array<LinkState>,
-}
 
-export type Action = ToggleSidebar
-    | CreateSidebarState
-    | ToggleSidebarSection
-    | ToggleSidebarSubsection
-
-export type State = {
-    isSidebarOpened: boolean,
-    linkStates: Array<LinkState>
-}
-
-const initialState = {
+export const initialState = {
     isSidebarOpened: window.innerWidth < styles.mediaQueries.phone ? false : true,
     linkStates: [],
 }

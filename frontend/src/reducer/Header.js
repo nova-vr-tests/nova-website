@@ -1,18 +1,12 @@
 // @flow
+import type {
+    State,
+    Action,
+} from './HeaderTypes.jsx'
 
 export const  UPDATE_SIDEBAR_INTERSECTION = 'header/update_sidebar_intersection'
-export type UpdateSidebarIntersection = {
-    type: 'header/update_sidebar_intersection',
-    sidebarIntersection: number,
-}
 
-export type Action = UpdateSidebarIntersection
-
-export type State = {
-    sidebarIntersection: number,
-}
-
-const initialState = {
+export const initialState: State = {
     sidebarIntersection: 0,
 }
 

@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+
+import * as React from 'react'
 import { connect }from 'react-redux'
 import './styles/IntroAnimation.css'
 import frame1 from '../img/intro-logo/frame1.svg'
@@ -8,27 +9,34 @@ import frame3 from '../img/intro-logo/frame3.svg'
 import { LOGO_FRAME1, LOGO_FRAME2, LOGO_FRAME3, INTRO_FINISHED } from '../../constants'
 import { incrementIntroKeyframe } from '../../reducer/actions/App'
 
-const reduxStatePropTypes = {
-    introKeyframe: PropTypes.number,
-}
+import type {
+    ReduxState,
+    ReduxDispatch,
+    OwnProps,
+    Props,
+} from './IntroAnimationTypes.jsx'
 
-const mapStateToProps = function(state) {
-	return {
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../storeTypes.jsx'
+
+
+// const mapStateToProps = function(state: State): ReduxState {
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
+    return {
         keyframe: state.appReducer.introKeyframe,
-  }
+    }
 }
 
-const reduxDispatchPropTypes = {
-  incrementIntroKeyframe: PropTypes.func,
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch){
+    return {
+        incrementIntroKeyframe: () => dispatch(incrementIntroKeyframe()),
+    }
 }
 
-const mapDispatchToProps = function(dispatch) {
-	return {
-    incrementIntroKeyframe: () => dispatch(incrementIntroKeyframe()),
-  }
-}
 
-const IntroAnimationDumb = props => (
+const IntroAnimationDumb: React.StatelessFunctionalComponent<Props> = (props) => (
     <div className={ "intro--wrapper " + (props.keyframe >= INTRO_FINISHED ? "transparent" : "") }>
         <img
             src={ frame1 }
@@ -48,18 +56,7 @@ const IntroAnimationDumb = props => (
     </div>
 )
 
-IntroAnimationDumb.propTypes = {
-  ...reduxStatePropTypes,
-  ...reduxDispatchPropTypes,
-
-  keyframe: PropTypes.number,
-}
-
-IntroAnimationDumb.defaultProps = {
-    keyframe: 0,
-}
-
-class IntroAnimation extends Component {
+class IntroAnimation extends React.Component<Props> {
   componentDidMount() {
     let i = 0
     const j = setInterval(() => {
@@ -72,17 +69,14 @@ class IntroAnimation extends Component {
     }, 1000)
   }
 
-  render() {
-    return <IntroAnimationDumb
-        keyframe={ this.props.keyframe } />
+  render(): React.Element<typeof IntroAnimationDumb>{
+    return <IntroAnimationDumb { ...this.props } />
   }
 }
 
-IntroAnimation.propTypes = {
-  ...IntroAnimationDumb.propTypes,
-}
-
-export default connect(
+const ConnectedIntroAnimation: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(IntroAnimation)
+
+export default ConnectedIntroAnimation
