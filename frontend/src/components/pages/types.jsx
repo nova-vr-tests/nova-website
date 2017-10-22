@@ -40,7 +40,7 @@ export type IMenuSection = {
 
 // Menu subsection titles and links
 // Should be moved to Sidebar types
-type ILink = {
+export type ILink = {
     title: string,
     links: Array<string>,
     paths: Array<string>,
@@ -53,6 +53,8 @@ export type IMakeMenuOutput = {
     links: Array<ILink>,
 }
 
-export type MenuInput = Array<IMakeMenuOutput>
+export type MenuSectionState = IMakeMenuOutput
+
+export type MenuInput = Array<MenuSectionState>
 
 export type IFlatten = Array<any> => Array<any>

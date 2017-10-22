@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+// @flow
+
+import * as React from 'react'
 import { connect }from 'react-redux'
 import { push } from 'react-router-redux'
 import './styles/Sidebar.css'
@@ -12,10 +14,31 @@ import { menuInput } from '../pages/Pages.jsx'
 import {
     updateIsFooterOpened,
 } from '../../reducer/actions/App.js'
+
+import type {
+    ReduxState,
+    ReduxDispatch,
+    OwnProps,
+    Props,
+    State,
+    SidebarDumbProps,
+    SidebarSectionProps,
+    SidebarSubSectionProps,
+} from './SidebarTypes.jsx'
+
+import getStyles, {
+} from './SidebarStyles.jsx'
+
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../storeTypes.jsx'
+
 const constants = { styles }
 
 
-const SidebarSubSection = props => {
+
+const SidebarSubSection: React.StatelessFunctionalComponent<SidebarSubSectionProps> = props => {
     const { subSection } = props
     const _subSubSections = subSection.links
     const subSubSections = _subSubSections.slice(1, _subSubSections.length)
@@ -83,7 +106,7 @@ const SidebarSubSection = props => {
     }
 
     // don't push page if already on location
-    const goTo = path => props.dispatch.goTo(path)
+    const goTo = path => props.goTo(path)
 
     if(subSubSections.length > 0) {
         const components = []
@@ -103,8 +126,8 @@ const SidebarSubSection = props => {
 
         return (
             <div
-                onMouseEnter={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }
-                onMouseLeave={ () => props.dispatch.toggleSidebarSubSection(props.id.section, props.id.subSection) }
+                onMouseEnter={ () => props.toggleSubSection(props.id.section, props.id.subSection) }
+                onMouseLeave={ () => props.toggleSubSection(props.id.section, props.id.subSection) }
                 style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
                     <div
                         style={ styles.subSection.title }
@@ -129,7 +152,7 @@ const SidebarSubSection = props => {
     }
 }
 
-const SidebarSection = props => {
+const SidebarSection: React.StatelessFunctionalComponent<SidebarSectionProps> = props => {
     const { section } = props
     const subSections = section.links
     const components = []
@@ -144,8 +167,8 @@ const SidebarSection = props => {
                                 { ...props }
                                 isOpened={ props.sectionState.subSections[i] }
                                 subSection={ subSection }
-                                key={ i }
-                                id={ {section: props.id.section, subSection: i} } />
+                                id={ {section: props.id.section, subSection: i} }
+                                key={ i } />
         }
 
         return components
@@ -184,13 +207,10 @@ const SidebarSection = props => {
                 }
             }
 
-
-            // return 'calc(' + marginTop + ')'
         } else if (section === linePosition) {
             // line height menu is opened ? => subtract section height from top margin
             if(linkStates[linePosition].isOpened && section === 0) {
                 marginTop = marginTop + constants.styles.sidebar.sectionHeightFactor + ' * ' + constants.styles.unitHeight
-                // return 'calc(' + marginTop + ')'
             }
 
         }
@@ -268,26 +288,26 @@ const SidebarSection = props => {
 
     return (
         <div
-            onMouseEnter={ () => props.dispatch.toggleSidebarSection(props.id.section) }
-            onMouseLeave={ () => props.dispatch.toggleSidebarSection(props.id.section) }
+            onMouseEnter={ () => props.toggleSection(props.id.section) }
+            onMouseLeave={ () => props.toggleSection(props.id.section) }
             style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
             <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
                 <div style={ styles.section.titleWrapper }>
                     <div
                         style={ { ...styles.section.title, ...(props.isOpened ? styles.section.titleActive : {})} }
-                        onClick={ () => props.dispatch.toggleSidebarSection(props.id.section) }>
+                        onClick={ () => props.toggleSection(props.id.section) }>
                         { section.title }
                     </div>
                 </div>
                 <div style={ styles.subSections.wrapper }>
-                    { parseSection(section) }
+                    { parseSection() }
                 </div>
             </div>
         </div>
     )
 }
 
-const SidebarDumb = props => {
+const SidebarDumb: React.StatelessFunctionalComponent<SidebarDumbProps> = props => {
     const parseSections = sections => {
         const components = []
 
@@ -300,7 +320,7 @@ const SidebarDumb = props => {
                                 sectionState={ props.linkStates[i] }
                                 isOpened={ props.linkStates[i].isOpened }
                                 section={ section }
-                                id={ {section: i} }
+                                id={ {section: i, subSection: 0} }
                                 key={ i } />
         }
 
@@ -398,13 +418,7 @@ const SidebarDumb = props => {
     )
 }
 
-SidebarDumb.propTypes = {
-}
-
-SidebarDumb.defaultProps = {
-}
-
-const sidebarState = function(state) {
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       isSidebarOpened: state.sidebarReducer.isSidebarOpened,
       linkStates: state.sidebarReducer.linkStates,
@@ -415,7 +429,7 @@ const sidebarState = function(state) {
     }
 }
 
-const sidebarDispatch = function(dispatch) {
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
 	return {
     goTo: page => { dispatch(push(page)); dispatch(updateIsFooterOpened(false)) },
     initLinkStates: links => dispatch(initSidebarLinkStates(links)),
@@ -424,7 +438,7 @@ const sidebarDispatch = function(dispatch) {
   }
 }
 
-class Sidebar extends Component {
+class Sidebar extends React.Component<Props, State> {
     constructor(props) {
         super(props)
 
@@ -441,12 +455,6 @@ class Sidebar extends Component {
     }
 
     render() {
-        const dispatch = {
-            toggleSidebarSection: this.props.toggleSection,
-            toggleSidebarSubSection: this.props.toggleSubSection,
-            goTo: this.props.goTo,
-        }
-
         if(this.props.linkStates.length === 0) {
             return <div></div>
         }
@@ -455,16 +463,16 @@ class Sidebar extends Component {
         return <SidebarDumb
             { ...this.props }
             themeStyles={ constants.styles.themes[this.props.appTheme] }
-            dispatch={ dispatch }
             links={ this.state.links } />
     }
 }
 
 Sidebar.propTypes = {
-  ...SidebarDumb.propTypes,
 }
 
-export default connect(
-    sidebarState,
-    sidebarDispatch
+const ConnectedSidebar: React.ComponentType<OwnProps> = connect(
+    mapStateToProps,
+    mapDispatchToProps,
 )(Sidebar)
+
+export default ConnectedSidebar

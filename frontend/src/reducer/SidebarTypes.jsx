@@ -3,19 +3,20 @@
 /**
    State type
 */
-export type State = {
-    isSidebarOpened: boolean,
-    linkStates: Array<LinkState>
-}
-
-/**
-   Action types
-*/
 export type LinkState = {
     isOpened: boolean,
     subSections: Array<boolean>,
 }
 
+export type State = {
+    isSidebarOpened: boolean,
+    linkStates: Array<LinkState>
+}
+
+
+/**
+   Action types
+*/
 export type ToggleSidebar = {|
     type: 'sidebar/toggle_sidebar',
 |}
