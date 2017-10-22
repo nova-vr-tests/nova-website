@@ -1,8 +1,28 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { styles as appStyles } from '../../constants.js'
+// @flow
 
-const mapStateToProps = function(state) {
+import * as React from 'react'
+import { connect } from 'react-redux'
+
+import type {
+    ReduxState,
+    ReduxDispatch,
+    OwnProps,
+    Props,
+    LayerProps,
+    LayerAssemblyProps,
+} from './BgTypes.jsx'
+
+import getStyles, {
+    getLayerStyles,
+    getLayerAssemblyStyles,
+} from './BgStyles.jsx'
+
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../storeTypes.jsx'
+
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       slideTransitionProgress: state.bgReducer.transitionProgress,
       linePosition: state.appReducer.linePosition,
@@ -13,26 +33,13 @@ const mapStateToProps = function(state) {
   }
 }
 
-const mapDispatchToProps = function() {
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) { // eslint-disable-line no-unused-vars
 	return {
   }
 }
 
-const Layer = props => {
-    const styles = {
-        layer: {
-            backgroundImage: 'url(' + props.imgUrl + ')',
-            backgroundSize: 'cover',
-            zIndex: -1,
-            height: '100vh',
-            width: '100vw',
-            position: 'absolute',
-            backgroundPosition: props.layerParalax,
-            opacity: props.layerOpacity,
-            transform: 'translateY(' + props.translateY + ')',
-            ...props.layerStyles,
-        },
-    }
+const Layer: React.StatelessFunctionalComponent<LayerProps> = props => {
+    const styles = getLayerStyles(props)
 
     return (
         <div style={ styles.layer }>
@@ -40,29 +47,15 @@ const Layer = props => {
     )
 }
 
-Layer.defaultProps = {
-    layerOpacity: 1,
-    layerParalax: 0,
-    layerStyles: {},
-    imgUrl: '',
-    translateY: 0,
-}
+const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = props => {
+    type GetLayers = (layers: typeof props.layers) => Array<React.Element<typeof Layer>>
 
-const LayerAssembly = props => {
-    const styles = {
-        wrapper: {
-            zIndex: -1,
-            height: '100vh',
-            width: '100vw',
-            position: 'absolute',
-        }
-    }
+    const styles = getLayerAssemblyStyles()
 
-    const getLayers = layers => {
+    const getLayers: GetLayers = layers => {
         return layers.map((e, i) => (
             <Layer
                 imgUrl={ e.imgUrl }
-                layerStyles={ e.styles }
                 layerParalax={ e.paralax }
                 translateY={ props.translateY }
                 layerOpacity={ e.opacity }
@@ -78,68 +71,8 @@ const LayerAssembly = props => {
     )
 }
 
-LayerAssembly.defaultProps = {
-    layers: [],
-    translateY: 0,
-}
-
-const BgDumb = props => {
-
-
-    const lineTopFactor = (9 + 2 * props.linePosition) / 24 * 100
-    const lineTop = lineTopFactor + 'vh'
-    const lineHeightFactor = 4 * 100 / 24
-    const lineHeight = lineHeightFactor + 'vh'
-    const progress = props.slideTransitionProgress
-    const heightBottomFactor = 100 - (lineTopFactor + lineHeightFactor)
-    const heightBottom = heightBottomFactor + 'vh'
-
-    const transformTop = 'calc(-' + progress + ' * ' + lineTop + ')'
-    const transformBottom = 'calc(' + progress + ' * ' + heightBottom + ')'
-
-    const styles = {
-        wrapper: {
-            position: 'absolute',
-            zIndex: -1,
-            height: '100vh',
-            width: '100vw',
-        },
-        split: {
-            wrapper: {
-                width: '100vw',
-                height: lineTop,
-                position: 'absolute',
-                overflow: 'hidden',
-                zIndex: 2,
-                transform: 'translateY(' + transformTop + ')',
-            },
-            wrapperBottom: {
-                top: 'calc(' + lineTop + ' + ' + lineHeight + ')',
-                height: '100vh',
-                transform: 'translateY(' + transformBottom + ')',
-            },
-        },
-        frontBg: {
-            zIndex: -1,
-            height: '100vh',
-            width: '100vw',
-            position: 'absolute',
-        },
-        backBg: {
-            zIndex: -2,
-            height: '100vh',
-            width: '100vw',
-            position: 'absolute',
-        },
-        overlay: {
-            height: '100vh',
-            width: '100vw',
-            backgroundColor: appStyles.themes[props.appTheme].bgOverlayColor,
-            zIndex: 3,
-            position: 'absolute',
-            transition: 'background-color 0.5s linear',
-        }
-    }
+const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
+    const styles = getStyles(props)
 
     return (
         <div style={ styles.wrapper } className="bar">
@@ -147,16 +80,18 @@ const BgDumb = props => {
 
                 <LayerAssembly
                     layers={ props.cacheLayers }
+                    translateY={ 0 }
                 />
 
             <div className="split-top" style={ styles.split.wrapper }>
                 <LayerAssembly
                     layers={ props.backLayers }
+                    translateY={ '0' }
                 />
             </div>
             <div className="split-bottom" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
                 <LayerAssembly
-                    translateY={ 'calc(-' + lineTop + ' - ' + lineHeight + ')' }
+                    translateY={ styles.splitBottomTranslateY }
                     layers={ props.backLayers }
                 />
             </div>
@@ -167,6 +102,7 @@ const BgDumb = props => {
             } }>
                 <LayerAssembly
                     layers={ props.frontLayers }
+                    translateY={ '0' }
                 />
             </div>
 
@@ -177,6 +113,7 @@ const BgDumb = props => {
             } }>
                 <LayerAssembly
                     layers={ props.backLayers }
+                    translateY={ '0' }
                 />
             </div>
 
@@ -189,13 +126,9 @@ const BgDumb = props => {
     )
 }
 
-class Bg extends React.Component {
-    render() {
-        return <BgDumb { ...this.props } />
-    }
-}
-
-export default connect(
+const ConnectedBg: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Bg)
+)(BgDumb)
+
+export default ConnectedBg
