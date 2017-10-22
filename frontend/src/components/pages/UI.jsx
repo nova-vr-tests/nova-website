@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { styles as appStyles } from '../../constants.js'
+import type { CSSStyleDeclaration } from '../../constantTypes.jsx'
 
 type IAligments = {
     right: string,
