@@ -109,14 +109,20 @@ export type CSSStyleDeclaration = {
 
     // borders
     border?: string,
+    borderRight?: string,
+    borderLeft?: string,
+    borderTop?: string,
+    borderBottom?: string,
     borderRadius?: string | number,
 
+    overflow?: string,
+
     // size
-    height?: number | string | Default,
+    height?: number | string,
     minHeight?: number | string | Default,
     maxHeight?: number | string | Default,
 
-    width?: number | string | Default,
+    width?: number | string,
     minWidth?: number | string | Default,
     maxWidth?: number | string | Default,
 
@@ -135,7 +141,8 @@ export type CSSStyleDeclaration = {
     // color
     backgroundColor?: string | Default,
     backgroundImage?: string | Default,
-    backgroundPosition?: string | Default,
+    backgroundPosition?: number | string | Default,
+    backgroundSize?: 'cover' | Default,
 
     // text
     fontSize?: string | number,
@@ -149,5 +156,6 @@ export type CSSStyleDeclaration = {
     opacity?: number | string | Default,
     filter?: string,
     zIndex?: number | string,
+    pointerEvents?: string,
 
 }
