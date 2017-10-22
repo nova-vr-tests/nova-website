@@ -1,3 +1,5 @@
+// @flow
+
 import {
     updateTransitionProgress,
     updateFrontLayers,
@@ -6,9 +8,21 @@ import {
 } from '../../reducer/actions/Bg.js'
 
 import store from '../../store.js'
+
+import type {
+    Transitions,
+    UpdateLayersOpacity,
+    UpdateFronLayersOpacity,
+    UpdateBg,
+} from './transitionTypes.jsx'
+
 const dispatch = store.dispatch
 
-const transitions = { splitBackground: {}, bgParalax: {} }
+const transitionTypes = {
+    BG_PARALAX: 0,
+    BG_SPLIT: 1,
+}
+
 
 /*
     Updates the backgrounds between slides prior to the slide transition
@@ -16,7 +30,7 @@ const transitions = { splitBackground: {}, bgParalax: {} }
     - pages {object[]} array of pages
     - currentPage {number} index
 **/
-transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) => {
+const updateBackgroundLayers = (sign, pages, currentPage) => {
     const totalPages = pages.length
 
     const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
@@ -65,15 +79,16 @@ transitions.splitBackground.updateBackgroundLayers = (sign, pages, currentPage) 
         dispatch(updateCacheLayers([]))
 
         // Otherwise paralax goes back when splitting to next page on back layer
-        if(sign < 0)
+        if(sign < 0) {
             dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 1)))
+        }
     }, 100)
 
 
     return { frontLayers, backLayers }
 }
 
-const updateLayersOpacity = (layers, opacity) => layers.map(e => ({
+const updateLayersOpacity: UpdateLayersOpacity = (layers, opacity) => layers.map(e => ({
     ...e,
     opacity: e.opacity * opacity,
 }))
@@ -82,7 +97,7 @@ const updateLayersOpacity = (layers, opacity) => layers.map(e => ({
     Reset background styles so next transition appears smoothly
     - param sign {number} positive for next slide and negative for previous slide
 **/
-transitions.splitBackground.resetBackgroundStyles = (layers, progress = 0) => {
+const resetBackgroundStyles = (layers, progress = 0) => {
         return store.getState().bgReducer.frontLayers.map(e => ({
             ...e,
             opacity: e.opacity * progress,
@@ -90,7 +105,7 @@ transitions.splitBackground.resetBackgroundStyles = (layers, progress = 0) => {
 
 }
 
-const updateFrontLayersOpacity = (layers, progress) => {
+const updateFrontLayersOpacity: UpdateFronLayersOpacity = (layers, progress) => {
     const targetLayers = layers.map(e => ({
         ...e,
         opacity: e.opacity * progress,
@@ -106,7 +121,7 @@ const updateFrontLayersOpacity = (layers, progress) => {
     - currentPage {number} index
  transition
 **/
-transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
+const slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
 
 
     // Upgrade backgrounds
@@ -163,13 +178,9 @@ transitions.splitBackground.slideTransition = (sign, pages, currentPage, attachS
     }, 5)
 }
 
-transitions.types = {
-    BG_PARALAX: 0,
-    BG_SPLIT: 1,
-}
 
 
-const updateFrontBg = (progress, pages, currentPage, targetPage) => {
+const updateFrontBg: UpdateBg = (progress, pages, currentPage, targetPage) => {
     const currentLayers = pages[currentPage].layers
     const targetLayers = pages[targetPage].layers
 
@@ -195,7 +206,7 @@ const updateFrontBg = (progress, pages, currentPage, targetPage) => {
     dispatch(updateFrontLayers(updatedLayers))
 }
 
-const updateBackBg = (progress, pages, currentPage, targetPage) => {
+const updateBackBg: UpdateBg = (progress, pages, currentPage, targetPage) => {
     const currentLayers = pages[currentPage].layers
     const targetLayers = pages[targetPage].layers
 
@@ -224,7 +235,7 @@ const updateBackBg = (progress, pages, currentPage, targetPage) => {
 /**
    Paralax slide transitions
 */
-transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
+const bgParalaxSlideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
     // Detach scroll event
     detachScrollEvent()
 
@@ -278,9 +289,10 @@ transitions.bgParalax.slideTransition = (sign, pages, currentPage, attachScrollE
 /**
    Pick which transition to apply
 */
-transitions.startTransition = (type, params) => {
+
+const startTransition = (type, params) => {
     const { sign, pages, currentPage, attachScrollEvent, detachScrollEvent } = params
-    const { BG_PARALAX, BG_SPLIT } = transitions.types
+    const { BG_PARALAX, BG_SPLIT } = transitionTypes
 
     switch(type){
         case BG_SPLIT:
@@ -292,5 +304,17 @@ transitions.startTransition = (type, params) => {
     }
 }
 
+const transitions: Transitions = {
+    splitBackground: {
+        updateBackgroundLayers,
+        resetBackgroundStyles,
+        slideTransition,
+    },
+    bgParalax: {
+        slideTransition: bgParalaxSlideTransition,
+    },
+    startTransition,
+    types: transitionTypes,
+}
 
 export default transitions
