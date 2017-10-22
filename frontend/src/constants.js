@@ -27,7 +27,7 @@ const defaultTheme: AppThemeStyles = {
 }
 
 // Header style constants
-const headerRadius = 1349 // vh
+const headerRadius = 1340 // vh
 const headerDiam = 'calc(' + headerRadius + 'vh * 2)'
 const headerCenterX = 50 // vw
 const headerCenterY = -1329 //vh
