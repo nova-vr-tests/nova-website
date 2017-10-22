@@ -47,9 +47,7 @@ const SidebarSubSection: React.StatelessFunctionalComponent<SidebarSubSectionPro
     const _subSubSectionsPaths = subSection.paths
     const subSubSectionsPaths = _subSubSectionsPaths.slice(1, _subSubSectionsPaths.length)
 
-
-    const styles = getSidebarSubSectionStyles(props)
-
+    const styles = getSidebarSubSectionStyles()
 
     // don't push page if already on location
     const goTo = path => props.goTo(path)
