@@ -59,7 +59,7 @@ type AppStyles = {
     slideTransitionFunc: string,
     UI: UIStyles,
     sidebar: SidebarStyles,
-    lineDimensions?: { height: string },
+    lineDimensions: { height: string },
     slideParagraphWidth?: string,
     themes: {
         default?: AppThemeStyles,
@@ -106,6 +106,9 @@ const styles: AppStyles = {
     themes: {},
     mediaQueries: {
         phone: 600, // px
+    },
+    lineDimensions: {
+        height: '',
     }
 }
 

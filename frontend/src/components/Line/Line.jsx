@@ -1,10 +1,24 @@
-import React, { Component } from 'react'
+// @flow
+
+import * as React from 'react'
 import { connect }from 'react-redux'
 import { styles } from '../../constants.js'
 
+import type {
+    ReduxState,
+    ReduxDispatch,
+    OwnProps,
+    Props,
+} from './LineTypes.jsx'
+
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../storeTypes.jsx'
+
 const constants = { styles }
 
-const mapStateToProps = function(state) {
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       linePosition: state.appReducer.linePosition,
       appTheme: state.appReducer.appTheme,
@@ -13,13 +27,13 @@ const mapStateToProps = function(state) {
   }
 }
 
-const mapDispatchToProps = function() {
-	return {
-  }
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {  // eslint-disable-line no-unused-vars
+    return {
+    }
 }
 
 
-const LineDumb = props => {
+const LineDumb: React.StatelessFunctionalComponent<Props> = (props) => {
     const theme = constants.styles.themes[props.appTheme]
 
     const styles = {
@@ -65,13 +79,7 @@ const LineDumb = props => {
     )
 }
 
-LineDumb.propTypes = {
-}
-
-LineDumb.defaultProps = {
-}
-
-class Line extends Component {
+class Line extends React.Component<Props> {
   componentDidMount() {
 
   }
@@ -87,10 +95,9 @@ class Line extends Component {
   }
 }
 
-Line.propTypes = {
-}
-
-export default connect(
+const ConnectedLine: React.ComponentType<OwnProps> =  connect(
     mapStateToProps,
     mapDispatchToProps
 )(Line)
+
+export default ConnectedLine
