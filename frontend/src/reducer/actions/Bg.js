@@ -10,7 +10,7 @@ import {
 import type {
     Action as BgAction,
     BgLayer,
-} from '../Bg.js'
+} from '../BgTypes.jsx'
 
 const updateCacheLayers = (cacheLayers: Array<BgLayer>): BgAction => ({
     type: UPDATE_CACHE_LAYERS,

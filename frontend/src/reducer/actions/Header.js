@@ -4,7 +4,7 @@ import {
 
 import type {
     Action as HeaderAction,
-} from '../Header.js'
+} from '../HeaderTypes.jsx'
 
 const updateSidebarIntersection = (sidebarIntersection: number): HeaderAction => ({
     type: UPDATE_SIDEBAR_INTERSECTION,

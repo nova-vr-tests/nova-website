@@ -7,7 +7,7 @@ import {
 import type {
     Action as SidebarAction,
     LinkState,
-} from '../Sidebar.js'
+} from '../SidebarTypes.jsx'
 
 import type {
     MenuInput

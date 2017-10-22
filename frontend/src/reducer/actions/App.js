@@ -11,7 +11,7 @@ import {
 
 import type {
     Action as AppAction,
-} from '../App.js'
+} from '../AppTypes.jsx'
 
 const updateIsFooterOpened = (isFooterOpened: boolean): AppAction => ({
     type: UPDATE_IS_FOOTER_OPENED,
