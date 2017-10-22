@@ -11,6 +11,7 @@ import {
 
 import type {
     Action as AppAction,
+    GoToPage,
 } from '../AppTypes.jsx'
 
 import type { ThemeNames } from '../../constantTypes.jsx'
@@ -25,7 +26,8 @@ const updateWindowWidth = (windowWidth: number): AppAction => ({
     type: UPDATE_WINDOW_WIDTH,
     windowWidth,
 })
-const updateGoToPage = (goToPage: void => void): AppAction => ({
+
+const updateGoToPage = (goToPage: GoToPage): AppAction => ({
     type: UPDATE_GO_TO_PAGE,
     goToPage,
 })

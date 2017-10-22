@@ -5,7 +5,7 @@ import type { ThemeNames as AppThemeTypes } from '../constantTypes.jsx'
    State type
 */
 
-type VoidFunc = (void) => void
+export type GoToPage = (page: number) => void
 export type State = {
     introKeyframe: number,
     isSidebarOpened: boolean,
@@ -14,7 +14,7 @@ export type State = {
     currentPage: number,
     windowWidth: number,
     isFooterOpened: boolean,
-    goToPage: VoidFunc,
+    goToPage: GoToPage,
 }
 
 
@@ -34,7 +34,7 @@ export type UpdateWindowWidthAction = {
 
 export type UpdateGoToPageAction = {
     type: 'app/update_go_to_page',
-    goToPage: VoidFunc,
+    goToPage: GoToPage,
 }
 
 export type UpdateCurrentPageAction = {
