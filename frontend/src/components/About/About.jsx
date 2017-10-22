@@ -1,63 +1,23 @@
 // @flow
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect }from 'react-redux'
-import { push } from 'react-router-redux'
-import './styles/About.css'
+import * as React from 'react'
+import getStyles from './AboutStyles.jsx'
 
-const reduxStatePropTypes = {
+import type { Props } from './AboutTypes.jsx'
+
+const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
+    const styles = getStyles(props)
+
+    return (
+        <div style={ styles.wrapper }>
+            <h1 style={ styles.h1 }>
+                About Us
+            </h1>
+            <p style={ styles.p }>
+                Email us at : <a href="mailto:joe@novamedia.nyc">joe@novamedia.nyc</a>
+            </p>
+        </div>
+    )
 }
 
-const mapStateToProps = function() {
-	return {
-  }
-}
-
-const reduxDispatchPropTypes = {
-  changePage: PropTypes.func,
-}
-
-const mapDispatchToProps = function(dispatch) {
-	return {
-    changePage: () => dispatch(push('/')),
-  }
-}
-
-const AboutDumb = props => (
-  <div className="about--wrapper">
-    <h1>About Us</h1>
-    <p onClick={ props.changePage }>Go back</p>
-  </div>
-)
-
-AboutDumb.propTypes = {
-  ...reduxStatePropTypes,
-  ...reduxDispatchPropTypes,
-}
-
-AboutDumb.defaultProps = {
-}
-
-type Props = {
-    changePage: function,
-}
-
-class About extends Component<Props> {
-  componentDidMount() {
-  }
-
-  render() {
-    return <AboutDumb
-      changePage={ this.props.changePage } />
-  }
-}
-
-About.propTypes = {
-  ...AboutDumb.propTypes,
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(About)
+export default AboutUs

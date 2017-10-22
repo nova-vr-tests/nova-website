@@ -9,6 +9,7 @@ import toggleButton from '../img/toggle-sidebar.svg'
 import { styles as appStyles } from '../../constants.js'
 import { slides } from '../pages/Pages.jsx'
 import arrowImg from '../img/arrow.svg'
+import AboutUs from '../About/About.jsx'
 
 const reduxStatePropTypes = {
   introKeyframe: PropTypes.number,
@@ -36,36 +37,6 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-const AboutUs = props => {
-    const sidebarWidth = 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')'
-    const styles = {
-        wrapper: {
-            width: 'calc(100vw - ' + sidebarWidth + ')',
-            marginLeft: sidebarWidth,
-            color: 'black',
-            marginTop: '8rem', // footer height
-            opacity: props.opacity,
-            transition: 'opacity 0.5s linear',
-        },
-        p: {
-            padding: appStyles.unitHeight + ' ' + sidebarWidth
-        },
-        h1: {
-            padding: appStyles.unitHeight + ' ' + sidebarWidth
-        },
-    }
-
-    return (
-        <div style={ styles.wrapper }>
-            <h1 style={ styles.h1 }>
-                About Us
-            </h1>
-            <p style={ styles.p }>
-                Email us at : <a href="mailto:joe@novamedia.nyc">joe@novamedia.nyc</a>
-            </p>
-        </div>
-    )
-}
 
 
 const PresentationControls = ({ updateCurrentPage, currentPage, opacity, isFooterOpened }) => {
