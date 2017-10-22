@@ -1,4 +1,10 @@
 // @flow
+import { styles as appStyles } from '../constants.js'
+
+export type AppThemeTypes = typeof appStyles.themeTypes.defaultTheme
+                          | typeof appStyles.themeTypes.inverseTheme
+                          | typeof appStyles.themeTypes.noFooterTheme
+                          | typeof appStyles.themeTypes.openedFooterTheme
 
 /*
    State type
@@ -9,7 +15,7 @@ export type State = {
     introKeyframe: number,
     isSidebarOpened: boolean,
     linePosition: number,
-    appTheme: string,
+    appTheme: AppThemeTypes,
     currentPage: number,
     windowWidth: number,
     isFooterOpened: boolean,

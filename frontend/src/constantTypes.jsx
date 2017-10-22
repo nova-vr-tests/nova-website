@@ -30,7 +30,7 @@ type SidebarStyles = {
     }
 }
 
-type AppThemeStyles = {
+export type AppThemeStyles = {
     lineBgColor: string,
     menuBorder: string,
     fatMenuBorder: string,
@@ -56,10 +56,7 @@ export type AppStyles = {
     lineDimensions: { height: string },
     slideParagraphWidth?: string,
     themes: {
-        default?: AppThemeStyles,
-        inverse?: AppThemeStyles,
-        'no-footer'?: AppThemeStyles,
-        'footer-is-opened'?: AppThemeStyles,
+        ['default' | 'inverse' | 'no-footer' | 'footer-is-opened']: AppThemeStyles,
     },
     mediaQueries: {
         phone: number,

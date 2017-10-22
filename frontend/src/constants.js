@@ -1,6 +1,6 @@
 // @flow
 
-import type { AppStyles } from './constantTypes.jsx'
+import type { AppStyles, AppThemeStyles } from './constantTypes.jsx'
 
 /*
     Intro animation keyframes
@@ -11,6 +11,19 @@ const LOGO_FRAME3 = 3
 const FOOTER_FINAL = 4
 const INTRO_FINISHED = 5
 
+
+const defaultTheme: AppThemeStyles = {
+    lineBgColor: 'rgba(255, 255, 255, 0.1)',
+    menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
+    fatMenuBorder: '1px solid rgba(255, 255, 255, 0.6)',
+    menuTitleActive: 'rgba(0, 0, 0, 0.6)',
+    menuFontColor: '#FFF',
+    footerBgColor: 'rgba(255, 255, 255, 1)',
+    titleColor: 'white',
+    fontColor: '#FFF',
+    bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
+    headerBgColor: 'rgba(0, 0, 0, 0.3)'
+}
 
 const styles: AppStyles = {
     themeTypes: {
@@ -43,7 +56,12 @@ const styles: AppStyles = {
             type: ' linear',
         },
     },
-    themes: {},
+    themes: {
+        'default': defaultTheme,
+        'inverse': defaultTheme,
+        'no-footer': defaultTheme,
+        'footer-is-opened': defaultTheme,
+    },
     mediaQueries: {
         phone: 600, // px
     },
@@ -59,18 +77,7 @@ styles.lineDimensions = {
 styles.slideParagraphWidth = 'calc(' + styles.lineDimensions.height + ' * 3.5)'
 
 
-styles.themes[styles.themeTypes.defaultTheme] = {
-    lineBgColor: 'rgba(255, 255, 255, 0.1)',
-    menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
-    fatMenuBorder: '1px solid rgba(255, 255, 255, 0.6)',
-    menuTitleActive: 'rgba(0, 0, 0, 0.6)',
-    menuFontColor: '#FFF',
-    footerBgColor: 'rgba(255, 255, 255, 1)',
-    titleColor: 'white',
-    fontColor: '#FFF',
-    bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
-    headerBgColor: 'rgba(0, 0, 0, 0.3)'
-}
+styles.themes[styles.themeTypes.defaultTheme] = defaultTheme
 
 styles.themes[styles.themeTypes.inverseTheme] = {
     ...styles.themes[styles.themeTypes.defaultTheme],
