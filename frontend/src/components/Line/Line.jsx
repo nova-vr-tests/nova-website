@@ -49,7 +49,6 @@ const LineDumb: React.StatelessFunctionalComponent<Props> = (props) => {
 
 class Line extends React.Component<Props> {
   componentDidMount() {
-
   }
 
   render() {

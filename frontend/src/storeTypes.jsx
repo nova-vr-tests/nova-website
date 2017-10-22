@@ -1,22 +1,24 @@
+// @flow
+
 import type {
     State as AppState,
     Action as AppAction,
-} from './reducer/App.js'
+} from './reducer/AppTypes.jsx'
 
 import type {
     State as BgState,
     Action as BgAction,
-} from './reducer/Bg.js'
+} from './reducer/BgTypes.jsx'
 
 import type {
     State as HeaderState,
     Action as HeaderAction,
-} from './reducer/Header.js'
+} from './reducer/HeaderTypes.jsx'
 
 import type {
     State as SidebarState,
     Action as SidebarAction,
-} from './reducer/Sidebar.js'
+} from './reducer/SidebarTypes.jsx'
 
 export type RouterState = {
     location: {
