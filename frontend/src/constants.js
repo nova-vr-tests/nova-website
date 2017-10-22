@@ -12,6 +12,7 @@ const FOOTER_FINAL = 4
 const INTRO_FINISHED = 5
 
 
+// Default theme style constants
 const defaultTheme: AppThemeStyles = {
     lineBgColor: 'rgba(255, 255, 255, 0.1)',
     menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
@@ -25,6 +26,19 @@ const defaultTheme: AppThemeStyles = {
     headerBgColor: 'rgba(0, 0, 0, 0.3)'
 }
 
+// Header style constants
+const headerRadius = 1349 // vh
+const headerDiam = 'calc(' + headerRadius + 'vh * 2)'
+const headerCenterX = 50 // vw
+const headerCenterY = -1329 //vh
+const header = {
+    radius: headerRadius,
+    diam: headerDiam,
+    centerX: headerCenterX,
+    centerY: headerCenterY,
+}
+
+// App style constants
 const styles: AppStyles = {
     themeTypes: {
         defaultTheme: 'default',
@@ -43,6 +57,7 @@ const styles: AppStyles = {
             fontSize: '2.5vh',
         },
     },
+    header,
     sidebar: {
         widthFactor: 3,
         sectionHeightFactor: 2,

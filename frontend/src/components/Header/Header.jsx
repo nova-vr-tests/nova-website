@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { connect }from 'react-redux'
 
 import logo from '../img/nova-logo.svg'
@@ -8,63 +10,38 @@ import { updateSidebarIntersection } from '../../reducer/actions/Header.js'
 
 import { push } from 'react-router-redux'
 
-const mapStateToProps = function(state) {
+import getStyles from './HeaderStyles.jsx'
+
+import type {
+    ReduxState,
+    ReduxDispatch,
+    OwnProps,
+    Props,
+} from './HeaderTypes.jsx'
+
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../storeTypes.jsx'
+
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       isSidebarOpened: state.sidebarReducer.isSidebarOpened,
       appTheme: state.appReducer.appTheme,
     }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
 	return {
       updateSidebarIntersection: sidebarInterserction => dispatch(updateSidebarIntersection(sidebarInterserction)),
       goTo: url => dispatch(push(url)),
   }
 }
 
-const styleConstants = {}
-styleConstants.radius = 1340 // vh
-styleConstants.diam = 'calc(' + styleConstants.radius + 'vh * 2)'
-styleConstants.centerX = 50 // vw
-styleConstants.centerY = -1329 // vh
+const styleConstants = appStyles.header
 
-const HeaderDumb = props => {
-    const { radius, diam, centerX, centerY } = styleConstants
-
-    const styles = {
-        bgImage: {
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-        },
-        circle: {
-            transform: 'translateY(' + centerY + 'vh)translateX(' + centerX + 'vw)',
-            backgroundColor: appStyles.themes[props.appTheme].headerBgColor,
-            transition: 'background-color 0.5s linear',
-            position: 'absolute',
-            height: diam,
-            width: diam,
-            borderRadius: diam,
-            top: 'calc(0vh - ' + radius + 'vh)',
-            left: 'calc(0vh - ' + radius + 'vh)',
-        },
-        logo: {
-            position: 'absolute',
-            height: appStyles.unitHeight,
-            width: appStyles.unitHeight,
-            filter: 'invert(100%)',
-            top: 'calc(' + appStyles.unitHeight + ' / 2)',
-            left: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ' / 2 - 2 * ' + appStyles.unitHeight + ' / 6)',
-            zIndex: 1,
-            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
-            cursor: 'pointer',
-        },
-        logoSidebarClosed: {
-            transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',
-        },
-    }
+const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
+    const styles = getStyles(props)
 
     return (
         <div style={ styles.wrapper }>
@@ -86,7 +63,9 @@ const HeaderDumb = props => {
     )
 }
 
-class Header extends React.Component {
+class Header extends React.Component<Props> {
+    updateSidebarIntersection: (_: void) => void
+
     constructor(props) {
         super(props)
 
@@ -101,6 +80,7 @@ class Header extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateSidebarIntersection)
+        this.updateSidebarIntersection
     }
 
     updateSidebarIntersection() {
@@ -125,15 +105,17 @@ class Header extends React.Component {
         this.props.updateSidebarIntersection(borderOffset)
     }
 
-    render() {
+    render(): React.Element<typeof HeaderDumb> {
         return <HeaderDumb { ...this.props } />
     }
 }
 
-export default connect(
+const ConnectedHeader: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Header)
+
+export default ConnectedHeader
 
 export {
     styleConstants,
