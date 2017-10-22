@@ -13,6 +13,9 @@ import type {
     Action as AppAction,
 } from '../AppTypes.jsx'
 
+import type { ThemeNames } from '../../constantTypes.jsx'
+
+
 const updateIsFooterOpened = (isFooterOpened: boolean): AppAction => ({
     type: UPDATE_IS_FOOTER_OPENED,
     isFooterOpened,
@@ -32,7 +35,7 @@ const updateCurrentPage = (currentPage: number): AppAction => ({
     currentPage,
 })
 
-const updateAppTheme = (appTheme: string): AppAction => ({
+const updateAppTheme = (appTheme: ThemeNames): AppAction => ({
     type: UPDATE_THEME,
     appTheme,
 })

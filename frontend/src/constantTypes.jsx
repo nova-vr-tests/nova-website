@@ -30,6 +30,13 @@ type SidebarStyles = {
     }
 }
 
+type HeaderStyles = {
+    radius: number,
+    diam: string,
+    centerX: number,
+    centerY: number,
+}
+
 export type AppThemeStyles = {
     lineBgColor: string,
     menuBorder: string,
@@ -43,6 +50,11 @@ export type AppThemeStyles = {
     headerBgColor: string,
 }
 
+export type ThemeNames = 'default'
+                       | 'inverse'
+                       | 'no-footer'
+                       | 'footer-is-opened'
+
 export type AppStyles = {
     themeTypes: ThemeTypes,
     unitHeight: string,
@@ -53,10 +65,11 @@ export type AppStyles = {
     slideTransitionFunc: string,
     UI: UIStyles,
     sidebar: SidebarStyles,
+    header: HeaderStyles,
     lineDimensions: { height: string },
     slideParagraphWidth?: string,
     themes: {
-        ['default' | 'inverse' | 'no-footer' | 'footer-is-opened']: AppThemeStyles,
+        [_: ThemeNames]: AppThemeStyles,
     },
     mediaQueries: {
         phone: number,
@@ -86,6 +99,17 @@ export type CSSStyleDeclaration = {
     justifySelf?: 'flex-start' | 'flex-end' | 'center' | Default,
     alignSelf?: 'flex-start' | 'flex-end' | 'center' | Default,
     flex?: number | string | Default,
+
+    top?: number | string,
+    bottom?: number | string,
+    left?: number | string,
+    right?: number | string,
+
+    transform?: string,
+
+    // borders
+    border?: string,
+    borderRadius?: string | number,
 
     // size
     height?: number | string | Default,
@@ -123,5 +147,7 @@ export type CSSStyleDeclaration = {
     // other
     cursor?: 'pointer' | 'default' | Default,
     opacity?: number | string | Default,
+    filter?: string,
+    zIndex?: number | string,
 
 }

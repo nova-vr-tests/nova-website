@@ -1,10 +1,5 @@
 // @flow
-import { styles as appStyles } from '../constants.js'
-
-export type AppThemeTypes = typeof appStyles.themeTypes.defaultTheme
-                          | typeof appStyles.themeTypes.inverseTheme
-                          | typeof appStyles.themeTypes.noFooterTheme
-                          | typeof appStyles.themeTypes.openedFooterTheme
+import type { ThemeNames as AppThemeTypes } from '../constantTypes.jsx'
 
 /*
    State type
@@ -49,7 +44,7 @@ export type UpdateCurrentPageAction = {
 
 export type UpdateThemeAction = {
     type: 'app/update_app_theme',
-    appTheme: string,
+    appTheme: AppThemeTypes,
 }
 
 export type UpdateLinePositionAction = {
