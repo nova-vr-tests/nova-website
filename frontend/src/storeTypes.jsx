@@ -46,5 +46,9 @@ export type Store = {
     getState: () => State
 }
 
+/**
+   RS - Redux State
+   RD - Redux Dispatch
+*/
 export type MapStateToProps<RS> = (state: State) => RS
 export type MapDispatchToProps<RD> = (dispatch: Dispatch) => RD

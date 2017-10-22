@@ -22,14 +22,13 @@ import type {
 } from '../../storeTypes.jsx'
 
 
-// const mapStateToProps = function(state: State): ReduxState {
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
     return {
         keyframe: state.appReducer.introKeyframe,
     }
 }
 
-const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch){
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
     return {
         incrementIntroKeyframe: () => dispatch(incrementIntroKeyframe()),
     }
