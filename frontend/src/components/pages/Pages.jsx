@@ -154,7 +154,7 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
 
     if(i === 0) {
         // Border conditions
-        previousSlideTransition = -1
+        previousSlideTransition = transitions.types.NONE
 
         // Check next slide
         if(pid === slides[i + 1].pid) {
@@ -163,7 +163,7 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
 
     } else if(i === slides.length - 1) {
         // Border conditions
-        nextSlideTransition = -1
+        nextSlideTransition = transitions.types.NONE
 
         // Check previous slide
         if(pid === slides[i - 1].pid) {
