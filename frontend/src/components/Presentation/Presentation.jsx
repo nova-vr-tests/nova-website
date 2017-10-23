@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
@@ -18,24 +20,44 @@ import transitions from './transitions.js'
 
 import SlideTransition from './SlideTransition.jsx'
 
-const mapStateToProps = state => ({
-    routing: state.routing,
-    appTheme: state.appReducer.appTheme,
-    currentPage: state.appReducer.currentPage,
-    windowWidth: state.appReducer.windowWidth,
-    isFooterOpened: state.appReducer.isFooterOpened,
-    goToPage: state.appReducer.goToPage,
-})
+import type {
+    ReduxState,
+    ReduxDispatch,
+    OwnProps,
+    Props,
+} from './PresentationTypes.jsx'
 
-const mapDispatchToProps = dispatch => ({
-    updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
-    updateBackLayers: l => dispatch(updateBackLayers(l)),
-    goTo: url => dispatch(push(url)),
-    updateLinePosition: position => dispatch(updateLinePosition(position)),
-    updateAppTheme: appTheme => dispatch(updateAppTheme(appTheme)),
-    updateCurrentPage: currentPage => dispatch(updateCurrentPage(currentPage)),
-    updateGoToPage: goToPage => dispatch(updateGoToPage(goToPage)),
-})
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../storeTypes.jsx'
+
+import type {
+    TransitionTypes,
+} from './transitionTypes.jsx'
+
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
+    return {
+        routing: state.routing,
+        appTheme: state.appReducer.appTheme,
+        currentPage: state.appReducer.currentPage,
+        windowWidth: state.appReducer.windowWidth,
+        isFooterOpened: state.appReducer.isFooterOpened,
+        goToPage: state.appReducer.goToPage,
+    }
+}
+
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
+    return {
+        updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
+        updateBackLayers: l => dispatch(updateBackLayers(l)),
+        goTo: url => dispatch(push(url)),
+        updateLinePosition: position => dispatch(updateLinePosition(position)),
+        updateAppTheme: appTheme => dispatch(updateAppTheme(appTheme)),
+        updateCurrentPage: currentPage => dispatch(updateCurrentPage(currentPage)),
+        updateGoToPage: goToPage => dispatch(updateGoToPage(goToPage)),
+    }
+}
 
 
 const PresentationDumb = props => {
@@ -44,7 +66,24 @@ const PresentationDumb = props => {
     )
 }
 
-class Presentation extends React.Component {
+class Presentation extends React.Component<Props> {
+    static defaultProps = {
+        attachToMouseScroll: true,
+    }
+
+    eventCounter: number
+    onScroll: (e: {deltaY: number}) => void
+    goToNextPage: () => void
+    goToPreviousPage: () => void
+    attachScrollEvent: () => void
+    detachScrollEvent: () => void
+    isLastPage: () => void
+    isFirstPage: () => void
+    pathnameToSlideNumber: (pathname: string) => number
+    goToPage: (page: number) => void
+    updateSlideFromUrl: (nextPathname: string) => void
+    getTransitionType: (currentPage: number, targetPage: number) => TransitionTypes
+
     constructor(props) {
         super(props)
 
@@ -70,6 +109,7 @@ class Presentation extends React.Component {
         this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
         this.getTransitionType = this.getTransitionType.bind(this)
 
+        // Update redux goToPage function
         this.props.updateGoToPage(this.goToPage)
     }
 
@@ -113,7 +153,6 @@ class Presentation extends React.Component {
         const currentPathname = this.props.routing.location.pathname
 
         if(currentPathname !== nextPathname) {
-            console.log(currentPathname, nextPathname)
             let nextSlide = this.pathnameToSlideNumber(nextPathname)
 
             this.goToPage(nextSlide)
@@ -237,11 +276,10 @@ class Presentation extends React.Component {
     }
 }
 
-Presentation.defaultProps = {
-    attachToMouseScroll: true,
-}
 
-export default connect(
+const ConnectedPresentation: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Presentation)
+
+export default ConnectedPresentation
