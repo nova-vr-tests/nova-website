@@ -1,9 +1,12 @@
 // @flow
 
 import type {
-    ISlide as Page,
     IBgLayer,
 } from '../pages/types.jsx'
+
+import type {
+    Page,
+} from './PresentationTypes.jsx'
 
 export type UpdateBackgroundLayers = (
     sign: number,
@@ -38,10 +41,11 @@ type StartTransition = (
     }
 ) => void
 
-type TransitionTypes = {
-    BG_PARALAX: 0,
-    BG_SPLIT: 1,
-}
+
+type BgParalaxType = 0
+type BgSplitType = 1
+
+export type TransitionTypes = BgParalaxType | BgSplitType
 
 export type Transitions = {
     splitBackground: {
@@ -53,7 +57,10 @@ export type Transitions = {
         slideTransition: SlideTransition,
     },
     startTransition: StartTransition,
-    types: TransitionTypes,
+    types: {
+        BG_PARALAX: BgParalaxType,
+        BG_SPLIT: BgSplitType,
+    },
 }
 
 export type UpdateLayersOpacity = (

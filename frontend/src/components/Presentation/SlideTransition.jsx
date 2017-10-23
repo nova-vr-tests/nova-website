@@ -1,4 +1,5 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 
 import {
     H1,
@@ -8,19 +9,38 @@ import {
 
 import { styles as appStyles } from '../../constants.js'
 
+import type {
+    Props,
+} from './PresentationTypes.jsx'
+
+import type {
+    State,
+    OpacityStyles,
+    TranslationStyles,
+    TranslateTitle
+} from './SlideTransitionTypes.jsx'
+
 /**
    Takes slides as props and stores them in state to handle slide transition.
 */
-class SlideTransition extends React.Component {
-    constructor(props) {
+class SlideTransition extends React.Component<Props, State> {
+    state = {
+        currentPage: this.props.currentPage,
+        targetPage: this.props.currentPage,
+        transitionProgress: 0,
+        transitionDirection: 0,
+    }
+
+    timer: number
+    getOpacityStyles: void => OpacityStyles
+    getTranslationStyles: void => TranslationStyles
+    updateTimerPointer: (p: number) => void
+    updateLinePosition: (props?: Props) => void
+    translateTitle: TranslateTitle
+
+    constructor(props: Props) {
         super(props)
 
-        this.state = {
-            currentPage: this.props.currentPage,
-            targetPage: this.props.currentPage,
-            transitionProgress: 0,
-            transitionDirection: 0,
-        }
 
         this.timer = 0
 
@@ -36,7 +56,7 @@ class SlideTransition extends React.Component {
         this.updateLinePosition()
     }
 
-    componentWillReceiveProps(newProps) {
+    componentWillReceiveProps(newProps: Props) {
         // Check if slide has changed
         if(newProps.currentPage !== this.props.currentPage) {
             this.setState({
@@ -78,11 +98,11 @@ class SlideTransition extends React.Component {
         this.updateLinePosition(newProps)
     }
 
-    updateLinePosition(props = this.props) {
+    updateLinePosition(props: Props = this.props) {
         this.props.updateLinePosition(props.pages[props.currentPage].linePosition)
     }
 
-    updateTimerPointer(timer) {
+    updateTimerPointer(timer: number) {
         window.clearInterval(this.timer)
         this.timer = timer
     }
@@ -127,7 +147,7 @@ class SlideTransition extends React.Component {
     getStyles() {
     }
 
-    translateTitle(currentTitle, currentAlign, targetTitle, targetAlign, sign) {
+    translateTitle(currentTitle: string, currentAlign: string, targetTitle: string, targetAlign: string, sign: number) {
         if(sign >= 0) {
             if(currentTitle !== targetTitle || (currentAlign !== targetAlign && this.props.windowWidth > appStyles.mediaQueries.phone))  {
                 // translate
@@ -160,6 +180,7 @@ class SlideTransition extends React.Component {
 
         const currentPage = this.props.pages[this.state.currentPage]
         const targetPage = this.props.pages[this.state.targetPage]
+
 
         const CurrentSlide = currentPage.comp
         const TargetSlide = targetPage.comp

@@ -84,7 +84,7 @@ class Presentation extends React.Component<Props> {
     updateSlideFromUrl: (nextPathname: string) => void
     getTransitionType: (currentPage: number, targetPage: number) => TransitionTypes
 
-    constructor(props) {
+    constructor(props: Props) {
         super(props)
 
         const currentPage = this.pathnameToSlideNumber(this.props.routing.location.pathname)
@@ -136,7 +136,7 @@ class Presentation extends React.Component<Props> {
         this.props.updateAppTheme(this.props.pages[currentPage].theme)
     }
 
-    pathnameToSlideNumber(pathname) {
+    pathnameToSlideNumber(pathname: string) {
         if(pathname === '/') {
             return 0
         }
@@ -149,7 +149,7 @@ class Presentation extends React.Component<Props> {
         this.updateSlideFromUrl(nextPathname)
     }
 
-    updateSlideFromUrl(nextPathname) {
+    updateSlideFromUrl(nextPathname: string) {
         const currentPathname = this.props.routing.location.pathname
 
         if(currentPathname !== nextPathname) {
@@ -159,7 +159,7 @@ class Presentation extends React.Component<Props> {
         }
     }
 
-    getTransitionType(currentPage, targetPage) {
+    getTransitionType(currentPage: number, targetPage: number) {
         if(this.props.pages[currentPage].pid === this.props.pages[targetPage].pid) {
             return transitions.types.BG_PARALAX
         } else {
@@ -167,7 +167,7 @@ class Presentation extends React.Component<Props> {
         }
     }
 
-    goToPage(targetPage) {
+    goToPage(targetPage: number) {
         const { pages, currentPage } = this.props
 
         if(targetPage !== currentPage) {

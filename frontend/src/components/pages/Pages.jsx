@@ -24,6 +24,10 @@ import type {
     IFlatten,
 } from './types.jsx'
 
+import type {
+    Page as IPresentationSlide,
+} from '../Presentation/PresentationTypes.jsx'
+
 
 
 // Menu Section and subsection titles
@@ -119,7 +123,7 @@ const makeMenu = (section: IPage, i: number): IMakeMenuOutput => {
 /**
    Returns a slide linked to surrounding slides with appropriate transitions
 */
-const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>) => {
+const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>): IPresentationSlide => {
     const Text = slide.content
     const {
         pid,

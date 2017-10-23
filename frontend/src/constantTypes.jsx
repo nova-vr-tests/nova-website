@@ -67,7 +67,7 @@ export type AppStyles = {
     sidebar: SidebarStyles,
     header: HeaderStyles,
     lineDimensions: { height: string },
-    slideParagraphWidth?: string,
+    slideParagraphWidth: string,
     themes: {
         [_: ThemeNames]: AppThemeStyles,
     },

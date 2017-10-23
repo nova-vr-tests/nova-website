@@ -9,6 +9,10 @@ import {
     UPDATE_IS_FOOTER_OPENED,
 } from '../App'
 
+import {
+    styles as appStyles,
+} from '../../constants.js'
+
 import type {
     Action as AppAction,
     GoToPage,
@@ -37,7 +41,7 @@ const updateCurrentPage = (currentPage: number): AppAction => ({
     currentPage,
 })
 
-const updateAppTheme = (appTheme: ThemeNames): AppAction => ({
+const updateAppTheme = (appTheme: ThemeNames = appStyles.themeTypes.defaultTheme): AppAction => ({
     type: UPDATE_THEME,
     appTheme,
 })

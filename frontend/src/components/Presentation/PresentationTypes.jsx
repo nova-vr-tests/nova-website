@@ -1,10 +1,16 @@
 // @flow
 
+import * as React from 'react'
+
 import { initialState } from '../../store.js'
 
 import type {
-    ISlide as Page,
+    IBgLayer,
 } from '../pages/types.jsx'
+
+import type {
+    ThemeNames,
+} from '../../constantTypes.jsx'
 
 export type ReduxState = {
     routing: typeof initialState.routing,
@@ -23,6 +29,20 @@ export type ReduxDispatch = {
     updateAppTheme: (appTheme: typeof initialState.appReducer.appTheme) => void,
     updateCurrentPage: (currentPage: typeof initialState.appReducer.currentPage) => void,
     updateGoToPage: (goToPage: typeof initialState.appReducer.goToPage) => void,
+}
+
+// Data structure as input of Presentation comp
+export type Page = {
+    h1: string,
+    h2: string,
+    content: React.StatelessFunctionalComponent<{}>,
+    path: string,
+    layers: Array<IBgLayer>,
+    pid: any, // Symbols not supported by flow
+    linePosition: number,
+    align: string,
+    theme: ThemeNames,
+    comp: React.StatelessFunctionalComponent<{}>,
 }
 
 export type OwnProps = {

@@ -82,7 +82,8 @@ const styles: AppStyles = {
     },
     lineDimensions: {
         height: '',
-    }
+    },
+    slideParagraphWidth: '',
 }
 
 styles.lineDimensions = {

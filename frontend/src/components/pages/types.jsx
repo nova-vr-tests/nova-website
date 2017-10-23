@@ -2,6 +2,10 @@
 
 import * as React from 'react'
 
+import type {
+    ThemeNames,
+} from '../../constantTypes.jsx'
+
 // Bg layer geometry
 // Should be moved to Bg component
 export type IBgLayer = {
@@ -10,7 +14,7 @@ export type IBgLayer = {
     opacity: number,
 }
 
-// A single presentation slide
+// Data structure for page creation
 export type ISlide = {
     h1: string,
     h2: string,
@@ -20,8 +24,9 @@ export type ISlide = {
     pid: any, // Symbols not supported by flow
     linePosition?: number,
     align?: string,
-    theme?: string,
+    theme?: ThemeNames,
 }
+
 
 // All presentation slides under a menu section
 export type IPage = Array<Array<Array<ISlide>>>
