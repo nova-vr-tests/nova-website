@@ -80,7 +80,6 @@ class Header extends React.Component<Props> {
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateSidebarIntersection)
-        this.updateSidebarIntersection
     }
 
     updateSidebarIntersection() {
