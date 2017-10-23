@@ -1,9 +1,8 @@
-
 // @flow
 
 import { styles as appStyles } from '../../constants.js'
 
-import { FOOTER_FINAL, INTRO_FINISHED } from '../../constants.js'
+import { INTRO_FINISHED } from '../../constants.js'
 
 import type {
     Props,

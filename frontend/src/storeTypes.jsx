@@ -45,7 +45,8 @@ export type Action = AppAction
 export type Dispatch = (a: Action) => void
 
 export type Store = {
-    getState: () => State
+    getState: () => State,
+    dispatch: Dispatch,
 }
 
 /**
