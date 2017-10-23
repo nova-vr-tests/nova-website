@@ -19,6 +19,7 @@ import type {
 const dispatch = store.dispatch
 
 const transitionTypes = {
+    NONE: -1,
     BG_PARALAX: 0,
     BG_SPLIT: 1,
 }

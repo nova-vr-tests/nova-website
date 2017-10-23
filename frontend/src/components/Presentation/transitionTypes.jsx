@@ -42,10 +42,11 @@ type StartTransition = (
 ) => void
 
 
+type None = -1
 type BgParalaxType = 0
 type BgSplitType = 1
 
-export type TransitionTypes = BgParalaxType | BgSplitType
+export type TransitionTypes = BgParalaxType | BgSplitType | None
 
 export type Transitions = {
     splitBackground: {

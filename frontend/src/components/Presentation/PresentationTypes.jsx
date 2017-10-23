@@ -12,6 +12,8 @@ import type {
     ThemeNames,
 } from '../../constantTypes.jsx'
 
+import type { TransitionTypes } from './transitionTypes.jsx'
+
 export type ReduxState = {
     routing: typeof initialState.routing,
     appTheme: typeof initialState.appReducer.appTheme,
@@ -35,7 +37,6 @@ export type ReduxDispatch = {
 export type Page = {
     h1: string,
     h2: string,
-    content: React.StatelessFunctionalComponent<{}>,
     path: string,
     layers: Array<IBgLayer>,
     pid: any, // Symbols not supported by flow
@@ -43,10 +44,18 @@ export type Page = {
     align: string,
     theme: ThemeNames,
     comp: React.StatelessFunctionalComponent<{}>,
+    transitions: {
+        nextSlide: {
+            bg: TransitionTypes,
+        },
+        previousSlide: {
+            bg: TransitionTypes,
+        },
+    }
 }
 
 export type OwnProps = {
-    attachToMouseScroll: boolean,
+    attachToMouseScroll?: boolean,
     pages: Array<Page>,
 }
 

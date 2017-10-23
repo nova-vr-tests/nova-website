@@ -28,6 +28,10 @@ import type {
     Page as IPresentationSlide,
 } from '../Presentation/PresentationTypes.jsx'
 
+import type {
+    TransitionTypes as BgTransitionTypes,
+} from '../Presentation/transitionTypes.jsx'
+
 
 
 // Menu Section and subsection titles
@@ -145,8 +149,8 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
     )
 
     // Default transitions
-    let nextSlideTransition = transitions.types.BG_SPLIT
-    let previousSlideTransition = transitions.types.BG_SPLIT
+    let nextSlideTransition: BgTransitionTypes = transitions.types.BG_SPLIT
+    let previousSlideTransition: BgTransitionTypes = transitions.types.BG_SPLIT
 
     if(i === 0) {
         // Border conditions
@@ -185,7 +189,7 @@ return {
         path,
         h1,
         h2,
-        linePosition,
+        linePosition: linePosition ? linePosition : 0,
         layers,
         align: align ? align : alignments.left,
         theme: theme ? theme : appStyles.themeTypes.defaultTheme,
