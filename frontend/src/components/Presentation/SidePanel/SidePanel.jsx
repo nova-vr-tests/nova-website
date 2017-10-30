@@ -3,8 +3,21 @@
 import { styles as appStyles } from '../../../constants.js'
 
 import * as React from 'react'
+import { connect } from 'react-redux'
 
 import type { Page } from '../PresentationTypes.jsx'
+
+
+const mapStateToProps = function(state) {
+    return {
+        linePosition: state.appReducer.linePosition,
+    }
+}
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+    }
+}
 
 const coord2Circ = (x: number): {y1: number, y2: number} => {
     const vh = document.documentElement.clientHeight / 100
@@ -88,7 +101,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const headerHeightCoef = 3
     const footerHeightCoef = headerHeightCoef
     const lineHeightCoef = 4 // height of vertical line spanning across screen
-    const lineYCoef = 9 // distance from top of screen to top of line
+    const lineYCoef = 9 + (2 * props.linePosition) // distance from top of screen to top of line
     const titleHeightCoef = 2
     const headHeightCoef = lineYCoef - headerHeightCoef - titleHeightCoef
     const tailHeightCoef = 24 - lineYCoef - footerHeightCoef - lineHeightCoef
@@ -151,4 +164,9 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     )
 }
 
-export default SidePanel
+const ConnectedSidePanel = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SidePanel)
+
+export default ConnectedSidePanel
