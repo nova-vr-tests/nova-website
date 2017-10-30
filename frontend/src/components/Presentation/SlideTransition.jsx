@@ -98,6 +98,7 @@ class SlideTransition extends React.Component<Props, State> {
         this.updateLinePosition(newProps)
     }
 
+    // Should move to Presentation
     updateLinePosition(props: Props = this.props) {
         this.props.updateLinePosition(props.pages[props.currentPage].linePosition)
     }

@@ -159,6 +159,9 @@ class Presentation extends React.Component<Props> {
         }
     }
 
+    /**
+       Returns bg transition function between 2 slides
+    */
     getTransitionType(currentPage: number, targetPage: number) {
         if(this.props.pages[currentPage].pid === this.props.pages[targetPage].pid) {
             return transitions.types.BG_PARALAX
