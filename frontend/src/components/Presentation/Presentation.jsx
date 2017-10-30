@@ -274,7 +274,7 @@ class Presentation extends React.Component<Props> {
     attachScrollEvent() {
         this.detachScrollEvent()
 
-        if(this.props.attachToMouseScroll) {
+        if(!this.props.attachToMouseScroll) {
             window.addEventListener("wheel", this.onScroll)
             this.eventCounter++
         }

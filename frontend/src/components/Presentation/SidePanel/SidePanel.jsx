@@ -83,8 +83,15 @@ type Props = {
 }
 
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
-    const widthCoef = 9
+    const widthCoef = 11
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
+    const headerHeightCoef = 3
+    const footerHeightCoef = headerHeightCoef
+    const lineHeightCoef = 4 // height of vertical line spanning across screen
+    const lineYCoef = 9 // distance from top of screen to top of line
+    const titleHeightCoef = 2
+    const headHeightCoef = lineYCoef - headerHeightCoef - titleHeightCoef
+    const tailHeightCoef = 24 - lineYCoef - footerHeightCoef - lineHeightCoef
 
     const styles = {
         wrapper: {
@@ -97,7 +104,25 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
             bottom: 0,
             right: 0,
             left: 'calc(100vw - ' + panelWidth + ')',
-            padding: 'calc(3 * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
+            padding: 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
+        },
+        slideParagraphs: {
+            //height: '70vh',
+            height: 'calc(' + (24 - headerHeightCoef - titleHeightCoef - footerHeightCoef) + ' * ' + appStyles.unitHeight + ')',
+            overflowY: 'scroll',
+        },
+        head: {
+            height: 'calc(' + headHeightCoef + ' * ' + appStyles.unitHeight + ') ',
+        },
+        tail: {
+            height: 'calc(' + tailHeightCoef + ' * ' + appStyles.unitHeight + ') ',
+        },
+        title: {
+            height: 'calc(2 * ' + appStyles.unitHeight + ') ',
+            display: 'flex',
+            alignItems: 'center',
+            padding: 0,
+            margin: 0,
         },
     }
 
@@ -111,8 +136,16 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                 widthCoef={ widthCoef }
             />
             <div style={ styles.contentWrapper }>
-                <h2>{ props.pages[props.currentPage].h2 }</h2>
-                { content }
+                <h2 style={ styles.title }>{ props.pages[props.currentPage].h2 }</h2>
+                <div style={ styles.slideParagraphs }>
+                    <div>
+                        <div style={ styles.head }>
+                        </div>
+                        { content }
+                        <div style={ styles.tail }>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
