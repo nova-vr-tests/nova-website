@@ -76,7 +76,11 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
     return (
         <div style={ styles.wrapper }>
             <div style={ styles.toc }>
-                <TOC />
+                <TOC
+                    pages={ props.pages }
+                    currentPage={ props.currentPage }
+                    goTo={ props.goTo }
+                />
             </div>
             <div style={ styles.sidePanel }>
                 <SidePanel
