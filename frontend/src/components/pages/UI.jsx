@@ -24,7 +24,6 @@ const styles = {
     pageWrapper: {
         display: 'flex',
         flex: 1,
-        height: '100%',
         position: 'relative',
         alignItems: 'center',
     },
