@@ -18,7 +18,10 @@ import {
 
 import transitions from './transitions.js'
 
-import SlideTransition from './SlideTransition.jsx'
+import SidePanel from './SidePanel/SidePanel.jsx'
+import TOC from './TOC/TOC.jsx'
+
+import getStyles from './PresentationStyles.jsx'
 
 import type {
     ReduxState,
@@ -60,12 +63,36 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 }
 
 
-const PresentationDumb = props => {
+
+
+
+/**
+   - Combines slides of same presentation into paragraph for side panel
+   - Shows table of content and highlights current link
+*/
+const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
+    const styles = getStyles(props)
+
     return (
-        <SlideTransition { ...props } />
+        <div style={ styles.wrapper }>
+            <div style={ styles.toc }>
+                <TOC />
+            </div>
+            <div style={ styles.sidePanel }>
+                <SidePanel />
+            </div>
+        </div>
     )
 }
 
+/**
+   - Updates line position on slide change
+   - Scroll activated slide change
+   - URL updates on mount and slide change
+   - Presentation pages
+   - Position in the presentation (page number)
+   - Slide change only happens on click
+*/
 class Presentation extends React.Component<Props> {
     static defaultProps = {
         attachToMouseScroll: true,
