@@ -32,29 +32,37 @@ const coord2Circ = (x: number): {y1: number, y2: number} => {
 }
 
 const BG = props => {
+    const widthCoef = 9
     const styles = {
         wrapper: {
             position: 'absolute',
             top: 0,
             bottom: 0,
-            width: 'calc(6 * ' + appStyles.unitWidth + ')',
+            width: 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')',
             right: 0,
         },
     }
 
     console.log(coord2Circ(document.documentElement.clientHeight - 6 * appStyles.unitWidthJs))
 
-    const screenRightEdge = 6 * appStyles.unitWidthJs
-    const { clientWidth } = document.documentElement
+    const { header } = appStyles
+
+    // unit conversions
+    const vh = document.documentElement.clientHeight / 100
+    const r = header.radius * vh
+
+    const screenRightEdge = widthCoef * appStyles.unitWidthJs
+    const { clientWidth, clientHeight } = document.documentElement
     const p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
-    const p2 = {x: 0, y: coord2Circ(clientWidth - 6 * appStyles.unitWidthJs).y1}
-    const p3 = {x: 0, y: 1100}
-    const p4 = {x: screenRightEdge, y: 1100}
+    const p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
+    const p3 = {x: 0, y: clientHeight - p2.y}
+    const p4 = {x: screenRightEdge, y: clientHeight - p1.y}
     const path =
-        'M ' + p1.x + ' ' + p1.y + ' '
-        + 'L ' + p2.x + ' ' + p2.y + ' '
-        + p3.x + ' ' + p3.y + ' '
-        + p4.x + ' ' + p4.y
+        'M ' + p1.x + ' ' + p1.y
+        + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
+        + ' L ' + p3.x + ' ' + p3.y + ' '
+        + ' A ' + r + ' ' + r + ' 0 0 1 ' + p4.x + ' ' + p4.y
+        //+ p4.x + ' ' + p4.y
 
 
     return (
@@ -63,7 +71,7 @@ const BG = props => {
                  viewport='0 0 100 100'
                  xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <path d={ path }
-                      fill="rgba(0, 0, 0, 0.3)" stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
+                      fill="rgba(0, 0, 0, 0.6)" stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
             </svg>
         </div>
     )

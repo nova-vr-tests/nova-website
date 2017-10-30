@@ -65,7 +65,7 @@ class IntroAnimation extends React.Component<Props> {
       if(i >= INTRO_FINISHED) {
         clearInterval(j)
       }
-    }, 1000)
+    }, 100)
   }
 
   render(): React.Element<typeof IntroAnimationDumb>{

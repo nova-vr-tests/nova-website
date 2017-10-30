@@ -36,7 +36,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
 
     const footerBgCenter = {
         x: '50vw',
-        y: '1430vh',
+        y: '1429vh',
         radius: '1340vh',
         diam: '',
     }
