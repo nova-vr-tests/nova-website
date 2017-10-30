@@ -35,7 +35,6 @@ class SlideTransition extends React.Component<Props, State> {
     getOpacityStyles: void => OpacityStyles
     getTranslationStyles: void => TranslationStyles
     updateTimerPointer: (p: number) => void
-    updateLinePosition: (props?: Props) => void
     translateTitle: TranslateTitle
 
     constructor(props: Props) {
@@ -47,13 +46,10 @@ class SlideTransition extends React.Component<Props, State> {
         this.getOpacityStyles = this.getOpacityStyles.bind(this)
         this.getTranslationStyles = this.getTranslationStyles.bind(this)
         this.updateTimerPointer = this.updateTimerPointer.bind(this)
-        this.updateLinePosition = this.updateLinePosition.bind(this)
         this.translateTitle = this.translateTitle.bind(this)
     }
 
     componentDidMount() {
-        // Start transition
-        this.updateLinePosition()
     }
 
     componentWillReceiveProps(newProps: Props) {
@@ -93,14 +89,6 @@ class SlideTransition extends React.Component<Props, State> {
 
         }
         requestAnimationFrame(transitionFunction)
-
-        // Update line position
-        this.updateLinePosition(newProps)
-    }
-
-    // Should move to Presentation
-    updateLinePosition(props: Props = this.props) {
-        this.props.updateLinePosition(props.pages[props.currentPage].linePosition)
     }
 
     updateTimerPointer(timer: number) {

@@ -83,6 +83,7 @@ class Presentation extends React.Component<Props> {
     goToPage: (page: number) => void
     updateSlideFromUrl: (nextPathname: string) => void
     getTransitionType: (currentPage: number, targetPage: number) => TransitionTypes
+    updateLinePosition: (props?: Props) => void
 
     constructor(props: Props) {
         super(props)
@@ -108,6 +109,7 @@ class Presentation extends React.Component<Props> {
         this.goToPage = this.goToPage.bind(this)
         this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
         this.getTransitionType = this.getTransitionType.bind(this)
+        this.updateLinePosition = this.updateLinePosition.bind(this)
 
         // Update redux goToPage function
         this.props.updateGoToPage(this.goToPage)
@@ -118,6 +120,8 @@ class Presentation extends React.Component<Props> {
         this.attachScrollEvent()
 
         // Deal with urls
+
+        this.updateLinePosition()
     }
 
     componentWillUnmount() {
@@ -147,6 +151,8 @@ class Presentation extends React.Component<Props> {
     componentWillReceiveProps(nextProps) {
         const nextPathname = nextProps.routing.location.pathname
         this.updateSlideFromUrl(nextPathname)
+
+        this.updateLinePosition(nextProps)
     }
 
     updateSlideFromUrl(nextPathname: string) {
@@ -170,8 +176,14 @@ class Presentation extends React.Component<Props> {
         }
     }
 
+    updateLinePosition(props: Props = this.props) {
+        this.props.updateLinePosition(props.pages[props.currentPage].linePosition)
+    }
+
     goToPage(targetPage: number) {
         const { pages, currentPage } = this.props
+
+        this.updateLinePosition(this.props)
 
         if(targetPage !== currentPage) {
             const sign = targetPage > currentPage ? 1 : -1

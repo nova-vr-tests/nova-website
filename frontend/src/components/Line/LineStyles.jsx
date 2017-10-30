@@ -28,7 +28,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             flexDirection: 'column',
             flex: 1,
             marginTop: 'calc(' + (9 + 2 * props.linePosition) + ' * ' + appStyles.unitHeight + ')',
-            transition: 'margin-top, opacity ' + appStyles.sidebar.transition.length + appStyles.sidebar.transition.type,
+            transition: 'opacity ' + appStyles.sidebar.transition.length + appStyles.sidebar.transition.type + ', margin-top ' + appStyles.sidebar.transition.length + appStyles.sidebar.transition.type,
             opacity: props.windowWidth < appStyles.mediaQueries.phone && props.isSidebarOpened ? 0 : 1,
         },
         line: {
