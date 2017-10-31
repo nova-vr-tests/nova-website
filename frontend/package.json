@@ -12,6 +12,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-router-transition": "^1.0.1",
     "react-scripts": "1.0.10",
+    "recompose": "^0.26.0",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0"
   },
