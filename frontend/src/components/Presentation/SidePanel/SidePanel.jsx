@@ -180,7 +180,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     )
 }
 
-const scrollTo = (id, initScroll, targetScroll, progress, setScroll) => {
+const scrollTo = (id, initScroll, targetScroll, progress) => {
     const el = document.getElementById(id)
 
     const scrollDistance = targetScroll - initScroll
@@ -189,23 +189,20 @@ const scrollTo = (id, initScroll, targetScroll, progress, setScroll) => {
         return
     } else {
         el.scrollTo(0, currentScroll)
-        requestAnimationFrame(() => scrollTo(id, initScroll, targetScroll, progress + 0.05, setScroll))
+        requestAnimationFrame(() => scrollTo(id, initScroll, targetScroll, progress + 0.05))
     }
 
 }
 
 const sidePanelLifecycle = {
-    componentDidMount: function() { this.setState({ scrollOffset: 0 }) },
+    componentDidMount: function() { this.setState({ heights: { top: [], rest: [] }}) },
     componentDidUpdate: function(prevProps) {
         const targetScroll = document.getElementById('paragraphs-top').clientHeight
         const currentScroll = document.getElementById('side-panel-scroll').scrollTop
 
-        if(this.state.currentPage === prevProps.currentPage || this.state.scrollOffset !== 0) {
-            return
+        if(this.props.currentPage !== prevProps.currentPage) {
+            scrollTo('side-panel-scroll', currentScroll, targetScroll, 0)
         }
-
-        scrollTo('side-panel-scroll', currentScroll, targetScroll, 0, this.props.setScrollOffset)
-
     },
 }
 
