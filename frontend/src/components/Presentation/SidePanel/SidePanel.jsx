@@ -98,7 +98,8 @@ type Props = {
 }
 
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
-    const widthCoef = 11
+    const { isOpened } = props
+    const widthCoef = props.width
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
     const headerHeightCoef = 3
     const footerHeightCoef = headerHeightCoef
@@ -155,7 +156,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const contentRest = paragraphsRest.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
 
     return (
-        <div style={ styles.wrapper }>
+        <div style={ styles.wrapper } onClick={ () => props.setIsOpened(!isOpened) }>
             <BG
                 widthCoef={ widthCoef }
             />
@@ -194,20 +195,36 @@ const scrollTo = (id, initScroll, targetScroll, progress) => {
 
 }
 
+const togglePanel = (initWidth, targetWidth, progress, state, setWidth) => {
+    const dist = targetWidth - initWidth
+    const currentPos = initWidth + dist * progress
+
+    if(progress <= 1) {
+        requestAnimationFrame(() => togglePanel(initWidth, targetWidth, progress + 0.05, state, setWidth))
+    }
+
+    setWidth(currentPos)
+
+}
+
 const sidePanelLifecycle = {
-    componentDidMount: function() { this.setState({ heights: { top: [], rest: [] }}) },
-    componentDidUpdate: function(prevProps) {
+    componentDidUpdate: function(prevProps, prevState) {
         const targetScroll = document.getElementById('paragraphs-top').clientHeight
         const currentScroll = document.getElementById('side-panel-scroll').scrollTop
 
         if(this.props.currentPage !== prevProps.currentPage) {
             scrollTo('side-panel-scroll', currentScroll, targetScroll, 0)
         }
+
+        if(this.props.isOpened !== prevProps.isOpened) {
+            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 1, prevProps.isOpened ? 1 : 11, 0, this.props, this.props.setWidth))
+        }
     },
 }
 
 const SidePanelSmart = compose(
-    withState('scrollOffset', 'setScrollOffset', 0),
+    withState('isOpened', 'setIsOpened', true),
+    withState('width', 'setWidth', 11),
     lifecycle(sidePanelLifecycle),
 )(SidePanel)
 
