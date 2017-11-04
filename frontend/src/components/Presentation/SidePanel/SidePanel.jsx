@@ -7,16 +7,32 @@ import { connect } from 'react-redux'
 
 import { lifecycle, withState, compose } from 'recompose'
 
-import type { Page } from '../PresentationTypes.jsx'
+import getStyles from './SidePanelStyles.jsx'
+
+import type {
+    BgProps,
+    Props,
+    ReduxDispatch,
+    ReduxState,
+    OwnProps,
+} from './SidePanelTypes.jsx'
+
+import type {
+    MapStateToProps,
+    MapDispatchToProps,
+} from '../../../storeTypes.jsx'
+
+import type { HOC } from 'recompose'
 
 
-const mapStateToProps = function(state) {
+const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
     return {
         linePosition: state.appReducer.linePosition,
     }
 }
 
-const mapDispatchToProps = function(dispatch) {
+// eslint-disable-next-line no-unused-vars
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
     return {
     }
 }
@@ -42,7 +58,7 @@ const coord2Circ = (x: number): {y1: number, y2: number} => {
     return { y1, y2 }
 }
 
-const BG = props => {
+const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     const widthCoef = props.widthCoef
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
 
@@ -90,63 +106,11 @@ const BG = props => {
     )
 }
 
-type Props = {
-    isOpened: boolean,
-    comp: React.Node,
-    currentPage: number,
-    pages: Array<Page>,
-}
-
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const { isOpened } = props
     const widthCoef = props.width
-    const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
-    const headerHeightCoef = 3
-    const footerHeightCoef = headerHeightCoef
-    const lineHeightCoef = 4 // height of vertical line spanning across screen
-    const lineYCoef = 9 + (2 * props.linePosition) // distance from top of screen to top of line
-    const titleHeightCoef = 2
-    const headHeightCoef = lineYCoef - headerHeightCoef - titleHeightCoef
-    const tailHeightCoef = 24 - lineYCoef - footerHeightCoef - lineHeightCoef
 
-    const styles = {
-        wrapper: {
-        },
-        isOpened: {
-        },
-        contentWrapper: {
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 'calc(100vw - ' + panelWidth + ')',
-            padding: 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
-        },
-        slideParagraphs: {
-            height: 'calc(' + (24 - headerHeightCoef - titleHeightCoef - footerHeightCoef) + ' * ' + appStyles.unitHeight + ')',
-            overflowY: 'hidden',
-            overflowX: 'hidden',
-        },
-        head: {
-            height: 'calc(' + headHeightCoef + ' * ' + appStyles.unitHeight + ') ',
-        },
-        tail: {
-            height: 'calc(' + tailHeightCoef + ' * ' + appStyles.unitHeight + ') ',
-        },
-        title: {
-            height: 'calc(2 * ' + appStyles.unitHeight + ') ',
-            display: 'flex',
-            alignItems: 'center',
-            padding: 0,
-            margin: 0,
-        },
-        paragraph: {
-            height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-        },
-    }
+    const styles = getStyles(props)
 
     const { pid } = props.pages[props.currentPage]
     const presSlides = props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
@@ -181,7 +145,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     )
 }
 
-const scrollTo = (id, initScroll, targetScroll, progress) => {
+const scrollTo = (id: string, initScroll: number, targetScroll: number, progress: number) => {
     const el = document.getElementById(id)
 
     const scrollDistance = targetScroll - initScroll
@@ -195,12 +159,12 @@ const scrollTo = (id, initScroll, targetScroll, progress) => {
 
 }
 
-const togglePanel = (initWidth, targetWidth, progress, state, setWidth) => {
+const togglePanel = (initWidth: number, targetWidth: number, progress: number, setWidth: number => void) => {
     const dist = targetWidth - initWidth
     const currentPos = initWidth + dist * progress
 
     if(progress <= 1) {
-        requestAnimationFrame(() => togglePanel(initWidth, targetWidth, progress + 0.05, state, setWidth))
+        requestAnimationFrame(() => togglePanel(initWidth, targetWidth, progress + 0.05, setWidth))
     }
 
     setWidth(currentPos)
@@ -208,7 +172,7 @@ const togglePanel = (initWidth, targetWidth, progress, state, setWidth) => {
 }
 
 const sidePanelLifecycle = {
-    componentDidUpdate: function(prevProps, prevState) {
+    componentDidUpdate: function(prevProps: Props) {
         const targetScroll = document.getElementById('paragraphs-top').clientHeight
         const currentScroll = document.getElementById('side-panel-scroll').scrollTop
 
@@ -217,18 +181,20 @@ const sidePanelLifecycle = {
         }
 
         if(this.props.isOpened !== prevProps.isOpened) {
-            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 1, prevProps.isOpened ? 1 : 11, 0, this.props, this.props.setWidth))
+            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 1, prevProps.isOpened ? 1 : 11, 0, this.props.setWidth))
         }
     },
 }
 
-const SidePanelSmart = compose(
+const enhance: HOC<*, Props> = compose(
     withState('isOpened', 'setIsOpened', true),
     withState('width', 'setWidth', 11),
     lifecycle(sidePanelLifecycle),
-)(SidePanel)
+)
 
-const ConnectedSidePanel = connect(
+const SidePanelSmart = enhance(SidePanel)
+
+const ConnectedSidePanel: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
     mapDispatchToProps
 )(SidePanelSmart)

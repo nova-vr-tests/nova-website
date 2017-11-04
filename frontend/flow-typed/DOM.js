@@ -8,5 +8,11 @@ declare var document: { // eslint-disable-line no-unused-vars
     body: {
         clientHeight: number,
         clientWidth: number,
-    }
+    },
+    getElementById: (id: string) => {
+        clientHeight: number,
+        clientWidth: number,
+        scrollTop: number,
+        scrollTo: (x: number, y: number) => void,
+    },
 }
