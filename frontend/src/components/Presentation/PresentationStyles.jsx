@@ -1,8 +1,5 @@
 // @flow
 
-
-import { styles as appStyles } from '../../constants.js'
-
 import type { Props } from './PresentationTypes.jsx'
 
 import type {
