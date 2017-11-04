@@ -265,7 +265,7 @@ const getSidebarSubSectionStyles: GetStyles<void, SidebarSubSectionStyles> = () 
         subSubSection:{
             wrapper: {
                 cursor: 'pointer',
-                display: 'flex',
+                display: 'none',
                 flexDirection: 'column',
                 left: '100%',
                 right: '-100%',
