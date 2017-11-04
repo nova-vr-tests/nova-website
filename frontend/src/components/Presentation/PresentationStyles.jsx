@@ -14,6 +14,7 @@ type Styles = {
     toc: CSSStyleDeclaration,
 }
 
+// eslint-disable-next-line no-unused-vars
 const getStyles: GetStyles<Props, Styles> = props => {
     return {
         wrapper: {
