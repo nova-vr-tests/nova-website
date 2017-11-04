@@ -38,6 +38,10 @@ const header = {
     centerY: headerCenterY,
 }
 
+const sidePanel = {
+    openedWidthCoef: 11,
+}
+
 // App style constants
 const styles: AppStyles = {
     themeTypes: {
@@ -46,6 +50,7 @@ const styles: AppStyles = {
         noFooterTheme: 'no-footer',
         openedFooterTheme: 'footer-is-opened',
     },
+    sidePanel,
     unitHeight: 100/24 + 'vh',
     unitWidth: '60px',
     unitHeightJs: 100 / 24,  // vh

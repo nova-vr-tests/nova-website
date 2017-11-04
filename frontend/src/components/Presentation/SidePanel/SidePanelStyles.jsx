@@ -52,6 +52,8 @@ const getStyles: GetStyles<Props, Styles> = props => {
             height: 'calc(' + (24 - headerHeightCoef - titleHeightCoef - footerHeightCoef) + ' * ' + appStyles.unitHeight + ')',
             overflowY: 'hidden',
             overflowX: 'hidden',
+            // min width greater than container so it doesn't shrink on panel close
+            minWidth: 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ')',
         },
         head: {
             height: 'calc(' + headHeightCoef + ' * ' + appStyles.unitHeight + ') ',
@@ -65,6 +67,8 @@ const getStyles: GetStyles<Props, Styles> = props => {
             alignItems: 'center',
             padding: 0,
             margin: 0,
+            // min width greater than container so it doesn't shrink on panel close
+            minWidth: 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ')',
         },
         paragraph: {
             height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',

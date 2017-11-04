@@ -55,6 +55,10 @@ export type ThemeNames = 'default'
                        | 'no-footer'
                        | 'footer-is-opened'
 
+export type SidePanelTypes = {
+    openedWidthCoef: number,
+}
+
 export type AppStyles = {
     themeTypes: ThemeTypes,
     unitHeight: string,
@@ -68,6 +72,7 @@ export type AppStyles = {
     header: HeaderStyles,
     lineDimensions: { height: string },
     slideParagraphWidth: string,
+    sidePanel: SidePanelTypes,
     themes: {
         [_: ThemeNames]: AppThemeStyles,
     },
