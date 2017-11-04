@@ -21,26 +21,33 @@ const coord2Circ = (x: number): {y1: number, y2: number} => {
     return { y1, y2 }
 }
 
-const scrollTo = (id: string, initScroll: number, targetScroll: number, progress: number) => {
+const scrollTo = (id: string, initScroll: number, targetScroll: number, progress: number, initTimestamp: number) => {
     const el = document.getElementById(id)
 
     const scrollDistance = targetScroll - initScroll
     const currentScroll = initScroll + scrollDistance * progress
+
+    const transitionTime = appStyles.slideTransitionTime
+    const newProgress = (new Date().getTime() - initTimestamp) / transitionTime
+
     if(progress >= 1) {
         return
     } else {
         el.scrollTo(0, currentScroll)
-        requestAnimationFrame(() => scrollTo(id, initScroll, targetScroll, progress + 0.05))
+        requestAnimationFrame(() => scrollTo(id, initScroll, targetScroll, newProgress, initTimestamp))
     }
 
 }
 
-const togglePanel = (initWidth: number, targetWidth: number, progress: number, setWidth: number => void) => {
+const togglePanel = (initWidth: number, targetWidth: number, progress: number, setWidth: number => void, initTimestamp: number) => {
     const dist = targetWidth - initWidth
     const currentPos = initWidth + dist * progress
 
+    const transitionTime = 300 // ms
+    const newProgress = (new Date().getTime() - initTimestamp) / transitionTime
+
     if(progress <= 1) {
-        requestAnimationFrame(() => togglePanel(initWidth, targetWidth, progress + 0.05, setWidth))
+        requestAnimationFrame(() => togglePanel(initWidth, targetWidth, newProgress, setWidth, initTimestamp))
     }
 
     setWidth(currentPos)

@@ -126,11 +126,11 @@ const sidePanelLifecycle = {
         const currentScroll = document.getElementById('side-panel-scroll').scrollTop
 
         if(this.props.currentPage !== prevProps.currentPage) {
-            scrollTo('side-panel-scroll', currentScroll, targetScroll, 0)
+            scrollTo('side-panel-scroll', currentScroll, targetScroll, 0, new Date().getTime())
         }
 
         if(this.props.isOpened !== prevProps.isOpened) {
-            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 1, prevProps.isOpened ? 1 : 11, 0, this.props.setWidth))
+            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 1, prevProps.isOpened ? 1 : 11, 0, this.props.setWidth, new Date().getTime()))
         }
     },
 }
@@ -141,7 +141,7 @@ const enhance: HOC<*, Props> = compose(
     lifecycle(sidePanelLifecycle),
 )
 
-const SidePanelSmart = enhance(SidePanel)
+const SidePanelSmart: React.ComponentType<Props> = enhance(SidePanel)
 
 const ConnectedSidePanel: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
