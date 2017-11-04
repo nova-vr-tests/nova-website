@@ -1,3 +1,5 @@
+// @flow
+
 import { styles as appStyles } from '../../../constants.js'
 
 const coord2Circ = (x: number): {y1: number, y2: number} => {
@@ -43,7 +45,7 @@ const togglePanel = (initWidth: number, targetWidth: number, progress: number, s
     const dist = targetWidth - initWidth
     const currentPos = initWidth + dist * progress
 
-    const transitionTime = 300 // ms
+    const transitionTime = appStyles.sidePanel.transitionTime
     const newProgress = (new Date().getTime() - initTimestamp) / transitionTime
 
     if(progress <= 1) {

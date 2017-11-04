@@ -40,6 +40,7 @@ const header = {
 
 const sidePanel = {
     openedWidthCoef: 11,
+    transitionTime: 300, //ms
 }
 
 // App style constants

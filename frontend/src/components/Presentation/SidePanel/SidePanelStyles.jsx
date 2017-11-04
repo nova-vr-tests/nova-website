@@ -25,7 +25,9 @@ type Styles = {
 }
 
 const getStyles: GetStyles<Props, Styles> = props => {
-    const widthCoef = props.width
+    const widthCoef = props.width < 0 ? 0 : props.width
+    console.log(widthCoef)
+
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
     const headerHeightCoef = 3
     const footerHeightCoef = headerHeightCoef

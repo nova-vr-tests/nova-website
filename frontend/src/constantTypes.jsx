@@ -57,6 +57,7 @@ export type ThemeNames = 'default'
 
 export type SidePanelTypes = {
     openedWidthCoef: number,
+    transitionTime: number,
 }
 
 export type AppStyles = {

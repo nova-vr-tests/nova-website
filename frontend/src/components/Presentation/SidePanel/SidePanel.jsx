@@ -9,6 +9,8 @@ import { lifecycle, withState, compose } from 'recompose'
 
 import getStyles, { getBgStyles } from './SidePanelStyles.jsx'
 
+import arrow from '../../img/arrow.svg'
+
 import {
     coord2Circ,
     scrollTo,
@@ -80,6 +82,39 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     )
 }
 
+type ToggleButtonProps = {
+    linePosition: number,
+    onClick: void => void,
+    isOpened: boolean,
+}
+
+const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = props => {
+    const { unitHeight, unitWidth } = appStyles
+
+    const y = 'calc(' + (11 + 2 * props.linePosition) + ' * ' + unitHeight + ')'
+    const styles = {
+        wrapper: {
+            position: 'absolute',
+            right: '100%',
+            top: y,
+            transform: props.isOpened ? 'translateY(-50%)' : 'translateY(-50%)rotateY(180deg)',
+            transition: 'transform ' + appStyles.sidePanel.transitionTime / 500 + 's linear',
+        },
+        img: {
+            height: unitHeight,
+            width: unitHeight,
+            cursor: 'pointer',
+            paddingRight: 'calc(0.5 * ' + unitWidth + ')',
+        }
+    }
+
+    return (
+        <div style={ styles.wrapper } onClick={ props.onClick }>
+            <img src={ arrow } alt="toggle panel" style={ styles.img } />
+        </div>
+    )
+}
+
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const { isOpened } = props
     const widthCoef = props.width
@@ -94,11 +129,17 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const contentRest = paragraphsRest.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
 
     return (
-        <div style={ styles.wrapper } onClick={ () => props.setIsOpened(!isOpened) }>
+        <div style={ styles.wrapper }>
             <BG
                 widthCoef={ widthCoef }
             />
             <div style={ styles.contentWrapper }>
+                <ToggleButton
+                    isOpened={ props.isOpened }
+                    onClick={ () => props.setIsOpened(!isOpened) }
+                    linePosition={ props.linePosition }
+                />
+
                 <h2 style={ styles.title }>{ props.pages[props.currentPage].h2 }</h2>
                 <div style={ styles.slideParagraphs } id="side-panel-scroll">
                     <div>
@@ -130,7 +171,7 @@ const sidePanelLifecycle = {
         }
 
         if(this.props.isOpened !== prevProps.isOpened) {
-            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 1, prevProps.isOpened ? 1 : 11, 0, this.props.setWidth, new Date().getTime()))
+            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 0, prevProps.isOpened ? 0 : 11, 0, this.props.setWidth, new Date().getTime()))
         }
     },
 }
