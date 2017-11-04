@@ -57,7 +57,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
         const radius = 1340 //footerBgCenter
         const { unitWidthJs } = appStyles
         const centerX = 50 //footerBgCenter.x
-        const centerY = 1340 //footerBgCenter.y
+        const centerY = 1339 //footerBgCenter.y
 
         // unite conversions
         const unitWidth = unitWidthJs
