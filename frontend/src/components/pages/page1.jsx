@@ -85,10 +85,12 @@ const SiteIntro: Array<ISlide> = [
 
 
 const designPid = Symbol()
+const designH1 = 'Design'
+const designH2 = 'Introduction'
 const Design: Array<ISlide> = [
     {
-        h1: 'Design',
-        h2: '',
+        h1: designH1,
+        h2: designH2,
         content: () => 'Nova XR provides world, interface and story design. Gravity has sculpted all of our physical world - from its beauty to its mystery.',
         path: '/design',
         pid: designPid,
@@ -101,8 +103,8 @@ const Design: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Design',
-        h2: '',
+        h1: designH1,
+        h2: designH2,
         content: () => 'In XR, we build the world around us and construction is only limited by the confines of our imagination. Nova XR designs succinct and intuitive worlds.  You live your own story.',
         path: '/design',
         pid: designPid,
@@ -453,10 +455,13 @@ const World: Array<ISlide> = [
 
 
 const businessPid = Symbol()
+const businessH1 = 'Business'
+const businessH2 = 'Introduction'
+
 const Business: Array<ISlide> = [
     {
-        h1: 'Business',
-        h2: '',
+        h1: businessH1,
+        h2: businessH2,
         content: () => <BigText>We provide access to advanced technologies and advise on related markets.</BigText>,
         path: '/business',
         pid: businessPid,
@@ -479,8 +484,8 @@ const Business: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Business',
-        h2: '',
+        h1: businessH1,
+        h2: businessH2,
         content: () => 'Our work includes creating technical specifications, sourcing development and managing project execution. Through primary research and academic relationships, we keep you ahead of the curve and beyond your competition.',
         path: '/business',
         pid: businessPid,
@@ -503,8 +508,8 @@ const Business: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Business',
-        h2: '',
+        h1: businessH1,
+        h2: businessH2,
         content: () => <BigText>We provide access.</BigText>,
         path: '/business',
         pid: businessPid,
@@ -814,10 +819,12 @@ const Disciplines: Array<ISlide> = [
 
 
 const techPid = Symbol()
+const techH1 = 'Technology'
+const techH2 = 'Introduction'
 const Technology: Array<ISlide> = [
     {
-        h1: 'Technology',
-        h2: '',
+        h1: techH1,
+        h2: techH2,
         content: () => 'We use technology as an artist uses paint. XR media promises to enhance our lives through shared experiences developed by real people.',
         path: '/technology',
         pid: techPid,
@@ -830,8 +837,8 @@ const Technology: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Technology',
-        h2: '',
+        h1: techH1,
+        h2: techH2,
         content: () => 'As the internet democratized information, XR will democratize experience. We are embarking on a new frontier of connectivity.',
         path: '/technology',
         pid: techPid,
@@ -844,8 +851,8 @@ const Technology: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Technology',
-        h2: '',
+        h1: techH1,
+        h2: techH2,
         content: () => 'Nova XR sources new applications of scientific knowledge from around the world - compiling it for your use.',
         path: '/technology',
         pid: techPid,

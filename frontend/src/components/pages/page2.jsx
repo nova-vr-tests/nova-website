@@ -32,10 +32,13 @@ import type { ISlide, IPage } from './types.jsx'
 
 
 const edIntroPid = Symbol()
+const edIntroH1 = 'Eductional Portal'
+const edIntroH2 = 'Introduction'
+
 const EducationIntro: Array<ISlide> = [
     {
-        h1: 'Educational Portal',
-        h2: '',
+        h1: edIntroH1,
+        h2: edIntroH2,
         content: () => 'We source knowledge from across the globe. From academia to groundbreaking technology, we collect solutions so you can advance.',
         path: '/education-portal',
         paralax: 0,
@@ -54,7 +57,7 @@ const EducationIntro: Array<ISlide> = [
 const edPid = Symbol()
 const Education: Array<ISlide> = [
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Education',
         content: () => 'We provide access to resources from top Universities to underground innovation labs.',
         path: '/education',
@@ -90,7 +93,7 @@ const Education: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Education',
         content: () => 'We are currently developing a VR Education Portal, which will provide instant access to a wealth of interactive content.',
         path: '/education',
@@ -126,7 +129,7 @@ const Education: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Education',
         content: () => 'You will learn from professors, experiment with tinkerers, and match wits with the anonymous avatars of subculture innovation.',
         path: '/education',
@@ -162,7 +165,7 @@ const Education: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Education',
         content: () => 'If the medium is the message, as philosopher Marshall McLuhan suggested, then XR communicates the idea that everything is accessible.',
         path: '/education',
@@ -198,7 +201,7 @@ const Education: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Education',
         content: () => 'Today, we can truly experience /anything/. Because of advancements in microprocessors and computer vision, we design and develop the world to the tune of our imagination\'s insatiable dreams.',
         path: '/education',
@@ -239,7 +242,7 @@ const Education: Array<ISlide> = [
 const solutionsPid = Symbol()
 const Solutions: Array<ISlide> = [
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Solutions',
         content: () => 'Education, Public Health, Travel, Entertainment, Space Exploration, Real Estate, Architecture, Design, and many more industries are finding solutions to their gravest challenges by applying XR (Extended Reality) media.',
         path: '/ed-solutions',
@@ -273,7 +276,7 @@ const Solutions: Array<ISlide> = [
 const insightsPid = Symbol()
 const Insights: Array<ISlide> = [
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Insights',
         content: () => 'Nova is dedicated to sourcing emerging technologies from around the world.',
         path: '/ed-insights',
@@ -304,7 +307,7 @@ const Insights: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Insights',
         content: () => 'Our aim is to make these information technologies available and applicable for you to achieve your goals.',
         path: '/ed-insights',
@@ -335,7 +338,7 @@ const Insights: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Insights',
         content: () => 'Stay current on a spectrum of technologies that are intertwining in the new era of augmented experiences.',
         path: '/ed-insights',
@@ -366,7 +369,7 @@ const Insights: Array<ISlide> = [
         ]
     },
     {
-        h1: 'Educational Portal',
+        h1: edIntroH1,
         h2: 'Insights',
         content: () => 'As mechanical and biological blend, we’ll keep the light shining on programs that matter.',
         path: '/ed-insights',
@@ -407,10 +410,13 @@ const Insights: Array<ISlide> = [
 
 
 const newsPid = Symbol()
+const newsH1 = 'News Insights'
+const newsH2 = ''
+
 const NewsIntro: Array<ISlide> = [
     {
-        h1: 'News Insights',
-        h2: '',
+        h1: newsH1,
+        h2: newsH2,
         content: () => <BigText>Coming soon.</BigText>,
         path: '/news-insights',
         paralax: 0,

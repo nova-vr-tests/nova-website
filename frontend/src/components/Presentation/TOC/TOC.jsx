@@ -38,16 +38,17 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
     }
 
     const h2 = props.pages
-                       .filter(e => e.h1 === props.pages[props.currentPage].h1 && e.h2 !== '')
+                       .filter(e => e.h1 === props.pages[props.currentPage].h1 && (e.h2 !== '' && e.h2 !== 'Introduction'))
                        .map(e => e.h2)
+
     const filteredH2 = h2.reduce((acc, e, i) => i > 0 ? (acc.includes(e) ? acc : [...acc, e]) : [...acc, e], [])
     const paths = props.pages
-                       .filter(e => e.h1 === props.pages[props.currentPage].h1 && e.h2 !== '')
+                       .filter(e => e.h1 === props.pages[props.currentPage].h1 && e.h2 !== '' && e.h2 !== 'Introduction')
                        .map(e => e.path)
     const filteredPaths = paths.reduce((acc, e, i) => i > 0 ? (acc.includes(e) ? acc : [...acc, e]) : [...acc, e], [])
 
     const sectionIntroPath = props.pages
-                                  .filter(e => e.h1 === props.pages[props.currentPage].h1 && e.h2 === '')
+                                  .filter(e => e.h1 === props.pages[props.currentPage].h1 && (e.h2 === '' || e.h2 === 'Introduction'))
                                   .map(e => e.path)[0]
 
     return (
