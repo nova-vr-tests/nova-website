@@ -2,7 +2,10 @@
 
 import { styles as appStyles } from '../../../constants.js'
 
-import type { Props } from './SidePanelTypes.jsx'
+import type {
+    Props,
+    BgProps,
+} from './SidePanelTypes.jsx'
 
 import type {
     CSSStyleDeclaration,
@@ -73,3 +76,29 @@ const getStyles: GetStyles<Props, Styles> = props => {
 }
 
 export default getStyles
+
+
+/**
+    BG
+*/
+
+type BgStyles = {
+    wrapper: CSSStyleDeclaration,
+    svg: CSSStyleDeclaration,
+}
+
+export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
+    const panelWidth = 'calc(' + props.widthCoef + ' * ' + appStyles.unitWidth + ')'
+    return {
+        wrapper: {
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            width: panelWidth,
+            right: 0,
+        },
+        svg: {
+            width: panelWidth,
+        },
+    }
+}
