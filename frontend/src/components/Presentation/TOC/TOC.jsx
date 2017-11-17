@@ -30,6 +30,7 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
+            transition: 'background-color 0.2s linear',
         },
         title: {
             position: 'absolute',
