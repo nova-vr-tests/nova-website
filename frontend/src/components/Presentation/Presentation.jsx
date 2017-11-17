@@ -80,6 +80,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
                     pages={ props.pages }
                     currentPage={ props.currentPage }
                     goTo={ props.goTo }
+                    currentPath={ props.routing.location.pathname }
                 />
             </div>
             <div style={ styles.sidePanel }>

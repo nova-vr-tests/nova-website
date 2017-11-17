@@ -6,6 +6,8 @@ import * as React from 'react'
 
 import type { Page } from '../PresentationTypes.jsx'
 
+import Hover from '../../HOC/Hover.jsx'
+
 type Props = {
     pages: Array<Page>,
     currentPage: number,
@@ -51,19 +53,45 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
                                   .filter(e => e.h1 === props.pages[props.currentPage].h1 && (e.h2 === '' || e.h2 === 'Introduction'))
                                   .map(e => e.path)[0]
 
+    const LinkDumb = props => (
+        <div
+            style={ props.style }
+            onClick={ () => props.goTo(props.path) }
+            onMouseEnter={ props.onMouseEnter }
+            onMouseLeave={ props.onMouseLeave }
+            onMouseOver={ props.onMouseOver }
+        >
+            { props.title }
+        </div>
+    )
+
+    LinkDumb.defaultProps = {
+        title: '',
+    }
+
+    const Link = Hover(LinkDumb)
+
+    const Links = filteredH2.map((e, i) => (
+        <Link
+            key={ i }
+            title={ e }
+            path={ filteredPaths[i] }
+            goTo={ props.goTo }
+            currentPath={ props.currentPath }
+            style={{
+                ...styles.link,
+                ...(e === '' ? { display: 'none' } : {}),
+                ...(filteredPaths[i] === props.currentPath ? { backgroundColor: 'rgba(0, 0, 0, 0.1)' } : {}),
+            }}
+            hoverStyleDiff={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
+        />
+    ))
+
     return (
         <div style={ styles.wrapper }>
             <h1 style={ styles.title } onClick={ () => props.goTo(sectionIntroPath) }>{ props.pages[props.currentPage].h1 }</h1>
             <div style={ styles.links }>
-                <div style={ styles.link } onClick={ () => props.goTo(filteredPaths[0]) }>
-                    { filteredH2[0] }
-                </div>
-                <div style={ styles.link } onClick={ () => props.goTo(filteredPaths[1]) }>
-                    { filteredH2[1] }
-                </div>
-                <div style={ styles.link } onClick={ () => props.goTo(filteredPaths[2]) }>
-                    { filteredH2[2] }
-                </div>
+                { Links }
             </div>
         </div>
     )
