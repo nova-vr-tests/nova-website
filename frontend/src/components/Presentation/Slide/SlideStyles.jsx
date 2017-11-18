@@ -33,11 +33,14 @@ const getStyles = props => {
             minWidth: 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ')',
         },
         paragraph: {
-            height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',
+            // height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',
             display: 'flex',
-            alignItems: 'center',
             width: '100%',
         },
+        dummy: {
+            display: 'none',
+            color: 'rgba(0, 0, 0, 0)',
+        }
     }
 }
 

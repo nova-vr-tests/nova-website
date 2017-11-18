@@ -5,18 +5,48 @@ import { lifecycle, withState, compose } from 'recompose'
 import getStyles from './SlideStyles.jsx'
 
 import {
+    getParagraphsSize,
     scrollTo,
 } from './helpers.jsx'
+
+const calcSlideNumFromPageNum = (pages, currentPage, currentPid) => {
+    return currentPage - pages
+        .filter((e, i) => i < currentPage)
+        .filter((e) => e.pid !== currentPid).length
+}
 
 const Slide = props => {
     const styles = getStyles(props)
 
+    const { pHeights } = props
+
     const { pid } = props.pages[props.currentPage]
     const presSlides = props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
-    const paragraphsAboveLine = presSlides.filter(e => e.i < props.currentPage)
-    const paragraphsRest = presSlides.filter(e => e.i >= props.currentPage)
-    const contentAboveLine = paragraphsAboveLine.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
-    const contentRest = paragraphsRest.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
+
+    const allParagraphs = presSlides.map((e, i) => (
+        <div
+            className={ i < calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid) ? 'above' : '' }
+            key={ i }
+            style={ {
+                ...{ height: pHeights[i] + 'px' },
+                ...{ display: 'flex', }
+            } }
+        >
+            <e.comp key={ i } />
+        </div>
+    ))
+
+    const defaultParagraphs = presSlides.map((e, i) => (
+        <div
+            className={ i < calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid) ? 'above' : '' }
+            key={ i }
+            style={ {
+                ...{ display: 'flex', color: 'rgba(0, 0, 0, 0)' }
+            } }
+        >
+            <e.comp key={ i } />
+        </div>
+    ))
 
 
     const { id } = props
@@ -26,33 +56,80 @@ const Slide = props => {
     const _h2 = props.pages[props.currentPage].h2
     const h2 = _h2 === 'Introduction' ? '' : _h2
 
+
     return [
         <h2 style={ styles.title } key={ 1 }>{ h2 }</h2>,
         <div style={ styles.slideParagraphs } id={ id2 } key={ 2 }>
-        <div>
-        <div style={ styles.head }>
-        </div>
-        <div id={ id1 }>
-        { contentAboveLine }
-                    </div>
-                    <div>
-                        { contentRest }
-                    </div>
-                    <div style={ styles.tail }>
+            <div>
+                <div style={ styles.head }>
+                </div>
+                <div id={ id1 }>
+                    { allParagraphs }
+                </div>
+                <div style={ styles.tail } id='tail'>
+                    <div id='dummy' style={ styles.dummy }>
+                        { defaultParagraphs }
                     </div>
                 </div>
             </div>
+        </div>
     ]
 }
 
+
+
+
+
+const interpolateArrays = (arr1, arr2, t) => arr1.map((e, i) => e + (arr2[i] - e) * t)
+
+
+const calcPHeights = (defaultPHeight, currentPage, targetPage, pages, progress) => {
+    const currentSlide = pages[currentPage]
+    const targetSlide = pages[targetPage]
+
+    // Return if switching presentation (don't animate pHeight values)
+    if(currentSlide.pid !== targetSlide.pid) {
+        // return
+    }
+
+    const currentSlideNumber = calcSlideNumFromPageNum(pages, currentPage, currentSlide.pid)
+    const targetSlideNumber = calcSlideNumFromPageNum(pages, targetPage, targetSlide.pid)
+
+    // calculate current pHeights
+    const currentPHeights = [...defaultPHeight]
+    currentPHeights[currentSlideNumber] = 0.1667 * document.documentElement.clientHeight * progress
+
+    // calculate target pHeights
+    const targetPHeights = [...defaultPHeight]
+    targetPHeights[targetSlideNumber] = 0.1667 * document.documentElement.clientHeight * progress
+
+    return interpolateArrays(currentPHeights, targetPHeights, progress)
+}
+
 const slideLifecycle = {
+    componentDidMount: function() {
+        const defaultPHeights = getParagraphsSize('dummy')
+        this.props.setDefaultPHeights(defaultPHeights)
+
+        const pHeights = [...defaultPHeights]
+        pHeights[0] = 0.1667 * document.documentElement.clientHeight
+        console.log(pHeights, defaultPHeights)
+        this.props.setPHeights(pHeights)
+    },
     componentDidUpdate: function(prevProps) {
         const { id } = this.props
         const id1 = id + '-paragraph'
         const id2 = id + '-scroll'
 
-        const targetScroll = document.getElementById(id1).clientHeight
+        let targetScroll = document.getElementById(id1).clientHeight
         let currentScroll = document.getElementById(id2).scrollTop
+
+        document.getElementById('dummy').style.display = 'block'
+        targetScroll = Array.from(
+            document.getElementById('dummy')
+                    .getElementsByClassName('above')
+        ).map(e => e.clientHeight).reduce((acc, e) => acc + e, 0)
+        document.getElementById('dummy').style.display = 'none'
 
 
         if(this.props.currentPage !== prevProps.currentPage) {
@@ -68,14 +145,31 @@ const slideLifecycle = {
                 } else {
                     currentScroll = 0 // scroll to top of slide if going to next slide
                 }
+
+                //////
+                const defaultPHeights = getParagraphsSize('dummy')
+                this.props.setDefaultPHeights(defaultPHeights)
+
             }
+
+            // this.props.setPHeights(calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1))
+            const newPHeights = calcPHeights(this.props.defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1)
+
+            if(newPHeights) {
+                this.props.setPHeights(newPHeights)
+            }
+            console.log(newPHeights)
+
 
             scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
         }
+
     },
 }
 
 const enhance = compose(
+    withState('pHeights', 'setPHeights', []),
+    withState('defaultPHeights', 'setDefaultPHeights', []),
     lifecycle(slideLifecycle),
 )
 

@@ -20,6 +20,18 @@ const scrollTo = (id: string, initScroll: number, targetScroll: number, progress
 
 }
 
+const getParagraphsSize = (id) => {
+    const paragraphs = document.getElementById(id)
+
+    paragraphs.style.display = 'block'
+    const pHeights = Array.from(paragraphs.childNodes).map(e => e.clientHeight)
+    paragraphs.style.display = 'none'
+
+
+    return pHeights
+}
+
 export {
+    getParagraphsSize,
     scrollTo,
 }
