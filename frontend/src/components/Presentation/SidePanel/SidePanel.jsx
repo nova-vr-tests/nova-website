@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 import { lifecycle, withState, compose } from 'recompose'
 
-import SlideTransition from '../SlideTransition.jsx'
+import SlideTransition from '../SlideTransition/SlideTransition.jsx'
 
 import getStyles, { getBgStyles } from './SidePanelStyles.jsx'
 

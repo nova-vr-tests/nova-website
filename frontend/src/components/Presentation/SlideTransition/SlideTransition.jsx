@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react'
 
-import Slide from './Slide/Slide.jsx'
+import Slide from '../Slide/Slide.jsx'
 
-import { styles as appStyles } from '../../constants.js'
+import { styles as appStyles } from '../../../constants.js'
 
 import type {
     Props,
-} from './PresentationTypes.jsx'
+} from '../PresentationTypes.jsx'
 
 import type {
     State,
