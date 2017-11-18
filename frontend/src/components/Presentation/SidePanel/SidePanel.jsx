@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 
 import { lifecycle, withState, compose } from 'recompose'
 
+import SlideTransition from '../SlideTransition.jsx'
+
 import getStyles, { getBgStyles } from './SidePanelStyles.jsx'
 
 import arrow from '../../img/arrow.svg'
@@ -115,6 +117,26 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
     )
 }
 
+const Slide = props => {
+    return [
+            <h2 style={ props.styles.title } key={ 1 }>{ props.pages[props.currentPage].h2 }</h2>,
+            <div style={ props.styles.slideParagraphs } id="side-panel-scroll" key={ 2 }>
+                <div>
+                    <div style={ props.styles.head }>
+                    </div>
+                    <div id="paragraphs-top">
+                        { props.contentAboveLine }
+                    </div>
+                    <div>
+                        { props.contentRest }
+                    </div>
+                    <div style={ props.styles.tail }>
+                    </div>
+                </div>
+            </div>
+    ]
+}
+
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const { isOpened } = props
     const widthCoef = props.width
@@ -128,6 +150,15 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const contentAboveLine = paragraphsAboveLine.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
     const contentRest = paragraphsRest.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
 
+
+    const currentSlide = <Slide
+            {...props}
+            currentPage={ props.currentPage }
+            styles={ styles }
+            contentAboveLine={ contentAboveLine }
+            contentRest={ contentRest }
+        />
+
     return (
         <div style={ styles.wrapper }>
             <BG
@@ -140,21 +171,14 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                     linePosition={ props.linePosition }
                 />
 
-                <h2 style={ styles.title }>{ props.pages[props.currentPage].h2 }</h2>
-                <div style={ styles.slideParagraphs } id="side-panel-scroll">
-                    <div>
-                        <div style={ styles.head }>
-                        </div>
-                        <div id="paragraphs-top">
-                            { contentAboveLine }
-                        </div>
-                        <div>
-                            { contentRest }
-                        </div>
-                        <div style={ styles.tail }>
-                        </div>
-                    </div>
-                </div>
+                <SlideTransition
+                    CurrentSlide={ currentSlide }
+                    TargetSlide={ currentSlide }
+                    appTheme='default'
+                    currentPage={ props.currentPage }
+                    pages={ props.pages }
+                />
+
             </div>
         </div>
     )
@@ -164,9 +188,18 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
 const sidePanelLifecycle = {
     componentDidUpdate: function(prevProps: Props) {
         const targetScroll = document.getElementById('paragraphs-top').clientHeight
-        const currentScroll = document.getElementById('side-panel-scroll').scrollTop
+        let currentScroll = document.getElementById('side-panel-scroll').scrollTop
+
 
         if(this.props.currentPage !== prevProps.currentPage) {
+            if(
+                this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
+                &&
+                this.props.currentPage < prevProps.currentPage
+            ) {
+                currentScroll = 1000
+            }
+
             scrollTo('side-panel-scroll', currentScroll, targetScroll, 0, new Date().getTime())
         }
 
