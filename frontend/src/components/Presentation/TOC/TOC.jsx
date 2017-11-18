@@ -12,6 +12,8 @@ type Props = {
     pages: Array<Page>,
     currentPage: number,
     goTo: string => void,
+    currentPath: string,
+
 }
 
 const TOC: React.StatelessFunctionalComponent<Props> = props => {
@@ -72,17 +74,19 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
 
     const Link = Hover(LinkDumb)
 
+    const currentPath = props.pages[props.currentPage].path
+
     const Links = filteredH2.map((e, i) => (
         <Link
             key={ i }
             title={ e }
             path={ filteredPaths[i] }
             goTo={ props.goTo }
-            currentPath={ props.currentPath }
+            currentPath={ currentPath }
             style={{
                 ...styles.link,
                 ...(e === '' ? { display: 'none' } : {}),
-                ...(filteredPaths[i] === props.currentPath ? { backgroundColor: 'rgba(0, 0, 0, 0.1)' } : {}),
+                ...(filteredPaths[i] === currentPath ? { backgroundColor: 'rgba(0, 0, 0, 0.1)' } : {}),
             }}
             hoverStyleDiff={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
         />
