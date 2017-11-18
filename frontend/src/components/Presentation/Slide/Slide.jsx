@@ -23,14 +23,17 @@ const Slide = props => {
     const id1 = id + '-paragraph'
     const id2 = id + '-scroll'
 
+    const _h2 = props.pages[props.currentPage].h2
+    const h2 = _h2 === 'Introduction' ? '' : _h2
+
     return [
-            <h2 style={ styles.title } key={ 1 }>{ props.pages[props.currentPage].h2 }</h2>,
-            <div style={ styles.slideParagraphs } id={ id2 } key={ 2 }>
-                <div>
-                    <div style={ styles.head }>
-                    </div>
-                    <div id={ id1 }>
-                        { contentAboveLine }
+        <h2 style={ styles.title } key={ 1 }>{ h2 }</h2>,
+        <div style={ styles.slideParagraphs } id={ id2 } key={ 2 }>
+        <div>
+        <div style={ styles.head }>
+        </div>
+        <div id={ id1 }>
+        { contentAboveLine }
                     </div>
                     <div>
                         { contentRest }
