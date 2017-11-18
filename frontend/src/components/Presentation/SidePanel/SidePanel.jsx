@@ -13,9 +13,10 @@ import getStyles, { getBgStyles } from './SidePanelStyles.jsx'
 
 import arrow from '../../img/arrow.svg'
 
+import Slide from '../Slide/Slide.jsx'
+
 import {
     coord2Circ,
-    scrollTo,
     togglePanel,
 } from './helpers.jsx'
 
@@ -117,46 +118,16 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
     )
 }
 
-const Slide = props => {
-    return [
-            <h2 style={ props.styles.title } key={ 1 }>{ props.pages[props.currentPage].h2 }</h2>,
-            <div style={ props.styles.slideParagraphs } id="side-panel-scroll" key={ 2 }>
-                <div>
-                    <div style={ props.styles.head }>
-                    </div>
-                    <div id="paragraphs-top">
-                        { props.contentAboveLine }
-                    </div>
-                    <div>
-                        { props.contentRest }
-                    </div>
-                    <div style={ props.styles.tail }>
-                    </div>
-                </div>
-            </div>
-    ]
-}
-
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const { isOpened } = props
     const widthCoef = props.width
 
     const styles = getStyles(props)
 
-    const { pid } = props.pages[props.currentPage]
-    const presSlides = props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
-    const paragraphsAboveLine = presSlides.filter(e => e.i < props.currentPage)
-    const paragraphsRest = presSlides.filter(e => e.i >= props.currentPage)
-    const contentAboveLine = paragraphsAboveLine.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
-    const contentRest = paragraphsRest.map((e, i) => <div key={ i } style={ e.i === props.currentPage ? styles.paragraph : {} }><e.comp key={ i } /></div>)
-
-
     const currentSlide = <Slide
             {...props}
             currentPage={ props.currentPage }
             styles={ styles }
-            contentAboveLine={ contentAboveLine }
-            contentRest={ contentRest }
         />
 
     return (
@@ -177,6 +148,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                     appTheme='default'
                     currentPage={ props.currentPage }
                     pages={ props.pages }
+                    linePosition={ props.linePosition }
                 />
 
             </div>
@@ -187,22 +159,6 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
 
 const sidePanelLifecycle = {
     componentDidUpdate: function(prevProps: Props) {
-        const targetScroll = document.getElementById('paragraphs-top').clientHeight
-        let currentScroll = document.getElementById('side-panel-scroll').scrollTop
-
-
-        if(this.props.currentPage !== prevProps.currentPage) {
-            if(
-                this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
-                &&
-                this.props.currentPage < prevProps.currentPage
-            ) {
-                currentScroll = 1000
-            }
-
-            scrollTo('side-panel-scroll', currentScroll, targetScroll, 0, new Date().getTime())
-        }
-
         if(this.props.isOpened !== prevProps.isOpened) {
             requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 0, prevProps.isOpened ? 0 : 11, 0, this.props.setWidth, new Date().getTime()))
         }

@@ -23,24 +23,6 @@ const coord2Circ = (x: number): {y1: number, y2: number} => {
     return { y1, y2 }
 }
 
-const scrollTo = (id: string, initScroll: number, targetScroll: number, progress: number, initTimestamp: number) => {
-    const el = document.getElementById(id)
-
-    const scrollDistance = targetScroll - initScroll
-    const currentScroll = initScroll + scrollDistance * progress
-
-    const transitionTime = appStyles.slideTransitionTime
-    const newProgress = (new Date().getTime() - initTimestamp) / transitionTime
-
-    if(progress >= 1) {
-        return
-    } else {
-        el.scrollTo(0, currentScroll)
-        requestAnimationFrame(() => scrollTo(id, initScroll, targetScroll, newProgress, initTimestamp))
-    }
-
-}
-
 const togglePanel = (initWidth: number, targetWidth: number, progress: number, setWidth: number => void, initTimestamp: number) => {
     const dist = targetWidth - initWidth
     const currentPos = initWidth + dist * progress
@@ -58,6 +40,5 @@ const togglePanel = (initWidth: number, targetWidth: number, progress: number, s
 
 export {
     coord2Circ,
-    scrollTo,
     togglePanel,
 }
