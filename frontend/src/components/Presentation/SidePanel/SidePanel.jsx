@@ -124,12 +124,6 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
 
     const styles = getStyles(props)
 
-    const currentSlide = <Slide
-            {...props}
-            currentPage={ props.currentPage }
-            styles={ styles }
-        />
-
     return (
         <div style={ styles.wrapper }>
             <BG
@@ -143,8 +137,6 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                 />
 
                 <SlideTransition
-                    CurrentSlide={ currentSlide }
-                    TargetSlide={ currentSlide }
                     appTheme='default'
                     currentPage={ props.currentPage }
                     pages={ props.pages }

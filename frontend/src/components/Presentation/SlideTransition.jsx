@@ -3,12 +3,6 @@ import * as React from 'react'
 
 import Slide from './Slide/Slide.jsx'
 
-import {
-    H1,
-    H2,
-    alignments,
-} from '../pages/UI.jsx'
-
 import { styles as appStyles } from '../../constants.js'
 
 import type {
@@ -17,7 +11,6 @@ import type {
 
 import type {
     State,
-    OpacityStyles,
     TranslationStyles,
 } from './SlideTransitionTypes.jsx'
 
@@ -50,15 +43,19 @@ class SlideTransition extends React.Component<Props, State> {
     }
 
     componentWillReceiveProps(newProps: Props) {
+
         // Check if slide has changed
         if(newProps.pages[newProps.currentPage].pid !== this.props.pages[this.props.currentPage].pid) {
             this.setState({
-                currentPage: this.props.currentPage,
                 targetPage: newProps.currentPage,
                 transitionProgress: 0,
                 transitionDirection: this.props.currentPage > newProps.currentPage ? -1 : 1,
             })
-        } else {
+        } else if(newProps.currentPage !== this.props.currentPage) {
+            this.setState({
+                currentPage: newProps.currentPage,
+                targetPage: newProps.currentPage,
+            })
             return
         }
 
@@ -97,8 +94,8 @@ class SlideTransition extends React.Component<Props, State> {
         let currentSlideTransform = 'translateY(-' + this.state.transitionProgress * 100 + 'vh)'
         let targetSlideTransform = 'translateY(calc(100vh - ' + this.state.transitionProgress * 100 + 'vh))'
         if(this.state.transitionDirection < 0) {
-            currentSlideTransform = 'translateY(' + this.state.transitionProgress * 50 + 'vh)'
-            targetSlideTransform = 'translateY(calc(-100vh + ' + this.state.transitionProgress * 50 + 'vh))'
+            currentSlideTransform = 'translateY(' + this.state.transitionProgress * 100 + 'vh)'
+            targetSlideTransform = 'translateY(calc(-100vh + ' + this.state.transitionProgress * 100 + 'vh))'
         }
 
         return {
@@ -114,10 +111,9 @@ class SlideTransition extends React.Component<Props, State> {
     }
 
     render() {
-
         const CurrentSlide = <Slide
                 {...this.props}
-                currentPage={ this.props.currentPage }
+                currentPage={ this.state.currentPage }
                 id='current-slide'
             />
 

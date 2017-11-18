@@ -23,8 +23,6 @@ const Slide = props => {
     const id1 = id + '-paragraph'
     const id2 = id + '-scroll'
 
-    console.log(styles, props)
-
     return [
             <h2 style={ styles.title } key={ 1 }>{ props.pages[props.currentPage].h2 }</h2>,
             <div style={ styles.slideParagraphs } id={ id2 } key={ 2 }>
@@ -45,7 +43,6 @@ const Slide = props => {
 }
 
 const slideLifecycle = {
-    componentDidMount: function() { console.log('mounted')},
     componentDidUpdate: function(prevProps) {
         const { id } = this.props
         const id1 = id + '-paragraph'
@@ -58,10 +55,16 @@ const slideLifecycle = {
         if(this.props.currentPage !== prevProps.currentPage) {
             if(
                 this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
-                &&
-                this.props.currentPage < prevProps.currentPage
             ) {
-                currentScroll = 1000 // scroll to bottom of slide if going to previous slide
+                if(
+                    this.props.currentPage < prevProps.currentPage
+                    &&
+                    Math.abs(this.props.currentPage - prevProps.currentPage) === 1
+                ) {
+                    currentScroll = 1000 // scroll to bottom of slide if going to previous slide or when coming from link
+                } else {
+                    currentScroll = 0 // scroll to top of slide if going to next slide
+                }
             }
 
             scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
