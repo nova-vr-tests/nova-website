@@ -22,6 +22,7 @@ const scrollTo = (id: string, initScroll: number, targetScroll: number, progress
 
 const getParagraphsSize = (id) => {
     const paragraphs = document.getElementById(id)
+    console.log(Array.from(paragraphs.childNodes))
 
     paragraphs.style.display = 'block'
     const pHeights = Array.from(paragraphs.childNodes).map(e => e.clientHeight)

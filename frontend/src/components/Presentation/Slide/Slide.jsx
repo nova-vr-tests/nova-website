@@ -103,7 +103,11 @@ const calcPHeights = (defaultPHeight, currentPage, targetPage, pages, progress) 
     const targetPHeights = [...defaultPHeight]
     targetPHeights[targetSlideNumber] = 0.1667 * document.documentElement.clientHeight * progress
 
-    return interpolateArrays(currentPHeights, targetPHeights, progress)
+    const interpolatedData = interpolateArrays(currentPHeights, targetPHeights, progress)
+
+    console.log(interpolatedData, defaultPHeight)
+
+    return interpolatedData
 }
 
 const slideLifecycle = {
@@ -113,7 +117,6 @@ const slideLifecycle = {
 
         const pHeights = [...defaultPHeights]
         pHeights[0] = 0.1667 * document.documentElement.clientHeight
-        console.log(pHeights, defaultPHeights)
         this.props.setPHeights(pHeights)
     },
     componentDidUpdate: function(prevProps) {
@@ -132,6 +135,7 @@ const slideLifecycle = {
         document.getElementById('dummy').style.display = 'none'
 
 
+
         if(this.props.currentPage !== prevProps.currentPage) {
             if(
                 this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
@@ -141,24 +145,22 @@ const slideLifecycle = {
                     &&
                     Math.abs(this.props.currentPage - prevProps.currentPage) === 1
                 ) {
-                    currentScroll = 1000 // scroll to bottom of slide if going to previous slide or when coming from link
+                    currentScroll = 5000 // scroll to bottom of slide if going to previous slide or when coming from link
                 } else {
                     currentScroll = 0 // scroll to top of slide if going to next slide
                 }
-
-                //////
-                const defaultPHeights = getParagraphsSize('dummy')
-                this.props.setDefaultPHeights(defaultPHeights)
-
             }
 
+            //////
+            const defaultPHeights = getParagraphsSize('dummy')
+            this.props.setDefaultPHeights(defaultPHeights)
+
             // this.props.setPHeights(calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1))
-            const newPHeights = calcPHeights(this.props.defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1)
+            const newPHeights = calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1)
 
             if(newPHeights) {
                 this.props.setPHeights(newPHeights)
             }
-            console.log(newPHeights)
 
 
             scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
