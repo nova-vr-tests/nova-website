@@ -134,6 +134,8 @@ class SlideTransition extends React.Component<Props, State> {
                 position: 'relative',
                 width: '100%',
                 transition: fontColorTransition,
+                overflow: 'hidden',
+                height: '100%',
             },
             currentSlideStyle: {
                 ...this.getTranslationStyles().currentSlide,
