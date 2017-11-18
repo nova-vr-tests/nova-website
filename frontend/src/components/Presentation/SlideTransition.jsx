@@ -51,6 +51,31 @@ class SlideTransition extends React.Component<Props, State> {
                 transitionProgress: 0,
                 transitionDirection: this.props.currentPage > newProps.currentPage ? -1 : 1,
             })
+
+            // Start transition
+
+            const startTime = new Date()
+            const deltaTime = 500
+
+            let rafId = 0
+            const transitionFunction = () => {
+                if(this.state.transitionProgress < 1) {
+                    const deltaProgress = (new Date() - startTime) / deltaTime - this.state.transitionProgress
+                    this.setState({
+                        transitionProgress: this.state.transitionProgress + deltaProgress > 1 ? 1 : this.state.transitionProgress + deltaProgress,
+                    })
+
+                    rafId = requestAnimationFrame(transitionFunction)
+                } else {
+                    this.setState({
+                        transitionProgress: 0,
+                        currentPage: this.state.targetPage,
+                    })
+                    cancelAnimationFrame(rafId)
+                }
+
+            }
+            requestAnimationFrame(transitionFunction)
         } else if(newProps.currentPage !== this.props.currentPage) {
             this.setState({
                 currentPage: newProps.currentPage,
@@ -58,31 +83,6 @@ class SlideTransition extends React.Component<Props, State> {
             })
             return
         }
-
-        // Start transition
-
-        const startTime = new Date()
-        const deltaTime = 500
-
-        let rafId = 0
-        const transitionFunction = () => {
-            if(this.state.transitionProgress < 1) {
-                const deltaProgress = (new Date() - startTime) / deltaTime - this.state.transitionProgress
-                this.setState({
-                    transitionProgress: this.state.transitionProgress + deltaProgress > 1 ? 1 : this.state.transitionProgress + deltaProgress,
-                })
-
-                rafId = requestAnimationFrame(transitionFunction)
-            } else {
-                this.setState({
-                    transitionProgress: 0,
-                    currentPage: this.state.targetPage,
-                })
-                cancelAnimationFrame(rafId)
-            }
-
-        }
-        requestAnimationFrame(transitionFunction)
     }
 
     updateTimerPointer(timer: number) {
