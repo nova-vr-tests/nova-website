@@ -1,0 +1,7 @@
+#content {
+    width: 60vw;
+    color: black;
+    margin-top: 8rem;
+    height: 60vh;
+    overflow-y: scroll;
+}
