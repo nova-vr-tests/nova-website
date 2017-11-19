@@ -31,7 +31,7 @@ const coord2CircInverted = (x: number): {y1: number, y2: number} => {
     // unit conversions
     const r = radius * vh
     const Cx = centerX * vw
-    const Cy = centerY * vh + 2 * r - 2.6 * 1 / 24 * 100 * vh // 10.5 * vh
+    const Cy = centerY * vh + 2 * r - 2.65 * 1 / 24 * 100 * vh // 10.5 * vh
     console.log(Cy, 'cy')
 
     // solve for x = sidebar width

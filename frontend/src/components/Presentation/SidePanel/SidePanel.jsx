@@ -132,7 +132,7 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
             width: unitHeight,
             cursor: 'pointer',
             paddingRight: 'calc(0.5 * ' + unitWidth + ')',
-            filter: props.type === sidePanelTypes.DEFAULT ? 'inherit' : 'invert(50%)',
+            filter: props.type === sidePanelTypes.DEFAULT ? 'inherit' : 'invert(10%)',
         }
     }
 
