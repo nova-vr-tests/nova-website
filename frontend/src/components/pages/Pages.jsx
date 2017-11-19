@@ -192,7 +192,7 @@ return {
         linePosition: linePosition ? linePosition : 0,
         layers,
         align: align ? align : alignments.left,
-        theme: theme ? theme : appStyles.themeTypes.defaultTheme,
+        theme: appStyles.themeTypes.defaultTheme,
         transitions: {
             nextSlide: {
                 bg: nextSlideTransition,
