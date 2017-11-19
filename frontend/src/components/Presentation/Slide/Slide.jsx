@@ -29,7 +29,7 @@ const Slide = props => {
             key={ i }
             style={ {
                 ...{ height: pHeights[i] + 'px' },
-                ...{ display: 'flex', }
+                ...{ display: 'flex', border: '1px solid rgba(255, 0, 0, 0)' }
             } }
         >
             <e.comp key={ i } />
@@ -58,12 +58,12 @@ const Slide = props => {
 
 
     return [
-        <h2 style={ styles.title } key={ 1 }>{ h2 }</h2>,
         <div style={ styles.slideParagraphs } id={ id2 } key={ 2 }>
             <div>
                 <div style={ styles.head }>
                 </div>
                 <div id={ id1 }>
+                    <h2 className="above" style={ styles.title } key={ 1 }>{ h2 }</h2>
                     { allParagraphs }
                 </div>
                 <div style={ styles.tail } id='tail'>
@@ -97,15 +97,15 @@ const calcPHeights = (defaultPHeight, currentPage, targetPage, pages, progress) 
 
     // calculate current pHeights
     const currentPHeights = [...defaultPHeight]
-    currentPHeights[currentSlideNumber] = 0.1667 * document.documentElement.clientHeight * progress
-
     // calculate target pHeights
     const targetPHeights = [...defaultPHeight]
-    targetPHeights[targetSlideNumber] = 0.1667 * document.documentElement.clientHeight * progress
+
+    currentPHeights[currentSlideNumber] = 0.1667 * document.documentElement.clientHeight //* (1 - progress)
+    targetPHeights[targetSlideNumber] = 0.1667 * document.documentElement.clientHeight //* progress
 
     const interpolatedData = interpolateArrays(currentPHeights, targetPHeights, progress)
 
-    console.log(interpolatedData, defaultPHeight)
+    console.log(defaultPHeight, targetPHeights, progress)
 
     return interpolatedData
 }
@@ -136,6 +136,8 @@ const slideLifecycle = {
 
 
 
+        let progress = 0
+
         if(this.props.currentPage !== prevProps.currentPage) {
             if(
                 this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
@@ -145,10 +147,12 @@ const slideLifecycle = {
                     &&
                     Math.abs(this.props.currentPage - prevProps.currentPage) === 1
                 ) {
-                    currentScroll = 5000 // scroll to bottom of slide if going to previous slide or when coming from link
+                    currentScroll = 1000 // scroll to bottom of slide if going to previous slide or when coming from link
                 } else {
                     currentScroll = 0 // scroll to top of slide if going to next slide
                 }
+
+                progress = 1
             }
 
             //////
@@ -158,11 +162,29 @@ const slideLifecycle = {
             // this.props.setPHeights(calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1))
             const newPHeights = calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1)
 
-            if(newPHeights) {
-                this.props.setPHeights(newPHeights)
+            const getNewPHeights = progress => calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, progress)
+
+            const time0 = new Date().getTime()
+            const transition = (progress, t) => {
+                if(progress >= 1) {
+                    const newPHeights = getNewPHeights(progress)
+                    this.props.setPHeights(newPHeights)
+
+                    return 0
+                } else {
+                    if(newPHeights) {
+                        const newPHeights = getNewPHeights(progress)
+                        this.props.setPHeights(newPHeights)
+                    }
+
+                    const newProgress = (new Date().getTime() - time0) / t
+                    requestAnimationFrame(() => transition(newProgress, t))
+                }
             }
 
 
+
+            transition(progress, 300)
             scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
         }
 

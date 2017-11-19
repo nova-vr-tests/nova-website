@@ -92,10 +92,10 @@ class SlideTransition extends React.Component<Props, State> {
 
     getTranslationStyles() {
         let currentSlideTransform = 'translateY(-' + this.state.transitionProgress * 100 + 'vh)'
-        let targetSlideTransform = 'translateY(calc(100vh - ' + this.state.transitionProgress * 100 + 'vh))'
+        let targetSlideTransform = 'translateY(calc(100vh - ' + this.state.transitionProgress * 80 + 'vh))'
         if(this.state.transitionDirection < 0) {
             currentSlideTransform = 'translateY(' + this.state.transitionProgress * 100 + 'vh)'
-            targetSlideTransform = 'translateY(calc(-100vh + ' + this.state.transitionProgress * 100 + 'vh))'
+            targetSlideTransform = 'translateY(calc(-100vh + ' + this.state.transitionProgress * 60 + 'vh))'
         }
 
         return {
