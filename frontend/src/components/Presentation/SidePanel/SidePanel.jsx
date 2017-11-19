@@ -112,6 +112,7 @@ type ToggleButtonProps = {
     linePosition: number,
     onClick: void => void,
     isOpened: boolean,
+    type: number,
 }
 
 const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = props => {
@@ -131,7 +132,7 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
             width: unitHeight,
             cursor: 'pointer',
             paddingRight: 'calc(0.5 * ' + unitWidth + ')',
-            filter: 'invert(100%)',
+            filter: props.type === sidePanelTypes.DEFAULT ? 'inherit' : 'invert(50%)',
         }
     }
 
@@ -161,6 +162,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                     isOpened={ props.isOpened }
                     onClick={ () => props.setIsOpened(!isOpened) }
                     linePosition={ props.linePosition }
+                    type={ props.type }
                 />
 
                 { props.children }
