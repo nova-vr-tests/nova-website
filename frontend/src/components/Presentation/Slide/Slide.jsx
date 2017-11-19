@@ -23,13 +23,15 @@ const Slide = props => {
     const { pid } = props.pages[props.currentPage]
     const presSlides = props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
 
+    const foo = calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid)
+    const bar = foo === 0 ? 0.1667 * document.documentElement.clientHeight : pHeights[0]
     const allParagraphs = presSlides.map((e, i) => (
         <div
             className={ i < calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid) ? 'above' : '' }
             key={ i }
             style={ {
-                ...{ height: pHeights[i] + 'px' },
-                ...{ display: 'flex', border: '1px solid rgba(255, 0, 0, 0)' }
+                    ...{ height: (i === 0 ? bar : pHeights[i] + 'px') },
+                    ...{ display: 'flex', border: '1px solid rgba(255, 0, 0, 0)' }
             } }
         >
             <e.comp key={ i } />

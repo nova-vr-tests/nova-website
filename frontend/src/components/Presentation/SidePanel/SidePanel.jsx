@@ -39,6 +39,7 @@ import type { HOC } from 'recompose'
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
     return {
         linePosition: state.appReducer.linePosition,
+        isFooterOpened: state.appReducer.isFooterOpened,
     }
 }
 
@@ -71,6 +72,7 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
         + ' L ' + p3.x + ' ' + p3.y + ' '
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p4.x + ' ' + p4.y
+
 
 
     return (
@@ -123,11 +125,13 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const widthCoef = props.width
 
     const styles = getStyles(props)
+    console.log(props, '===')
 
     return (
         <div style={ styles.wrapper }>
             <BG
                 widthCoef={ widthCoef }
+                isFooterOpened={ props.isFooterOpened }
             />
             <div style={ styles.contentWrapper }>
                 <ToggleButton

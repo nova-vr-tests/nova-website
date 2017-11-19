@@ -64,6 +64,8 @@ export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
             right: 0,
         },
         svg: {
+            opacity: props.isFooterOpened ? 0 : 1,
+            transition: 'opacity 0.3s linear',
             width: panelWidth,
         },
     }
