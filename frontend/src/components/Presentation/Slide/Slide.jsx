@@ -105,8 +105,6 @@ const calcPHeights = (defaultPHeight, currentPage, targetPage, pages, progress) 
 
     const interpolatedData = interpolateArrays(currentPHeights, targetPHeights, progress)
 
-    console.log(defaultPHeight, targetPHeights, progress)
-
     return interpolatedData
 }
 

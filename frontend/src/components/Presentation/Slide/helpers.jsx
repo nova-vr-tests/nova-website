@@ -25,7 +25,8 @@ const getParagraphsSize = (id) => {
     console.log(Array.from(paragraphs.childNodes))
 
     paragraphs.style.display = 'block'
-    const pHeights = Array.from(paragraphs.childNodes).map(e => e.clientHeight)
+    const margins = 5 // px, both sides
+    const pHeights = Array.from(paragraphs.childNodes).map(e => e.clientHeight - margins)
     paragraphs.style.display = 'none'
 
 
