@@ -58,8 +58,8 @@ const Slide = props => {
 
 
     return [
-        <div style={ styles.slideParagraphs } id={ id2 } key={ 2 }>
-            <div>
+        <div style={ {...styles.slideParagraphs, position: 'relative'} } id={ id2 } key={ 2 }>
+            <div style={ {position: 'absolute', top: 0 } }>
                 <div style={ styles.head }>
                 </div>
                 <div id={ id1 }>
@@ -119,6 +119,18 @@ const slideLifecycle = {
         pHeights[0] = 0.1667 * document.documentElement.clientHeight
         this.props.setPHeights(pHeights)
     },
+    componentWillReceiveProps: function(nextProps) {
+        const { id } = this.props
+        const id1 = id + '-paragraph'
+        const id2 = id + '-scroll'
+
+        if(this.props.currentPage < nextProps.currentPage) {
+            const newHeights = [...this.props.defaultPHeights]
+            newHeights[newHeights.length - 1] = 0.1667 * document.documentElement.clientHeight
+            this.props.setPHeights(newHeights)
+        }
+
+    },
     componentDidUpdate: function(prevProps) {
         const { id } = this.props
         const id1 = id + '-paragraph'
@@ -139,6 +151,7 @@ const slideLifecycle = {
         let progress = 0
 
         if(this.props.currentPage !== prevProps.currentPage) {
+
             if(
                 this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
             ) {
@@ -151,6 +164,8 @@ const slideLifecycle = {
                 } else {
                     currentScroll = 0 // scroll to top of slide if going to next slide
                 }
+
+                console.log(document.getElementById(id2).scrollTop)
 
                 progress = 1
             }
@@ -185,7 +200,14 @@ const slideLifecycle = {
 
 
             transition(progress, 300)
-            scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
+
+            if(!this.props.isTarget)
+                scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
+
+            if(this.props.currentPage > prevProps.currentPage)
+                document.getElementById(id2).scrollTo(0, 0)
+            else
+                document.getElementById(id2).scrollTo(0, 1000)
         }
 
     },
