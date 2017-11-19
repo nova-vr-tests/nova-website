@@ -17,6 +17,7 @@ export type OwnProps = {
     comp: React.Node,
     currentPage: number,
     pages: Array<Page>,
+    type: number,
 }
 
 export type SmartCompProps = {
@@ -35,4 +36,5 @@ export type Props = OwnProps & SmartCompProps & ReduxState & ReduxDispatch
 
 export type BgProps = {
     widthCoef: number,
+    type: number,
 }

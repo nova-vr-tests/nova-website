@@ -20,10 +20,9 @@ const getStyles: GetStyles<Props, Styles> = props => {
 
     return {
         wrapper: {
-            width: 'calc(100vw - ' + sidebarWidth + ')',
-            marginLeft: sidebarWidth,
+            width: '100vw', //'calc(100vw - ' + sidebarWidth + ')',
+            position: 'relative',
             color: 'black',
-            marginTop: '8rem', // footer height
             opacity: props.opacity,
             transition: 'opacity 0.5s linear',
         },

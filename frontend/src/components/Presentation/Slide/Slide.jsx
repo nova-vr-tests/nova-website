@@ -120,10 +120,6 @@ const slideLifecycle = {
         this.props.setPHeights(pHeights)
     },
     componentWillReceiveProps: function(nextProps) {
-        const { id } = this.props
-        const id1 = id + '-paragraph'
-        const id2 = id + '-scroll'
-
         if(this.props.currentPage < nextProps.currentPage) {
             const newHeights = [...this.props.defaultPHeights]
             newHeights[newHeights.length - 1] = 0.1667 * document.documentElement.clientHeight

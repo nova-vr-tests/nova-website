@@ -38,6 +38,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         updateCurrentPage: state.appReducer.goToPage,
         isFooterOpened: state.appReducer.isFooterOpened,
         sidebarHeaderIntersection: state.headerReducer.sidebarIntersection,
+        windowWidth: state.appReducer.windowWidth,
     }
 }
 
@@ -101,6 +102,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                         props.introKeyframe >= INTRO_FINISHED + 1 ?
                             <AboutUs
                                 opacity={ props.isFooterOpened ? 1 : 0 }
+                                windowWidth={ props.windowWidth }
                             />
                         :
                             ''

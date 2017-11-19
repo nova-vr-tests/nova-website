@@ -33,12 +33,14 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
             alignItems: 'center',
             cursor: 'pointer',
             transition: 'background-color 0.2s linear',
+            color: appStyles.themes[props.appTheme].fontColor,
         },
         title: {
             position: 'absolute',
             top: 'calc(6 * ' + appStyles.unitHeight + ')', // from screen top
             left: 'calc(6 * ' + appStyles.unitWidth + ')', // from screen left
             cursor: 'pointer',
+            color: appStyles.themes[props.appTheme].fontColor,
         }
     }
 

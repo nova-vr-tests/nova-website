@@ -7,16 +7,13 @@ import { connect } from 'react-redux'
 
 import { lifecycle, withState, compose } from 'recompose'
 
-import SlideTransition from '../SlideTransition/SlideTransition.jsx'
-
 import getStyles, { getBgStyles } from './SidePanelStyles.jsx'
 
 import arrow from '../../img/arrow.svg'
 
-import Slide from '../Slide/Slide.jsx'
-
 import {
-    coord2Circ,
+    coord2CircDefault,
+    coord2CircInverted,
     togglePanel,
 } from './helpers.jsx'
 
@@ -36,10 +33,17 @@ import type {
 import type { HOC } from 'recompose'
 
 
+const sidePanelTypes = {
+    DEFAULT: 1,
+    INVERTED: 2,
+}
+
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
     return {
         linePosition: state.appReducer.linePosition,
         isFooterOpened: state.appReducer.isFooterOpened,
+        appTheme: state.appReducer.appTheme,
+        windowWidth: state.appReducer.windowWidth,
     }
 }
 
@@ -61,17 +65,34 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     const vh = document.documentElement.clientHeight / 100
     const r = header.radius * vh
 
+    let coord2Circ = props.type === sidePanelTypes.DEFAULT ? coord2CircDefault : coord2CircInverted
+
     const screenRightEdge = widthCoef * appStyles.unitWidthJs
     const { clientWidth, clientHeight } = document.documentElement
-    const p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
-    const p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
-    const p3 = {x: 0, y: clientHeight - p2.y}
-    const p4 = {x: screenRightEdge, y: clientHeight - p1.y}
-    const path =
+    let p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
+    let p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
+    let p3 = {x: 0, y: clientHeight - p2.y}
+    let p4 = {x: screenRightEdge, y: clientHeight - p1.y}
+    let path =
         'M ' + p1.x + ' ' + p1.y
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
         + ' L ' + p3.x + ' ' + p3.y + ' '
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p4.x + ' ' + p4.y
+    let color = 'rgba(0, 0, 0, 0.6)'
+
+    if(props.type === sidePanelTypes.INVERTED) {
+        p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
+        p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
+        p3 = {x: 0, y: clientHeight - p2.y}
+        p4 = {x: screenRightEdge, y: clientHeight - p1.y}
+        path =
+            'M ' + p1.x + ' ' + p1.y
+            + ' A ' + r + ' ' + r + ' 0 0 0 ' + p2.x + ' ' + p2.y
+            + ' L ' + p3.x + ' ' + p4.y + ' '
+            + ' L ' + p1.x + ' ' + p4.y + ' '
+
+        color = 'rgba(0, 0, 0, 0.1)'
+    }
 
 
 
@@ -81,7 +102,7 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
                  viewport='0 0 100 100'
                  xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <path d={ path }
-                      fill="rgba(0, 0, 0, 0.6)" stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
+                      fill={ color } stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
             </svg>
         </div>
     )
@@ -102,14 +123,15 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
             position: 'absolute',
             right: '100%',
             top: y,
-            transform: props.isOpened ? 'translateY(-50%)' : 'translateY(-50%)rotateY(180deg)',
             transition: 'transform ' + appStyles.sidePanel.transitionTime / 500 + 's linear',
+            transform: props.isOpened ? 'translateY(-50%)' : 'translateY(-50%)rotateY(180deg)',
         },
         img: {
             height: unitHeight,
             width: unitHeight,
             cursor: 'pointer',
             paddingRight: 'calc(0.5 * ' + unitWidth + ')',
+            filter: 'invert(100%)',
         }
     }
 
@@ -120,18 +142,19 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
     )
 }
 
+
 const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     const { isOpened } = props
     const widthCoef = props.width
 
     const styles = getStyles(props)
-    console.log(props, '===')
 
     return (
         <div style={ styles.wrapper }>
             <BG
                 widthCoef={ widthCoef }
                 isFooterOpened={ props.isFooterOpened }
+                type={ props.type }
             />
             <div style={ styles.contentWrapper }>
                 <ToggleButton
@@ -140,13 +163,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                     linePosition={ props.linePosition }
                 />
 
-                <SlideTransition
-                    appTheme='default'
-                    currentPage={ props.currentPage }
-                    pages={ props.pages }
-                    linePosition={ props.linePosition }
-                />
-
+                { props.children }
             </div>
         </div>
     )
@@ -175,3 +192,7 @@ const ConnectedSidePanel: React.ComponentType<OwnProps> = connect(
 )(SidePanelSmart)
 
 export default ConnectedSidePanel
+
+export {
+    sidePanelTypes,
+}

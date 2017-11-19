@@ -18,10 +18,12 @@ import {
 
 import transitions from './transitions.js'
 
-import SidePanel from './SidePanel/SidePanel.jsx'
+import SidePanel, { sidePanelTypes } from './SidePanel/SidePanel.jsx'
 import TOC from './TOC/TOC.jsx'
 
 import getStyles from './PresentationStyles.jsx'
+
+import SlideTransition from './SlideTransition/SlideTransition.jsx'
 
 import type {
     ReduxState,
@@ -47,6 +49,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         windowWidth: state.appReducer.windowWidth,
         isFooterOpened: state.appReducer.isFooterOpened,
         goToPage: state.appReducer.goToPage,
+        linePosition: state.appReducer.linePosition,
     }
 }
 
@@ -81,13 +84,18 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
                     currentPage={ props.currentPage }
                     goTo={ props.goTo }
                     currentPath={ props.routing.location.pathname }
+                    appTheme={ props.appTheme}
                 />
             </div>
             <div style={ styles.sidePanel }>
-                <SidePanel
-                    pages={ props.pages }
-                    currentPage={ props.currentPage }
-                />
+                <SidePanel type={ sidePanelTypes.DEFAULT }>
+                    <SlideTransition
+                        appTheme={ props.appTheme }
+                        currentPage={ props.currentPage }
+                        pages={ props.pages }
+                        linePosition={ props.linePosition }
+                    />
+                </SidePanel>
             </div>
         </div>
     )

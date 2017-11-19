@@ -2,6 +2,8 @@
 
 import { styles as appStyles } from '../../../constants.js'
 
+import { sidePanelTypes } from './SidePanel.jsx'
+
 import type {
     Props,
     BgProps,
@@ -64,7 +66,7 @@ export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
             right: 0,
         },
         svg: {
-            opacity: props.isFooterOpened ? 0 : 1,
+            opacity: props.isFooterOpened && props.type === sidePanelTypes.DEFAULT  ? 0 : 1,
             transition: 'opacity 0.3s linear',
             width: panelWidth,
         },
