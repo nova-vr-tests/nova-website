@@ -136,7 +136,6 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
         layers,
         h1,
         h2,
-        theme,
         align,
     } = slide
 
