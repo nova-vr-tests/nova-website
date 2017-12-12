@@ -124,7 +124,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             display: 'flex',
             alignItems:'center',
             cursor: 'pointer',
-            opacity: (props.introKeyframe >= INTRO_FINISHED + 1 && !props.isFooterOpened) ? 1 : 0,
+            opacity: (props.introKeyframe >= INTRO_FINISHED + 1 && !props.isFooterOpened) ? 1 : 1,
         },
         closeFooterArrowWrapper: {
             transition: 'transform 0.5s, background-color 0.5s linear',

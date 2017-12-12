@@ -10,11 +10,13 @@ export type ReduxState = {
     updateCurrentPage: typeof initialState.appReducer.goToPage,
     isFooterOpened: typeof initialState.appReducer.isFooterOpened,
     sidebarHeaderIntersection: typeof initialState.headerReducer.sidebarIntersection,
+    currentFooterPage: typeof initialState.appReducer.currentFooterPage,
 }
 
 export type ReduxDispatch = {
     toggleSidebar: (_: void) => void,
     updateIsFooterOpened: (isFooterOpened: boolean) => void,
+    updateCurrentFooterPage: (currentFooterPage: number) => void,
 }
 
 export type OwnProps = {}

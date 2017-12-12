@@ -15,12 +15,18 @@ export type State = {
     windowWidth: number,
     isFooterOpened: boolean,
     goToPage: GoToPage,
+    currentFooterPage: number,
 }
 
 
 /*
    Actions types
 */
+
+export type UpdateCurrentFooterPageAction = {
+    type: 'footer/update_current_footer_page',
+    currentFooterPage: number,
+}
 
 export type UpdateIsFooterOpenedAction = {
     type: 'footer/update_is_footer_opened',
@@ -73,3 +79,4 @@ export type Action =  UpdateIsFooterOpenedAction
     | IncrementIntrokeyframeAction
     | ResetIntroKeyframeAction
     | ToggleSidebarAction
+    | UpdateCurrentFooterPage

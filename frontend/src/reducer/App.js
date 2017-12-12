@@ -14,6 +14,11 @@ export const sectionPosition = {
 }
 
 
+export const footerPage = {
+    LEGALS: 1,
+    CONTACT: 2,
+    LOGIN: 3,
+}
 
 export const initialState: State = {
     introKeyframe: 2,
@@ -21,15 +26,18 @@ export const initialState: State = {
     linePosition: 2, // position of current page in sidebar tree
     appTheme: appStyles.themeTypes.defaultTheme,
     currentPage: 0,
+    currentFooterPage: footerPage.LEGALS,
     goToPage: () => {},
     windowWidth: window.innerWidth, // number
     isFooterOpened: false,
 }
 
+
 export const UPDATE_IS_FOOTER_OPENED = 'footer/update_is_footer_opened'
 export const UPDATE_WINDOW_WIDTH = 'app/update_window_width'
 export const UPDATE_GO_TO_PAGE = 'app/update_go_to_page'
 export const UPDATE_CURRENT_PAGE = 'app/update_current_page'
+export const UPDATE_CURRENT_FOOTER_PAGE = 'app/update_current_footer_page'
 export const UPDATE_THEME = 'app/update_app_theme'
 export const UPDATE_LINE_POSITION = 'app/update_line_position'
 export const INCREMENT_INTRO_KEYFRAME = 'app/increment_intro_keyframe'
@@ -41,6 +49,11 @@ export default (state: State = initialState, action: Action): State => {
   const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
+  case UPDATE_CURRENT_FOOTER_PAGE:
+      return {
+          ...state,
+          currentFooterPage: action.currentFooterPage,
+      }
     case UPDATE_IS_FOOTER_OPENED:
         return {
             ...state,

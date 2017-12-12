@@ -1,5 +1,13 @@
 // @flow
+import { initialState } from '../../store.js'
 
-export type Props = {
-    opacity: number,
+export type ReduxState = {
+    currentFooterPage: typeof initialState.appReducer.currentFooterPage,
 }
+
+export type OwnProps = {
+    opacity: number,
+    windowWidth: number,
+}
+
+export type Props = OwnProps & ReduxState & ReduxDispatch
