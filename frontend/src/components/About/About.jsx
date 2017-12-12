@@ -53,17 +53,17 @@ const loginContent = (
 
 
 text[footerPage.LEGALS] = {
-    title: 'legals',
+    title: 'Legals',
     content: legalsContent
 }
 
 text[footerPage.CONTACT] = {
-    title: 'contact',
+    title: 'Contact',
     content: contactContent
 }
 
 text[footerPage.LOGIN] = {
-    title: 'login',
+    title: 'Login',
     content: loginContent
 }
 

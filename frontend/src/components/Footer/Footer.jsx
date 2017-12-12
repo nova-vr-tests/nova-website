@@ -132,9 +132,35 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
             </div>
             <PresentationControls {...props} opacity={ props.introKeyframe >= INTRO_FINISHED ? 1 : 0 } />
             <div style={ styles.quickLinks }>
-                <span onClick={ () => openFooter(footerPage.LEGALS) }  >Legals</span>
-                <span onClick={ () => openFooter(footerPage.CONTACT) } >Contact</span>
-                <span onClick={ () => openFooter(footerPage.LOGIN) }   >Login</span>
+                <span
+                    onClick={ () => openFooter(footerPage.LEGALS) }
+                    style={{
+                        color: props.currentFooterPage === footerPage.LEGALS  && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
+                        transition: 'color 0.1s linear',
+                    }}
+                >
+                    Legals
+                </span>
+                <span
+                    onClick={ () => openFooter(footerPage.CONTACT) }
+                    style={{
+                        color: props.currentFooterPage === footerPage.CONTACT && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
+                        marginLeft: '1rem',
+                        transition: 'color 0.1s linear',
+                    }}
+                >
+                    Contact
+                </span>
+                <span
+                    onClick={ () => openFooter(footerPage.LOGIN) }
+                    style={{
+                        color: props.currentFooterPage === footerPage.LOGIN   && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
+                        marginLeft: '1rem',
+                        transition: 'color 0.1s linear',
+                    }}
+                >
+                    Login
+                </span>
             </div>
         </div>
     )
