@@ -18,6 +18,7 @@ export type OwnProps = {
     currentPage: number,
     pages: Array<Page>,
     type: number,
+    marginTop: string,
 }
 
 export type SmartCompProps = {

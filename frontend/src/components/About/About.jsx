@@ -25,20 +25,20 @@ const text = {}
 
 const legalsContent = (
     <div>
-        <h2>Terms and conditions of use</h2>
+        <h2 style={{ marginTop: 0 }}>Terms and conditions of use</h2>
         <p>
             We maintain this site as a resource and communication portal. Terms of Service apply to anyone browsing the website. Accessing the site is acceptance without limitation or qualification of the following Terms and Conditions. If you do NOT accept the Terms and Conditions, please discontinue your use of this site.
         </p>
         <h2>Privacy Policy</h2>
         <p>
-            We use basic Google Analytics to improve our services. Opt-out of Google Analytics: https://tools.google.com/dl-page/gaoptout/
+            We use basic Google Analytics to improve our services. <a href="https://tools.google.com/dl-page/gaoptout/">Opt-out of Google Analytics.</a>
         </p>
     </div>
 )
 
 const contactContent = (
     <div>
-        <p>
+        <p style={{ marginTop: 0 }}>
             Thank you for your interest in Nova XR Media. Please email us with any question:
         </p>
         <strong><a href="mailto: joe@novamedia.nyc">joe@novamedia.nyc</a></strong>
@@ -47,7 +47,7 @@ const contactContent = (
 
 const loginContent = (
     <div>
-        <h2>Coming Soon</h2>
+        <h2 style={{ marginTop: 0 }}>Coming Soon</h2>
     </div>
 )
 
@@ -75,8 +75,10 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
 
     return (
         <div style={ styles.wrapper }>
-            <h2>{ title }</h2>
-            <SidePanel type={ sidePanelTypes.INVERTED }>
+            <h2 style={ styles.h2 }>{ title }</h2>
+            <SidePanel
+                marginTop='calc(20.833vh + 26.5667px)'
+                type={ sidePanelTypes.INVERTED }>
                 { content }
             </SidePanel>
         </div>

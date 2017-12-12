@@ -15,16 +15,22 @@ type Styles = {
     h1: CSSStyleDeclaration,
 }
 
+const { unitHeight, unitWidth } = appStyles
+const { widthFactor } = appStyles.sidebar
+const sidePanelWidthCoef = appStyles.sidePanel.openedWidthCoef
+
 const getStyles: GetStyles<Props, Styles> = props => {
-    const sidebarWidth = 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')'
+    const sidebarWidth = 'calc(' + widthFactor + ' * ' + unitWidth + ')'
+    const sidePanelWidth = 'calc(' + sidePanelWidthCoef + ' * ' + unitWidth + ')'
 
     return {
         wrapper: {
-            width: '100vw', //'calc(100vw - ' + sidebarWidth + ')',
+            width: 'calc(100vw - ' + sidebarWidth + ')',
             position: 'relative',
             color: 'black',
             opacity: props.opacity,
             transition: 'opacity 0.5s linear',
+            paddingLeft: sidebarWidth,
         },
         p: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
@@ -32,6 +38,13 @@ const getStyles: GetStyles<Props, Styles> = props => {
         h1: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
+        h2: {
+            width: 'calc(100vw - ' + sidePanelWidth + ' - ' + sidebarWidth + ')',
+            paddingTop: 'calc(' + 5 + ' * ' + unitHeight + ')',
+            paddingLeft: 'calc(' + 3 + ' * ' + unitWidth + ')',
+            boxSizing: 'border-box',
+            fontSize: '2rem',
+        }
     }
 }
 

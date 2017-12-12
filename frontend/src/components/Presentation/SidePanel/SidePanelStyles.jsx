@@ -27,6 +27,8 @@ const getStyles: GetStyles<Props, Styles> = props => {
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
     const headerHeightCoef = 3
 
+    console.log(props.marginTop)
+
     return {
         wrapper: {
         },
@@ -39,6 +41,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             right: 0,
             left: 'calc(100vw - ' + panelWidth + ')',
             padding: 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
+            paddingTop: props.marginTop ? props.marginTop : 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
         },
     }
 }
