@@ -27,8 +27,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
     const headerHeightCoef = 3
 
-    console.log(props.marginTop)
-
     return {
         wrapper: {
         },
