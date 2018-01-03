@@ -94,6 +94,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
                         currentPage={ props.currentPage }
                         pages={ props.pages }
                         linePosition={ props.linePosition }
+                        scrollEvent={ props.scrollEvent }
                     />
                 </SidePanel>
             </div>
@@ -156,6 +157,10 @@ class Presentation extends React.Component<Props> {
 
         // Update redux goToPage function
         this.props.updateGoToPage(this.goToPage)
+
+        this.state = {
+            scrollEvent: null,
+        }
     }
 
     componentDidMount() {
@@ -305,22 +310,7 @@ class Presentation extends React.Component<Props> {
        Change slide on user scroll
     **/
     onScroll(e) {
-        const sign = e.deltaY
-
-
-        if(sign > 0) {
-            if(this.props.pages[this.props.currentPage] === this.props.pages[this.props.pages.length - 1]) {
-                return
-            }
-
-            this.goToNextPage()
-        } else if(sign < 0) {
-            if(this.props.pages[this.props.currentPage] === this.props.pages[0]) {
-                return
-            }
-
-            this.goToPreviousPage()
-        }
+        this.setState({ scrollEvent: e })
     }
 
 
@@ -328,6 +318,7 @@ class Presentation extends React.Component<Props> {
 
         return (
             <PresentationDumb
+                scrollEvent={ this.state.scrollEvent }
                 { ...this.props }
             />
         )

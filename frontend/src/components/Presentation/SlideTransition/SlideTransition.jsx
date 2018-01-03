@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 
-import Slide from '../Slide/Slide.jsx'
+import Slide from './Slide.jsx'
 
 import { styles as appStyles } from '../../../constants.js'
 
@@ -115,14 +115,16 @@ class SlideTransition extends React.Component<Props, State> {
                 {...this.props}
                 currentPage={ this.state.currentPage }
                 id='current-slide'
-        isTarget={ false }
+                isTarget={ false }
+                scrollEvent={ this.props.scrollEvent }
             />
 
         const TargetSlide = <Slide
                 {...this.props}
                 currentPage={ this.state.targetPage }
                 id='target-slide'
-        isTarget={ true }
+                isTarget={ true }
+                scrollEvent={ this.props.scrollEvent }
             />
 
         const theme = appStyles.themes[this.props.appTheme]
