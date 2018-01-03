@@ -1,11 +1,60 @@
 * Frontend
-** TB TODO slide boundary conditions :TB:website:
-** TB TODO isolate transition functions :TB:website:
-** TB TODO map arrow keys to slide transitions :TB:website:
-** TB TODO hook up the line height to the slide presentation transitions :TB:website:
-Could probably have the router deal with line heights
+** proposals
+*** TB  fetch proposal html from API                               :proposal:
+    SCHEDULED: <2018-01-08 Mon>
+*** TB  parse html                                                 :proposal:
+    SCHEDULED: <2018-01-08 Mon>
+*** TB  show html                                                  :proposal:
+    SCHEDULED: <2018-01-08 Mon>
+
+** publications
+*** TB fetch publications                                      :publications:
+    SCHEDULED: <2018-01-06 Sat>
+*** TB download pdf                                            :publications:
+    SCHEDULED: <2018-01-06 Sat>
+
+** blog posts
+*** TB fetch post                                                      :blog:
+    SCHEDULED: <2018-01-05 Fri>
+*** TB post list                                                       :blog:
+    SCHEDULED: <2018-01-05 Fri>
+*** TB show post                                                       :blog:
+    SCHEDULED: <2018-01-05 Fri>
+
+** pages
+*** side panel
+**** TB create responsive styling comp                                :pages:
+     SCHEDULED: <2018-01-04 Thu>
+**** TB create new side panel comp                                    :pages:
+     SCHEDULED: <2018-01-04 Thu>
+**** TB scroll updates parallax                                       :pages:
+     SCHEDULED: <2018-01-04 Thu>
+**** TB mobile                                                        :pages:
+     SCHEDULED: <2018-01-04 Thu>
+**** TB remove scroll event when footer is up                         :pages:
+     SCHEDULED: <2018-01-04 Thu>
+** BG
+**** TB redo data structure                                              :bg:
+     SCHEDULED: <2018-01-04 Thu>
+**** TB calc based on scroll height                                      :bg:
+     SCHEDULED: <2018-01-04 Thu>
 
 * Backend
+** blog posts
+*** TB admin new / edit blog posts with wiswig markdown                :blog:
+    SCHEDULED: <2018-01-05 Fri>
+*** TB rest api                                                        :blog:
+    SCHEDULED: <2018-01-05 Fri>
+
+** publications
+*** TB fetch files from gittest                                :publications:
+    SCHEDULED: <2018-01-06 Sat>
+*** TB create rest api                                         :publications:
+    SCHEDULED: <2018-01-06 Sat>
+*** TB lock with password                                      :publications:
+    SCHEDULED: <2018-01-06 Sat>
 
 * Other
-- http://docraptor.com/
+*** Prince XML
+turns html docs into pdf on the fly.
+- Prince XML PaaS: http://docraptor.com/
