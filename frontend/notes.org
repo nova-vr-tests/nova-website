@@ -25,19 +25,23 @@
 *** side panel
 **** TB create responsive styling comp                                :pages:
      SCHEDULED: <2018-01-04 Thu>
-**** TB create new side panel comp                                    :pages:
-     SCHEDULED: <2018-01-04 Thu>
+**** DONE create new side panel comp                                  :pages:
+     CLOSED: [2018-01-04 Thu 16:34] SCHEDULED: <2018-01-04 Thu>
 **** TB scroll updates parallax                                       :pages:
      SCHEDULED: <2018-01-04 Thu>
 **** TB mobile                                                        :pages:
      SCHEDULED: <2018-01-04 Thu>
 **** TB remove scroll event when footer is up                         :pages:
      SCHEDULED: <2018-01-04 Thu>
+**** TB fix scroll issue when dreamscaping                            :pages:
+     SCHEDULED: <2018-01-04 Thu>
+**** TB ease-out animation timing function on toggle sidebar          :pages:
+     SCHEDULED: <2018-01-04 Thu>
 ** BG
 **** TB redo data structure                                              :bg:
      SCHEDULED: <2018-01-04 Thu>
-**** TB calc based on scroll height                                      :bg:
-     SCHEDULED: <2018-01-04 Thu>
+**** DONE calc based on scroll height                                    :bg:
+     CLOSED: [2018-01-04 Thu 16:41] SCHEDULED: <2018-01-04 Thu>
 
 * Backend
 ** blog posts
