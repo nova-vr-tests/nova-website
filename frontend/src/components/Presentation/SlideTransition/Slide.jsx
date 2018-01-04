@@ -1,6 +1,16 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 
 import getStyles from '../Slide/SlideStyles.jsx'
+
+import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
+
+const mapStateToProps = state => ({
+})
+
+const mapDispatchToProps = dispatch => ({
+    applyParalax: progress => dispatch(translateXLayersBgs(progress)),
+})
 
 const calcSlideNumFromPageNum = (pages, currentPage, currentPid) => {
     return currentPage - pages
@@ -20,7 +30,8 @@ let rafId = 0
 let dY = 0
 let el
 
-const scroll = (e, elId) => {
+const scroll = (e, elId, callback = () => {}) => {
+    console.log(e)
     const newDate = new Date()
     if(!el)
         el = document.getElementById(elId)
@@ -40,18 +51,31 @@ const scroll = (e, elId) => {
         }
 
         progress = 0
-        targetScroll = currentScroll + dY * 50
+        targetScroll = currentScroll + dY * 40
     }
 
-    const deltaT = (newDate.getTime() - oldDate.getTime()) / 1000
+    const deltaT = (newDate.getTime() - oldDate.getTime()) / 700
     progress = Math.sin(Math.PI * deltaT)
+    progress = deltaT*(2-deltaT)
 
     const sign = Math.sign(dY)
     el.scrollTo(0, currentScroll + (targetScroll - currentScroll) * progress)
 
+    const foo = document.querySelector('.back-bg > div')
+    // foo.style.transform = "translateX(" + el.scrollTop + "px)"
+
 
     if(progress < 0.99) {
-        rafId = requestAnimationFrame(() => scroll({ deltaY: 0 }, elId))
+        rafId = requestAnimationFrame(() => {
+            const scrollProgress =
+                (el.scrollTop / (el.scrollHeight - el.offsetHeight))
+
+            if(el.scrollTop !== 0) {
+                callback(scrollProgress)
+            }
+
+            scroll({ deltaY: 0 }, elId, callback)
+        })
     } else {
         currentScroll = targetScroll
     }
@@ -97,7 +121,7 @@ const Slide = props => {
     const h2 = _h2 === 'Introduction' ? '' : _h2
 
     if(props.scrollEvent) {
-        scroll(props.scrollEvent, id2)
+        scroll(props.scrollEvent, id2, props.applyParalax)
     }
 
 
@@ -120,4 +144,9 @@ const Slide = props => {
     ]
 }
 
-export default Slide
+const ConnectedSlide = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Slide)
+
+export default ConnectedSlide
