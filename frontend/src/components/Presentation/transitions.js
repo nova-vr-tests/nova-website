@@ -101,12 +101,13 @@ const updateLayersOpacity: UpdateLayersOpacity = (layers, opacity) => layers.map
 /*
     Reset background styles so next transition appears smoothly
     - param sign {number} positive for next slide and negative for previous slide
+
 **/
 const resetBackgroundStyles = (layers, progress = 0) => {
-        return store.getState().bgReducer.frontLayers.map(e => ({
-            ...e,
-            opacity: e.opacity * progress,
-        }))
+    return layers.map(e => ({
+        ...e,
+        opacity: e.opacity * progress,
+    }))
 
 }
 

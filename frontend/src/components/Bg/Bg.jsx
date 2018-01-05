@@ -191,8 +191,6 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
 
     return (
         <div style={ styles.wrapper } className="bar">
-
-
                 <LayerAssembly
                     layers={ cacheLayers }
                     translateY={ 0 }
