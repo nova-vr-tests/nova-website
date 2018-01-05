@@ -86,7 +86,7 @@ LayerAssembly.defaultProps = {
 }
 
 
-let isFrontBgShown = false
+let isFrontBgShown = true
 let prevCurrentPage = -1
 const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     const styles = getStyles(props)
@@ -175,8 +175,13 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
             !props.isDreamscaping
         ) {
             cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid)
-            if(isFrontBgShown)
-                frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
+            if(isFrontBgShown) {
+                if(frontLayers.length) {
+                    frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
+                } else {
+                    backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
+                }
+            }
             else
                 backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
         }
