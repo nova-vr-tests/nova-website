@@ -5,6 +5,7 @@ import {
     updateFrontLayers,
     updateBackLayers,
     updateCacheLayers,
+    updateIsDreamscaping,
 } from '../../reducer/actions/Bg.js'
 
 import store from '../../store.js'
@@ -126,6 +127,8 @@ const updateFrontLayersOpacity: UpdateFronLayersOpacity = (layers, progress, lay
  transition
 **/
 const slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScrollEvent) => {
+    // update isDreamscaping to true
+    dispatch(updateIsDreamscaping(true))
 
 
     // Upgrade backgrounds
@@ -161,6 +164,9 @@ const slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScro
             // Clear interval
             window.clearInterval(transitionTimer)
             transitionTimer = undefined
+
+            // set isdreamscaping to false
+            dispatch(updateIsDreamscaping(false))
 
         } else {
             ////// Continue scrolling

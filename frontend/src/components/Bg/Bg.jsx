@@ -36,6 +36,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
       frontLayersPid: state.bgReducer.frontLayersPid,
       backLayersPid: state.bgReducer.backLayersPid,
       cacheLayersPid: state.bgReducer.cacheLayersPid,
+      isDreamscaping: state.bgReducer.isDreamscaping,
   }
 }
 
@@ -57,6 +58,9 @@ const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = pr
     type GetLayers = (layers: typeof props.layers) => Array<React.Element<typeof Layer>>
 
     const styles = getLayerAssemblyStyles()
+    if(!props.display) {
+        styles.wrapper.display = 'none'
+    }
 
     const getLayers: GetLayers = layers => {
         return layers.map((e, i) => (
@@ -75,6 +79,10 @@ const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = pr
             { getLayers(props.layers) }
         </div>
     )
+}
+
+LayerAssembly.defaultProps = {
+    display: 1,
 }
 
 
@@ -161,13 +169,20 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
             })
         }
 
-        if(props.slideTransitionProgress <= 0 && props.slideTransitionProgress >= 1) {
-            if(isFrontBgShown) {
+
+
+        if(
+            !props.isDreamscaping
+        ) {
+            cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid)
+            if(isFrontBgShown)
                 frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
-            } else {
+            else
                 backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
-            }
         }
+
+        console.log(frontLayers.map(e => e.opacity))
+        console.log(backLayers.map(e => e.opacity))
     }
 
 
@@ -179,6 +194,7 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
                 <LayerAssembly
                     layers={ cacheLayers }
                     translateY={ 0 }
+                    display={ 0 }
                 />
 
             <div className="split-top" style={ styles.split.wrapper }>

@@ -16,6 +16,7 @@ export const initialState: State = {
     frontLayersPid: 0,
     backLayersPid: 0,
     cacheLayersPid: 0,
+    isDreamscaping: false,
 }
 
 /**
@@ -26,12 +27,18 @@ export const UPDATE_FRONT_LAYERS = 'bg/update_front_layers'
 export const UPDATE_BACK_LAYERS = 'bg/update_back_layers'
 export const UPDATE_CACHE_LAYERS = 'bg/update_cache_layers'
 export const TRANSLATE_X_LAYERS_BGS = 'bg/translateX_all_layers'
+export const UPDATE_IS_DREAMSCAPING = 'bg/update_is_dreamscaping'
 
 /**
    Reducer
 */
 export default (state: State = initialState, action: Action) => {
     switch (action.type) {
+    case UPDATE_IS_DREAMSCAPING:
+        return {
+            ...state,
+            isDreamscaping: action.isDreamscaping
+        }
         case TRANSLATE_X_LAYERS_BGS:
             const { progress } = action
 
