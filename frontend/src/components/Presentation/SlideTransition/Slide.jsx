@@ -121,14 +121,16 @@ const Slide = props => {
 
     if(props.transitionProgress <= 0 || props.transitionProgress >= 1) {
         if(props.scrollEvent && !props.isTarget) {
-            console.log('scrolleevent', props.scrollEvent)
             scroll(props.scrollEvent, id2, props.applyParalax)
         }
+
+    } else {
+        window.requestAnimationFrame(() => {
+            document.getElementById(id2).scrollTo(0, 0)
+            props.applyParalax(0)
+        })
     }
 
-    window.requestAnimationFrame(() => {
-        document.getElementById(id2).scrollTo(0, 0)
-    })
 
 
     return [
