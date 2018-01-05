@@ -6,6 +6,7 @@ import getStyles from '../Slide/SlideStyles.jsx'
 import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
 
 const mapStateToProps = state => ({
+    scrollProgress: state.bgReducer.progress,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -38,7 +39,7 @@ const scroll = (e, elId, callback = () => {}) => {
     // update target scroll
     if(e.deltaY !== 0) {
 
-        dY = e.deltaY
+        dY = 3 * Math.sign(e.deltaY)
 
         oldDate = new Date()
 
