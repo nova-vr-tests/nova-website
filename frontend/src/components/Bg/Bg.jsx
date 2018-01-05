@@ -161,12 +161,12 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
             })
         }
 
-
-        cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid)
-        if(isFrontBgShown) {
-            frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
-        } else {
-            backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
+        if(props.slideTransitionProgress <= 0 && props.slideTransitionProgress >= 1) {
+            if(isFrontBgShown) {
+                frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
+            } else {
+                backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
+            }
         }
     }
 
