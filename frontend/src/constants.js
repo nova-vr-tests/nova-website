@@ -84,7 +84,7 @@ const styles: AppStyles = {
         'footer-is-opened': defaultTheme,
     },
     mediaQueries: {
-        phone: 600, // px
+        phone: 1000, // px
     },
     lineDimensions: {
         height: '',

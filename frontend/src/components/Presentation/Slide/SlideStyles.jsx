@@ -9,13 +9,23 @@ const getStyles = props => {
     const headHeightCoef = lineYCoef - headerHeightCoef - titleHeightCoef
     const tailHeightCoef = 24 - lineYCoef - footerHeightCoef - lineHeightCoef
 
+    let overflowX = 'hidden'
+    let overflowY = 'hidden'
+    const sidePanelPadding = '12.5vh' // see SidePanelStyles.jsx
+    let minWidth = 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ' - ' + sidePanelPadding + ' * 2)'
+    const { clientWidth } = document.documentElement
+    if(clientWidth < appStyles.mediaQueries.phone) {
+        overflowY = 'scroll'
+        minWidth = '100%'
+    }
+
     return {
         slideParagraphs: {
             height: 'calc(' + (24 - headerHeightCoef - footerHeightCoef) + ' * ' + appStyles.unitHeight + ')',
-            overflowY: 'hidden',
-            overflowX: 'hidden',
+            overflowY,
+            overflowX,
             // min width greater than container so it doesn't shrink on panel close
-            minWidth: 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ')',
+            minWidth,
         },
         head: {
             height: 'calc(' + headHeightCoef + ' * ' + appStyles.unitHeight + ') ',
@@ -29,7 +39,7 @@ const getStyles = props => {
             padding: 0,
             margin: 0,
             // min width greater than container so it doesn't shrink on panel close
-            minWidth: 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ')',
+            minWidth,
         },
         paragraph: {
             // height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',

@@ -136,7 +136,7 @@ const Slide = props => {
 
     return [
         <div style={ {...styles.slideParagraphs, position: 'relative'} } id={ id2 } key={ 2 }>
-            <div style={ {position: 'absolute', top: 0 } }>
+            <div style={ {position: 'absolute', top: 0, width: '100%' } }>
                 <div style={ styles.head }>
                 </div>
                 <div id={ id1 }>

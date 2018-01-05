@@ -28,7 +28,7 @@ const styles = {
         alignItems: 'center',
     },
     P: {
-        width: appStyles.slideParagraphWidth,
+        width: '100%',
         height: 'min-content',
         fontSize: appStyles.UI.P.fontSize,
     },

@@ -128,13 +128,13 @@ class SlideTransition extends React.Component<Props, State> {
             />
 
         const TargetSlide = <Slide
-                {...this.props}
-                currentPage={ this.state.targetPage }
-                id='target-slide'
-                isTarget={ true }
-                scrollEvent={ this.props.scrollEvent }
-                transitionProgress={ this.state.transitionProgress }
-            />
+            {...this.props}
+            currentPage={ this.state.targetPage }
+            id='target-slide'
+            isTarget={ true }
+            scrollEvent={ this.props.scrollEvent }
+            transitionProgress={ this.state.transitionProgress }
+        />
 
         const theme = appStyles.themes[this.props.appTheme]
 
@@ -153,10 +153,12 @@ class SlideTransition extends React.Component<Props, State> {
             currentSlideStyle: {
                 ...this.getTranslationStyles().currentSlide,
                 height: '100vh',
+                width: '100%',
             },
             targetSlideStyle: {
                 ...this.getTranslationStyles().targetSlide,
                 height: '100vh',
+                width: '100%',
             },
         }
 

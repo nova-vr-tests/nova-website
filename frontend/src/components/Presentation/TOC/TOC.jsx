@@ -17,8 +17,14 @@ type Props = {
 }
 
 const TOC: React.StatelessFunctionalComponent<Props> = props => {
+    const { clientWidth } = document.documentElement
+    let displayWrapper = 'inherit'
+    if(clientWidth < appStyles.mediaQueries.phone) {
+        displayWrapper = 'none'
+    }
     const styles = {
         wrapper: {
+            display: displayWrapper,
         },
         links: {
             display: 'flex',

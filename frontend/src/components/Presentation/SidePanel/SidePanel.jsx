@@ -55,7 +55,8 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 
 
 const BG: React.StatelessFunctionalComponent<BgProps> = props => {
-    const widthCoef = props.widthCoef
+    const { clientWidth, clientHeight } = document.documentElement
+    const widthCoef = clientWidth < appStyles.mediaQueries.phone ? clientWidth / appStyles.unitWidthJs : props.widthCoef
 
     const styles = getBgStyles(props)
 
@@ -68,7 +69,6 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     let coord2Circ = props.type === sidePanelTypes.DEFAULT ? coord2CircDefault : coord2CircInverted
 
     const screenRightEdge = widthCoef * appStyles.unitWidthJs
-    const { clientWidth, clientHeight } = document.documentElement
     let p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
     let p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
     let p3 = {x: 0, y: clientHeight - p2.y}
@@ -115,17 +115,24 @@ type ToggleButtonProps = {
     type: number,
 }
 
-const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = props => {
-    const { unitHeight, unitWidth } = appStyles
+const getToggleButtonStyles = props => {
+    const { unitHeight, unitWidth, mediaQueries } = appStyles
 
     const y = 'calc(' + (11 + 2 * props.linePosition) + ' * ' + unitHeight + ')'
-    const styles = {
+
+    let display = 'inherit'
+    if(document.documentElement.clientWidth < mediaQueries.phone) {
+        display = 'none'
+    }
+
+    return {
         wrapper: {
             position: 'absolute',
             right: '100%',
             top: y,
             transition: 'transform ' + appStyles.sidePanel.transitionTime / 500 + 's linear',
             transform: props.isOpened ? 'translateY(-50%)' : 'translateY(-50%)rotateY(180deg)',
+            display,
         },
         img: {
             height: unitHeight,
@@ -135,6 +142,10 @@ const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = prop
             filter: props.type === sidePanelTypes.DEFAULT ? 'inherit' : 'invert(10%)',
         }
     }
+}
+
+const ToggleButton: React.StatelessFunctionalComponent<ToggleButtonProps> = props => {
+    const styles = getToggleButtonStyles(props)
 
     return (
         <div style={ styles.wrapper } onClick={ props.onClick }>

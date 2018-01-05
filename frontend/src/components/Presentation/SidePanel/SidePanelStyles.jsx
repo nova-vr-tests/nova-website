@@ -27,6 +27,12 @@ const getStyles: GetStyles<Props, Styles> = props => {
     const panelWidth = 'calc(' + widthCoef + ' * ' + appStyles.unitWidth + ')'
     const headerHeightCoef = 3
 
+    const { clientWidth } = document.documentElement
+    let left = 'calc(100vw - ' + panelWidth + ')'
+    if(clientWidth < appStyles.mediaQueries.phone) {
+        left = 0
+    }
+
     return {
         wrapper: {
         },
@@ -37,7 +43,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             top: 0,
             bottom: 0,
             right: 0,
-            left: 'calc(100vw - ' + panelWidth + ')',
+            left,
             padding: 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
             paddingTop: props.marginTop ? props.marginTop : 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
         },
@@ -57,7 +63,12 @@ type BgStyles = {
 }
 
 export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
-    const panelWidth = 'calc(' + props.widthCoef + ' * ' + appStyles.unitWidth + ')'
+    let panelWidth = 'calc(' + props.widthCoef + ' * ' + appStyles.unitWidth + ')'
+    const { clientWidth } = document.documentElement
+    if(clientWidth < appStyles.mediaQueries.phone) {
+        panelWidth = clientWidth
+    }
+
     return {
         wrapper: {
             position: 'absolute',
