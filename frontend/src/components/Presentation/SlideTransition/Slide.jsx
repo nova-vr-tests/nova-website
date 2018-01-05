@@ -119,9 +119,16 @@ const Slide = props => {
     const _h2 = props.pages[props.currentPage].h2
     const h2 = _h2 === 'Introduction' ? '' : _h2
 
-    if(props.scrollEvent) {
-        scroll(props.scrollEvent, id2, props.applyParalax)
+    if(props.transitionProgress <= 0 || props.transitionProgress >= 1) {
+        if(props.scrollEvent && !props.isTarget) {
+            console.log('scrolleevent', props.scrollEvent)
+            scroll(props.scrollEvent, id2, props.applyParalax)
+        }
     }
+
+    window.requestAnimationFrame(() => {
+        document.getElementById(id2).scrollTo(0, 0)
+    })
 
 
     return [

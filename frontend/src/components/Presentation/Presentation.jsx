@@ -92,6 +92,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
             <div style={ styles.sidePanel }>
                 <SidePanel type={ sidePanelTypes.DEFAULT }>
                     <SlideTransition
+                        resetScrollEvent={ props.resetScrollEvent }
                         appTheme={ props.appTheme }
                         currentPage={ props.currentPage }
                         pages={ props.pages }
@@ -159,6 +160,7 @@ class Presentation extends React.Component<Props> {
         this.updateSlideFromUrl = this.updateSlideFromUrl.bind(this)
         this.getTransitionType = this.getTransitionType.bind(this)
         this.updateLinePosition = this.updateLinePosition.bind(this)
+        this.resetScrollEvent = this.resetScrollEvent.bind(this)
 
         // Update redux goToPage function
         this.props.updateGoToPage(this.goToPage)
@@ -189,6 +191,15 @@ class Presentation extends React.Component<Props> {
             // update app theme on current page state update
             this.updateAppTheme(nextProps.currentPage)
         }
+    }
+
+    componentDidUpdate() {
+        if(this.state.scrollEvent)
+            this.resetScrollEvent()
+    }
+
+    resetScrollEvent() {
+        this.setState({ scrollEvent: null })
     }
 
     updateAppTheme(currentPage) {
@@ -326,6 +337,7 @@ class Presentation extends React.Component<Props> {
         return (
             <PresentationDumb
                 scrollEvent={ this.state.scrollEvent }
+                resetScrollEvent={ this.resetScrollEvent }
                 { ...this.props }
             />
         )

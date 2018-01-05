@@ -185,9 +185,6 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
             else
                 backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
         }
-
-        console.log(frontLayers.map(e => e.opacity))
-        console.log(backLayers.map(e => e.opacity))
     }
 
 

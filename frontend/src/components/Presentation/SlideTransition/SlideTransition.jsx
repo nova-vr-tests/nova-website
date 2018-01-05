@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import store from '../../../store.js'
 
 import Slide from './Slide.jsx'
 
@@ -13,6 +14,10 @@ import type {
     State,
     TranslationStyles,
 } from './SlideTransitionTypes.jsx'
+
+import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
+
+const dispatch = store.dispatch
 
 /**
    Takes slides as props and stores them in state to handle slide transition.
@@ -46,6 +51,8 @@ class SlideTransition extends React.Component<Props, State> {
 
         // Check if slide has changed
         if(newProps.pages[newProps.currentPage].pid !== this.props.pages[this.props.currentPage].pid) {
+            dispatch(translateXLayersBgs(0))
+
             this.setState({
                 targetPage: newProps.currentPage,
                 transitionProgress: 0,
@@ -117,6 +124,7 @@ class SlideTransition extends React.Component<Props, State> {
                 id='current-slide'
                 isTarget={ false }
                 scrollEvent={ this.props.scrollEvent }
+                transitionProgress={ this.state.transitionProgress }
             />
 
         const TargetSlide = <Slide
@@ -125,6 +133,7 @@ class SlideTransition extends React.Component<Props, State> {
                 id='target-slide'
                 isTarget={ true }
                 scrollEvent={ this.props.scrollEvent }
+                transitionProgress={ this.state.transitionProgress }
             />
 
         const theme = appStyles.themes[this.props.appTheme]
