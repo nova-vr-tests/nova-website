@@ -59,7 +59,7 @@ const scroll = (e, elId, callback = () => {}) => {
     progress = deltaT*(2-deltaT)
 
     const sign = Math.sign(dY)
-    el.scrollTo(0, currentScroll + (targetScroll - currentScroll) * progress)
+    el.scrollTop = currentScroll + (targetScroll - currentScroll) * progress
 
     const foo = document.querySelector('.back-bg > div')
     // foo.style.transform = "translateX(" + el.scrollTop + "px)"
@@ -127,7 +127,7 @@ const Slide = props => {
 
     } else {
         window.requestAnimationFrame(() => {
-            document.getElementById(id2).scrollTo(0, 0)
+            document.getElementById(id2).scrollTop = 0
             props.applyParalax(0)
         })
     }
