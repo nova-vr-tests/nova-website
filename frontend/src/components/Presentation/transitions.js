@@ -115,7 +115,7 @@ const updateFrontLayersOpacity: UpdateFronLayersOpacity = (layers, progress, lay
         opacity: e.opacity * progress,
     }))
 
-    dispatch(updateFrontLayers(targetLayers), layersPid)
+    dispatch(updateFrontLayers(targetLayers, layersPid))
 }
 
 /*

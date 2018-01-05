@@ -77,6 +77,9 @@ const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = pr
     )
 }
 
+
+let isFrontBgShown = false
+let prevCurrentPage = -1
 const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     const styles = getStyles(props)
 
@@ -85,17 +88,23 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     }
 
     const currentPage = props.pages[props.currentPage]
+     if(prevCurrentPage > props.currentPage) {
+         isFrontBgShown = false
+         prevCurrentPage = props.currentPage
+     } else if (prevCurrentPage < props.currentPage) {
+         isFrontBgShown = true
+         prevCurrentPage = props.currentPage
+     }
 
     let { frontLayers, backLayers, cacheLayers } = props
     if(props.pages.length > 0) {
 
 
         const updateLayers = (layers, progress, pid) => {
+
             if(layers.length === 0) {
                 return layers
             }
-            const foo = props.pages
-                              .filter(e => e.pid !== pid)
 
             const keyframes = props.pages
                               .filter(e => e.pid === pid)
@@ -124,8 +133,7 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
 
                 let slideStart = j <= 0 ? 0 : j
                 let slideEnd = j >= keyframes.length - 1 ? keyframes.length - 1 : slideStart + 1
-                slideStart = slideStart === slideEnd ? slideEnd - 1 : slideStart
-                slideEnd = slideEnd === 0 ? 1 : slideEnd
+                slideStart = slideStart === slideEnd && slideStart !== 0 ? slideEnd - 1 : slideStart
 
 
 
@@ -143,7 +151,6 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
 
                 let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
 
-                console.log(slideStart, slideEnd, j)
 
 
                 return {
@@ -154,9 +161,13 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
             })
         }
 
+
         cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid)
-        frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
-        backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
+        if(isFrontBgShown) {
+            frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
+        } else {
+            backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
+        }
     }
 
 
