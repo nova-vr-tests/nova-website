@@ -194,7 +194,6 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
                 <LayerAssembly
                     layers={ cacheLayers }
                     translateY={ 0 }
-                    display={ 0 }
                 />
 
             <div className="split-top" style={ styles.split.wrapper }>
