@@ -114,7 +114,8 @@ const updateLayers = (layers, progress, pid, pages) => {
                                     }))
                         )
 
-    if(keyframes.length === 0) {
+    // no parallax with 1 keyframe or less
+    if(keyframes.length <= 1) {
         return layers
     }
 
