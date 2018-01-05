@@ -122,8 +122,8 @@ const updateLayers = (layers, progress, pid, pages) => {
 
 
         const delta = 1 / (keyframes.length - 1)
-        let j
 
+        let j
         for(j = 0; j < keyframes.length; j++) {
             if (progress < ( j+ 1) * delta) {
                 break
@@ -149,8 +149,6 @@ const updateLayers = (layers, progress, pid, pages) => {
         const opacitySign = opacityStart > opacityEnd ? -1 : 1
 
         let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
-
-
 
         return {
             ...l,

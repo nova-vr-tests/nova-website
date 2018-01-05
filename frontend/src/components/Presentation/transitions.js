@@ -63,19 +63,10 @@ const updateBackgroundLayers = (sign, pages, currentPage) => {
     const currentSlideLayersPid = pages[currentPage].pid
     const previousSlideLayersPid = pages[previousPage].pid
 
-    console.log(
-        store.getState().bgReducer,
-        currentlyShownLayers,
-        frontLayers.map(e => e.paralax),
-        backLayers.map(e => e.paralax),
-    )
-    debugger
-
     const { resetBackgroundStyles } = transitions.splitBackground
     if(sign > 0) {
         if(isBackLayerVisible) {
             dispatch(updateCacheLayers(backLayers2, backLayersPid))
-            // dispatch(updateBackLayers(backLayers))
             dispatch(updateBackLayers(currentSlideLayers, currentSlideLayersPid))
         } else {
             dispatch(updateCacheLayers(resetBackgroundStyles(frontLayers, 1), frontLayersPid))
