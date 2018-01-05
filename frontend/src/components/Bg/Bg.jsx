@@ -30,6 +30,12 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
       backLayers: state.bgReducer.backLayers,
       cacheLayers: state.bgReducer.cacheLayers,
       appTheme: state.appReducer.appTheme,
+      currentPage: state.appReducer.currentPage,
+      pages: state.appReducer.pages,
+      progress: state.bgReducer.progress,
+      frontLayersPid: state.bgReducer.frontLayersPid,
+      backLayersPid: state.bgReducer.backLayersPid,
+      cacheLayersPid: state.bgReducer.cacheLayersPid,
   }
 }
 
@@ -74,25 +80,106 @@ const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = pr
 const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     const styles = getStyles(props)
 
+    const getKF = (layers, pid) => {
+        layers.filter(e => e.pid === pid)
+    }
+
+    const currentPage = props.pages[props.currentPage]
+
+    let { frontLayers, backLayers, cacheLayers } = props
+    if(props.pages.length > 0) {
+
+
+        const updateLayers = (layers, progress, pid) => {
+            if(layers.length === 0) {
+                return layers
+            }
+            const foo = props.pages
+                              .filter(e => e.pid !== pid)
+
+            const keyframes = props.pages
+                              .filter(e => e.pid === pid)
+                              .map(e => e.layers
+                                         .map(f => ({
+                                             paralax: f.paralax,
+                                             opacity: f.opacity
+                                         }))
+                              )
+
+            if(keyframes.length === 0) {
+                return layers
+            }
+
+            return layers.map((l, i) => {
+
+
+                const delta = 1 / (keyframes.length - 1)
+                let j
+
+                for(j = 0; j < keyframes.length; j++) {
+                    if (progress < ( j+ 1) * delta) {
+                        break
+                    }
+                }
+
+                let slideStart = j <= 0 ? 0 : j
+                let slideEnd = j >= keyframes.length - 1 ? keyframes.length - 1 : slideStart + 1
+                slideStart = slideStart === slideEnd ? slideEnd - 1 : slideStart
+                slideEnd = slideEnd === 0 ? 1 : slideEnd
+
+
+
+                // hack to skip during layer caching
+                if (keyframes[0].length - 1 < i) return l
+
+
+                const paralaxStart = keyframes[slideStart][i].paralax
+                const paralaxEnd = keyframes[slideEnd][i].paralax
+                let paralax = paralaxStart + (paralaxEnd - paralaxStart) * (progress - slideStart * delta) / delta
+
+                const opacityStart = keyframes[slideStart][i].opacity
+                const opacityEnd = keyframes[slideEnd][i].opacity
+                const opacitySign = opacityStart > opacityEnd ? -1 : 1
+
+                let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
+
+                console.log(slideStart, slideEnd, j)
+
+
+                return {
+                    ...l,
+                    paralax,
+                    opacity,
+                }
+            })
+        }
+
+        cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid)
+        frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
+        backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
+    }
+
+
+
     return (
         <div style={ styles.wrapper } className="bar">
 
 
                 <LayerAssembly
-                    layers={ props.cacheLayers }
+                    layers={ cacheLayers }
                     translateY={ 0 }
                 />
 
             <div className="split-top" style={ styles.split.wrapper }>
                 <LayerAssembly
-                    layers={ props.backLayers }
+                    layers={ backLayers }
                     translateY={ '0' }
                 />
             </div>
             <div className="split-bottom" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
                 <LayerAssembly
                     translateY={ styles.splitBottomTranslateY }
-                    layers={ props.backLayers }
+                    layers={ backLayers }
                 />
             </div>
 
@@ -101,7 +188,7 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
                     ...styles.frontBg,
             } }>
                 <LayerAssembly
-                    layers={ props.frontLayers }
+                    layers={ frontLayers }
                     translateY={ '0' }
                 />
             </div>
@@ -112,7 +199,7 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
                     opacity: props.slideTransitionProgress > 0.5 ? 0 : 1,
             } }>
                 <LayerAssembly
-                    layers={ props.backLayers }
+                    layers={ backLayers }
                     translateY={ '0' }
                 />
             </div>

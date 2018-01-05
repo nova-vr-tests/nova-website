@@ -7,6 +7,7 @@ import {
     UPDATE_GO_TO_PAGE,
     UPDATE_WINDOW_WIDTH,
     UPDATE_IS_FOOTER_OPENED,
+    UPDATE_PAGES,
     UPDATE_CURRENT_FOOTER_PAGE,
 } from '../App'
 
@@ -20,6 +21,11 @@ import type {
 } from '../AppTypes.jsx'
 
 import type { ThemeNames } from '../../constantTypes.jsx'
+
+const updatePages = pages => ({
+    type: UPDATE_PAGES,
+    pages,
+})
 
 const updateCurrentFooterPage = (currentFooterPage: number): AppAction => ({
     type: UPDATE_CURRENT_FOOTER_PAGE,
@@ -84,4 +90,5 @@ export {
     updateWindowWidth,
     updateIsFooterOpened,
     updateCurrentFooterPage,
+    updatePages,
 }

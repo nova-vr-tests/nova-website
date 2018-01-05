@@ -12,6 +12,10 @@ export const initialState: State = {
     backLayers: [],
     cacheLayers: [],
     transitionProgress: 0,
+    progress: 0,
+    frontLayersPid: 0,
+    backLayersPid: 0,
+    cacheLayersPid: 0,
 }
 
 /**
@@ -31,33 +35,27 @@ export default (state: State = initialState, action: Action) => {
         case TRANSLATE_X_LAYERS_BGS:
             const { progress } = action
 
-            const translateLayers = layers => {
-                return layers.map((l, i) => ({
-                    ...l,
-                    paralax: -100 * progress * (i + 1)
-                }))
-            }
-
             return {
                 ...state,
-                frontLayers: translateLayers(state.frontLayers),
-                backLayers: translateLayers(state.backLayers),
-                cacheLayers: translateLayers(state.cacheLayers),
+                progress,
             }
         case UPDATE_CACHE_LAYERS:
             return {
                 ...state,
                 cacheLayers: action.cacheLayers,
+                cacheLayersPid: action.cacheLayersPid
             }
         case UPDATE_BACK_LAYERS:
             return {
                 ...state,
                 backLayers: action.backLayers,
+                backLayersPid: action.backLayersPid,
             }
         case UPDATE_FRONT_LAYERS:
             return {
                 ...state,
                 frontLayers: action.frontLayers,
+                frontLayersPid: action.frontLayersPid,
             }
         case UPDATE_TRANSITION_PROGRESS:
             return {

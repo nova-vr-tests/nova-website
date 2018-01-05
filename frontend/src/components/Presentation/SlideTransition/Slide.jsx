@@ -31,7 +31,6 @@ let dY = 0
 let el
 
 const scroll = (e, elId, callback = () => {}) => {
-    console.log(e)
     const newDate = new Date()
     if(!el)
         el = document.getElementById(elId)

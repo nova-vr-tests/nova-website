@@ -14,6 +14,7 @@ import {
     updateAppTheme,
     updateCurrentPage,
     updateGoToPage,
+    updatePages,
 } from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
@@ -56,12 +57,13 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
     return {
         updateTransitionProgress: p => dispatch(updateTransitionProgress(p)),
-        updateBackLayers: l => dispatch(updateBackLayers(l)),
+        updateBackLayers: (l, pid) => dispatch(updateBackLayers(l, pid)),
         goTo: url => dispatch(push(url)),
         updateLinePosition: position => dispatch(updateLinePosition(position)),
         updateAppTheme: appTheme => dispatch(updateAppTheme(appTheme)),
         updateCurrentPage: currentPage => dispatch(updateCurrentPage(currentPage)),
         updateGoToPage: goToPage => dispatch(updateGoToPage(goToPage)),
+        updatePages: pages => dispatch(updatePages(pages)),
     }
 }
 
@@ -135,7 +137,10 @@ class Presentation extends React.Component<Props> {
         const currentPage = this.pathnameToSlideNumber(this.props.routing.location.pathname)
         this.props.updateCurrentPage(currentPage)
 
-        this.props.updateBackLayers(this.props.pages[currentPage].layers)
+        this.props.updateBackLayers(
+            this.props.pages[currentPage].layers,
+            this.props.pages[currentPage].pid
+        )
 
         this.updateAppTheme(currentPage)
 
@@ -164,6 +169,8 @@ class Presentation extends React.Component<Props> {
     }
 
     componentDidMount() {
+        // update pages in redux state for BG to have access to
+        this.props.updatePages(this.props.pages)
         // Attach scroll to page change
         this.attachScrollEvent()
 

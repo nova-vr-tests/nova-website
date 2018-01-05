@@ -37,42 +37,45 @@ const updateBackgroundLayers = (sign, pages, currentPage) => {
     const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
     const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
-    let frontLayers = sign < 0 ? pages[currentPage].layers : pages[nextPage].layers
-    let backLayers = sign < 0 ? pages[previousPage].layers  : pages[currentPage].layers
+    const frontLayers = sign < 0 ? pages[currentPage].layers : pages[nextPage].layers
+    const backLayers = sign < 0 ? pages[previousPage].layers  : pages[currentPage].layers
+    const frontLayersPid = sign < 0 ? pages[currentPage].pid : pages[nextPage].pid
+    const backLayersPid = sign < 0 ? pages[previousPage].pid : pages[currentPage].pid
 
     const frontLayers2 = sign > 0 ? transitions.splitBackground.resetBackgroundStyles(frontLayers, 0) : transitions.splitBackground.resetBackgroundStyles(frontLayers, 1)
     const backLayers2 = sign > 0 ? transitions.splitBackground.resetBackgroundStyles(backLayers, 0) : transitions.splitBackground.resetBackgroundStyles(backLayers, 1)
 
     const isBackLayerVisible = store.getState().bgReducer.transitionProgress < 0.9 ? true : false
-    console.log(isBackLayerVisible)
 
 
     const currentSlideLayers = pages[currentPage].layers
     const previousSlideLayers = pages[previousPage].layers
+    const currentSlideLayersPid = pages[currentPage].pid
+    const previousSlideLayersPid = pages[previousPage].pid
 
 
     const { resetBackgroundStyles } = transitions.splitBackground
     if(sign > 0) {
         if(isBackLayerVisible) {
-            dispatch(updateCacheLayers(backLayers2))
+            dispatch(updateCacheLayers(backLayers2, backLayersPid))
             // dispatch(updateBackLayers(backLayers))
-            dispatch(updateBackLayers(currentSlideLayers))
+            dispatch(updateBackLayers(currentSlideLayers, currentSlideLayersPid))
         } else {
-            dispatch(updateCacheLayers(resetBackgroundStyles(frontLayers, 1)))
-            dispatch(updateFrontLayers(frontLayers2))
-            dispatch(updateBackLayers(backLayers))
+            dispatch(updateCacheLayers(resetBackgroundStyles(frontLayers, 1), frontLayersPid))
+            dispatch(updateFrontLayers(frontLayers2, frontLayersPid))
+            dispatch(updateBackLayers(backLayers, backLayersPid))
         }
     } else {
         if(!isBackLayerVisible) {
             // user currently sees front layer which we need to cache and pass to the back layer to split
-            dispatch(updateCacheLayers(resetBackgroundStyles(currentSlideLayers, 1)))
-            dispatch(updateBackLayers(previousSlideLayers))
-            dispatch(updateFrontLayers(resetBackgroundStyles(currentSlideLayers, 1)))
+            dispatch(updateCacheLayers(resetBackgroundStyles(currentSlideLayers, 1), currentSlideLayersPid))
+            dispatch(updateBackLayers(previousSlideLayers, previousSlideLayersPid))
+            dispatch(updateFrontLayers(resetBackgroundStyles(currentSlideLayers, 1), currentSlideLayersPid))
         } else {
             // user currently sees back layer which we need to move to the front layer and close back layer with previous slide over it
-            dispatch(updateCacheLayers(updateLayersOpacity(currentSlideLayers, 1)))
-            dispatch(updateFrontLayers(updateLayersOpacity(currentSlideLayers, 1)))
-            dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 0)))
+            dispatch(updateCacheLayers(updateLayersOpacity(currentSlideLayers, 1), currentSlideLayersPid))
+            dispatch(updateFrontLayers(updateLayersOpacity(currentSlideLayers, 1), currentSlideLayersPid))
+            dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 0), previousSlideLayersPid))
         }
     }
 
@@ -81,12 +84,12 @@ const updateBackgroundLayers = (sign, pages, currentPage) => {
 
         // Otherwise paralax goes back when splitting to next page on back layer
         if(sign < 0) {
-            dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 1)))
+            dispatch(updateBackLayers(updateLayersOpacity(previousSlideLayers, 1), previousSlideLayersPid))
         }
     }, 100)
 
 
-    return { frontLayers, backLayers }
+    return { frontLayers, backLayers, frontLayersPid }
 }
 
 const updateLayersOpacity: UpdateLayersOpacity = (layers, opacity) => layers.map(e => ({
@@ -106,13 +109,13 @@ const resetBackgroundStyles = (layers, progress = 0) => {
 
 }
 
-const updateFrontLayersOpacity: UpdateFronLayersOpacity = (layers, progress) => {
+const updateFrontLayersOpacity: UpdateFronLayersOpacity = (layers, progress, layersPid) => {
     const targetLayers = layers.map(e => ({
         ...e,
         opacity: e.opacity * progress,
     }))
 
-    dispatch(updateFrontLayers(targetLayers))
+    dispatch(updateFrontLayers(targetLayers), layersPid)
 }
 
 /*
@@ -126,7 +129,7 @@ const slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScro
 
 
     // Upgrade backgrounds
-    const { frontLayers } = transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
+    const { frontLayers, frontLayersPid } = transitions.splitBackground.updateBackgroundLayers(sign, pages, currentPage)
 
     // transitions.splitBackground.resetBackgroundStyles(sign)
     // updateFrontLayersOpacity(0)
@@ -164,11 +167,11 @@ const slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScro
 
             // Call background controls
             if (sign > 0) {
-                updateFrontLayersOpacity(frontLayers, transitionProgress / 100 * 2)
+                updateFrontLayersOpacity(frontLayers, transitionProgress / 100 * 2, frontLayersPid)
 
                 dispatch(updateTransitionProgress(transitionProgress / 100 < 0.5 ? 0 :  (transitionProgress / 100 - 0.5) * 2))
             } else {
-                updateFrontLayersOpacity(frontLayers, transitionProgress < 50 ? 1 : 1 - (transitionProgress / 100 - 0.5) * 2)
+                updateFrontLayersOpacity(frontLayers, transitionProgress < 50 ? 1 : 1 - (transitionProgress / 100 - 0.5) * 2, frontLayersPid)
 
                 dispatch(updateTransitionProgress(1 - transitionProgress / 100 < 0.5 ? 0 :  (1 - transitionProgress / 100 - 0.5) * 2))
             }
@@ -183,6 +186,7 @@ const slideTransition = (sign, pages, currentPage, attachScrollEvent, detachScro
 
 const updateFrontBg: UpdateBg = (progress, pages, currentPage, targetPage) => {
     const currentLayers = pages[currentPage].layers
+    const currentLayersPid = pages[currentPage].pid
     const targetLayers = pages[targetPage].layers
 
     const updatedLayers = currentLayers.map((layer, i) => {
@@ -204,11 +208,12 @@ const updateFrontBg: UpdateBg = (progress, pages, currentPage, targetPage) => {
         }
     })
 
-    dispatch(updateFrontLayers(updatedLayers))
+    dispatch(updateFrontLayers(updatedLayers), currentLayersPid)
 }
 
 const updateBackBg: UpdateBg = (progress, pages, currentPage, targetPage) => {
     const currentLayers = pages[currentPage].layers
+    const currentLayersPid = pages[currentPage].pid
     const targetLayers = pages[targetPage].layers
 
     const updatedLayers = currentLayers.map((layer, i) => {
@@ -230,7 +235,7 @@ const updateBackBg: UpdateBg = (progress, pages, currentPage, targetPage) => {
         }
     })
 
-    dispatch(updateBackLayers(updatedLayers))
+    dispatch(updateBackLayers(updatedLayers), currentLayersPid)
 }
 
 /**

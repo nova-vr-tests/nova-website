@@ -18,19 +18,22 @@ const translateXLayersBgs = progress => ({
     progress,
 })
 
-const updateCacheLayers = (cacheLayers: Array<BgLayer>): BgAction => ({
+const updateCacheLayers = (cacheLayers: Array<BgLayer>, cacheLayersPid = 0): BgAction => ({
     type: UPDATE_CACHE_LAYERS,
     cacheLayers,
+    cacheLayersPid,
 })
 
-const updateFrontLayers = (frontLayers: Array<BgLayer>): BgAction => ({
+const updateFrontLayers = (frontLayers: Array<BgLayer>, frontLayersPid = 0): BgAction => ({
     type: UPDATE_FRONT_LAYERS,
     frontLayers,
+    frontLayersPid,
 })
 
-const updateBackLayers = (backLayers: Array<BgLayer>): BgAction => ({
+const updateBackLayers = (backLayers: Array<BgLayer>, backLayersPid = 0): BgAction => ({
     type: UPDATE_BACK_LAYERS,
     backLayers,
+    backLayersPid,
 })
 
 const updateTransitionProgress = (transitionProgress: number): BgAction => ({
