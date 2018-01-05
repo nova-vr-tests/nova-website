@@ -38,8 +38,17 @@ const updateBackgroundLayers = (sign, pages, currentPage) => {
     const previousPage = currentPage - 1 < 0 ? 0 : currentPage - 1
     const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
-    const frontLayers = sign < 0 ? pages[currentPage].layers : pages[nextPage].layers
-    const backLayers = sign < 0 ? pages[previousPage].layers  : pages[currentPage].layers
+    const stateFrontLayersPid = store.getState().bgReducer.frontLayersPid
+    const stateBackLayersPid = store.getState().bgReducer.backLayersPid
+    let currentlyShownLayers
+    if(pages[currentPage].pid === stateFrontLayersPid)
+        currentlyShownLayers = store.getState().bgReducer.frontLayers
+    else
+        currentlyShownLayers = store.getState().bgReducer.backLayers
+
+
+    const frontLayers = sign < 0 ? currentlyShownLayers : pages[nextPage].layers
+    const backLayers = sign < 0 ? pages[previousPage].layers  : currentlyShownLayers
     const frontLayersPid = sign < 0 ? pages[currentPage].pid : pages[nextPage].pid
     const backLayersPid = sign < 0 ? pages[previousPage].pid : pages[currentPage].pid
 
@@ -49,11 +58,18 @@ const updateBackgroundLayers = (sign, pages, currentPage) => {
     const isBackLayerVisible = store.getState().bgReducer.transitionProgress < 0.9 ? true : false
 
 
-    const currentSlideLayers = pages[currentPage].layers
+    const currentSlideLayers = currentlyShownLayers
     const previousSlideLayers = pages[previousPage].layers
     const currentSlideLayersPid = pages[currentPage].pid
     const previousSlideLayersPid = pages[previousPage].pid
 
+    console.log(
+        store.getState().bgReducer,
+        currentlyShownLayers,
+        frontLayers.map(e => e.paralax),
+        backLayers.map(e => e.paralax),
+    )
+    debugger
 
     const { resetBackgroundStyles } = transitions.splitBackground
     if(sign > 0) {

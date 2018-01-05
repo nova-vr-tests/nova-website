@@ -2,6 +2,17 @@
 
 import * as React from 'react'
 import { connect } from 'react-redux'
+import {
+    compose,
+    lifecycle,
+    pure,
+} from 'recompose'
+
+import {
+    updateCacheLayers,
+    updateFrontLayers,
+    updateBackLayers,
+} from '../../reducer/actions/Bg.js'
 
 import type {
     ReduxState,
@@ -42,6 +53,9 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 
 const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) { // eslint-disable-line no-unused-vars
 	return {
+      updateFrontLayers: (l, pid) => dispatch(updateFrontLayers(l, pid)),
+      updateBackLayers: (l, pid) => dispatch(updateBackLayers(l, pid)),
+      updateCacheLayers: (l, pid) => dispatch(updateCacheLayers(l, pid)),
   }
 }
 
@@ -85,15 +99,100 @@ LayerAssembly.defaultProps = {
     display: 1,
 }
 
+const updateLayers = (layers, progress, pid, pages) => {
+
+    if(layers.length === 0) {
+        return layers
+    }
+
+    const keyframes = pages
+                        .filter(e => e.pid === pid)
+                        .map(e => e.layers
+                                    .map(f => ({
+                                        paralax: f.paralax,
+                                        opacity: f.opacity
+                                    }))
+                        )
+
+    if(keyframes.length === 0) {
+        return layers
+    }
+
+    return layers.map((l, i) => {
+
+
+        const delta = 1 / (keyframes.length - 1)
+        let j
+
+        for(j = 0; j < keyframes.length; j++) {
+            if (progress < ( j+ 1) * delta) {
+                break
+            }
+        }
+
+        let slideStart = j <= 0 ? 0 : j
+        let slideEnd = j >= keyframes.length - 1 ? keyframes.length - 1 : slideStart + 1
+        slideStart = slideStart === slideEnd && slideStart !== 0 ? slideEnd - 1 : slideStart
+
+
+
+        // hack to skip during layer caching
+        if (keyframes[0].length - 1 < i) return l
+
+
+        const paralaxStart = keyframes[slideStart][i].paralax
+        const paralaxEnd = keyframes[slideEnd][i].paralax
+        let paralax = paralaxStart + (paralaxEnd - paralaxStart) * (progress - slideStart * delta) / delta
+
+        const opacityStart = keyframes[slideStart][i].opacity
+        const opacityEnd = keyframes[slideEnd][i].opacity
+        const opacitySign = opacityStart > opacityEnd ? -1 : 1
+
+        let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
+
+
+
+        return {
+            ...l,
+            paralax,
+            opacity,
+        }
+    })
+}
+
+const updateParalax = props => {
+    let { frontLayers, backLayers, cacheLayers } = props
+
+    if(props.pages.length > 0) {
+        if(
+            !props.isDreamscaping
+        ) {
+            cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid, props.pages)
+            if(isFrontBgShown) {
+                if(frontLayers.length) {
+                    frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid, props.pages)
+                } else {
+                    backLayers = updateLayers(backLayers, props.progress, props.backLayersPid, props.pages)
+                }
+            }
+            else
+                backLayers = updateLayers(backLayers, props.progress, props.backLayersPid, props.pages)
+        }
+    }
+
+    return {
+        frontLayers,
+        backLayers,
+        cacheLayers,
+    }
+}
 
 let isFrontBgShown = true
 let prevCurrentPage = -1
 const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     const styles = getStyles(props)
 
-    const getKF = (layers, pid) => {
-        layers.filter(e => e.pid === pid)
-    }
+    let { frontLayers, backLayers, cacheLayers } = props
 
     const currentPage = props.pages[props.currentPage]
      if(prevCurrentPage > props.currentPage) {
@@ -103,91 +202,6 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
          isFrontBgShown = true
          prevCurrentPage = props.currentPage
      }
-
-    let { frontLayers, backLayers, cacheLayers } = props
-    if(props.pages.length > 0) {
-
-
-        const updateLayers = (layers, progress, pid) => {
-
-            if(layers.length === 0) {
-                return layers
-            }
-
-            const keyframes = props.pages
-                              .filter(e => e.pid === pid)
-                              .map(e => e.layers
-                                         .map(f => ({
-                                             paralax: f.paralax,
-                                             opacity: f.opacity
-                                         }))
-                              )
-
-            if(keyframes.length === 0) {
-                return layers
-            }
-
-            return layers.map((l, i) => {
-
-
-                const delta = 1 / (keyframes.length - 1)
-                let j
-
-                for(j = 0; j < keyframes.length; j++) {
-                    if (progress < ( j+ 1) * delta) {
-                        break
-                    }
-                }
-
-                let slideStart = j <= 0 ? 0 : j
-                let slideEnd = j >= keyframes.length - 1 ? keyframes.length - 1 : slideStart + 1
-                slideStart = slideStart === slideEnd && slideStart !== 0 ? slideEnd - 1 : slideStart
-
-
-
-                // hack to skip during layer caching
-                if (keyframes[0].length - 1 < i) return l
-
-
-                const paralaxStart = keyframes[slideStart][i].paralax
-                const paralaxEnd = keyframes[slideEnd][i].paralax
-                let paralax = paralaxStart + (paralaxEnd - paralaxStart) * (progress - slideStart * delta) / delta
-
-                const opacityStart = keyframes[slideStart][i].opacity
-                const opacityEnd = keyframes[slideEnd][i].opacity
-                const opacitySign = opacityStart > opacityEnd ? -1 : 1
-
-                let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
-
-
-
-                return {
-                    ...l,
-                    paralax,
-                    opacity,
-                }
-            })
-        }
-
-
-
-        if(
-            !props.isDreamscaping
-        ) {
-            cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid)
-            if(isFrontBgShown) {
-                if(frontLayers.length) {
-                    frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid)
-                } else {
-                    backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
-                }
-            }
-            else
-                backLayers = updateLayers(backLayers, props.progress, props.backLayersPid)
-        }
-    }
-
-
 
     return (
         <div style={ styles.wrapper } className="bar">
@@ -239,9 +253,27 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     )
 }
 
+const HOC = compose(
+    lifecycle({
+        componentDidUpdate(prevProps) {
+            const { frontLayers, backLayers, cacheLayers } = updateParalax(this.props)
+            if(
+                JSON.stringify(frontLayers) !== JSON.stringify(this.props.frontLayers)
+                || JSON.stringify(backLayers) !== JSON.stringify(this.props.backLayers)
+                || JSON.stringify(cacheLayers) !== JSON.stringify(this.props.cacheLayers)
+            ) {
+                this.props.updateFrontLayers(frontLayers, this.props.frontLayersPid)
+                this.props.updateBackLayers(backLayers, this.props.backLayersPid)
+                this.props.updateCacheLayers(cacheLayers, this.props.cacheLayersPid)
+            }
+        }
+    }),
+    pure
+)(BgDumb)
+
 const ConnectedBg: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
     mapDispatchToProps
-)(BgDumb)
+)(HOC)
 
 export default ConnectedBg
