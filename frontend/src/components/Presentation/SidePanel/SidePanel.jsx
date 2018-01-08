@@ -71,13 +71,15 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     const screenRightEdge = widthCoef * appStyles.unitWidthJs
     let p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
     let p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
-    let p3 = {x: 0, y: clientHeight - p2.y}
-    let p4 = {x: screenRightEdge, y: clientHeight - p1.y}
+    let p3 = {x: 0, y: appStyles.unitHeightJs * 9}
+    let p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 9}
+    console.log(p1, p2, p3, p4)
+
     let path =
         'M ' + p1.x + ' ' + p1.y
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
         + ' L ' + p3.x + ' ' + p3.y + ' '
-        + ' A ' + r + ' ' + r + ' 0 0 1 ' + p4.x + ' ' + p4.y
+        + ' L ' + p4.x + ' ' + p4.y + ' '
     let color = 'rgba(0, 0, 0, 0.6)'
 
     if(props.type === sidePanelTypes.INVERTED) {
