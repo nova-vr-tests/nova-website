@@ -54,7 +54,7 @@ const styles: AppStyles = {
     sidePanel,
     unitHeight: 100/24 + 'vh',
     unitWidth: '60px',
-    unitHeightJs: 100 / 24,  // vh
+    unitHeightJs: document.documentElement.clientHeight / 24,  // vh
     unitWidthJs: 60,   // px
     slideTransitionTime: 500, // ms
     slideTransitionFunc: 'linear',

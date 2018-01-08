@@ -50,7 +50,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
 
     const vh = document.documentElement.clientHeight / 100
     const vw = document.documentElement.clientWidth / 100
-    const footerHeight = 2.4 * appStyles.unitHeightJs * vh // 2.4 * unitHeight seems to be header height on all screen sizes (vs 3 as coef which is what it's supposed to be...)
+    const footerHeight = 2.4 * appStyles.unitHeightJs // 2.4 * unitHeight seems to be header height on all screen sizes (vs 3 as coef which is what it's supposed to be...)
 
     // To find intersection point of header and sidebar offset caused by border radius
     let footerRadiusOffset = (() => {
