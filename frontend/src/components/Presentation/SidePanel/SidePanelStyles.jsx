@@ -44,7 +44,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             bottom: 0,
             right: 0,
             left,
-            padding: 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
+            padding: 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') 0 0 0',
             paddingTop: props.marginTop ? props.marginTop : 'calc(' + headerHeightCoef + ' * ' + appStyles.unitHeight + ') ' + appStyles.unitWidth,
         },
     }
@@ -54,6 +54,7 @@ export default getStyles
 
 
 /**
+            width: 'calc(100% - 2 * ' + padding + ')',
     BG
 */
 

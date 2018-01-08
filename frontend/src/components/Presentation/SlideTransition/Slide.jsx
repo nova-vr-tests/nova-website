@@ -133,14 +133,13 @@ const Slide = props => {
     }
 
 
-
     return [
+        <div style={ styles.headerWrapper }>
+            <h2 className="above" style={ styles.title } key={ 1 }>{ h2 }</h2>
+        </div>,
         <div style={ {...styles.slideParagraphs, position: 'relative'} } id={ id2 } key={ 2 }>
-            <div style={ {position: 'absolute', top: 0, width: '100%' } }>
-                <div style={ styles.head }>
-                </div>
+            <div style={ styles.paragraphsWrapper }>
                 <div id={ id1 }>
-                    <h2 className="above" style={ styles.title } key={ 1 }>{ h2 }</h2>
                     { allParagraphs }
                 </div>
                 <div style={ styles.tail } id='tail'>

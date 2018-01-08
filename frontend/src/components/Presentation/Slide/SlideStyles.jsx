@@ -19,13 +19,26 @@ const getStyles = props => {
         minWidth = '100%'
     }
 
+    const padding = '2rem'
+
     return {
+        headerWrapper: {
+            height: appStyles.unitHeightJs * 6,
+        },
         slideParagraphs: {
             height: 'calc(' + (24 - headerHeightCoef - footerHeightCoef) + ' * ' + appStyles.unitHeight + ')',
             overflowY,
             overflowX,
             // min width greater than container so it doesn't shrink on panel close
             minWidth,
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            padding: '0 ' + padding,
+            boxSizing: 'border-box',
+        },
+        paragraphsWrapper: {
+            position: 'absolute',
+            top: 0,
+            width: 'calc(100% - 2 * ' + padding + ')',
         },
         head: {
             height: 'calc(' + headHeightCoef + ' * ' + appStyles.unitHeight + ') ',
@@ -44,7 +57,6 @@ const getStyles = props => {
         paragraph: {
             // height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',
             display: 'flex',
-            width: '100%',
         },
         dummy: {
             display: 'none',
