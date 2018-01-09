@@ -21,17 +21,18 @@ export const footerPage = {
 }
 
 export const initialState: State = {
-    introKeyframe: 2,
-    isSidebarOpened: true,
-    isSidePanelOpened: true,
-    linePosition: 2, // position of current page in sidebar tree
     appTheme: appStyles.themeTypes.defaultTheme,
     currentPage: 0,
     currentFooterPage: footerPage.LEGALS,
     goToPage: () => {},
-    windowWidth: window.innerWidth, // number
+    introKeyframe: 2,
     isFooterOpened: false,
+    isSidebarOpened: true,
+    isSidePanelOpened: true,
+    linePosition: 2, // position of current page in sidebar tree
     pages: [], // site pages
+    windowWidth: window.innerWidth, // number
+    windowHeight: window.innherHeight, // number
 }
 
 
