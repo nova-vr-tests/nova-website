@@ -20,8 +20,6 @@ type Styles = {
 }
 
 const getStyles: GetStyles<Props, Styles> = props => {
-    const theme = appStyles.themes[props.appTheme]
-
     return {
         wrapper: {
             display: 'flex',

@@ -147,7 +147,6 @@ const updateLayers = (layers, progress, pid, pages) => {
 
         const opacityStart = keyframes[slideStart][i].opacity
         const opacityEnd = keyframes[slideEnd][i].opacity
-        const opacitySign = opacityStart > opacityEnd ? -1 : 1
 
         let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
 
@@ -193,14 +192,13 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
 
     let { frontLayers, backLayers, cacheLayers } = props
 
-    const currentPage = props.pages[props.currentPage]
-     if(prevCurrentPage > props.currentPage) {
-         isFrontBgShown = false
-         prevCurrentPage = props.currentPage
-     } else if (prevCurrentPage < props.currentPage) {
-         isFrontBgShown = true
-         prevCurrentPage = props.currentPage
-     }
+    if(prevCurrentPage > props.currentPage) {
+        isFrontBgShown = false
+        prevCurrentPage = props.currentPage
+    } else if (prevCurrentPage < props.currentPage) {
+        isFrontBgShown = true
+        prevCurrentPage = props.currentPage
+    }
 
     return (
         <div style={ styles.wrapper } className="bar">

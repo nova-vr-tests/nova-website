@@ -39,7 +39,6 @@ const updateBackgroundLayers = (sign, pages, currentPage) => {
     const nextPage = currentPage + 1 > totalPages - 1 ? totalPages - 1 : currentPage + 1
 
     const stateFrontLayersPid = store.getState().bgReducer.frontLayersPid
-    const stateBackLayersPid = store.getState().bgReducer.backLayersPid
     let currentlyShownLayers
     if(pages[currentPage].pid === stateFrontLayersPid)
         currentlyShownLayers = store.getState().bgReducer.frontLayers

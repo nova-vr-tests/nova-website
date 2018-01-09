@@ -3,14 +3,10 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import getStyles, {
-    getSlideHeaderStyles,
     getNextPageStyles,
 } from './SlideStyles.jsx'
 
 import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
-
-import SlideHeader from '../SlideHeader/SlideHeader.jsx'
-
 
 import arrow from '../../img/arrow.svg'
 
@@ -26,7 +22,6 @@ const mapDispatchToProps = dispatch => ({
     goToNextPage: (currentPage=0, pages=[], pushUrl) => {
 
         const filteredUrls = pages.filter((e, i) => (e.pid !== pages[currentPage].pid && i > currentPage))
-        let nextUrl
 
         if(filteredUrls.length > 0) {
             pushUrl(filteredUrls[0].path)
@@ -80,12 +75,7 @@ const scroll = (e, elId, callback = () => {}) => {
     progress = Math.sin(Math.PI * deltaT)
     progress = deltaT*(2-deltaT)
 
-    const sign = Math.sign(dY)
     el.scrollTop = currentScroll + (targetScroll - currentScroll) * progress
-
-    const foo = document.querySelector('.back-bg > div')
-    // foo.style.transform = "translateX(" + el.scrollTop + "px)"
-
 
     if(progress < 0.99) {
         rafId = requestAnimationFrame(() => {
@@ -122,25 +112,9 @@ const Slide = props => {
         </div>
     ))
 
-    const defaultParagraphs = presSlides.map((e, i) => (
-        <div
-            className={ i < calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid) ? 'above' : '' }
-            key={ i }
-            style={ {
-                ...{ display: 'flex', color: 'rgba(0, 0, 0, 0)' }
-            } }
-        >
-            <e.comp key={ i } />
-        </div>
-    ))
-
-
     const { id } = props
     const id1 = id + '-paragraph'
     const id2 = id + '-scroll'
-
-    const _h2 = props.pages[props.currentPage].h2
-    const h2 = _h2 === 'Introduction' ? '' : _h2
 
     if(props.transitionProgress <= 0 || props.transitionProgress >= 1) {
         if(props.scrollEvent && !props.isTarget) {
@@ -167,6 +141,7 @@ const Slide = props => {
                 style={ nextPageStyles.wrapper }>
                 <img
                     src={ arrow }
+                    alt="next-page"
                     style={ nextPageStyles.img }
                 />
             </div>

@@ -10,7 +10,6 @@ import {
     updateCurrentFooterPage,
 } from '../../reducer/actions/App.js'
 import toggleButton from '../img/toggle-sidebar.svg'
-import { slides } from '../pages/Pages.jsx'
 import arrowImg from '../img/arrow.svg'
 import AboutUs from '../About/About.jsx'
 
@@ -19,12 +18,9 @@ import type {
     ReduxDispatch,
     OwnProps,
     Props,
-    PresentationControlsProps,
-    ControlButtonProps,
 } from './FooterTypes.jsx'
 
 import getStyles, {
-    getPresentationControlsStyles,
 } from './FooterStyles.jsx'
 
 import type {
@@ -54,37 +50,6 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
       updateIsFooterOpened: isFooterOpened => dispatch(updateIsFooterOpened(isFooterOpened)),
       updateCurrentFooterPage: currentFooterPage => dispatch(updateCurrentFooterPage(currentFooterPage)),
   }
-}
-
-
-const PresentationControls: React.StatelessFunctionalComponent<PresentationControlsProps> = props => {
-    const { updateCurrentPage, currentPage } = props
-    const styles = getPresentationControlsStyles(props)
-
-    const ControlButton: React.StatelessFunctionalComponent<ControlButtonProps> = props => (
-        <div
-            onClick={ () => updateCurrentPage(props.targetPage) }
-            className="transform-on-hover"
-            style={ { ...styles.controlButtonWrapper, ...(props.isActive ? styles.controlButtonActive : {}) } }>
-        </div>
-    )
-
-    const presentationSlides = slides.map((e, i) => [e, i]).filter(e => e[0].pid === slides[currentPage].pid)
-
-    const buttons: React.Node = presentationSlides.map((e, i) => presentationSlides.length === 1 ? '' : (
-        <ControlButton
-            key={ i }
-            targetPage={ e[1] }
-            isActive={ e[1] === currentPage ? true : false }
-        />
-    ))
-
-
-    return (
-        <div style={ styles.wrapper }>
-            { buttons }
-        </div>
-    )
 }
 
 const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
