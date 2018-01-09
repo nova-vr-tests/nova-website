@@ -131,7 +131,10 @@ styles.themes[styles.themeTypes.openedFooterTheme] = {
 const proxiedStyles = new Proxy(styles, {
     get: function(target, property, receiver) {
         if(property === 'unitHeightJs') {
-            return document.documentElement.clientHeight / 24
+            // converting 100vh to px
+            // cannot use window.innerHeight or document.documentElement.innerHeight
+            // because of iOS safari minimal UI
+            return document.querySelector('body').clientHeight / 24
         } else {
             return target[property]
         }

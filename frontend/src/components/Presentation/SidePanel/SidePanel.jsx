@@ -166,8 +166,6 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
 
     const styles = getStyles(props)
 
-
-    console.log('a', props.windowHeight)
     return (
         <div style={ styles.wrapper }>
             <BG

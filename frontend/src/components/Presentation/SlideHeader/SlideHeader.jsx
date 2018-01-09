@@ -46,7 +46,6 @@ const SlideHeader = props => {
 function componentWillUpdate(nextProps, nextState) {
     // title changed
     if(nextProps.title !== this.props.title) {
-        console.log('change')
         // if title1 is currently shown
         if(this.props.opacity1) {
             // update title2
