@@ -31,14 +31,8 @@ const getStyles = props => {
             overflowX,
             // min width greater than container so it doesn't shrink on panel close
             minWidth,
-            backgroundColor: 'rgba(0, 0, 0, 0.4)',
             padding: '0 ' + padding,
             boxSizing: 'border-box',
-        },
-        paragraphsWrapper: {
-            position: 'absolute',
-            top: 0,
-            width: 'calc(100% - 2 * ' + padding + ')',
         },
         head: {
             height: 'calc(' + headHeightCoef + ' * ' + appStyles.unitHeight + ') ',
@@ -65,4 +59,24 @@ const getStyles = props => {
     }
 }
 
+
+const getNextPageStyles = props => ({
+    wrapper: {
+        height: 'calc(2 * ' + appStyles.unitHeight + ')',
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '2rem 0',
+        cursor: 'pointer',
+    },
+    img: {
+        width: 'calc(1 * ' + appStyles.unitHeight + ')',
+        height: 'calc(1 * ' + appStyles.unitHeight + ')',
+        transform: 'rotateZ(90deg)',
+    },
+})
+
 export default getStyles
+
+export {
+    getNextPageStyles,
+}

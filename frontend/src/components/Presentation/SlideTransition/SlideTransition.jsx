@@ -2,7 +2,7 @@
 import * as React from 'react'
 import store from '../../../store.js'
 
-import Slide from './Slide.jsx'
+import Slide from '../Slide/Slide.jsx'
 
 import { styles as appStyles } from '../../../constants.js'
 
@@ -16,6 +16,8 @@ import type {
 } from './SlideTransitionTypes.jsx'
 
 import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
+
+import SlideHeader from '../SlideHeader/SlideHeader.jsx'
 
 const dispatch = store.dispatch
 
@@ -149,6 +151,7 @@ class SlideTransition extends React.Component<Props, State> {
                 transition: fontColorTransition,
                 overflow: 'hidden',
                 height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.4)',
             },
             currentSlideStyle: {
                 ...this.getTranslationStyles().currentSlide,
@@ -162,7 +165,14 @@ class SlideTransition extends React.Component<Props, State> {
             },
         }
 
-        return (
+        const _slideTitle = this.props.pages[this.props.currentPage].h2
+        const slideTitle = _slideTitle === 'Introduction' ? '' : _slideTitle
+
+        return [
+            <SlideHeader
+                currentUrl={ ''}
+                title={ slideTitle  }
+                key={ 1 } />,
             <div className='slide-transition--wrapper' style={ styles.wrapper }>
                 <div className='current-slide--wrapper' style={ styles.currentSlideStyle }>
                     { CurrentSlide }
@@ -171,7 +181,7 @@ class SlideTransition extends React.Component<Props, State> {
                     { TargetSlide }
                 </div>
             </div>
-        )
+        ]
     }
 }
 

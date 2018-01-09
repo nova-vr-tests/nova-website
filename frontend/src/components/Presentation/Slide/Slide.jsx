@@ -1,13 +1,39 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
-import { lifecycle, withState, compose } from 'recompose'
+import getStyles, {
+    getSlideHeaderStyles,
+    getNextPageStyles,
+} from './SlideStyles.jsx'
 
-import getStyles from './SlideStyles.jsx'
+import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
 
-import {
-    getParagraphsSize,
-    scrollTo,
-} from './helpers.jsx'
+import SlideHeader from '../SlideHeader/SlideHeader.jsx'
+
+
+import arrow from '../../img/arrow.svg'
+
+const mapStateToProps = state => ({
+    scrollProgress: state.bgReducer.progress,
+    currentUrl: window.location.origin + '/' + state.routing.location.pathname,
+    currentPage: state.appReducer.currentPage,
+    goToPage: state.appReducer.goToPage,
+})
+
+const mapDispatchToProps = dispatch => ({
+    applyParalax: progress => dispatch(translateXLayersBgs(progress)),
+    goToNextPage: (currentPage=0, pages=[], pushUrl) => {
+
+        const filteredUrls = pages.filter((e, i) => (e.pid !== pages[currentPage].pid && i > currentPage))
+        let nextUrl
+
+        if(filteredUrls.length > 0) {
+            pushUrl(filteredUrls[0].path)
+        }
+    },
+    pushUrl: url => dispatch(push(url)),
+})
 
 const calcSlideNumFromPageNum = (pages, currentPage, currentPid) => {
     return currentPage - pages
@@ -15,22 +41,80 @@ const calcSlideNumFromPageNum = (pages, currentPage, currentPid) => {
         .filter((e) => e.pid !== currentPid).length
 }
 
+/*
+   - e => scrollEvent
+   - elId => id of el to scroll
+*/
+let oldDate = new Date()
+let currentScroll = 0
+let progress = 0
+let targetScroll = 0
+let rafId = 0
+let dY = 0
+let el
+
+const scroll = (e, elId, callback = () => {}) => {
+    const newDate = new Date()
+    if(!el)
+        el = document.getElementById(elId)
+
+    // update target scroll
+    if(e.deltaY !== 0) {
+
+        dY = 3 * Math.sign(e.deltaY)
+
+        oldDate = new Date()
+
+        if(progress !== 0) {
+            currentScroll += (targetScroll - currentScroll) * progress
+            currentScroll = el.scrollTop
+            cancelAnimationFrame(rafId)
+        } else {
+        }
+
+        progress = 0
+        targetScroll = currentScroll + dY * 40
+    }
+
+    const deltaT = (newDate.getTime() - oldDate.getTime()) / 700
+    progress = Math.sin(Math.PI * deltaT)
+    progress = deltaT*(2-deltaT)
+
+    const sign = Math.sign(dY)
+    el.scrollTop = currentScroll + (targetScroll - currentScroll) * progress
+
+    const foo = document.querySelector('.back-bg > div')
+    // foo.style.transform = "translateX(" + el.scrollTop + "px)"
+
+
+    if(progress < 0.99) {
+        rafId = requestAnimationFrame(() => {
+            const scrollProgress =
+                (el.scrollTop / (el.scrollHeight - el.offsetHeight))
+
+            if(el.scrollTop !== 0) {
+                callback(scrollProgress)
+            }
+
+            scroll({ deltaY: 0 }, elId, callback)
+        })
+    } else {
+        currentScroll = targetScroll
+    }
+
+}
+
 const Slide = props => {
     const styles = getStyles(props)
-
-    const { pHeights } = props
 
     const { pid } = props.pages[props.currentPage]
     const presSlides = props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
 
-    const foo = calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid)
-    const bar = foo === 0 ? 0.1667 * document.documentElement.clientHeight : pHeights[0]
     const allParagraphs = presSlides.map((e, i) => (
         <div
             className={ i < calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid) ? 'above' : '' }
             key={ i }
             style={ {
-                    ...{ height: (i === 0 ? bar : pHeights[i] + 'px') },
                     ...{ display: 'flex', border: '1px solid rgba(255, 0, 0, 0)' }
             } }
         >
@@ -58,163 +142,65 @@ const Slide = props => {
     const _h2 = props.pages[props.currentPage].h2
     const h2 = _h2 === 'Introduction' ? '' : _h2
 
+    if(props.transitionProgress <= 0 || props.transitionProgress >= 1) {
+        if(props.scrollEvent && !props.isTarget) {
+            scroll(props.scrollEvent, id2, props.applyParalax)
+        }
+
+    } else {
+        window.requestAnimationFrame(() => {
+            document.getElementById(id2).scrollTop = 0
+            props.applyParalax(0)
+        })
+    }
+
+
+
+
+
+    const NextPage = props => {
+        const nextPageStyles = getNextPageStyles(props)
+
+        return (
+            <div
+                onClick={ () => props.goToNextPage(props.currentPage + 1, props.pages, props.pushUrl) }
+                style={ nextPageStyles.wrapper }>
+                <img
+                    src={ arrow }
+                    style={ nextPageStyles.img }
+                />
+            </div>
+        )
+    }
 
     return [
-        <div style={ {...styles.slideParagraphs, position: 'relative'} } id={ id2 } key={ 2 }>
-            <div style={ {position: 'absolute', top: 0 } }>
-                <div style={ styles.head }>
-                </div>
+        <div
+            key={ 2 }
+            style={ {...styles.slideParagraphs, position: 'relative'} }
+            id={ id2 }
+            key={ 2 }>
+            <div style={ styles.paragraphsWrapper }>
                 <div id={ id1 }>
-                    <h2 className="above" style={ styles.title } key={ 1 }>{ h2 }</h2>
                     { allParagraphs }
                 </div>
-                <div style={ styles.tail } id='tail'>
-                    <div id='dummy' style={ styles.dummy }>
-                        { defaultParagraphs }
-                    </div>
+                <div
+                    style={ styles.tail }
+                    id='tail'>
+                    <NextPage
+                        pages={ props.pages }
+                        goToNextPage={ props.goToNextPage }
+                        currentPage={ props.currentPage }
+                        pushUrl={ props.pushUrl }
+                    />
                 </div>
             </div>
         </div>
     ]
 }
 
+const ConnectedSlide = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Slide)
 
-
-
-
-const interpolateArrays = (arr1, arr2, t) => arr1.map((e, i) => e + (arr2[i] - e) * t)
-
-
-const calcPHeights = (defaultPHeight, currentPage, targetPage, pages, progress) => {
-    const currentSlide = pages[currentPage]
-    const targetSlide = pages[targetPage]
-
-    // Return if switching presentation (don't animate pHeight values)
-    if(currentSlide.pid !== targetSlide.pid) {
-        // return
-    }
-
-    const currentSlideNumber = calcSlideNumFromPageNum(pages, currentPage, currentSlide.pid)
-    const targetSlideNumber = calcSlideNumFromPageNum(pages, targetPage, targetSlide.pid)
-
-    // calculate current pHeights
-    const currentPHeights = [...defaultPHeight]
-    // calculate target pHeights
-    const targetPHeights = [...defaultPHeight]
-
-    currentPHeights[currentSlideNumber] = 0.1667 * document.documentElement.clientHeight //* (1 - progress)
-    targetPHeights[targetSlideNumber] = 0.1667 * document.documentElement.clientHeight //* progress
-
-    const interpolatedData = interpolateArrays(currentPHeights, targetPHeights, progress)
-
-    return interpolatedData
-}
-
-const slideLifecycle = {
-    componentDidMount: function() {
-        const defaultPHeights = getParagraphsSize('dummy')
-        this.props.setDefaultPHeights(defaultPHeights)
-
-        const pHeights = [...defaultPHeights]
-        pHeights[0] = 0.1667 * document.documentElement.clientHeight
-        this.props.setPHeights(pHeights)
-    },
-    componentWillReceiveProps: function(nextProps) {
-        if(this.props.currentPage < nextProps.currentPage) {
-            const newHeights = [...this.props.defaultPHeights]
-            newHeights[newHeights.length - 1] = 0.1667 * document.documentElement.clientHeight
-            this.props.setPHeights(newHeights)
-        }
-
-    },
-    componentDidUpdate: function(prevProps) {
-        const { id } = this.props
-        const id1 = id + '-paragraph'
-        const id2 = id + '-scroll'
-
-        let targetScroll = document.getElementById(id1).clientHeight
-        let currentScroll = document.getElementById(id2).scrollTop
-
-        document.getElementById('dummy').style.display = 'block'
-        targetScroll = Array.from(
-            document.getElementById('dummy')
-                    .getElementsByClassName('above')
-        ).map(e => e.clientHeight).reduce((acc, e) => acc + e, 0)
-        document.getElementById('dummy').style.display = 'none'
-
-
-
-        let progress = 0
-
-        if(this.props.currentPage !== prevProps.currentPage) {
-
-            if(
-                this.props.pages[this.props.currentPage].pid !== prevProps.pages[prevProps.currentPage].pid
-            ) {
-                if(
-                    this.props.currentPage < prevProps.currentPage
-                    &&
-                    Math.abs(this.props.currentPage - prevProps.currentPage) === 1
-                ) {
-                    currentScroll = 1000 // scroll to bottom of slide if going to previous slide or when coming from link
-                } else {
-                    currentScroll = 0 // scroll to top of slide if going to next slide
-                }
-
-                console.log(document.getElementById(id2).scrollTop)
-
-                progress = 1
-            }
-
-            //////
-            const defaultPHeights = getParagraphsSize('dummy')
-            this.props.setDefaultPHeights(defaultPHeights)
-
-            // this.props.setPHeights(calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1))
-            const newPHeights = calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, 1)
-
-            const getNewPHeights = progress => calcPHeights(defaultPHeights, prevProps.currentPage, this.props.currentPage, this.props.pages, progress)
-
-            const time0 = new Date().getTime()
-            const transition = (progress, t) => {
-                if(progress >= 1) {
-                    const newPHeights = getNewPHeights(progress)
-                    this.props.setPHeights(newPHeights)
-
-                    return 0
-                } else {
-                    if(newPHeights) {
-                        const newPHeights = getNewPHeights(progress)
-                        this.props.setPHeights(newPHeights)
-                    }
-
-                    const newProgress = (new Date().getTime() - time0) / t
-                    requestAnimationFrame(() => transition(newProgress, t))
-                }
-            }
-
-
-
-            transition(progress, 300)
-
-            if(!this.props.isTarget)
-                scrollTo(id2, currentScroll, targetScroll, 0, new Date().getTime())
-
-            if(this.props.currentPage > prevProps.currentPage)
-                document.getElementById(id2).scrollTo(0, 0)
-            else
-                document.getElementById(id2).scrollTo(0, 1000)
-        }
-
-    },
-}
-
-const enhance = compose(
-    withState('pHeights', 'setPHeights', []),
-    withState('defaultPHeights', 'setDefaultPHeights', []),
-    lifecycle(slideLifecycle),
-)
-
-const SlideSmart = enhance(Slide)
-
-export default SlideSmart
+export default ConnectedSlide

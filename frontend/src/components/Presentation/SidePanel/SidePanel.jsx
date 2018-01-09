@@ -73,7 +73,6 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     let p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
     let p3 = {x: 0, y: appStyles.unitHeightJs * 9}
     let p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 9}
-    console.log(p1, p2, p3, p4)
 
     let path =
         'M ' + p1.x + ' ' + p1.y
@@ -173,7 +172,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
             <div style={ styles.contentWrapper }>
                 <ToggleButton
                     isOpened={ props.isOpened }
-                    onClick={ () => props.setIsOpened(!isOpened) }
+                   onClick={ () => props.setIsOpened(!isOpened) }
                     linePosition={ props.linePosition }
                     type={ props.type }
                 />
