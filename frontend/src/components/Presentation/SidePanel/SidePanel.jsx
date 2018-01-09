@@ -11,6 +11,8 @@ import getStyles, { getBgStyles } from './SidePanelStyles.jsx'
 
 import arrow from '../../img/arrow.svg'
 
+import { updateIsSidePanelOpened } from '../../../reducer/actions/App.js'
+
 import {
     coord2CircDefault,
     coord2CircInverted,
@@ -50,6 +52,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 // eslint-disable-next-line no-unused-vars
 const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
     return {
+        updateIsSidePanelOpened: isOpened => dispatch(updateIsSidePanelOpened(isOpened)),
     }
 }
 
@@ -188,6 +191,8 @@ const sidePanelLifecycle = {
     componentDidUpdate: function(prevProps: Props) {
         if(this.props.isOpened !== prevProps.isOpened) {
             requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 0, prevProps.isOpened ? 0 : 11, 0, this.props.setWidth, new Date().getTime()))
+
+            this.props.updateIsSidePanelOpened(this.props.isOpened)
         }
     },
 }

@@ -51,6 +51,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         isFooterOpened: state.appReducer.isFooterOpened,
         goToPage: state.appReducer.goToPage,
         linePosition: state.appReducer.linePosition,
+        isSidePanelOpened: state.appReducer.isSidePanelOpened,
     }
 }
 

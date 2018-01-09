@@ -1,5 +1,7 @@
 // @flow
 
+import { styles as appStyles } from '../../constants.js'
+
 import type { Props } from './PresentationTypes.jsx'
 
 import type {
@@ -16,6 +18,7 @@ type Styles = {
 
 // eslint-disable-next-line no-unused-vars
 const getStyles: GetStyles<Props, Styles> = props => {
+    console.log(props.isSidebarOpened)
     return {
         wrapper: {
             display: 'flex',
@@ -23,11 +26,21 @@ const getStyles: GetStyles<Props, Styles> = props => {
         },
         sidePanel: {
             display: 'flex',
-            flex: 0.5,
+            flex: 1,
         },
         toc: {
             display: 'flex',
-            flex: 0.5,
+            backgroundColor:appStyles.themes[props.appTheme].lineBgColor,
+            paddingLeft: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')',
+            boxSizing: 'border-box',
+            width: (
+                'calc(100vw - '
+                 + appStyles.sidePanel.openedWidthCoef * (props.isSidePanelOpened ? 1 : 0)
+                 + ' * '
+                 + appStyles.unitWidth
+                + ')'
+            ),
+            transition: 'width 0.3s linear',
         },
     }
 }

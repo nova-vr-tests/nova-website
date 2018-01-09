@@ -9,6 +9,7 @@ import {
     UPDATE_IS_FOOTER_OPENED,
     UPDATE_PAGES,
     UPDATE_CURRENT_FOOTER_PAGE,
+    UPDATE_IS_SIDE_PANEL_OPENED,
 } from '../App'
 
 import {
@@ -21,6 +22,11 @@ import type {
 } from '../AppTypes.jsx'
 
 import type { ThemeNames } from '../../constantTypes.jsx'
+
+const updateIsSidePanelOpened = isSidePanelOpened => ({
+    type: UPDATE_IS_SIDE_PANEL_OPENED,
+    isSidePanelOpened,
+})
 
 const updatePages = pages => ({
     type: UPDATE_PAGES,
@@ -91,4 +97,5 @@ export {
     updateIsFooterOpened,
     updateCurrentFooterPage,
     updatePages,
+    updateIsSidePanelOpened,
 }

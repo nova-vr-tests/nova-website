@@ -23,6 +23,7 @@ export const footerPage = {
 export const initialState: State = {
     introKeyframe: 2,
     isSidebarOpened: true,
+    isSidePanelOpened: true,
     linePosition: 2, // position of current page in sidebar tree
     appTheme: appStyles.themeTypes.defaultTheme,
     currentPage: 0,
@@ -34,6 +35,7 @@ export const initialState: State = {
 }
 
 
+export const UPDATE_IS_SIDE_PANEL_OPENED = 'side panel/is_side_panel_opened'
 export const UPDATE_IS_FOOTER_OPENED = 'footer/update_is_footer_opened'
 export const UPDATE_WINDOW_WIDTH = 'app/update_window_width'
 export const UPDATE_GO_TO_PAGE = 'app/update_go_to_page'
@@ -51,6 +53,11 @@ export default (state: State = initialState, action: Action): State => {
   const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
+  case UPDATE_IS_SIDE_PANEL_OPENED:
+      return {
+          ...state,
+          isSidePanelOpened: action.isSidePanelOpened
+      }
   case UPDATE_PAGES:
       return {
           ...state,

@@ -44,13 +44,16 @@ const coord2CircInverted = (x: number): {y1: number, y2: number} => {
 }
 
 const togglePanel = (initWidth: number, targetWidth: number, progress: number, setWidth: number => void, initTimestamp: number) => {
+    if(progress >= 1)
+        progress = 1
+
     const dist = targetWidth - initWidth
     const currentPos = initWidth + dist * progress
 
     const transitionTime = appStyles.sidePanel.transitionTime
     const newProgress = (new Date().getTime() - initTimestamp) / transitionTime
 
-    if(progress <= 1) {
+    if(progress < 1) {
         requestAnimationFrame(() => togglePanel(initWidth, targetWidth, newProgress, setWidth, initTimestamp))
     }
 
