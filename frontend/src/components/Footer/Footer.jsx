@@ -130,7 +130,6 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
             >
                 <img src={ toggleButton } alt="toggle sidebar" className="transform-on-hover" />
             </div>
-            <PresentationControls {...props} opacity={ props.introKeyframe >= INTRO_FINISHED ? 1 : 0 } />
             <div style={ styles.quickLinks }>
                 <span
                     onClick={ () => openFooter(footerPage.LEGALS) }
