@@ -48,12 +48,18 @@ export const INCREMENT_INTRO_KEYFRAME = 'app/increment_intro_keyframe'
 export const RESET_INTRO_KEYFRAME = 'app/reset_intro_keyframe'
 export const TOGGLE_SIDEBAR = 'app/toggle_sidebar'
 export const UPDATE_PAGES = 'app/update_pages'
+export const UPDATE_WINDOW_HEIGHT = 'app/update_window_height'
 
 
 export default (state: State = initialState, action: Action): State => {
   const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
+  case UPDATE_WINDOW_HEIGHT:
+      return {
+          ...state,
+          windowHeight: action.windowHeight,
+      }
   case UPDATE_IS_SIDE_PANEL_OPENED:
       return {
           ...state,

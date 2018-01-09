@@ -10,6 +10,7 @@ import Bg from './components/Bg/Bg.jsx'
 import {
     updateLinePosition,
     updateWindowWidth,
+    updateWindowHeight,
 } from './reducer/actions/App.js'
 import Header from './components/Header/Header.jsx'
 import { toggleSidebar } from './reducer/actions/Sidebar.js'
@@ -45,6 +46,7 @@ const mapDispatchToProps = function(dispatch) {
 	return {
     updateLinePosition: linePosition => dispatch(updateLinePosition(linePosition)),
     updateWindowWidth: windowWidth => dispatch(updateWindowWidth(windowWidth)),
+    updateWindowHeight: windowHeight => dispatch(updateWindowHeight(windowHeight)),
     toggleSidebar: () => dispatch(toggleSidebar()),
   }
 }
@@ -115,6 +117,7 @@ class App extends Component {
         }
 
         this.props.updateWindowWidth(windowWidth)
+        this.props.updateWindowHeight(document.documentElement.clientHeight)
     }
 
     render() {

@@ -128,6 +128,15 @@ styles.themes[styles.themeTypes.openedFooterTheme] = {
     bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
 }
 
+const proxiedStyles = new Proxy(styles, {
+    get: function(target, property, receiver) {
+        if(property === 'unitHeightJs') {
+            return document.documentElement.clientHeight / 24
+        } else {
+            return target[property]
+        }
+    }
+})
 
 export {
     LOGO_FRAME1,
@@ -135,5 +144,5 @@ export {
     LOGO_FRAME3,
     FOOTER_FINAL,
     INTRO_FINISHED,
-    styles,
+    proxiedStyles as styles,
 }

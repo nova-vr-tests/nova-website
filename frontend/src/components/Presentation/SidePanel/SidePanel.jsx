@@ -46,6 +46,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         isFooterOpened: state.appReducer.isFooterOpened,
         appTheme: state.appReducer.appTheme,
         windowWidth: state.appReducer.windowWidth,
+        windowHeight: state.appReducer.windowHeight,
     }
 }
 
@@ -165,12 +166,15 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
 
     const styles = getStyles(props)
 
+
+    console.log('a', props.windowHeight)
     return (
         <div style={ styles.wrapper }>
             <BG
                 widthCoef={ widthCoef }
                 isFooterOpened={ props.isFooterOpened }
                 type={ props.type }
+                windowHeight={ props.windowHeight }
             />
             <div style={ styles.contentWrapper }>
                 <ToggleButton
