@@ -175,10 +175,9 @@ const Slide = props => {
 
     return [
         <div
-            key={ 2 }
             style={ {...styles.slideParagraphs, position: 'relative'} }
             id={ id2 }
-            key={ 2 }>
+            key={ 123 }>
             <div style={ styles.paragraphsWrapper }>
                 <div id={ id1 }>
                     { allParagraphs }

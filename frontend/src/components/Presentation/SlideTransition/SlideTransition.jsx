@@ -173,7 +173,11 @@ class SlideTransition extends React.Component<Props, State> {
                 currentUrl={ ''}
                 title={ slideTitle  }
                 key={ 1 } />,
-            <div className='slide-transition--wrapper' style={ styles.wrapper }>
+            <div
+                className='slide-transition--wrapper'
+                style={ styles.wrapper }
+                key={ 2 }
+            >
                 <div className='current-slide--wrapper' style={ styles.currentSlideStyle }>
                     { CurrentSlide }
                 </div>
