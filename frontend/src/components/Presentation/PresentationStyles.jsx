@@ -18,7 +18,11 @@ type Styles = {
 
 // eslint-disable-next-line no-unused-vars
 const getStyles: GetStyles<Props, Styles> = props => {
-    console.log(props.isSidebarOpened)
+    let tocBgColor = appStyles.themes[props.appTheme].lineBgColor
+    if(props.windowWidth < appStyles.mediaQueries.phone) {
+        tocBgColor = 'rgba(0, 0, 0, 0)'
+    }
+
     return {
         wrapper: {
             display: 'flex',
@@ -30,7 +34,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
         },
         toc: {
             display: 'flex',
-            backgroundColor:appStyles.themes[props.appTheme].lineBgColor,
+            backgroundColor: tocBgColor,
             paddingLeft: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ')',
             boxSizing: 'border-box',
             width: (

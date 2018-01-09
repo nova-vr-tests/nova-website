@@ -12,6 +12,10 @@ import { push } from 'react-router-redux'
 
 import getStyles from './HeaderStyles.jsx'
 
+import {
+    coord2CircDefault,
+} from '../Presentation/SidePanel/helpers.jsx'
+
 import type {
     ReduxState,
     ReduxDispatch,
@@ -28,6 +32,8 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       isSidebarOpened: state.sidebarReducer.isSidebarOpened,
       appTheme: state.appReducer.appTheme,
+      windowWidth: state.appReducer.windowWidth,
+      windowHeight: state.appReducer.windowHeight,
     }
 }
 
@@ -40,8 +46,44 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 
 const styleConstants = appStyles.header
 
+const Svg = props => {
+    const { clientWidth, clientHeight } = document.documentElement
+    const { header } = appStyles
+
+    // unit conversions
+    const vh = document.documentElement.clientHeight / 100
+    const r = header.radius * vh
+
+    let coord2Circ = coord2CircDefault
+
+    const screenRightEdge = clientWidth
+    let p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
+    let p2 = {x: 0, y: coord2Circ(clientWidth).y1}
+    let p3 = {x: 0, y: appStyles.unitHeightJs * 0}
+    let p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 0}
+
+    let path =
+        'M ' + p1.x + ' ' + p1.y
+        + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
+        + ' L ' + p3.x + ' ' + p3.y + ' '
+        + ' L ' + p4.x + ' ' + p4.y + ' '
+    let color = 'rgba(0, 0, 0, 0.3)'
+
+    return (
+        <svg height='100%' style={ {} } width='100%'
+                viewport='0 0 100 100'
+                xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <path d={ path }
+                    fill={ color } stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
+        </svg>
+    )
+}
+
 const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
     const styles = getStyles(props)
+
+    const { radius, diam, centerX, centerY } = appStyles.header
+    const side = radius * appStyles.unitHeightJs / 2 - 10000
 
     return (
         <div style={ styles.wrapper }>
@@ -54,11 +96,11 @@ const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
                     ...(props.isSidebarOpened ? {} : styles.logoSidebarClosed),
                 }}
             />
-            <div
-                className="header--wrapepr"
-                style={ styles.circle }
-            >
-            </div>
+
+            <Svg
+                windowWidth={ props.windowWidth }
+                windowHeight={ props.windowHeight }
+            />
         </div>
     )
 }

@@ -23,6 +23,16 @@ const getStyles: GetStyles<Props, Styles> = props => {
 
     return {
         wrapper: {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            right: 0,
+            height: 'calc(3 * ' + appStyles.unitHeight + 'vh)',
+        },
+        svg: {
+            position: 'absolute',
+            zIndex: '20',
+            bottom: 0,
         },
         bgImage: {
             position: 'absolute',
@@ -30,17 +40,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
             bottom: 0,
             left: 0,
             right: 0,
-        },
-        circle: {
-            transform: 'translateY(' + centerY + 'vh)translateX(' + centerX + 'vw)',
-            backgroundColor: appStyles.themes[props.appTheme].headerBgColor,
-            transition: 'background-color 0.5s linear',
-            position: 'absolute',
-            height: diam,
-            width: diam,
-            borderRadius: diam,
-            top: 'calc(0vh - ' + radius + 'vh)',
-            left: 'calc(0vh - ' + radius + 'vh)',
         },
         logo: {
             position: 'absolute',
