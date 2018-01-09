@@ -64,14 +64,16 @@ class SlideTransition extends React.Component<Props, State> {
             // Start transition
 
             const startTime = new Date()
-            const deltaTime = 500
+            const deltaTime = 1000
 
             let rafId = 0
             const transitionFunction = () => {
                 if(this.state.transitionProgress < 1) {
-                    const deltaProgress = (new Date() - startTime) / deltaTime - this.state.transitionProgress
+                    const deltaProgress = (new Date() - startTime) / deltaTime //- this.state.transitionProgress
+                    const progress = deltaProgress * (2 - deltaProgress)
+
                     this.setState({
-                        transitionProgress: this.state.transitionProgress + deltaProgress > 1 ? 1 : this.state.transitionProgress + deltaProgress,
+                        transitionProgress: progress > 0.99 ? 1 : progress
                     })
 
                     rafId = requestAnimationFrame(transitionFunction)
