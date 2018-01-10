@@ -76,12 +76,19 @@ const getStyles: GetStyles<Props, Styles> = props => {
     })()
     let footerOffset = props.isFooterOpened && isIntroFinished ? 'calc(100vh - ' + footerHeight + 'px - ' + footerRadiusOffset + 'px - ' + props.sidebarHeaderIntersection + 'px)' : '0vh'
 
-
     return {
         footerWrapper: {
             display: 'flex',
             height: footerHeight,
             zIndex: props.introKeyframe >= INTRO_FINISHED + 1 ? 'inherit' : 100,
+        },
+        svg: {
+            transform: 'rotateX(180deg)translateY(calc(0.5 * ' + appStyles.unitHeight + '))',
+            position: 'absolute',
+            top: '0',
+            width: '100vw',
+            pointerEvents: 'none',
+            zIndex: -1,
         },
         footerBackground: {
             position: 'absolute',
@@ -92,7 +99,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
             top: 'calc(0vh - ' + footerBgCenter.radius + '))',
             left: 'calc(0vh - ' + footerBgCenter.radius + '))',
             transform: 'translateY(calc(' + footerBgCenter.y + ' - ' + footerOffset + '))translateX(' + footerBgCenter.x + ')',
-            backgroundColor: isIntroFinished ? theme.footerBgColor : 'white',
             display: 'flex',
             justifyContent: 'center',
         },

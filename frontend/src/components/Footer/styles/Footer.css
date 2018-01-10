@@ -6,7 +6,6 @@
 .footer-background {
   --radius: 1340vh;
   --diam: calc(var(--radius) * 2);
-  background-color: white;
   position: absolute;
 	height: var(--diam);
 	width: var(--diam);

@@ -67,16 +67,26 @@ const Svg = props => {
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
         + ' L ' + p3.x + ' ' + p3.y + ' '
         + ' L ' + p4.x + ' ' + p4.y + ' '
-    let color = 'rgba(0, 0, 0, 0.3)'
+    let color = props.color
 
     return (
-        <svg height='100%' style={ {} } width='100%'
-                viewport='0 0 100 100'
-                xmlns="http://www.w3.org/2000/svg" version="1.1">
-            <path d={ path }
-                    fill={ color } stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
+        <svg
+            height={ 3 * appStyles.unitHeightJs + 'px'}
+            width={ document.documentElement.clientWidth + 'px'}
+            style={ {} }
+            viewport='0 0 100 100'
+            xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <path
+                d={ path }
+                fill={ color }
+                stroke="rgba(0, 0, 0, 0)"
+                strokeWidth="3" />
         </svg>
     )
+}
+
+Svg.defaultProps = {
+    color: 'rgba(0, 0, 0, 0.3)',
 }
 
 const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
@@ -160,4 +170,5 @@ export default ConnectedHeader
 
 export {
     styleConstants,
+    Svg
 }

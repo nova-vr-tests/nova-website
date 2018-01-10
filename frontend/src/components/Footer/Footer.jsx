@@ -13,6 +13,8 @@ import toggleButton from '../img/toggle-sidebar.svg'
 import arrowImg from '../img/arrow.svg'
 import AboutUs from '../About/About.jsx'
 
+import { Svg } from '../Header/Header.jsx'
+
 import type {
     ReduxState,
     ReduxDispatch,
@@ -40,6 +42,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         isFooterOpened: state.appReducer.isFooterOpened,
         sidebarHeaderIntersection: state.headerReducer.sidebarIntersection,
         windowWidth: state.appReducer.windowWidth,
+        windowHeight: state.appReducer.windowHeight,
         currentFooterPage: state.appReducer.currentFooterPage,
     }
 }
@@ -64,26 +67,43 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
         <div
             className="footer--wrapper"
             style={ styles.footerWrapper }>
-            <div style={ styles.closeFooterArrowWrapper } onClick={ () => props.updateIsFooterOpened(false) }>
-                <img src={ arrowImg } alt="close" style={ styles.closeFooterArrowImg }/>
+            <div
+                style={ styles.closeFooterArrowWrapper }
+                onClick={ () => props.updateIsFooterOpened(false) }>
+                <img
+                    src={ arrowImg }
+                    alt="close"
+                    style={ styles.closeFooterArrowImg } />
             </div>
             <div>
                 <div
                     style={ styles.footerBackground }
                     className={
                         "footer-background "
-                        + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "init-position")
+                        + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "final-position")
                     }
                 >
-                    {
-                        props.introKeyframe >= INTRO_FINISHED + 1 ?
-                            <AboutUs
-                                opacity={ props.isFooterOpened ? 1 : 0 }
-                                windowWidth={ props.windowWidth }
-                            />
-                        :
-                            ''
-                    }
+                    <div style={{ position: 'relative', width: '100vw' }}>
+                            {
+                                props.introKeyframe >= INTRO_FINISHED + 1 ?
+                                        <AboutUs
+                                            opacity={ props.isFooterOpened ? 1 : 0 }
+                                            windowWidth={ props.windowWidth }
+                                        />
+                                :
+                                    ''
+                            }
+
+                            <div style={ styles.svg }>
+                                <div style={{ backgroundColor: 'white', height: '100vh' }}>
+                                </div>
+                                <Svg
+                                    windowWidth={ props.windowWidth }
+                                    windowHeight={ props.windowHeight }
+                                    color="rgba(255, 255, 255, 1)"
+                                />
+                            </div>
+                    </div>
                 </div>
             </div>
             <div
@@ -93,7 +113,10 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                 }}
                 onClick={ props.toggleSidebar }
             >
-                <img src={ toggleButton } alt="toggle sidebar" className="transform-on-hover" />
+                <img
+                    src={ toggleButton }
+                    alt="toggle sidebar"
+                    className="transform-on-hover" />
             </div>
             <div style={ styles.quickLinks }>
                 <span
