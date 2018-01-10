@@ -74,13 +74,18 @@ const getStyles: GetStyles<Props, Styles> = props => {
 
         return (borderOffset - 2 * Cy)
     })()
-    let footerOffset = props.isFooterOpened && isIntroFinished ? 'calc(100vh - ' + footerHeight + 'px - ' + footerRadiusOffset + 'px - ' + props.sidebarHeaderIntersection + 'px)' : '0vh'
+
+    let footerOffset = props.isFooterOpened && isIntroFinished ?
+                       '(100vh - ' + (footerHeight + footerRadiusOffset + props.sidebarHeaderIntersection) + 'px)'
+                     :
+                       '0vh'
+
 
     return {
         footerWrapper: {
             display: 'flex',
             height: footerHeight,
-            zIndex: props.introKeyframe >= INTRO_FINISHED + 1 ? 'inherit' : 100,
+            zIndex: 2,
         },
         svg: {
             transform: 'rotateX(180deg)translateY(calc(0.5 * ' + appStyles.unitHeight + '))',
@@ -92,15 +97,11 @@ const getStyles: GetStyles<Props, Styles> = props => {
         },
         footerBackground: {
             position: 'absolute',
-            height: footerBgCenter.diam,
-            width: footerBgCenter.diam,
             borderRadius: footerBgCenter.diam,
             transition: 'transform 0.5s, background-color 0.5s linear',
-            top: 'calc(0vh - ' + footerBgCenter.radius + '))',
-            left: 'calc(0vh - ' + footerBgCenter.radius + '))',
-            transform: 'translateY(calc(' + footerBgCenter.y + ' - ' + footerOffset + '))translateX(' + footerBgCenter.x + ')',
             display: 'flex',
             justifyContent: 'center',
+            transform: 'translateY(calc(-' + appStyles.unitHeight + ' / 4 - ' + footerOffset + '))',
         },
         wrapper: {
             transition: props.introKeyframe >= INTRO_FINISHED ? 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc : 'transform 2s linear'

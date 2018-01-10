@@ -75,35 +75,32 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                     alt="close"
                     style={ styles.closeFooterArrowImg } />
             </div>
-            <div>
-                <div
-                    style={ styles.footerBackground }
-                    className={
-                        "footer-background "
-                        + (props.introKeyframe >= FOOTER_FINAL ? " final-position " : "final-position")
-                    }
-                >
-                    <div style={{ position: 'relative', width: '100vw' }}>
-                            {
-                                props.introKeyframe >= INTRO_FINISHED + 1 ?
-                                        <AboutUs
-                                            opacity={ props.isFooterOpened ? 1 : 0 }
-                                            windowWidth={ props.windowWidth }
-                                        />
-                                :
-                                    ''
-                            }
+            <div
+                style={ styles.footerBackground }
+                className={
+                    "footer-background "
+                }
+            >
+                <div style={{ position: 'relative', width: '100vw' }}>
+                        {
+                            props.introKeyframe >= INTRO_FINISHED + 1 ?
+                                    <AboutUs
+                                        opacity={ props.isFooterOpened ? 1 : 0 }
+                                        windowWidth={ props.windowWidth }
+                                    />
+                            :
+                                ''
+                        }
 
-                            <div style={ styles.svg }>
-                                <div style={{ backgroundColor: 'white', height: '100vh' }}>
-                                </div>
-                                <Svg
-                                    windowWidth={ props.windowWidth }
-                                    windowHeight={ props.windowHeight }
-                                    color="rgba(255, 255, 255, 1)"
-                                />
+                        <div style={ styles.svg }>
+                            <div style={{ backgroundColor: 'white', height: '100vh' }}>
                             </div>
-                    </div>
+                            <Svg
+                                windowWidth={ props.windowWidth }
+                                windowHeight={ props.windowHeight }
+                                color="rgba(255, 255, 255, 1)"
+                            />
+                        </div>
                 </div>
             </div>
             <div

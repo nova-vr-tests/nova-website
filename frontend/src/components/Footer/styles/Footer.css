@@ -4,39 +4,6 @@
 }
 
 .footer-background {
-  --radius: 1340vh;
-  --diam: calc(var(--radius) * 2);
-  position: absolute;
-	height: var(--diam);
-	width: var(--diam);
-	border-radius: var(--diam);
-  transition: transform 2s linear;
-
-  /*
-    Center circle to top left coordinate
-    transforms will then be taken from the
-    distance to the top left coord
-  */
-  top: calc(0vh - var(--radius));
-	left: calc(0vh - var(--radius));
-}
-
-.footer-background.init-position {
-  /*
-    Distances to top left zero coord
-  */
-  --center-x: 100vw;
-  --center-y: 1400vh;
-  transform: translateY(var(--center-y))translateX(var(--center-x));
-}
-
-.footer-background.final-position {
-  /*
-    Distances to top left zero coord
-  */
-  --center-x: 50vw;
-  --center-y: 1430vh;
-  transform: translateY(var(--center-y))translateX(var(--center-x));
 }
 
 
