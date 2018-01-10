@@ -178,3 +178,6 @@ const ConnectedSlide = connect(
 )(Slide)
 
 export default ConnectedSlide
+
+
+
