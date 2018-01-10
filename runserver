@@ -1,0 +1,23 @@
+#!/bin/bash
+
+intexit() {
+    # Kill all subprocesses (all processes in the current process group)
+    kill -HUP -$$
+}
+
+hupexit() {
+    # HUP'd (probably by intexit)
+    echo
+    echo "Interrupted"
+    exit
+}
+
+trap hupexit HUP
+trap intexit INT
+
+project_root=nova/nova-website
+source ~/$project_root/venv/bin/activate
+python ~/$project_root/manage.py runserver &
+npm start --prefix ~/$project_root/frontend/ &
+
+wait
