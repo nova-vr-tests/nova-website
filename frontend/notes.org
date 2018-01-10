@@ -23,7 +23,7 @@
 
 ** pages
 *** side panel
-**** TB create responsive styling comp                                :pages:
+**** TB create responsive styling comp                           :pages:debt:
      SCHEDULED: <2018-01-04 Thu>
 **** DONE create new side panel comp                                  :pages:
      CLOSED: [2018-01-04 Thu 16:34] SCHEDULED: <2018-01-04 Thu>
@@ -35,11 +35,18 @@
      CLOSED: [2018-01-07 Sun 14:32] SCHEDULED: <2018-01-04 Thu>
 **** TB ease-out animation timing function on toggle sidebar          :pages:
      SCHEDULED: <2018-01-04 Thu>
+
 ** BG
-**** TB redo data structure                                              :bg:
-     SCHEDULED: <2018-01-04 Thu>
-**** DONE calc based on scroll height                                    :bg:
+*** TB redo data structure                                          :bg:debt:
+    SCHEDULED: <2018-01-04 Thu>
+*** DONE calc based on scroll height                                    :bg:
      CLOSED: [2018-01-04 Thu 16:41] SCHEDULED: <2018-01-04 Thu>
+
+** Footer
+*** TB update header opacity when footer is up                       :pages:
+    SCHEDULED: <2018-01-11 Thu>
+*** TB redo footer alignments                                        :pages:
+    SCHEDULED: <2018-01-11 Thu>
 
 * Backend
 ** blog posts
