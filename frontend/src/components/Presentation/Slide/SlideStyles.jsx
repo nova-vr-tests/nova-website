@@ -48,6 +48,9 @@ const getStyles = props => {
             // min width greater than container so it doesn't shrink on panel close
             minWidth,
         },
+        allParagraphs: {
+            minHeight: 'calc(' + 8 + ' * ' + appStyles.unitHeight + ') ',
+        },
         paragraph: {
             // height: 'calc(' + lineHeightCoef + ' * ' + appStyles.unitHeight + ') ',
             display: 'flex',

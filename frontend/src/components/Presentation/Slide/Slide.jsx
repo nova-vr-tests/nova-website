@@ -154,7 +154,9 @@ const Slide = props => {
             id={ id2 }
             key={ 123 }>
             <div style={ styles.paragraphsWrapper }>
-                <div id={ id1 }>
+            <div
+                id={ id1 }
+                style={ styles.allParagraphs }>
                     { allParagraphs }
                 </div>
                 <div
