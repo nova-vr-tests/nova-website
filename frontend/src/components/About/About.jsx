@@ -11,6 +11,8 @@ import type {
     OwnProps,
 } from './AboutTypes.jsx'
 
+import Login from './Login/Login.jsx'
+
 import SidePanel, { sidePanelTypes } from '../Presentation/SidePanel/SidePanel.jsx'
 
 import { footerPage } from '../../reducer/App.js'
@@ -45,11 +47,7 @@ const contactContent = (
     </div>
 )
 
-const loginContent = (
-    <div>
-        <h2 style={{ marginTop: 0 }}>Coming Soon</h2>
-    </div>
-)
+const loginContent = <Login />
 
 
 text[footerPage.LEGALS] = {
