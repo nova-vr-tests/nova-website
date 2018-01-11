@@ -31,6 +31,7 @@ import type {
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       isSidebarOpened: state.sidebarReducer.isSidebarOpened,
+      isFooterOpened: state.appReducer.isFooterOpened,
       appTheme: state.appReducer.appTheme,
       windowWidth: state.appReducer.windowWidth,
       windowHeight: state.appReducer.windowHeight,
@@ -67,7 +68,8 @@ const Svg = props => {
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
         + ' L ' + p3.x + ' ' + p3.y + ' '
         + ' L ' + p4.x + ' ' + p4.y + ' '
-    let color = props.color
+    const { color } = props
+
 
     return (
         <svg
@@ -95,6 +97,11 @@ const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
     const { radius, diam, centerX, centerY } = appStyles.header
     const side = radius * appStyles.unitHeightJs / 2 - 10000
 
+    let isSvgVisible = true
+    if(props.isFooterOpened) {
+        isSvgVisible = false
+    }
+
     return (
         <div style={ styles.wrapper }>
             <img
@@ -107,10 +114,13 @@ const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
                 }}
             />
 
-            <Svg
-                windowWidth={ props.windowWidth }
-                windowHeight={ props.windowHeight }
-            />
+            <div style={{ opacity: isSvgVisible ? 1 : 0, transition: 'opacity 0.5s linear' }}>
+                <Svg
+                    isVisible={ isSvgVisible }
+                    windowWidth={ props.windowWidth }
+                    windowHeight={ props.windowHeight }
+                />
+            </div>
         </div>
     )
 }

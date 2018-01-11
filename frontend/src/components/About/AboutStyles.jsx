@@ -56,7 +56,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             marginTop: '20vh',
         },
         content: {
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            backgroundColor,
             height: '100%',
             padding: '2rem',
         }
