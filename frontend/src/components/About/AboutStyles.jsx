@@ -44,6 +44,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             paddingLeft: 'calc(' + 3 + ' * ' + unitWidth + ')',
             boxSizing: 'border-box',
             fontSize: '2rem',
+            margin: 0,
         }
     }
 }

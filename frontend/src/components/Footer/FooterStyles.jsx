@@ -85,7 +85,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
         footerWrapper: {
             display: 'flex',
             height: footerHeight,
-            zIndex: 2,
         },
         svg: {
             transform: 'rotateX(180deg)translateY(calc(0.5 * ' + appStyles.unitHeight + '))',
