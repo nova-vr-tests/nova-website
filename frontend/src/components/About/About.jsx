@@ -75,11 +75,15 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
 
     return (
         <div style={ styles.wrapper }>
-            <h2 style={ styles.h2 }>{ title }</h2>
             <SidePanel
-                marginTop='calc(20.833vh + 26.5667px)'
+                marginTop={ styles.sidePanel.marginTop }
                 type={ sidePanelTypes.INVERTED }>
-                { content }
+                <div style={ styles.title }>
+                    <h2 style={ styles.h2 }>{ title }</h2>
+                </div>
+                <div style={ styles.content }>
+                    { content }
+                </div>
             </SidePanel>
         </div>
     )

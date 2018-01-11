@@ -101,6 +101,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             display: 'flex',
             justifyContent: 'center',
             transform: 'translateY(calc(-' + appStyles.unitHeight + ' / 4 - ' + footerOffset + '))',
+            height: '100%',
         },
         wrapper: {
             transition: props.introKeyframe >= INTRO_FINISHED ? 'background-color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc : 'transform 2s linear'

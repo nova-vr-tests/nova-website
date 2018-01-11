@@ -23,6 +23,11 @@ const getStyles: GetStyles<Props, Styles> = props => {
     const sidebarWidth = 'calc(' + widthFactor + ' * ' + unitWidth + ')'
     const sidePanelWidth = 'calc(' + sidePanelWidthCoef + ' * ' + unitWidth + ')'
 
+    let backgroundColor = 'rgba(0, 0, 0, 0.1)'
+    if (document.documentElement.clientWidth < appStyles.mediaQueries.phone) {
+        backgroundColor = 'rgba(0, 0, 0, 0)'
+    }
+
     return {
         wrapper: {
             width: 'calc(100vw - ' + sidebarWidth + ')',
@@ -31,6 +36,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             opacity: props.opacity,
             transition: 'opacity 0.5s linear',
             paddingLeft: sidebarWidth,
+            height: '100%',
         },
         p: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
@@ -39,12 +45,20 @@ const getStyles: GetStyles<Props, Styles> = props => {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
         h2: {
-            width: 'calc(100vw - ' + sidePanelWidth + ' - ' + sidebarWidth + ')',
-            paddingTop: 'calc(' + 5 + ' * ' + unitHeight + ')',
-            paddingLeft: 'calc(' + 3 + ' * ' + unitWidth + ')',
+            paddingLeft: '4rem',
+            paddingBottom: '2rem',
+            paddingBottom: 'calc(2 * ' + appStyles.unitHeight + ')',
             boxSizing: 'border-box',
             fontSize: '2rem',
             margin: 0,
+        },
+        sidePanel: {
+            marginTop: '20vh',
+        },
+        content: {
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            height: '100%',
+            padding: '2rem',
         }
     }
 }
