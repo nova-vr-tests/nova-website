@@ -7,7 +7,8 @@ import './styles/Sidebar.css'
 import {
     initSidebarLinkStates,
     toggleSidebarSection,
-    toggleSidebarSubSection
+    toggleSidebarSubSection,
+    toggleSidebar,
 } from '../../reducer/actions/Sidebar.js'
 import { styles } from '../../constants.js'
 import { menuInput } from '../pages/Pages.jsx'
@@ -218,6 +219,7 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
     initLinkStates: links => dispatch(initSidebarLinkStates(links)),
     toggleSection: i => dispatch(toggleSidebarSection(i)),
     toggleSubSection: (i, j) => dispatch(toggleSidebarSubSection(i, j)),
+    toggleSidebar: () => dispatch(toggleSidebar()),
   }
 }
 
@@ -235,6 +237,18 @@ class Sidebar extends React.Component<Props, State> {
 
     componentWillMount() {
         this.props.initLinkStates(this.state.links)
+    }
+
+    componentWillUpdate(nextProps) {
+        const nextPath = nextProps.routing.location.pathname
+        const currentPath = this.props.routing.location.pathname
+        const { isSidebarOpened } = this.props
+        const isMobile = document.documentElement.clientWidth < styles.mediaQueries.phone
+
+        // if page change and sidebar opened on mobile
+        if (nextPath !== currentPath && isSidebarOpened && isMobile) {
+            this.props.toggleSidebar()
+        }
     }
 
     render() {
