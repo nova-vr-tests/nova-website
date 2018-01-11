@@ -19,8 +19,6 @@ type Styles = {
 }
 
 const getStyles: GetStyles<Props, Styles> = props => {
-    const { radius, diam, centerX, centerY } = appStyles.header
-
     return {
         wrapper: {
             position: 'absolute',

@@ -48,7 +48,7 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 const styleConstants = appStyles.header
 
 const Svg = props => {
-    const { clientWidth, clientHeight } = document.documentElement
+    const { clientWidth } = document.documentElement
     const { header } = appStyles
 
     // unit conversions
@@ -93,9 +93,6 @@ Svg.defaultProps = {
 
 const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
     const styles = getStyles(props)
-
-    const { radius, diam, centerX, centerY } = appStyles.header
-    const side = radius * appStyles.unitHeightJs / 2 - 10000
 
     let isSvgVisible = true
     if(props.isFooterOpened) {

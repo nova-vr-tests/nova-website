@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { connect }from 'react-redux'
 import './styles/Footer.css'
-import { FOOTER_FINAL, INTRO_FINISHED } from '../../constants.js'
+import { INTRO_FINISHED } from '../../constants.js'
 import { toggleSidebar } from '../../reducer/actions/Sidebar.js'
 import {
     updateIsFooterOpened,

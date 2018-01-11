@@ -32,8 +32,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
     const isIntroFinished = props.introKeyframe >= INTRO_FINISHED ? true : false
 
 
-    const theme = appStyles.themes[props.appTheme]
-
     const footerBgCenter = {
         x: '50vw',
         y: '1429vh',

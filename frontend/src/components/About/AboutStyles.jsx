@@ -15,13 +15,11 @@ type Styles = {
     h1: CSSStyleDeclaration,
 }
 
-const { unitHeight, unitWidth } = appStyles
+const { unitWidth } = appStyles
 const { widthFactor } = appStyles.sidebar
-const sidePanelWidthCoef = appStyles.sidePanel.openedWidthCoef
 
 const getStyles: GetStyles<Props, Styles> = props => {
     const sidebarWidth = 'calc(' + widthFactor + ' * ' + unitWidth + ')'
-    const sidePanelWidth = 'calc(' + sidePanelWidthCoef + ' * ' + unitWidth + ')'
 
     let backgroundColor = 'rgba(0, 0, 0, 0.1)'
     if (document.documentElement.clientWidth < appStyles.mediaQueries.phone) {
@@ -46,7 +44,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
         },
         h2: {
             paddingLeft: '4rem',
-            paddingBottom: '2rem',
             paddingBottom: 'calc(2 * ' + appStyles.unitHeight + ')',
             boxSizing: 'border-box',
             fontSize: '2rem',
