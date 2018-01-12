@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import twitter from '../../img/social/twitter.svg'
 import facebook from '../../img/social/facebook.svg'
+import linkedin from '../../img/social/linkedin.svg'
 
 const mapStateToProps = state => ({
     currentUrl: window.location.origin + state.routing.location.pathname,
@@ -31,8 +32,20 @@ const styles = {
     }
 }
 
+const getLinkedinUrl = currentUrl => "https://www.linkedin.com/cws/share?" + currentUrl
+
 const Social = props => (
   <div style={ styles.wrapper }>
+    <div style={ styles.iconWrapper }>
+      <a
+        target="_blank"
+        href={ getLinkedinUrl(props.currentUrl) }>
+        <img
+          src={ linkedin }
+          style={ styles.icon }
+          alt="linkedin" />
+      </a>
+    </div>
     <div style={ styles.iconWrapper }>
       <a
         target="_blank"
