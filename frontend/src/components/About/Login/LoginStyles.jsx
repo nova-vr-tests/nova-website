@@ -10,24 +10,17 @@ const getStyles = padding => {
 
     return {
         wrapper: {
-            display: 'flex',
-            flexDirection: 'column',
             padding: formPadding,
         },
-        input: {
-            margin: '1rem',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            border: '1px solid black',
-            borderRadius: '1rem',
-            padding: '0 2rem',
+        errorWrapper: {
+            position: 'absolute',
+            bottom: '100%',
+            height: '4rem',
+            width: '50%',
+            fontSize: '1.5rem',
         },
-        button: {
-            margin: '1rem',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            border: '1px solid black',
-            borderRadius: '1rem',
-            padding: '0 2rem',
-            cursor: 'pointer',
+        error: {
+            color: 'red',
         }
     }
 }

@@ -28,76 +28,152 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 })
 
-const statusOptions = [
-    {
-        label: 'Single',
-        value: 'single'
-    },
-    {
-        label: 'In a Relationship',
-        value: 'relationship'
-    },
-    {
-        label: "It's Complicated",
-        value: 'complicated'
+const Loading = props => {
+    const styles = {
+        wrapper:{
+            pointerEvents: 'none',
+            opacity: props.show ? 1 : 0,
+            transition: 'opacity 0.2s linear',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            borderRadius: '1rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        circle: {
+            height: '4rem',
+            width: '4rem',
+            border: '5px solid rgba(0, 0, 0, 0.5)',
+            borderRadius: '50%',
+            animation: 'rotate 1s linear',
+            animationIterationCount: 'infinite',
+            borderLeftColor: 'rgba(0, 0, 0, 0)'
+        }
     }
-]
 
-const usernameValidator = async (username) => {
-    await new Promise(function(resolve, reject) {
-        setTimeout(resolve, 1000);
-    })
-
-    const validation = { error: 'test error', success: null }
-    console.log(validation)
-    return validation
+    return (
+        <div
+            className={ 'Loading--wrapper' }
+            style={ styles.wrapper }>
+            <div style={ styles.circle }>
+            </div>
+        </div>
+    )
 }
 
-const asyncValidators = {
-    username: usernameValidator,
+Loading.defaultProps = {
+    show: false,
 }
+
+const LoginForm = props => {
+    const borderColor = 'rgba(0, 0, 0, 0.2)'
+
+    const styles = {
+        wrapper:{
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        input: {
+            margin: '1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            border: '1px solid ' + borderColor,
+            borderRadius: '1rem',
+            padding: '0 2rem',
+            height: '2rem',
+            transition: 'border-color 0.2s linear',
+        },
+        button: {
+            margin: '1rem',
+            height: '2rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            color: 'rgba(255, 255, 255, 0.8)',
+            border: '0px solid ' + borderColor,
+            borderRadius: '1rem',
+            padding: '0 2rem',
+            cursor: 'pointer',
+        },
+        error: {
+            color: 'red',
+            borderColor: 'red',
+        }
+    }
+
+    return (
+        <div
+            className={ 'LoginForm--wrapper' }
+            style={ styles.wrapper }>
+
+            <form
+                style={ styles.wrapper }
+                onSubmit={props.formApi.submitForm}
+                id="form2">
+
+                <Loading show={ props.isLoading } />
+
+                <Text
+                    style={ {
+                        ...styles.input,
+                        ...(props.isError ? styles.error : {})
+                    } }
+                    placeholder="Username"
+                    field="username"
+                    id="username" />
+                <Text
+                    style={ {
+                        ...styles.input,
+                        ...(props.isError ? styles.error : {})
+                    } }
+                    type="password"
+                    placeholder="Password"
+                    field="password"
+                    id="password" />
+                <button
+                    type="submit"
+                    style={ styles.button }>
+                    Login
+                </button>
+            </form>
+
+        </div>
+    )
+}
+
+LoginForm.defaultProps = {
+    isError: false,
+    isLoading: false,
+    formApi: {},
+}
+
 
 const Login = props => {
     const styles = getStyles(props)
 
-    return (
-        <Form
-            asyncValidators={ asyncValidators }
-            onSubmit={submittedValues => props.setSubmittedValues(submittedValues)}>
-            { formApi => (
-                <form
-                    style={ styles.wrapper }
-                    onSubmit={formApi.submitForm}
-                    id="form2">
-                    <Text
-                        style={ styles.input }
-                        placeholder="Username"
-                        field="username"
-                        id="username" />
-                    <Text
-                        style={ styles.input }
-                        type="password"
-                        placeholder="Password"
-                        field="password"
-                        id="password" />
-                    <button
-                        type="submit"
-                        style={ styles.button }>
-                        Login
-                    </button>
-                    {
-                        JSON.stringify(formApi.errors) !== '{}' && !formApi.asyncValidations ? 'error' : ''
-                    }
+    const submit = () => {
+        props.setIsError(false)
+        props.setIsLoading(true)
 
-                {
-                    formApi.asyncValidations ?
-                        'LOADING...'
-                    :
-                        ''
-                }
-                </form>
-            )}
-        </Form>
+        window.setTimeout(() => {
+            props.setIsError(true)
+            props.setIsLoading(false)
+        }, 1000)
+    }
+
+    return (
+        <div style={ styles.wrapper }>
+            <Form
+                onSubmit={ submit }>
+                { formApi => <LoginForm
+                    formApi={ formApi }
+                    isError={ props.isError }
+                    isLoading={ props.isLoading } /> }
+            </Form>
+        </div>
     )
 }
 
@@ -117,9 +193,9 @@ const SmartComp = compose(
         false
     ),
     withState(
-        'isValid',
-        'setIsValid',
-        true,
+        'isError',
+        'setIsError',
+        false,
     ),
     lifecycle({
     })
