@@ -5,7 +5,7 @@ import twitter from '../../img/social/twitter.svg'
 import facebook from '../../img/social/facebook.svg'
 
 const mapStateToProps = state => ({
-    currentUrl: window.location.origin + '/' + state.routing.location.pathname,
+    currentUrl: window.location.origin + state.routing.location.pathname,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -37,7 +37,7 @@ const Social = props => (
       <a
         target="_blank"
         href={
-          "https://www.twitter.com/intent/tweet?u="
+          "https://www.twitter.com/intent/tweet?text="
           + encodeURI(props.currentUrl)
         }>
           <img
