@@ -25,6 +25,13 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 
 const text = {}
 
+const globalStyles = {
+    a: {
+        color: 'black',
+        fontWeight: 'bold',
+        textDecoration: 'none',
+    }
+}
 const legalsContent = (
     <div>
         <h2 style={{ marginTop: 0 }}>Terms and conditions of use</h2>
@@ -33,7 +40,7 @@ const legalsContent = (
         </p>
         <h2>Privacy Policy</h2>
         <p>
-            We use basic Google Analytics to improve our services. <a href="https://tools.google.com/dl-page/gaoptout/">Opt-out of Google Analytics.</a>
+            We use basic Google Analytics to improve our services. <a href="https://tools.google.com/dl-page/gaoptout/" style={ globalStyles.a }>Opt-out of Google Analytics.</a>
         </p>
     </div>
 )
@@ -43,7 +50,7 @@ const contactContent = (
         <p style={{ marginTop: 0 }}>
             Thank you for your interest in Nova XR Media. Please email us with any question:
         </p>
-        <strong><a href="mailto: joe@novamedia.nyc">joe@novamedia.nyc</a></strong>
+        <strong><a href="mailto: joe@novamedia.nyc" style={ globalStyles.a }>joe@novamedia.nyc</a></strong>
     </div>
 )
 
