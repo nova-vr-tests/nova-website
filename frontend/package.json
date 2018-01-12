@@ -7,6 +7,7 @@
     "package.json": "^2.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-form": "^2.15.2",
     "react-html-parser": "^2.0.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
