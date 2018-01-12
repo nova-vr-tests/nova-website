@@ -35,6 +35,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
       appTheme: state.appReducer.appTheme,
       windowWidth: state.appReducer.windowWidth,
       windowHeight: state.appReducer.windowHeight,
+      currentPath: state.routing.location.pathname,
     }
 }
 

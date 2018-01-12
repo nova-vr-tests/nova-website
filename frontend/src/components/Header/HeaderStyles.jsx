@@ -47,8 +47,9 @@ const getStyles: GetStyles<Props, Styles> = props => {
             top: 'calc(' + appStyles.unitHeight + ' / 2)',
             left: 'calc(' + appStyles.sidebar.widthFactor + ' * ' + appStyles.unitWidth + ' / 2 - 2 * ' + appStyles.unitHeight + ' / 6)',
             zIndex: 1,
-            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
+            transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type + ', opacity ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
             cursor: 'pointer',
+            opacity: props.currentPath === '/' ? 0 : 1
         },
         logoSidebarClosed: {
             transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',
