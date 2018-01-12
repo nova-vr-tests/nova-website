@@ -49,7 +49,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             zIndex: 1,
             transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type + ', opacity ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
             cursor: 'pointer',
-            opacity: props.currentPath === '/' ? 0 : 1
+            opacity: props.currentPath === '/' && props.windowWidth > appStyles.mediaQueries.phone ? 0 : 1
         },
         logoSidebarClosed: {
             transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',

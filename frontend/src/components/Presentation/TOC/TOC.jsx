@@ -190,3 +190,7 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
 }
 
 export default TOC
+
+export {
+    HomeTOC,
+}

@@ -11,6 +11,12 @@ import Social from '../Social/Social.jsx'
 const SlideHeader = props => {
     const styles = getStyles('2rem')
 
+    const title0Styles = {
+        ...styles.title,
+        opacity: !props.currentPage  ? 1 : 0,
+        display: props.windowWidth < 1000 ? 'block' : 'none',
+    }
+
     const title1Styles = {
         ...styles.title,
         opacity: props.opacity1 ? 1 : 0,
@@ -21,9 +27,16 @@ const SlideHeader = props => {
         opacity: props.opacity2 ? 1 : 0,
     }
 
+
+
     return (
         <div style={ styles.wrapper }>
             <div style={ styles.titleWrapper }>
+                <h2
+                    className="above"
+                    style={ title0Styles }>
+                    Nova XR Media
+                </h2>
                 <h2
                     className="above"
                     style={ title1Styles }>

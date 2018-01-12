@@ -93,6 +93,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
             <div style={ styles.sidePanel }>
                 <SidePanel type={ sidePanelTypes.DEFAULT }>
                     <SlideTransition
+                        windowWidth={ props.windowWidth }
                         resetScrollEvent={ props.resetScrollEvent }
                         appTheme={ props.appTheme }
                         currentPage={ props.currentPage }

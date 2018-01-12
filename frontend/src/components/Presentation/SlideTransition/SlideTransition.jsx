@@ -172,8 +172,9 @@ class SlideTransition extends React.Component<Props, State> {
 
         return [
             <SlideHeader
-                currentUrl={ ''}
+                currentPage={ this.props.currentPage }
                 title={ slideTitle  }
+                windowWidth={ this.props.windowWidth }
                 key={ 1 } />,
             <div
                 className='slide-transition--wrapper'
