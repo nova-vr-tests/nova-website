@@ -13,12 +13,6 @@ import getStyles, {
 import {
     Form,
     Text,
-    Radio,
-    RadioGroup,
-    Select,
-    Checkbox,
-    TextArea,
-    Password,
 } from 'react-form'
 
 const mapStateToProps = state => ({
