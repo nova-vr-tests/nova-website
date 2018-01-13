@@ -135,6 +135,7 @@ const Distribution: Array<ISlide> = [
         h2: 'Distribution',
         path: '/nye',
         pid: nyePid,
+        content: () => <NYEDistrComp />,
         layers: [
             {
                 imgUrl: nyeLayer1,

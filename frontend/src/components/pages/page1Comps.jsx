@@ -8,7 +8,6 @@ import { styles as appStyles } from '../../constants.js'
 import {
     P,
     BigText,
-    alignments,
     FlexColumn,
 } from './UI.jsx'
 

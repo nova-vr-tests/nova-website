@@ -20,12 +20,6 @@ import insightsLayers4 from '../img/resources/insights/insights-layer4.jpg'
 import { styles as appStyles } from '../../constants.js'
 
 import {
-    BigText,
-    P,
-    FlexColumn,
-} from './UI.jsx'
-
-import {
     EdIntroComp,
     EdComp,
     SolutionsComp,

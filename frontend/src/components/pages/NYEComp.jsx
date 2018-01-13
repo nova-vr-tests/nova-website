@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { BigText, P, FlexColumn } from './UI.jsx'
+import {
+    P,
+    FlexColumn
+} from './UI.jsx'
 
 const NYEIntroComp = props => {
     return (

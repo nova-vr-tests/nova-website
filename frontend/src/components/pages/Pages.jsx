@@ -9,8 +9,6 @@ import resources from './page2.jsx'
 import partnership from './page3.jsx'
 
 import {
-    P,
-    PageWrapper,
     alignments,
 } from './UI.jsx'
 
