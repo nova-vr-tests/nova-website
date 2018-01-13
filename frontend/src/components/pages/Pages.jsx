@@ -128,7 +128,7 @@ const makeMenu = (section: IPage, i: number): IMakeMenuOutput => {
    Returns a slide linked to surrounding slides with appropriate transitions
 */
 const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>): IPresentationSlide => {
-    const Text = slide.content
+    const Text = slide.content || (() => <div></div>)
     const {
         pid,
         path,
@@ -140,11 +140,7 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
     } = slide
 
     const comp = () => (
-        <PageWrapper align={ align }>
-            <P>
-                <Text />
-            </P>
-        </PageWrapper>
+        <Text />
     )
 
     // Default transitions
@@ -258,6 +254,7 @@ const Pages = () => {
             pages={ slides.map(makePresentationSlide) } />
     )
 }
+
 
 
 export default Pages

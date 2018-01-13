@@ -19,7 +19,19 @@ import insightsLayers4 from '../img/resources/insights/insights-layer4.jpg'
 
 import { styles as appStyles } from '../../constants.js'
 
-import { BigText } from './UI.jsx'
+import {
+    BigText,
+    P,
+    FlexColumn,
+} from './UI.jsx'
+
+import {
+    EdIntroComp,
+    EdComp,
+    SolutionsComp,
+    InsightsComp,
+    ComingSoon,
+} from './page2Comps.jsx'
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -29,8 +41,6 @@ import type { ISlide, IPage } from './types.jsx'
 
 ************************************/
 
-
-
 const edIntroPid = Symbol()
 const edIntroH1 = 'Eductional Portal'
 const edIntroH2 = 'Introduction'
@@ -39,7 +49,7 @@ const EducationIntro: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: edIntroH2,
-        content: () => 'We source knowledge from across the globe. From academia to groundbreaking technology, we collect solutions so you can advance.',
+        content: () => <EdIntroComp />,
         path: '/education-portal',
         paralax: 0,
         pid: edIntroPid,
@@ -59,7 +69,7 @@ const Education: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Education',
-        content: () => 'We provide access to resources from top Universities to underground innovation labs.',
+        content: () => <EdComp />,
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -95,7 +105,6 @@ const Education: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Education',
-        content: () => 'We are currently developing a VR Education Portal, which will provide instant access to a wealth of interactive content.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -131,7 +140,6 @@ const Education: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Education',
-        content: () => 'You will learn from professors, experiment with tinkerers, and match wits with the anonymous avatars of subculture innovation.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -167,7 +175,6 @@ const Education: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Education',
-        content: () => 'If the medium is the message, as philosopher Marshall McLuhan suggested, then XR communicates the idea that everything is accessible.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -203,7 +210,6 @@ const Education: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Education',
-        content: () => 'Today, we can truly experience /anything/. Because of advancements in microprocessors and computer vision, we design and develop the world to the tune of our imagination\'s insatiable dreams.',
         path: '/education',
         paralax: 0,
         pid: edPid,
@@ -244,7 +250,7 @@ const Solutions: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Solutions',
-        content: () => 'Education, Public Health, Travel, Entertainment, Space Exploration, Real Estate, Architecture, Design, and many more industries are finding solutions to their gravest challenges by applying XR (Extended Reality) media.',
+        content: () => <SolutionsComp />,
         path: '/ed-solutions',
         paralax: 0,
         pid: solutionsPid,
@@ -259,7 +265,6 @@ const Solutions: Array<ISlide> = [
     {
         h1: 'Educational Portal',
         h2: 'Solutions',
-        content: () => 'Soon, XR will be as ubiquitous as mobile devices are today. However, uncovering solutions and making use of the technology is up to those on the ground level.  Share your challenge and we can find a solution together.',
         path: '/ed-solutions',
         paralax: 0,
         pid: solutionsPid,
@@ -278,7 +283,7 @@ const Insights: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Insights',
-        content: () => 'Nova is dedicated to sourcing emerging technologies from around the world.',
+        content: () => <InsightsComp />,
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -309,7 +314,6 @@ const Insights: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Insights',
-        content: () => 'Our aim is to make these information technologies available and applicable for you to achieve your goals.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -340,7 +344,6 @@ const Insights: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Insights',
-        content: () => 'Stay current on a spectrum of technologies that are intertwining in the new era of augmented experiences.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -371,7 +374,6 @@ const Insights: Array<ISlide> = [
     {
         h1: edIntroH1,
         h2: 'Insights',
-        content: () => 'As mechanical and biological blend, we’ll keep the light shining on programs that matter.',
         path: '/ed-insights',
         paralax: 0,
         pid: insightsPid,
@@ -417,7 +419,7 @@ const NewsIntro: Array<ISlide> = [
     {
         h1: newsH1,
         h2: newsH2,
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/news-insights',
         paralax: 0,
         pid: newsPid,
@@ -437,7 +439,7 @@ const FeaturedContent: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Featured Content',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/featured-content',
         paralax: 0,
         pid: contentPid,
@@ -456,7 +458,7 @@ const TwitterFeed: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Twitter Feed',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/twitter',
         paralax: 0,
         pid: twitterPid,
@@ -475,7 +477,7 @@ const LabLive: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Lab Live',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/lab-live',
         paralax: 0,
         pid: labPid,
@@ -501,7 +503,7 @@ const PublishingIntro: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: '',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/publishing',
         pid: pubPid,
         layers: [
@@ -519,7 +521,7 @@ const Design: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: 'Design',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/design-publications',
         pid: designPid,
         layers: [
@@ -537,7 +539,7 @@ const Interactions: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: 'Interactions',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/interaction-publications',
         pid: interactionsPid,
         layers: [
@@ -555,7 +557,7 @@ const Strategy: Array<ISlide> = [
     {
         h1: 'Publishing',
         h2: 'Strategy',
-        content: () => <BigText>Coming soon.</BigText>,
+        content: () => <ComingSoon />,
         path: '/strategy-publications',
         pid: strategyPid,
         layers: [

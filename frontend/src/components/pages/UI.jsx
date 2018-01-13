@@ -80,11 +80,35 @@ const PageWrapper = (props: UIprops) => {
 const P = (props: UIprops) => {
     const marginLeft = props.align === alignments.right ? '40vw' : ''
     return (
-        <p style={ { ...styles.P, ...{ marginLeft } } }>
+        <p style={ { ...styles.P, ...{ marginLeft }, ...props.style } }>
             { props.children }
         </p>
     )
 }
+
+const FlexColumn = props => {
+    const styles = {
+        wrapper: {
+            ...props.styles.wrapper,
+            display: 'flex',
+            flexDirection: 'column',
+        }
+    }
+
+    return (
+        <div
+            className={ 'FlexColumn--wrapper' }
+            style={ styles.wrapper }>
+            { props.children }
+        </div>
+    )
+}
+
+FlexColumn.defaultProps = {
+    children: React.Node,
+    styles: {},
+}
+
 
 const H1  = (props: UIprops)  => {
     return (
@@ -106,6 +130,7 @@ export {
     alignments,
     BigText,
     P,
+    FlexColumn,
     PageWrapper,
     H1,
     H2,
