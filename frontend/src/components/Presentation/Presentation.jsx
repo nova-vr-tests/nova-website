@@ -15,6 +15,8 @@ import {
     updateCurrentPage,
     updateGoToPage,
     updatePages,
+    updateMainPanelContent,
+    updateMainPanelIsOpened,
 } from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
@@ -52,6 +54,8 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         goToPage: state.appReducer.goToPage,
         linePosition: state.appReducer.linePosition,
         isSidePanelOpened: state.appReducer.isSidePanelOpened,
+        isMainPanelOpened: state.appReducer.mainPanel.isOpened,
+        mainPanelContent: state.appReducer.mainPanel.content,
     }
 }
 
@@ -65,6 +69,8 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
         updateCurrentPage: currentPage => dispatch(updateCurrentPage(currentPage)),
         updateGoToPage: goToPage => dispatch(updateGoToPage(goToPage)),
         updatePages: pages => dispatch(updatePages(pages)),
+        updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
+        updateMainPanelContent: content => dispatch(updateMainPanelContent(content)),
     }
 }
 
@@ -170,6 +176,9 @@ class Presentation extends React.Component<Props> {
         this.state = {
             scrollEvent: null,
         }
+
+        this.props.updateMainPanelIsOpened(true)
+        this.props.updateMainPanelContent(<div>HELLO</div>)
     }
 
     componentDidMount() {

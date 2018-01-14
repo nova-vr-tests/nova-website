@@ -11,6 +11,8 @@ import {
     UPDATE_CURRENT_FOOTER_PAGE,
     UPDATE_IS_SIDE_PANEL_OPENED,
     UPDATE_WINDOW_HEIGHT,
+    UPDATE_MAIN_PANEL_CONTENT,
+    UPDATE_MAIN_PANEL_IS_OPENED,
 } from '../App'
 
 import {
@@ -23,6 +25,16 @@ import type {
 } from '../AppTypes.jsx'
 
 import type { ThemeNames } from '../../constantTypes.jsx'
+
+const updateMainPanelIsOpened = isOpened => ({
+    type: UPDATE_MAIN_PANEL_IS_OPENED,
+    isOpened,
+})
+
+const updateMainPanelContent = content => ({
+    type: UPDATE_MAIN_PANEL_CONTENT,
+    content,
+})
 
 const updateWindowHeight = windowHeight => ({
     type: UPDATE_WINDOW_HEIGHT,
@@ -105,4 +117,6 @@ export {
     updatePages,
     updateIsSidePanelOpened,
     updateWindowHeight,
+    updateMainPanelContent,
+    updateMainPanelIsOpened,
 }
