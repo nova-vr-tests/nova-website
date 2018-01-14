@@ -472,11 +472,11 @@ const labPid = Symbol()
 const LabLive: Array<ISlide> = [
     {
         h1: 'News Insights',
-        h2: 'Lab Live',
+        h2: 'Nova Blog',
         content: () => <ComingSoon />,
         mainPanelContent: () => <Blog />,
 
-        path: '/lab-live',
+        path: '/blog',
         paralax: 0,
         pid: labPid,
         layers: [

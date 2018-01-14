@@ -18,7 +18,7 @@ import { styles as appStyles } from './constants.js'
 import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
 
 const apiTest = async () => {
-  const r = await fetch("/api/businessprops/")
+  const r = await fetch("/api/blogposts/")
   const json = await r.json()
 
   console.log(json)
