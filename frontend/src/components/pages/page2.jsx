@@ -19,6 +19,8 @@ import insightsLayers4 from '../img/resources/insights/insights-layer4.jpg'
 
 import { styles as appStyles } from '../../constants.js'
 
+import Blog from '../Blog/Blog.jsx'
+
 import {
     EdIntroComp,
     EdComp,
@@ -472,6 +474,8 @@ const LabLive: Array<ISlide> = [
         h1: 'News Insights',
         h2: 'Lab Live',
         content: () => <ComingSoon />,
+        mainPanelContent: () => <Blog />,
+
         path: '/lab-live',
         paralax: 0,
         pid: labPid,

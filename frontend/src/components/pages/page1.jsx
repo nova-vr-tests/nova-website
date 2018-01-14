@@ -61,6 +61,7 @@ import {
     DisciplinesComp,
 } from './page1Comps.jsx'
 
+
 import type { ISlide, IPage } from './types.jsx'
 
 const createLayer = (imgUrl, paralax, opacity) => ({ imgUrl, paralax, opacity })
@@ -80,7 +81,6 @@ const SiteIntro: Array<ISlide> = [
         h1: 'Dream Awake',
         h2: '',
         content: () => <HomePage />,
-        mainPanelContent: () => <div>introPid</div>,
         path: '/',
         pid: introPid,
         linePosition: 0,

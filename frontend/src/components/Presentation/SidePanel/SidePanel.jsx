@@ -64,7 +64,7 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
 
     const styles = getBgStyles(props)
 
-    const { header } = appStyles
+    const { header, unitWidthJs } = appStyles
 
     // unit conversions
     const vh = document.documentElement.clientHeight / 100
@@ -73,8 +73,9 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
     let coord2Circ = props.type === sidePanelTypes.DEFAULT ? coord2CircDefault : coord2CircInverted
 
     const screenRightEdge = widthCoef * appStyles.unitWidthJs
-    let p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
-    let p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
+    const marginRight = props.rightEdgeCoef * unitWidthJs
+    let p1 = {x: screenRightEdge, y: coord2Circ(clientWidth - marginRight).y1}
+    let p2 = {x: 0, y: coord2Circ(clientWidth - marginRight - widthCoef * appStyles.unitWidthJs).y1}
     let p3 = {x: 0, y: appStyles.unitHeightJs * 9}
     let p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 9}
 
@@ -83,7 +84,7 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
         + ' A ' + r + ' ' + r + ' 0 0 1 ' + p2.x + ' ' + p2.y
         + ' L ' + p3.x + ' ' + p3.y + ' '
         + ' L ' + p4.x + ' ' + p4.y + ' '
-    let color = 'rgba(0, 0, 0, 0.6)'
+    let color = props.bgColor
 
     if(props.type === sidePanelTypes.INVERTED) {
         p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
@@ -99,8 +100,6 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
         color = 'rgba(0, 0, 0, 0.1)'
     }
 
-
-
     return (
         <div style={ styles.wrapper }>
             <svg height='100%' style={ styles.svg }
@@ -111,6 +110,12 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
             </svg>
         </div>
     )
+}
+
+BG.defaultProps = {
+    rightEdgeCoef: 0,
+    zIndex: 0,
+    bgColor: 'rgba(0, 0, 0, 0.6)',
 }
 
 type ToggleButtonProps = {
@@ -216,4 +221,5 @@ export default ConnectedSidePanel
 
 export {
     sidePanelTypes,
+    BG
 }
