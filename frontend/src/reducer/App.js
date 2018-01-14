@@ -36,7 +36,7 @@ export const initialState: State = {
     windowHeight: window.innherHeight, // number
     mainPanel: {
         isOpened: false,
-        content: <div></div>,
+        content: () => <div></div>,
     }
 }
 

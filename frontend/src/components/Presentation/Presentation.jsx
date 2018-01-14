@@ -4,6 +4,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
+import MainPanel from '../MainPanel/MainPanel.jsx'
+
 import {
     updateBackLayers,
     updateTransitionProgress,
@@ -96,6 +98,11 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
                     appTheme={ props.appTheme}
                 />
             </div>
+
+            <MainPanel
+                isOpened={ props.isMainPanelOpened }
+                Content={ props.mainPanelContent } />
+
             <div style={ styles.sidePanel }>
                 <SidePanel type={ sidePanelTypes.DEFAULT }>
                     <SlideTransition
@@ -169,6 +176,7 @@ class Presentation extends React.Component<Props> {
         this.getTransitionType = this.getTransitionType.bind(this)
         this.updateLinePosition = this.updateLinePosition.bind(this)
         this.resetScrollEvent = this.resetScrollEvent.bind(this)
+        this.updateMainPanel = this.updateMainPanel.bind(this)
 
         // Update redux goToPage function
         this.props.updateGoToPage(this.goToPage)
@@ -178,7 +186,7 @@ class Presentation extends React.Component<Props> {
         }
 
         this.props.updateMainPanelIsOpened(true)
-        this.props.updateMainPanelContent(<div>HELLO</div>)
+        this.props.updateMainPanelContent(() => <div>PRESENTATION CONSTRUCTOR</div>)
     }
 
     componentDidMount() {
@@ -230,6 +238,17 @@ class Presentation extends React.Component<Props> {
         this.updateSlideFromUrl(nextPathname)
 
         this.updateLinePosition(nextProps)
+
+        this.updateMainPanel(nextProps)
+    }
+
+    updateMainPanel({ pages, currentPage }) {
+        if(pages[currentPage].mainPanelContent) {
+            this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
+            this.props.updateMainPanelIsOpened(true)
+        } else {
+            this.props.updateMainPanelIsOpened(false)
+        }
     }
 
     updateSlideFromUrl(nextPathname: string) {
