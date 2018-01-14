@@ -9,7 +9,7 @@ import getStyles from './SlideHeaderStyles.jsx'
 import Social from '../Social/Social.jsx'
 
 const SlideHeader = props => {
-    const styles = getStyles('2rem')
+    const styles = getStyles(props, '2rem')
 
     const title0Styles = {
         ...styles.title,
@@ -56,6 +56,9 @@ const SlideHeader = props => {
     )
 }
 
+SlideHeader.defaultProps = {
+    fontColor: 'rgba(255, 255, 255, 1)',
+}
 function componentWillUpdate(nextProps, nextState) {
     // title changed
     if(nextProps.title !== this.props.title) {

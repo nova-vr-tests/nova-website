@@ -14,6 +14,7 @@ const getStyles = props => {
             backgroundColor: 'rgba(255, 255, 255, 0.7)',
             height: `calc(100vh - 9 * ${unitHeight})`,
             color: 'black',
+            display: 'flex',
         }
 
     }
