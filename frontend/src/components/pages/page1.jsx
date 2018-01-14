@@ -80,6 +80,7 @@ const SiteIntro: Array<ISlide> = [
         h1: 'Dream Awake',
         h2: '',
         content: () => <HomePage />,
+        mainPanelContent: () => <div>introPid</div>,
         path: '/',
         pid: introPid,
         linePosition: 0,
