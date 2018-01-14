@@ -77,6 +77,7 @@ export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
             bottom: 0,
             width: panelWidth,
             right: 0,
+            zIndex: props.zIndex,
         },
         svg: {
             opacity: props.isFooterOpened && props.type === sidePanelTypes.DEFAULT  ? 0 : 1,

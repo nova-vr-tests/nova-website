@@ -96,9 +96,14 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
         wrapperOpacity = 0
     }
 
+    let opacity = 1
+    if(props.pages[props.currentPage].mainPanelContent)
+        opacity = 0
+
     const styles = {
         wrapper: {
             display: displayWrapper,
+            opacity,
         },
         links: {
             display: 'flex',
