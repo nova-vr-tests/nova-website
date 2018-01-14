@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { styles as appStyles } from '../../constants.js'
 
+import novaLogo from '../img/nova-logo.svg'
+
 import {
     P,
     BigText,
@@ -66,4 +68,69 @@ const ConnectedHomePage = connect(
     mapDispatchToProps
 )(HomePage)
 
+const MainPanel = props => {
+    const styles = {
+        wrapper:{
+            transition: 'opacity 0.5s linear',
+            position: 'absolute',
+            width: 'calc(7 * ' + appStyles.unitWidth + ')',
+            marginLeft: 'calc(3 * ' + appStyles.unitWidth + ')',
+            marginTop: 'calc(4 * ' + appStyles.unitWidth + ')',
+        },
+        h1: {
+            height: 'calc(4 * ' + appStyles.unitHeight + ')',
+            margin: 0,
+            display: 'flex',
+            alignItems: 'center',
+        },
+        p: {
+            fontSize: '2.5vh',
+        },
+        logo: {
+            position: 'absolute',
+            height: 'calc(2 * ' + appStyles.unitHeight + ')',
+            marginBottom: 'calc(2 * ' + appStyles.unitHeight + ')',
+            marginLeft: 'calc(2 * ' + appStyles.unitWidth + ')',
+            bottom: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            color: 'white',
+            fontSize: '1rem',
+        },
+        img: {
+            height: '100%',
+            marginBottom: '0.5rem',
+            filter: 'invert(100%)',
+        }
+    }
+
+
+    return (
+        <div
+            className={ 'MainPanel--wrapper' }
+            style={ styles.wrapper }>
+            <div style={ styles.logo }>
+                <img
+                    style={ styles.img }
+                    alt="logo"
+                    src={ novaLogo } />
+                    <span>XR Media</span>
+            </div>
+            <h1 style={ styles.h1 }>
+                { '<< Dream Awake >>' }
+            </h1>
+            <p style={ styles.p }>
+                We provide XR Media solutions for business. Our work includes sourcing development, production management, and market entry.
+            </p>
+        </div>
+    )
+}
+
+MainPanel.defaultProps = {
+}
+
 export default ConnectedHomePage
+
+export {
+    MainPanel,
+}

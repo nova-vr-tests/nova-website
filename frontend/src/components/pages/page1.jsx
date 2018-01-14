@@ -61,6 +61,8 @@ import {
     DisciplinesComp,
 } from './page1Comps.jsx'
 
+import { MainPanel as HomePageMainPanel } from './Home.jsx'
+
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -81,6 +83,7 @@ const SiteIntro: Array<ISlide> = [
         h1: 'Dream Awake',
         h2: '',
         content: () => <HomePage />,
+        mainPanelContent: () => <HomePageMainPanel />,
         path: '/',
         pid: introPid,
         linePosition: 0,
