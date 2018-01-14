@@ -1,6 +1,6 @@
 import { styles as appStyles } from '../../../constants.js'
 
-const getStyles = padding => ({
+const getStyles = (props, padding) => ({
     wrapper: {
         width: 'calc(100%)',
         height: 'calc(6 * ' + appStyles.unitHeight + ')',
@@ -9,6 +9,7 @@ const getStyles = padding => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        color: props.fontColor,
     },
     socialWrapper: {
     },
