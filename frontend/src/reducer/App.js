@@ -1,4 +1,5 @@
 // @flow
+import React from 'react'
 
 import { styles as appStyles } from '../constants.js'
 import type {
@@ -33,6 +34,10 @@ export const initialState: State = {
     pages: [], // site pages
     windowWidth: window.innerWidth, // number
     windowHeight: window.innherHeight, // number
+    mainPanel: {
+        isOpened: false,
+        content: <div></div>,
+    }
 }
 
 
@@ -49,12 +54,30 @@ export const RESET_INTRO_KEYFRAME = 'app/reset_intro_keyframe'
 export const TOGGLE_SIDEBAR = 'app/toggle_sidebar'
 export const UPDATE_PAGES = 'app/update_pages'
 export const UPDATE_WINDOW_HEIGHT = 'app/update_window_height'
+export const UPDATE_MAIN_PANEL_IS_OPENED = 'app/update_main_panel_is_opened'
+export const UPDATE_MAIN_PANEL_CONTENT = 'app/update_mains_panel_content'
 
 
 export default (state: State = initialState, action: Action): State => {
   const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
+  case UPDATE_MAIN_PANEL_IS_OPENED:
+      return {
+          ...state,
+          mainPanel: {
+              ...state.mainPanel,
+              isOpened: action.isOpened,
+          }
+      }
+  case UPDATE_MAIN_PANEL_CONTENT :
+    return {
+        ...state,
+        mainPanel: {
+            ...state.mainPanel,
+            content: action.content,
+        }
+    }
   case UPDATE_WINDOW_HEIGHT:
       return {
           ...state,
