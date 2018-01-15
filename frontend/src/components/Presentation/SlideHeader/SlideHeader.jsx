@@ -59,6 +59,7 @@ const SlideHeader = props => {
 SlideHeader.defaultProps = {
     fontColor: 'rgba(255, 255, 255, 1)',
 }
+
 function componentWillUpdate(nextProps, nextState) {
     // title changed
     if(nextProps.title !== this.props.title) {
