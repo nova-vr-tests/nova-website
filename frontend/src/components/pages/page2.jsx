@@ -2,6 +2,8 @@
 
 import * as React from 'react'
 
+import intro from '../img/default.jpg'
+
 import bg1 from '../img/design/1.png'
 import bg2 from '../img/design/2.png'
 import bg3 from '../img/design/3.png'
@@ -482,7 +484,7 @@ const LabLive: Array<ISlide> = [
         pid: labPid,
         layers: [
             {
-                imgUrl: bg3,
+                imgUrl: intro,
                 paralax: 0,
                 opacity: 1,
             },

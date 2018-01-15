@@ -194,6 +194,7 @@ const getSidebarSectionStyles: GetStyles<SidebarSectionProps, SidebarSectionStyl
                 height: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 minHeight: 'calc(' + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight + ')',
                 transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
+                fontSize: '1.2rem',
             },
             titleActive: {
                 backgroundColor: props.themeStyles.menuTitleActive,
