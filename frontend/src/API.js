@@ -1,7 +1,8 @@
 class API {
     constructor() {
         this.urls = {
-            blogPosts: '/blogposts',
+            blogPostList: '/blogposts',
+            blogPostDetail: '/blogposts/',
         }
     }
 
@@ -13,8 +14,12 @@ class API {
         return json
     }
 
-    async fetchBlogPosts() {
-        return await this.fetch(this.urls.blogPosts)
+    async fetchBlogPostList() {
+        return await this.fetch(this.urls.blogPostList)
+    }
+
+    async fetchBlogPostDetail(postId) {
+        return await this.fetch(this.urls.blogPostDetail + postId)
     }
 }
 

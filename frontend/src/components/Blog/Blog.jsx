@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { connect } from 'react-redux'
 import {
     compose,
     withState,
@@ -17,17 +17,20 @@ import API from '../../API.js'
 
 const ReactMarkdown = require('react-markdown')
 
+const mapStateToProps = state => ({
+    routing: state.routing,
+})
+
+const mapDispatchToProps = dispatch => ({
+})
+
 const Blog = props => {
     const styles = getStyles(props)
 
     const { Content } = props
 
-    let title =''
-    let content = <div></div>
-    if(props.blogPosts.length > 0) {
-        title = props.blogPosts[0].title
-        content = props.blogPosts[0].content
-    }
+    const title = props.blogPost.title
+    const content = props.blogPost.content
 
     return (
         <div
@@ -53,30 +56,46 @@ Blog.defaultProps = {
 }
 
 const initialState = {
-    blogPosts: [],
+    blogPost: {
+        title: '',
+        content: <div></div>,
+    },
 }
 
-const fetchBlogPosts = async (setBlogPosts) => {
+const fetchBlogPost = async (setBlogPost) => {
     const restApi = new API()
-    const blogPosts = await restApi.fetchBlogPosts()
+    let postId = 1
+    if(window.location.search.length) {
+        const url = new URL(window.location.href)
+        postId = parseInt(url.searchParams.get("post"))
+    }
 
-    console.log(blogPosts, 'fetchBlogPosts')
+    const blogPost = await restApi.fetchBlogPostDetail(postId)
 
-    setBlogPosts(blogPosts)
+    setBlogPost(blogPost)
 }
 
 const SmartComp = compose(
     withState(
-        'blogPosts',
-        'setBlogPosts',
-        [],
+        'blogPost',
+        'setBlogPost',
+        {},
     ),
     lifecycle({
         componentDidMount() {
-            console.log(this.props)
-            fetchBlogPosts(this.props.setBlogPosts)
+            fetchBlogPost(this.props.setBlogPost)
         },
+        componentWillUpdate(nextProps) {
+            if(this.props.routing.location.search !== nextProps.routing.location.search) {
+                fetchBlogPost(this.props.setBlogPost)
+            }
+        }
     }),
 )(Blog)
 
-export default SmartComp
+const ConnectedComp = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SmartComp)
+
+export default ConnectedComp

@@ -8,15 +8,15 @@ class BusinessPropositionList(generics.ListCreateAPIView):
     serializer_class = BusinessPropositionSerializer
 
 
-class BusinessPropositionDetail(generics.RetrieveUpdateDestroyAPIView):
+class BusinessPropositionDetail(generics.RetrieveAPIView):
     queryset = BusinessProposition.objects.all()
-    serializer_class = BusinessProposition
+    serializer_class = BusinessPropositionSerializer
 
 class BlogPostList(generics.ListCreateAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
 
 
-class BlogPostDetail(generics.RetrieveUpdateDestroyAPIView):
+class BlogPostDetail(generics.RetrieveAPIView):
     queryset = BlogPost.objects.all()
-    serializer_class = BlogPost
+    serializer_class = BlogPostSerializer
