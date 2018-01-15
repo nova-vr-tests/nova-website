@@ -358,7 +358,6 @@ class Presentation extends React.Component<Props> {
        Change slide on user scroll
     **/
     onScroll(e) {
-        e.preventDefault()
         this.setState({ scrollEvent: e })
     }
 
