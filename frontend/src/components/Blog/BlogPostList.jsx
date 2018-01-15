@@ -23,14 +23,29 @@ const mapDispatchToProps = dispatch => ({
 const BlogPostList = props => {
     const styles = getStyles(props)
 
-    const list = props.blogPosts.map((e, i) => (
-        <div
-            style={ styles.linkWrapper }
-            onClick={ () => props.goTo(`/blog?post=${e.id}`)}
-            key={ i }>
-            { e.title }
-        </div>
-    ))
+    const list = props.blogPosts.map((e, i) => {
+        let { content } = e
+        if(content.length > 100) {
+            content = content.substring(0, 100)
+        }
+
+        const active = parseInt(new URL(window.location.href).searchParams.get('post')) === e.id
+
+        return (
+            <div
+                style={ { ...styles.linkWrapper, ...(active ? styles.activeLink : {}) } }
+                onClick={ () => props.goTo(`/blog?post=${e.id}`)}
+                className="blog-link--wrapper"
+                key={ i }>
+                <div style={ styles.title }>
+                    { e.title }
+                </div>
+                <div style={ styles.content }>
+                    { content }
+                </div>
+            </div>
+        )
+    })
 
     return (
         <div

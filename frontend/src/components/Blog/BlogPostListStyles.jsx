@@ -14,9 +14,26 @@ const getStyles = props => {
         },
         linkWrapper: {
             display: 'flex',
-            height: '4rem',
+            minHeight: '6rem',
             fontSize: '2rem',
+            justifyContent: 'fle',
+            flexDirection: 'column',
+            border: '1px solid white',
+            margin: '1rem',
+            padding: '0.5rem 1.5rem',
+            cursor: 'pointer',
+        },
+        title: {
+            paddingLeft: '1rem',
+        },
+        content: {
+            fontSize: '1rem',
+            flex: 1,
             alignItems: 'center',
+            display: 'flex',
+        },
+        activeLink: {
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
     }
 }
