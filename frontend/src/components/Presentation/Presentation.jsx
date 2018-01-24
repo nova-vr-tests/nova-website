@@ -358,7 +358,10 @@ class Presentation extends React.Component<Props> {
        Change slide on user scroll
     **/
     onScroll(e) {
-        this.setState({ scrollEvent: e })
+        // activate paralax if main panel is not shown
+        if(!this.props.pages[this.props.currentPage].mainPanelContent) {
+            this.setState({ scrollEvent: e })
+        }
     }
 
 
