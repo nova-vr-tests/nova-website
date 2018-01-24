@@ -29,6 +29,9 @@ urlpatterns = [
     # Let's encrypt
     url(r'^\.well-known/', include('letsencrypt.urls')),
 
+    # Markdownx
+    url(r'^markdownx/', include('markdownx.urls')),
+
     # React frontend
     url(r'^', views.FrontendAppView.as_view()),
 ]

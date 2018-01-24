@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'novaAPI.apps.NovaapiConfig',
     'letsencrypt',
+    'markdownx',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +151,37 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Let's encrypt
 ACME_CHALLENGE_CONTENT = os.environ.get('ACME_CHALLENGE_CONTENT', '')
+
+
+
+## AWS Media storage
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', False)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', False)
+AWS_FILE_EXPIRE = 200
+AWS_QUERYSTRING_EXPIRE = 157784630
+AWS_PRELOAD_METADATA = True
+AWS_QUERYSTRING_AUTH = True
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_STORAGE_BUCKET_NAME = 'novaxrmedia'
+S3DIRECT_REGION = 'us-east-2'
+S3_URL = 'novaxrmedia.s3.us-east-2.amazonaws.com/'
+MEDIA_URL = 'novaxrmedia.s3.us-east-2.amazonaws.com/media/'
+MEDIA_ROOT = MEDIA_URL
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_HOST = 's3.us-east-2.amazonaws.com'
+S3_USE_SIGV4 = True
+
+## Only serve media files form AWS
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATIC_URL = S3_URL + 'static/'
+
+two_months = datetime.timedelta(days=61)
+date_two_months_later = datetime.date.today() + two_months
+expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
+
+
+
+
+
