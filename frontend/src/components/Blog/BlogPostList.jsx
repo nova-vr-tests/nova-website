@@ -63,11 +63,12 @@ const initialState = {
     blogPosts: [],
 }
 
-const fetchBlogPosts = async (setBlogPosts) => {
+const fetchBlogPosts = async (setBlogPosts, that) => {
     const restApi = new API()
     const blogPosts = await restApi.fetchBlogPostList()
 
-    setBlogPosts(blogPosts)
+    if(that.mounted)
+        setBlogPosts(blogPosts)
 }
 
 const SmartComp = compose(
@@ -78,8 +79,12 @@ const SmartComp = compose(
     ),
     lifecycle({
         componentDidMount() {
-            fetchBlogPosts(this.props.setBlogPosts)
+            this.mounted = true
+            fetchBlogPosts(this.props.setBlogPosts, this)
         },
+        componentWillUnmount() {
+            this.mounted = false
+        }
     })
 )(BlogPostList)
 
