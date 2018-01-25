@@ -14,18 +14,25 @@
     SCHEDULED: <2018-01-06 Sat>
 
 ** blog posts
-*** TB fetch post                                                      :blog:
-    SCHEDULED: <2018-01-05 Fri>
-*** TB post list                                                       :blog:
-    SCHEDULED: <2018-01-05 Fri>
-*** TB show post                                                       :blog:
-    SCHEDULED: <2018-01-05 Fri>
+*** DONE fetch post                                                    :blog:
+    CLOSED: [2018-01-24 Wed 14:47] SCHEDULED: <2018-01-05 Fri>
+*** DONE post list                                                     :blog:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
+*** DONE show post                                                     :blog:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
 
+*** responsive
+**** TB BlogListWrapper
+- contains BlogList.jsx
+- when clicking on a block:
+  + BlogList disapears to left of screen
+  + BlogPost appears from right of screen
 ** pages
 *** side panel
-**** TB create responsive styling comp                           :pages:debt:
-     SCHEDULED: <2018-01-04 Thu>
-**** DONE create new side panel comp                                  :pages:
+**** DONE create responsive styling comp                         :pages:debt:
+     CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-04 Thu>
+**** DONE create new side panel comp  Cannot select individual files in Google Docs/Drive
+#2919 opened 7 days ago by da                                 :pages:
      CLOSED: [2018-01-04 Thu 16:34] SCHEDULED: <2018-01-04 Thu>
 **** DONE mobile                                                      :pages:
      CLOSED: [2018-01-07 Sun 14:30] SCHEDULED: <2018-01-04 Thu>
@@ -37,23 +44,23 @@
      SCHEDULED: <2018-01-04 Thu>
 
 ** BG
-*** TB redo data structure                                          :bg:debt:
-    SCHEDULED: <2018-01-04 Thu>
+*** DONE redo data structure                                        :bg:debt:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-04 Thu>
 *** DONE calc based on scroll height                                    :bg:
      CLOSED: [2018-01-04 Thu 16:41] SCHEDULED: <2018-01-04 Thu>
 
 ** Footer
-*** TB update header opacity when footer is up                       :pages:
-    SCHEDULED: <2018-01-11 Thu>
-*** TB redo footer alignments                                        :pages:
-    SCHEDULED: <2018-01-11 Thu>
+*** DONE update header opacity when footer is up                      :pages:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-11 Thu>
+*** DONE redo footer alignments                                       :pages:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-11 Thu>
 
 * Backend
 ** blog posts
-*** TB admin new / edit blog posts with wiswig markdown                :blog:
-    SCHEDULED: <2018-01-05 Fri>
-*** TB rest api                                                        :blog:
-    SCHEDULED: <2018-01-05 Fri>
+*** DONE admin new / edit blog posts with wiswig markdown              :blog:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
+*** DONE rest api                                                      :blog:
+    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
 
 ** publications
 *** TB fetch files from gittest                                :publications:
