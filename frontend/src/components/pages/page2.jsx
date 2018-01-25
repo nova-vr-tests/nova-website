@@ -478,7 +478,7 @@ const LabLive: Array<ISlide> = [
         h2: 'Nova Blog',
         content: () => <BlogPostList />,
         mainPanelContent: () => <Blog />,
-
+        showNextSectionArrow: false,
         path: '/blog',
         paralax: 0,
         pid: labPid,

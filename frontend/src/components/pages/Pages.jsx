@@ -136,6 +136,7 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
         h2,
         align,
         mainPanelContent,
+        showNextSectionArrow,
     } = slide
 
     const comp = () => (
@@ -183,6 +184,7 @@ return {
         path,
         h1,
         h2,
+        showNextSectionArrow: showNextSectionArrow === undefined ? true : false,
         linePosition: linePosition ? linePosition : 0,
         layers,
         mainPanelContent,
