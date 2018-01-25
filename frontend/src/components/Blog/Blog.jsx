@@ -24,35 +24,42 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 })
 
+const BlogPostContent = props => {
+    return <ReactMarkdown source={ props.content } />
+}
+
 const Blog = props => {
     const styles = getStyles(props)
 
-    const { Content } = props
-
     const title = props.blogPost.title
     const content = props.blogPost.content
+
+    let BlogPostHeader = () => <div></div>
 
     return (
         <div
             style={ styles.wrapper }
             className="Blog--wrapper">
-            <PanelBg
-                zIndex={ -1 }
-                bgColor="rgba(255, 255, 255, 1)"
-                type={ 1 }
-                rightEdgeCoef={ 11 }
-                widthCoef={ 15 } />
-            <SlideHeader
-                title={ title }
-                fontColor="rgba(0, 0, 0, 1)" />
+            <div style={ styles.headerWrapper }>
+                <PanelBg
+                    zIndex={ -1 }
+                    bgColor="rgba(255, 255, 255, 1)"
+                    type={ 1 }
+                    rightEdgeCoef={ 11 }
+                    widthCoef={ 15 } />
+                <SlideHeader
+                    title={ title }
+                    fontColor="rgba(0, 0, 0, 1)" />
+            </div>
             <div style={ styles.articleWrapper }>
-                <ReactMarkdown source={ content } />
+                <BlogPostContent content={ content } />
             </div>
         </div>
     )
 }
 
 Blog.defaultProps = {
+    showHeader: true,
 }
 
 const initialState = {
