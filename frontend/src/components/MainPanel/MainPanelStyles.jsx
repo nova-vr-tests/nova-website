@@ -4,7 +4,9 @@ const getStyles = props => {
     const { clientWidth } = document.documentElement
     const { unitHeight, unitWidth } = appStyles
 
+    let display = 'block'
     if(clientWidth < appStyles.mediaQueries.phone) {
+        display = 'none'
     }
 
     const right = `calc(${ appStyles.sidePanel.openedWidthCoef } * ${ unitWidth })`
@@ -24,6 +26,7 @@ const getStyles = props => {
             paddingTop,
             bottom: 0,
             pointerEvents,
+            display,
         },
     }
 }
