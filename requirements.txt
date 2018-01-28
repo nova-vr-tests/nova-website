@@ -4,6 +4,8 @@ dj-database-url==0.4.2
 Django==1.11.3
 django-filter==1.0.4
 django-letsencrypt==3.0.0
+django-markdownx==2.0.22
+django-storages==1.6.5
 djangorestframework==3.6.3
 gunicorn==19.7.1
 ipdb==0.10.3
@@ -13,6 +15,7 @@ jedi==0.10.2
 Markdown==2.6.8
 pexpect==4.2.1
 pickleshare==0.7.4
+Pillow==5.0.0
 prompt-toolkit==1.0.14
 psycopg2==2.7.1
 ptyprocess==0.5.2
