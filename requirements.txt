@@ -4,6 +4,8 @@ dj-database-url==0.4.2
 Django==1.11.3
 django-filter==1.0.4
 django-letsencrypt==3.0.0
+django-markdownx==2.0.22
+django-storages==1.6.5
 djangorestframework==3.6.3
 gunicorn==19.7.1
 ipdb==0.10.3
