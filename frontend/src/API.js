@@ -8,7 +8,7 @@ class API {
             products: makeUrlObj('products/'),
             consultancies: makeUrlObj('consultancies/'),
             solutions_productions: makeUrlObj('solutions_productions/'),
-            publishing: makeUrlObj('publishing/'),
+            publishing: makeUrlObj('publishings/'),
             partnership_productions: makeUrlObj('partnership_productions/'),
             publications: makeUrlObj('publications/'),
 
