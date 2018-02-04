@@ -69,7 +69,7 @@ const initialState = {
     },
 }
 
-const fetchBlogPost = async (setBlogPost) => {
+const fetchBlogPost = async (setBlogPost, that) => {
     const restApi = new API()
     let postId = 1
     if(window.location.search.length) {
@@ -79,7 +79,8 @@ const fetchBlogPost = async (setBlogPost) => {
 
     const blogPost = await restApi.fetchBlogPostDetail(postId)
 
-    setBlogPost(blogPost)
+    if(that.mounted)
+        setBlogPost(blogPost)
 }
 
 const SmartComp = compose(
@@ -90,12 +91,16 @@ const SmartComp = compose(
     ),
     lifecycle({
         componentDidMount() {
-            fetchBlogPost(this.props.setBlogPost)
+            this.mounted = true
+            fetchBlogPost(this.props.setBlogPost, this)
         },
         componentWillUpdate(nextProps) {
             if(this.props.routing.location.search !== nextProps.routing.location.search) {
-                fetchBlogPost(this.props.setBlogPost)
+                fetchBlogPost(this.props.setBlogPost, this)
             }
+        },
+        componentWillUnmount() {
+            this.mounted = false
         }
     }),
 )(Blog)
