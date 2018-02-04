@@ -45,6 +45,10 @@ import disciplinesLayer1 from '../img/business/disciplines-layer6.png'
 
 import { styles as appStyles } from '../../constants.js'
 
+import Blog from '../Blog/Blog.jsx'
+import BlogPostList from '../Blog/BlogPostList.jsx'
+import API from '../../API.js'
+
 import {
     HomePage,
     DesignIntroComp,
@@ -76,16 +80,19 @@ const createLayer = (imgUrl, paralax, opacity) => ({ imgUrl, paralax, opacity })
 ************************************/
 
 
-
-const introPid = Symbol()
+let h1 = 'Dream Awake'
+let h2 = ''
+let path = '/'
+let pid = Symbol()
 const SiteIntro: Array<ISlide> = [
     {
-        h1: 'Dream Awake',
-        h2: '',
+        h1,
+        h2,
         content: () => <HomePage />,
         mainPanelContent: () => <HomePageMainPanel />,
-        path: '/',
-        pid: introPid,
+        showNextSectionArrow: false,
+        path,
+        pid,
         linePosition: 0,
         layers: [createLayer(intro, 0, 1)],
     },
@@ -96,102 +103,66 @@ const SiteIntro: Array<ISlide> = [
 
     DESIGN
 
-************************************/
+***********************************/
 
 
-const designPid = Symbol()
-const designH1 = 'Design'
-const designH2 = 'Introduction'
-const Design: Array<ISlide> = [
+pid = Symbol()
+h1 = 'Products'
+h2 = ''
+path = '/products'
+const Products: Array<ISlide> = [
     {
-        h1: designH1,
-        h2: designH2,
-        path: '/design',
-        content: () => <DesignIntroComp />,
-        pid: designPid,
+        h1,
+        h2,
+        path,
+        pid,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.products.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.products.list } />,
+        showNextSectionArrow: false,
         layers: [createLayer(designIntro, 0, 1)],
-    },
-    {
-        h1: designH1,
-        h2: designH2,
-        path: '/design',
-        pid: designPid,
-        layers: [createLayer(designIntro, -30, 1)],
     },
 ]
 
 
 
-const interfacePid = Symbol()
-const Interface: Array<ISlide> = [
+h1 = 'Services'
+h2 = 'Introduction'
+path = '/services'
+pid = Symbol()
+const ServicesIntro: Array<ISlide> = [
     {
-        h1: 'Design',
-        h2: 'Interface',
+        h1,
+        h2,
+        path,
+        pid,
         content: () => <DesignInterfaceComp />,
-        path: '/interface',
-        pid: interfacePid,
+        showNextSectionArrow: true,
         layers: [
             createLayer(interfaceLayer1, 0, 1),
             createLayer(interfaceLayer2, 0, 1),
             createLayer(interfaceLayer3, 0, 0),
         ],
     },
-    {
-        h1: 'Design',
-        h2: 'Interface',
-        path: '/interface',
-        pid: interfacePid,
-        layers: [
-            createLayer(interfaceLayer1, 0, 0),
-            createLayer(interfaceLayer2, 0, 1),
-            createLayer(interfaceLayer3, 0, 0),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'Interface',
-        path: '/interface',
-        pid: interfacePid,
-        layers: [
-            createLayer(interfaceLayer1, 0, 0),
-            createLayer(interfaceLayer2, 0, 1),
-            createLayer(interfaceLayer3, 0, 1),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'Interface',
-        path: '/interface',
-        pid: interfacePid,
-        layers: [
-            createLayer(interfaceLayer1, 0, 0),
-            createLayer(interfaceLayer2, -50, 1),
-            createLayer(interfaceLayer3, -50, 1),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'Interface',
-        path: '/interface',
-        pid: interfacePid,
-        layers: [
-            createLayer(interfaceLayer1, 0, 0),
-            createLayer(interfaceLayer2, -100, 1),
-            createLayer(interfaceLayer3, -100, 1),
-        ]
-    },
 ]
 
 
 
-const storyPid = Symbol()
-const Story: Array<ISlide> = [
+h2 = 'Consultation'
+pid = Symbol()
+path = '/consultation'
+const Consultation: Array<ISlide> = [
     {
-        h1: 'Design',
-        h2: 'Story',
-        content: () => <StoryComp />,
-        path: '/story',
-        pid: storyPid,
+        h1,
+        h2,
+        path,
+        pid,
+        showNextSectionArrow: false,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.consultancies.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.consultancies.list } />,
         layers: [
             createLayer(storyLayer1, 0, 1),
             createLayer(storyLayer2, 0, 0),
@@ -199,95 +170,54 @@ const Story: Array<ISlide> = [
             createLayer(storyLayer4, 0, 0),
         ]
     },
-    {
-        h1: 'Design',
-        h2: 'Story',
-        path: '/story',
-        pid: storyPid,
-        layers: [
-            createLayer(storyLayer1, 0, 0),
-            createLayer(storyLayer2, 0, 1),
-            createLayer(storyLayer3, 0, 0),
-            createLayer(storyLayer4, 0, 0),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'Story',
-        path: '/story',
-        pid: storyPid,
-        layers: [
-            createLayer(storyLayer1, 0, 0),
-            createLayer(storyLayer2, 0, 0),
-            createLayer(storyLayer3, 0, 1),
-            createLayer(storyLayer4, 0, 1),
-        ]
-    },
 ]
 
 
 
-const worldPid = Symbol()
-const World: Array<ISlide> = [
+pid = Symbol()
+path = '/solutions-production' // to differentiate from /partnership-productions
+h2 = 'Production'
+const Production: Array<ISlide> = [
     {
-        h1: 'Design',
-        h2: 'World',
-        content: () => <WorldComp />,
-        path: '/world',
-        pid: worldPid,
+        h1,
+        h2,
+        path,
+        pid,
+        showNextSectionArrow: false,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.solutions_productions.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.solutions_productions.list } />,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
             createLayer(worldLayer1, 0, 1),
             createLayer(worldLayer2, 0, 1),
         ]
     },
+]
+
+
+pid = Symbol()
+path = '/publishing' // to differentiate from /partnership-productions
+h2 = 'Publishing'
+const Publishing: Array<ISlide> = [
     {
-        h1: 'Design',
-        h2: 'World',
-        path: '/world',
-        pid: worldPid,
+        h1,
+        h2,
+        path,
+        pid,
+        showNextSectionArrow: false,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.publishing.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.publishing.list } />,
         theme: appStyles.themeTypes.noFooterTheme,
         layers: [
-            createLayer(worldLayer1, -25, 1),
-            createLayer(worldLayer2, 0, 1),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'World',
-        path: '/world',
-        pid: worldPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            createLayer(worldLayer1, -50, 1),
-            createLayer(worldLayer2, 0, 1),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'World',
-        path: '/world',
-        pid: worldPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            createLayer(worldLayer1, -75, 1),
-            createLayer(worldLayer2, 0, 1),
-        ]
-    },
-    {
-        h1: 'Design',
-        h2: 'World',
-        path: '/world',
-        pid: worldPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-            createLayer(worldLayer1, -100, 1),
+            createLayer(worldLayer1, 0, 1),
             createLayer(worldLayer2, 0, 1),
         ]
     },
 ]
-
-
 
 
 /************************************
@@ -297,392 +227,29 @@ const World: Array<ISlide> = [
 ************************************/
 
 
-const businessPid = Symbol()
-const businessH1 = 'Business'
-const businessH2 = 'Introduction'
+pid = Symbol()
+h1 = 'Publications'
+h2 = ''
+path = '/publications'
 
-const Business: Array<ISlide> = [
+const Publications: Array<ISlide> = [
     {
-        h1: businessH1,
-        h2: businessH2,
-        content: () => <BusinessComp />,
-        path: '/business',
-        pid: businessPid,
+        h1,
+        h2,
+        path,
+        pid,
+        showNextSectionArrow: false,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.publications.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.publications.list } />,
         layers: [
             createLayer(businessIntroLayer1, 0, 1),
             createLayer(businessIntroLayer2, 0, 0),
             createLayer(businessIntroLayer3, 0, 0),
         ]
     },
-    {
-        h1: businessH1,
-        h2: businessH2,
-        path: '/business',
-        pid: businessPid,
-        layers: [
-            createLayer(businessIntroLayer1, 0, 0),
-            createLayer(businessIntroLayer2, 0, 1),
-            createLayer(businessIntroLayer3, 0, 0),
-        ]
-    },
-    {
-        h1: businessH1,
-        h2: businessH2,
-        path: '/business',
-        pid: businessPid,
-        layers: [
-            createLayer(businessIntroLayer1, 0, 0),
-            createLayer(businessIntroLayer2, 0, 0),
-            createLayer(businessIntroLayer3, 0, 1),
-        ]
-    },
 ]
-
-
-
-const servicesPid = Symbol()
-const Services: Array<ISlide> = [
-    {
-        h1: 'Business',
-        h2: 'Services',
-        content: () => <ServicesComp />,
-        path: '/services',
-        pid: servicesPid,
-        layers: [
-            createLayer(servicesLayer1, 0, 1),
-            createLayer(servicesLayer2, 0, 0),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Services',
-        path: '/services',
-        pid: servicesPid,
-        layers: [
-            createLayer(servicesLayer1, 0, 1),
-            createLayer(servicesLayer2, 0, 1),
-        ]
-    },
-]
-
-
-const philoPid = Symbol()
-const Philosophy: Array<ISlide> = [
-    {
-        h1: 'Business',
-        h2: 'Philosophy',
-        content: () => <PhiloComp />,
-        path: '/philosophy',
-        pid: philoPid,
-        layers: [
-            createLayer(philoLayer1, 0, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Philosophy',
-        path: '/philosophy',
-        pid: philoPid,
-        layers: [
-            createLayer(philoLayer1, -50, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Philosophy',
-        path: '/philosophy',
-        pid: philoPid,
-        layers: [
-            createLayer(philoLayer1, -100, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Philosophy',
-        path: '/philosophy',
-        pid: philoPid,
-        layers: [
-            createLayer(philoLayer1, -150, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Philosophy',
-        path: '/philosophy',
-        pid: philoPid,
-        layers: [
-            createLayer(philoLayer1, -200, 1),
-        ]
-    },
-]
-
-
-const disciplinesPid = Symbol()
-const Disciplines: Array<ISlide> = [
-    {
-        h1: 'Business',
-        h2: 'Disciplines',
-        content: () => <DisciplinesComp />,
-        path: '/disciplines',
-        pid: disciplinesPid,
-        layers: [
-            createLayer(disciplinesLayer1, 0, 1),
-            createLayer(disciplinesLayer2, 0, 1),
-            createLayer(disciplinesLayer3, 0, 1),
-            createLayer(disciplinesLayer4, 0, 1),
-            createLayer(disciplinesLayer5, 0, 1),
-            createLayer(disciplinesLayer6, 0, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Disciplines',
-        path: '/disciplines',
-        pid: disciplinesPid,
-        layers: [
-            createLayer(disciplinesLayer1, -50, 1),
-            createLayer(disciplinesLayer2, -75, 1),
-            createLayer(disciplinesLayer3, -100, 1),
-            createLayer(disciplinesLayer4, -100, 1),
-            createLayer(disciplinesLayer5, -150, 1),
-            createLayer(disciplinesLayer6, -200, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Disciplines',
-        path: '/disciplines',
-        pid: disciplinesPid,
-        layers: [
-            createLayer(disciplinesLayer1, -100, 1),
-            createLayer(disciplinesLayer2, -150, 1),
-            createLayer(disciplinesLayer3, -200, 1),
-            createLayer(disciplinesLayer4, -200, 1),
-            createLayer(disciplinesLayer5, -300, 1),
-            createLayer(disciplinesLayer6, -400, 1),
-        ]
-    },
-    {
-        h1: 'Business',
-        h2: 'Disciplines',
-        path: '/disciplines',
-        pid: disciplinesPid,
-        layers: [
-            createLayer(disciplinesLayer1, -150, 1),
-            createLayer(disciplinesLayer2, -225, 1),
-            createLayer(disciplinesLayer3, -300, 1),
-            createLayer(disciplinesLayer4, -300, 1),
-            createLayer(disciplinesLayer5, -500, 1),
-            createLayer(disciplinesLayer6, -600, 1),
-        ]
-    },
-]
-
-
-
-/************************************
-
-    Technology
-
-************************************/
-
-
-
-const techPid = Symbol()
-const techH1 = 'Technology'
-const techH2 = 'Introduction'
-const Technology: Array<ISlide> = [
-    {
-        h1: techH1,
-        h2: techH2,
-        content: () => <TechIntroComp />,
-        path: '/technology',
-        pid: techPid,
-        layers: [
-            createLayer(technologyIntro, 0, 1),
-        ]
-    },
-    {
-        h1: techH1,
-        h2: techH2,
-        path: '/technology',
-        pid: techPid,
-        layers: [
-            createLayer(technologyIntro, 0, 1),
-        ]
-    },
-    {
-        h1: techH1,
-        h2: techH2,
-        path: '/technology',
-        pid: techPid,
-        layers: [
-                createLayer(technologyIntro, 0, 1),
-        ]
-    },
-]
-
-
-
-const vrPid = Symbol()
-const VR: Array<ISlide> = [
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        content: () => <VRComp />,
-        path: '/vr',
-        pid: vrPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-                createLayer(vrLayer1, 0, 1),
-                createLayer(vrLayer2, 0, 0),
-                createLayer(vrLayer3, 0, 1),
-                createLayer(vrLayer4, 0, 0),
-                createLayer(vrLayer5, 0, 0),
-                createLayer(vrLayer6, 0, 0),
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        path: '/vr',
-        pid: vrPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-                createLayer(vrLayer1, 0, 1),
-                createLayer(vrLayer2, 0, 0),
-                createLayer(vrLayer3, 0, 0),
-                createLayer(vrLayer4, 0, 1),
-                createLayer(vrLayer5, 0, 0),
-                createLayer(vrLayer6, 0, 0),
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Virtual Reality',
-        path: '/vr',
-        pid: vrPid,
-        theme: appStyles.themeTypes.noFooterTheme,
-        layers: [
-                createLayer(vrLayer1, 0, 1),
-                createLayer(vrLayer2, 0, 0),
-                createLayer(vrLayer3, 0, 0),
-                createLayer(vrLayer4, 0, 0),
-                createLayer(vrLayer5, 0, 1),
-                createLayer(vrLayer6, 0, 0),
-        ]
-    },
-]
-
-
-ARComp.defaultProps = {
-}
-
-
-const arPid = Symbol()
-const AR: Array<ISlide> = [
-    {
-        h1: 'Technology',
-        h2: 'Augmented Reality',
-        content: () => <ARComp />,
-        path: '/ar',
-        pid: arPid,
-        layers: [
-                createLayer(arLayer1, 0, 1),
-                createLayer(arLayer2, 0, 1),
-                createLayer(arLayer3, 0, 0),
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Augmented Reality',
-        path: '/ar',
-        pid: arPid,
-        layers: [
-                createLayer(arLayer1, -100, 1),
-                createLayer(arLayer2, -50, 1),
-                createLayer(arLayer3, -50, 1),
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Augmented Reality',
-        path: '/ar',
-        pid: arPid,
-        layers: [
-                createLayer(arLayer1, -200, 1),
-                createLayer(arLayer2, -100, 1),
-                createLayer(arLayer3, -100, 1),
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Augmented Reality',
-        path: '/ar',
-        pid: arPid,
-        layers: [
-                createLayer(arLayer1, -300, 1),
-                createLayer(arLayer2, -150, 1),
-                createLayer(arLayer3, -150, 1),
-        ]
-    },
-    {
-        h1: 'Technology',
-        h2: 'Augmented Reality',
-        path: '/ar',
-        pid: arPid,
-        layers: [
-                createLayer(arLayer1, -400, 1),
-                createLayer(arLayer2, -200, 1),
-                createLayer(arLayer3, -200, 1),
-        ]
-    },
-]
-
-
-
-const expPid = Symbol()
-const expH2 = 'Exponential Techs'
-const expTech: Array<ISlide> = [
-    {
-        h1: 'Technology',
-        h2: expH2,
-        content: () => <ExpComp />,
-        path: '/expentional-technologies',
-        pid: expPid,
-        layers: [
-                createLayer(expTechLayer1, 0, 1),
-                createLayer(expTechLayer2, 0, 0),
-                createLayer(expTechLayer3, 0, 0),
-                createLayer(expTechLayer4, 0, 0),
-        ],
-    },
-    {
-        h1: 'Technology',
-        h2: expH2,
-        path: '/expentional-technologies',
-        pid: expPid,
-        layers: [
-                createLayer(expTechLayer1, 0, 0),
-                createLayer(expTechLayer2, 0, 1),
-                createLayer(expTechLayer3, 0, 0),
-                createLayer(expTechLayer4, 0, 0),
-        ],
-    },
-    {
-        h1: 'Technology',
-        h2: expH2,
-        path: '/expentional-technologies',
-        pid: expPid,
-        layers: [
-                createLayer(expTechLayer1, 0, 0),
-                createLayer(expTechLayer2, 0, 0),
-                createLayer(expTechLayer3, 0, 1),
-                createLayer(expTechLayer4, 0, 0),
-        ],
-    },
-]
-
 
 /************************************
 
@@ -692,30 +259,24 @@ const expTech: Array<ISlide> = [
 
 
 const designSlides = [
-        Design,
-        World,
-        Interface,
-        Story,
+    Products,
 ]
 
 const businessSlides = [
-        Business,
-        Services,
-        Philosophy,
-        Disciplines,
+    ServicesIntro,
+    Consultation,
+    Production,
+    Publishing,
 ]
 
 const technologySlides = [
-    Technology,
-    VR,
-    AR,
-    expTech,
+    Publications,
 ]
 
 const page1: IPage = [
     designSlides,
-    technologySlides,
     businessSlides,
+    technologySlides,
 ]
 
 export default page1

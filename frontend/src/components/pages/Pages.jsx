@@ -34,46 +34,46 @@ import type {
 
 // Menu Section and subsection titles
 const category1: IMenuSection = {
-    title: "Nova XR",
+    title: "Solutions",
     links: [
         {
-            title: "Design",
+            title: "Products",
         },
         {
-            title: "Technology",
+            title: "Services",
         },
         {
-            title: "Business",
+            title: "Publications",
         },
     ],
 }
 
 const category2: IMenuSection = {
-    title: "Resources",
+    title: "Partnership",
     links: [
         {
-            title: "Educational portal",
+            title: "Build XR",
         },
         {
-            title: "News Insights",
+            title: "User portal",
         },
         {
-            title: "Publishing",
+            title: "Productions",
         },
     ],
 }
 
 const category3: IMenuSection = {
-    title: "Partnership",
+    title: "Nova XR",
     links: [
         {
-            title: "New Years Eve",
+            title: "Who we are",
         },
         {
-            title: "Login",
+            title: "Careers",
         },
         {
-            title: "TBD",
+            title: "Find us",
         },
     ],
 }
