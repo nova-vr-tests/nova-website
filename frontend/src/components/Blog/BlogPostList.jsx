@@ -41,7 +41,7 @@ const BlogPostList = props => {
             ...styles.linkWrapper,
             ...(active ? styles.activeLink : {})
         }
-        const onClickCallback = () => props.goTo(`/blog?post=${e.id}`)
+        const onClickCallback = () => props.goTo(`${window.location.pathname}?post=${e.id}`)
 
         return (
             <div
@@ -68,7 +68,7 @@ const BlogPostList = props => {
                 Comp2={ () => [
                     <span
                         key={ 1 }
-                        onClick={ () => props.goTo('/blog') }> Test </span>,
+                        onClick={ () => props.goTo(window.location.pathname) }> Test </span>,
                     <BlogPost
                         key={ 2 }
                         fetchUrl={ props.fetchUrl }
