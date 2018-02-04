@@ -1,17 +1,9 @@
 * Frontend
-** proposals
-*** TB  fetch proposal html from API                               :proposal:
-    SCHEDULED: <2018-01-08 Mon>
-*** TB  parse html                                                 :proposal:
-    SCHEDULED: <2018-01-08 Mon>
-*** TB  show html                                                  :proposal:
-    SCHEDULED: <2018-01-08 Mon>
-
-** publications
-*** TB fetch publications                                      :publications:
-    SCHEDULED: <2018-01-06 Sat>
-*** TB download pdf                                            :publications:
-    SCHEDULED: <2018-01-06 Sat>
+** Blog style pages
+*** TB  fetch data from API                                        :blogstyle:
+    SCHEDULED: <2018-02-04 Sun>
+*** TB  show data in blog style comp                              :blogstyle:
+    SCHEDULED: <2018-02-04 Sun>
 
 ** blog posts
 *** DONE fetch post                                                    :blog:
@@ -32,16 +24,15 @@
 **** DONE create responsive styling comp                         :pages:debt:
      CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-04 Thu>
 **** DONE create new side panel comp  Cannot select individual files in Google Docs/Drive
-#2919 opened 7 days ago by da                                 :pages:
      CLOSED: [2018-01-04 Thu 16:34] SCHEDULED: <2018-01-04 Thu>
 **** DONE mobile                                                      :pages:
      CLOSED: [2018-01-07 Sun 14:30] SCHEDULED: <2018-01-04 Thu>
 **** TB remove scroll event when footer is up                         :pages:
-     SCHEDULED: <2018-01-04 Thu>
+     SCHEDULED: <2018-02-05 Mon>
 **** DONE fix scroll issue when dreamscaping                          :pages:
      CLOSED: [2018-01-07 Sun 14:32] SCHEDULED: <2018-01-04 Thu>
 **** TB ease-out animation timing function on toggle sidebar          :pages:
-     SCHEDULED: <2018-01-04 Thu>
+     SCHEDULED: <2018-02-04 Sun>
 
 ** BG
 *** DONE redo data structure                                        :bg:debt:
@@ -61,14 +52,6 @@
     CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
 *** DONE rest api                                                      :blog:
     CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
-
-** publications
-*** TB fetch files from gittest                                :publications:
-    SCHEDULED: <2018-01-06 Sat>
-*** TB create rest api                                         :publications:
-    SCHEDULED: <2018-01-06 Sat>
-*** TB lock with password                                      :publications:
-    SCHEDULED: <2018-01-06 Sat>
 
 * Other
 *** Prince XML
