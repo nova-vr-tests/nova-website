@@ -11,6 +11,10 @@ import { BigText, P } from './UI.jsx'
 
 import type { ISlide, IPage } from './types.jsx'
 
+import Blog from '../Blog/Blog.jsx'
+import BlogPostList from '../Blog/BlogPostList.jsx'
+import API from '../../API.js'
+
 import {
     NYEIntroComp,
     NYEStreamComp,
@@ -27,27 +31,20 @@ import {
 
 
 
-const nyePid = Symbol()
-const NyeIntro: Array<ISlide> = [
+let h1 = 'Who we are'
+let h2 = 'Introduction'
+let pid = Symbol()
+let path = '/who-we-are'
+const WhoWeAre: Array<ISlide> = [
     {
-        h1: 'New Year\'s Eve',
-        h2: '',
+        h1,
+        h2,
+        path,
+        pid,
         content: () => <NYEIntroComp />,
-        path: '/nye',
-        pid: nyePid,
         layers: [
             {
                 imgUrl: nyeLayer1,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: 0,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
                 paralax: 0,
                 opacity: 1,
             },
@@ -56,59 +53,16 @@ const NyeIntro: Array<ISlide> = [
 ]
 
 
-const NyeLiveStream: Array<ISlide> = [
+h2 = 'Design'
+path = '/design'
+pid = Symbol('design')
+const Design: Array<ISlide> = [
     {
-        h1: 'New Year\'s Eve',
-        h2: '360 Live Stream',
+        h1,
+        h2,
+        path,
+        pid,
         content: () => <NYEStreamComp />,
-        path: '/nye',
-        pid: nyePid,
-        layers: [
-            {
-                imgUrl: nyeLayer1,
-                paralax: -50,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -200,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'New Year\'s Eve',
-        h2: '360 Live Stream',
-        path: '/nye',
-        pid: nyePid,
-        layers: [
-            {
-                imgUrl: nyeLayer1,
-                paralax: -50,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -200,
-                opacity: 1,
-            },
-        ]
-    },
-    {
-        h1: 'New Year\'s Eve',
-        h2: '360 Live Stream',
-        path: '/nye',
-        pid: nyePid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -129,12 +83,15 @@ const NyeLiveStream: Array<ISlide> = [
     },
 ]
 
-const Distribution: Array<ISlide> = [
+h2 = 'Business'
+path = '/business'
+pid = Symbol('business')
+const Business: Array<ISlide> = [
     {
-        h1: 'New Year\'s Eve',
-        h2: 'Distribution',
-        path: '/nye',
-        pid: nyePid,
+        h1,
+        h2,
+        path,
+        pid,
         content: () => <NYEDistrComp />,
         layers: [
             {
@@ -155,10 +112,10 @@ const Distribution: Array<ISlide> = [
         ]
     },
     {
-        h1: 'New Year\'s Eve',
-        h2: 'Distribution',
-        path: '/nye',
-        pid: nyePid,
+        h1,
+        h2,
+        path,
+        pid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -179,13 +136,16 @@ const Distribution: Array<ISlide> = [
     },
 ]
 
-const Destinations: Array<ISlide> = [
+h2 = 'Technology'
+path = '/technology'
+pid = Symbol('technology')
+const Technology: Array<ISlide> = [
     {
-        h1: 'New Year\'s Eve',
-        h2: 'Destinations',
+        h1,
+        h2,
+        path,
+        pid,
         content: () => <NYEDestComp />,
-        path: '/nye',
-        pid: nyePid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -205,10 +165,10 @@ const Destinations: Array<ISlide> = [
         ]
     },
     {
-        h1: 'New Year\'s Eve',
-        h2: 'Destinations',
-        path: '/nye',
-        pid: nyePid,
+        h1,
+        h2,
+        path,
+        pid,
         layers: [
             {
                 imgUrl: nyeLayer1,
@@ -237,14 +197,45 @@ const Destinations: Array<ISlide> = [
 ************************************/
 
 
-const loginPid = Symbol()
-const Login: Array<ISlide> = [
+pid = Symbol('news feed')
+path = '/news-feed'
+h1 = 'News Feed'
+h2 = ''
+const NewsFeed: Array<ISlide> = [
     {
-        h1: 'Login',
-        h2: '',
-        content: () => <P><BigText>Coming soon.</BigText></P>,
-        path: '/login',
-        pid: loginPid,
+        h1,
+        h2,
+        path,
+        pid,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.blogPosts.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.blogPosts.list } />,
+        showNextSectionArrow: false,
+        layers: [
+            {
+                imgUrl: loginLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+
+
+
+pid = Symbol('find us')
+path = '/find-us'
+h1 = 'Find Us'
+h2 = ''
+const FindUs: Array<ISlide> = [
+    {
+        h1,
+        h2,
+        path,
+        pid,
+        content: () => <p>Find us</p>,
+        showNextSectionArrow: false,
         layers: [
             {
                 imgUrl: loginLayer1,
@@ -263,19 +254,24 @@ const Login: Array<ISlide> = [
 
 
 const nyeSlides = [
-    NyeIntro,
-    NyeLiveStream,
-    Distribution,
-    Destinations,
+    WhoWeAre,
+    Design,
+    Business,
+    Technology,
 ]
 
 const loginSlides = [
-    Login,
+    NewsFeed,
+]
+
+const findUsSlides = [
+    FindUs,
 ]
 
 const page3: IPage = [
     nyeSlides,
     loginSlides,
+    findUsSlides,
 ]
 
 export default page3

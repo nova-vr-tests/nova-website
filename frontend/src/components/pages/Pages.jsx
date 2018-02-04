@@ -55,7 +55,7 @@ const category2: IMenuSection = {
             title: "Build XR",
         },
         {
-            title: "User portal",
+            title: "Client Portal",
         },
         {
             title: "Productions",
@@ -67,10 +67,10 @@ const category3: IMenuSection = {
     title: "Nova XR",
     links: [
         {
-            title: "Who we are",
+            title: "Who We Are",
         },
         {
-            title: "Careers",
+            title: "News Feed",
         },
         {
             title: "Find us",
