@@ -23,6 +23,7 @@ import { styles as appStyles } from '../../constants.js'
 
 import Blog from '../Blog/Blog.jsx'
 import BlogPostList from '../Blog/BlogPostList.jsx'
+import API from '../../API.js'
 
 import {
     EdIntroComp,
@@ -476,8 +477,10 @@ const LabLive: Array<ISlide> = [
     {
         h1: 'News Insights',
         h2: 'Nova Blog',
-        content: () => <BlogPostList />,
-        mainPanelContent: () => <Blog />,
+        content: () =>
+            <BlogPostList fetchUrl={ new API().urls.blogPosts.list } />,
+        mainPanelContent: () =>
+           <Blog fetchUrl={ new API().urls.blogPosts.list } />,
         showNextSectionArrow: false,
         path: '/blog',
         paralax: 0,

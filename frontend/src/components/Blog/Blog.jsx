@@ -69,7 +69,7 @@ const initialState = {
     },
 }
 
-const fetchBlogPost = async (setBlogPost, that) => {
+const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     const restApi = new API()
     let postId = 1
     if(window.location.search.length) {
@@ -77,7 +77,7 @@ const fetchBlogPost = async (setBlogPost, that) => {
         postId = parseInt(url.searchParams.get("post"))
     }
 
-    const blogPost = await restApi.fetchBlogPostDetail(postId)
+    const blogPost = await restApi.fetchDetail(fetchUrl, postId)
 
     if(that.mounted)
         setBlogPost(blogPost)
@@ -92,11 +92,14 @@ const SmartComp = compose(
     lifecycle({
         componentDidMount() {
             this.mounted = true
-            fetchBlogPost(this.props.setBlogPost, this)
+            console.log(this.props, this.props.fetchUrl)
+            fetchBlogPost(
+                this.props.fetchUrl, this.props.setBlogPost, this)
         },
         componentWillUpdate(nextProps) {
             if(this.props.routing.location.search !== nextProps.routing.location.search) {
-                fetchBlogPost(this.props.setBlogPost, this)
+                fetchBlogPost(
+                    this.props.fetchUrl, this.props.setBlogPost, this)
             }
         },
         componentWillUnmount() {
@@ -104,6 +107,10 @@ const SmartComp = compose(
         }
     }),
 )(Blog)
+
+SmartComp.defaultProps = {
+    fetchUrl: new API().urls.blogPosts.list,
+}
 
 const ConnectedComp = connect(
     mapStateToProps,

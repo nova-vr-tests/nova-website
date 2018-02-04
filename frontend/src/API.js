@@ -26,6 +26,10 @@ class API {
         return json
     }
 
+    async fetchDetail(url, postId) {
+        return await this.fetch(url + postId + '/')
+    }
+
     async fetchBlogPostList() {
         return await this.fetch(this.urls.blogPostList)
     }

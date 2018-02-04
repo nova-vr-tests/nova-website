@@ -71,6 +71,7 @@ const BlogPostList = props => {
                         onClick={ () => props.goTo('/blog') }> Test </span>,
                     <BlogPost
                         key={ 2 }
+                        fetchUrl={ props.fetchUrl }
                         showHeader={ false } /> ,
                 ]}
                 position={ props.drawerPosition }
@@ -86,9 +87,9 @@ const initialState = {
     blogPosts: [],
 }
 
-const fetchBlogPosts = async (setBlogPosts, that) => {
+const fetchBlogPosts = async (url, setBlogPosts, that) => {
     const restApi = new API()
-    const blogPosts = await restApi.fetchBlogPostList()
+    const blogPosts = await restApi.fetch(url)
 
     if(that.mounted)
         setBlogPosts(blogPosts)
@@ -116,7 +117,8 @@ const SmartComp = compose(
     lifecycle({
         componentDidMount() {
             this.mounted = true
-            fetchBlogPosts(this.props.setBlogPosts, this)
+            fetchBlogPosts(
+                this.props.fetchUrl, this.props.setBlogPosts, this)
             updateDrawerFromUrl(
                 this.props.setDrawerPosition,
                 this.props.routing.location.search)
@@ -133,6 +135,10 @@ const SmartComp = compose(
         }
     })
 )(BlogPostList)
+
+SmartComp.defaultProps = {
+    fetchUrl: new API().urls.blogPosts.list,
+}
 
 const ConnectedComp = connect(
     mapStateToProps,
