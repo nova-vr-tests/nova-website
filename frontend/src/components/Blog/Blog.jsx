@@ -10,6 +10,8 @@ import SlideHeader from '../Presentation/SlideHeader/SlideHeader.jsx'
 
 import { BG as PanelBg } from '../Presentation/SidePanel/SidePanel.jsx'
 
+import { styles as appStyles } from '../../constants.js'
+
 import getStyles, {
 } from './BlogStyles.jsx'
 
@@ -36,6 +38,10 @@ const Blog = props => {
 
     let BlogPostHeader = () => <div></div>
 
+    const { clientWidth } = document.documentElement
+    const { unitWidthJs, sidebar, sidePanel } = appStyles
+    const widthCoef = clientWidth / unitWidthJs - (2 * sidebar.widthFactor + sidePanel.openedWidthCoef)
+
     return (
         <div
             style={ styles.wrapper }
@@ -46,7 +52,7 @@ const Blog = props => {
                     bgColor="rgba(255, 255, 255, 1)"
                     type={ 1 }
                     rightEdgeCoef={ 11 }
-                    widthCoef={ 15 } />
+                    widthCoef={ widthCoef } />
                 <SlideHeader
                     title={ title }
                     fontColor="rgba(0, 0, 0, 1)" />
