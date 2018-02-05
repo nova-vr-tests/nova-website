@@ -1,9 +1,15 @@
 import { styles as appStyles } from '../../constants.js'
 
 const getStyles = props => {
-    const { clientWidth } = document.documentElement
+    const { clientWidth, unitHeightJs } = document.documentElement
 
     if(clientWidth < appStyles.mediaQueries.phone) {
+    }
+
+    const linkWrapperHeight = unitHeightJs * 2.5 + 'px'
+    const borderRadius = {
+            borderTopLeftRadius: '15px',
+            borderBottomLeftRadius: '15px',
     }
 
     return {
@@ -14,14 +20,13 @@ const getStyles = props => {
         },
         linkWrapper: {
             display: 'flex',
-            minHeight: '6rem',
+            height: linkWrapperHeight,
             fontSize: '2rem',
             justifyContent: 'fle',
-            flexDirection: 'column',
             border: '1px solid white',
             margin: '1rem',
-            padding: '0.5rem 1.5rem',
             cursor: 'pointer',
+            ...borderRadius,
         },
         title: {
             paddingLeft: '1rem',
@@ -34,6 +39,16 @@ const getStyles = props => {
         },
         activeLink: {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        },
+        picto: {
+            height: '6rem',
+            width: '6rem',
+            ...borderRadius,
+        },
+        textWrapper: {
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '0.5rem 1.5rem',
         },
     }
 }

@@ -43,17 +43,25 @@ const BlogPostList = props => {
         }
         const onClickCallback = () => props.goTo(`${window.location.pathname}?post=${e.id}`)
 
+        const pictoUrl = new URL(e.picto)
+        const filteredPictoUrl = pictoUrl.origin + pictoUrl.pathname
         return (
             <div
                 style={ wrapperStyle }
                 onClick={ onClickCallback }
                 className="blog-link--wrapper"
                 key={ i }>
-                <div style={ styles.title }>
-                    { e.title }
-                </div>
-                <div style={ styles.content }>
-                    { content }
+                <img
+                    src={ filteredPictoUrl }
+                    alt="picto"
+                    style={ styles.picto } />
+                <div style={ styles.textWrapper }>
+                    <div style={ styles.title }>
+                        { e.title }
+                    </div>
+                    <div style={ styles.content }>
+                        { content }
+                    </div>
                 </div>
             </div>
         )
