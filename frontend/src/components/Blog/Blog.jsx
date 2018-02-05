@@ -98,7 +98,6 @@ const SmartComp = compose(
     lifecycle({
         componentDidMount() {
             this.mounted = true
-            console.log(this.props, this.props.fetchUrl)
             fetchBlogPost(
                 this.props.fetchUrl, this.props.setBlogPost, this)
         },

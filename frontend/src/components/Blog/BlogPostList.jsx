@@ -59,6 +59,7 @@ const BlogPostList = props => {
         )
     })
 
+
     return (
         <div
             style={ styles.wrapper }
