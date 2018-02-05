@@ -215,9 +215,4 @@ class SlideTransition extends React.Component<Props, State> {
 }
 
 
-const SmartComp = shouldUpdate(function(props, nextProps) {
-    console.log(props.pathname, nextProps.pathname)
-    return props.pathname !== nextProps.pathname
-})(SlideTransition)
-
-export default SmartComp
+export default SlideTransition

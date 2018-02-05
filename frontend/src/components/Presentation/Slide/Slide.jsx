@@ -154,7 +154,7 @@ const Slide = props => {
         )
     }
 
-    return [
+    return (
         <div
             style={ {...styles.slideParagraphs, position: 'relative'} }
             id={ id2 }
