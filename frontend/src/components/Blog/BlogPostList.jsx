@@ -31,7 +31,7 @@ const BlogPostList = props => {
     const List = () => props.blogPosts.map((e, i) => {
         let { content } = e
         if(content.length > 100) {
-            content = content.substring(0, 100)
+            content = content.substring(0, 70) + '...'
         }
 
         const active = parseInt(new URL(window.location.href)
