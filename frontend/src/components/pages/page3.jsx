@@ -92,7 +92,7 @@ const Business: Array<ISlide> = [
         h2,
         path,
         pid,
-        content: () => <NYEDistrComp />,
+        content: () => <p>Business</p>,
         layers: [
             {
                 imgUrl: nyeLayer1,
