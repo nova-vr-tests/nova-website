@@ -97,6 +97,21 @@ class SlideTransition extends React.Component<Props, State> {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return true
+
+        if(this.props.pathname === nextProps.pathname && nextState.transitionProgress <0.1 && !nextProps.scrollEvent){
+            return false
+        }
+
+        if(nextProps.scrollEvent || nextState.transitionProgress < 0.99) {
+            return true
+        }
+
+        return this.props.pathname !== nextProps.pathname
+
+    }
+
     updateTimerPointer(timer: number) {
         window.clearInterval(this.timer)
         this.timer = timer

@@ -1,4 +1,10 @@
 import * as React from 'react'
+import {
+    compose,
+    lifecycle,
+    withState,
+} from 'recompose'
+
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
@@ -157,7 +163,7 @@ const Slide = props => {
             <div
                 id={ id1 }
                 style={ styles.allParagraphs }>
-                    { allParagraphs }
+                { props.CurrentPage }
                 </div>
                 <div
                     style={ styles.tail }
@@ -171,13 +177,42 @@ const Slide = props => {
                 </div>
             </div>
         </div>
-    ]
+    )
 }
+
+const SmartComp = compose(
+    withState(
+        'CurrentPage',
+        'setCurrentPage',
+        <div></div>,
+    ),
+    lifecycle({
+        componentDidMount() {
+            console.log('mountgin from slide.jsx')
+
+            const { pid } = this.props.pages[this.props.currentPage]
+            const presSlides = this.props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
+            const PageComp = presSlides[0].comp
+            this.props.setCurrentPage(<PageComp />)
+        },
+        componentWillUpdate(nextProps) {
+            if(this.props.currentPage !== nextProps.currentPage) {
+            const { pid } = nextProps.pages[nextProps.currentPage]
+            const presSlides = nextProps.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
+            const PageComp = presSlides[0].comp
+            this.props.setCurrentPage(<PageComp />)
+                console.log(PageComp)
+        }
+        },
+        componentWillUnmount() {
+        }
+    }),
+)(Slide)
 
 const ConnectedSlide = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Slide)
+)(SmartComp)
 
 export default ConnectedSlide
 
