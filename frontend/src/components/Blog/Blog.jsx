@@ -111,7 +111,12 @@ const SmartComp = compose(
             this.mounted = false
         }
     }),
-)(Blog)
+)(connect(
+    state => ({
+        windowWidth: state.appReducer.windowWidth,
+        windowHeight: state.appReducer.windowHeight,
+    })
+)(Blog))
 
 SmartComp.defaultProps = {
     fetchUrl: new API().urls.blogPosts.list,
