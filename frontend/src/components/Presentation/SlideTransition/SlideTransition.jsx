@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import store from '../../../store.js'
+import { shouldUpdate } from 'recompose'
 
 import Slide from '../Slide/Slide.jsx'
 
@@ -182,7 +183,13 @@ class SlideTransition extends React.Component<Props, State> {
                 key={ 2 }
             >
                 <div className='current-slide--wrapper' style={ styles.currentSlideStyle }>
-                    { CurrentSlide }
+                    <Slide
+                        {...this.props}
+                        currentPage={ this.state.currentPage }
+                        id='current-slide'
+                        isTarget={ false }
+                        scrollEvent={ this.props.scrollEvent }
+                        transitionProgress={ this.state.transitionProgress } />
                 </div>
                 <div className='target-slide--wrapper' style={ styles.targetSlideStyle }>
                     { TargetSlide }
@@ -192,4 +199,10 @@ class SlideTransition extends React.Component<Props, State> {
     }
 }
 
-export default SlideTransition
+
+const SmartComp = shouldUpdate(function(props, nextProps) {
+    console.log(props.pathname, nextProps.pathname)
+    return props.pathname !== nextProps.pathname
+})(SlideTransition)
+
+export default SmartComp

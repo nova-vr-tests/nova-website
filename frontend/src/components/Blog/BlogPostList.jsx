@@ -125,10 +125,10 @@ const SmartComp = compose(
                 this.props.routing.location.search)
         },
         componentWillUpdate(nextProps) {
-            if(this.props.drawerPosition !== nextProps.drawerPosition) {
+            if(this.props.routing.location.search !== nextProps.routing.location.search) {
                 updateDrawerFromUrl(
                     this.props.setDrawerPosition,
-                    this.props.routing.location.search)
+                    nextProps.routing.location.search)
             }
         },
         componentWillUnmount() {

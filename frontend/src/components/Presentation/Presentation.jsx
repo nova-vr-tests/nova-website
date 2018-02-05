@@ -48,7 +48,7 @@ import type {
 
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
     return {
-        routing: state.routing,
+        pathname: state.routing.location.pathname,
         appTheme: state.appReducer.appTheme,
         currentPage: state.appReducer.currentPage,
         windowWidth: state.appReducer.windowWidth,
@@ -94,7 +94,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
                     pages={ props.pages }
                     currentPage={ props.currentPage }
                     goTo={ props.goTo }
-                    currentPath={ props.routing.location.pathname }
+                    currentPath={ props.pathname }
                     appTheme={ props.appTheme}
                 />
             </div>
@@ -106,6 +106,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
             <div style={ styles.sidePanel }>
                 <SidePanel type={ sidePanelTypes.DEFAULT }>
                     <SlideTransition
+                        pathname={ props.pathname }
                         windowWidth={ props.windowWidth }
                         resetScrollEvent={ props.resetScrollEvent }
                         appTheme={ props.appTheme }
@@ -150,7 +151,7 @@ class Presentation extends React.Component<Props> {
     constructor(props: Props) {
         super(props)
 
-        const currentPage = this.pathnameToSlideNumber(this.props.routing.location.pathname)
+        const currentPage = this.pathnameToSlideNumber(this.props.pathname)
         this.props.updateCurrentPage(currentPage)
 
         this.props.updateBackLayers(
@@ -234,7 +235,7 @@ class Presentation extends React.Component<Props> {
     }
 
     componentWillReceiveProps(nextProps) {
-        const nextPathname = nextProps.routing.location.pathname
+        const nextPathname = nextProps.pathname
         this.updateSlideFromUrl(nextPathname)
 
         this.updateLinePosition(nextProps)
@@ -252,7 +253,7 @@ class Presentation extends React.Component<Props> {
     }
 
     updateSlideFromUrl(nextPathname: string) {
-        const currentPathname = this.props.routing.location.pathname
+        const currentPathname = this.props.pathname
 
         if(currentPathname !== nextPathname) {
             let nextSlide = this.pathnameToSlideNumber(nextPathname)
