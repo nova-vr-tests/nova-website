@@ -52,6 +52,7 @@ const DesignInterfaceComp = props => {
                 <P>Navigation and interaction within XR Media is enriching, empowering, and seemingly void of all technical interfacing, making it the smoothest and most lifelike experience.</P>
                 <P>With media becoming multidimensional, interfaces are evolving. We program into the world around us everything from graphics to functionalities to high-tech learning strategies. XR is opening new doors.</P>
                 <P><span>Players will expect to  zoom, scale, rotate, delete, cut <em>et cetera</em> everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.</span></P>
+                <P><span>Players will expect to  zoom, scale, rotate, delete, cut <em>et cetera</em> everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.</span></P>
                 <P><BigText>It's about the journey.</BigText></P>
             </FlexColumn>
         </div>

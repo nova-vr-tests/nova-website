@@ -145,6 +145,19 @@ const ServicesIntro: Array<ISlide> = [
             createLayer(interfaceLayer3, 0, 0),
         ],
     },
+    {
+        h1,
+        h2,
+        path,
+        pid,
+        content: () => <DesignInterfaceComp />,
+        showNextSectionArrow: true,
+        layers: [
+            createLayer(interfaceLayer1, 100, 1),
+            createLayer(interfaceLayer2, 0, 1),
+            createLayer(interfaceLayer3, 0, 0),
+        ],
+    },
 ]
 
 
