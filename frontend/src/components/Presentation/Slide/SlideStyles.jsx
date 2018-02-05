@@ -44,7 +44,8 @@ const getStyles = props => {
         },
         tail: {
             height: 'calc(' + tailHeightCoef + ' * ' + appStyles.unitHeight + ') ',
-            display: props.pages[props.currentPage].showNextSectionArrow ? 'inherit' : 'none',
+            opacity: props.pages[props.currentPage].showNextSectionArrow ? 'inherit' : 0,
+            pointerEvents: props.pages[props.currentPage].showNextSectionArrow ? 'inherit' : 'none',
         },
         title: {
             height: 'calc(' + titleHeightCoef + ' * ' + appStyles.unitHeight + ') ',
