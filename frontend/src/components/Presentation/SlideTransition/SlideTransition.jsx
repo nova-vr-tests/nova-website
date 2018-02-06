@@ -183,7 +183,7 @@ class SlideTransition extends React.Component<Props, State> {
             },
         }
 
-        const _slideTitle = this.props.pages[this.props.currentPage].h2
+        const _slideTitle = this.props.pages[this.props.currentPage].h1
         const slideTitle = _slideTitle === 'Introduction' ? '' : _slideTitle
 
         return [
