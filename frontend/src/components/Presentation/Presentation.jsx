@@ -90,13 +90,6 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
     return (
         <div style={ styles.wrapper }>
             <div style={ styles.toc }>
-                <TOC
-                    pages={ props.pages }
-                    currentPage={ props.currentPage }
-                    goTo={ props.goTo }
-                    currentPath={ props.pathname }
-                    appTheme={ props.appTheme}
-                />
             </div>
 
             <MainPanel
