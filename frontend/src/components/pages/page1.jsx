@@ -15,33 +15,9 @@ import interfaceLayer1 from '../img/design/interface-layer1.png'
 import interfaceLayer2 from '../img/design/interface-layer2.png'
 import interfaceLayer3 from '../img/design/interface-layer3.png'
 
-import technologyIntro from '../img/Technology/intro.png'
-import vrLayer1 from '../img/Technology/vr-layer1.png'
-import vrLayer2 from '../img/Technology/vr-layer2.jpg'
-import vrLayer3 from '../img/Technology/vr-layer3.png'
-import vrLayer4 from '../img/Technology/vr-layer4.png'
-import vrLayer5 from '../img/Technology/vr-layer5.png'
-import vrLayer6 from '../img/Technology/vr-layer6.png'
-import arLayer1 from '../img/Technology/ar-layer1.png'
-import arLayer2 from '../img/Technology/ar-layer2.png'
-import arLayer3 from '../img/Technology/ar-layer3.png'
-import expTechLayer1 from '../img/Technology/exp-techs-layer1.jpg'
-import expTechLayer2 from '../img/Technology/exp-techs-layer2.jpg'
-import expTechLayer3 from '../img/Technology/exp-techs-layer3.jpg'
-import expTechLayer4 from '../img/Technology/exp-techs-layer4.jpg'
-
 import businessIntroLayer1 from '../img/business/business-intro-layer1.jpg'
 import businessIntroLayer2 from '../img/business/business-intro-layer2.jpg'
 import businessIntroLayer3 from '../img/business/business-intro-layer3.jpg'
-import servicesLayer1 from '../img/business/services-layer1.png'
-import servicesLayer2 from '../img/business/services-layer2.png'
-import philoLayer1 from '../img/business/philo-layer1.png'
-import disciplinesLayer6 from '../img/business/disciplines-layer1.png'
-import disciplinesLayer5 from '../img/business/disciplines-layer2.png'
-import disciplinesLayer4 from '../img/business/disciplines-layer3.png'
-import disciplinesLayer3 from '../img/business/disciplines-layer4.png'
-import disciplinesLayer2 from '../img/business/disciplines-layer5.png'
-import disciplinesLayer1 from '../img/business/disciplines-layer6.png'
 
 import { styles as appStyles } from '../../constants.js'
 
@@ -51,18 +27,7 @@ import API from '../../API.js'
 
 import {
     HomePage,
-    DesignIntroComp,
     DesignInterfaceComp,
-    StoryComp,
-    WorldComp,
-    TechIntroComp,
-    VRComp,
-    ARComp,
-    ExpComp,
-    BusinessComp,
-    ServicesComp,
-    PhiloComp,
-    DisciplinesComp,
 } from './page1Comps.jsx'
 
 import { MainPanel as HomePageMainPanel } from './Home.jsx'
