@@ -22,7 +22,7 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
     const { clientWidth } = document.documentElement
     let displayWrapper = 'inherit'
     if(clientWidth < appStyles.mediaQueries.phone) {
-        displayWrapper = 'none'
+        //displayWrapper = 'none'
     }
 
     let opacity = 1
@@ -36,8 +36,6 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
         },
         links: {
             display: 'flex',
-            flexDirection: 'column',
-            marginLeft: 'calc(3 * ' + appStyles.unitWidth + ')',
             transition: 'opacity 0.5s linear',
         },
         link: {
@@ -118,6 +116,10 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
             </div>
         </div>
     )
+}
+
+TOC.defaultProps = {
+    appTheme: appStyles.themeTypes.defaultTheme,
 }
 
 export default TOC

@@ -1,12 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
     compose,
     lifecycle,
     withState,
 } from 'recompose'
+import { push } from 'react-router-redux'
 
 import getStyles from './SlideHeaderStyles.jsx'
 import Social from '../Social/Social.jsx'
+import TOC from '../TOC/TOC.jsx'
+
+const mapStateToProps = state => ({
+    pages: state.appReducer.pages,
+})
+
+const mapDispatchToProps = dispatch => ({
+    goTo: url => dispatch(push(url)),
+})
 
 const SlideHeader = props => {
     const styles = getStyles(props, '2rem')
@@ -28,7 +39,6 @@ const SlideHeader = props => {
     }
 
 
-
     return (
         <div style={ styles.wrapper }>
             <div style={ styles.titleWrapper }>
@@ -48,6 +58,11 @@ const SlideHeader = props => {
                     { props.title2 }
                 </h2>
             </div>
+            { props.pages[props.currentPage] ?
+            <TOC
+                goTo={ props.goTo }
+                pages={ props.pages }
+                currentPage={ props.currentPage } /> : "" }
             <div style={ styles.socialWrapper }>
                 <Social
                     shareUrl={ props.currentUrl } />
@@ -108,6 +123,6 @@ const SlideHeaderSmart = compose(
             componentWillUpdate.bind(this)(nextProps, nextState)
         },
     })
-)(SlideHeader)
+)(connect(mapStateToProps, mapDispatchToProps)(SlideHeader))
 
 export default SlideHeaderSmart
