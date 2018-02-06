@@ -3,6 +3,7 @@
 import { styles as appStyles } from '../../../constants.js'
 
 import * as React from 'react'
+import { connect } from 'react-redux'
 
 import type { Page } from '../PresentationTypes.jsx'
 
@@ -17,6 +18,11 @@ type Props = {
 
 }
 
+const mapStateToProps = state => ({
+    windowHeight: state.appReducer.windowHeight,
+    windowWidth: state.appReducer.windowWidth,
+})
+
 
 const TOC: React.StatelessFunctionalComponent<Props> = props => {
     const { clientWidth } = document.documentElement
@@ -26,8 +32,11 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
     }
 
     let opacity = 1
-    if(props.pages[props.currentPage].mainPanelContent)
-        opacity = 0
+
+    let width = `calc(1 / 3 * ${appStyles.sidePanel.openedWidthCoef} * ${appStyles.unitWidth})`
+    if(props.windowWidth < appStyles.mediaQueries.phone) {
+        width = '33.33vw'
+    }
 
     const styles = {
         wrapper: {
@@ -40,7 +49,7 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
         },
         link: {
             height: 'calc(4 / 3 * ' + appStyles.unitHeight + ')',
-            width: 'calc( 3 * ' + appStyles.unitWidth + ')',
+            width,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -49,6 +58,7 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
             color: appStyles.themes[props.appTheme].fontColor,
         },
         title: {
+            display: 'none',
             position: 'absolute',
             top: 'calc(6 * ' + appStyles.unitHeight + ')', // from screen top
             left: 'calc(6 * ' + appStyles.unitWidth + ')', // from screen left
@@ -122,4 +132,6 @@ TOC.defaultProps = {
     appTheme: appStyles.themeTypes.defaultTheme,
 }
 
-export default TOC
+const SmartComp = connect(mapStateToProps)(TOC)
+
+export default SmartComp
