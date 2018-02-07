@@ -15,12 +15,12 @@ import { BG as PanelBg } from '../Presentation/SidePanel/SidePanel.jsx'
 import { styles as appStyles } from '../../constants.js'
 
 import getStyles, {
-    getBlogPostContentStyles,
 } from './BlogStyles.jsx'
 
 import API from '../../API.js'
 
-const ReactMarkdown = require('react-markdown')
+import BlogPostContent from '../MarkdownParser/MarkdownParser.jsx'
+
 
 const mapStateToProps = state => ({
     routing: state.routing,
@@ -29,41 +29,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 })
 
-const contentReduxState = state => ({
-    windowWidth: state.appReducer.windowWidth,
-})
-
-const _BlogPostContent = props => {
-    const styles = getBlogPostContentStyles(props)
-
-    const renderers = {
-        root: props => <div style={ styles.root }>{ props.children }</div>,
-        h1: props => <h1 style={{ color: 'red' }}>{ props.children }</h1>,
-        table: props => <table style={ styles.table }>{ props.children }</table>,
-        link: props => <a href={ props.href } style={ styles.link }>{ props.children }</a>,
-        tableCell: props =>
-            React.createElement(
-                `t${props.isHeader ? 'h' : 'd'}`,
-                { style: styles.tableCell },
-                props.children),
-        heading: props =>
-            React.createElement(
-                `h${props.level}`,
-                { style: styles.headings[props.level] },
-                props.children),
-        image: ({ src }) =>
-            <img
-                src={ src }
-                style={ styles.image }
-                alt="hello" />
-    }
-
-    return <ReactMarkdown
-               renderers={ renderers }
-               source={ props.content } />
-}
-
-const BlogPostContent = connect(contentReduxState)(_BlogPostContent)
 
 const Blog = props => {
     const styles = getStyles(props)

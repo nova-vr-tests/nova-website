@@ -27,84 +27,9 @@ const getStyles = props => {
             boxSizing: 'border-box',
             color: 'black',
             display: 'flex',
-            overflow: 'scroll',
         }
 
     }
 }
 
-const getBlogPostContentStyles = props => {
-    const { clientWidth } = document.documentElement
-
-    let textColor = 'black'
-    let rootPadding = '1rem'
-    if(clientWidth < appStyles.mediaQueries.phone) {
-        textColor = 'white'
-    }
-
-    const headings = [
-        {
-            padding: '1.5rem 8rem', // h1
-        },
-        {
-            padding: '1rem 4rem', // h2
-        },
-        {
-            padding: '0rem 2rem', // h3
-        },
-        {
-            padding: '0rem 1rem', // h4
-        },
-        {
-            padding: '0rem 0.5rem', // h5
-        },
-        {
-            padding: '0rem 0.5rem', // h6
-        },
-        {
-            padding: '0rem 0.5rem', // h7
-        },
-    ]
-
-    const root = {
-        color: textColor,
-        padding: rootPadding,
-        width: '100%',
-    }
-
-    const image = {
-        maxWidth: `calc(100% + 2rem)`,
-        margin: `0 -${rootPadding}`,
-        minWidth: `calc(100% + 2rem)`,
-    }
-
-    const table = {
-        margin: '2rem auto',
-        borderCollapse: 'collapse',
-    }
-
-    const tableCell = {
-        border: `1px solid ${textColor}`,
-        padding: '0.5rem',
-    }
-
-    const link = {
-        color: textColor,
-        fontWeight: 'bold',
-    }
-
-    return {
-        headings,
-        root,
-        image,
-        table,
-        tableCell,
-        link,
-    }
-}
-
 export default getStyles
-
-export {
-    getBlogPostContentStyles,
-}
