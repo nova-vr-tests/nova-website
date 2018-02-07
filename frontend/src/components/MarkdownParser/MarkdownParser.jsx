@@ -9,8 +9,8 @@ const contentReduxState = state => ({
     windowWidth: state.appReducer.windowWidth,
 })
 
-const _BlogPostContent = props => {
-    const styles = getStyles()
+const BlogPostContent = props => {
+    const styles = getStyles(props)
 
     const renderers = {
         root: props => <div style={ styles.root }>{ props.children }</div>,
@@ -46,4 +46,8 @@ const _BlogPostContent = props => {
                source={ props.content } />
 }
 
-export default connect(contentReduxState)(_BlogPostContent)
+BlogPostContent.defaultProps = {
+    styles: {},
+}
+
+export default connect(contentReduxState)(BlogPostContent)

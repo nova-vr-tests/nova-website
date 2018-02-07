@@ -1,20 +1,34 @@
 import { styles as appStyles } from '../../constants.js'
 
-const getStyles = () => {
+const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     const { clientWidth } = document.documentElement
 
-    let textColor = 'black'
+    let textColor = 'rgba(0, 0, 0, 0.7)'
     let rootPadding = '1rem'
+    let fontSize = '1.25rem'
+    let headingColor = 'rgba(0, 0, 0, 0.7)'
     if(clientWidth < appStyles.mediaQueries.phone) {
         textColor = 'white'
+        fontSize = '1.5rem'
+        headingColor = textColor
     }
 
+    // user overrides
+    textColor = customTextColor || textColor
+    fontSize = customFontSize || fontSize
+
+    const headingDefaultStyles = {
+            color: headingColor,
+    }
     const headings = [
         {
+            ...headingDefaultStyles,
             padding: '1.5rem 8rem', // h1
         },
         {
+            ...headingDefaultStyles,
             padding: '1rem 4rem', // h2
+            color: headingColor,
         },
         {
             padding: '0rem 2rem', // h3
@@ -36,10 +50,11 @@ const getStyles = () => {
     const root = {
         color: textColor,
         padding: rootPadding,
-        width: '100%',
+        maxWidth: '100%',
         display: 'flex',
         flexDirection: 'column',
-        overflowX: 'scroll',
+        overflowX: 'auto',
+        fontSize,
     }
 
     const image = {
@@ -82,4 +97,18 @@ const getStyles = () => {
     }
 }
 
+
+const getStyles = props => {
+    const styles = getDefaultStyles({
+        customFontSize: props.styles.fontSize,
+        customTextColor: props.styles.textColor })
+
+    if(!props.styles) {
+        return styles
+    }
+
+    return {
+        ...styles,
+    }
+}
 export default getStyles
