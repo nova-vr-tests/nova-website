@@ -40,7 +40,7 @@ const getStyles = props => {
             overflowX,
             // min width greater than container so it doesn't shrink on panel close
             minWidth,
-            padding: '0 ' + padding,
+            // padding: '0 ' + padding,
             boxSizing: 'border-box',
         },
         head: {
