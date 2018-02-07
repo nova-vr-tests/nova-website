@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { styles as appStyles } from '../../constants.js'
 
+import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
+
 import HomePage from './Home.jsx'
 
 import {
@@ -43,18 +45,26 @@ const DesignInterfaceComp = props => {
         }
     }
 
+    const source = `We simplify complex technologies into intuitive designs.
+
+Navigation and interaction within XR Media is enriching, empowering, and seemingly void of all technical interfacing, making it the smoothest and most lifelike experience.
+
+With media becoming multidimensional, interfaces are evolving. We program into the world around us everything from graphics to functionalities to high-tech learning strategies. XR is opening new doors.
+
+Players will expect to  zoom, scale, rotate, delete, cut et cetera everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.
+
+Players will expect to  zoom, scale, rotate, delete, cut et cetera everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.
+
+It's about the journey.
+    `
+
     return (
         <div
             className={ 'DesignInterfaceComp--wrapper' }
             style={ styles.wrapper }>
-            <FlexColumn>
-                <P><BigText>We simplify complex technologies into intuitive designs.</BigText></P>
-                <P>Navigation and interaction within XR Media is enriching, empowering, and seemingly void of all technical interfacing, making it the smoothest and most lifelike experience.</P>
-                <P>With media becoming multidimensional, interfaces are evolving. We program into the world around us everything from graphics to functionalities to high-tech learning strategies. XR is opening new doors.</P>
-                <P><span>Players will expect to  zoom, scale, rotate, delete, cut <em>et cetera</em> everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.</span></P>
-                <P><span>Players will expect to  zoom, scale, rotate, delete, cut <em>et cetera</em> everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.</span></P>
-                <P><BigText>It's about the journey.</BigText></P>
-            </FlexColumn>
+            <MarkdownParser
+                styles={{ textColor: 'white', fontSize: '1.5rem' }}
+                content={ source } />
         </div>
     )
 }
