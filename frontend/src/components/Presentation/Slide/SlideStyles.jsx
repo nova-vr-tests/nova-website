@@ -28,8 +28,6 @@ const getStyles = props => {
         }
     }
 
-    const padding = '2rem'
-
     return {
         headerWrapper: {
             height: appStyles.unitHeightJs * 6,
