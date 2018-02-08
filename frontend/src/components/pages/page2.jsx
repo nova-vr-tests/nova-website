@@ -5,20 +5,8 @@ import * as React from 'react'
 import intro from '../img/default.jpg'
 
 import bg1 from '../img/design/1.png'
-import bg2 from '../img/design/2.png'
-import bg3 from '../img/design/3.png'
 
 import educationIntroIntroLayer1 from '../img/resources/educational_portal/educational-portal-intro-layer1.jpg'
-import educationLayer1 from '../img/resources/educational_portal/education-layer1.png'
-import educationLayer2 from '../img/resources/educational_portal/education-layer2.jpg'
-import educationLayer3 from '../img/resources/educational_portal/education-layer3.jpg'
-import educationLayer4 from '../img/resources/educational_portal/education-layer4.jpg'
-
-import insightsLayers1 from '../img/resources/insights/insights-layer1.jpg'
-import insightsLayers2 from '../img/resources/insights/insights-layer2.jpg'
-import insightsLayers3 from '../img/resources/insights/insights-layer3.jpg'
-import insightsLayers4 from '../img/resources/insights/insights-layer4.jpg'
-
 import { styles as appStyles } from '../../constants.js'
 
 import Blog from '../Blog/Blog.jsx'
@@ -28,9 +16,6 @@ import API from '../../API.js'
 import {
     EdIntroComp,
     EdComp,
-    SolutionsComp,
-    InsightsComp,
-    ComingSoon,
 } from './page2Comps.jsx'
 
 import type { ISlide, IPage } from './types.jsx'

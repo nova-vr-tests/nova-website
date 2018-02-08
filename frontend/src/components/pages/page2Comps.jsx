@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
+
 import {
     P,
     BigText,
@@ -15,13 +17,19 @@ const EdIntroComp = props => {
         }
     }
 
+    const source = `Extended Reality content is built among a small community of web developers who're leading the movement from 2D coding to three-dimensional backend programs. When a project requires additional resources we work in unison with the most experienced production houses in the country.
+
+## Potential synergy
+A small shop in the New York area, Potential Synergy has recognized how the absence of advanced technology has walled off corners of various industries and prevented other industries from working in unison.
+    `
+
     return (
         <div
             className={ 'EdIntroComp--wrapper' }
             style={ styles.wrapper }>
-            <FlexColumn>
-                <P>We source knowledge from across the globe. From academia to groundbreaking technology, we collect solutions so you can advance.</P>
-            </FlexColumn>
+            <MarkdownParser
+                styles={{ textColor: 'white', fontSize: '1.5rem' }}
+                content={ source } />
         </div>
     )
 }

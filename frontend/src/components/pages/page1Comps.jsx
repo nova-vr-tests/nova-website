@@ -45,17 +45,7 @@ const DesignInterfaceComp = props => {
         }
     }
 
-    const source = `We simplify complex technologies into intuitive designs.
-
-Navigation and interaction within XR Media is enriching, empowering, and seemingly void of all technical interfacing, making it the smoothest and most lifelike experience.
-
-With media becoming multidimensional, interfaces are evolving. We program into the world around us everything from graphics to functionalities to high-tech learning strategies. XR is opening new doors.
-
-Players will expect to  zoom, scale, rotate, delete, cut et cetera everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.
-
-Players will expect to  zoom, scale, rotate, delete, cut et cetera everywhere they go in this new reality. We design interfaces that let you explore in your most natural form.
-
-It's about the journey.
+    const source = `One of the first indications that a budding industry has become emerging is when service providers begin facilitating the technology. Here's how we help you get up to speed with XR.
     `
 
     return (
