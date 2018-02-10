@@ -7,7 +7,7 @@ const getStyles = props => {
     if(clientWidth < appStyles.mediaQueries.phone) {
     }
 
-    const linkWrapperHeight = unitHeightJs * 2.5 + 'px'
+    const linkWrapperHeight = unitHeightJs * 2.50 + 'px'
     const borderRadius = {
             borderTopLeftRadius: '15px',
             borderBottomLeftRadius: '15px',
@@ -60,6 +60,7 @@ const getStyles = props => {
             zIndex: -1,
             height: `calc(${linkWrapperHeight} - 0px)`,
             width: linkWrapperHeight,
+            borderRight: '1.5px solid white',
             ...borderRadius,
         },
         textWrapper: {
