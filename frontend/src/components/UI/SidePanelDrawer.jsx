@@ -44,9 +44,8 @@ const SidePanelDrawer = props => {
 
 SidePanelDrawer.defaultProps = {
     comps: [],
-    Comp1: () => <div></div>,
-    Comp2: () => <div></div>,
     position: 0, // 0 = left visible, 1 = right visible
+    desktopLockDrawer: true,
 }
 
 

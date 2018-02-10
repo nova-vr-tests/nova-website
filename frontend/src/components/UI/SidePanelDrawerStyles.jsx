@@ -2,7 +2,7 @@ import { styles as appStyles } from '../../constants.js'
 
 const getStyles = props => {
     const { clientWidth } = document.documentElement
-    const { unitWidth, unitWidthJs, unitHeight } = appStyles
+    const { unitWidthJs, unitHeight } = appStyles
     const { comps } = props
 
     const sidePanelWidth = `${appStyles.sidePanel.openedWidthCoef} * ${unitWidthJs}px`
@@ -18,15 +18,17 @@ const getStyles = props => {
     if(clientWidth < appStyles.mediaQueries.phone) {
         position = props.position
         height = `calc(13 * ${unitHeight})`
-        overflowY = 'scroll'
         wrapperWidth = `calc(${comps.length * 100}vw)`
         centerWrapperWidth = '100vw'
         wrapperTransform = `translate(calc(-${props.position} * 100vw))`
+    } else if(props.desktopLockDrawer) {
+        wrapperTransform = 'inherit'
     }
 
     const rightWrapperTranslate = (1 - position) * 100
     const leftWrapperTranslate = -position * 100
     const mainWrapperWidth = centerWrapperWidth
+
 
     return {
         mainWrapper: {

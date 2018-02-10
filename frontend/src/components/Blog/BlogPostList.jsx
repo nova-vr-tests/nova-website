@@ -16,6 +16,8 @@ import getStyles, {
 import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
 import BlogPost from './Blog.jsx'
 
+import { styles as appStyles } from '../../constants.js'
+
 import URLSearchParams from 'url-search-params'
 
 const mapStateToProps = state => ({
@@ -68,7 +70,6 @@ const BlogPostList = props => {
         )
     })
 
-
     return (
         <div
             style={ styles.wrapper }
@@ -103,8 +104,9 @@ const fetchBlogPosts = async (url, setBlogPosts, that) => {
     const restApi = new API()
     const blogPosts = await restApi.fetch(url)
 
-    if(that.mounted)
+    if(that.mounted) {
         setBlogPosts(blogPosts)
+    }
 }
 
 const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
