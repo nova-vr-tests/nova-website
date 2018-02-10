@@ -74,15 +74,17 @@ const BlogPostList = props => {
             style={ styles.wrapper }
             className="BlogPostList--wrapper">
             <SidePanelDrawer
-                Comp1={ List }
-                Comp2={ () => [
-                    <span
-                        key={ 1 }
-                        onClick={ () => props.goTo(window.location.pathname) }> Test </span>,
-                    <BlogPost
-                        key={ 2 }
-                        fetchUrl={ props.fetchUrl }
-                        showHeader={ false } /> ,
+                comps={[
+                    () => <div style={ styles.listWrapper }><List /></div>,
+                    () => [
+                        <span
+                            key={ 1 }
+                            onClick={ () => props.goTo(window.location.pathname) }> Test </span>,
+                        <BlogPost
+                            key={ 2 }
+                            fetchUrl={ props.fetchUrl }
+                            showHeader={ false } /> ,
+                    ]
                 ]}
                 position={ props.drawerPosition }
             />

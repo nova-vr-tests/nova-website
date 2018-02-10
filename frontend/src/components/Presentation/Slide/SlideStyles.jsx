@@ -21,7 +21,7 @@ const getStyles = props => {
 
     // allow nativ scroll on side panel when main panel is shown
     if(props.pages[props.currentPage].mainPanelContent) {
-        overflowY = 'scroll'
+        // overflowY = 'scroll'
 
         if(clientWidth < appStyles.mediaQueries.phone) {
             overflowY = 'hidden'

@@ -2,41 +2,61 @@ import { styles as appStyles } from '../../constants.js'
 
 const getStyles = props => {
     const { clientWidth } = document.documentElement
-    const { unitWidth, unitHeight } = appStyles
+    const { unitWidth, unitWidthJs, unitHeight } = appStyles
+    const { comps } = props
 
-    const sidePanelWidth = `calc(
-        ${appStyles.sidePanel.openedWidthCoef}
-        * ${unitWidth})`
+    const sidePanelWidth = `${appStyles.sidePanel.openedWidthCoef} * ${unitWidthJs}px`
 
     const transition = 'transform 0.2s ease-out'
     let position = 0
 
     let height = 'inherit'
     let overflowY = 'inherit'
+    let wrapperWidth = `calc(${comps.length} * ${sidePanelWidth})`
+    let wrapperTransform = `translate(calc(-${props.position} * ${sidePanelWidth}))`
+    let centerWrapperWidth = `calc(${sidePanelWidth})`
     if(clientWidth < appStyles.mediaQueries.phone) {
         position = props.position
         height = `calc(13 * ${unitHeight})`
         overflowY = 'scroll'
+        wrapperWidth = `calc(${comps.length * 100}vw)`
+        centerWrapperWidth = '100vw'
+        wrapperTransform = `translate(calc(-${props.position} * 100vw))`
     }
 
     const rightWrapperTranslate = (1 - position) * 100
     const leftWrapperTranslate = -position * 100
+    const mainWrapperWidth = centerWrapperWidth
 
     return {
+        mainWrapper: {
+            width: mainWrapperWidth,
+            overflow: 'hidden',
+        },
         wrapper: {
             display: 'flex',
             flexDirection: 'row',
             overflow: 'hidden',
-            width: '100%',
+            overflowY: 'auto',
+            minWidth: wrapperWidth,
             position: 'relative',
+            transition: 'transform 0.3s ease-out',
             height,
+            transform: wrapperTransform,
         },
         leftWrapper: {
             transform: `translate(${leftWrapperTranslate}%)`,
             transition,
-            width: '100%',
             overflowY,
             height,
+        },
+        centerWrapper: {
+            transition,
+            width: centerWrapperWidth,
+            minWidth: centerWrapperWidth,
+            overflowY,
+            height,
+            position: 'relative',
         },
         rightWrapper: {
             position: 'absolute',

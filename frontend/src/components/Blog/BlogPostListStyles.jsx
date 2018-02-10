@@ -1,7 +1,8 @@
 import { styles as appStyles } from '../../constants.js'
 
 const getStyles = props => {
-    const { clientWidth, unitHeightJs } = document.documentElement
+    const { clientWidth } = document.documentElement
+    const { unitHeightJs } = appStyles
 
     if(clientWidth < appStyles.mediaQueries.phone) {
     }
@@ -12,7 +13,18 @@ const getStyles = props => {
             borderBottomLeftRadius: '15px',
     }
 
+    console.log(linkWrapperHeight)
     return {
+        listWrapper: {
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'column',
+            overflowY: 'scroll',
+            height: '100%',
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+        },
         wrapper: {
             display: 'flex',
             flexDirection: 'column',
@@ -20,7 +32,7 @@ const getStyles = props => {
         },
         linkWrapper: {
             display: 'flex',
-            height: linkWrapperHeight,
+            minHeight: linkWrapperHeight,
             fontSize: '2rem',
             justifyContent: 'fle',
             border: '1px solid white',
@@ -41,8 +53,8 @@ const getStyles = props => {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
         picto: {
-            height: '6rem',
-            width: '6rem',
+            height: linkWrapperHeight,
+            width: linkWrapperHeight,
             ...borderRadius,
         },
         textWrapper: {
