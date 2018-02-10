@@ -35,10 +35,14 @@ const getStyles = props => {
             minHeight: linkWrapperHeight,
             fontSize: '2rem',
             justifyContent: 'fle',
-            border: '1px solid white',
-            margin: '1rem',
+            border: '1.5px solid white',
+            margin: `calc(0.25 * ${appStyles.unitHeight})`,
             cursor: 'pointer',
             ...borderRadius,
+            marginRight: 0,
+            marginLeft: `calc(0.5 * ${appStyles.unitWidth})`,
+            justifySelf: 'flex-end',
+            borderRight: 'none',
         },
         title: {
             paddingLeft: '1rem',
@@ -53,7 +57,8 @@ const getStyles = props => {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
         picto: {
-            height: linkWrapperHeight,
+            zIndex: -1,
+            height: `calc(${linkWrapperHeight} - 0px)`,
             width: linkWrapperHeight,
             ...borderRadius,
         },
@@ -61,6 +66,8 @@ const getStyles = props => {
             display: 'flex',
             flexDirection: 'column',
             padding: '0.5rem 1.5rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            flex: 1,
         },
     }
 }
