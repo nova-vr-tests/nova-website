@@ -5,6 +5,7 @@ import getStyles, {
 
 const MainPanel = props => {
     const styles = getStyles(props)
+    console.log(props, styles)
 
     const { Content } = props
 

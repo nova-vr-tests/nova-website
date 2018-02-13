@@ -180,7 +180,6 @@ class Presentation extends React.Component<Props> {
         }
 
         this.props.updateMainPanelIsOpened(true)
-        this.props.updateMainPanelContent(() => <div>PRESENTATION CONSTRUCTOR</div>)
     }
 
     componentDidMount() {
@@ -237,11 +236,13 @@ class Presentation extends React.Component<Props> {
     }
 
     updateMainPanel({ pages, currentPage }) {
-        if(pages[currentPage].mainPanelContent) {
-            this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
-            this.props.updateMainPanelIsOpened(true)
-        } else {
-            this.props.updateMainPanelIsOpened(false)
+        if(!pages[currentPage].overrideMainPanel) {
+            if(pages[currentPage].mainPanelContent) {
+                this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
+                this.props.updateMainPanelIsOpened(true)
+            } else {
+                this.props.updateMainPanelIsOpened(false)
+            }
         }
     }
 
