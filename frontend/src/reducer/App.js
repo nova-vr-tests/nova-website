@@ -34,6 +34,10 @@ export const initialState: State = {
     pages: [], // site pages
     windowWidth: window.innerWidth, // number
     windowHeight: window.innherHeight, // number
+    sidePanel: {
+        header: () => <div></div>,
+        overrideHeader: false,
+    },
     mainPanel: {
         isOpened: false,
         content: () => <div></div>,
@@ -41,6 +45,7 @@ export const initialState: State = {
 }
 
 
+export const UPDATE_SIDE_PANEL_HEADER_OVERRIDE = 'side panel/update header override'
 export const UPDATE_IS_SIDE_PANEL_OPENED = 'side panel/is_side_panel_opened'
 export const UPDATE_IS_FOOTER_OPENED = 'footer/update_is_footer_opened'
 export const UPDATE_WINDOW_WIDTH = 'app/update_window_width'
@@ -56,12 +61,29 @@ export const UPDATE_PAGES = 'app/update_pages'
 export const UPDATE_WINDOW_HEIGHT = 'app/update_window_height'
 export const UPDATE_MAIN_PANEL_IS_OPENED = 'app/update_main_panel_is_opened'
 export const UPDATE_MAIN_PANEL_CONTENT = 'app/update_mains_panel_content'
+export const UPDATE_SIDE_PANEL_HEADER = 'app/update side panel header'
 
 
 export default (state: State = initialState, action: Action): State => {
   const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
+  case UPDATE_SIDE_PANEL_HEADER_OVERRIDE:
+      return {
+          ...state,
+          sidePanel: {
+              ...state.sidePanel,
+              overrideHeader: action.overrideHeader,
+          }
+      }
+  case UPDATE_SIDE_PANEL_HEADER:
+      return {
+          ...state,
+          sidePanel: {
+              ...state.sidePanel,
+              header: action.header,
+          }
+      }
   case UPDATE_MAIN_PANEL_IS_OPENED:
       return {
           ...state,

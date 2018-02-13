@@ -1,6 +1,8 @@
 // @flow
 
 import {
+    UPDATE_SIDE_PANEL_HEADER_OVERRIDE,
+    UPDATE_SIDE_PANEL_HEADER,
     UPDATE_LINE_POSITION,
     UPDATE_THEME,
     UPDATE_CURRENT_PAGE,
@@ -25,6 +27,16 @@ import type {
 } from '../AppTypes.jsx'
 
 import type { ThemeNames } from '../../constantTypes.jsx'
+
+const updateSidePanelHeaderOverride = overrideHeader => ({
+    type: UPDATE_SIDE_PANEL_HEADER_OVERRIDE,
+    overrideHeader,
+})
+
+const updateSidePanelHeader = header => ({
+    type: UPDATE_SIDE_PANEL_HEADER,
+    header,
+})
 
 const updateMainPanelIsOpened = isOpened => ({
     type: UPDATE_MAIN_PANEL_IS_OPENED,
@@ -119,4 +131,6 @@ export {
     updateWindowHeight,
     updateMainPanelContent,
     updateMainPanelIsOpened,
+    updateSidePanelHeader,
+    updateSidePanelHeaderOverride,
 }
