@@ -235,7 +235,9 @@ class Presentation extends React.Component<Props> {
 
         this.updateLinePosition(nextProps)
 
-        this.updateMainPanel(nextProps)
+        if(this.props.currentPage !== nextProps.currentPage) {
+            this.updateMainPanel(nextProps)
+        }
 
         this.updateSlideHeaderOverride(nextProps)
     }
@@ -248,7 +250,11 @@ class Presentation extends React.Component<Props> {
         if(!pages[currentPage].overrideMainPanel) {
             if(pages[currentPage].mainPanelContent) {
                 this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
-                this.props.updateMainPanelIsOpened(true)
+                this.props.updateMainPanelIsOpened(false)
+
+                if(currentPage === 0) {
+                    this.props.updateMainPanelIsOpened(true)
+                }
             } else {
                 this.props.updateMainPanelIsOpened(false)
             }

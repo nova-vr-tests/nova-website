@@ -145,6 +145,7 @@ const getToggleButtonStyles = props => {
             display,
         },
         img: {
+            display: 'none',
             height: unitHeight,
             width: unitHeight,
             cursor: 'pointer',

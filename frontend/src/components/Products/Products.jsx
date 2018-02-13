@@ -130,6 +130,7 @@ const Products = props => {
             style={ styles.wrapper }
             className="Products--wrapper">
             <SidePanelDrawer
+                unlockPosition={ 1 }
                 comps={[
                     () => <div style={ styles.listWrapper }><List /></div>,
                     () => <div style={{ height: '5rem', }}>

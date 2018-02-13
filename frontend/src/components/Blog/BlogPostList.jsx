@@ -13,6 +13,10 @@ import { push } from 'react-router-redux'
 import getStyles, {
 } from './BlogPostListStyles.jsx'
 
+import {
+    updateMainPanelIsOpened,
+} from '../../reducer/actions/App.js'
+
 import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
 import BlogPost from './Blog.jsx'
 
@@ -26,6 +30,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     goTo: url => dispatch(push(url)),
+    updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
 })
 
 
@@ -106,11 +111,13 @@ const fetchBlogPosts = async (url, setBlogPosts, that) => {
     }
 }
 
-const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
+const updateDrawerFromUrl = (setDrawerPosition, urlGetParam, updateMainPanelIsOpened) => {
     if(urlGetParam === '') {
         setDrawerPosition(0)
     } else {
         setDrawerPosition(1)
+        updateMainPanelIsOpened(true)
+
     }
 }
 
@@ -132,13 +139,15 @@ const SmartComp = compose(
                 this.props.fetchUrl, this.props.setBlogPosts, this)
             updateDrawerFromUrl(
                 this.props.setDrawerPosition,
-                this.props.routing.location.search)
+                this.props.routing.location.search,
+                this.props.updateMainPanelIsOpened)
         },
         componentWillUpdate(nextProps) {
             if(this.props.routing.location.search !== nextProps.routing.location.search) {
                 updateDrawerFromUrl(
                     this.props.setDrawerPosition,
-                    nextProps.routing.location.search)
+                    nextProps.routing.location.search,
+                    this.props.updateMainPanelIsOpened)
             }
         },
         componentWillUnmount() {
