@@ -43,7 +43,6 @@ const getStyles = props => {
             marginLeft: `calc(0.5 * ${appStyles.unitWidth})`,
             justifySelf: 'flex-end',
             borderRight: 'none',
-            backgroundColor: 'rgba(255, 255, 255, 0.3)',
         },
         title: {
             paddingLeft: '1rem',

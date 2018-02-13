@@ -8,10 +8,12 @@ const getStyles = props => {
 
     let height = `calc(100vh - 11 * ${unitHeight})`
     let backgroundColor = 'rgba(255, 255, 255, 0.7)'
+    let color = 'black'
 
-    if(clientWidth < appStyles.mediaQueries.phone) {
+    if(clientWidth < appStyles.mediaQueries.phone || props.sidePanelMode) {
         height = '100%'
         backgroundColor = 'rgba(0, 0, 0, 0)'
+        color = 'white'
     }
 
 
@@ -25,7 +27,7 @@ const getStyles = props => {
         articleWrapper: {
             height,
             boxSizing: 'border-box',
-            color: 'black',
+            color,
             display: 'flex',
             flexDirection: 'column',
         }

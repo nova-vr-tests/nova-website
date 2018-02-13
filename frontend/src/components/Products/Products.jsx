@@ -69,7 +69,7 @@ const Products = props => {
                     onClick={ () => props.goTo(props.pages[props.currentPage].path) }
                     key={ 1} ><img
                                   src={ arrow }
-                    style={{ width: '2rem', height: '2rem', transform: 'rotateZ(180deg)', marginRight: '2rem', }}
+                                  style={{ cursor: 'pointer', width: '2rem', height: '2rem', transform: 'rotateZ(180deg)', marginRight: '2rem', }}
                                   alt="back" /></div>,
                 <div key={ 2 }>
                     <h3 style={{ margin: 0, }}>{ e.title }</h3>
@@ -104,7 +104,7 @@ const Products = props => {
     const _props = props
     const LastComp = props => (
         <div
-            style={ styles.linkWrapper }
+            style={ { ...styles.linkWrapper, marginBottom: '5rem', } }
             onClick={ () => {
                 const cond = appStyles.mediaQueries.phone > _props.windowWidth
 
@@ -132,11 +132,12 @@ const Products = props => {
             <SidePanelDrawer
                 comps={[
                     () => <div style={ styles.listWrapper }><List /></div>,
-                    () => <div>
+                    () => <div style={{ height: '5rem', }}>
                         <BlogPost
                             fetchUrl={ props.fetchUrl }
                             contentKey="abstract"
                             LastComp={ LastComp }
+                            sidePanelMode={ true }
                             showHeader={ false }>
                         </BlogPost>
                     </div>,

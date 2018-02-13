@@ -48,7 +48,6 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     ]
 
     const root = {
-        color: textColor,
         padding: rootPadding,
         maxWidth: '100%',
         display: 'flex',

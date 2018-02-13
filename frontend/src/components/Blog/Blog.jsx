@@ -75,6 +75,7 @@ Blog.defaultProps = {
     showHeader: true,
     contentKey: 'content',
     LastComp: () => <div></div>,
+    sidePanelMode: false,
 }
 
 const initialState = {
