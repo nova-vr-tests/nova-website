@@ -62,9 +62,6 @@ const BlogPostList = props => {
                     <div style={ styles.title }>
                         { e.title }
                     </div>
-                    <div style={ styles.content }>
-                        { content }
-                    </div>
                 </div>
             </div>
         )

@@ -27,6 +27,7 @@ const getStyles = props => {
             boxSizing: 'border-box',
             color: 'black',
             display: 'flex',
+            flexDirection: 'column',
         }
 
     }

@@ -34,13 +34,16 @@ const Blog = props => {
     const styles = getStyles(props)
 
     const title = props.blogPost.title
-    const content = props.blogPost.content
+    const content = props.blogPost[props.contentKey]
 
     let BlogPostHeader = () => <div></div>
 
     const { clientWidth } = document.documentElement
     const { unitWidthJs, sidebar, sidePanel } = appStyles
     const widthCoef = clientWidth / unitWidthJs - (2 * sidebar.widthFactor + sidePanel.openedWidthCoef)
+
+    const { LastComp } = props
+
 
     return (
         <div
@@ -59,6 +62,7 @@ const Blog = props => {
             </div>
             <div style={ styles.articleWrapper }>
                 <BlogPostContent content={ content } />
+                <LastComp title={ title } />
             </div>
         </div>
     )
@@ -66,6 +70,8 @@ const Blog = props => {
 
 Blog.defaultProps = {
     showHeader: true,
+    contentKey: 'content',
+    LastComp: () => <div></div>,
 }
 
 const initialState = {

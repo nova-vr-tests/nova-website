@@ -46,8 +46,8 @@ SidePanelDrawer.defaultProps = {
     comps: [],
     position: 0, // 0 = left visible, 1 = right visible
     desktopLockDrawer: true,
+    unlockPosition: 1,
 }
-
 
 const SmartComp = compose(
     withState(

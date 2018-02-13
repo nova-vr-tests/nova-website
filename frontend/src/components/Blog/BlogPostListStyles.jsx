@@ -43,32 +43,26 @@ const getStyles = props => {
             marginLeft: `calc(0.5 * ${appStyles.unitWidth})`,
             justifySelf: 'flex-end',
             borderRight: 'none',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
         },
         title: {
             paddingLeft: '1rem',
-        },
-        content: {
-            fontSize: '1rem',
-            flex: 1,
-            alignItems: 'center',
-            display: 'flex',
         },
         activeLink: {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
         picto: {
-            zIndex: -1,
             height: `calc(${linkWrapperHeight} - 0px)`,
-            width: linkWrapperHeight,
-            borderRight: '1.5px solid white',
+            width: `calc(2 * ${linkWrapperHeight})`,
+            transform: `translate(-20px, 20px)`,
             ...borderRadius,
         },
         textWrapper: {
             display: 'flex',
             flexDirection: 'column',
             padding: '0.5rem 1.5rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.3)',
             flex: 1,
+            justifyContent: 'center',
         },
     }
 }

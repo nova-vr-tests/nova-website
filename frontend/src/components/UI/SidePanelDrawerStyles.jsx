@@ -21,7 +21,7 @@ const getStyles = props => {
         wrapperWidth = `calc(${comps.length * 100}vw)`
         centerWrapperWidth = '100vw'
         wrapperTransform = `translate(calc(-${props.position} * 100vw))`
-    } else if(props.desktopLockDrawer) {
+    } else if(props.desktopLockDrawer && props.position !== props.unlockPosition) {
         wrapperTransform = 'inherit'
     }
 

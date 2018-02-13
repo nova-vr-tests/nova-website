@@ -7,6 +7,7 @@ import {
     UPDATE_CACHE_LAYERS,
     UPDATE_IS_DREAMSCAPING,
     TRANSLATE_X_LAYERS_BGS,
+    UPDATE_ALL_LAYERS_URL,
 } from '../Bg'
 
 import type {
@@ -47,6 +48,11 @@ const updateTransitionProgress = (transitionProgress: number): BgAction => ({
     transitionProgress,
 })
 
+const updateAllLayersUrl = (url: string): BgAction => ({
+    type: UPDATE_ALL_LAYERS_URL,
+    url,
+})
+
 export {
     updateTransitionProgress,
     updateFrontLayers,
@@ -54,4 +60,5 @@ export {
     updateCacheLayers,
     updateIsDreamscaping,
     translateXLayersBgs,
+    updateAllLayersUrl,
 }

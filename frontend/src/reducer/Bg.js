@@ -28,12 +28,19 @@ export const UPDATE_BACK_LAYERS = 'bg/update_back_layers'
 export const UPDATE_CACHE_LAYERS = 'bg/update_cache_layers'
 export const TRANSLATE_X_LAYERS_BGS = 'bg/translateX_all_layers'
 export const UPDATE_IS_DREAMSCAPING = 'bg/update_is_dreamscaping'
+export const UPDATE_ALL_LAYERS_URL = 'bg/update bg url for all layers at current page'
 
 /**
    Reducer
 */
 export default (state: State = initialState, action: Action) => {
     switch (action.type) {
+    case UPDATE_ALL_LAYERS_URL:
+        return {
+            ...state,
+            frontLayers: state.frontLayers.map(l => ({ ...l, imgUrl: action.url })),
+            backLayers: state.backLayers.map(l => ({ ...l, imgUrl: action.url })),
+        }
     case UPDATE_IS_DREAMSCAPING:
         return {
             ...state,

@@ -23,6 +23,7 @@ import { styles as appStyles } from '../../constants.js'
 
 import Blog from '../Blog/Blog.jsx'
 import BlogPostList from '../Blog/BlogPostList.jsx'
+import ProductsList from '../Products/Products.jsx'
 import API from '../../API.js'
 
 import {
@@ -71,7 +72,7 @@ const SiteIntro: Array<ISlide> = [
 ***********************************/
 
 
-pid = Symbol()
+pid = Symbol('products')
 h1 = 'Products'
 h2 = ''
 path = '/products'
@@ -82,12 +83,14 @@ const Products: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.products.list } />,
-        mainPanelContent: () =>
-           <Blog fetchUrl={ new API().urls.products.list } />,
+            <ProductsList fetchUrl={ new API().urls.products.list } />,
         showNextSectionArrow: false,
-        layers: [createLayer(designIntro, 0, 1)],
+        layers: [createLayer(intro, 0, 1)],
     },
+    {
+        pid,
+        layers: [createLayer(intro, -100, 1)],
+    }
 ]
 
 
