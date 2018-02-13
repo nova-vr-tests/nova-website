@@ -14,6 +14,7 @@ import TOC from '../TOC/TOC.jsx'
 const mapStateToProps = state => ({
     pages: state.appReducer.pages,
     header: state.appReducer.sidePanel.header,
+    overrideHeader: state.appReducer.sidePanel.overrideHeader,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -60,16 +61,18 @@ const SlideHeader = props => {
                     { props.title2 }
                 </h2>
             </div>
-            { props.pages[props.currentPage] ?
-            <TOC
-                goTo={ props.goTo }
-                pages={ props.pages }
-                currentPage={ props.currentPage } /> : "" }
-            <Header />
-            <div style={ styles.socialWrapper }>
-                <Social
-                    shareUrl={ props.currentUrl } />
-            </div>
+            { props.pages[props.currentPage] && !props.overrideHeader ?
+                <TOC
+                    goTo={ props.goTo }
+                    pages={ props.pages }
+                    currentPage={ props.currentPage } /> : "" }
+            { props.overrideHeader ? <div style={ styles.customHeaderWrapper }><Header /></div> : "" }
+            { props.overrideHeader ? "" :
+                <div style={ styles.socialWrapper }>
+                    <Social
+                        shareUrl={ props.currentUrl } />
+                </div>
+            }
         </div>
     )
 }
