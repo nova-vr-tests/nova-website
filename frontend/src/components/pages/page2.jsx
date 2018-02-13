@@ -2,8 +2,6 @@
 
 import * as React from 'react'
 
-import intro from '../img/default.jpg'
-
 import bg1 from '../img/design/1.png'
 
 import educationIntroIntroLayer1 from '../img/resources/educational_portal/educational-portal-intro-layer1.jpg'
@@ -101,29 +99,6 @@ const Productions: Array<ISlide> = [
         ]
     },
 ]
-const labPid = Symbol()
-const LabLive: Array<ISlide> = [
-    {
-        h1: 'News Insights',
-        h2: 'Nova Blog',
-        content: () =>
-            <BlogPostList fetchUrl={ new API().urls.blogPosts.list } />,
-        mainPanelContent: () =>
-           <Blog fetchUrl={ new API().urls.blogPosts.list } />,
-        showNextSectionArrow: false,
-        path: '/blog',
-        paralax: 0,
-        pid: labPid,
-        layers: [
-            {
-                imgUrl: intro,
-                paralax: 0,
-                opacity: 1,
-            },
-        ]
-    },
-]
-
 /************************************
 
     Slide assembly

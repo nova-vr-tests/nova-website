@@ -8,7 +8,6 @@ import novaLogo from '../img/nova-logo.svg'
 
 import {
     P,
-    BigText,
     FlexColumn,
 } from './UI.jsx'
 

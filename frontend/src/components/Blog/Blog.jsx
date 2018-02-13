@@ -36,8 +36,6 @@ const Blog = props => {
     const title = props.blogPost.title
     const content = props.blogPost[props.contentKey]
 
-    let BlogPostHeader = () => <div></div>
-
     const { clientWidth } = document.documentElement
     const { unitWidthJs, sidebar, sidePanel } = appStyles
     const widthCoef = clientWidth / unitWidthJs - (2 * sidebar.widthFactor + sidePanel.openedWidthCoef)
@@ -78,18 +76,11 @@ Blog.defaultProps = {
     sidePanelMode: false,
 }
 
-const initialState = {
-    blogPost: {
-        title: '',
-        content: <div></div>,
-    },
-}
-
 const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     const restApi = new API()
     let postId = 1
     if(window.location.search.length) {
-        postId  = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'))
+        postId  = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
     }
 
     const blogPost = await restApi.fetchDetail(fetchUrl, postId)

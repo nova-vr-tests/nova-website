@@ -1,9 +1,5 @@
 import * as React from 'react'
 
-import { connect } from 'react-redux'
-
-import { styles as appStyles } from '../../constants.js'
-
 import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
 
 import HomePage from './Home.jsx'

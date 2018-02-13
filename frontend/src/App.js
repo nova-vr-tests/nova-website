@@ -21,6 +21,7 @@ const apiTest = async () => {
   const r = await fetch("/api/blogposts/")
   const json = await r.json()
 
+  return json
 }
 
 const reduxStatePropTypes = {

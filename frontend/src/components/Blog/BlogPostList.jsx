@@ -20,8 +20,6 @@ import {
 import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
 import BlogPost from './Blog.jsx'
 
-import { styles as appStyles } from '../../constants.js'
-
 import URLSearchParams from 'url-search-params'
 
 const mapStateToProps = state => ({
@@ -43,7 +41,7 @@ const BlogPostList = props => {
             content = content.substring(0, 70) + '...'
         }
 
-        const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post')) === e.id
+        const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
 
         const wrapperStyle = {
             ...styles.linkWrapper,
@@ -96,10 +94,6 @@ const BlogPostList = props => {
 }
 
 BlogPostList.defaultProps = {
-}
-
-const initialState = {
-    blogPosts: [],
 }
 
 const fetchBlogPosts = async (url, setBlogPosts, that) => {

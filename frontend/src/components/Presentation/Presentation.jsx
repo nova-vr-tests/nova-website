@@ -25,8 +25,6 @@ import {
 import transitions from './transitions.js'
 
 import SidePanel, { sidePanelTypes } from './SidePanel/SidePanel.jsx'
-import TOC from './TOC/TOC.jsx'
-
 import getStyles from './PresentationStyles.jsx'
 
 import SlideTransition from './SlideTransition/SlideTransition.jsx'

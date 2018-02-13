@@ -7,8 +7,6 @@ import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
 import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
 import loginLayer1 from '../img/partnership/login/login-layer1.png'
 
-import { BigText, P } from './UI.jsx'
-
 import type { ISlide, IPage } from './types.jsx'
 
 import Blog from '../Blog/Blog.jsx'
@@ -19,7 +17,6 @@ import {
     NYEIntroComp,
     NYEStreamComp,
     NYEDestComp,
-    NYEDistrComp,
 } from './NYEComp.jsx'
 
 /************************************

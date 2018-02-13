@@ -4,7 +4,6 @@ import * as React from 'react'
 
 import intro from '../img/default.jpg'
 
-import designIntro from '../img/design/intro.png'
 import worldLayer1 from '../img/design/world-layer1.png'
 import worldLayer2 from '../img/design/world-layer2.png'
 import storyLayer1 from '../img/design/story-layer1.png'

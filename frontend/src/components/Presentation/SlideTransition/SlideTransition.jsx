@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import store from '../../../store.js'
-import { shouldUpdate } from 'recompose'
 
 import Slide from '../Slide/Slide.jsx'
 
@@ -97,21 +96,6 @@ class SlideTransition extends React.Component<Props, State> {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return true
-
-        if(this.props.pathname === nextProps.pathname && nextState.transitionProgress <0.1 && !nextProps.scrollEvent){
-            return false
-        }
-
-        if(nextProps.scrollEvent || nextState.transitionProgress < 0.99) {
-            return true
-        }
-
-        return this.props.pathname !== nextProps.pathname
-
-    }
-
     updateTimerPointer(timer: number) {
         window.clearInterval(this.timer)
         this.timer = timer
@@ -138,15 +122,6 @@ class SlideTransition extends React.Component<Props, State> {
     }
 
     render() {
-        const CurrentSlide = <Slide
-                {...this.props}
-                currentPage={ this.state.currentPage }
-                id='current-slide'
-                isTarget={ false }
-                scrollEvent={ this.props.scrollEvent }
-                transitionProgress={ this.state.transitionProgress }
-            />
-
         const TargetSlide = <Slide
             {...this.props}
             currentPage={ this.state.targetPage }

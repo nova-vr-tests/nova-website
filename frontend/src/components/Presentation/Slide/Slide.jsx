@@ -36,12 +36,6 @@ const mapDispatchToProps = dispatch => ({
     pushUrl: url => dispatch(push(url)),
 })
 
-const calcSlideNumFromPageNum = (pages, currentPage, currentPid) => {
-    return currentPage - pages
-        .filter((e, i) => i < currentPage)
-        .filter((e) => e.pid !== currentPid).length
-}
-
 /*
    - e => scrollEvent
    - elId => id of el to scroll
@@ -102,21 +96,6 @@ const scroll = (e, elId, callback = () => {}) => {
 
 const Slide = props => {
     const styles = getStyles(props)
-
-    const { pid } = props.pages[props.currentPage]
-    const presSlides = props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
-
-    const allParagraphs = presSlides.map((e, i) => (
-        <div
-            className={ i < calcSlideNumFromPageNum(props.pages, props.currentPage, props.pages[props.currentPage].pid) ? 'above' : '' }
-            key={ i }
-            style={ {
-                    ...{ display: 'flex', border: '1px solid rgba(255, 0, 0, 0)' }
-            } }
-        >
-            <e.comp key={ i } />
-        </div>
-    ))
 
     const { id } = props
     const id1 = id + '-paragraph'
