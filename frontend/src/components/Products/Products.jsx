@@ -176,7 +176,9 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
 }
 
 const initHeader = updateSidePanelHeader => {
-    updateSidePanelHeader(() => <div>Products are innovative solutions for different industry. We develop them so they are customizable to be integrated in your business</div>)
+    const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
+
+    updateSidePanelHeader(() => <div>{ string }</div>)
 }
 
 const SmartComp = compose(
