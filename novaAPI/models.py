@@ -22,9 +22,12 @@ class BlogPost(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
+    description = models.CharField(max_length=250, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='products_pics')
     content = MarkdownxField()
+    abstract = MarkdownxField()
+    bg_image = models.ImageField(upload_to='products_bgs')
 
 class Consultancy(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')

@@ -27,7 +27,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = default_fields
+        fields = ('id', 'title', 'abstract', 'date', 'picto', 'content', 'bg_image', 'description')
 
 class ConsultancySerializer(serializers.ModelSerializer):
     class Meta:
