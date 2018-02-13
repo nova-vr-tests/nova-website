@@ -70,7 +70,7 @@ const category3: IMenuSection = {
             title: "Who We Are",
         },
         {
-            title: "News Feed",
+            title: "Lab Live",
         },
         {
             title: "Find us",

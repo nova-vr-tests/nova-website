@@ -2,10 +2,12 @@
 
 import React from 'react'
 
-import nyeLayer1 from '../img/partnership/nye/nye-layer1.png'
-import nyeLayer2 from '../img/partnership/nye/nye-layer2.png'
-import nyeLayer3 from '../img/partnership/nye/nye-layer3.png'
+import nyeLayer1 from '../img/about-us.png'
+import apprenticeships from '../img/apprenticeships.jpg'
+import findUsLayer1 from '../img/find-us.jpg'
 import loginLayer1 from '../img/partnership/login/login-layer1.png'
+import philoLayer1 from '../img/business/philo-layer1.png'
+import philoBg from '../img/design/2.jpg'
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -16,7 +18,9 @@ import API from '../../API.js'
 import {
     NYEIntroComp,
     NYEStreamComp,
-    NYEDestComp,
+    Community,
+    Philosophy,
+    FindUs as FindUsComp,
 } from './NYEComp.jsx'
 
 /************************************
@@ -47,12 +51,22 @@ const WhoWeAre: Array<ISlide> = [
             },
         ]
     },
+    {
+        pid,
+        layers: [
+            {
+                imgUrl: nyeLayer1,
+                paralax: -100,
+                opacity: 1,
+            },
+        ]
+    },
 ]
 
 
-h2 = 'Design'
-path = '/design'
-pid = Symbol('design')
+h2 = 'Apprenticeships'
+path = '/apprenticeships'
+pid = Symbol('apprenticeships')
 const Design: Array<ISlide> = [
     {
         h1,
@@ -62,79 +76,56 @@ const Design: Array<ISlide> = [
         content: () => <NYEStreamComp />,
         layers: [
             {
-                imgUrl: nyeLayer1,
-                paralax: -50,
+                imgUrl: apprenticeships,
+                paralax: 0,
                 opacity: 1,
             },
+        ]
+    },
+    {
+        pid,
+        layers: [
             {
-                imgUrl: nyeLayer2,
+                imgUrl: apprenticeships,
                 paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -200,
                 opacity: 1,
             },
         ]
     },
 ]
 
-h2 = 'Business'
-path = '/business'
-pid = Symbol('business')
+h2 = 'Community'
+path = '/community'
+pid = Symbol('community')
 const Business: Array<ISlide> = [
     {
         h1,
         h2,
         path,
         pid,
-        content: () => <p>Business</p>,
+        content: () => <Community />,
         layers: [
             {
-                imgUrl: nyeLayer1,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -200,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -400,
+                imgUrl: philoLayer1,
+                paralax: 0,
                 opacity: 1,
             },
         ]
     },
     {
-        h1,
-        h2,
-        path,
         pid,
         layers: [
             {
-                imgUrl: nyeLayer1,
+                imgUrl: philoLayer1,
                 paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -200,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -400,
                 opacity: 1,
             },
         ]
     },
 ]
 
-h2 = 'Technology'
-path = '/technology'
+h2 = 'Philosophy'
+path = '/philosophy'
 pid = Symbol('technology')
 const Technology: Array<ISlide> = [
     {
@@ -142,44 +133,21 @@ const Technology: Array<ISlide> = [
         h2,
         path,
         pid,
-        content: () => <NYEDestComp />,
+        content: () => <Philosophy />,
         layers: [
             {
-                imgUrl: nyeLayer1,
-                paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -200,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -400,
+                imgUrl: philoBg,
+                paralax: 0,
                 opacity: 1,
             },
         ]
     },
     {
-        h1,
-        h2,
-        path,
         pid,
         layers: [
             {
-                imgUrl: nyeLayer1,
+                imgUrl: philoBg,
                 paralax: -100,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer2,
-                paralax: -200,
-                opacity: 1,
-            },
-            {
-                imgUrl: nyeLayer3,
-                paralax: -400,
                 opacity: 1,
             },
         ]
@@ -195,8 +163,8 @@ const Technology: Array<ISlide> = [
 
 
 pid = Symbol('news feed')
-path = '/news-feed'
-h1 = 'News Feed'
+path = '/lab-live'
+h1 = 'Lab Live'
 h2 = ''
 const NewsFeed: Array<ISlide> = [
     {
@@ -231,11 +199,11 @@ const FindUs: Array<ISlide> = [
         h2,
         path,
         pid,
-        content: () => <p>Find us</p>,
+        content: () => <FindUsComp />,
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: loginLayer1,
+                imgUrl: findUsLayer1,
                 paralax: 0,
                 opacity: 1,
             },
