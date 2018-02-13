@@ -17,7 +17,7 @@ import {
     updateSidePanelHeader,
 } from '../../reducer/actions/App.js'
 
-import Bg from '../img/design/1.jpg'
+import arrow from '../img/arrow.svg'
 
 import { push } from 'react-router-redux'
 
@@ -67,9 +67,12 @@ const Products = props => {
             props.updateSidePanelHeader(() => [
                 <div
                     onClick={ () => props.goTo(props.pages[props.currentPage].path) }
-                    key={ 1} >back</div>,
+                    key={ 1} ><img
+                                  src={ arrow }
+                    style={{ width: '2rem', height: '2rem', transform: 'rotateZ(180deg)', marginRight: '2rem', }}
+                                  alt="back" /></div>,
                 <div key={ 2 }>
-                    <h3>{ e.title }</h3>
+                    <h3 style={{ margin: 0, }}>{ e.title }</h3>
                     <div>subtitle</div>
                 </div>
             ])
@@ -99,18 +102,28 @@ const Products = props => {
     const BlogPostMainPanel = () => <BlogPost fetchUrl={ props.fetchUrl } />
 
     const _props = props
-    const LastComp = props =>
-        <div onClick={ () => {
+    const LastComp = props => (
+        <div
+            style={ styles.linkWrapper }
+            onClick={ () => {
                 const cond = appStyles.mediaQueries.phone > _props.windowWidth
 
-                updateSidePanelHeader(() => <div>{_props.title}</div>)
                 if(cond)
                     _props.setDrawerPosition(_props.drawerPosition + 1)
                 else {
                     _props.updateMainPanel(BlogPostMainPanel);
                     _props.updateMainPanelIsOpened(true) }}}>
-            { props.title }
+                <img
+                    src={ props.pictoUrl }
+                    alt="picto"
+                    style={ styles.picto } />
+                <div style={ styles.textWrapper }>
+                    <div style={ styles.title }>
+                        { props.title }
+                    </div>
+                </div>
         </div>
+    )
 
     return (
         <div

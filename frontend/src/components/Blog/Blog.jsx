@@ -44,6 +44,7 @@ const Blog = props => {
 
     const { LastComp } = props
 
+    const pictoUrl = props.blogPost.picto ? new URL(props.blogPost.picto) : {origin: "", pathname: ""}
 
     return (
         <div
@@ -62,7 +63,9 @@ const Blog = props => {
             </div>
             <div style={ styles.articleWrapper }>
                 <BlogPostContent content={ content } />
-                <LastComp title={ title } />
+                <LastComp
+                    pictoUrl={ pictoUrl.origin + pictoUrl.pathname }
+                    title={ title } />
             </div>
         </div>
     )
