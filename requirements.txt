@@ -1,4 +1,5 @@
 appnope==0.1.0
+boto==2.48.0
 decorator==4.0.11
 dj-database-url==0.4.2
 Django==1.11.3
