@@ -37,23 +37,16 @@ A small shop in the New York area, Potential Synergy has recognized how the abse
 /**
    EDUCTIONAL PORTAL => education
 */
-const EdComp = props => {
-    const styles = {
-        wrapper:{
-        }
-    }
+const EdComp= props => {
+    const source = `### Coming Soon :)
+`
 
     return (
         <div
-            className={ 'EdComp--wrapper' }
-            style={ styles.wrapper }>
-            <FlexColumn>
-                <P>We provide access to resources from top Universities to underground innovation labs.</P>
-                <P>We are currently developing a VR Education Portal, which will provide instant access to a wealth of interactive content.</P>
-                <P>You will learn from professors, experiment with tinkerers, and match wits with the anonymous avatars of subculture innovation.</P>
-                <P>If the medium is the message, as philosopher Marshall McLuhan suggested, then XR communicates the idea that everything is accessible.</P>
-                <P>Today, we can truly experience /anything/. Because of advancements in microprocessors and computer vision, we design and develop the world to the tune of our imagination\'s insatiable dreams.</P>
-            </FlexColumn>
+            className={ 'NYEComp--wrapper' }>
+            <MarkdownParser
+                styles={{ textColor: 'white', fontSize: '1.5rem' }}
+                content={ source } />
         </div>
     )
 }
