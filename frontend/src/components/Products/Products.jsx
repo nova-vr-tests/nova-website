@@ -73,7 +73,7 @@ const Products = props => {
                                   alt="back" /></div>,
                 <div key={ 2 }>
                     <h3 style={{ margin: 0, }}>{ e.title }</h3>
-                    <div>subtitle</div>
+                    <div>{ e.description }</div>
                 </div>
             ])
         }
