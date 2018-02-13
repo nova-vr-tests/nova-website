@@ -15,9 +15,10 @@ hupexit() {
 trap hupexit HUP
 trap intexit INT
 
-project_root=nova/nova-website
+project_root=code/nova-website
 source ~/$project_root/venv/bin/activate
 python ~/$project_root/manage.py runserver &
 npm start --prefix ~/$project_root/frontend/ &
+./rundb &
 
 wait
