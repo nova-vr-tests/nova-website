@@ -2,6 +2,8 @@ import { styles as appStyles } from '../../../constants.js'
 
 const getStyles = (props, padding) => ({
     customHeaderWrapper: {
+        boxSizing: 'border-box',
+        width: '100%',
         backgroundColor: 'rgba(255, 255, 255, 0.05)',
         height: `calc(3 * ${appStyles.unitHeight})`,
         display: 'flex',
