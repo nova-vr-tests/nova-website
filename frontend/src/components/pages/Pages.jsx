@@ -138,6 +138,7 @@ const makePresentationSlide = (slide: ISlide, i: number, slides: Array<ISlide>):
         mainPanelContent,
         showNextSectionArrow,
         overrideMainPanel,
+        overrideHeader,
     } = slide
 
     const comp = () => (
@@ -190,6 +191,7 @@ return {
         layers,
         mainPanelContent,
         overrideMainPanel: overrideMainPanel ? overrideMainPanel : false,
+        overrideHeader: overrideHeader ? overrideHeader : false,
         align: align ? align : alignments.left,
         theme: appStyles.themeTypes.defaultTheme,
         transitions: {

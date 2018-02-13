@@ -87,6 +87,7 @@ const Products: Array<ISlide> = [
         mainPanelContent: () => <div></div>,
 //            <Blog fetchUrl={ new API().urls.products.list } />,
         overrideMainPanel: true,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [createLayer(intro, 0, 1)],
     },
