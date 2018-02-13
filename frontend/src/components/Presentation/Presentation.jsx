@@ -19,6 +19,7 @@ import {
     updatePages,
     updateMainPanelContent,
     updateMainPanelIsOpened,
+    updateSidePanelHeaderOverride,
 } from '../../reducer/actions/App.js'
 
 import transitions from './transitions.js'
@@ -73,6 +74,7 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
         updatePages: pages => dispatch(updatePages(pages)),
         updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
         updateMainPanelContent: content => dispatch(updateMainPanelContent(content)),
+        updateSidePanelHeaderOverride: overrideHeader => dispatch(updateSidePanelHeaderOverride(overrideHeader)),
     }
 }
 
@@ -171,6 +173,7 @@ class Presentation extends React.Component<Props> {
         this.updateLinePosition = this.updateLinePosition.bind(this)
         this.resetScrollEvent = this.resetScrollEvent.bind(this)
         this.updateMainPanel = this.updateMainPanel.bind(this)
+        this.updateSlideHeaderOverride = this.updateSlideHeaderOverride.bind(this)
 
         // Update redux goToPage function
         this.props.updateGoToPage(this.goToPage)
@@ -233,6 +236,12 @@ class Presentation extends React.Component<Props> {
         this.updateLinePosition(nextProps)
 
         this.updateMainPanel(nextProps)
+
+        this.updateSlideHeaderOverride(nextProps)
+    }
+
+    updateSlideHeaderOverride(nextProps) {
+        this.props.updateSidePanelHeaderOverride(nextProps.pages[nextProps.currentPage].overrideHeader)
     }
 
     updateMainPanel({ pages, currentPage }) {

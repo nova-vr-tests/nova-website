@@ -13,6 +13,7 @@ import TOC from '../TOC/TOC.jsx'
 
 const mapStateToProps = state => ({
     pages: state.appReducer.pages,
+    header: state.appReducer.sidePanel.header,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -38,6 +39,7 @@ const SlideHeader = props => {
         opacity: props.opacity2 ? 1 : 0,
     }
 
+    const Header = props.header
 
     return (
         <div style={ styles.wrapper }>
@@ -63,6 +65,7 @@ const SlideHeader = props => {
                 goTo={ props.goTo }
                 pages={ props.pages }
                 currentPage={ props.currentPage } /> : "" }
+            <Header />
             <div style={ styles.socialWrapper }>
                 <Social
                     shareUrl={ props.currentUrl } />
