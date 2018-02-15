@@ -22,8 +22,11 @@ const getStyles: GetStyles<Props, Styles> = props => {
     const sidebarWidth = 'calc(' + widthFactor + ' * ' + unitWidth + ')'
 
     let backgroundColor = 'rgba(0, 0, 0, 0.1)'
+    let wrapperOpacity = props.opacity
     if (document.documentElement.clientWidth < appStyles.mediaQueries.phone) {
         backgroundColor = 'rgba(0, 0, 0, 0)'
+
+        wrapperOpacity = props.isSidebarOpened ? 0 : wrapperOpacity
     }
 
     return {
@@ -31,7 +34,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             width: 'calc(100vw - ' + sidebarWidth + ')',
             position: 'relative',
             color: 'black',
-            opacity: props.opacity,
+            opacity: wrapperOpacity,
             transition: 'opacity 0.5s linear',
             paddingLeft: sidebarWidth,
             height: '100%',

@@ -20,6 +20,7 @@ import { footerPage } from '../../reducer/App.js'
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
     return {
         currentFooterPage: state.appReducer.currentFooterPage,
+        isSidebarOpened: state.sidebarReducer.isSidebarOpened,
     }
 }
 
