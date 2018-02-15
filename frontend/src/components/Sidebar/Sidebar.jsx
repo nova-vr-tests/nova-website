@@ -71,8 +71,6 @@ const SidebarSubSection: React.StatelessFunctionalComponent<SidebarSubSectionPro
 
         return (
             <div
-                onMouseEnter={ () => props.toggleSubSection(props.id.section, props.id.subSection) }
-                onMouseLeave={ () => props.toggleSubSection(props.id.section, props.id.subSection) }
                 style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
                     <div
                         style={ styles.subSection.title }
@@ -121,17 +119,31 @@ const SidebarSection: React.StatelessFunctionalComponent<SidebarSectionProps> = 
         return components
     }
 
+    // dont do anything on hover for mobile
+    const onHover = () => {
+        if(props.windowWidth > constants.styles.mediaQueries.phone) {
+            return props.toggleSection(props.id.section)
+        }
+    }
+
+    // dont do anything on click for desktop
+    const onClick = () => {
+        if(props.windowWidth < constants.styles.mediaQueries.phone) {
+            return props.toggleSection(props.id.section)
+        }
+    }
+
 
     return (
         <div
-            onMouseEnter={ () => props.toggleSection(props.id.section) }
-            onMouseLeave={ () => props.toggleSection(props.id.section) }
+            onMouseEnter={ onHover }
+            onMouseLeave={ onHover }
             style={ { ...styles.viewWrapper, ...(props.isOpened ? styles.viewWrapperOpened : {})} }>
             <div style={ { ...styles.section.wrapper, ...(props.isOpened ? styles.section.opened : {})} }>
                 <div style={ styles.section.titleWrapper }>
                     <div
                         style={ { ...styles.section.title, ...(props.isOpened ? styles.section.titleActive : {})} }
-                        onClick={ () => props.toggleSection(props.id.section) }>
+                        onClick={ onClick }>
                         { section.title }
                     </div>
                 </div>
@@ -210,6 +222,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
       headerIntersection: state.headerReducer.sidebarIntersection,
       routing: state.routing,
       appTheme: state.appReducer.appTheme,
+      windowWidth: state.appReducer.windowWidth,
     }
 }
 
