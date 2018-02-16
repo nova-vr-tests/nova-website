@@ -392,3 +392,8 @@ const ConnectedPresentation: React.ComponentType<OwnProps> = connect(
 )(Presentation)
 
 export default ConnectedPresentation
+
+export {
+    PresentationDumb,
+    Presentation,
+}
