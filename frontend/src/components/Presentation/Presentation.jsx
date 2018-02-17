@@ -89,9 +89,6 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
 
     return (
         <div style={ styles.wrapper }>
-            <div style={ styles.toc }>
-            </div>
-
             <MainPanel
                 isOpened={ props.isMainPanelOpened }
                 Content={ props.mainPanelContent } />
