@@ -14,32 +14,34 @@ import SlideTransition from '../SlideTransition/SlideTransition.jsx'
 
 import { sidePanelTypes } from '../SidePanel/SidePanel.jsx'
 
-const reduxDispatchProps = {
-    updateCurrentPage: jest.fn(),
-    updateBackLayers: jest.fn(),
-    updateAppTheme: jest.fn(),
-    updateTransitionProgress: jest.fn(),
-    goTo: jest.fn(),
-    updateLinePosition: jest.fn(),
-    updateGoToPage: jest.fn(),
-    updatePages: jest.fn(),
-    updateMainPanelIsOpened: jest.fn(),
-    updateMainPanelContent: jest.fn(),
-    updateSidePanelHeaderOverride: jest.fn(),
+const getInitProps = () => {
+    const reduxDispatchProps = {
+        updateCurrentPage: jest.fn(),
+        updateBackLayers: jest.fn(),
+        updateAppTheme: jest.fn(),
+        updateTransitionProgress: jest.fn(),
+        goTo: jest.fn(),
+        updateLinePosition: jest.fn(),
+        updateGoToPage: jest.fn(),
+        updatePages: jest.fn(),
+        updateMainPanelIsOpened: jest.fn(),
+        updateMainPanelContent: jest.fn(),
+        updateSidePanelHeaderOverride: jest.fn(),
+    }
+
+    const reduxStateProps = {
+        pathname: '/',
+        pages: [{}],
+        currentPage: 0,
+    }
+
+    return {
+        ...reduxDispatchProps,
+        ...reduxStateProps,
+    }
 }
 
-const reduxStateProps = {
-    pathname: '/',
-    pages: [{}],
-    currentPage: 0,
-}
-
-const initProps = {
-    ...reduxDispatchProps,
-    ...reduxStateProps,
-}
-
-const presentationSmartFactory = (mockKeys, props = initProps) => {
+const presentationSmartFactory = (mockKeys, props = getInitProps()) => {
     const subject = new PresentationSmart(_.cloneDeep(props))
 
     for(let key in mockKeys) {
@@ -150,6 +152,81 @@ describe('PresentationSmart', () => {
         nextProps.currentPage = 1
         subject.componentWillReceiveProps(nextProps)
         expect(subject.updateMainPanel.mock.calls).toEqual([[nextProps]])
+    })
+
+    test('updateSlideHeaderOverride', () => {
+        const subject = presentationSmartFactory([])
+
+        const nextProps = {
+            pages: [{ overrideHeader: 'foo' }],
+            currentPage: 0,
+        }
+
+        subject.updateSlideHeaderOverride(nextProps)
+        expect(subject.props.updateSidePanelHeaderOverride.mock.calls).toEqual([[nextProps.pages[nextProps.currentPage].overrideHeader]])
+    })
+
+    test('updateMainPanel', () => {
+        const subject = presentationSmartFactory([
+        ])
+
+        const args = {
+            pages: [{
+                overrideHeader: false,
+                overrideMainPanel: false,
+                mainPanelContent: <div></div>,
+            },
+            {
+                overrideHeader: false,
+                overrideMainPanel: false,
+                mainPanelContent: <div></div>,
+            }],
+            currentPage: 0,
+        }
+
+        // no overrides + args.currentPage === 0
+        subject.props.updateMainPanelContent = jest.fn()
+        subject.props.updateMainPanelIsOpened = jest.fn()
+
+        subject.updateMainPanel(args)
+        expect(subject.props.updateMainPanelContent.mock.calls)
+               .toEqual([[args.pages[0].mainPanelContent]])
+        expect(subject.props.updateMainPanelIsOpened.mock.calls)
+               .toEqual([[false], [true]])
+
+        // no overrides + args.currentPage !== 0
+        subject.props.updateMainPanelContent = jest.fn()
+        subject.props.updateMainPanelIsOpened = jest.fn()
+        args.currentPage = 1
+
+        subject.updateMainPanel(args)
+        expect(subject.props.updateMainPanelContent.mock.calls)
+               .toEqual([[args.pages[0].mainPanelContent]])
+        expect(subject.props.updateMainPanelIsOpened.mock.calls)
+               .toEqual([[false]])
+
+        // no mainPanelContent
+        subject.props.updateMainPanelContent = jest.fn()
+        subject.props.updateMainPanelIsOpened = jest.fn()
+        args.currentPage = 1
+        args.pages[args.currentPage].mainPanelContent = undefined
+
+        subject.updateMainPanel(args)
+        expect(subject.props.updateMainPanelContent.mock.calls)
+               .toEqual([])
+        expect(subject.props.updateMainPanelIsOpened.mock.calls)
+               .toEqual([[false]])
+
+        // overrideMainPanel
+        subject.props.updateMainPanelContent = jest.fn()
+        subject.props.updateMainPanelIsOpened = jest.fn()
+        args.pages[1].overrideMainPanel = true
+
+        subject.updateMainPanel(args)
+        expect(subject.props.updateMainPanelContent.mock.calls)
+               .toEqual([])
+        expect(subject.props.updateMainPanelIsOpened.mock.calls)
+               .toEqual([])
     })
 })
 
