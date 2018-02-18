@@ -7,6 +7,7 @@ import {
     Presentation as PresentationSmart,
 } from '../Presentation.jsx'
 import getStyles from '../PresentationStyles.jsx'
+import transitions from '../transitions.js'
 
 import MainPanel from '../../MainPanel/MainPanel.jsx'
 import SidePanel from '../SidePanel/SidePanel.jsx'
@@ -227,6 +228,60 @@ describe('PresentationSmart', () => {
                .toEqual([])
         expect(subject.props.updateMainPanelIsOpened.mock.calls)
                .toEqual([])
+    })
+
+    test('updateSlideFromUrl', () => {
+        const subject = presentationSmartFactory([
+            'pathnameToSlideNumber',
+            'goToPage',
+        ])
+
+        subject.props.pathname = '/pathname'
+        let nextPathname = subject.props.pathname
+
+        // does not update when currentPathname === nextPathname
+        subject.updateSlideFromUrl(nextPathname)
+        expect(subject.pathnameToSlideNumber.mock.calls)
+               .toEqual([])
+        expect(subject.goToPage.mock.calls)
+               .toEqual([])
+
+        nextPathname = '/nextpathname'
+
+        // updates when currentPathname !== nextPathname
+        subject.updateSlideFromUrl(nextPathname)
+        expect(subject.pathnameToSlideNumber.mock.calls)
+               .toEqual([[nextPathname]])
+        expect(subject.goToPage.mock.calls)
+               .toEqual([[subject.pathnameToSlideNumber(nextPathname)]])
+    })
+
+    test('getTransitionType', () => {
+        const subject = presentationSmartFactory([])
+
+        subject.props.pages[0].pid = Symbol('1')
+        subject.props.pages.push({ pid: Symbol('2') })
+
+        // does not update when currentPathname === nextPathname
+        let returnValue = subject.getTransitionType(0, 1)
+        expect(returnValue)
+               .toEqual(transitions.types.BG_SPLIT)
+
+        // does not update when currentPathname === nextPathname
+        returnValue = subject.getTransitionType(0, 0)
+        expect(returnValue)
+               .toEqual(transitions.types.BG_PARALAX)
+    })
+
+    test('updateLinePosition', () => {
+        const subject = presentationSmartFactory([])
+        const currentPage  = 0
+        subject.props.currentPage = currentPage
+        subject.props.pages[currentPage].linePosition = 2
+
+        subject.updateLinePosition(subject.props)
+        expect(subject.props.updateLinePosition.mock.calls)
+               .toEqual([[subject.props.pages[currentPage].linePosition]])
     })
 })
 
