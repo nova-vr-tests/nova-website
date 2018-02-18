@@ -285,6 +285,164 @@ describe('PresentationSmart', () => {
     })
 })
 
+describe('PresentationSmart.goToPage', () => {
+    test('updates line position', () => {
+        const subject = presentationSmartFactory([
+            'updateLinePosition',
+            'getTransitionType',
+        ])
+
+        // ignore mock calls from contructor
+        subject.props = getInitProps()
+
+        subject.goToPage(0)
+        expect(subject.updateLinePosition.mock.calls)
+               .toEqual([[subject.props]])
+        expect(subject.props.updateCurrentPage.mock.calls)
+            .toEqual([])
+    })
+
+    test('starts correct transition if increasing page', () => {
+        const subject = presentationSmartFactory([
+            'updateLinePosition',
+            'getTransitionType',
+        ])
+        // ignore mock calls from contructor
+        subject.props = getInitProps()
+        transitions.startTransition = jest.fn()
+
+        const targetPage = 1
+        subject.goToPage(targetPage)
+        expect(subject.getTransitionType.mock.calls)
+               .toEqual([[subject.props.currentPage, targetPage]])
+
+        const transitionParams = {
+            sign: 1,
+            pages: [
+                subject.props.pages[subject.props.currentPage],
+                subject.props.pages[targetPage],
+            ],
+            currentPage: 0,
+            attachScrollEvent: subject.attachScrollEvent,
+            detachScrollEvent: subject.detachScrollEvent,
+        }
+        expect(transitions.startTransition.mock.calls)
+            .toEqual([[
+                subject.getTransitionType(
+                    subject.props.currentPage,
+                    targetPage),
+                transitionParams,
+            ]])
+        expect(subject.props.updateCurrentPage.mock.calls)
+            .toEqual([[targetPage]])
+    })
+
+    test('starts correct transition if decreasing page', () => {
+        const subject = presentationSmartFactory([
+            'updateLinePosition',
+            'getTransitionType',
+        ])
+        // ignore mock calls from contructor
+        subject.props = getInitProps()
+
+        transitions.startTransition = jest.fn()
+        subject.props.pages.push({})
+        subject.props.currentPage = 1
+
+        const targetPage = 0
+        subject.goToPage(targetPage)
+
+        const transitionParams = {
+            sign: -1,
+            pages: [
+                subject.props.pages[targetPage],
+                subject.props.pages[subject.props.currentPage],
+            ],
+            currentPage: 1,
+            attachScrollEvent: subject.attachScrollEvent,
+            detachScrollEvent: subject.detachScrollEvent,
+        }
+
+        expect(transitions.startTransition.mock.calls)
+            .toEqual([[
+                subject.getTransitionType(
+                    subject.props.currentPage,
+                    targetPage),
+                transitionParams,
+            ]])
+        expect(subject.props.updateCurrentPage.mock.calls)
+            .toEqual([[targetPage]])
+    })
+
+    test('does not starts transition if same page', () => {
+        const subject = presentationSmartFactory([
+            'updateLinePosition',
+            'getTransitionType',
+        ])
+        // ignore mock calls from contructor
+        subject.props = getInitProps()
+
+        transitions.startTransition = jest.fn()
+        subject.props.pages.push({})
+        subject.props.currentPage = 0
+
+        const targetPage = 0
+        subject.goToPage(targetPage)
+
+        expect(transitions.startTransition.mock.calls)
+            .toEqual([])
+        expect(subject.props.updateCurrentPage.mock.calls)
+            .toEqual([])
+    })
+})
+
+describe('PresentationSmart.isFirstPage', () => {
+    test('returns correct value', () => {
+        const subject = presentationSmartFactory([])
+
+        expect(subject.isFirstPage())
+            .toEqual(true)
+
+        subject.props.currentPage = 1
+        expect(subject.isFirstPage())
+            .toEqual(false)
+    })
+})
+
+describe('PresentationSmart.isLastPage', () => {
+    test('returns correct value', () => {
+        const subject = presentationSmartFactory([])
+        subject.props.pages.push({})
+
+        expect(subject.isLastPage())
+            .toEqual(false)
+
+        subject.props.currentPage = 1
+        expect(subject.isLastPage())
+            .toEqual(true)
+    })
+})
+
+describe('PresentationSmart.goToNextPage', () => {
+    test('calls goToPage with correct params', () => {
+        const subject = presentationSmartFactory(['goToPage'])
+
+        subject.goToNextPage()
+        expect(subject.goToPage.mock.calls)
+            .toEqual([[subject.props.currentPage + 1]])
+    })
+})
+
+describe('PresentationSmart.goToPreviousPage', () => {
+    test('calls goToPage with correct params', () => {
+        const subject = presentationSmartFactory(['goToPage'])
+
+        subject.goToPreviousPage()
+        expect(subject.goToPage.mock.calls)
+            .toEqual([[subject.props.currentPage - 1]])
+    })
+})
+
 describe('PresentationDumb', () => {
     test('mounts with correct props', () => {
         const _props = {
