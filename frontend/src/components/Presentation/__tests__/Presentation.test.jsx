@@ -39,6 +39,7 @@ const getInitProps = () => {
     return {
         ...reduxDispatchProps,
         ...reduxStateProps,
+        attachToMouseScroll: true,
     }
 }
 
@@ -501,7 +502,41 @@ describe('PresentationSmart.detachScrollEvent', () => {
     })
 })
 
-describe('PresentationDumb', () => {
+describe('PresentationSmart.onScroll', () => {
+    test('updates state.scrollEvent if no mainPanelContent', () => {
+        const subject = presentationSmartFactory(['setState'])
+
+        const event = Symbol('event')
+        subject.onScroll(event)
+        expect(subject.setState.mock.calls)
+               .toEqual([[{ scrollEvent: event }]])
+    })
+
+    test('does not updates state.scrollEvent if there is mainPanelContent', () => {
+        const subject = presentationSmartFactory(['setState'])
+        subject.props.pages[subject.props.currentPage].mainPanelContent = true
+
+        const event = Symbol('event')
+        subject.onScroll(event)
+        expect(subject.setState.mock.calls)
+               .toEqual([])
+    })
+})
+
+describe('PresentationSmart.render', () => {
+    test('mounts with correct props', () => {
+        const props = getInitProps()
+        const subject = shallow(<PresentationSmart { ...props } />)
+        subject.state.scrollEvent = Symbol('scrollEvent')
+        expect(subject.find(PresentationDumb).props()).toEqual({
+            ...props,
+            scrollEvent: subject.state('scrollEvent'),
+            resetScrollEvent: subject.instance().resetScrollEvent,
+        })
+    })
+})
+
+describe('PresentationDumb.render', () => {
     test('mounts with correct props', () => {
         const _props = {
             MainPanel: {
