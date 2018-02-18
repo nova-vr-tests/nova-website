@@ -42,7 +42,7 @@ const getInitProps = () => {
     }
 }
 
-const presentationSmartFactory = (mockKeys, props = getInitProps()) => {
+const presentationSmartFactory = (mockKeys = [], props = getInitProps()) => {
     const subject = new PresentationSmart(_.cloneDeep(props))
 
     for(let key in mockKeys) {
@@ -440,6 +440,64 @@ describe('PresentationSmart.goToPreviousPage', () => {
         subject.goToPreviousPage()
         expect(subject.goToPage.mock.calls)
             .toEqual([[subject.props.currentPage - 1]])
+    })
+})
+
+describe('PresentationSmart.attachScrollEvent', () => {
+    test('calls detachScrollEvent', () => {
+        const subject = presentationSmartFactory(['detachScrollEvent'])
+        window.addEventListener = jest.fn()
+
+        subject.attachScrollEvent()
+        expect(subject.detachScrollEvent.mock.calls)
+            .toEqual([[]])
+    })
+
+    test('handles this.props.attachMouseScroll = true', () => {
+        const subject = presentationSmartFactory(['detachScrollEvent'])
+        subject.props.attachToMouseScroll = true
+        window.addEventListener = jest.fn()
+
+        subject.attachScrollEvent()
+        expect(window.addEventListener.mock.calls)
+            .toEqual([['wheel', subject.onScroll]])
+        expect(subject.eventCounter)
+            .toEqual(1)
+    })
+
+    test('handles this.props.attachMouseScroll = false', () => {
+        const subject = presentationSmartFactory(['detachScrollEvent'])
+        subject.props.attachToMouseScroll = false
+        window.addEventListener = jest.fn()
+
+        subject.attachScrollEvent()
+        expect(window.addEventListener.mock.calls)
+            .toEqual([])
+        expect(subject.eventCounter)
+            .toEqual(0)
+    })
+})
+
+describe('PresentationSmart.detachScrollEvent', () => {
+    test('removes wheel event listeners on window', () => {
+        const subject = presentationSmartFactory([])
+        window.removeEventListener = jest.fn()
+
+        subject.eventCounter = 2
+        subject.detachScrollEvent()
+        expect(window.removeEventListener.mock.calls)
+               .toEqual([
+                   ['wheel', subject.onScroll],
+                   ['wheel', subject.onScroll],
+               ])
+    })
+
+    test('resets this.eventCounter', () => {
+        const subject = presentationSmartFactory()
+
+        subject.detachScrollEvent()
+        expect(subject.eventCounter)
+            .toEqual(0)
     })
 })
 
