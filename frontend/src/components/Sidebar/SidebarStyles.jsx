@@ -174,7 +174,7 @@ const getSidebarSectionStyles: GetStyles<SidebarSectionProps, SidebarSectionStyl
                 overflow: 'visible',
                 transition: 'max-height' + constants.styles.sidebar.transition.length + ' ' + constants.styles.sidebar.transition.type,
                 minHeight: 'calc('
-                      + (props.linePosition === props.id.section ? '2 * ' : '') +
+                      + (props.linePosition === props.id.section && window.location.pathname !== '/' ? '2 * ' : '') +
                       + constants.styles.sidebar.sectionHeightFactor + ' * ' + unitHeight
                       + ')',
                 pointerEvents: 'auto', // reactivate pointer events on links which don't block toggle sidebar button (see SidebarDumb.styles.wrapper.pointerEvents)
