@@ -135,6 +135,13 @@ const proxiedStyles = new Proxy(styles, {
             // cannot use window.innerHeight or document.documentElement.innerHeight
             // because of iOS safari minimal UI
             return document.querySelector('body').clientHeight / 24
+        } else if (property === 'sidePanel'){
+            const clientWidth = document.documentElement.clientWidth
+
+            return {
+                openedWidthCoef: 7,
+                transitionTime: 300, //ms
+            }
         } else {
             return target[property]
         }

@@ -198,7 +198,8 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
 const sidePanelLifecycle = {
     componentDidUpdate: function(prevProps: Props) {
         if(this.props.isOpened !== prevProps.isOpened) {
-            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? 11 : 0, prevProps.isOpened ? 0 : 11, 0, this.props.setWidth, new Date().getTime()))
+            const { openedWidthCoef } = appStyles.sidePanel
+            requestAnimationFrame(() => togglePanel(prevProps.isOpened ? openedWidthCoef : 0, prevProps.isOpened ? 0 : openedWidthCoef, 0, this.props.setWidth, new Date().getTime()))
 
             this.props.updateIsSidePanelOpened(this.props.isOpened)
         }
@@ -207,7 +208,7 @@ const sidePanelLifecycle = {
 
 const enhance: HOC<*, Props> = compose(
     withState('isOpened', 'setIsOpened', true),
-    withState('width', 'setWidth', 11),
+    withState('width', 'setWidth', appStyles.sidePanel.openedWidthCoef),
     lifecycle(sidePanelLifecycle),
 )
 
