@@ -30,8 +30,6 @@ import {
     DesignInterfaceComp,
 } from './page1Comps.jsx'
 
-import { MainPanel as HomePageMainPanel } from './Home.jsx'
-
 
 import type { ISlide, IPage } from './types.jsx'
 

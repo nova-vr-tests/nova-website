@@ -66,14 +66,13 @@ const HomeMainPanel = props => {
         h1: {
             height: 'calc(4 * ' + appStyles.unitHeight + ')',
             margin: 0,
-            display: 'flex',
+            display: 'none',
             alignItems: 'center',
             position: 'absolute',
             transform: 'translateY(-100%)',
             fontSize: '2.5rem',
             minWidth: `calc(8 * ${appStyles.unitWidth})`,
             justifyContent: 'center',
-            display: 'none',
         },
         pWrapper: {
             fontSize: '2.5vh',
