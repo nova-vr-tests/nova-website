@@ -45,7 +45,7 @@ const createLayer = (imgUrl, paralax, opacity) => ({ imgUrl, paralax, opacity })
 ************************************/
 
 
-let h1 = 'Dream Awake'
+let h1 = ''
 let h2 = ''
 let path = '/'
 let pid = Symbol()
@@ -54,7 +54,8 @@ const SiteIntro: Array<ISlide> = [
         h1,
         h2,
         content: () => <HomePage />,
-        mainPanelContent: () => <HomePageMainPanel />,
+        overrideMainPanel: true,
+        overrideHeader: true,
         showNextSectionArrow: false,
         path,
         pid,

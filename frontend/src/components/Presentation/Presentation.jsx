@@ -247,9 +247,6 @@ class Presentation extends React.Component<Props> {
                 this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
                 this.props.updateMainPanelIsOpened(false)
 
-                if(currentPage === 0) {
-                    this.props.updateMainPanelIsOpened(true)
-                }
             } else {
                 this.props.updateMainPanelIsOpened(false)
             }

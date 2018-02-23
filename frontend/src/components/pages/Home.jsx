@@ -1,12 +1,21 @@
 import * as React from 'react'
 
 import { connect } from 'react-redux'
+import { lifecycle } from 'recompose'
 
 import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
+import MainPanel from '../MainPanel/MainPanel.jsx'
 
 import { styles as appStyles } from '../../constants.js'
 
-import novaLogo from '../img/nova-logo.svg'
+import novaLogo from '../img/home/logo.png'
+
+import {
+    updateSidePanelHeader,
+    updateMainPanelContent,
+    updateMainPanelIsOpened,
+    updateLinePosition,
+} from '../../reducer/actions/App.js'
 
 const mapStateToProps = function(state) {
     return {
@@ -16,6 +25,10 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
     return {
+        updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
+        updateMainPanel: comp => dispatch(updateMainPanelContent(comp)),
+        updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
+        updateLinePosition: position => dispatch(updateLinePosition(position)),
     }
 }
 
@@ -41,16 +54,11 @@ XR technologies are being deployed in most industries to increase revenue or dec
 HomePage.defaultProps = {
 }
 
-const ConnectedHomePage = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(HomePage)
-
-const MainPanel = props => {
+const HomeMainPanel = props => {
     const styles = {
         wrapper:{
             transition: 'opacity 0.5s linear',
-            position: 'absolute',
+            position: 'relative',
             width: 'calc(7 * ' + appStyles.unitWidth + ')',
             marginLeft: 'calc(3 * ' + appStyles.unitWidth + ')',
             marginTop: 'calc(4 * ' + appStyles.unitWidth + ')',
@@ -60,23 +68,45 @@ const MainPanel = props => {
             margin: 0,
             display: 'flex',
             alignItems: 'center',
+            position: 'absolute',
+            transform: 'translateY(-100%)',
+            fontSize: '2.5rem',
+            minWidth: `calc(8 * ${appStyles.unitWidth})`,
+            justifyContent: 'center',
+            display: 'none',
+        },
+        pWrapper: {
+            fontSize: '2.5vh',
+            position: 'absolute',
+            top: `calc(11 * ${appStyles.unitHeight})`,
+            height: `calc(4 * ${appStyles.unitHeight})`,
+            margin: '0',
+            width: `calc(100% + 3 * ${appStyles.unitWidth})`,
+            transform: `translateX(calc(-3 * ${appStyles.unitWidth}))`,
+            boxSizing: 'border-box',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
         },
         p: {
-            fontSize: '2.5vh',
+            maxWidth: `calc(8 * ${appStyles.unitWidth})`,
+            textAlign: 'center',
         },
         logo: {
-            position: 'absolute',
-            height: 'calc(2 * ' + appStyles.unitHeight + ')',
-            marginBottom: 'calc(2 * ' + appStyles.unitHeight + ')',
-            marginLeft: 'calc(2 * ' + appStyles.unitWidth + ')',
-            bottom: '100%',
+            height: 'calc(4 * ' + appStyles.unitHeight + ')',
+            margin: 0,
             display: 'flex',
-            flexDirection: 'column',
-            color: 'white',
-            fontSize: '1rem',
+            alignItems: 'center',
+            position: 'absolute',
+            transform: 'translateY(-135%)translateX(4%)',
+            fontSize: '2.5rem',
+            minWidth: `calc(8 * ${appStyles.unitWidth})`,
+            justifyContent: 'center',
         },
         img: {
-            height: '100%',
+            width: `calc(4.5 * ${appStyles.unitWidth})`,
             marginBottom: '0.5rem',
             filter: 'invert(100%)',
         }
@@ -84,31 +114,52 @@ const MainPanel = props => {
 
 
     return (
-        <div
-            className={ 'MainPanel--wrapper' }
-            style={ styles.wrapper }>
-            <div style={ styles.logo }>
-                <img
-                    style={ styles.img }
-                    alt="logo"
-                    src={ novaLogo } />
-                    <span>XR Media</span>
-            </div>
-            <h1 style={ styles.h1 }>
-                { '<< Dream Awake >>' }
-            </h1>
-            <p style={ styles.p }>
-                We provide XR Media solutions for business. Our work includes sourcing development, production management, and market entry.
-            </p>
-        </div>
+                    <div style={ styles.pWrapper }>
+                        <div
+                            key={ 1 }
+                            style={ styles.logo }>
+                            <img
+                                style={ styles.img }
+                                alt="logo"
+                                src={ novaLogo } />
+                        </div>
+                        <h1
+                            key={ 2 }
+                            style={ styles.h1 }>
+                            { 'Dream Awake' }
+                        </h1>
+                        <p
+                            key={ 3 }
+                            style={ styles.p }>
+                            We provide XR Media solutions for business. Our work includes sourcing development, production management, and market entry.
+                        </p>
+                    </div>
     )
 }
 
 MainPanel.defaultProps = {
 }
 
+const HomePageSmart = lifecycle({
+    componentDidMount() {
+        this.props.updateSidePanelHeader(() => (
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <h1 style={{ fontStyle: 'italic', letterSpacing: '0.3rem' }}>Dream Awake</h1>
+            </div>
+        ))
+        this.props.updateMainPanel(HomeMainPanel)
+        this.props.updateMainPanelIsOpened(true)
+    },
+})(HomePage)
+
+const ConnectedHomePage = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HomePageSmart)
+
+
 export default ConnectedHomePage
 
 export {
-    MainPanel,
+    HomeMainPanel,
 }
