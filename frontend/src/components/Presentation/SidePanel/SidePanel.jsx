@@ -204,6 +204,10 @@ const sidePanelLifecycle = {
             this.props.updateIsSidePanelOpened(this.props.isOpened)
         }
     },
+    componentWillUpdate: function(nextProps) {
+        if(nextProps.width !== appStyles.sidePanel.openedWidthCoef)
+            this.props.setWidth(appStyles.sidePanel.openedWidthCoef)
+    }
 }
 
 const enhance: HOC<*, Props> = compose(
