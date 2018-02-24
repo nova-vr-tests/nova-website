@@ -136,16 +136,15 @@ const proxiedStyles = new Proxy(styles, {
             // because of iOS safari minimal UI
             return document.querySelector('body').clientHeight / 24
         } else if (property === 'sidePanel'){
-            // const clientWidth = document.documentElement.clientWidth
+            const clientWidth = document.documentElement.clientWidth
 
-            // const coef =  document.querySelector('body').clientWidth / (3 * styles.unitWidthJs)
-            // const coefAbsoluteWidth = 11
-            // const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
-            // let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
-            // console.log(openedWidthCoef, coefAbsoluteWidth, coefPercentWidth)
+            const coefAbsoluteWidth = 11
+            const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
+            let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
+            console.log(openedWidthCoef, coefAbsoluteWidth, coefPercentWidth)
 
             return {
-                openedWidthCoef: 11,
+                openedWidthCoef, //: 11,
                 transitionTime: 300, //ms
             }
         } else {
