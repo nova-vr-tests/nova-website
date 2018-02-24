@@ -53,7 +53,7 @@ const Blog = props => {
                     zIndex={ -1 }
                     bgColor="rgba(255, 255, 255, 1)"
                     type={ 1 }
-                    rightEdgeCoef={ 11 }
+                    rightEdgeCoef={ sidePanel.openedWidthCoef }
                     widthCoef={ widthCoef } />
                 <SlideHeader
                     title={ title }
