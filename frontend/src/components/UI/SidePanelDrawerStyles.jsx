@@ -15,7 +15,7 @@ const getStyles = props => {
     let wrapperWidth = `calc(${comps.length} * ${sidePanelWidth})`
     let wrapperTransform = `translate(calc(-${props.position} * ${sidePanelWidth}))`
     let centerWrapperWidth = `calc(${sidePanelWidth})`
-    if(clientWidth < appStyles.mediaQueries.phone) {
+    if(clientWidth < appStyles.mediaQueries.tablet) {
         position = props.position
         height = `calc(13 * ${unitHeight})`
         wrapperWidth = `calc(${comps.length * 100}vw)`
