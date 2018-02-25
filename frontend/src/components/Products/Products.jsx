@@ -26,6 +26,7 @@ import getStyles, {
 
 import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
 import SidePanelLink from '../UI/SidePanelLink.jsx'
+import SidePanelProductsHeader from '../UI/SidePanelProductsHeader.jsx'
 import BlogPost from '../Blog/Blog.jsx'
 
 import URLSearchParams from 'url-search-params'
@@ -62,16 +63,11 @@ const Products = props => {
             const bgUrl = new URL(e.bg_image)
             props.updateBg(bgUrl.origin + bgUrl.pathname)
             props.updateSidePanelHeader(() => [
-                <div
-                    onClick={ () => props.goTo(props.pages[props.currentPage].path) }
-                    key={ 1} ><img
-                                  src={ arrow }
-                                  style={{ cursor: 'pointer', width: '2rem', height: '2rem', transform: 'rotateZ(180deg)', marginRight: '2rem', }}
-                                  alt="back" /></div>,
-                <div key={ 2 }>
-                    <h3 style={{ margin: 0, }}>{ e.title }</h3>
-                    <div>{ e.description }</div>
-                </div>
+                <SidePanelProductsHeader
+                    title={ e.title }
+                    subtitle={ e.description }
+                    onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) }
+                />
             ])
         }
 
