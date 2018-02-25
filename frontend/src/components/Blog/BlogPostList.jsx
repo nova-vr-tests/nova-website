@@ -119,7 +119,10 @@ const initHeader = (updateSidePanelHeader, props) => {
             header = () => <SidePanelProductsHeader
                 title={ props.blogPosts[productNumber - 1].title }
                 subtitle={ props.blogPosts[productNumber - 1].description }
-                onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) }
+                onClickCallback={ () => {
+                    props.goTo(props.pages[props.currentPage].path)
+                    props.updateMainPanelIsOpened(false)
+                }}
             />
         }
 
