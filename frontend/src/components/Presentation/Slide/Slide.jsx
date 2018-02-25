@@ -139,10 +139,10 @@ const Slide = props => {
             id={ id2 }
             key={ 123 }>
             <div style={ styles.paragraphsWrapper }>
-            <div
-                id={ id1 }
-                style={ styles.allParagraphs }>
-                { props.CurrentPage }
+                <div
+                    id={ id1 }
+                    style={ styles.allParagraphs }>
+                    { props.CurrentPage }
                 </div>
                 <div
                     style={ styles.tail }
@@ -151,8 +151,7 @@ const Slide = props => {
                         pages={ props.pages }
                         goToNextPage={ props.goToNextPage }
                         currentPage={ props.currentPage }
-                        pushUrl={ props.pushUrl }
-                    />
+                        pushUrl={ props.pushUrl } />
                 </div>
             </div>
         </div>
@@ -167,8 +166,6 @@ const SmartComp = compose(
     ),
     lifecycle({
         componentDidMount() {
-            console.log('mountgin from slide.jsx')
-
             const { pid } = this.props.pages[this.props.currentPage]
             const presSlides = this.props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
             const PageComp = presSlides[0].comp
@@ -180,7 +177,6 @@ const SmartComp = compose(
             const presSlides = nextProps.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
             const PageComp = presSlides[0].comp
             this.props.setCurrentPage(<PageComp />)
-                console.log(PageComp)
         }
         },
         componentWillUnmount() {
