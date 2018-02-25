@@ -5,7 +5,7 @@ const getStyles = props => {
     const { unitHeight, unitWidth } = appStyles
 
     let display = 'block'
-    if(clientWidth < appStyles.mediaQueries.table) {
+    if(clientWidth < appStyles.mediaQueries.tablet) {
         display = 'none'
     }
 
