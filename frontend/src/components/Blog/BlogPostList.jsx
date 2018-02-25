@@ -74,7 +74,7 @@ const BlogPostList = props => {
                         <BlogPost
                             key={ 2 }
                             fetchUrl={ props.fetchUrl }
-                            showHeader={ false } /> ,
+                            showHeader={ false } />,
                     ]
                 ]}
                 position={ props.drawerPosition }
