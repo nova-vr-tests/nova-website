@@ -7,7 +7,7 @@ const getStyles = props => {
     if(clientWidth < appStyles.mediaQueries.phone) {
     }
 
-    const linkWrapperHeight = unitHeightJs * 2.50 + 'px'
+    const linkWrapperHeight = unitHeightJs * 3 + 'px'
     const borderRadius = {
             borderTopLeftRadius: '15px',
             borderBottomLeftRadius: '15px',
@@ -20,14 +20,14 @@ const getStyles = props => {
             fontSize: '2rem',
             justifyContent: 'fle',
             border: '1.5px solid white',
-            margin: `calc(0.25 * ${appStyles.unitHeight})`,
+            margin: `calc(0.45 * ${appStyles.unitHeight})`,
             cursor: 'pointer',
             ...borderRadius,
             marginRight: 0,
             marginLeft: `calc(0.5 * ${appStyles.unitWidth})`,
             justifySelf: 'flex-end',
             borderRight: 'none',
-            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
         activeLink: {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
