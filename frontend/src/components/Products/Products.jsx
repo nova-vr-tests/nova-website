@@ -92,6 +92,7 @@ const Products = props => {
 
     const _props = props
     const LastComp = props => (
+        <div style={{ marginBottom: '4rem' }}>
             <SidePanelLink
                 onClickCallback={ () => {
                     const cond = appStyles.mediaQueries.tablet > _props.windowWidth
@@ -105,6 +106,7 @@ const Products = props => {
                 }}
                 pictoUrl={ props.pictoUrl }
                 title={ props.title } />
+        </div>
     )
 
     return (
