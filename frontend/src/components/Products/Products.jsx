@@ -96,26 +96,19 @@ const Products = props => {
 
     const _props = props
     const LastComp = props => (
-        <div
-            style={ { ...styles.linkWrapper, marginBottom: '5rem', } }
-            onClick={ () => {
-                const cond = appStyles.mediaQueries.tablet > _props.windowWidth
+            <SidePanelLink
+                onClickCallback={ () => {
+                    const cond = appStyles.mediaQueries.tablet > _props.windowWidth
 
-                if(cond)
-                    _props.setDrawerPosition(_props.drawerPosition + 1)
-                else {
-                    _props.updateMainPanel(BlogPostMainPanel);
-                    _props.updateMainPanelIsOpened(true) }}}>
-                <img
-                    src={ props.pictoUrl }
-                    alt="picto"
-                    style={ styles.picto } />
-                <div style={ styles.textWrapper }>
-                    <div style={ styles.title }>
-                        { props.title }
-                    </div>
-                </div>
-        </div>
+                    if(cond)
+                        _props.setDrawerPosition(_props.drawerPosition + 1)
+                    else {
+                        _props.updateMainPanel(BlogPostMainPanel);
+                        _props.updateMainPanelIsOpened(true)
+                    }
+                }}
+                pictoUrl={ props.pictoUrl }
+                title={ props.title } />
     )
 
     return (
