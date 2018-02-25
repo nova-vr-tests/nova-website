@@ -17,7 +17,6 @@ import {
     updateSidePanelHeader,
 } from '../../reducer/actions/App.js'
 
-import arrow from '../img/arrow.svg'
 
 import { push } from 'react-router-redux'
 
