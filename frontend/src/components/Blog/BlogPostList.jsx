@@ -44,10 +44,6 @@ const BlogPostList = props => {
 
         const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
 
-        const wrapperStyle = {
-            ...styles.linkWrapper,
-            ...(active ? styles.activeLink : {})
-        }
         const onClickCallback = () => props.goTo(`${window.location.pathname}?post=${e.id}`)
 
         const pictoUrl = new URL(e.picto)
