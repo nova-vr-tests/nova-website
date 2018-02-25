@@ -1,5 +1,7 @@
 const makeUrlObj = url => ({ list: url, detail: url })
 
+const apiCache = {}
+
 class API {
     constructor() {
         this.urls = {
@@ -16,12 +18,14 @@ class API {
             blogPostList: 'blogposts/',
             blogPostDetail: 'blogposts/',
         }
+
     }
 
     async fetch(url) {
         const r = await fetch(`/api/${url}`)
         const json = await r.json()
 
+        apiCache[url] = json
 
         return json
     }
@@ -38,7 +42,5 @@ class API {
         return await this.fetch(this.urls.blogPostDetail + postId + '/')
     }
 }
-
-console.log(API)
 
 export default API
