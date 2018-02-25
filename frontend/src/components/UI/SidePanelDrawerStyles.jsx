@@ -23,7 +23,6 @@ const getStyles = props => {
         wrapperTransform = `translate(calc(-${props.position} * 100vw))`
     } else if(clientWidth < appStyles.mediaQueries.tablet) {
         height = `calc(13 * ${unitHeight})`
-        console.log(height)
     } else if(props.desktopLockDrawer && props.position !== props.unlockPosition) {
         wrapperTransform = 'inherit'
     }

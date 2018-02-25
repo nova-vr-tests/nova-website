@@ -19,18 +19,6 @@ const mapDispatchToProps = dispatch => ({
 const SidePanelDrawer = props => {
     const styles = getStyles(props)
 
-    const { comps } = props
-
-    const Comps = () => comps.map((E, i) =>
-        <div
-            key={ i }
-            style={{
-               ...styles.centerWrapper,
-            }}>
-            <E />
-        </div>
-    )
-
     return (
         <div
             style={ styles.mainWrapper }
