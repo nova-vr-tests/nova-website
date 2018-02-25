@@ -156,10 +156,25 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
     }
 }
 
-const initHeader = updateSidePanelHeader => {
+const initHeader = (updateSidePanelHeader, props) => {
     const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
 
-    updateSidePanelHeader(() => <div>{ string }</div>)
+    let header = () => <div>{ string }</div>
+
+    if(props.routing.location.seach !== '') {
+        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
+
+        if(props.products.length > productNumber) {
+            header = () => <SidePanelProductsHeader
+                title={ props.products[productNumber - 1].title }
+                subtitle={ props.products[productNumber - 1].description }
+                onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) }
+            />
+        }
+
+    }
+
+    updateSidePanelHeader(header)
 }
 
 const SmartComp = compose(
@@ -182,13 +197,14 @@ const SmartComp = compose(
                 this.props.setDrawerPosition,
                 this.props.routing.location.search)
 
-            initHeader(this.props.updateSidePanelHeader)
+            initHeader(this.props.updateSidePanelHeader, this.props)
 
             this.props.updateMainPanelIsOpened(false)
         },
         componentWillUpdate(nextProps) {
+            initHeader(nextProps.updateSidePanelHeader, nextProps)
+
             if(nextProps.routing.location.search === "") {
-               initHeader(nextProps.updateSidePanelHeader)
                 this.props.updateBg(this.props.pages[this.props.currentPage].layers[0].imgUrl)
                 this.props.updateMainPanelIsOpened(false)
             }
