@@ -45,6 +45,10 @@ const mapDispatchToProps = dispatch => ({
     updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
 })
 
+const filterUrl = url => {
+        const bgUrl = new URL(url)
+        return bgUrl.origin + bgUrl.pathname
+}
 
 const Products = props => {
     const styles = getStyles(props)
@@ -59,8 +63,6 @@ const Products = props => {
 
         const onClickCallback = () => {
             props.goTo(`${window.location.pathname}?post=${e.id}`)
-            const bgUrl = new URL(e.bg_image)
-            props.updateBg(bgUrl.origin + bgUrl.pathname)
         }
 
         const pictoUrl = new URL(e.picto)
@@ -169,6 +171,16 @@ const initHeader = (updateSidePanelHeader, props) => {
     updateSidePanelHeader(header)
 }
 
+const initBg = props => {
+    if(props.routing.location.search !== "") {
+        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
+
+        if(props.products.length >= productNumber) {
+            props.updateBg(filterUrl(props.products[productNumber - 1].bg_image))
+        }
+    }
+}
+
 const SmartComp = compose(
     withState(
         'products',
@@ -195,6 +207,7 @@ const SmartComp = compose(
         },
         componentWillUpdate(nextProps) {
             initHeader(nextProps.updateSidePanelHeader, nextProps)
+            initBg(nextProps)
 
             if(nextProps.routing.location.search === "") {
                 this.props.updateBg(this.props.pages[this.props.currentPage].layers[0].imgUrl)
