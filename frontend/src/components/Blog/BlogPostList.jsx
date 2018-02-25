@@ -15,21 +15,26 @@ import getStyles, {
 
 import {
     updateMainPanelIsOpened,
+    updateSidePanelHeader,
 } from '../../reducer/actions/App.js'
 
 import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
 import SidePanelLink from '../UI/SidePanelLink.jsx'
+import SidePanelProductsHeader from '../UI/SidePanelProductsHeader.jsx'
 import BlogPost from './Blog.jsx'
 
 import URLSearchParams from 'url-search-params'
 
 const mapStateToProps = state => ({
     routing: state.routing,
+    pages: state.appReducer.pages,
+    currentPage: state.appReducer.currentPage,
 })
 
 const mapDispatchToProps = dispatch => ({
     goTo: url => dispatch(push(url)),
     updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
+    updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
 })
 
 
@@ -99,8 +104,28 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam, updateMainPanelIsOp
     } else {
         setDrawerPosition(1)
         updateMainPanelIsOpened(true)
+    }
+}
+
+const initHeader = (updateSidePanelHeader, props) => {
+    const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
+
+    let header = () => <div>{ string }</div>
+
+    if(props.routing.location.seach !== '') {
+        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
+
+        if(props.blogPosts.length > productNumber) {
+            header = () => <SidePanelProductsHeader
+                title={ props.blogPosts[productNumber - 1].title }
+                subtitle={ props.blogPosts[productNumber - 1].description }
+                onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) }
+            />
+        }
 
     }
+
+    updateSidePanelHeader(header)
 }
 
 const SmartComp = compose(
@@ -123,6 +148,8 @@ const SmartComp = compose(
                 this.props.setDrawerPosition,
                 this.props.routing.location.search,
                 this.props.updateMainPanelIsOpened)
+
+            initHeader(this.props.updateSidePanelHeader, this.props)
         },
         componentWillUpdate(nextProps) {
             if(this.props.routing.location.search !== nextProps.routing.location.search) {
@@ -131,6 +158,8 @@ const SmartComp = compose(
                     nextProps.routing.location.search,
                     this.props.updateMainPanelIsOpened)
             }
+
+            initHeader(nextProps.updateSidePanelHeader, nextProps)
         },
         componentWillUnmount() {
             this.mounted = false

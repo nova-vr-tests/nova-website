@@ -148,7 +148,8 @@ const Consultation: Array<ISlide> = [
             createLayer(storyLayer2, 0, 0),
             createLayer(storyLayer3, 0, 0),
             createLayer(storyLayer4, 0, 0),
-        ]
+        ],
+        overrideHeader: true,
     },
 ]
 

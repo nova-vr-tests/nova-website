@@ -8,19 +8,22 @@ const getStyles = props => {
     const sidePanelWidth = `${appStyles.sidePanel.openedWidthCoef} * ${unitWidthJs}px`
 
     const transition = 'transform 0.2s ease-out'
-    let position = 0
+    let position = props.position
 
     let height = 'inherit'
     let overflowY = 'inherit'
     let wrapperWidth = `calc(${comps.length} * ${sidePanelWidth})`
     let wrapperTransform = `translate(calc(-${props.position} * ${sidePanelWidth}))`
     let centerWrapperWidth = `calc(${sidePanelWidth})`
-    if(clientWidth < appStyles.mediaQueries.tablet) {
+    if(clientWidth < appStyles.mediaQueries.phone) {
         position = props.position
         height = `calc(13 * ${unitHeight})`
         wrapperWidth = `calc(${comps.length * 100}vw)`
         centerWrapperWidth = '100vw'
         wrapperTransform = `translate(calc(-${props.position} * 100vw))`
+    } else if(clientWidth < appStyles.mediaQueries.tablet) {
+        height = `calc(13 * ${unitHeight})`
+        console.log(height)
     } else if(props.desktopLockDrawer && props.position !== props.unlockPosition) {
         wrapperTransform = 'inherit'
     }
