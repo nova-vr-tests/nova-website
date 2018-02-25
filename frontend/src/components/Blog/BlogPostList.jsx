@@ -71,9 +71,6 @@ const BlogPostList = props => {
                 comps={[
                     () => <div style={ styles.listWrapper }><List /></div>,
                     () => [
-                        <span
-                            key={ 1 }
-                            onClick={ () => props.goTo(window.location.pathname) }> Test </span>,
                         <BlogPost
                             key={ 2 }
                             fetchUrl={ props.fetchUrl }
