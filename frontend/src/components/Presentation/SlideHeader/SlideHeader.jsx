@@ -61,7 +61,7 @@ const SlideHeader = props => {
                     { props.title2 }
                 </h2>
             </div>
-            { props.pages[props.currentPage] && !props.overrideHeader ?
+            { props.pages[props.currentPage] ?
                 <TOC
                     goTo={ props.goTo }
                     pages={ props.pages }
