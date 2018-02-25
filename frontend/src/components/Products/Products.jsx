@@ -62,13 +62,6 @@ const Products = props => {
             props.goTo(`${window.location.pathname}?post=${e.id}`)
             const bgUrl = new URL(e.bg_image)
             props.updateBg(bgUrl.origin + bgUrl.pathname)
-            props.updateSidePanelHeader(() => [
-                <SidePanelProductsHeader
-                    title={ e.title }
-                    subtitle={ e.description }
-                    onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) }
-                />
-            ])
         }
 
         const pictoUrl = new URL(e.picto)
