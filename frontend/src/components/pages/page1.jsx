@@ -138,7 +138,9 @@ const Consultation: Array<ISlide> = [
         pid,
         showNextSectionArrow: false,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.consultancies.list } />,
+            <BlogPostList
+                headerText={ 'Hello consultation :)' }
+                fetchUrl={ new API().urls.consultancies.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.consultancies.list } />,
         layers: [
@@ -164,14 +166,17 @@ const Production: Array<ISlide> = [
         pid,
         showNextSectionArrow: false,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.solutions_productions.list } />,
+            <BlogPostList
+                headerText={ 'Hello production :)' }
+                fetchUrl={ new API().urls.solutions_productions.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.solutions_productions.list } />,
         theme: appStyles.themeTypes.noFooterTheme,
+        overrideHeader: true,
         layers: [
             createLayer(worldLayer1, 0, 1),
             createLayer(worldLayer2, 0, 1),
-        ]
+        ],
     },
 ]
 
@@ -187,14 +192,17 @@ const Publishing: Array<ISlide> = [
         pid,
         showNextSectionArrow: false,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.publishing.list } />,
+            <BlogPostList
+                headerText={ 'Hello publishing :)' }
+                fetchUrl={ new API().urls.publishing.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.publishing.list } />,
         theme: appStyles.themeTypes.noFooterTheme,
+        overrideHeader: true,
         layers: [
             createLayer(worldLayer1, 0, 1),
             createLayer(worldLayer2, 0, 1),
-        ]
+        ],
     },
 ]
 
