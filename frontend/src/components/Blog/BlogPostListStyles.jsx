@@ -13,7 +13,6 @@ const getStyles = props => {
             borderBottomLeftRadius: '15px',
     }
 
-    console.log(linkWrapperHeight)
     return {
         listWrapper: {
             display: 'flex',
