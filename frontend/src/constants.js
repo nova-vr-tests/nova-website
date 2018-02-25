@@ -142,7 +142,6 @@ const proxiedStyles = new Proxy(styles, {
             const coefAbsoluteWidth = 11
             const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
             let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
-            console.log(openedWidthCoef, coefAbsoluteWidth, coefPercentWidth)
 
             if(clientWidth < styles.mediaQueries.tablet)
                 openedWidthCoef = 13
