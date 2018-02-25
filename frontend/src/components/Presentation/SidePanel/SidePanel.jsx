@@ -227,5 +227,8 @@ export default ConnectedSidePanel
 
 export {
     sidePanelTypes,
-    BG
+    BG,
+    sidePanelLifecycle,
+    SidePanel,
+    SidePanelSmart,
 }
