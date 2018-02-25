@@ -7,7 +7,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     let rootPadding = '1rem'
     let fontSize = '1.25rem'
     let headingColor = 'rgba(0, 0, 0, 0.7)'
-    if(clientWidth < appStyles.mediaQueries.phone) {
+    if(clientWidth < appStyles.mediaQueries.tablet) {
         textColor = 'white'
         fontSize = '1.5rem'
         headingColor = textColor
