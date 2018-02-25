@@ -85,7 +85,7 @@ const styles: AppStyles = {
     },
     mediaQueries: {
         phone: 1000, // px
-        tablet: 1200, //px
+        tablet: 1500, //px
     },
     lineDimensions: {
         height: '',
