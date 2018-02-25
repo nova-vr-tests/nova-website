@@ -25,6 +25,7 @@ import getStyles, {
 } from './ProductsStyles.jsx'
 
 import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
+import SidePanelLink from '../UI/SidePanelLink.jsx'
 import BlogPost from '../Blog/Blog.jsx'
 
 import URLSearchParams from 'url-search-params'
@@ -81,21 +82,12 @@ const Products = props => {
         const pictoUrl = new URL(e.picto)
         const filteredPictoUrl = pictoUrl.origin + pictoUrl.pathname
         return (
-            <div
-                style={ wrapperStyle }
-                onClick={ onClickCallback }
-                className="product-link--wrapper"
-                key={ i }>
-                <img
-                    src={ filteredPictoUrl }
-                    alt="picto"
-                    style={ styles.picto } />
-                <div style={ styles.textWrapper }>
-                    <div style={ styles.title }>
-                        { e.title }
-                    </div>
-                </div>
-            </div>
+            <SidePanelLink
+                key={ i }
+                onClickCallback={ onClickCallback }
+                pictoUrl={ filteredPictoUrl }
+                isActive={ active }
+                title={ e.title } />
         )
     })
 
