@@ -108,7 +108,7 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam, updateMainPanelIsOp
 }
 
 const initHeader = (updateSidePanelHeader, props) => {
-    const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
+    const string = props.headerText
 
     let header = () => <div>{ string }</div>
 
@@ -172,6 +172,7 @@ const SmartComp = compose(
 
 SmartComp.defaultProps = {
     fetchUrl: new API().urls.blogPosts.list,
+    headerText: '',
 }
 
 const ConnectedComp = connect(
