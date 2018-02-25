@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import intro from '../img/default.jpg'
 
+import productsBg from '../img/design/3.png'
 import worldLayer1 from '../img/design/world-layer1.png'
 import worldLayer2 from '../img/design/world-layer2.png'
 import storyLayer1 from '../img/design/story-layer1.png'
@@ -87,12 +88,8 @@ const Products: Array<ISlide> = [
         overrideMainPanel: true,
         overrideHeader: true,
         showNextSectionArrow: false,
-        layers: [createLayer(intro, 0, 1)],
+        layers: [createLayer(productsBg, 0, 1)],
     },
-    {
-        pid,
-        layers: [createLayer(intro, -100, 1)],
-    }
 ]
 
 
