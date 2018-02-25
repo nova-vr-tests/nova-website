@@ -106,7 +106,7 @@ const Products = props => {
         <div
             style={ { ...styles.linkWrapper, marginBottom: '5rem', } }
             onClick={ () => {
-                const cond = appStyles.mediaQueries.phone > _props.windowWidth
+                const cond = appStyles.mediaQueries.tablet > _props.windowWidth
 
                 if(cond)
                     _props.setDrawerPosition(_props.drawerPosition + 1)
@@ -131,6 +131,7 @@ const Products = props => {
             className="Products--wrapper">
             <SidePanelDrawer
                 unlockPosition={ 1 }
+                desktopLockDrawer={ false }
                 comps={[
                     () => <div style={ styles.listWrapper }><List /></div>,
                     () => <div style={{ height: '5rem', }}>

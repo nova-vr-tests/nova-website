@@ -85,6 +85,7 @@ const styles: AppStyles = {
     },
     mediaQueries: {
         phone: 1000, // px
+        tablet: 1200, //px
     },
     lineDimensions: {
         height: '',
@@ -142,6 +143,9 @@ const proxiedStyles = new Proxy(styles, {
             const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
             let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
             console.log(openedWidthCoef, coefAbsoluteWidth, coefPercentWidth)
+
+            if(clientWidth < styles.mediaQueries.tablet)
+                openedWidthCoef = 13
 
             return {
                 openedWidthCoef, //: 11,

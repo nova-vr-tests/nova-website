@@ -14,8 +14,10 @@ const getStyles = props => {
         height = '100%'
         backgroundColor = 'rgba(0, 0, 0, 0)'
         color = 'white'
+    } else if(clientWidth < appStyles.mediaQueries.tablet) {
+        backgroundColor = 'rgba(0, 0, 0, 0)'
+        color = 'white'
     }
-
 
     return {
         wrapper: {
