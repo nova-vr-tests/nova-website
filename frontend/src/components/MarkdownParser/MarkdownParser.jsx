@@ -6,7 +6,6 @@ import ReactMarkdown from 'react-markdown'
 import getStyles from './MarkdownParserStyles.jsx'
 
 const contentReduxState = state => ({
-    windowWidth: state.appReducer.windowWidth,
 })
 
 const BlogPostContent = props => {
