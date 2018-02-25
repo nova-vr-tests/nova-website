@@ -156,7 +156,7 @@ const initHeader = (updateSidePanelHeader, props) => {
     if(props.routing.location.seach !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
 
-        if(props.products.length > productNumber) {
+        if(props.products.length >= productNumber) {
             header = () => <SidePanelProductsHeader
                 title={ props.products[productNumber - 1].title }
                 subtitle={ props.products[productNumber - 1].description }
