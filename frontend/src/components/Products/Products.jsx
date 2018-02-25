@@ -87,6 +87,7 @@ const Products = props => {
                 onClickCallback={ onClickCallback }
                 pictoUrl={ filteredPictoUrl }
                 isActive={ active }
+                subtitle={ e.description }
                 title={ e.title } />
         )
     })

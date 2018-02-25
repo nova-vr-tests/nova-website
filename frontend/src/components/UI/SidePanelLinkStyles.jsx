@@ -39,7 +39,12 @@ const getStyles = props => {
             ...borderRadius,
         },
         title: {
-            paddingLeft: '1rem',
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+        },
+        subtitle: {
+            marginTop: '0.75rem',
+            fontSize: '1.2rem',
         },
         textWrapper: {
             display: 'flex',

@@ -25,6 +25,13 @@ const SidePanelLink = props => {
                 <div style={ styles.title }>
                     { props.title }
                 </div>
+                { props.subtitle !== '' ?
+                    <div style={ styles.subtitle }>
+                        { props.subtitle }
+                    </div>
+                  :
+                    ''
+                }
             </div>
         </div>
     )
@@ -34,6 +41,7 @@ SidePanelLink.defaultProps = {
     onClickCallback: () => {},
     pictoUrl: '',
     title: '',
+    subtitle: '',
     isActive: false,
 }
 
