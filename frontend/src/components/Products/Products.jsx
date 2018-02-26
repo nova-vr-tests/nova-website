@@ -32,7 +32,6 @@ import URLSearchParams from 'url-search-params'
 
 const mapStateToProps = state => ({
     routing: state.routing,
-    windowWidth: state.appReducer.windowWidth,
     pages: state.appReducer.pages,
     currentPage: state.appReducer.currentPage,
 })
@@ -80,24 +79,37 @@ const Products = props => {
 
     const BlogPostMainPanel = () => <BlogPost fetchUrl={ props.fetchUrl } />
 
+    const contentReduxState = state => ({
+        windowWidth: state.appReducer.windowWidth,
+    })
+
+    const connectWidth = (Comp, parentProps) => connect(contentReduxState)(props => {
+        const styles = getStyles(parentProps)
+
+        return <Comp styles={ styles } { ...props } />
+    })
+
     const _props = props
-    const LastComp = props => (
+    const LastComp = connectWidth(props => (
         <div style={{ marginBottom: '4rem' }}>
             <SidePanelLink
                 onClickCallback={ () => {
-                    const cond = appStyles.mediaQueries.tablet > _props.windowWidth
+                    const cond = appStyles.mediaQueries.tablet > props.windowWidth
 
                     if(cond)
                         _props.setDrawerPosition(_props.drawerPosition + 1)
                     else {
-                        _props.updateMainPanel(BlogPostMainPanel);
+                        _props.updateMainPanel(BlogPostMainPanel)
                         _props.updateMainPanelIsOpened(true)
                     }
                 }}
                 pictoUrl={ props.pictoUrl }
                 title={ props.title } />
-        </div>
-    )
+        </div>), props)
+
+
+
+
 
     return (
         <div
@@ -108,7 +120,7 @@ const Products = props => {
                 desktopLockDrawer={ false }
                 comps={[
                     () => <div style={ styles.listWrapper }><List /></div>,
-                    () => <div style={{ height: '5rem', }}>
+                    connectWidth(() => <div style={{ height: '5rem', }}>
                         <BlogPost
                             fetchUrl={ props.fetchUrl }
                             contentKey="abstract"
@@ -116,13 +128,13 @@ const Products = props => {
                             sidePanelMode={ true }
                             showHeader={ false }>
                         </BlogPost>
-                    </div>,
-                    () => [
+                    </div>, props),
+                    connectWidth(() => [
                         <BlogPost
                             key={ 2 }
                             fetchUrl={ props.fetchUrl }
                             showHeader={ false } />,
-                    ]
+                    ], props),
                 ]}
                 position={ props.drawerPosition }
             />
