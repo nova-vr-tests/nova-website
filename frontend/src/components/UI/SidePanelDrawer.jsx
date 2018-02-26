@@ -36,6 +36,7 @@ SidePanelDrawer.defaultProps = {
     position: 0, // 0 = left visible, 1 = right visible
     desktopLockDrawer: true,
     unlockPosition: 0,
+    desktopLockPosition: 0,
 }
 
 const initChildComps = props => {

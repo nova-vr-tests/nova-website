@@ -4,6 +4,7 @@ const getStyles = props => {
     const { clientWidth } = document.documentElement
     const { unitWidthJs, unitHeight } = appStyles
     const { comps } = props
+    const isTablet = clientWidth < appStyles.mediaQueries.tablet
 
     const sidePanelWidth = `${appStyles.sidePanel.openedWidthCoef} * ${unitWidthJs}px`
 
@@ -13,7 +14,11 @@ const getStyles = props => {
     let height = 'inherit'
     let overflowY = 'inherit'
     let wrapperWidth = `calc(${comps.length} * ${sidePanelWidth})`
-    let wrapperTransform = `translate(calc(-${props.position} * ${sidePanelWidth}))`
+
+    if(props.desktopLockPosition && props.desktopLockPosition === position && !isTablet)
+        position = props.position - 1
+
+    let wrapperTransform = `translate(calc(-${position} * ${sidePanelWidth}))`
     let centerWrapperWidth = `calc(${sidePanelWidth})`
     if(clientWidth < appStyles.mediaQueries.phone) {
         position = props.position
@@ -21,7 +26,7 @@ const getStyles = props => {
         wrapperWidth = `calc(${comps.length * 100}vw)`
         centerWrapperWidth = '100vw'
         wrapperTransform = `translate(calc(-${props.position} * 100vw))`
-    } else if(clientWidth < appStyles.mediaQueries.tablet) {
+    } else if(isTablet) {
         height = `calc(13 * ${unitHeight})`
     } else if(props.desktopLockDrawer && props.position !== props.unlockPosition) {
         wrapperTransform = 'inherit'

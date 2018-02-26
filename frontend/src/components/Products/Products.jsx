@@ -8,7 +8,6 @@ import {
 
 import API from '../../API.js'
 
-import { styles as appStyles } from '../../constants.js'
 
 import { updateAllLayersUrl } from '../../reducer/actions/Bg.js'
 import {
@@ -94,12 +93,16 @@ const Products = props => {
         <div style={{ marginBottom: '4rem' }}>
             <SidePanelLink
                 onClickCallback={ () => {
-                    const cond = appStyles.mediaQueries.tablet > props.windowWidth
+                    if(_props.isDescrShown === true)
+                        return
 
-                    if(cond) {
+                    const cond = true//appStyles.mediaQueries.tablet > props.windowWidth
+
+                    if(cond && !_props.isDescrShown) {
                         _props.setDrawerPosition(_props.drawerPosition + 1)
                     }
 
+                    _props.setIsDescrShown(true)
                     _props.updateMainPanel(BlogPostMainPanel)
                     _props.updateMainPanelIsOpened(true)
                 }}
@@ -116,6 +119,7 @@ const Products = props => {
             style={ styles.wrapper }
             className="Products--wrapper">
             <SidePanelDrawer
+                desktopLockPosition={ 2 }
                 unlockPosition={ 1 }
                 desktopLockDrawer={ false }
                 comps={[
@@ -204,6 +208,11 @@ const SmartComp = compose(
         'setDrawerPosition',
         0,
     ),
+    withState(
+        'isDescrShown',
+        'setIsDescrShown',
+        false,
+    ),
     lifecycle({
         componentDidMount() {
             this.mounted = true
@@ -220,6 +229,9 @@ const SmartComp = compose(
         componentWillUpdate(nextProps) {
             initHeader(nextProps.updateSidePanelHeader, nextProps)
             initBg(nextProps)
+
+            if(nextProps.drawerPosition < 2 && nextProps.isDescrShown)
+                this.props.setIsDescrShown(false)
 
             if(nextProps.routing.location.search === "") {
                 this.props.updateBg(this.props.pages[this.props.currentPage].layers[0].imgUrl)
