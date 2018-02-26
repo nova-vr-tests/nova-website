@@ -129,12 +129,12 @@ const Products = props => {
                             showHeader={ false }>
                         </BlogPost>
                     </div>, props),
-                    connectWidth(() => [
+                    connectWidth(() => (<div style={ styles.blogWrapper }>
                         <BlogPost
-                            key={ 2 }
                             fetchUrl={ props.fetchUrl }
-                            showHeader={ false } />,
-                    ], props),
+                            sidePanelMode={ true }
+                            showHeader={ false } />
+                    </div>), props),
                 ]}
                 position={ props.drawerPosition }
             />
