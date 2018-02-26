@@ -39,19 +39,28 @@ SidePanelDrawer.defaultProps = {
 }
 
 const initChildComps = props => {
-    const styles = getStyles(props)
 
-    const Comps = () => props.comps.map((E, i) =>
-        <div
-            key={ i }
-            style={{
-               ...styles.centerWrapper,
-            }}>
-            <E />
-        </div>
-    )
+    const Comps = () => props.comps.map((E, i) => {
+        const styles = getStyles(props)
 
-    props.setChildComps(<Comps />)
+        return (
+            <div
+                key={ i }
+                style={{
+                ...styles.centerWrapper,
+                }}>
+                <E />
+            </div>
+        )
+    })
+
+    const reduxState = state => ({
+        windowWidth: state.appReducer.windowWidth,
+    })
+
+    const SmartComps = connect(reduxState)(Comps)
+
+    props.setChildComps(<SmartComps />)
 }
 
 const SmartComp = compose(
