@@ -96,9 +96,8 @@ const Products = props => {
                 onClickCallback={ () => {
                     const cond = appStyles.mediaQueries.tablet > props.windowWidth
 
-                    if(cond)
+                    if(cond) {
                         _props.setDrawerPosition(_props.drawerPosition + 1)
-                    else {
                     }
 
                     _props.updateMainPanel(BlogPostMainPanel)
