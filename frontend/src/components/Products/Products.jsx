@@ -99,9 +99,10 @@ const Products = props => {
                     if(cond)
                         _props.setDrawerPosition(_props.drawerPosition + 1)
                     else {
-                        _props.updateMainPanel(BlogPostMainPanel)
-                        _props.updateMainPanelIsOpened(true)
                     }
+
+                    _props.updateMainPanel(BlogPostMainPanel)
+                    _props.updateMainPanelIsOpened(true)
                 }}
                 pictoUrl={ props.pictoUrl }
                 title={ props.title } />
