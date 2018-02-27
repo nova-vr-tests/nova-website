@@ -40,9 +40,9 @@ SidePanelDrawer.defaultProps = {
 }
 
 const initChildComps = props => {
+    const styles = getStyles(props)
 
     const Comps = () => props.comps.map((E, i) => {
-        const styles = getStyles(props)
 
         return (
             <div
@@ -72,7 +72,7 @@ const initChildComps = props => {
 
         const SmartComp = connect(reduxState)(Comp)
 
-        tmp.push(<SmartComp key={ i } />)
+        tmp.push(<div style={ styles.centerWrapper }><SmartComp key={ i } /></div>)
     }
 
     props.setChildComps(tmp)
@@ -82,6 +82,7 @@ const initChildComps = props => {
 
 const updateChildComps = (props, nextProps) => {
     const tmp = [...nextProps.childComps]
+    const styles = getStyles(nextProps)
 
     for(let i in props.comps) {
         const Comp = props.comps[i]
@@ -94,7 +95,7 @@ const updateChildComps = (props, nextProps) => {
             })
 
             const SmartComp = connect(reduxState)(NextComp)
-            tmp[i] = <SmartComp key={ i } />
+            tmp[i] = <div style={ styles.centerWrapper }><SmartComp key={ i } /></div>
 
         }
     }
