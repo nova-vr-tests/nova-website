@@ -29,6 +29,7 @@ const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
     currentPage: state.appReducer.currentPage,
+    width: state.appReducer.windowWidth,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -156,6 +157,7 @@ const createList = props => {
     })
 
     const styles = getStyles(props)
+    const connectWidth = state => ({ width: state.appReducer.windowWidth })
     props.setList(() => () => <div style={ styles.listWrapper }><List /></div>)
     console.log('creating list')
 }

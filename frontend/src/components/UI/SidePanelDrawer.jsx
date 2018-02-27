@@ -95,8 +95,8 @@ const updateChildComps = (props, nextProps) => {
             })
 
             const SmartComp = connect(reduxState)(NextComp)
-            tmp[i] = <div style={ styles.centerWrapper }><SmartComp key={ i } /></div>
-
+            const Cc = connect(reduxState)(() => <div style={ getStyles(props).centerWrapper }><SmartComp key={ i } /></div>)
+            tmp[i] = <Cc />
         }
     }
 
