@@ -61,7 +61,45 @@ const initChildComps = props => {
 
     const SmartComps = connect(reduxState)(Comps)
 
-    props.setChildComps(<SmartComps />)
+    const tmp = []
+
+    for(let i in props.comps) {
+        const Comp = props.comps[i]
+
+        const reduxState = state => ({
+            windowWidth: state.appReducer.windowWidth,
+        })
+
+        const SmartComp = connect(reduxState)(Comp)
+
+        tmp.push(<SmartComp key={ i } />)
+    }
+
+    props.setChildComps(tmp)
+
+    //props.setChildComps(<SmartComps />)
+}
+
+const updateChildComps = (props, nextProps) => {
+    const tmp = [...nextProps.childComps]
+
+    for(let i in props.comps) {
+        const Comp = props.comps[i]
+        const NextComp = nextProps.comps[i]
+
+            console.log(`=======${i}=========`)
+        if(props.comps[i] !== nextProps.comps[i]) {
+            const reduxState = state => ({
+                windowWidth: state.appReducer.windowWidth,
+            })
+
+            const SmartComp = connect(reduxState)(NextComp)
+            tmp[i] = <SmartComp key={ i } />
+
+        }
+    }
+
+    props.setChildComps(tmp)
 }
 
 const SmartComp = compose(
@@ -77,7 +115,7 @@ const SmartComp = compose(
         componentWillUpdate(nextProps) {
             if(this.props.windowWidth === nextProps.windowWidth
                 && this.props.comps !== nextProps.comps) {
-                    initChildComps(nextProps)
+                    updateChildComps(this.props, nextProps)
             }
         },
     })

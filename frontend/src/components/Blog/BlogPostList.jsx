@@ -63,13 +63,16 @@ const BlogPostList = props => {
         )
     })
 
+    const List2 = props.List
+
     return (
         <div
             style={ styles.wrapper }
             className="BlogPostList--wrapper">
             <SidePanelDrawer
                 comps={[
-                    () => <div style={ styles.listWrapper }><List /></div>,
+                    //() => <div style={ styles.listWrapper }><List2 /></div>,
+                    List2,
                     () => [
                         <BlogPost
                             key={ 2 }
@@ -128,6 +131,34 @@ const initHeader = (updateSidePanelHeader, props) => {
     updateSidePanelHeader(header)
 }
 
+
+const createList = props => {
+    const List = () => props.blogPosts.map((e, i) => {
+        let { content } = e
+        if(content.length > 100) {
+            content = content.substring(0, 70) + '...'
+        }
+
+        const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
+
+        const onClickCallback = () => props.goTo(`${window.location.pathname}?post=${e.id}`)
+
+        const pictoUrl = new URL(e.picto)
+        const filteredPictoUrl = pictoUrl.origin + pictoUrl.pathname
+        return (
+            <SidePanelLink
+                key={ i }
+                onClickCallback={ onClickCallback }
+                pictoUrl={ filteredPictoUrl }
+                isActive={ active }
+                title={ e.title } />
+        )
+    })
+
+    const styles = getStyles(props)
+    props.setList(() => () => <div style={ styles.listWrapper }><List /></div>)
+    console.log('creating list')
+}
 const SmartComp = compose(
     withState(
         'blogPosts',
@@ -138,6 +169,11 @@ const SmartComp = compose(
         'drawerPosition',
         'setDrawerPosition',
         0,
+    ),
+    withState(
+        'List',
+        'setList',
+        () => () => <div></div>,
     ),
     lifecycle({
         componentDidMount() {
@@ -152,6 +188,9 @@ const SmartComp = compose(
             initHeader(this.props.updateSidePanelHeader, this.props)
         },
         componentWillUpdate(nextProps) {
+            if(nextProps.blogPosts.length !== this.props.blogPosts.length) {
+                createList(nextProps)
+            }
             if(this.props.routing.location.search !== nextProps.routing.location.search) {
                 updateDrawerFromUrl(
                     this.props.setDrawerPosition,
