@@ -123,7 +123,9 @@ const Products = props => {
                 unlockPosition={ 1 }
                 desktopLockDrawer={ false }
                 comps={[
-                    () => <div style={ styles.listWrapper }><List /></div>,
+                    //() => <div style={ styles.listWrapper }><List /></div>,
+
+                    props.List,
                     connectWidth(() => <div style={{ height: '5rem', }}>
                         <BlogPost
                             fetchUrl={ props.fetchUrl }
@@ -197,6 +199,36 @@ const initBg = props => {
     }
 }
 
+const createList = props => {
+    const List = () => props.products.map((e, i) => {
+        let { content } = e
+        if(content.length > 100) {
+            content = content.substring(0, 70) + '...'
+        }
+
+        const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
+
+        const onClickCallback = () => {
+            props.goTo(`${window.location.pathname}?post=${e.id}`)
+        }
+
+        const pictoUrl = new URL(e.picto)
+        const filteredPictoUrl = pictoUrl.origin + pictoUrl.pathname
+        return (
+            <SidePanelLink
+                key={ i }
+                onClickCallback={ onClickCallback }
+                pictoUrl={ filteredPictoUrl }
+                isActive={ active }
+                subtitle={ e.description }
+                title={ e.title } />
+        )
+    })
+
+    const styles = getStyles(props)
+    props.setList(() => () => <div style={ styles.listWrapper }><List /></div>)
+    console.log('creating list')
+}
 const SmartComp = compose(
     withState(
         'products',
@@ -212,6 +244,11 @@ const SmartComp = compose(
         'isDescrShown',
         'setIsDescrShown',
         false,
+    ),
+    withState(
+        'List',
+        'setList',
+        () => () => <div></div>,
     ),
     lifecycle({
         componentDidMount() {
@@ -229,6 +266,9 @@ const SmartComp = compose(
         componentWillUpdate(nextProps) {
             initHeader(nextProps.updateSidePanelHeader, nextProps)
             initBg(nextProps)
+            if(nextProps.products.length !== this.props.products.length) {
+                createList(nextProps)
+            }
 
             if(nextProps.drawerPosition < 2 && nextProps.isDescrShown)
                 this.props.setIsDescrShown(false)
