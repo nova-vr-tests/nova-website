@@ -290,6 +290,8 @@ const SmartComp = compose(
             initHeader(this.props.updateSidePanelHeader, this.props)
 
             this.props.updateMainPanelIsOpened(false)
+
+            createAbstract(this.props)
         },
         componentWillUpdate(nextProps) {
             initHeader(nextProps.updateSidePanelHeader, nextProps)
