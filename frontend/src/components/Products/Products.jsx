@@ -85,6 +85,15 @@ const Products = props => {
                 title={ props.title } />
         </div>), props)
 
+                 //   connectWidth(() => <div style={{ height: '5rem', }}>
+                 //       <BlogPost
+                 //           fetchUrl={ props.fetchUrl }
+                 //           contentKey="abstract"
+                 //           LastComp={ LastComp }
+                 //           sidePanelMode={ true }
+                 //           showHeader={ false }>
+                 //       </BlogPost>
+                 //   </div>, props),
     return (
         <div
             style={ styles.wrapper }
@@ -94,18 +103,8 @@ const Products = props => {
                 unlockPosition={ 1 }
                 desktopLockDrawer={ false }
                 comps={[
-                    //() => <div style={ styles.listWrapper }><List /></div>,
-
                     props.List,
-                    connectWidth(() => <div style={{ height: '5rem', }}>
-                        <BlogPost
-                            fetchUrl={ props.fetchUrl }
-                            contentKey="abstract"
-                            LastComp={ LastComp }
-                            sidePanelMode={ true }
-                            showHeader={ false }>
-                        </BlogPost>
-                    </div>, props),
+                    props.Abstract,
                     connectWidth(() => (<div style={ styles.blogWrapper }>
                         <BlogPost
                             fetchUrl={ props.fetchUrl }
@@ -200,6 +199,59 @@ const createList = props => {
     props.setList(() => () => <div style={ styles.listWrapper }><List /></div>)
     console.log('creating list')
 }
+
+
+const createAbstract = props => {
+    const styles = getStyles(props)
+
+    const contentReduxState = state => ({
+        windowWidth: state.appReducer.windowWidth,
+    })
+
+    const BlogPostMainPanel = () => <BlogPost fetchUrl={ props.fetchUrl } />
+
+    const connectWidth = (Comp, parentProps) => connect(contentReduxState)(props => {
+        const styles = getStyles(parentProps)
+
+        return <Comp styles={ styles } { ...props } />
+    })
+
+    const _props = props
+    const LastComp = connectWidth(props => (
+        <div style={{ marginBottom: '4rem' }}>
+            <SidePanelLink
+                onClickCallback={ () => {
+                    if(_props.isDescrShown === true)
+                        return
+
+                    const cond = true//appStyles.mediaQueries.tablet > props.windowWidth
+
+                    if(cond && !_props.isDescrShown) {
+                        _props.setDrawerPosition(2)
+                    }
+
+                    _props.setIsDescrShown(true)
+                    _props.updateMainPanel(BlogPostMainPanel)
+                    _props.updateMainPanelIsOpened(true)
+                }}
+                pictoUrl={ props.pictoUrl }
+                title={ props.title } />
+        </div>), props)
+
+
+    const ConnectedAbstract = connectWidth(() => <div style={{ height: '5rem', }}>
+        <BlogPost
+            fetchUrl={ props.fetchUrl }
+            contentKey="abstract"
+            LastComp={ LastComp }
+            sidePanelMode={ true }
+            showHeader={ false }>
+        </BlogPost>
+    </div>, props)
+    props.setAbstract(() => () => <ConnectedAbstract />)
+    console.log('creating abstract')
+}
+
 const SmartComp = compose(
     withState(
         'products',
@@ -219,6 +271,11 @@ const SmartComp = compose(
     withState(
         'List',
         'setList',
+        () => () => <div></div>,
+    ),
+    withState(
+        'Abstract',
+        'setAbstract',
         () => () => <div></div>,
     ),
     lifecycle({
@@ -253,6 +310,7 @@ const SmartComp = compose(
                 updateDrawerFromUrl(
                     this.props.setDrawerPosition,
                     nextProps.routing.location.search)
+                createAbstract(nextProps)
             }
         },
         componentWillUnmount() {
