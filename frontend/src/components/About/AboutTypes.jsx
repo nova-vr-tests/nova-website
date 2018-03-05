@@ -3,6 +3,7 @@ import { initialState } from '../../store.js'
 
 export type ReduxState = {
     currentFooterPage: typeof initialState.appReducer.currentFooterPage,
+    isSidebarOpened: typeof initialState.appReducer.isSidebarOpened,
 }
 
 export type OwnProps = {
@@ -10,4 +11,5 @@ export type OwnProps = {
     windowWidth: number,
 }
 
-export type Props = OwnProps & ReduxState & ReduxDispatch
+
+export type Props = OwnProps & ReduxState

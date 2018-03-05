@@ -13,6 +13,10 @@ type Styles = {
     wrapper: CSSStyleDeclaration,
     p: CSSStyleDeclaration,
     h1: CSSStyleDeclaration,
+    sidePanel: CSSStyleDeclaration,
+    title: CSSStyleDeclaration,
+    content: CSSStyleDeclaration,
+    h2: CSSStyleDeclaration,
 }
 
 const { unitWidth } = appStyles
@@ -59,7 +63,9 @@ const getStyles: GetStyles<Props, Styles> = props => {
             backgroundColor,
             height: '100%',
             padding: '2rem',
-        }
+        },
+        title: {
+        },
     }
 }
 

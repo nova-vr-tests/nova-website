@@ -11,6 +11,10 @@ import type {
     OwnProps,
 } from './AboutTypes.jsx'
 
+import type {
+    MapStateToProps,
+} from '../../storeTypes.jsx'
+
 import Login from './Login/Login.jsx'
 
 import SidePanel, { sidePanelTypes } from '../Presentation/SidePanel/SidePanel.jsx'
