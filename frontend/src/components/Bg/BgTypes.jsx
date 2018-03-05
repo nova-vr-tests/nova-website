@@ -9,6 +9,7 @@ export type ReduxState = {
       backLayers: typeof initialState.bgReducer.backLayers,
       cacheLayers: typeof initialState.bgReducer.cacheLayers,
       appTheme: typeof initialState.appReducer.appTheme,
+      currentPage: typeof initialState.appReducer.currentPage,
 }
 
 export type ReduxDispatch = {

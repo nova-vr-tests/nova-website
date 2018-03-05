@@ -252,7 +252,7 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
 
 const HOC = compose(
     lifecycle({
-        componentDidUpdate(prevProps) {
+        componentDidUpdate() {
             const { frontLayers, backLayers, cacheLayers } = updateParalax(this.props)
             if(
                 JSON.stringify(frontLayers) !== JSON.stringify(this.props.frontLayers)

@@ -15,7 +15,13 @@ export type State = {
     backLayers: Array<BgLayer>,
     cacheLayers: Array<BgLayer>,
     transitionProgress: number,
+    progress: number,
+    frontLayersPid: number,
+    backLayersPid: number,
+    cacheLayersPid: number,
+    isDreamscaping: boolean,
 }
+
 /**
    Action types
  */
