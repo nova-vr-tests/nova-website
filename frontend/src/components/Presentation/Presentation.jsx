@@ -34,6 +34,8 @@ import type {
     ReduxDispatch,
     OwnProps,
     Props,
+    State,
+    Page,
 } from './PresentationTypes.jsx'
 
 import type {
@@ -119,7 +121,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
    - Position in the presentation (page number)
    - Slide change only happens on click
 */
-class Presentation extends React.Component<Props> {
+class Presentation extends React.Component<Props, State> {
     static defaultProps = {
         attachToMouseScroll: true,
     }
@@ -137,6 +139,10 @@ class Presentation extends React.Component<Props> {
     updateSlideFromUrl: (nextPathname: string) => void
     getTransitionType: (currentPage: number, targetPage: number) => TransitionTypes
     updateLinePosition: (props?: Props) => void
+    resetScrollEvent: () => void
+    updateMainPanel: ({ pages: Array<Page>, currentPage: number }) => void
+    updateSlideHeaderOverride: Props => void
+    updateAppTheme: (currentPage: number) => void
 
     constructor(props: Props) {
         super(props)
@@ -153,7 +159,6 @@ class Presentation extends React.Component<Props> {
 
 
         this.eventCounter = 0
-
         this.onScroll = this.onScroll.bind(this)
         this.goToNextPage = this.goToNextPage.bind(this)
         this.goToPreviousPage = this.goToPreviousPage.bind(this)
@@ -195,7 +200,7 @@ class Presentation extends React.Component<Props> {
         this.detachScrollEvent()
     }
 
-    componentWillUpdate(nextProps) {
+    componentWillUpdate(nextProps: Props) {
         // Let footer update app theme when openeing but handle it from here when it closes
         if(!nextProps.isFooterOpened) {
             // update app theme on current page state update
@@ -204,15 +209,16 @@ class Presentation extends React.Component<Props> {
     }
 
     componentDidUpdate() {
-        if(this.state.scrollEvent)
+        if(this.state.scrollEvent) {
             this.resetScrollEvent()
+        }
     }
 
     resetScrollEvent() {
         this.setState({ scrollEvent: null })
     }
 
-    updateAppTheme(currentPage) {
+    updateAppTheme(currentPage: number) {
         this.props.updateAppTheme(this.props.pages[currentPage].theme)
     }
 
@@ -224,7 +230,7 @@ class Presentation extends React.Component<Props> {
         return this.props.pages.map((e, i) => pathname === e.path ? i : -1).filter(e => e >= 0)[0]
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: Props) {
         const nextPathname = nextProps.pathname
         this.updateSlideFromUrl(nextPathname)
 
@@ -237,11 +243,11 @@ class Presentation extends React.Component<Props> {
         this.updateSlideHeaderOverride(nextProps)
     }
 
-    updateSlideHeaderOverride(nextProps) {
+    updateSlideHeaderOverride(nextProps: Props) {
         this.props.updateSidePanelHeaderOverride(nextProps.pages[nextProps.currentPage].overrideHeader)
     }
 
-    updateMainPanel({ pages, currentPage }) {
+    updateMainPanel({ pages, currentPage }: { pages: Array<Page>, currentPage: number}) {
         if(!pages[currentPage].overrideMainPanel) {
             if(pages[currentPage].mainPanelContent) {
                 this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
@@ -359,7 +365,7 @@ class Presentation extends React.Component<Props> {
     /*
        Change slide on user scroll
     **/
-    onScroll(e) {
+    onScroll(e: {}) {
         // activate paralax if main panel is not shown
         if(!this.props.pages[this.props.currentPage].mainPanelContent) {
             this.setState({ scrollEvent: e })

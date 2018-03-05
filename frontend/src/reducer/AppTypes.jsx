@@ -1,11 +1,22 @@
 // @flow
 import type { ThemeNames as AppThemeTypes } from '../constantTypes.jsx'
+import * as React from 'react'
 
 /*
    State type
 */
 
 export type GoToPage = (page: number) => void
+type MainPanel = {
+    isOpened: boolean,
+    content: React.ComponentType<any>,
+}
+
+type SidePanel = {
+    overrideHeader: boolean,
+    header: React.ComponentType<any>,
+}
+
 export type State = {
     introKeyframe: number,
     isSidebarOpened: boolean,
@@ -16,6 +27,10 @@ export type State = {
     isFooterOpened: boolean,
     goToPage: GoToPage,
     currentFooterPage: number,
+    isSidePanelOpened: boolean,
+    mainPanel: MainPanel,
+    sidePanel: SidePanel,
+    pages: Array<any>,
 }
 
 
@@ -65,6 +80,7 @@ export type IncrementIntrokeyframeAction = {|
 export type ResetIntroKeyframeAction = {|
     type: 'app/reset_intro_keyframe',
 |}
+
 export type ToggleSidebarAction = {|
     type: 'app/toggle_sidebar',
 |}

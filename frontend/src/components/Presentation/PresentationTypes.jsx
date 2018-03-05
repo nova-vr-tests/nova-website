@@ -14,25 +14,6 @@ import type {
 
 import type { TransitionTypes } from './transitionTypes.jsx'
 
-export type ReduxState = {
-    routing: typeof initialState.routing,
-    appTheme: typeof initialState.appReducer.appTheme,
-    currentPage: typeof initialState.appReducer.currentPage,
-    windowWidth: typeof initialState.appReducer.windowWidth,
-    isFooterOpened: typeof initialState.appReducer.isFooterOpened,
-    goToPage: typeof initialState.appReducer.goToPage,
-}
-
-export type ReduxDispatch = {
-    updateTransitionProgress: (p: typeof initialState.bgReducer.transitionProgress) => void,
-    updateBackLayers: (l: typeof initialState.bgReducer.backLayers) => void,
-    goTo: (url: string) => void,
-    updateLinePosition: (p: typeof initialState.appReducer.linePosition) => void,
-    updateAppTheme: (appTheme: typeof initialState.appReducer.appTheme) => void,
-    updateCurrentPage: (currentPage: typeof initialState.appReducer.currentPage) => void,
-    updateGoToPage: (goToPage: typeof initialState.appReducer.goToPage) => void,
-}
-
 // Data structure as input of Presentation comp
 export type Page = {
     h1: string,
@@ -54,9 +35,46 @@ export type Page = {
     }
 }
 
+export type ReduxState = {
+    pathname: string,
+    appTheme: typeof initialState.appReducer.appTheme,
+    currentPage: typeof initialState.appReducer.currentPage,
+    windowWidth: typeof initialState.appReducer.windowWidth,
+    isFooterOpened: typeof initialState.appReducer.isFooterOpened,
+    goToPage: typeof initialState.appReducer.goToPage,
+    linePosition: typeof initialState.appReducer.linePosition,
+    isSidePanelOpened: typeof initialState.appReducer.isSidePanelOpened,
+    isMainPanelOpened: typeof initialState.appReducer.mainPanel.isOpened,
+    mainPanelContent: typeof initialState.appReducer.mainPanel.content,
+}
+
+export type ReduxDispatch = {
+    updateTransitionProgress: (p: typeof initialState.bgReducer.transitionProgress) => void,
+    updateBackLayers: (l: typeof initialState.bgReducer.backLayers) => void,
+    goTo: (url: string) => void,
+    updateLinePosition: (p: typeof initialState.appReducer.linePosition) => void,
+    updateAppTheme: (appTheme: typeof initialState.appReducer.appTheme) => void,
+    updateCurrentPage: (currentPage: typeof initialState.appReducer.currentPage) => void,
+    updateGoToPage: (goToPage: typeof initialState.appReducer.goToPage) => void,
+    updatePages: (pages: Array<Page>) => void,
+    updateMainPanelIsOpened: (isOpened: boolean) => void,
+    updateMainPanelContent: (content: React.ComponentType<any>) => void,
+    updateSidePanelHeaderOverride: (overrideHeader: boolean) => void,
+}
+
+
+type ScrollEvent = {
+}
+
 export type OwnProps = {
     attachToMouseScroll?: boolean,
     pages: Array<Page>,
+    resetScrollEvent: void => void,
+    scrollEvent: ScrollEvent,
 }
 
 export type Props = OwnProps & ReduxState & ReduxDispatch
+
+export type State = {
+    scrollEvent: ?ScrollEvent,
+}
