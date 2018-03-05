@@ -24,6 +24,7 @@ export type State = {
     appTheme: AppThemeTypes,
     currentPage: number,
     windowWidth: number,
+    windowHeight: number,
     isFooterOpened: boolean,
     goToPage: GoToPage,
     currentFooterPage: number,

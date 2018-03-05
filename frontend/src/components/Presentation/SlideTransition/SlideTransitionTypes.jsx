@@ -1,10 +1,23 @@
 // @flow
+import { initialState } from '../../../store.js'
 
 export type State = {
     currentPage: number,
     targetPage: number,
     transitionProgress: number,
     transitionDirection: number,
+}
+
+type ScrollEvent = {}
+export type Props = {
+    pathname: string,
+    windowWidth: number,
+    resetScrollEvent: ?(void => void),
+    appTheme: typeof initialState.appReducer.appTheme,
+    currentPage: number,
+    pages: typeof initialState.appReducer.pages,
+    linePosition: typeof initialState.appReducer.linePosition,
+    scrollEvent: ?ScrollEvent,
 }
 
 export type OpacityStyles = {

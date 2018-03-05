@@ -8,7 +8,7 @@ import { styles as appStyles } from '../../../constants.js'
 
 import type {
     Props,
-} from '../PresentationTypes.jsx'
+} from './SlideTransitionTypes.jsx'
 
 import type {
     State,

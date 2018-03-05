@@ -67,10 +67,10 @@ type ScrollEvent = {
 }
 
 export type OwnProps = {
-    attachToMouseScroll?: boolean,
+    attachToMouseScroll: ?boolean,
     pages: Array<Page>,
     resetScrollEvent: void => void,
-    scrollEvent: ScrollEvent,
+    scrollEvent: ?ScrollEvent,
 }
 
 export type Props = OwnProps & ReduxState & ReduxDispatch

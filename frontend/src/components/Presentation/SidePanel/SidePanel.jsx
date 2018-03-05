@@ -114,7 +114,6 @@ const BG: React.StatelessFunctionalComponent<BgProps> = props => {
 
 BG.defaultProps = {
     rightEdgeCoef: 0,
-    zIndex: 0,
     bgColor: 'rgba(0, 0, 0, 0.6)',
 }
 
@@ -176,9 +175,10 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
         <div style={ styles.wrapper }>
             <BG
                 widthCoef={ widthCoef }
-                isFooterOpened={ props.isFooterOpened }
                 type={ props.type }
                 windowHeight={ props.windowHeight }
+                rightEdgeCoef={ 0 }
+                bgColor={ 'rgba(0, 0, 0, 0.6)' }
             />
             <div style={ styles.contentWrapper }>
                 <ToggleButton
@@ -204,9 +204,10 @@ const sidePanelLifecycle = {
             this.props.updateIsSidePanelOpened(this.props.isOpened)
         }
     },
-    componentWillUpdate: function(nextProps) {
-        if(nextProps.width !== appStyles.sidePanel.openedWidthCoef)
+    componentWillUpdate: function(nextProps: Props) {
+        if(nextProps.width !== appStyles.sidePanel.openedWidthCoef) {
             this.props.setWidth(appStyles.sidePanel.openedWidthCoef)
+        }
     }
 }
 

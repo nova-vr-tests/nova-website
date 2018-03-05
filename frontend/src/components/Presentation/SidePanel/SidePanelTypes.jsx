@@ -8,17 +8,18 @@ import type { Page } from '../PresentationTypes.jsx'
 
 export type ReduxState = {
     linePosition: typeof initialState.appReducer.linePosition,
+    isFooterOpened: typeof initialState.appReducer.isFooterOpened,
+    windowHeight: typeof initialState.appReducer.windowHeight,
+    windowWidth: typeof initialState.appReducer.windowWidth,
+    appTheme: typeof initialState.appReducer.appTheme,
 }
 
 export type ReduxDispatch = {
 }
 
 export type OwnProps = {
-    comp: React.Node,
-    currentPage: number,
-    pages: Array<Page>,
+    children: React.Node,
     type: number,
-    marginTop: string,
 }
 
 export type SmartCompProps = {
@@ -38,4 +39,7 @@ export type Props = OwnProps & SmartCompProps & ReduxState & ReduxDispatch
 export type BgProps = {
     widthCoef: number,
     type: number,
+    windowHeight: number,
+    rightEdgeCoef: number,
+    bgColor: ?string,
 }
