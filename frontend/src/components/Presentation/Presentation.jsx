@@ -79,9 +79,6 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 }
 
 
-
-
-
 /**
    - Combines slides of same presentation into paragraph for side panel
    - Shows table of content and highlights current link
