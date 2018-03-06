@@ -4,8 +4,6 @@ import * as React from 'react'
 
 import { initialState } from '../../../store.js'
 
-import type { Page } from '../PresentationTypes.jsx'
-
 export type ReduxState = {
     linePosition: typeof initialState.appReducer.linePosition,
     isFooterOpened: typeof initialState.appReducer.isFooterOpened,
@@ -27,6 +25,7 @@ export type SmartCompProps = {
     width: number,
     setWidth: number => void,
     setIsOpened: boolean => void,
+    marginTop: string | number,
 }
 
 export type Props = OwnProps & SmartCompProps & ReduxState & ReduxDispatch
@@ -41,5 +40,6 @@ export type BgProps = {
     type: number,
     windowHeight: number,
     rightEdgeCoef: number,
-    bgColor: ?string,
+    bgColor: string,
+    zIndex: number,
 }

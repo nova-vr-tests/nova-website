@@ -58,7 +58,7 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 }
 
 
-const BG: React.StatelessFunctionalComponent<BgProps> = props => {
+const BG = (props: BgProps) => {
     const { clientWidth, clientHeight } = document.documentElement
     const widthCoef = clientWidth < appStyles.mediaQueries.phone ? clientWidth / appStyles.unitWidthJs : props.widthCoef
 
