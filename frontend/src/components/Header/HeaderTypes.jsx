@@ -2,9 +2,20 @@
 
 import { initialState } from '../../store.js'
 
+export type SvgProps = {
+    color: string,
+    windowWidth: typeof initialState.appReducer.windowWidth,
+    windowHeight: typeof initialState.appReducer.windowHeight,
+}
+
+
 export type ReduxState = {
     isSidebarOpened: typeof initialState.sidebarReducer.isSidebarOpened,
     appTheme: typeof initialState.appReducer.appTheme,
+    isFooterOpened: typeof initialState.appReducer.isFooterOpened,
+    windowWidth: typeof initialState.appReducer.windowWidth,
+    windowHeight: typeof initialState.appReducer.windowHeight,
+    currentPath: typeof initialState.routing.location.pathname,
 }
 
 export type ReduxDispatch = {

@@ -13,9 +13,9 @@ import type {
 type Styles = {
     wrapper: CSSStyleDeclaration,
     bgImage: CSSStyleDeclaration,
-    circle: CSSStyleDeclaration,
     logo: CSSStyleDeclaration,
     logoSidebarClosed: CSSStyleDeclaration,
+    svg: CSSStyleDeclaration,
 }
 
 const getStyles: GetStyles<Props, Styles> = props => {

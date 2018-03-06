@@ -21,6 +21,7 @@ import type {
     ReduxDispatch,
     OwnProps,
     Props,
+    SvgProps,
 } from './HeaderTypes.jsx'
 
 import type {
@@ -48,7 +49,7 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 
 const styleConstants = appStyles.header
 
-const Svg = props => {
+const Svg = (props: SvgProps) => {
     const { clientWidth } = document.documentElement
     const { header } = appStyles
 
@@ -92,7 +93,7 @@ Svg.defaultProps = {
     color: 'rgba(0, 0, 0, 0.3)',
 }
 
-const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
+const HeaderDumb = (props: Props) => {
     const styles = getStyles(props)
 
     let isSvgVisible = true
@@ -114,7 +115,6 @@ const HeaderDumb: React.StatelessFunctionalComponent<Props> = (props) => {
 
             <div style={{ opacity: isSvgVisible ? 1 : 0, transition: 'opacity 0.5s linear' }}>
                 <Svg
-                    isVisible={ isSvgVisible }
                     windowWidth={ props.windowWidth }
                     windowHeight={ props.windowHeight }
                 />
