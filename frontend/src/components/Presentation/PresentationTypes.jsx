@@ -20,11 +20,13 @@ export type Page = {
     h2: string,
     path: string,
     layers: Array<IBgLayer>,
-    pid: any, // Symbols not supported by flow
+    pid: Object, // Symbols not supported by flow
     linePosition: number,
     align: string,
     theme: ThemeNames,
     comp: React.StatelessFunctionalComponent<{}>,
+    mainPanelContent: React.Component<{}>,
+    overrideHeader: boolean,
     transitions: {
         nextSlide: {
             bg: TransitionTypes,
@@ -50,7 +52,7 @@ export type ReduxState = {
 
 export type ReduxDispatch = {
     updateTransitionProgress: (p: typeof initialState.bgReducer.transitionProgress) => void,
-    updateBackLayers: (l: typeof initialState.bgReducer.backLayers) => void,
+    updateBackLayers: (l: typeof initialState.bgReducer.backLayers, pid: Object) => void,
     goTo: (url: string) => void,
     updateLinePosition: (p: typeof initialState.appReducer.linePosition) => void,
     updateAppTheme: (appTheme: typeof initialState.appReducer.appTheme) => void,
@@ -58,7 +60,7 @@ export type ReduxDispatch = {
     updateGoToPage: (goToPage: typeof initialState.appReducer.goToPage) => void,
     updatePages: (pages: Array<Page>) => void,
     updateMainPanelIsOpened: (isOpened: boolean) => void,
-    updateMainPanelContent: (content: React.ComponentType<any>) => void,
+    updateMainPanelContent: (content: React.Component<{}>) => void,
     updateSidePanelHeaderOverride: (overrideHeader: boolean) => void,
 }
 
