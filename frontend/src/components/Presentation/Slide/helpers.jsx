@@ -20,9 +20,8 @@ const scrollTo = (id: string, initScroll: number, targetScroll: number, progress
 
 }
 
-const getParagraphsSize = (id) => {
+const getParagraphsSize = (id: string) => {
     const paragraphs = document.getElementById(id)
-    console.log(Array.from(paragraphs.childNodes))
 
     paragraphs.style.display = 'block'
     const margins = 5 // px, both sides
