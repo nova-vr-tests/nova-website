@@ -11,6 +11,8 @@ export type ReduxState = {
     isFooterOpened: typeof initialState.appReducer.isFooterOpened,
     sidebarHeaderIntersection: typeof initialState.headerReducer.sidebarIntersection,
     currentFooterPage: typeof initialState.appReducer.currentFooterPage,
+    windowWidth: typeof initialState.appReducer.windowWidth,
+    windowHeight: typeof initialState.appReducer.windowHeight,
 }
 
 export type ReduxDispatch = {

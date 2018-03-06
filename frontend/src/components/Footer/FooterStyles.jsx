@@ -24,6 +24,7 @@ type Styles = {
     quickLinks: CSSStyleDeclaration,
     closeFooterArrowWrapper: CSSStyleDeclaration,
     closeFooterArrowImg: CSSStyleDeclaration,
+    svg: CSSStyleDeclaration,
 }
 
 const getStyles: GetStyles<Props, Styles> = props => {
