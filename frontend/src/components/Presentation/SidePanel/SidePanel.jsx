@@ -115,6 +115,7 @@ const BG = (props: BgProps) => {
 BG.defaultProps = {
     rightEdgeCoef: 0,
     bgColor: 'rgba(0, 0, 0, 0.6)',
+    zIndex: 'inherit',
 }
 
 type ToggleButtonProps = {

@@ -41,5 +41,5 @@ export type BgProps = {
     windowHeight: number,
     rightEdgeCoef: number,
     bgColor: string,
-    zIndex: number,
+    zIndex: number | string,
 }
