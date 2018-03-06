@@ -5,6 +5,7 @@ import { styles as appStyles } from '../../constants.js'
 import type {
     Props,
     LayerProps,
+    LayerAssemblyProps,
 } from './BgTypes.jsx'
 
 import type {
@@ -107,13 +108,20 @@ type LayerAssemblyStyles = {
     wrapper: CSSStyleDeclaration,
 }
 
-const getLayerAssemblyStyles: GetStyles<void, LayerAssemblyStyles> = () => {
+const getLayerAssemblyStyles: GetStyles<LayerAssemblyProps, LayerAssemblyStyles> = props => {
+    let display = 'inherit'
+
+    if(!props.display) {
+        display = 'none'
+    }
+
     return {
         wrapper: {
             zIndex: -1,
             height: '100vh',
             width: '100vw',
             position: 'absolute',
+            display,
         }
     }
 }

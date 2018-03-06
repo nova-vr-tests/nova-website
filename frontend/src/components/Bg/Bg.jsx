@@ -71,10 +71,7 @@ const Layer: React.StatelessFunctionalComponent<LayerProps> = props => {
 const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = props => {
     type GetLayers = (layers: typeof props.layers) => Array<React.Element<typeof Layer>>
 
-    const styles = getLayerAssemblyStyles()
-    if(!props.display) {
-        styles.wrapper.display = 'none'
-    }
+    const styles = getLayerAssemblyStyles(props)
 
     const getLayers: GetLayers = layers => {
         return layers.map((e, i) => (
@@ -100,7 +97,6 @@ LayerAssembly.defaultProps = {
 }
 
 const updateLayers = (layers, progress, pid, pages) => {
-
     if(layers.length === 0) {
         return layers
     }
