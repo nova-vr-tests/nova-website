@@ -94,7 +94,7 @@ type Default = 'inherit' | 'initial' | 'auto'
 export type CSSStyleDeclaration = {
 
     // positioning
-    display?: 'flex' | 'block',
+    display?: 'flex' | 'block' | 'none' | Default,
     position?: 'absolute' | 'relative' | 'fixed' | Default,
 
     flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse' | Default,
