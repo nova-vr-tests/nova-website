@@ -1,3 +1,5 @@
+import type { CSSStyleDeclaration } from '../src/constantTypes.jsx'
+
 declare var document: { // eslint-disable-line no-unused-vars
     documentElement: {
         clientHeight: number,
@@ -14,5 +16,6 @@ declare var document: { // eslint-disable-line no-unused-vars
         clientWidth: number,
         scrollTop: number,
         scrollTo: (x: number, y: number) => void,
+        style: CSSStyleDeclaration,
     },
 }
