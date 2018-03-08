@@ -68,7 +68,7 @@ const Layer: React.StatelessFunctionalComponent<LayerProps> = props => {
     )
 }
 
-const LayerAssembly: React.StatelessFunctionalComponent<LayerAssemblyProps> = props => {
+const LayerAssembly = (props: LayerAssemblyProps) => {
     type GetLayers = (layers: typeof props.layers) => Array<React.Element<typeof Layer>>
 
     const styles = getLayerAssemblyStyles(props)

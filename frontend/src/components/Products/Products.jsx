@@ -51,8 +51,6 @@ const filterUrl = url => {
 const Products = props => {
     const styles = getStyles(props)
 
-    const BlogPostMainPanel = () => <BlogPost fetchUrl={ props.fetchUrl } />
-
     const contentReduxState = state => ({
         windowWidth: state.appReducer.windowWidth,
     })
@@ -63,37 +61,6 @@ const Products = props => {
         return <Comp styles={ styles } { ...props } />
     })
 
-    const _props = props
-    const LastComp = connectWidth(props => (
-        <div style={{ marginBottom: '4rem' }}>
-            <SidePanelLink
-                onClickCallback={ () => {
-                    if(_props.isDescrShown === true)
-                        return
-
-                    const cond = true//appStyles.mediaQueries.tablet > props.windowWidth
-
-                    if(cond && !_props.isDescrShown) {
-                        _props.setDrawerPosition(_props.drawerPosition + 1)
-                    }
-
-                    _props.setIsDescrShown(true)
-                    _props.updateMainPanel(BlogPostMainPanel)
-                    _props.updateMainPanelIsOpened(true)
-                }}
-                pictoUrl={ props.pictoUrl }
-                title={ props.title } />
-        </div>), props)
-
-                 //   connectWidth(() => <div style={{ height: '5rem', }}>
-                 //       <BlogPost
-                 //           fetchUrl={ props.fetchUrl }
-                 //           contentKey="abstract"
-                 //           LastComp={ LastComp }
-                 //           sidePanelMode={ true }
-                 //           showHeader={ false }>
-                 //       </BlogPost>
-                 //   </div>, props),
     return (
         <div
             style={ styles.wrapper }
@@ -202,8 +169,6 @@ const createList = props => {
 
 
 const createAbstract = props => {
-    const styles = getStyles(props)
-
     const contentReduxState = state => ({
         windowWidth: state.appReducer.windowWidth,
     })
