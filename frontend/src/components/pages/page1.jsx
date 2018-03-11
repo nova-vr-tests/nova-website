@@ -139,7 +139,7 @@ const Consultation: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ 'Hello consultation :)' }
+                headerText={ `We’ll help you understand, operate, integrate, and troubleshoot XR technologies. The skills required to produce 3D virtual media (XR) are broad and deep, but we'll keep you focused.` }
                 fetchUrl={ new API().urls.consultancies.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.consultancies.list } />,
