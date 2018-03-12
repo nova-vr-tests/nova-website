@@ -41,6 +41,7 @@ const design: Array<ISlide> = [
                 fetchUrl={ new API().urls.design.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.design.list } />,
+        overrideHeader: true,
         paralax: 0,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
@@ -93,12 +94,14 @@ const program: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
+                headerText={ `Program :)` }
                 fetchUrl={
                     new API().urls.program.list } />,
         mainPanelContent: () =>
             <Blog
                 fetchUrl={
                     new API().urls.program.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
@@ -123,12 +126,14 @@ const produce: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
+                headerText={ `Produce :)` }
                 fetchUrl={
                     new API().urls.produce.list } />,
         mainPanelContent: () =>
             <Blog
                 fetchUrl={
                     new API().urls.produce.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
@@ -151,12 +156,14 @@ const network: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
+                headerText={ `Network :)` }
                 fetchUrl={
                     new API().urls.network.list } />,
         mainPanelContent: () =>
             <Blog
                 fetchUrl={
                     new API().urls.network.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
@@ -182,12 +189,14 @@ const deploy: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
+                headerText={ `Deploy :)` }
                 fetchUrl={
                     new API().urls.deploy.list } />,
         mainPanelContent: () =>
             <Blog
                 fetchUrl={
                     new API().urls.deploy.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {

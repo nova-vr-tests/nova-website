@@ -101,9 +101,12 @@ const community: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.community.list } />,
+            <BlogPostList
+                headerText={ `Community :)` }
+                fetchUrl={ new API().urls.community.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.community.list } />,
+        overrideHeader: true,
         layers: [
             {
                 imgUrl: communityBg,
@@ -124,9 +127,12 @@ const labLive: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.blogPosts.list } />,
+            <BlogPostList
+                headerText={ `Lab Live :)` }
+                fetchUrl={ new API().urls.blogPosts.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.blogPosts.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
@@ -177,9 +183,12 @@ const productions: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.productions.list } />,
+            <BlogPostList
+                headerText={ `Production :)` }
+                fetchUrl={ new API().urls.productions.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.productions.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
@@ -201,9 +210,12 @@ const partners: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.partners.list } />,
+            <BlogPostList
+                headerText={ `Partners :)` }
+                fetchUrl={ new API().urls.partners.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.partners.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
@@ -225,9 +237,12 @@ const careers: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.careers.list } />,
+            <BlogPostList
+                headerText={ `Careers :)` }
+                fetchUrl={ new API().urls.careers.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.careers.list } />,
+        overrideHeader: true,
         showNextSectionArrow: false,
         layers: [
             {
