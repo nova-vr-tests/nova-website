@@ -34,9 +34,9 @@ urlpatterns = [
     url(r'^design/(?P<pk>[0-9]+)/$', views.DesignDetail.as_view()),
 
     url(r'^program/$', views.ProgramList.as_view()),
-    url(r'^program/(?P<pk>[0-9]+)/$', views.ProductDetail.as_view()),
+    url(r'^program/(?P<pk>[0-9]+)/$', views.ProgramDetail.as_view()),
 
-    url(r'^produce/$', views.ProductsList.as_view()),
+    url(r'^produce/$', views.ProduceList.as_view()),
     url(r'^produce/(?P<pk>[0-9]+)/$', views.ProduceDetail.as_view()),
 
     url(r'^network/$', views.NetworkList.as_view()),
