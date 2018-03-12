@@ -13,6 +13,9 @@ const getStyles = props => {
             borderBottomLeftRadius: '15px',
     }
 
+    const pictoWidthCoef = props.isSquarePicto ? 1 : 2
+    const pictoTransform = props.isSquarePicto ? 'inherit' : `translate(-20px, 20px)`
+
     const styles = {
         linkWrapper: {
             display: 'flex',
@@ -34,8 +37,8 @@ const getStyles = props => {
         },
         picto: {
             height: `calc(${linkWrapperHeight} - 0px)`,
-            width: `calc(2 * ${linkWrapperHeight})`,
-            transform: `translate(-20px, 20px)`,
+            width: `calc(${pictoWidthCoef} * ${linkWrapperHeight})`,
+            transform: pictoTransform,
             ...borderRadius,
         },
         title: {

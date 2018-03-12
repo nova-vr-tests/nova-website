@@ -128,6 +128,7 @@ const createList = props => {
         return (
             <SidePanelLink
                 key={ i }
+                isSquarePicto={ true }
                 onClickCallback={ onClickCallback }
                 pictoUrl={ filteredPictoUrl }
                 isActive={ active }
@@ -189,6 +190,7 @@ const SmartComp = compose(
 SmartComp.defaultProps = {
     fetchUrl: new API().urls.blogPosts.list,
     headerText: '',
+    isSquarePicto: true,
 }
 
 const ConnectedComp = connect(

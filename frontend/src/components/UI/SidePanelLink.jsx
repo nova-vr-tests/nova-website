@@ -43,6 +43,7 @@ SidePanelLink.defaultProps = {
     title: '',
     subtitle: '',
     isActive: false,
+    isSquarePicto: false,
 }
 
 export default SidePanelLink

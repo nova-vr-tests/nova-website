@@ -157,6 +157,7 @@ const createList = props => {
             <SidePanelLink
                 key={ i }
                 onClickCallback={ onClickCallback }
+                isSquarePicto={ false }
                 pictoUrl={ filteredPictoUrl }
                 isActive={ active }
                 subtitle={ e.description }
