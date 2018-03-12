@@ -4,12 +4,16 @@ import * as React from 'react'
 
 import bg1 from '../img/design/1.png'
 
-import educationIntroIntroLayer1 from '../img/resources/educational_portal/educational-portal-intro-layer1.jpg'
 import { styles as appStyles } from '../../constants.js'
 
 import Blog from '../Blog/Blog.jsx'
 import BlogPostList from '../Blog/BlogPostList.jsx'
 import API from '../../API.js'
+
+import interfaceLayer1 from '../img/design/interface-layer1.png'
+import interfaceLayer2 from '../img/design/interface-layer2.png'
+import developBg from '../img/develop-bg.jpg'
+import deployBg from '../img/deployBg.png'
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -41,7 +45,12 @@ const design: Array<ISlide> = [
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: interfaceLayer1,
+                paralax: 0,
+                opacity: 1,
+            },
+            {
+                imgUrl: interfaceLayer2,
                 paralax: 0,
                 opacity: 1,
             },
@@ -64,7 +73,7 @@ const developIntro: Array<ISlide> = [
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
             {
-                imgUrl: educationIntroIntroLayer1,
+                imgUrl: developBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -182,7 +191,7 @@ const deploy: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: deployBg,
                 paralax: 0,
                 opacity: 1,
             },

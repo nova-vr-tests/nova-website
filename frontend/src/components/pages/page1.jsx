@@ -5,19 +5,13 @@ import * as React from 'react'
 import intro from '../img/default.jpg'
 
 import productsBg from '../img/design/3.png'
+import industryBg from '../img/design/2.png'
+import publicationsBg from '../img/publicationsBg.png'
 import worldLayer1 from '../img/design/world-layer1.png'
 import worldLayer2 from '../img/design/world-layer2.png'
-import storyLayer1 from '../img/design/story-layer1.png'
-import storyLayer2 from '../img/design/story-layer2.png'
-import storyLayer4 from '../img/design/story-layer3.png'
-import storyLayer3 from '../img/design/story-layer4.png'
 import interfaceLayer1 from '../img/design/interface-layer1.png'
 import interfaceLayer2 from '../img/design/interface-layer2.png'
 import interfaceLayer3 from '../img/design/interface-layer3.png'
-
-import businessIntroLayer1 from '../img/business/business-intro-layer1.jpg'
-import businessIntroLayer2 from '../img/business/business-intro-layer2.jpg'
-import businessIntroLayer3 from '../img/business/business-intro-layer3.jpg'
 
 import { styles as appStyles } from '../../constants.js'
 
@@ -138,10 +132,7 @@ const industry: Array<ISlide> = [
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.industries.list } />,
         layers: [
-            createLayer(storyLayer1, 0, 1),
-            createLayer(storyLayer2, 0, 0),
-            createLayer(storyLayer3, 0, 0),
-            createLayer(storyLayer4, 0, 0),
+            createLayer(industryBg, 0, 1),
         ],
         overrideHeader: true,
     },
@@ -168,8 +159,7 @@ const crossIndustry: Array<ISlide> = [
         theme: appStyles.themeTypes.noFooterTheme,
         overrideHeader: true,
         layers: [
-            createLayer(worldLayer1, 0, 1),
-            createLayer(worldLayer2, 0, 1),
+            createLayer(industryBg, 0, 1),
         ],
     },
 ]
@@ -225,9 +215,7 @@ const Publications: Array<ISlide> = [
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.publications.list } />,
         layers: [
-            createLayer(businessIntroLayer1, 0, 1),
-            createLayer(businessIntroLayer2, 0, 0),
-            createLayer(businessIntroLayer3, 0, 0),
+            createLayer(publicationsBg, 0, 1),
         ]
     },
 ]

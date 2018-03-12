@@ -2,11 +2,11 @@
 
 import React from 'react'
 
-import nyeLayer1 from '../img/about-us.png'
-import apprenticeships from '../img/apprenticeships.jpg'
-import findUsLayer1 from '../img/find-us.jpg'
-import loginLayer1 from '../img/partnership/login/login-layer1.png'
-import philoLayer1 from '../img/business/philo-layer1.png'
+import findUsLayer1 from '../img/findUsBg.jpg'
+import whoWeAreBg from '../img/whoWeAreBg.jpg'
+import aboutUsBg from '../img/aboutUsBg.png'
+import communityBg from '../img/communityBg.jpg'
+import labLiveBg from '../img/labLiveBg.png'
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -42,7 +42,7 @@ const whoWeAre: Array<ISlide> = [
         content: () => <NYEIntroComp />,
         layers: [
             {
-                imgUrl: nyeLayer1,
+                imgUrl: whoWeAreBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -52,8 +52,8 @@ const whoWeAre: Array<ISlide> = [
         pid,
         layers: [
             {
-                imgUrl: nyeLayer1,
-                paralax: -100,
+                imgUrl: whoWeAreBg,
+                paralax: 0,
                 opacity: 1,
             },
         ]
@@ -73,7 +73,7 @@ const aboutUs: Array<ISlide> = [
         content: () => <NYEStreamComp />,
         layers: [
             {
-                imgUrl: apprenticeships,
+                imgUrl: aboutUsBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -83,7 +83,7 @@ const aboutUs: Array<ISlide> = [
         pid,
         layers: [
             {
-                imgUrl: apprenticeships,
+                imgUrl: aboutUsBg,
                 paralax: -100,
                 opacity: 1,
             },
@@ -106,7 +106,7 @@ const community: Array<ISlide> = [
             <Blog fetchUrl={ new API().urls.community.list } />,
         layers: [
             {
-                imgUrl: philoLayer1,
+                imgUrl: communityBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -130,7 +130,7 @@ const labLive: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: loginLayer1,
+                imgUrl: labLiveBg,
                 paralax: 0,
                 opacity: 1,
             },
