@@ -11,11 +11,6 @@ import Blog from '../Blog/Blog.jsx'
 import BlogPostList from '../Blog/BlogPostList.jsx'
 import API from '../../API.js'
 
-import {
-    EdIntroComp,
-    EdComp,
-} from './page2Comps.jsx'
-
 import type { ISlide, IPage } from './types.jsx'
 
 /************************************
@@ -25,18 +20,23 @@ import type { ISlide, IPage } from './types.jsx'
 ************************************/
 
 let pid = Symbol()
-let h1 = 'Build XR'
+let h1 = 'Design'
 let h2 = ''
-let path = '/build-xr'
+let path = '/design'
 
 
-const BuildXR: Array<ISlide> = [
+const design: Array<ISlide> = [
     {
         h1,
         h2,
         path,
         pid,
-        content: () => <EdIntroComp />,
+        content: () =>
+            <BlogPostList
+                headerText={ `Design :)` }
+                fetchUrl={ new API().urls.design.list } />,
+        mainPanelContent: () =>
+            <Blog fetchUrl={ new API().urls.design.list } />,
         paralax: 0,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
@@ -50,15 +50,16 @@ const BuildXR: Array<ISlide> = [
 ]
 
 pid = Symbol()
-path = '/client-portal'
-h1 = 'Client portal'
-const ClientPortal: Array<ISlide> = [
+path = '/develop'
+h1 = 'Develop'
+h2 = 'Introduction'
+const developIntro: Array<ISlide> = [
     {
         h1,
         h2,
         path,
         pid,
-        content: () => <EdComp />,
+        content: () => <div>Develop</div>,
         paralax: 0,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
@@ -72,10 +73,10 @@ const ClientPortal: Array<ISlide> = [
 ]
 
 
-h1 = 'Productions'
+h2 = 'Program'
 pid = Symbol()
-path = '/productions'
-const Productions: Array<ISlide> = [
+path = '/program'
+const program: Array<ISlide> = [
     {
         h1,
         h2,
@@ -84,11 +85,11 @@ const Productions: Array<ISlide> = [
         content: () =>
             <BlogPostList
                 fetchUrl={
-                    new API().urls.partnership_productions.list } />,
+                    new API().urls.program.list } />,
         mainPanelContent: () =>
             <Blog
                 fetchUrl={
-                    new API().urls.partnership_productions.list } />,
+                    new API().urls.program.list } />,
         showNextSectionArrow: false,
         layers: [
             {
@@ -99,6 +100,96 @@ const Productions: Array<ISlide> = [
         ]
     },
 ]
+
+
+
+h2 = 'Produce'
+pid = Symbol()
+path = '/produce'
+const produce: Array<ISlide> = [
+    {
+        h1,
+        h2,
+        path,
+        pid,
+        content: () =>
+            <BlogPostList
+                fetchUrl={
+                    new API().urls.produce.list } />,
+        mainPanelContent: () =>
+            <Blog
+                fetchUrl={
+                    new API().urls.produce.list } />,
+        showNextSectionArrow: false,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+
+h2 = 'Network'
+pid = Symbol()
+path = '/network'
+const network: Array<ISlide> = [
+    {
+        h1,
+        h2,
+        path,
+        pid,
+        content: () =>
+            <BlogPostList
+                fetchUrl={
+                    new API().urls.network.list } />,
+        mainPanelContent: () =>
+            <Blog
+                fetchUrl={
+                    new API().urls.network.list } />,
+        showNextSectionArrow: false,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+
+
+
+h1 = 'Deploy'
+h2 = ''
+pid = Symbol()
+path = '/deploy'
+const deploy: Array<ISlide> = [
+    {
+        h1,
+        h2,
+        path,
+        pid,
+        content: () =>
+            <BlogPostList
+                fetchUrl={
+                    new API().urls.deploy.list } />,
+        mainPanelContent: () =>
+            <Blog
+                fetchUrl={
+                    new API().urls.deploy.list } />,
+        showNextSectionArrow: false,
+        layers: [
+            {
+                imgUrl: bg1,
+                paralax: 0,
+                opacity: 1,
+            },
+        ]
+    },
+]
+
 /************************************
 
     Slide assembly
@@ -106,22 +197,25 @@ const Productions: Array<ISlide> = [
 ************************************/
 
 
-const edSlides: Array<Array<ISlide>> = [
-    BuildXR,
+const designSlides: Array<Array<ISlide>> = [
+    design,
 ]
 
-const newsSlides = [
-    ClientPortal,
+const developSlides = [
+    developIntro,
+    program,
+    produce,
+    network,
 ]
 
-const publicationSlides = [
-    Productions,
+const deploySlides = [
+    deploy,
 ]
 
 const page2: IPage = [
-    edSlides,
-    newsSlides,
-    publicationSlides,
+    designSlides,
+    developSlides,
+    deploySlides,
 ]
 
 export default page2

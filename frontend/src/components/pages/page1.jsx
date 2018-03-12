@@ -92,11 +92,11 @@ const Products: Array<ISlide> = [
 
 
 
-h1 = 'Services'
+h1 = 'Consultation'
 h2 = 'Introduction'
 path = '/services'
 pid = Symbol()
-const ServicesIntro: Array<ISlide> = [
+const consultationIntro: Array<ISlide> = [
     {
         h1,
         h2,
@@ -111,12 +111,6 @@ const ServicesIntro: Array<ISlide> = [
         ],
     },
     {
-        h1,
-        h2,
-        path,
-        pid,
-        content: () => <DesignInterfaceComp />,
-        showNextSectionArrow: true,
         layers: [
             createLayer(interfaceLayer1, 100, 1),
             createLayer(interfaceLayer2, 0, 1),
@@ -127,10 +121,10 @@ const ServicesIntro: Array<ISlide> = [
 
 
 
-h2 = 'Consultation'
+h2 = 'Industry'
 pid = Symbol()
-path = '/consultation'
-const Consultation: Array<ISlide> = [
+path = '/industry'
+const industry: Array<ISlide> = [
     {
         h1,
         h2,
@@ -139,10 +133,10 @@ const Consultation: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ `We’ll help you understand, operate, integrate, and troubleshoot XR technologies. The skills required to produce 3D virtual media (XR) are broad and deep, but we'll keep you focused.` }
-                fetchUrl={ new API().urls.consultancies.list } />,
+                headerText={ `Industry :)` }
+                fetchUrl={ new API().urls.industries.list } />,
         mainPanelContent: () =>
-           <Blog fetchUrl={ new API().urls.consultancies.list } />,
+           <Blog fetchUrl={ new API().urls.industries.list } />,
         layers: [
             createLayer(storyLayer1, 0, 1),
             createLayer(storyLayer2, 0, 0),
@@ -156,9 +150,9 @@ const Consultation: Array<ISlide> = [
 
 
 pid = Symbol()
-path = '/solutions-production' // to differentiate from /partnership-productions
-h2 = 'Production'
-const Production: Array<ISlide> = [
+path = '/cross-industry' // to differentiate from /partnership-productions
+h2 = 'Cross Industry'
+const crossIndustry: Array<ISlide> = [
     {
         h1,
         h2,
@@ -167,10 +161,10 @@ const Production: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ 'Hello production :)' }
-                fetchUrl={ new API().urls.solutions_productions.list } />,
+                headerText={ 'Cross Industry :)' }
+                fetchUrl={ new API().urls.crossIndustry.list } />,
         mainPanelContent: () =>
-           <Blog fetchUrl={ new API().urls.solutions_productions.list } />,
+           <Blog fetchUrl={ new API().urls.crossIndustry.list } />,
         theme: appStyles.themeTypes.noFooterTheme,
         overrideHeader: true,
         layers: [
@@ -182,9 +176,9 @@ const Production: Array<ISlide> = [
 
 
 pid = Symbol()
-path = '/publishing' // to differentiate from /partnership-productions
-h2 = 'Publishing'
-const Publishing: Array<ISlide> = [
+path = '/learning-lab' // to differentiate from /partnership-productions
+h2 = 'Leaning Lab'
+const learningLab: Array<ISlide> = [
     {
         h1,
         h2,
@@ -193,10 +187,10 @@ const Publishing: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ 'Hello publishing :)' }
-                fetchUrl={ new API().urls.publishing.list } />,
+                headerText={ ' Learning Lab :)' }
+                fetchUrl={ new API().urls.learningLab.list } />,
         mainPanelContent: () =>
-           <Blog fetchUrl={ new API().urls.publishing.list } />,
+           <Blog fetchUrl={ new API().urls.learningLab.list } />,
         theme: appStyles.themeTypes.noFooterTheme,
         overrideHeader: true,
         layers: [
@@ -245,25 +239,25 @@ const Publications: Array<ISlide> = [
 ************************************/
 
 
-const designSlides = [
+const productSlides = [
     Products,
 ]
 
-const businessSlides = [
-    ServicesIntro,
-    Consultation,
-    Production,
-    Publishing,
+const consultationSlides = [
+    consultationIntro,
+    industry,
+    crossIndustry,
+    learningLab,
 ]
 
-const technologySlides = [
+const publicationSlides = [
     Publications,
 ]
 
 const page1: IPage = [
-    designSlides,
-    businessSlides,
-    technologySlides,
+    productSlides,
+    consultationSlides,
+    publicationSlides,
 ]
 
 export default page1

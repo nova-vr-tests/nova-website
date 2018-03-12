@@ -40,7 +40,7 @@ const category1: IMenuSection = {
             title: "Products",
         },
         {
-            title: "Services",
+            title: "Consultation",
         },
         {
             title: "Publications",
@@ -49,16 +49,16 @@ const category1: IMenuSection = {
 }
 
 const category2: IMenuSection = {
-    title: "Partnership",
+    title: "Services",
     links: [
         {
-            title: "Build XR",
+            title: "Design",
         },
         {
-            title: "Client Portal",
+            title: "Develop",
         },
         {
-            title: "Productions",
+            title: "Deploy",
         },
     ],
 }
@@ -70,10 +70,10 @@ const category3: IMenuSection = {
             title: "Who We Are",
         },
         {
-            title: "Lab Live",
+            title: "Partnership",
         },
         {
-            title: "Find us",
+            title: "Find Us",
         },
     ],
 }
