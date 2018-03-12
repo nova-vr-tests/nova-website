@@ -93,11 +93,12 @@ const initHeader = (updateSidePanelHeader, props) => {
 
     if(props.routing.location.seach !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
+        const post = props.blogPosts.filter(e => e.id === productNumber)[0]
 
         if(props.blogPosts.length >= productNumber) {
             header = () => <SidePanelProductsHeader
-                title={ props.blogPosts[productNumber - 1].title }
-                subtitle={ props.blogPosts[productNumber - 1].description }
+                title={ post ? post.title : "" }
+                subtitle={ post ? post.description : "" }
                 onClickCallback={ () => {
                     props.goTo(props.pages[props.currentPage].path)
                     props.updateMainPanelIsOpened(false)
