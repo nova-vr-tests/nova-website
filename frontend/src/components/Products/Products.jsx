@@ -130,9 +130,10 @@ const initHeader = (updateSidePanelHeader, props) => {
 const initBg = props => {
     if(props.routing.location.search !== "") {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
+        const product = props.products.filter(e => e.id === productNumber)[0]
 
         if(props.products.length >= productNumber) {
-            props.updateBg(filterUrl(props.products[productNumber - 1].bg_image))
+            props.updateBg(filterUrl(product.bg_image))
         }
     }
 }
