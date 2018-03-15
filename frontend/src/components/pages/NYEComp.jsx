@@ -7,6 +7,23 @@ import {
     FlexColumn
 } from './UI.jsx'
 
+const PartnershipIntro = props => {
+    const source = `
+The best part of business is the people.
+
+Find here some of our network.
+    `
+
+    return (
+        <div
+            className={ 'NYEComp--wrapper' }>
+            <MarkdownParser
+                styles={{ textColor: 'white', fontSize: '1.5rem' }}
+                content={ source } />
+        </div>
+    )
+}
+
 const FindUs = props => {
     const source = `### Our office
 481 Van Brunt
@@ -76,23 +93,19 @@ Provide internet access to remote villages in Albania, eabling them to connect w
 }
 
 const NYEIntroComp = props => {
-    const source = `Nova XR is a team of artists and technicians programming new media. Our specialty is XR (Extended Reality). We develop from the 4th floor of the 1880’s Beard Street Warehouses, in Brooklyn, New York.
+    const source = `Virtual Reality brings us to a place where the confines of the physical world can disappear. Time and gravity and our relationship with space have been as much a part of the human experience as our need for air. Now, in these virtual worlds, we’re breaking free from these physical measurements.
 
-“Nova” is latin for new, contrasting the future with fundamentals. We chose the name because it is simple, versatile and expressive of our work to innovate media technologies.
+We're reminded of our quest for this new idea of freedom every time we look out the window of our Nova Studios and see the Statue of Liberty.
 
-Virtual Reality brings us to a place where the confines of the physical world can disapear. Time and gravity and our relationship with space have been as much a part of the human experience as our need for air. Now, as the architects of these virtual worlds, we breathe the same air while breaking free from physical measurements.
+100 years after the United States formed its own union, the French designed and built the Statue of Liberty to honor this new version of freedom. It's emergence was followed by one of the greatest periods of human migration, as nearly 20 million people immigrated through the New York Harbor in search of freedom from religious persecution, economic disparity, and tyrannical leadership - elements of their human experience that had shackled them in their home nations.
 
-We’re reminded of our quest for this new idea of freedom every time we look out the window of our Nova Studios in South Brooklyn and see Liberty Island and her.
+As these immigrants arrived to the New York Harbor fresh off a weeks-long journey across the Atlantic, they saw her, 151 feet tall, holding up a beacon of light and with a set of shackles laying broken at her feet.
 
-100 years after the United States formed its own union, the French designed and built the Statue of Liberty to honor this new version of freedom. 10 years later the statue was dedicated on an island in the New York Harbor. It’s emergence was followed by one of the greatest periods of human migration, as nearly 20 million people emigrated through the New York Harbor in search of freedom from religious persecution, economic disparity, and tyrannical leadership - elements of their human experience that had shackled them in their home nations.
+More than a century later, Nova XR's studios sit right here in union with her - Extending Reality along a quest to reach this next world of media.
 
-As these immigrants arrived to the New York Harbor fresh off a months-long journey across the Atlantic, they saw her, 151 feet tall, holding up a beacon of light and with a set of shackles laying broken at her feet.
+Two of our co founders trace their lineage back to folks who emigrated across the Atlantic toward the end of the 19th century, while two others come from Paris, the city in which La Liberté éclairant le monde was conceived.
 
-More than a century later, Nova XR’s studios sit right here in union with her - Extending Reality along a quest to reach this next world.
-
-Two of our co founders trace their lineage back to folks who immigrated across the Atlantic toward the end of the 19th century, while two others come from Paris, the city in which La Liberté éclairant le monde was conceived.
-
-Together we’re a small part of the 21st century movement into Extended Reality, and we’re inviting others to come along.`
+Together we're a small part of the 21st century movement into Extended Reality, and we're inviting others to come along.`
 
     return (
         <div
@@ -105,50 +118,52 @@ Together we’re a small part of the 21st century movement into Extended Reality
 }
 
 const NYEStreamComp = props => {
-    const source = `### Interested in Joining Nova as an Apprentice?
+    const source = `Nova provide advance access to advance technologies. We produce XR media for businesses to reduce internal costs, increase sales, or both.
 
-Part and full time positions available:
+### Joe Mecca
 
-- Apprenticeship Positions:
-  - Game Engine Developers
-  - Coders & Hackers
-  - Graphic Designer, Videographer, Audio Engineer, Animator
-  - Office Assistant
-  - Operations Manager
+*Live and let*
 
-- Characteristics
-  - Organized
-  - Prompt
-  - Accountable
-  - Thorough
-  - Innovative
-  - Determined
-  - Driven
-  - Self-starter
+- Twitter @Mecs13
+- Linkedin /in/jrmecca
+- Steem /mecs13
+- Github /mecs13
+- Sketchfab /mecs13
 
-- Skills
-  - Video creation
-  - Animation
-  - Ad audio engineering
-  - Photogrammetry
-  - Networking
-  - Sketch
-  - Sales
-  - Digital marketing
-  - Python
-  - Java
-  - React
-  - Photoshop
-  - SQL
-  - JS
-  - C++
-  - Unity
-  - Unreal engine
-  - WebGL, WebXR / WebVR
-  - Blockchain, Ethereum
-  - Machine learning
-  - Neuro research
-`
+
+### Thomas Binetruy
+
+*syntax is important*
+
+- Twitter @tbinetruy
+- Linkedin /in/thomas-binetruy
+
+
+### Kyle Kesses
+
+*really good job, everybody.  great work!*
+
+
+### Jacques Bertrand
+
+*Let's smoke a small one*
+
+
+
+### Anna Irene
+
+*01101000 01101001*
+
+- Email : AnnaIrene@novamedia.nyc
+- Telegram : https://t.me/xrnewyork
+- Instagram :  @novaxrmedia
+- Facebook : https://www.facebook.com/N0vamedia/
+- Twitter : @N0vamedia
+- GoogleVoice : (732) 903-5537
+- slack : novamedianyc.slack.com
+- steemit : @novaxr
+- Sketchfab : /novamedianewyork
+    `
 
     return (
         <div
@@ -188,6 +203,7 @@ export {
     NYEDestComp,
     NYEDistrComp,
     Community,
+    PartnershipIntro,
     Philosophy,
     FindUs,
 }

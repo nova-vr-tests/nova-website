@@ -18,6 +18,7 @@ import {
     NYEIntroComp,
     NYEStreamComp,
     FindUs as FindUsComp,
+    PartnershipIntro,
 } from './NYEComp.jsx'
 
 /************************************
@@ -128,7 +129,7 @@ const labLive: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Lab Live :)` }
+                headerText={ `Understanding the concepts at the root of this advanced technology is crucial to discovering the most useful applications for it. Here we’ll deliver past studies, simple descriptions, and the latest news surrounding and driving industry industry growth.` }
                 fetchUrl={ new API().urls.blogPosts.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.blogPosts.list } />,
@@ -161,7 +162,7 @@ const partnershipIntro: Array<ISlide> = [
         h2,
         path,
         pid,
-        content: () => <div>partnership intro</div>,
+        content: () => <PartnershipIntro />,
         showNextSectionArrow: false,
         layers: [
             {
@@ -184,7 +185,7 @@ const productions: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Production :)` }
+                headerText={ `XR Production is the business of bringing video game and movie production together to achieve an objective.` }
                 fetchUrl={ new API().urls.productions.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.productions.list } />,
@@ -211,7 +212,7 @@ const partners: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Partners :)` }
+                headerText={ `Consider XR content creation akin to movie production. Just like creating a Hollywood film or an advertising campaign, we unite - among others - investors, production studios, innovation labs, writers, and filmographers.` }
                 fetchUrl={ new API().urls.partners.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.partners.list } />,
@@ -238,7 +239,7 @@ const careers: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Careers :)` }
+                headerText={ `We make our own destinies. If you want to get involved, reach out.` }
                 fetchUrl={ new API().urls.careers.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.careers.list } />,

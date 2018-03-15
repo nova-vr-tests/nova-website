@@ -127,7 +127,7 @@ const industry: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ `Industry :)` }
+                headerText={ `People of every industry are finding solutions to their gravest challenges by producing immersive (XR) media content.  Share, communicate and learn faster than ever.` }
                 fetchUrl={ new API().urls.industries.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.industries.list } />,
@@ -152,7 +152,7 @@ const crossIndustry: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ 'Cross Industry :)' }
+                headerText={ 'Without regard to geographic location, VR unites people inside the same virtual space. This increases productivity within a business and allows those outside the business to empathize with its mission.' }
                 fetchUrl={ new API().urls.crossIndustry.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.crossIndustry.list } />,
@@ -177,7 +177,7 @@ const learningLab: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ ' Learning Lab :)' }
+                headerText={ 'Understanding the concepts at the root of this advanced technology is crucial to discovering the most useful applications for it. Here we’ll deliver past studies, simple descriptions, and the latest news surrounding and driving industry industry growth.' }
                 fetchUrl={ new API().urls.learningLab.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.learningLab.list } />,
@@ -210,8 +210,11 @@ const Publications: Array<ISlide> = [
         path,
         pid,
         showNextSectionArrow: false,
+        overrideHeader: true,
         content: () =>
-            <BlogPostList fetchUrl={ new API().urls.publications.list } />,
+            <BlogPostList
+                headerText={ 'These Publications are to serve as in depth resources for better understanding financial strategies and market entry. They are part of the free resources Nova provides to the community at large.' }
+                fetchUrl={ new API().urls.publications.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.publications.list } />,
         layers: [

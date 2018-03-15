@@ -17,6 +17,8 @@ import deployBg from '../img/deployBg.png'
 
 import type { ISlide, IPage } from './types.jsx'
 
+import { DevelopIntro } from './page2Comps.jsx'
+
 /************************************
 
     Educational Portal
@@ -37,7 +39,7 @@ const design: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Design :)` }
+                headerText={ `The intermediary between information and understanding.` }
                 fetchUrl={ new API().urls.design.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.design.list } />,
@@ -69,7 +71,7 @@ const developIntro: Array<ISlide> = [
         h2,
         path,
         pid,
-        content: () => <div>Develop</div>,
+        content: () => <DevelopIntro />,
         paralax: 0,
         theme: appStyles.themeTypes.inverseTheme,
         layers: [
@@ -94,7 +96,7 @@ const program: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Program :)` }
+                headerText={ `Programming is centralized in a *game engine*, which is a software framework used to create interactive 3D media (XR).  We build XR in game engines.` }
                 fetchUrl={
                     new API().urls.program.list } />,
         mainPanelContent: () =>
@@ -126,7 +128,7 @@ const produce: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Produce :)` }
+                headerText={ `Peeling back the layers of an Extended Reality experience reveals the various components required to build one. Here are some of the core building blocks of XR.` }
                 fetchUrl={
                     new API().urls.produce.list } />,
         mainPanelContent: () =>
@@ -189,7 +191,7 @@ const deploy: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Deploy :)` }
+                headerText={ `This is the process of presenting your XR content to the right audience with the proper timing. The deployment of XR still abides by traditional marketing basics but requires the navigation of additional 3D software and hardware.` }
                 fetchUrl={
                     new API().urls.deploy.list } />,
         mainPanelContent: () =>
