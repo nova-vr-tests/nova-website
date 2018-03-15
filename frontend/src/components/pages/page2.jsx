@@ -158,7 +158,7 @@ const network: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Network :)` }
+                headerText={ `Consider “Network” in this context to be the digital unification of people and industrial products. These are some of the emerging technologies to be integrated with your ideas.` }
                 fetchUrl={
                     new API().urls.network.list } />,
         mainPanelContent: () =>
