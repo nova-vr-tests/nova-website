@@ -102,7 +102,7 @@ class DesignList(generics.ListCreateAPIView):
 
 class DesignDetail(generics.RetrieveAPIView):
     queryset = Design.objects.all()
-    serializer_class = Design
+    serializer_class = DesignSerializer
 
 ### Program
 
@@ -112,7 +112,7 @@ class ProgramList(generics.ListCreateAPIView):
 
 class ProgramDetail(generics.RetrieveAPIView):
     queryset = Program.objects.all()
-    serializer_class = Produce
+    serializer_class = ProgramSerializer
 
 ### Produce
 
