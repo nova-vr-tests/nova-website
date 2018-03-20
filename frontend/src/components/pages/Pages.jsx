@@ -67,13 +67,13 @@ const category3: IMenuSection = {
     title: "Nova XR",
     links: [
         {
-            title: "Who We Are",
+            title: "Who we are",
         },
         {
             title: "Partnership",
         },
         {
-            title: "Find Us",
+            title: "Find us",
         },
     ],
 }
