@@ -50,14 +50,14 @@ const getStyles: GetStyles<Props, Styles> = props => {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
         h2: {
-            paddingLeft: '4rem',
-            paddingBottom: 'calc(2 * ' + appStyles.unitHeight + ')',
+            paddingBottom: 'calc(4 * ' + appStyles.unitHeight + ')',
             boxSizing: 'border-box',
             fontSize: '2rem',
             margin: 0,
+            textAlign: 'center',
         },
         sidePanel: {
-            marginTop: '20vh',
+            marginTop: 'calc(1.5 * ' + appStyles.unitHeight + ')',
         },
         content: {
             backgroundColor,
