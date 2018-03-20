@@ -22,7 +22,7 @@ const getStyles = props => {
             minHeight: linkWrapperHeight,
             fontSize: '2rem',
             justifyContent: 'fle',
-            border: '1.5px solid white',
+            border: '1px solid rgba(255, 255, 255, 0.6)',
             margin: `calc(0.45 * ${appStyles.unitHeight})`,
             cursor: 'pointer',
             ...borderRadius,
