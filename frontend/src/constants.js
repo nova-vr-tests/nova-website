@@ -15,7 +15,7 @@ const INTRO_FINISHED = 5
 // Default theme style constants
 const defaultTheme: AppThemeStyles = {
     lineBgColor: 'rgba(255, 255, 255, 0.1)',
-    menuBorder: '1px solid rgba(255, 255, 255, 0.3)',
+    menuBorder: '1px solid rgba(255, 255, 255, 0.6)',
     fatMenuBorder: '1px solid rgba(255, 255, 255, 0.6)',
     menuTitleActive: 'rgba(0, 0, 0, 0.6)',
     menuFontColor: '#FFF',
