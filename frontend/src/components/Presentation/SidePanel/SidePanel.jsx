@@ -184,7 +184,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
             <div style={ styles.contentWrapper }>
                 <ToggleButton
                     isOpened={ props.isOpened }
-                   onClick={ () => props.setIsOpened(!isOpened) }
+                    onClick={ () => props.setIsOpened(!isOpened) }
                     linePosition={ props.linePosition }
                     type={ props.type }
                 />
