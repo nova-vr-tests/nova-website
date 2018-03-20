@@ -25,7 +25,7 @@ const { widthFactor } = appStyles.sidebar
 const getStyles: GetStyles<Props, Styles> = props => {
     const sidebarWidth = 'calc(' + widthFactor + ' * ' + unitWidth + ')'
 
-    let backgroundColor = 'rgba(0, 0, 0, 0.1)'
+    let backgroundColor = 'rgba(255, 255, 255, 0.5)'
     let wrapperOpacity = props.opacity
     if (document.documentElement.clientWidth < appStyles.mediaQueries.phone) {
         backgroundColor = 'rgba(0, 0, 0, 0)'
