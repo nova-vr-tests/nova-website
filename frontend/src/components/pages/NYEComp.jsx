@@ -25,8 +25,7 @@ Find here some of our network.
 }
 
 const FindUs = props => {
-    const source = `### Our office
-481 Van Brunt
+    const source = `481 Van Brunt
 
 Brooklyn, New York 11231, United States
 `
