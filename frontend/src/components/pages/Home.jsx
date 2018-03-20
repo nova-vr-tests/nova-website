@@ -130,7 +130,7 @@ const HomeMainPanel = props => {
                         <p
                             key={ 3 }
                             style={ styles.p }>
-                            We provide XR Media solutions for business. Our work includes sourcing development, production management, and market entry.
+                            We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry.
                         </p>
                     </div>
     )
