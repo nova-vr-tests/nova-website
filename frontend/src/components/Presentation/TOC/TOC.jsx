@@ -48,7 +48,7 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
             transition: 'opacity 0.5s linear',
         },
         link: {
-            height: 'calc(4 / 3 * ' + appStyles.unitHeight + ')',
+            height: 'calc(3 / 2 * ' + appStyles.unitHeight + ')',
             width,
             display: 'flex',
             justifyContent: 'center',

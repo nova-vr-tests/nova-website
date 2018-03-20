@@ -39,7 +39,7 @@ const getStyles = (props, padding) => ({
         fontSize: '2.0rem',
         letterSpacing: '0.10rem',
         margin: 0,
-        transform: 'translateY(-50%)',
+        transform: 'translateY(-70%)',
         left: 0,
         right: 0,
         textAlign: 'center',
