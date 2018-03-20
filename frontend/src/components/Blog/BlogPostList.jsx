@@ -140,6 +140,7 @@ const createList = props => {
     props.setList(() => () => <div style={ styles.listWrapper }><List /></div>)
     console.log('creating list')
 }
+
 const SmartComp = compose(
     withState(
         'blogPosts',
