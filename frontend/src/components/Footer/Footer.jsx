@@ -80,10 +80,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
             </div>
             <div
                 style={ styles.footerBackground }
-                className={
-                    "footer-background "
-                }
-            >
+                className={ "footer-background " }>
                 <div style={{ position: 'relative', width: '100vw' }}>
                         {
                             props.introKeyframe >= INTRO_FINISHED + 1 ?
