@@ -2,6 +2,7 @@ import { styles as appStyles } from '../../../constants.js'
 
 const getStyles = (props, padding) => {
     let customWrapperHeight = 3
+    // check if TOC is on current page (see TOC.jsx for algo, needs refactor)
     if(props.pages[props.currentPage]) {
         const h2 = props.pages
                         .filter(e => e.h1 === props.pages[props.currentPage].h1 && (e.h2 !== '' && e.h2 !== 'Introduction'))
