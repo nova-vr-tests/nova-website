@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { styles as appStyles } from '../../../constants.js'
+
 import twitter from '../../img/social/twitter.svg'
 import facebook from '../../img/social/facebook.svg'
 import linkedin from '../../img/social/linkedin.svg'
@@ -14,8 +16,11 @@ const mapDispatchToProps = dispatch => ({
 
 const styles = {
     wrapper: {
+        minHeight: `calc(1 * ${ appStyles.unitHeight } + 2px)`,
+        maxHeight: `calc(1 * ${ appStyles.unitHeight } + 2px)`,
+        height: `calc(1 * ${ appStyles.unitHeight } + 2px)`,
         display: 'flex',
-        padding: '1rem 1rem',
+        padding: '0.5rem 0.5rem',
         paddingRight: '0rem',
         borderTopLeftRadius: '25px',
         borderBottomLeftRadius: '25px',
@@ -24,10 +29,12 @@ const styles = {
     },
     iconWrapper: {
         margin: '0 1rem',
+        display: 'flex',
+        alignItems: 'center',
     },
     icon: {
-        height: '1.5rem',
-        width: '1.5rem',
+        height: '1rem',
+        width: '1rem',
         cursor: 'pointer',
     }
 }
