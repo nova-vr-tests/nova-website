@@ -27,6 +27,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
 
     let backgroundColor = 'rgba(255, 255, 255, 0.5)'
     let wrapperOpacity = props.opacity
+
     if (document.documentElement.clientWidth < appStyles.mediaQueries.phone) {
         backgroundColor = 'rgba(0, 0, 0, 0)'
 
