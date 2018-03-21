@@ -22,3 +22,8 @@ body {
     font-family: TTNorms-regular;
     src: url("./fonts/TT_Norms/TTNorms-Regular.otf") format("opentype");
 }
+
+@font-face {
+    font-family: caslon;
+    src: url("./fonts/Caslon/Caslon.ttf");
+}

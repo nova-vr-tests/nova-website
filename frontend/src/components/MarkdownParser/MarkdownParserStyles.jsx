@@ -54,6 +54,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         flexDirection: 'column',
         overflowX: 'auto',
         fontSize,
+        fontFamily: 'caslon',
     }
 
     const image = {
