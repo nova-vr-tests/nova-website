@@ -21,7 +21,9 @@ export type ReduxDispatch = {
     updateCurrentFooterPage: (currentFooterPage: number) => void,
 }
 
-export type OwnProps = {}
+export type OwnProps = {
+    bgUrl: string,
+}
 
 export type Props = OwnProps & ReduxState & ReduxDispatch
 

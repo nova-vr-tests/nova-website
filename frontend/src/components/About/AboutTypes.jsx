@@ -9,6 +9,7 @@ export type ReduxState = {
 export type OwnProps = {
     opacity: number,
     windowWidth: number,
+    bgUrl: string,
 }
 
 

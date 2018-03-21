@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { connect }from 'react-redux'
+import { compose, withState, lifecycle } from 'recompose'
 import './styles/Footer.css'
 import { INTRO_FINISHED } from '../../constants.js'
 import { toggleSidebar } from '../../reducer/actions/Sidebar.js'
@@ -14,6 +15,8 @@ import arrowImg from '../img/arrow.svg'
 import AboutUs from '../About/About.jsx'
 
 import { Svg } from '../Header/Header.jsx'
+
+import aboutBg from '../img/footerBgs/contact.png'
 
 import type {
     ReduxState,
@@ -85,6 +88,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                         {
                             props.introKeyframe >= INTRO_FINISHED + 1 ?
                                     <AboutUs
+                                        bgUrl={ props.bgUrl }
                                         opacity={ props.isFooterOpened ? 1 : 0 }
                                         windowWidth={ props.windowWidth }
                                     />
@@ -150,10 +154,23 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
     )
 }
 
+const footerLifecycle= {
+    componentDidMount() {},
+}
+
+const FooterSmart = compose(
+    withState(
+        'bgUrl',
+        'setBgUrl',
+        aboutBg,
+    ),
+    lifecycle(footerLifecycle),
+)(FooterDumb)
+
 
 const ConnectedFooter: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
     mapDispatchToProps
-)(FooterDumb)
+)(FooterSmart)
 
 export default ConnectedFooter

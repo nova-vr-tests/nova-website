@@ -43,6 +43,9 @@ const getStyles: GetStyles<Props, Styles> = props => {
             transition: 'opacity 0.5s linear',
             paddingLeft: sidebarWidth,
             height: '100%',
+            backgroundImage: `url(${props.bgUrl})`,
+            backgroundSize: 'cover',
+            backgroundPositionY: '-10rem',
         },
         p: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
