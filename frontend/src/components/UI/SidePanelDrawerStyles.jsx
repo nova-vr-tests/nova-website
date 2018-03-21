@@ -12,6 +12,7 @@ const getStyles = props => {
     let position = props.position
 
     let height = 'inherit'
+    height = `calc(14 * ${unitHeight})`
     let overflowY = 'inherit'
     let wrapperWidth = `calc(${comps.length} * ${sidePanelWidth})`
 

@@ -137,8 +137,7 @@ const createList = props => {
     })
 
     const styles = getStyles(props)
-    props.setList(() => () => <div style={ styles.listWrapper }><List /></div>)
-    console.log('creating list')
+    props.setList(() => () => <div style={ styles.listWrapper }><List /><div style={ styles.trailingDiv }></div></div>)
 }
 
 const SmartComp = compose(

@@ -62,6 +62,9 @@ const getStyles = props => {
             flex: 1,
             justifyContent: 'center',
         },
+        trailingDiv: {
+            minHeight: '4rem',
+        },
     }
 }
 

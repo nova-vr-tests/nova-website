@@ -28,6 +28,9 @@ const getStyles = props => {
             flexDirection: 'column',
             flex: 1,
         },
+        trailingDiv: {
+            minHeight: '4rem',
+        },
     }
 }
 
