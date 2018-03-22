@@ -129,30 +129,20 @@ styles.themes[styles.themeTypes.openedFooterTheme] = {
     bgOverlayColor: 'rgba(0, 0, 0, 0.3)',
 }
 
-const proxiedStyles = new Proxy(styles, {
-    get: function(target, property, receiver) {
-        if(property === 'unitHeightJs') {
-            // converting 100vh to px
-            // cannot use window.innerHeight or document.documentElement.innerHeight
-            // because of iOS safari minimal UI
-            return document.querySelector('body').clientHeight / 24
-        } else if (property === 'sidePanel'){
-            const clientWidth = document.documentElement.clientWidth
+window.addEventListener('resize', () => {
+    styles.unitHeightJs = document.querySelector('body').clientHeight / 24
 
-            const coefAbsoluteWidth = 11
-            const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
-            let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
+    const clientWidth = document.documentElement.clientWidth
+    const coefAbsoluteWidth = 11
+    const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
+    let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
 
-            if(clientWidth < styles.mediaQueries.tablet)
-                openedWidthCoef = 13
+    if(clientWidth < styles.mediaQueries.tablet)
+        openedWidthCoef = 13
 
-            return {
-                openedWidthCoef, //: 11,
-                transitionTime: 300, //ms
-            }
-        } else {
-            return target[property]
-        }
+    styles.sidePanel = {
+        openedWidthCoef, //: 11,
+        transitionTime: 300, //ms
     }
 })
 
@@ -162,5 +152,5 @@ export {
     LOGO_FRAME3,
     FOOTER_FINAL,
     INTRO_FINISHED,
-    proxiedStyles as styles,
+    styles,
 }
