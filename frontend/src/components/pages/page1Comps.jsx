@@ -41,7 +41,7 @@ const DesignInterfaceComp = props => {
         }
     }
 
-    const source = `XR [Extended Reality], such as Virtual reality (VR) and Augmented Reality (AR) empower communication, collaboration and learning. XR media is interactive, dynamic and conscious of space.
+    const source = `XR [Extended Reality](https://en.wikipedia.org/wiki/Extended_reality), such as Virtual reality (VR) and Augmented Reality (AR) empower communication, collaboration and learning. XR media is interactive, dynamic and conscious of space.
 
 These technologies will increasingly be in the home. Through your phone (or XR glasses/goggles) you can engage simulated environments, digital models, and other dynamic 3D information for entertainment, education, productivity, and much more.
 
