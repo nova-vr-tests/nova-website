@@ -7,6 +7,10 @@ import whoWeAreBg from '../img/whoWeAreBg.jpg'
 import aboutUsBg from '../img/aboutUsBg.png'
 import communityBg from '../img/communityBg.jpg'
 import labLiveBg from '../img/labLiveBg.png'
+import partnersBg from '../img/bgs/partners.jpg'
+import careersBg from '../img/bgs/careers.png'
+import partnershipBg from '../img/bgs/partnership.jpg'
+import productionBg from '../img/bgs/production.png'
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -166,7 +170,7 @@ const partnershipIntro: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: findUsLayer1,
+                imgUrl: partnershipBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -193,7 +197,7 @@ const productions: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: findUsLayer1,
+                imgUrl: productionBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -220,7 +224,7 @@ const partners: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: findUsLayer1,
+                imgUrl: partnersBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -247,7 +251,7 @@ const careers: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: findUsLayer1,
+                imgUrl: careersBg,
                 paralax: 0,
                 opacity: 1,
             },
