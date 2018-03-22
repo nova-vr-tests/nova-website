@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8000",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.5",
     "package.json": "^2.0.1",
     "react": "^16.0.0",
