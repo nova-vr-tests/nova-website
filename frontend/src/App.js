@@ -1,4 +1,5 @@
-import "babel-polyfill"
+import 'babel-polyfill'
+import 'proxy-polyfill'
 
 import React, { Component } from 'react'
 import { connect }from 'react-redux'

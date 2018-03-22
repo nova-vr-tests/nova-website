@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.5",
     "package.json": "^2.0.1",
+    "proxy-polyfill": "^0.2.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-form": "^2.15.2",

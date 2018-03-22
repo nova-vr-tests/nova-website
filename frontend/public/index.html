@@ -53,16 +53,6 @@ window.addEventListener('error', function(e) {
     } else {
         document.getElementById(DOM_ID).textContent += '\n\n' + errorText;
     }
-
-    // Example: log the error to remote service.
-    // Note: you can log errors to a remote service, to understand
-    //       and monitor the types of errors encountered by regular users,
-    //       Googlebot, and other crawlers.
-    var client = new XMLHttpRequest();
-    client.open('POST', 'https://example.com/logError');
-    client.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-    client.send(errorText);
-
 });
 //        window.onerror = function (message, url, lineNo, colNo, error) {
 //            console.log(arguments);
