@@ -27,59 +27,6 @@
     <meta property="og:description"   content="" />
     <meta property="og:image"         content="" />
 
-    <!-- google search console debug msg -->
-    <script>
-window.addEventListener('error', function(e) {
-    var errorText = [
-        e.message,
-        'URL: ' + e.filename,
-        'Line: ' + e.lineno + ', Column: ' + e.colno,
-        'Stack: ' + (e.error && e.error.stack || '(no stack trace)')
-    ].join('\n');
-
-    // Example: log errors as visual output into the host page.
-    // Note: you probably don’t want to show such errors to users, or
-    //       have the errors get indexed by Googlebot; however, it may
-    //       be a useful feature while actively debugging the page.
-    var DOM_ID = 'rendering-debug-pre';
-    if (!document.getElementById(DOM_ID)) {
-        var log = document.createElement('pre');
-        log.id = DOM_ID;
-        log.style.whiteSpace = 'pre-wrap';
-        log.style.color = 'red';
-        log.textContent = errorText;
-        if (!document.body) document.body = document.createElement('body');
-        document.body.insertBefore(log, document.body.firstChild);
-    } else {
-        document.getElementById(DOM_ID).textContent += '\n\n' + errorText;
-    }
-});
-//        window.onerror = function (message, url, lineNo, colNo, error) {
-//            console.log(arguments);
-//
-//            let container = document.createElement('div');
-//
-//            container.style.color = 'red';
-//            container.style.position = 'fixed';
-//            container.style.background = '#eee';
-//            container.style.padding = '2em';
-//            container.style.top = '1em';
-//            container.style.left = '1em';
-//
-//            let msg = document.createElement('pre');
-//            msg.innerText = [
-//            'Message: ' + message,
-//            'URL: ' + url,
-//            'Line: ' + lineNo,
-//            'Column: ' + colNo,
-//            'Stack: ' + (error && error.stack)
-//            ].join('\n');
-//
-//            container.appendChild(msg);
-//
-//            document.body.appendChild(container);
-//        };
-    </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- and search console for: http://novamedia.nyc -->
