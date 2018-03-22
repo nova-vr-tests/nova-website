@@ -46,6 +46,7 @@ window.addEventListener('error', function(e) {
         var log = document.createElement('pre');
         log.id = DOM_ID;
         log.style.whiteSpace = 'pre-wrap';
+        log.style.color = 'red';
         log.textContent = errorText;
         if (!document.body) document.body = document.createElement('body');
         document.body.insertBefore(log, document.body.firstChild);
