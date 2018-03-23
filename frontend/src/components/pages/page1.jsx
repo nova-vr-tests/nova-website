@@ -5,13 +5,12 @@ import * as React from 'react'
 import intro from '../img/default.jpg'
 
 import productsBg from '../img/design/3.png'
-import industryBg from '../img/design/2.png'
 import publicationsBg from '../img/publicationsBg.png'
 import worldLayer1 from '../img/design/world-layer1.png'
 import worldLayer2 from '../img/design/world-layer2.png'
-import interfaceLayer1 from '../img/design/interface-layer1.png'
-import interfaceLayer2 from '../img/design/interface-layer2.png'
-import interfaceLayer3 from '../img/design/interface-layer3.png'
+
+import consultationBg from '../img/bgs/consultation-intro.jpeg'
+import industryBg from '../img/bgs/industry.jpeg'
 
 import { styles as appStyles } from '../../constants.js'
 
@@ -99,16 +98,7 @@ const consultationIntro: Array<ISlide> = [
         content: () => <DesignInterfaceComp />,
         showNextSectionArrow: true,
         layers: [
-            createLayer(interfaceLayer1, 0, 1),
-            createLayer(interfaceLayer2, 0, 1),
-            createLayer(interfaceLayer3, 0, 0),
-        ],
-    },
-    {
-        layers: [
-            createLayer(interfaceLayer1, 100, 1),
-            createLayer(interfaceLayer2, 0, 1),
-            createLayer(interfaceLayer3, 0, 0),
+            createLayer(consultationBg, 0, 1),
         ],
     },
 ]

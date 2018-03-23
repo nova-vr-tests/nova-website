@@ -2,8 +2,6 @@
 
 import * as React from 'react'
 
-import bg1 from '../img/design/1.png'
-
 import { styles as appStyles } from '../../constants.js'
 
 import Blog from '../Blog/Blog.jsx'
@@ -14,6 +12,10 @@ import interfaceLayer1 from '../img/design/interface-layer1.png'
 import interfaceLayer2 from '../img/design/interface-layer2.png'
 import developBg from '../img/develop-bg.jpg'
 import deployBg from '../img/deployBg.png'
+
+import produceBg from '../img/bgs/produce.png'
+import programBg from '../img/bgs/program.png'
+import networkBg from '../img/bgs/network.png'
 
 import type { ISlide, IPage } from './types.jsx'
 
@@ -107,7 +109,7 @@ const program: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: programBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -139,7 +141,7 @@ const produce: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: produceBg,
                 paralax: 0,
                 opacity: 1,
             },
@@ -169,7 +171,7 @@ const network: Array<ISlide> = [
         showNextSectionArrow: false,
         layers: [
             {
-                imgUrl: bg1,
+                imgUrl: networkBg,
                 paralax: 0,
                 opacity: 1,
             },
