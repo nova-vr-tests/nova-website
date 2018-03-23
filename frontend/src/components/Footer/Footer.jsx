@@ -17,6 +17,7 @@ import AboutUs from '../About/About.jsx'
 import { Svg } from '../Header/Header.jsx'
 
 import aboutBg from '../img/footerBgs/contact.png'
+import loginBg from '../img/footerBgs/login.png'
 
 import type {
     ReduxState,
@@ -61,9 +62,10 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
     const styles = getStyles(props)
 
-    const openFooter = (footerPage: number) => {
+    const openFooter = (footerPage: number, bgUrl: string) => {
         props.updateCurrentFooterPage(footerPage)
         props.updateIsFooterOpened(true)
+        props.setBgUrl(bgUrl)
     }
 
     return (
@@ -118,7 +120,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
             </div>
             <div style={ styles.quickLinks }>
                 <span
-                    onClick={ () => openFooter(footerPage.LEGALS) }
+                    onClick={ () => openFooter(footerPage.LEGALS, aboutBg) }
                     style={{
                         color: props.currentFooterPage === footerPage.LEGALS  && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                         transition: 'color 0.1s linear',
@@ -127,7 +129,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                     Legals
                 </span>
                 <span
-                    onClick={ () => openFooter(footerPage.CONTACT) }
+                    onClick={ () => openFooter(footerPage.CONTACT, aboutBg) }
                     style={{
                         color: props.currentFooterPage === footerPage.CONTACT && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                         marginLeft: '1rem',
@@ -137,7 +139,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                     Contact
                 </span>
                 <span
-                    onClick={ () => openFooter(footerPage.LOGIN) }
+                    onClick={ () => openFooter(footerPage.LOGIN, loginBg) }
                     style={{
                         color: props.currentFooterPage === footerPage.LOGIN   && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                         marginLeft: '1rem',

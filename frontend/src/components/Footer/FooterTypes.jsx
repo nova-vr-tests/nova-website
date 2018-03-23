@@ -25,7 +25,11 @@ export type OwnProps = {
     bgUrl: string,
 }
 
-export type Props = OwnProps & ReduxState & ReduxDispatch
+export type ComposeProps = {
+    setBgUrl: (bgUrl: string) => void,
+}
+
+export type Props = OwnProps & ReduxState & ReduxDispatch & ComposeProps
 
 export type PresentationControlsProps = {
     opacity: number
