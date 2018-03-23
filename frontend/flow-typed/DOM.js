@@ -5,6 +5,9 @@ declare var document: { // eslint-disable-line no-unused-vars
         clientHeight: number,
         clientWidth: number,
     },
+    location: {
+        href: string,
+    },
 
     // fbjs uses these
     body: {
