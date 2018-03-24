@@ -7,7 +7,7 @@ const getStyles = props => {
     const headerDisplay = props.showHeader ? 'inherit' : 'none'
 
     let height = `calc(100vh - 11 * ${unitHeight})`
-    let backgroundColor = 'rgba(255, 255, 255, 0.7)'
+    let backgroundColor = 'rgba(255, 255, 255, 0.5)'
     let color = 'black'
 
     if(clientWidth < appStyles.mediaQueries.phone || props.sidePanelMode) {
@@ -21,12 +21,12 @@ const getStyles = props => {
 
     return {
         wrapper: {
-            backgroundColor,
         },
         headerWrapper: ({
             display: headerDisplay,
         }),
         articleWrapper: {
+            backgroundColor,
             height,
             boxSizing: 'border-box',
             color,

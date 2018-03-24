@@ -77,12 +77,15 @@ const Header = props => {
                 <div style={ styles.socialWrapper }>
                     <img
                         style={ styles.img }
+                        alt="FB"
                         src={ facebookIcon } />
                     <img
                         style={ styles.img }
+                        alt="LI"
                         src={ linkedinIcon } />
                     <img
                         style={ styles.img }
+                        alt="TW"
                         src={ twitterIcon } />
                 </div>
             </div>
@@ -118,7 +121,7 @@ const Blog = props => {
             <div style={ styles.headerWrapper }>
                 <PanelBg
                     zIndex={ -1 }
-                    bgColor="rgba(255, 255, 255, 1)"
+                    bgColor="rgba(255, 255, 255, 0.7)"
                     type={ 1 }
                     rightEdgeCoef={ sidePanel.openedWidthCoef }
                     widthCoef={ widthCoef } />
