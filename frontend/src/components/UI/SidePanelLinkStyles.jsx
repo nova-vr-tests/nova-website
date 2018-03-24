@@ -13,7 +13,7 @@ const getStyles = props => {
             borderBottomLeftRadius: '15px',
     }
 
-    const pictoWidthCoef = props.isSquarePicto ? 1 : 2
+    const pictoWidthCoef = props.isSquarePicto ? 1 : 1.5
     const pictoTransform = props.isSquarePicto ? 'inherit' : `translate(-20px, 20px)`
     const pictoDisplay = props.pictoUrl === '' ? 'none' : 'inherit' // dont' show pictos if url is empty
     const pictoBgDisplay = props.pictoBgUrl === '' ? 'none' : 'inherit' // dont' show pictos if url is empty
