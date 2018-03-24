@@ -52,6 +52,7 @@ function loadImg(props: Props) {
     var img = new Image()
     img.src = props.url + '?' + Math.floor(Math.random() * 100)
     img.crossOrigin = "anonymous"
+
     img.onload = function() {
         draw(this)
     }
@@ -59,13 +60,18 @@ function loadImg(props: Props) {
     function draw(img: Image) {
         var canvas = props.getRef()
         if(canvas) {
-            canvas.height = 6.73 * appStyles.unitHeightJs
-            canvas.width = canvas.height
-            canvas.style.transform = `translateY(calc(-0.73 * ${appStyles.unitHeight}))`
+            canvas.height = img.height //
+            canvas.width = img.width //canvas.height
+            const scaleFactor = 6.75 * appStyles.unitHeightJs / canvas.width
+            canvas.style.position = 'absolute'
+            canvas.style.transform =
+                `translateY(calc(-${canvas.height * (1- scaleFactor) * 0.5}px - 0.76 * ${appStyles.unitHeight}))
+                translateX(-${canvas.width * (1- scaleFactor) * 0.5}px)
+                scale(${scaleFactor}, ${scaleFactor})`
+
             const ctx = canvas.getContext('2d')
 
-            const scaleFactor = canvas.width / img.width
-            ctx.scale(scaleFactor, scaleFactor)
+            //ctx.scale(scaleFactor, scaleFactor)
             ctx.drawImage(img, 0, 0)
             img.style.display = 'none'
 
@@ -89,14 +95,14 @@ function loadImg(props: Props) {
                     const vh = document.documentElement.clientHeight / 100
                     const vw = document.documentElement.clientWidth / 100
                     const { unitWidthJs, unitHeightJs } = appStyles
-                    const R = appStyles.header.radius * vh
-                    const Cy = appStyles.header.centerY * vh - 2.2 * unitHeightJs
-                    const Cx = appStyles.header.centerX * vw - 4 * unitWidthJs
+                    const R = appStyles.header.radius * vh /scaleFactor
+                    const Cy = (appStyles.header.centerY * vh - 2.2 * unitHeightJs) / scaleFactor
+                    const Cx = (appStyles.header.centerX * vw - 5 * unitWidthJs) / scaleFactor
                     const f = (x, y) =>  sqrt(pow(x - Cx, 2) + pow(y - Cy, 2)) - R
                     if(f(p.x, p.y) < -1000000) {
                         data[i + 3] = 0 // alpha
                     } else if(f(p.x, p.y) < 0) {
-                        data[i + 1] = 0.5 // alpha
+                        data[i + 3] = 0.5 // alpha
                     }
                 }
                 ctx.putImageData(imageData, 0, 0)

@@ -1,7 +1,5 @@
 // @flow
 
-import { styles as appStyles } from '../../constants.js'
-
 import type { Props } from './HeaderPictoTypes.jsx'
 
 import type {
