@@ -15,6 +15,8 @@ const getStyles = props => {
 
     const pictoWidthCoef = props.isSquarePicto ? 1 : 2
     const pictoTransform = props.isSquarePicto ? 'inherit' : `translate(-20px, 20px)`
+    const pictoDisplay = props.pictoUrl === '' ? 'none' : 'inherit' // dont' show pictos if url is empty
+    const pictoBgDisplay = props.pictoBgUrl === '' ? 'none' : 'inherit' // dont' show pictos if url is empty
 
     const styles = {
         linkWrapper: {
@@ -31,14 +33,25 @@ const getStyles = props => {
             justifySelf: 'flex-end',
             borderRight: 'none',
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            position: 'relative',
         },
         activeLink: {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        },
+        pictoBg: {
+            height: `calc(${linkWrapperHeight} - 0px)`,
+            width: `calc(${pictoWidthCoef} * ${linkWrapperHeight})`,
+            ...borderRadius,
+            display: pictoBgDisplay,
+            position: 'absolute',
+            left: 0,
+            top: 0,
         },
         picto: {
             height: `calc(${linkWrapperHeight} - 0px)`,
             width: `calc(${pictoWidthCoef} * ${linkWrapperHeight})`,
             transform: pictoTransform,
+            display: pictoDisplay,
             ...borderRadius,
         },
         title: {

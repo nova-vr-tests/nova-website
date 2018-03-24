@@ -44,8 +44,15 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const filterUrl = url => {
-        const bgUrl = new URL(url)
-        return bgUrl.origin + bgUrl.pathname
+    let bgUrl
+
+    try {
+        bgUrl = new URL(url)
+    } catch (e) {
+        return ''
+    }
+
+    return bgUrl.origin + bgUrl.pathname
 }
 
 const Products = props => {
@@ -151,14 +158,16 @@ const createList = props => {
             props.goTo(`${window.location.pathname}?post=${e.id}`)
         }
 
-        const pictoUrl = new URL(e.picto)
-        const filteredPictoUrl = pictoUrl.origin + pictoUrl.pathname
+        const filteredPictoUrl = filterUrl(e.picto)
+        const filteredPictoBgUrl = filterUrl(e.pictoBg)
+
         return (
             <SidePanelLink
                 key={ i }
                 onClickCallback={ onClickCallback }
                 isSquarePicto={ false }
                 pictoUrl={ filteredPictoUrl }
+                pictoBgUrl={ filteredPictoBgUrl }
                 isActive={ active }
                 subtitle={ e.description }
                 title={ e.title } />
@@ -201,6 +210,7 @@ const createAbstract = props => {
                     _props.updateMainPanel(BlogPostMainPanel)
                     _props.updateMainPanelIsOpened(true)
                 }}
+                isSquarePicto={ true }
                 pictoUrl={ props.pictoUrl }
                 title={ props.title } />
         </div>), props)
@@ -216,7 +226,6 @@ const createAbstract = props => {
         </BlogPost>
     </div>, props)
     props.setAbstract(() => () => <ConnectedAbstract />)
-    console.log('creating abstract')
 }
 
 const SmartComp = compose(

@@ -18,6 +18,10 @@ const SidePanelLink = props => {
             onClick={ props.onClickCallback }
             className="product-link--wrapper">
             <img
+                src={ props.pictoBgUrl }
+                alt="pictoBg"
+                style={ styles.pictoBg } />
+            <img
                 src={ props.pictoUrl }
                 alt="picto"
                 style={ styles.picto } />
@@ -40,6 +44,7 @@ const SidePanelLink = props => {
 SidePanelLink.defaultProps = {
     onClickCallback: () => {},
     pictoUrl: '',
+    pictoBgUrl: '',
     title: '',
     subtitle: '',
     isActive: false,

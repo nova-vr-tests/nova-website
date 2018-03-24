@@ -42,7 +42,7 @@ const Blog = props => {
 
     const { LastComp } = props
 
-    const pictoUrl = props.blogPost.picto ? new URL(props.blogPost.picto) : {origin: "", pathname: ""}
+    const pictoUrl = props.blogPost.squarePicto ? new URL(props.blogPost.squarePicto) : {origin: "", pathname: ""}
 
     return (
         <div
