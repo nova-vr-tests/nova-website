@@ -3,9 +3,9 @@ from .models import *
 
 from django.contrib.auth.models import User
 
-default_fields = ('id', 'title', 'date', 'picto', 'content', 'squarePicto')
+default_fields = ('id', 'title', 'date', 'picto', 'content')
 blog_post_fields = default_fields + ('author',)
-products_fields = default_fields + ('abstract', 'bg_image', 'description', 'pictoBg')
+products_fields = default_fields + ('abstract', 'bg_image', 'description', 'pictoBg', 'squarePicto')
 publication_fields = default_fields + ('pdf',)
 
 class UserSerializer(serializers.ModelSerializer):
