@@ -6,6 +6,10 @@ import {
     lifecycle,
 } from 'recompose'
 
+import facebookIcon from '../img/social/facebook.svg'
+import twitterIcon from '../img/social/twitter.svg'
+import linkedinIcon from '../img/social/linkedin.svg'
+
 import URLSearchParams from 'url-search-params'
 
 import { BG as PanelBg } from '../Presentation/SidePanel/SidePanel.jsx'
@@ -39,14 +43,27 @@ const Header = props => {
         textWrapper: {
             display: 'flex',
             flexDirection: 'column',
+            marginLeft: `calc(7 * ${appStyles.unitHeight})`,
+            //justifyContent: 'center',
         },
         h1: {
-        },
-        span: {
+            fontSize: '1.8rem',
+            marginBottom: '2rem',
+            marginTop: `calc(0.4 * ${appStyles.unitHeight})`,
         },
         picto: {
             height: `calc(5 * ${appStyles.unitHeight})`,
             width: `calc(5 * ${appStyles.unitHeight})`,
+        },
+        socialWrapper: {
+            display: 'flex',
+            width: '6rem',
+            justifyContent: 'space-between',
+        },
+        img: {
+            height: '1.3rem',
+            width: '1.3rem',
+            filter: 'invert(100%)',
         }
     }
 
@@ -57,7 +74,17 @@ const Header = props => {
             <Picto url={ props.pictoUrl } />
             <div style={ styles.textWrapper}>
                 <h1 style={ styles.h1 }>{ props.title }</h1>
-                <span style={ styles.span }>testing</span>
+                <div style={ styles.socialWrapper }>
+                    <img
+                        style={ styles.img }
+                        src={ facebookIcon } />
+                    <img
+                        style={ styles.img }
+                        src={ linkedinIcon } />
+                    <img
+                        style={ styles.img }
+                        src={ twitterIcon } />
+                </div>
             </div>
         </div>
     )
