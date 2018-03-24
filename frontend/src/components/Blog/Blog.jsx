@@ -54,10 +54,6 @@ const Header = props => {
         <div
             style={ styles.wrapper }
             className="Header--wrapper">
-            <img
-                src={ props.pictoUrl }
-                style={ styles.picto }
-                alt="picto" />
             <Picto url={ props.pictoUrl } />
             <div style={ styles.textWrapper}>
                 <h1 style={ styles.h1 }>{ props.title }</h1>
