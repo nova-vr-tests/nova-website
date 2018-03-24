@@ -6,11 +6,10 @@ import intro from '../img/default.jpg'
 
 import productsBg from '../img/design/3.png'
 import publicationsBg from '../img/publicationsBg.png'
-import worldLayer1 from '../img/design/world-layer1.png'
-import worldLayer2 from '../img/design/world-layer2.png'
 
 import consultationBg from '../img/bgs/consultation-intro.jpeg'
 import industryBg from '../img/bgs/industry.jpeg'
+import learningLabBg from '../img/bgs/learning-lab.png'
 
 import { styles as appStyles } from '../../constants.js'
 
@@ -174,8 +173,7 @@ const learningLab: Array<ISlide> = [
         theme: appStyles.themeTypes.noFooterTheme,
         overrideHeader: true,
         layers: [
-            createLayer(worldLayer1, 0, 1),
-            createLayer(worldLayer2, 0, 1),
+            createLayer(learningLabBg, 0, 1),
         ],
     },
 ]
