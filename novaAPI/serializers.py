@@ -3,8 +3,10 @@ from .models import *
 
 from django.contrib.auth.models import User
 
-default_fields = ('id', 'title', 'date', 'picto', 'content')
-blog_post_fields = ('id', 'title', 'author', 'date', 'picto', 'content')
+default_fields = ('id', 'title', 'date', 'picto', 'content', 'squarePicto')
+blog_post_fields = default_fields + ('author',)
+products_fields = default_fields + ('abstract', 'bg_image', 'description', 'pictoBg')
+publication_fields = default_fields + ('pdf',)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,17 +24,17 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogPost
-        fields = ('id', 'title', 'author', 'date', 'picto', 'content')
+        fields = default_fields + ('author',)
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'title', 'abstract', 'date', 'picto', 'content', 'bg_image', 'description')
+        fields = products_fields
 
 class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ('id', 'title', 'date', 'picto', 'pdf', 'content')
+        fields = publication_fields
 
 class IndustrySerializer(serializers.ModelSerializer):
     class Meta:

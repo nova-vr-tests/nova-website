@@ -1,5 +1,9 @@
-from django.db import models
+"""
+Models
+"""
+
 from datetime import datetime
+from django.db import models
 from markdownx.models import MarkdownxField
 
 from django.contrib.auth.models import User
@@ -20,8 +24,9 @@ class BusinessProposition(models.Model):
 class BlogPost(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     picto = models.ImageField(upload_to='blog_pics')
+    squarePicto = models.ImageField(upload_to='blog_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -33,6 +38,8 @@ class Product(models.Model):
     description = models.CharField(max_length=250, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='products_pics')
+    pictoBg = models.ImageField(upload_to='products_pics')
+    squarePicto = models.ImageField(upload_to='products_pics')
     content = MarkdownxField()
     abstract = MarkdownxField()
     bg_image = models.ImageField(upload_to='products_bgs')
@@ -46,6 +53,7 @@ class Publication(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='publication_pics')
+    squarePicto = models.ImageField(upload_to='publication_pics')
     pdf = models.FileField(upload_to='publication_pdfs')
     content = MarkdownxField()
 
@@ -58,6 +66,7 @@ class Industry(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='industry_pics')
+    squarePicto = models.ImageField(upload_to='industry_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -68,6 +77,7 @@ class CrossIndustry(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='cross_industry_pics')
+    squarePicto = models.ImageField(upload_to='cross_industry_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -78,6 +88,7 @@ class LearningLab(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='learning_lab_pics')
+    squarePicto = models.ImageField(upload_to='learning_lab_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -88,6 +99,7 @@ class AboutUs(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='about_us_pics')
+    squarePicto = models.ImageField(upload_to='about_us_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -98,6 +110,7 @@ class Community(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='community_pics')
+    squarePicto = models.ImageField(upload_to='community_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -108,6 +121,7 @@ class Design(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='design_pics')
+    squarePicto = models.ImageField(upload_to='design_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -118,6 +132,7 @@ class Program(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='program_pics')
+    squarePicto = models.ImageField(upload_to='program_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -128,6 +143,7 @@ class Produce(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='produce_pics')
+    squarePicto = models.ImageField(upload_to='produce_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -138,6 +154,7 @@ class Network(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='network_pics')
+    squarePicto = models.ImageField(upload_to='network_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -148,6 +165,7 @@ class Deploy(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='deploy_pics')
+    squarePicto = models.ImageField(upload_to='deploy_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -158,6 +176,7 @@ class Production(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='productions_pics')
+    squarePicto = models.ImageField(upload_to='productions_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -168,6 +187,7 @@ class Partner(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='partners_pics')
+    squarePicto = models.ImageField(upload_to='partners_pics')
     content = MarkdownxField()
 
     class Meta:
@@ -178,6 +198,7 @@ class Career(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='careers_pics')
+    squarePicto = models.ImageField(upload_to='careers_pics')
     content = MarkdownxField()
 
     class Meta:
