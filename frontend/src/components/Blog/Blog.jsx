@@ -8,8 +8,6 @@ import {
 
 import URLSearchParams from 'url-search-params'
 
-import SlideHeader from '../Presentation/SlideHeader/SlideHeader.jsx'
-
 import { BG as PanelBg } from '../Presentation/SidePanel/SidePanel.jsx'
 
 import { styles as appStyles } from '../../constants.js'
@@ -29,6 +27,47 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 })
 
+const Header = props => {
+    const styles = {
+        wrapper: {
+            minHeight: `calc(6 * ${appStyles.unitHeight})`,
+            color: 'black',
+            display: 'flex',
+        },
+        textWrapper: {
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        h1: {
+        },
+        span: {
+        },
+        picto: {
+            height: `calc(5 * ${appStyles.unitHeight})`,
+            width: `calc(5 * ${appStyles.unitHeight})`,
+        }
+    }
+
+    return (
+        <div
+            style={ styles.wrapper }
+            className="Header--wrapper">
+            <img
+                src={ props.pictoUrl }
+                style={ styles.picto }
+                alt="picto" />
+            <div style={ styles.textWrapper}>
+                <h1 style={ styles.h1 }>{ props.title }</h1>
+                <span style={ styles.span }>testing</span>
+            </div>
+        </div>
+    )
+}
+
+Header.defaultProps = {
+    title: '',
+    pictoUrl: '',
+}
 
 const Blog = props => {
     const styles = getStyles(props)
@@ -42,7 +81,9 @@ const Blog = props => {
 
     const { LastComp } = props
 
-    const pictoUrl = props.blogPost.squarePicto ? new URL(props.blogPost.squarePicto) : {origin: "", pathname: ""}
+    const squarePictoUrl = props.blogPost.squarePicto ? new URL(props.blogPost.squarePicto) : {origin: '', pathname: ''}
+    const pictoUrl = props.blogPost.picto ? new URL(props.blogPost.picto) : {origin: '', pathname: ''}
+    const headerPictoUrl = squarePictoUrl.origin + squarePictoUrl.pathname === '' ? pictoUrl : squarePictoUrl
 
     return (
         <div
@@ -55,14 +96,14 @@ const Blog = props => {
                     type={ 1 }
                     rightEdgeCoef={ sidePanel.openedWidthCoef }
                     widthCoef={ widthCoef } />
-                <SlideHeader
-                    title={ title }
-                    fontColor="rgba(0, 0, 0, 1)" />
+                <Header
+                    pictoUrl={ headerPictoUrl.origin + headerPictoUrl.pathname }
+                    title={ title } />
             </div>
             <div style={ styles.articleWrapper }>
                 <BlogPostContent content={ content } />
                 <LastComp
-                    pictoUrl={ pictoUrl.origin + pictoUrl.pathname }
+                    pictoUrl={ squarePictoUrl.origin + squarePictoUrl.pathname }
                     title={ title } />
             </div>
         </div>
