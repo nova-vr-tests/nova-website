@@ -45,7 +45,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             height: '100%',
             backgroundImage: `url(${props.bgUrl})`,
             backgroundSize: 'cover',
-            backgroundPositionY: '-10rem',
+            backgroundPosition: 'bottom',
         },
         p: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
