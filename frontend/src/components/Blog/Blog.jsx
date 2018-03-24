@@ -19,6 +19,8 @@ import API from '../../API.js'
 
 import BlogPostContent from '../MarkdownParser/MarkdownParser.jsx'
 
+import Picto from './HeaderPicto.jsx'
+
 
 const mapStateToProps = state => ({
     routing: state.routing,
@@ -56,6 +58,7 @@ const Header = props => {
                 src={ props.pictoUrl }
                 style={ styles.picto }
                 alt="picto" />
+            <Picto url={ props.pictoUrl } />
             <div style={ styles.textWrapper}>
                 <h1 style={ styles.h1 }>{ props.title }</h1>
                 <span style={ styles.span }>testing</span>
