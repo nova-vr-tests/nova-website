@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 import {
     compose,
     lifecycle,
+    withHandlers,
 } from 'recompose'
 
 import getStyles from './HeaderPictoStyles.jsx'
 
 import type {
     ReduxState,
-    ReduxDispatch,
 } from './HeaderPictoTypes.jsx'
 
 import type {
@@ -21,7 +21,6 @@ import type {
 
 import type {
     MapStateToProps,
-    MapDispatchToProps,
 } from '../../storeTypes.jsx'
 
 
@@ -29,10 +28,6 @@ const mapStateToProps: MapStateToProps<ReduxState> = state => ({
     windowWidth: state.appReducer.windowWidth,
     windowHeight: state.appReducer.windowHeight,
 })
-
-const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = dispatch => ({
-})
-
 
 const canvasId = 'picto-canvas'
 
@@ -43,57 +38,56 @@ const HeaderPictoDumb: React.StatelessFunctionalComponent<Props> = props => {
         <div
             className="HeaderPicto--wrapper"
             style={ styles.wrapper }>
-            <canvas id={ canvasId }>
+            <canvas
+                ref={ props.onRef }
+                id={ canvasId }>
             </canvas>
             <div id="invertbtn">click</div>
         </div>
     )
 }
 
-function loadImg(props) {
+function loadImg(props: Props) {
     var img = new Image()
-    console.log(props.url)
-    img.src = props.url
+    img.src = props.url + '?' + Math.floor(Math.random() * 100)
     img.crossOrigin = "anonymous"
     img.onload = function() {
         draw(this)
     }
 
-    function draw(img) {
-        var canvas = document.getElementById(canvasId)
-        var ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0)
-        img.style.display = 'none'
-        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-        var data = imageData.data
+    function draw(img: Image) {
+        var canvas = props.getRef()
+        if(canvas) {
+            var ctx = canvas.getContext('2d')
 
-        var invert = function() {
-            for (var i = 0; i < data.length; i += 4) {
-            data[i]     = 255 - data[i]     // red
-            data[i + 1] = 255 - data[i + 1] // green
-            data[i + 2] = 255 - data[i + 2] // blue
-            }
-            ctx.putImageData(imageData, 0, 0)
-        };
+            ctx.drawImage(img, 0, 0)
+            img.style.display = 'none'
+            var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+            var data = imageData.data
 
-        var grayscale = function() {
-            for (var i = 0; i < data.length; i += 4) {
-            var avg = (data[i] + data[i + 1] + data[i + 2]) / 3
-            data[i]     = avg // red
-            data[i + 1] = avg // green
-            data[i + 2] = avg // blue
+            var invert = function() {
+                for (var i = 0; i < data.length; i += 4) {
+                    data[i]     = 255 - data[i]     // red
+                    data[i + 1] = 255 - data[i + 1] // green
+                    data[i + 2] = 255 - data[i + 2] // blue
+                }
+                ctx.putImageData(imageData, 0, 0)
             }
-            ctx.putImageData(imageData, 0, 0)
+
+            invert()
         }
-
-        var invertbtn = document.getElementById('invertbtn')
-        invertbtn.addEventListener('click', invert)
-        var grayscalebtn = document.getElementById('grayscalebtn')
-        grayscalebtn.addEventListener('click', grayscale)
     }
 }
 
 const HeaderPictoSmart = compose(
+    withHandlers(() => {
+        let myCanvas: ?HTMLCanvasElement = null
+
+        return {
+            onRef: () => ref => (myCanvas = ref),
+            getRef: () => () => myCanvas,
+        }
+    }),
     lifecycle({
         componentDidMount() {
             loadImg(this.props)
@@ -107,7 +101,6 @@ const HeaderPictoSmart = compose(
 
 const ConnectedHeaderPicto: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
-    mapDispatchToProps
 )(HeaderPictoSmart)
 
 

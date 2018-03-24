@@ -12,6 +12,8 @@ export type ReduxDispatch = {
 
 export type OwnProps = {
     url: string,
+    onRef: ?HTMLCanvasElement => ?HTMLCanvasElement,
+    getRef: void => ?HTMLCanvasElement,
 }
 
 export type Props = OwnProps & ReduxState & ReduxDispatch
