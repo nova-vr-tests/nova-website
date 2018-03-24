@@ -89,8 +89,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                                     <AboutUs
                                         bgUrl={ props.bgUrl }
                                         opacity={ props.isFooterOpened ? 1 : 0 }
-                                        windowWidth={ props.windowWidth }
-                                    />
+                                        windowWidth={ props.windowWidth } />
                             :
                                 ''
                         }
@@ -101,8 +100,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                             <Svg
                                 windowWidth={ props.windowWidth }
                                 windowHeight={ props.windowHeight }
-                                color="rgba(255, 255, 255, 1)"
-                            />
+                                color="rgba(255, 255, 255, 1)" />
                         </div>
                 </div>
             </div>
@@ -111,8 +109,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                     ...styles.toggleSidebarButton,
                     ...(props.isSidebarOpened ? {} : styles.rotatedCloseButton),
                 }}
-                onClick={ props.toggleSidebar }
-            >
+                onClick={ props.toggleSidebar }>
                 <img
                     src={ toggleButton }
                     alt="toggle sidebar"
@@ -124,8 +121,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                     style={{
                         color: props.currentFooterPage === footerPage.LEGALS  && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                         transition: 'color 0.1s linear',
-                    }}
-                >
+                    }}>
                     Legals
                 </span>
                 <span
@@ -134,8 +130,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                         color: props.currentFooterPage === footerPage.CONTACT && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                         marginLeft: '1rem',
                         transition: 'color 0.1s linear',
-                    }}
-                >
+                    }}>
                     Contact
                 </span>
                 <span
@@ -144,8 +139,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                         color: props.currentFooterPage === footerPage.LOGIN   && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                         marginLeft: '1rem',
                         transition: 'color 0.1s linear',
-                    }}
-                >
+                    }}>
                     Login
                 </span>
             </div>
