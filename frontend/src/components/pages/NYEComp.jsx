@@ -8,11 +8,7 @@ import {
 } from './UI.jsx'
 
 const PartnershipIntro = props => {
-    const source = `
-The best part of business is the people.
-
-Find here some of our network.
-    `
+    const source = `Business is conducted among people. We love building relationships with folks from all over the world. It's who we are. In the process we've discovered this mentality is the same one that builds strong partnerships. Nova is a place of business because we value the individual, understanding that the financial elements of business emerge from a genuine interest in thy neighbor.`
 
     return (
         <div

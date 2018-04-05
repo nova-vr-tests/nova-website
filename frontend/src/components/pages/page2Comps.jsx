@@ -43,29 +43,23 @@ const DevelopIntro = props => {
         }
     }
 
-    const source = `The VR we develope is *programmable*  The virtual expereince can be manipulated through inputs, such as code, player interfacing or phsyiological behaviors.
+    const source = `The VR we develop is programmable. Virtual experiences can be manipulated through inputs such as code, player interfacing, or physiological behaviors. Content produced can range from photo-real capture to entirely fictitious dreamscapes.
 
-The content *produced* can range from photo-real capture to entirely ficticious dreamscapes.  VR is the overlay of interactive elements within a 3D space for the player to engage the world around him.
+"Networking" the software allows multiple people to interact in VR together. Some of its immediate results are market creation, distributed file keeping, and remote access to devices.
 
-By *networking* the software you can experience with others.  This allows for joint expreineces, collaboration and sharing.  Further, it enables markets to exist, distributed file keeping and remote access/control to other devices, virtual and physical.
+There are a variety of production techniques, tools, and frameworks used to make XR. They are all synchronized in a software framework called a "game engine". A game engine is used to create interactive 3D media (XR). These engines are powerful visualization tools for developing all the features of the internet (networked play, social sharing, secure payments, etc.) into a single application.
 
-There are a variety of production techniques, tools and frameworks to make XR.   They are all synchronized in a software framework called a "game engine".
+Game engines empower developers to custom-design virtual environments. The core game engine frameworks include rendering 3D graphics, engineering physics engines (and response systems), managing memory, and handling graphics scenes.
 
-A *game engine* is used to create interactive 3D media (XR).  We build XR in game engines.  They are a powerful visualization tool for developing all the features of the internet, from netowrked play to social sharing, and secure payments, into a single application.
+Nova economizes the Virtual Reality (VR) development process by adapting game engine builds (software executable) to create new VR experiences. By developing with foresight, producers save time and money.
 
-[GAME ENGINE GRAPHIC - DIAGRAM RAINBOW COLOR]
+Game Engines you may have heard of are:
 
-Game engines equip developers to custom design virtual environments, program players, goals and rules as applications shared and experienced throgh personal computers, mobile dvices and gaming consules. Game engine framework's core functions are to render 3D graphics, engineer physics/collision (and response systems) manage memoreym shread, and graph scenes.
+Unity, Unreal, Cryengine, GameMaker Studio, HTML5, Godot, OpenGL, Blender, Source, Lumberyard, Torque, Frostbite, Doom Engine, Havok, MonkeyEngine, Panda3D, PhyreEngine, Ren'Py, ORX, ORGE, HeroEngine, RenderWare, Freescape, LithTech, GoldBox
 
-Nova economizes the process of virtual reality (XR) development by adapting game engine builds (software executable) to create new VR expereinces.   By developing with foresight producers save time and money.
+Please replace current "Develop" intro text with...
 
-Some Game Engines you may have heard of are:
-
-[ ANOTHER GAME ENGINE GRAPHIC ]
-
-Unity, Unreal, Cryengine, GameMaker Studio, HTML5, Godot, OpenGL, Blender, Source, Lumberyard, Torque, Frostbite, Doom Engine, Havok, MonkeyEngine, Panda3D, PhyreEngine, Ren'Py, ORX, ORGE, HeroEngine,RenderWare,Freescape, LithTech, GoldBox
-
-They've all advantages and disadvantages, varying features, code , graphical interfaces and so on.   The best way to figure your favorite is to express what you want to accomplish and why - or first-hand experiment with all.`
+They all include advantages and disadvantages (varying features, code, graphical interfaces, etc.). The best way to determine your favorite game engine is by understanding what you want to accomplish and why.`
 
     return (
         <div

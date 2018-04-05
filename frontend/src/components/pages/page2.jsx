@@ -98,7 +98,7 @@ const program: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Programming is centralized in a *game engine*, which is a software framework used to create interactive 3D media (XR).  We build XR in game engines.` }
+                headerText={ `XR Programming is centralized in a "game engine", a software framework used to create interactive 3D media. This is where we build your XR experiences.` }
                 fetchUrl={
                     new API().urls.program.list } />,
         mainPanelContent: () =>

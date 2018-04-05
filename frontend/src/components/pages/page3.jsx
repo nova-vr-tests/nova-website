@@ -189,7 +189,7 @@ const productions: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `XR Production is the business of bringing video game and movie production together to achieve an objective.` }
+                headerText={ `Current XR production is the art of merging video game development with movie production content to achieve a business or artistic goal.` }
                 fetchUrl={ new API().urls.productions.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.productions.list } />,
@@ -216,7 +216,7 @@ const partners: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Consider XR content creation akin to movie production. Just like creating a Hollywood film or an advertising campaign, we unite - among others - investors, production studios, innovation labs, writers, and filmographers.` }
+                headerText={ `Just like creating a Hollywood film or an advertising campaign, XR production requires the unification of investors, production studios, innovation labs, writers, and videographers.` }
                 fetchUrl={ new API().urls.partners.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.partners.list } />,
@@ -243,7 +243,7 @@ const careers: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `We make our own destinies. If you want to get involved, reach out.` }
+                headerText={ `We seek partners who are active rather than passive, prioritize self education, and are always working to expand their mind. If you're the right fit, please be in touch.` }
                 fetchUrl={ new API().urls.careers.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.careers.list } />,
