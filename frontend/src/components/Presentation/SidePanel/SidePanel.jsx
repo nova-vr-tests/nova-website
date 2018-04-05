@@ -98,7 +98,8 @@ const BG = (props: BgProps) => {
             + ' L ' + p1.x + ' ' + p4.y + ' '
 
         color = 'rgba(0, 0, 0, 0.1)'
-    }
+    } else if (props.isFooterOpened)
+        color = 'rgba(0, 0, 0, 0)'
 
     return (
         <div style={ styles.wrapper }>
@@ -106,7 +107,7 @@ const BG = (props: BgProps) => {
                  viewport='0 0 100 100'
                  xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <path d={ path }
-                      fill={ color } stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
+                      style={{ fill: color, transition: 'all 0.5s linear' }} stroke="rgba(0, 0, 0, 0)" strokeWidth="3" />
             </svg>
         </div>
     )
@@ -116,6 +117,7 @@ BG.defaultProps = {
     rightEdgeCoef: 0,
     bgColor: 'rgba(0, 0, 0, 0.6)',
     zIndex: 'inherit',
+    isFooterOpened: false,
 }
 
 type ToggleButtonProps = {
@@ -175,6 +177,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
     return (
         <div style={ styles.wrapper }>
             <BG
+                isFooterOpened={ props.isFooterOpened }
                 widthCoef={ widthCoef }
                 type={ props.type }
                 windowHeight={ props.windowHeight }
