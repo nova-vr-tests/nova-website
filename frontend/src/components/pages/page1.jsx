@@ -116,7 +116,7 @@ const industry: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ `People of every industry are finding solutions to their gravest challenges by producing immersive (XR) media content.  Share, communicate and learn faster than ever.` }
+                headerText={ `People of every industry are finding solutions to their most stubborn challenges by producing immersive (XR) media content. Share, communicate, and learn faster than ever.` }
                 fetchUrl={ new API().urls.industries.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.industries.list } />,
@@ -166,7 +166,7 @@ const learningLab: Array<ISlide> = [
         showNextSectionArrow: false,
         content: () =>
             <BlogPostList
-                headerText={ 'Understanding the concepts at the root of this advanced technology is crucial to discovering the most useful applications for it. Here we’ll deliver past studies, simple descriptions, and the latest news surrounding and driving industry industry growth.' }
+                headerText={ 'Understanding the root concepts of this advanced technology is crucial to discovering its mpst practical applications. Here we deliver past studies, simple descriptions, and the latest industry news.' }
                 fetchUrl={ new API().urls.learningLab.list } />,
         mainPanelContent: () =>
            <Blog fetchUrl={ new API().urls.learningLab.list } />,

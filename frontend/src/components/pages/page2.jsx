@@ -41,7 +41,7 @@ const design: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `The intermediary between information and understanding.` }
+                headerText={ `In XR, the term "Design" has two identities. First, we work together with you to design the XR world you wish to build. Next, we design 3D models of your vision to be implemented by the development team.` }
                 fetchUrl={ new API().urls.design.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.design.list } />,

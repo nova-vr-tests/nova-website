@@ -41,16 +41,15 @@ const DesignInterfaceComp = props => {
         }
     }
 
-    const source = `XR [Extended Reality](https://en.wikipedia.org/wiki/Extended_reality), such as Virtual reality (VR) and Augmented Reality (AR) empower communication, collaboration and learning. XR media is interactive, dynamic and conscious of space.
+    const source = `Virtual Reality (VR) and Augmented Reality (AR), fitting under the parent term "Extended Reality", enhance communication, collaboration, and education. Unlike it's predecessors, XR Media is interactive, calling on the user to embody her consciousness.
 
-These technologies will increasingly be in the home. Through your phone (or XR glasses/goggles) you can engage simulated environments, digital models, and other dynamic 3D information for entertainment, education, productivity, and much more.
+These technologies will increasingly be in the home, integrating with daily living in the way televisions, computers, and phones already have. As of today, you can engage with simulated environments through your phone (or XR glasses/goggles).
 
-Historical rates of technological adoption suggest twenty-five percent of the US population will have an AR/VR in their homes in the next five years.
+Historical rates of technological adoption suggest 25% of the US population will have an AR/VR in their homes within the next five years. It's the next frontier of human connectivity.
 
-XR Media can be the ultimate communication tool, or the reason your business falls behind.
+In business, XR Media cuts internal costs by providing immersive training programs and business travel alternatives. When used to drive revenue, XR is a natural marketing tool, the backdrop for new age content creation.
 
-XR is the next frontier of human connectivity.
-    `
+XR Media can be the ultimate communication tool or the reason your business falls behind.`
 
     return (
         <div

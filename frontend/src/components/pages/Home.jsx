@@ -37,9 +37,9 @@ const mapDispatchToProps = function(dispatch) {
 **/
 
 const HomePage = props => {
-    const source = `XR is an abbreviation for “Extended Reality” which is a flexible and far-reaching term for immersive 3D media, inclusive of virtual and augmented reality.
+    const source = `XR is an abbreviation for “Extended Reality” which is a flexible and far-reaching term for immersive 3D media, inclusive of Virtual and Augmented Reality.
 
-XR technologies are being deployed in most industries to increase revenue or decrease internal costs. To read more about how XR Media technologies changing space exploration, entertainment, retail, travel, health care, journalism, marketing and more, visit our services page.`
+XR technologies are already increasing revenue and decreasing internal costs in most industries. Visit our "Consultation" page to read about XR's influence on entertainment, retail, travel, healthcare, journalism, marketing and many others.`
 
     return (
         <div
