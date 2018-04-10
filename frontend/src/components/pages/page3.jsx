@@ -133,7 +133,7 @@ const labLive: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Understanding the concepts at the root of this advanced technology is crucial to discovering the most useful applications for it. Here we’ll deliver past studies, simple descriptions, and the latest news surrounding and driving industry industry growth.` }
+                headerText={ `Lab Live publications are casual writings covering the XR world. By creating and publishing original content, we stay in touch with innovators and visionaries who are forging this new industry.` }
                 fetchUrl={ new API().urls.blogPosts.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.blogPosts.list } />,

@@ -70,6 +70,7 @@ function loadImg(props: Props) {
                 scale(${scaleFactor}, ${scaleFactor})`
 
             const ctx = canvas.getContext('2d')
+            ctx.imageSmoothingEnabled = true
 
             //ctx.scale(scaleFactor, scaleFactor)
             ctx.drawImage(img, 0, 0)

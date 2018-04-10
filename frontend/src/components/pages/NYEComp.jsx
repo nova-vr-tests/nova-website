@@ -21,10 +21,11 @@ const PartnershipIntro = props => {
 }
 
 const FindUs = props => {
-    const source = `481 Van Brunt
+    const source = `Fortunately, we feel at home on the fourth floor of the historic Beard Street Warehouse at the south end of Van Brunt Street in Red Hook, Brooklyn. We pride ourselves on welcoming the widest range of thinkers, entrepreneurs, and artists we can find. Please join us in expanding this mission. In the end, Nova Studios is a place of business with the furnishings of your best friend's living room. Come and visit us. We are always open.
 
-Brooklyn, New York 11231, United States
-`
+481 Van Brunt Street Brooklyn
+
+New York, United States. 11231`
 
     return (
         <div
@@ -113,11 +114,13 @@ Together we're a small part of the 21st century movement into Extended Reality, 
 }
 
 const NYEStreamComp = props => {
-    const source = `Nova provide advance access to advance technologies. We produce XR media for businesses to reduce internal costs, increase sales, or both.
+    const source = `Nova XR is a team of artists and engineers programming new media. Our specialty is XR (Extended Reality). We develop from the 4th floor of the 19th century Beard Street Warehouses in Brooklyn, New York.
 
-### Joe Mecca
+Nova provides access to advanced technologies, producing XR media for businesses to reduce internal costs and increase sales.
 
-*Live and let*
+"Nova" is latin for *new*, contrasting the future with fundamentals. We chose the name because it's simple, versatile, and expressive of our work to innovate media technologies.
+
+Live and let
 
 - Twitter @Mecs13
 - Linkedin /in/jrmecca
@@ -125,40 +128,18 @@ const NYEStreamComp = props => {
 - Github /mecs13
 - Sketchfab /mecs13
 
-
-### Thomas Binetruy
-
-*syntax is important*
-
-- Twitter @tbinetruy
-- Linkedin /in/thomas-binetruy
-
-
-### Kyle Kesses
-
-*really good job, everybody.  great work!*
-
-
-### Jacques Bertrand
-
-*Let's smoke a small one*
-
-
-
-### Anna Irene
-
-*01101000 01101001*
-
 - Email : AnnaIrene@novamedia.nyc
 - Telegram : https://t.me/xrnewyork
-- Instagram :  @novaxrmedia
+- Instagram : @novaxrmedia
 - Facebook : https://www.facebook.com/N0vamedia/
 - Twitter : @N0vamedia
 - GoogleVoice : (732) 903-5537
 - slack : novamedianyc.slack.com
 - steemit : @novaxr
 - Sketchfab : /novamedianewyork
-    `
+
+Anna Irene
+01101000 01101001`
 
     return (
         <div
