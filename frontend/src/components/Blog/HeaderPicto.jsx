@@ -25,6 +25,7 @@ import type {
 } from '../../storeTypes.jsx'
 
 
+
 const mapStateToProps: MapStateToProps<ReduxState> = state => ({
     windowWidth: state.appReducer.windowWidth,
     windowHeight: state.appReducer.windowHeight,
@@ -54,6 +55,7 @@ function loadImg(props: Props) {
     img.crossOrigin = "anonymous"
 
     img.onload = function() {
+        const worker = new Worker()
         draw(this)
     }
 
