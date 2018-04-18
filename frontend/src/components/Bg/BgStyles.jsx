@@ -1,7 +1,5 @@
 // @flow
 
-import { styles as appStyles } from '../../constants.js'
-
 import type {
     Props,
     LayerProps,
@@ -75,10 +73,10 @@ const getStyles: GetStyles<Props, Styles> = props => {
         overlay: {
             height: '100vh',
             width: '100vw',
-            backgroundColor: appStyles.themes[props.appTheme].bgOverlayColor,
             zIndex: 3,
             position: 'absolute',
             transition: 'background-color 0.5s linear',
+            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%,rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0))',
         },
         splitBottomTranslateY: ('calc(-' + lineTop + ' - ' + lineHeight + ')'),
     }
