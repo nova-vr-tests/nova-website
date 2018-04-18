@@ -1,20 +1,21 @@
 * Frontend
 ** Blog style pages
-*** TB  fetch data from API                                        :blogstyle:
-    SCHEDULED: <2018-02-04 Sun>
-*** TB  show data in blog style comp                              :blogstyle:
-    SCHEDULED: <2018-02-04 Sun>
+*** DONE fetch data from API                                      :blogstyle:
+    CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-04 Sun>
+*** DONE show data in blog style comp                             :blogstyle:
+    CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-04 Sun>
 
 ** blog posts
-*** DONE fetch post                                                    :blog:
-    CLOSED: [2018-01-24 Wed 14:47] SCHEDULED: <2018-01-05 Fri>
-*** DONE post list                                                     :blog:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
-*** DONE show post                                                     :blog:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
+*** fetch post                                                         :blog:
+    SCHEDULED: <2018-01-05 Fri>
+*** post list                                                          :blog:
+    SCHEDULED: <2018-01-05 Fri>
+*** show post                                                          :blog:
+    SCHEDULED: <2018-01-05 Fri>
 
 *** responsive
-**** TB BlogListWrapper
+**** DONE BlogListWrapper
+     CLOSED: [2018-02-20 Tue 21:06]
 - contains BlogList.jsx
 - when clicking on a block:
   + BlogList disapears to left of screen
@@ -27,12 +28,12 @@
      CLOSED: [2018-01-04 Thu 16:34] SCHEDULED: <2018-01-04 Thu>
 **** DONE mobile                                                      :pages:
      CLOSED: [2018-01-07 Sun 14:30] SCHEDULED: <2018-01-04 Thu>
-**** TB remove scroll event when footer is up                         :pages:
-     SCHEDULED: <2018-02-05 Mon>
+**** DONE remove scroll event when footer is up                       :pages:
+     CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-05 Mon>
 **** DONE fix scroll issue when dreamscaping                          :pages:
      CLOSED: [2018-01-07 Sun 14:32] SCHEDULED: <2018-01-04 Thu>
-**** TB ease-out animation timing function on toggle sidebar          :pages:
-     SCHEDULED: <2018-02-04 Sun>
+**** DONE ease-out animation timing function on toggle sidebar        :pages:
+     CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-04 Sun>
 
 ** BG
 *** DONE redo data structure                                        :bg:debt:
