@@ -10,7 +10,7 @@ const getStyles = props => {
     }
 
     const right = `calc(${ appStyles.sidePanel.openedWidthCoef } * ${ unitWidth })`
-    const left = `calc(2 * ${ appStyles.sidebar.widthFactor } * ${ unitWidth })`
+    //const left = `calc(2 * ${ appStyles.sidebar.widthFactor } * ${ unitWidth })`
     const top = 0
     const paddingTop = `calc(3 * ${ unitHeight })`
     const pointerEvents = props.isOpened ? 'inherit' : 'none'
@@ -20,7 +20,8 @@ const getStyles = props => {
             opacity: props.isOpened ? 1 : 0,
             transition: 'opacity 0.5s linear',
             position: 'absolute',
-            left,
+            //left,
+            width: '33vw',
             right,
             top,
             paddingTop,

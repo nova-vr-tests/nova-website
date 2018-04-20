@@ -32,6 +32,7 @@ const getStyles = props => {
             color,
             display: 'flex',
             flexDirection: 'column',
+            borderTopLeftRadius: '30px',
         }
 
     }

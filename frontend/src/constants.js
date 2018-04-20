@@ -133,9 +133,9 @@ window.addEventListener('resize', () => {
     styles.unitHeightJs = document.querySelector('body').clientHeight / 24
 
     const clientWidth = document.documentElement.clientWidth
-    const coefAbsoluteWidth = 11
+    //const coefAbsoluteWidth = 11
     const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
-    let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
+    let openedWidthCoef = coefPercentWidth //coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
 
     if(clientWidth < styles.mediaQueries.tablet) {
         openedWidthCoef = 13

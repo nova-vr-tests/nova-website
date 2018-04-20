@@ -109,9 +109,6 @@ const Blog = props => {
     const title = props.blogPost.title
     const content = props.blogPost[props.contentKey]
 
-    const { clientWidth } = document.documentElement
-    const { unitWidthJs, sidebar, sidePanel } = appStyles
-    const widthCoef = clientWidth / unitWidthJs - (2 * sidebar.widthFactor + sidePanel.openedWidthCoef)
 
     const { LastComp } = props
 
@@ -128,8 +125,7 @@ const Blog = props => {
                     zIndex={ -1 }
                     bgColor="rgba(255, 255, 255, 0.7)"
                     type={ 1 }
-                    rightEdgeCoef={ sidePanel.openedWidthCoef }
-                    widthCoef={ widthCoef } />
+                    rightEdgeCoef={ appStyles.sidePanel.openedWidthCoef }  />
                 <Header
                     pictoUrl={ headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
