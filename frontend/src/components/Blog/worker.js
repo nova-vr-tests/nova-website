@@ -17,7 +17,7 @@ onmessage = function worker(e) {
         const sizeWidth = width
 
         // only loop through top height of picture
-        for (var i = 0; i < data.length / 8; i += 4) {
+        for (var i = 0; i < data.length / 15; i += 4) {
             // convert i to (x, y)
             const p = {
                 x: (i / 4) % (sizeWidth),
@@ -35,10 +35,8 @@ onmessage = function worker(e) {
             const Cy = (appStyles.header.centerY * vh - 2.2 * unitHeightJs) / scaleFactor
             const Cx = (appStyles.header.centerX * vw - 5 * unitWidthJs) / scaleFactor
             const f = (x, y) =>  sqrt(pow(x - Cx, 2) + pow(y - Cy, 2)) - R
-            if(f(p.x, p.y) < -1000000) {
+            if(f(p.x, p.y) < 0) {
                 data[i + 3] = 0 // alpha
-            } else if(f(p.x, p.y) < 0) {
-                data[i + 3] = 0.5 // alpha
             }
 
         }
