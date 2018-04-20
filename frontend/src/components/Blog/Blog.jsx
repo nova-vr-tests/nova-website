@@ -39,17 +39,20 @@ const Header = props => {
             minHeight: `calc(6 * ${appStyles.unitHeight})`,
             color: 'black',
             display: 'flex',
+            transform:`translateY(calc(-0.25 * ${appStyles.unitHeight}))`
         },
         textWrapper: {
             display: 'flex',
             flexDirection: 'column',
-            marginLeft: `calc(7 * ${appStyles.unitHeight})`,
-            //justifyContent: 'center',
+            marginLeft: `calc(0.75 * ${appStyles.unitWidth})`,
+            justifyContent: 'center',
+            color: '#545454',
         },
         h1: {
             fontSize: '1.8rem',
             marginBottom: '2rem',
             marginTop: `calc(0.4 * ${appStyles.unitHeight})`,
+            margin: 0,
         },
         picto: {
             height: `calc(5 * ${appStyles.unitHeight})`,
@@ -59,6 +62,8 @@ const Header = props => {
             display: 'flex',
             width: '6rem',
             justifyContent: 'space-between',
+            marginTop: '1rem',
+            opacity: '0.4',
         },
         img: {
             height: '1.3rem',
