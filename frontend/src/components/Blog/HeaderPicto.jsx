@@ -10,7 +10,7 @@ import {
 } from 'recompose'
 
 import getStyles from './HeaderPictoStyles.jsx'
-// import Worker from 'worker-loader!./Worker.js'
+import Worker from 'worker-loader!./worker.js'
 
 import type {
     ReduxState,
@@ -24,7 +24,6 @@ import type {
 import type {
     MapStateToProps,
 } from '../../storeTypes.jsx'
-
 
 
 const mapStateToProps: MapStateToProps<ReduxState> = state => ({
@@ -45,7 +44,6 @@ const HeaderPictoDumb: React.StatelessFunctionalComponent<Props> = props => {
                 ref={ props.onRef }
                 id={ canvasId }>
             </canvas>
-            <div id="invertbtn">click</div>
         </div>
     )
 }
@@ -56,7 +54,18 @@ function loadImg(props: Props) {
     img.crossOrigin = "anonymous"
 
     img.onload = function() {
-        //const worker = new Worker()
+        // const obj = {
+        //     canvas: props.getRef(),
+        //     img,
+        //     appStyles,
+        //     clientHeight: document.documentElement.clientHeight,
+        //     clientWidth: document.documentElement.clientWidth,
+        //     imageData: ctx.getImageData(0, 0, canvas.width, canvas.height),
+        // }
+        // const worker = new Worker()
+        // worker.postMessage([obj])
+        // worker.onmessage = e => console.log(e)
+
         draw(this)
     }
 
@@ -80,39 +89,24 @@ function loadImg(props: Props) {
             img.style.display = 'none'
 
             const  imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-            const  data = imageData.data
 
-            const crop = function() {
-                const sizeWidth = canvas.width
-
-                for (var i = 0; i < data.length; i += 4) {
-                    // convert i to (x, y)
-                    const p = {
-                        x: (i / 4) % (sizeWidth),
-                        y: (i / 4) / sizeWidth,
-                    }
-
-                    // for some p(x, y) and some f(x, y):
-                    //     set alpha to 0 for all (p.x, p.y) < f(x,y)
-
-                    const { pow, sqrt } = Math
-                    const vh = document.documentElement.clientHeight / 100
-                    const vw = document.documentElement.clientWidth / 100
-                    const { unitWidthJs, unitHeightJs } = appStyles
-                    const R = appStyles.header.radius * vh /scaleFactor
-                    const Cy = (appStyles.header.centerY * vh - 2.2 * unitHeightJs) / scaleFactor
-                    const Cx = (appStyles.header.centerX * vw - 5 * unitWidthJs) / scaleFactor
-                    const f = (x, y) =>  sqrt(pow(x - Cx, 2) + pow(y - Cy, 2)) - R
-                    if(f(p.x, p.y) < -1000000) {
-                        data[i + 3] = 0 // alpha
-                    } else if(f(p.x, p.y) < 0) {
-                        data[i + 3] = 0.5 // alpha
-                    }
-                }
-                ctx.putImageData(imageData, 0, 0)
+            const obj = {
+                width: canvas.width,
+                clientHeight: document.documentElement.clientHeight,
+                clientWidth: document.documentElement.clientWidth,
+                appStyles,
+                imageData,
+                scaleFactor,
             }
 
-            crop()
+            const worker = new Worker()
+            worker.postMessage([obj])
+            worker.onmessage = e => {
+                const { processedImg } = e.data
+                console.log(processedImg)
+                ctx.putImageData(e.data.processedImg, 0, 0)
+            }
+
         }
     }
 }
