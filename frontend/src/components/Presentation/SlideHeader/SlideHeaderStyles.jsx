@@ -1,6 +1,6 @@
 import { styles as appStyles } from '../../../constants.js'
 
-const getStyles = (props, padding) => {
+const getStyles = (props) => {
     let customWrapperHeight = 3
     // check if TOC is on current page (see TOC.jsx for algo, needs refactor)
     if(props.pages[props.currentPage]) {

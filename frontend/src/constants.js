@@ -137,8 +137,9 @@ window.addEventListener('resize', () => {
     const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
     let openedWidthCoef = coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
 
-    if(clientWidth < styles.mediaQueries.tablet)
+    if(clientWidth < styles.mediaQueries.tablet) {
         openedWidthCoef = 13
+    }
 
     styles.sidePanel = {
         openedWidthCoef, //: 11,

@@ -14,7 +14,7 @@ import {
 /**
    DESIGN => intro
 **/
-const DesignIntroComp = props => {
+const DesignIntroComp = () => {
     const styles = {
         wrapper:{
         }
@@ -35,9 +35,9 @@ const DesignIntroComp = props => {
 /**
    DESIGN => interface
 **/
-const DesignInterfaceComp = props => {
+const DesignInterfaceComp = () => {
     const styles = {
-        wrapper:{
+        wrapper:  {
         }
     }
 
@@ -65,7 +65,7 @@ XR Media can be the ultimate communication tool or the reason your business fall
 /**
    DESIGN => Story
 **/
-const StoryComp = props => {
+const StoryComp = () => {
     const styles = {
         wrapper:{
         }
@@ -87,7 +87,7 @@ const StoryComp = props => {
 /**
    DESIGN => World
 **/
-const WorldComp = props => {
+const WorldComp = () => {
     const styles = {
         wrapper:{
         }
@@ -111,7 +111,7 @@ const WorldComp = props => {
 /**
    TECHNOLOGY => intro
 **/
-const TechIntroComp = props => {
+const TechIntroComp = () => {
     const styles = {
         wrapper:{
         }
@@ -133,7 +133,7 @@ const TechIntroComp = props => {
 /**
    TECHNOLOGY => vr
 **/
-const VRComp = props => {
+const VRComp = () => {
     const styles = {
         wrapper:{
         }
@@ -155,7 +155,7 @@ const VRComp = props => {
 /**
    TECHNOLOGY => ar
 **/
-const ARComp = props => {
+const ARComp = () => {
     const styles = {
         wrapper:{
         }
@@ -179,7 +179,7 @@ const ARComp = props => {
 /**
    TECHNOLOGY => exponential technologies
 **/
-const ExpComp = props => {
+const ExpComp = () => {
     const styles = {
         wrapper:{
         }
@@ -201,7 +201,7 @@ const ExpComp = props => {
 /**
    BUSINESS => intro
 **/
-const BusinessComp = props => {
+const BusinessComp = () => {
     const styles = {
         wrapper:{
         }
@@ -223,7 +223,7 @@ const BusinessComp = props => {
 /**
    BUSINESS => services
 **/
-const ServicesComp = props => {
+const ServicesComp = () => {
     const styles = {
         wrapper:{
         }
@@ -244,7 +244,7 @@ const ServicesComp = props => {
 /**
    BUSINESS => philosophy
 **/
-const PhiloComp = props => {
+const PhiloComp = () => {
     const styles = {
         wrapper:{
         }
@@ -268,7 +268,7 @@ const PhiloComp = props => {
 /**
    BUSINESS => disciplines
 **/
-const DisciplinesComp = props => {
+const DisciplinesComp = () => {
     const styles = {
         wrapper:{
         }

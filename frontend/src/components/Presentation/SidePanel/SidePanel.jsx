@@ -98,8 +98,9 @@ const BG = (props: BgProps) => {
             + ' L ' + p1.x + ' ' + p4.y + ' '
 
         color = 'rgba(0, 0, 0, 0.1)'
-    } else if (props.isFooterOpened)
+    } else if (props.isFooterOpened) {
         color = 'rgba(0, 0, 0, 0)'
+    }
 
     return (
         <div style={ styles.wrapper }>

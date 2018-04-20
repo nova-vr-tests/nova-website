@@ -46,13 +46,14 @@ export default (state: State = initialState, action: Action) => {
             ...state,
             isDreamscaping: action.isDreamscaping
         }
-        case TRANSLATE_X_LAYERS_BGS:
+    case TRANSLATE_X_LAYERS_BGS: {
             const { progress } = action
 
             return {
                 ...state,
                 progress,
             }
+    }
         case UPDATE_CACHE_LAYERS:
             return {
                 ...state,

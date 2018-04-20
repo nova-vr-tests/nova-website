@@ -10,6 +10,7 @@ import {
 } from 'recompose'
 
 import getStyles from './HeaderPictoStyles.jsx'
+// import Worker from 'worker-loader!./Worker.js'
 
 import type {
     ReduxState,
@@ -55,7 +56,7 @@ function loadImg(props: Props) {
     img.crossOrigin = "anonymous"
 
     img.onload = function() {
-        const worker = new Worker()
+        //const worker = new Worker()
         draw(this)
     }
 

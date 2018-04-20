@@ -16,8 +16,9 @@ const getStyles = props => {
     let overflowY = 'inherit'
     let wrapperWidth = `calc(${comps.length} * ${sidePanelWidth})`
 
-    if(props.desktopLockPosition && props.desktopLockPosition === position && !isTablet)
+    if(props.desktopLockPosition && props.desktopLockPosition === position && !isTablet) {
         position = props.position - 1
+    }
 
     let wrapperTransform = `translate(calc(-${position} * ${sidePanelWidth}))`
     let centerWrapperWidth = `calc(${sidePanelWidth})`

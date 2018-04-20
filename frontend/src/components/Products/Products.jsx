@@ -197,8 +197,9 @@ const createAbstract = props => {
         <div style={{ marginBottom: '4rem' }}>
             <SidePanelLink
                 onClickCallback={ () => {
-                    if(_props.isDescrShown === true)
+                    if(_props.isDescrShown === true) {
                         return
+                    }
 
                     const cond = true//appStyles.mediaQueries.tablet > props.windowWidth
 
@@ -276,8 +277,9 @@ const SmartComp = compose(
                 createList(nextProps)
             }
 
-            if(nextProps.drawerPosition < 2 && nextProps.isDescrShown)
+            if(nextProps.drawerPosition < 2 && nextProps.isDescrShown) {
                 this.props.setIsDescrShown(false)
+            }
 
             if(nextProps.routing.location.search === "") {
                 this.props.updateBg(this.props.pages[this.props.currentPage].layers[0].imgUrl)

@@ -1,6 +1,6 @@
 import { styles as appStyles } from '../../constants.js'
 
-const getStyles = props => {
+const getStyles = () => {
     const { clientWidth } = document.documentElement
     const { unitHeight } = appStyles
 

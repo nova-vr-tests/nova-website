@@ -36,7 +36,7 @@ const mapDispatchToProps = function(dispatch) {
    HOME PAGE
 **/
 
-const HomePage = props => {
+const HomePage = () => {
     const source = `XR is an abbreviation for “Extended Reality” which is a flexible and far-reaching term for immersive 3D media, inclusive of Virtual and Augmented Reality.
 
 XR technologies are already increasing revenue and decreasing internal costs in most industries. Visit our "Consultation" page to read about XR's influence on entertainment, retail, travel, healthcare, journalism, marketing and many others.`
@@ -54,7 +54,7 @@ XR technologies are already increasing revenue and decreasing internal costs in 
 HomePage.defaultProps = {
 }
 
-const HomeMainPanel = props => {
+const HomeMainPanel = () => {
     const styles = {
         wrapper:{
             transition: 'opacity 0.5s linear',

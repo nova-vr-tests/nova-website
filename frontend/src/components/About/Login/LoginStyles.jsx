@@ -1,6 +1,6 @@
 import { styles as appStyles } from '../../../constants.js'
 
-const getStyles = padding => {
+const getStyles = () => {
     const { clientWidth } = document.documentElement
 
     let formPadding = '0 25%'

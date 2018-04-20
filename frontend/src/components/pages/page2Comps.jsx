@@ -11,7 +11,7 @@ import {
 /**
    EDUCTIONAL PORTAL => intro
 */
-const EdIntroComp = props => {
+const EdIntroComp = () => {
     const styles = {
         wrapper:{
         }
@@ -37,7 +37,7 @@ A small shop in the New York area, Potential Synergy has recognized how the abse
 /**
    EDUCTIONAL PORTAL => intro
  */
-const DevelopIntro = props => {
+const DevelopIntro = () => {
     const styles = {
         wrapper: {
         }
@@ -75,7 +75,7 @@ They all include advantages and disadvantages (varying features, code, graphical
 /**
    EDUCTIONAL PORTAL => education
 */
-const EdComp= props => {
+const EdComp = () => {
     const source = `### Coming Soon :)
 `
 
@@ -92,7 +92,7 @@ const EdComp= props => {
 /**
    EDUCTIONAL PORTAL => solutions
 */
-const SolutionsComp = props => {
+const SolutionsComp = () => {
     const styles = {
         wrapper:{
         }
@@ -113,7 +113,7 @@ const SolutionsComp = props => {
 /**
    EDUCTIONAL PORTAL => insights
 */
-const InsightsComp = props => {
+const InsightsComp = () => {
     const styles = {
         wrapper:{
         }
@@ -137,7 +137,7 @@ const InsightsComp = props => {
    NEWS INSIGHTS
    PUBLISHING
 */
-const ComingSoon = props => {
+const ComingSoon = () => {
     const styles = {
         wrapper:{
         }

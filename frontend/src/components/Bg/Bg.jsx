@@ -134,8 +134,9 @@ const updateLayers = (layers, progress, pid, pages) => {
 
 
         // hack to skip during layer caching
-        if (keyframes[0].length - 1 < i) return l
-
+        if (keyframes[0].length - 1 < i) {
+            return l
+        }
 
         const paralaxStart = keyframes[slideStart][i].paralax
         const paralaxEnd = keyframes[slideEnd][i].paralax
@@ -169,8 +170,9 @@ const updateParalax = props => {
                     backLayers = updateLayers(backLayers, props.progress, props.backLayersPid, props.pages)
                 }
             }
-            else
+            else {
                 backLayers = updateLayers(backLayers, props.progress, props.backLayersPid, props.pages)
+            }
         }
     }
 

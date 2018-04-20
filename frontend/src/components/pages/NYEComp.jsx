@@ -7,7 +7,7 @@ import {
     FlexColumn
 } from './UI.jsx'
 
-const PartnershipIntro = props => {
+const PartnershipIntro = () => {
     const source = `Business is conducted among people. We love building relationships with folks from all over the world. It's who we are. In the process we've discovered this mentality is the same one that builds strong partnerships. Nova is a place of business because we value the individual, understanding that the financial elements of business emerge from a genuine interest in thy neighbor.`
 
     return (
@@ -20,7 +20,7 @@ const PartnershipIntro = props => {
     )
 }
 
-const FindUs = props => {
+const FindUs = () => {
     const source = `Fortunately, we feel at home on the fourth floor of the historic Beard Street Warehouse at the south end of Van Brunt Street in Red Hook, Brooklyn. We pride ourselves on welcoming the widest range of thinkers, entrepreneurs, and artists we can find. Please join us in expanding this mission. In the end, Nova Studios is a place of business with the furnishings of your best friend's living room. Come and visit us. We are always open.
 
 481 Van Brunt Street Brooklyn
@@ -37,7 +37,7 @@ New York, United States. 11231`
     )
 }
 
-const Philosophy = props => {
+const Philosophy = () => {
     const source = `### *Do unto others*
 
 As pioneers our duty is to explore new media, publish our findings, and map the way.
@@ -60,7 +60,7 @@ We lead by example, challenge traditional structures and fight for underdogs.
     )
 }
 
-const Community = props => {
+const Community = () => {
     const source = `### Philanthropy
 
 We provide education and access to those with less opportunity. May it be teaching Red Hook West Housing Project’s youth how to code, or brining internet and PCs to under developed villages, we are on determined be the change that betters the world.
@@ -88,7 +88,7 @@ Provide internet access to remote villages in Albania, eabling them to connect w
     )
 }
 
-const NYEIntroComp = props => {
+const NYEIntroComp = () => {
     const source = `Virtual Reality brings us to a place where the confines of the physical world can disappear. Time and gravity and our relationship with space have been as much a part of the human experience as our need for air. Now, in these virtual worlds, we’re breaking free from these physical measurements.
 
 We're reminded of our quest for this new idea of freedom every time we look out the window of our Nova Studios and see the Statue of Liberty.
@@ -113,7 +113,7 @@ Together we're a small part of the 21st century movement into Extended Reality, 
     )
 }
 
-const NYEStreamComp = props => {
+const NYEStreamComp = () => {
     const source = `Nova XR is a team of artists and engineers programming new media. Our specialty is XR (Extended Reality). We develop from the 4th floor of the 19th century Beard Street Warehouses in Brooklyn, New York.
 
 Nova provides access to advanced technologies, producing XR media for businesses to reduce internal costs and increase sales.
@@ -151,7 +151,7 @@ Anna Irene
     )
 }
 
-const NYEDestComp = props => {
+const NYEDestComp = () => {
     return (
         <div
             className={ 'NYEDestComp--wrapper' }>
@@ -163,7 +163,7 @@ const NYEDestComp = props => {
     )
 }
 
-const NYEDistrComp = props => {
+const NYEDistrComp = () => {
     return (
         <div
             className={ 'NYEDistrComp--wrapper' }>

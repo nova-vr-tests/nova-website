@@ -50,8 +50,9 @@ let el
 
 const scroll = (e, elId, callback = () => {}) => {
     const newDate = new Date()
-    if(!el)
+    if(!el) {
         el = document.getElementById(elId)
+    }
 
     // update target scroll
     if(e.deltaY !== 0) {
@@ -64,7 +65,6 @@ const scroll = (e, elId, callback = () => {}) => {
             currentScroll += (targetScroll - currentScroll) * progress
             currentScroll = el.scrollTop
             cancelAnimationFrame(rafId)
-        } else {
         }
 
         progress = 0

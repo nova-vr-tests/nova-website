@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
     windowWidth: state.appReducer.windowWidth,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
 })
 
 const Loading = props => {

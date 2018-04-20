@@ -1,11 +1,7 @@
 import { styles as appStyles } from '../../constants'
 
 const getStyles = props => {
-    const { clientWidth } = document.documentElement
     const { unitHeightJs } = appStyles
-
-    if(clientWidth < appStyles.mediaQueries.phone) {
-    }
 
     const linkWrapperHeight = unitHeightJs * 3 + 'px'
     const borderRadius = {

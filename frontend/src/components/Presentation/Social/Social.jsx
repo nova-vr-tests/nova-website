@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
     currentUrl: window.location.origin + state.routing.location.pathname,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
 })
 
 const styles = {

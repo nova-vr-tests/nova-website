@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
     routing: state.routing,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
 })
 
 const Header = props => {
@@ -155,8 +155,9 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
 
     const blogPost = await restApi.fetchDetail(fetchUrl, postId)
 
-    if(that.mounted)
+    if(that.mounted) {
         setBlogPost(blogPost)
+    }
 }
 
 const SmartComp = compose(

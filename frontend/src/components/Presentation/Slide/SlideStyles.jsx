@@ -73,7 +73,7 @@ const getStyles = props => {
 }
 
 
-const getNextPageStyles = props => ({
+const getNextPageStyles = () => ({
     wrapper: {
         height: 'calc(2 * ' + appStyles.unitHeight + ')',
         display: 'flex',
