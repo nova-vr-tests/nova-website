@@ -48,7 +48,9 @@ const HeaderPictoDumb: React.StatelessFunctionalComponent<Props> = props => {
     )
 }
 
+let isLoadingImg = false
 function loadImg(props: Props) {
+
     var img = new Image()
     img.src = props.url + '?' + Math.floor(Math.random() * 100)
     img.crossOrigin = "anonymous"
@@ -66,10 +68,16 @@ function loadImg(props: Props) {
         // worker.postMessage([obj])
         // worker.onmessage = e => console.log(e)
 
-        draw(this)
+        if(!isLoadingImg) {
+            draw(this)
+        } else {
+            console.log('already processing img')
+        }
     }
 
     function draw(img: Image) {
+        isLoadingImg = true
+
         var canvas = props.getRef()
         if(canvas) {
             canvas.height = img.height //
@@ -102,11 +110,13 @@ function loadImg(props: Props) {
             const worker = new Worker()
             worker.postMessage([obj])
             worker.onmessage = e => {
-                const { processedImg } = e.data
-                console.log(processedImg)
                 ctx.putImageData(e.data.processedImg, 0, 0)
+
+                isLoadingImg = false
             }
 
+        } else {
+            isLoadingImg = false
         }
     }
 }
