@@ -272,7 +272,8 @@ const SmartComp = compose(
         },
         componentWillUpdate(nextProps) {
             initHeader(nextProps.updateSidePanelHeader, nextProps)
-            initBg(nextProps)
+            if(nextProps.drawerPosition < 2)
+                initBg(nextProps)
 
             if(nextProps.products.length !== this.props.products.length) {
                 createList(nextProps)
@@ -282,11 +283,10 @@ const SmartComp = compose(
                 this.props.setIsDescrShown(false)
             }
 
-            // if(nextProps.routing.location.search === ""
-            //     && this.props.routing.location.search !== "") {
-            //     this.props.updateBg(this.props.pages[this.props.currentPage].layers[0].imgUrl)
-            //     this.props.updateMainPanelIsOpened(false)
-            // }
+            if(nextProps.routing.location.search === ""
+                && this.props.routing.location.search !== "") {
+                this.props.updateMainPanelIsOpened(false)
+            }
 
             if(this.props.routing.location.search !== nextProps.routing.location.search) {
                 updateDrawerFromUrl(
