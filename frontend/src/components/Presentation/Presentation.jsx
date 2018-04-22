@@ -282,27 +282,11 @@ class Presentation extends React.Component<Props, State> {
     }
 
     goToPage(targetPage: number) {
-        const { pages, currentPage } = this.props
+        const { currentPage } = this.props
 
         this.updateLinePosition(this.props)
 
         if(targetPage !== currentPage) {
-            const sign = targetPage > currentPage ? 1 : -1
-            const _pages = [pages[currentPage], pages[targetPage]]
-            const pages2 = sign < 0 ? _pages.reverse() : _pages
-
-            const transitionParams = {
-                sign,
-                pages: pages2,
-                currentPage: sign > 0 ? 0 : 1,
-                attachScrollEvent: this.attachScrollEvent,
-                detachScrollEvent: this.detachScrollEvent,
-            }
-
-            const transitionType = this.getTransitionType(currentPage, targetPage)
-
-            transitions.startTransition(transitionType, transitionParams)
-
             this.props.updateCurrentPage(targetPage)
         }
     }

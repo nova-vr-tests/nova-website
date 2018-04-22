@@ -316,9 +316,11 @@ const startTransition = (type, params) => {
 
     switch(type){
         case BG_SPLIT:
-            return transitions.splitBackground.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent)
+        console.log(transitions.splitBackground.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent))
+        break
         case BG_PARALAX:
-            return transitions.bgParalax.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent)
+        console.log(transitions.bgParalax.slideTransition(sign, pages, currentPage, attachScrollEvent, detachScrollEvent))
+        break
         default:
             return
     }

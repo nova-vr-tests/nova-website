@@ -67,7 +67,6 @@ const updateChildComps = (props, nextProps) => {
     for(let i in props.comps) {
         const NextComp = nextProps.comps[i]
 
-            console.log(`=======${i}=========`)
         if(props.comps[i] !== nextProps.comps[i]) {
             const reduxState = state => ({
                 windowWidth: state.appReducer.windowWidth,

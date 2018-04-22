@@ -6,6 +6,7 @@ import {
     compose,
     lifecycle,
     pure,
+    withState,
 } from 'recompose'
 
 import {
@@ -37,8 +38,6 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       slideTransitionProgress: state.bgReducer.transitionProgress,
       linePosition: state.appReducer.linePosition,
-      frontLayers: state.bgReducer.frontLayers,
-      backLayers: state.bgReducer.backLayers,
       cacheLayers: state.bgReducer.cacheLayers,
       appTheme: state.appReducer.appTheme,
       currentPage: state.appReducer.currentPage,
@@ -96,130 +95,14 @@ LayerAssembly.defaultProps = {
     display: 1,
 }
 
-const updateLayers = (layers, progress, pid, pages) => {
-    if(layers.length === 0) {
-        return layers
-    }
-
-    const keyframes = pages
-                        .filter(e => e.pid === pid)
-                        .map(e => e.layers
-                                    .map(f => ({
-                                        paralax: f.paralax,
-                                        opacity: f.opacity
-                                    }))
-                        )
-
-    // no parallax with 1 keyframe or less
-    if(keyframes.length <= 1) {
-        return layers
-    }
-
-    return layers.map((l, i) => {
-
-
-        const delta = 1 / (keyframes.length - 1)
-
-        let j
-        for(j = 0; j < keyframes.length; j++) {
-            if (progress < ( j+ 1) * delta) {
-                break
-            }
-        }
-
-        let slideStart = j <= 0 ? 0 : j
-        let slideEnd = j >= keyframes.length - 1 ? keyframes.length - 1 : slideStart + 1
-        slideStart = slideStart === slideEnd && slideStart !== 0 ? slideEnd - 1 : slideStart
-
-
-
-        // hack to skip during layer caching
-        if (keyframes[0].length - 1 < i) {
-            return l
-        }
-
-        const paralaxStart = keyframes[slideStart][i].paralax
-        const paralaxEnd = keyframes[slideEnd][i].paralax
-        let paralax = paralaxStart + (paralaxEnd - paralaxStart) * (progress - slideStart * delta) / delta
-
-        const opacityStart = keyframes[slideStart][i].opacity
-        const opacityEnd = keyframes[slideEnd][i].opacity
-
-        let opacity = opacityStart + (opacityEnd - opacityStart) * (progress - slideStart * delta) / delta
-
-        return {
-            ...l,
-            paralax,
-            opacity,
-        }
-    })
-}
-
-const updateParalax = props => {
-    let { frontLayers, backLayers, cacheLayers } = props
-
-    if(props.pages.length > 0) {
-        if(
-            !props.isDreamscaping
-        ) {
-            cacheLayers = updateLayers(cacheLayers, props.progress, props.cacheLayersPid, props.pages)
-            if(isFrontBgShown) {
-                if(frontLayers.length) {
-                    frontLayers = updateLayers(frontLayers, props.progress, props.frontLayersPid, props.pages)
-                } else {
-                    backLayers = updateLayers(backLayers, props.progress, props.backLayersPid, props.pages)
-                }
-            }
-            else {
-                backLayers = updateLayers(backLayers, props.progress, props.backLayersPid, props.pages)
-            }
-        }
-    }
-
-    return {
-        frontLayers,
-        backLayers,
-        cacheLayers,
-    }
-}
-
-let isFrontBgShown = true
-let prevCurrentPage = -1
 const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
     const styles = getStyles(props)
 
-    let { frontLayers, backLayers, cacheLayers } = props
-
-    if(prevCurrentPage > props.currentPage) {
-        isFrontBgShown = false
-        prevCurrentPage = props.currentPage
-    } else if (prevCurrentPage < props.currentPage) {
-        isFrontBgShown = true
-        prevCurrentPage = props.currentPage
-    }
+    let { frontLayers, backLayers } = props
 
     return (
-        <div style={ styles.wrapper } className="bar">
-                <LayerAssembly
-                    layers={ cacheLayers }
-                    translateY={ 0 }
-                />
-
-            <div className="split-top" style={ styles.split.wrapper }>
-                <LayerAssembly
-                    layers={ backLayers }
-                    translateY={ '0' }
-                />
-            </div>
-            <div className="split-bottom" style={ { ...styles.split.wrapper, ...styles.split.wrapperBottom } }>
-                <LayerAssembly
-                    translateY={ styles.splitBottomTranslateY }
-                    layers={ backLayers }
-                />
-            </div>
-
-
-            <div className="front-bg" style={ {
+        <div style={ styles.wrapper } className="barr">
+            <div className="front-bgg" style={ {
                     ...styles.frontBg,
             } }>
                 <LayerAssembly
@@ -229,9 +112,8 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
             </div>
 
 
-            <div className="back-bg" style={ {
+            <div className="back-bgg" style={ {
                     ...styles.backBg,
-                    opacity: props.slideTransitionProgress > 0.5 ? 0 : 1,
             } }>
                 <LayerAssembly
                     layers={ backLayers }
@@ -249,17 +131,35 @@ const BgDumb: React.StatelessFunctionalComponent<Props> = props => {
 }
 
 const HOC = compose(
+    withState(
+        'frontLayers',
+        'setFrontLayers',
+        [],
+    ),
+    withState(
+        'backLayers',
+        'setBackLayers',
+        [],
+    ),
+    withState(
+        'isFrontLayerShown',
+        'setIsFrontLayerShown',
+        false,
+    ),
     lifecycle({
-        componentDidUpdate() {
-            const { frontLayers, backLayers, cacheLayers } = updateParalax(this.props)
+        componentWillUpdate(nextProps) {
+            const { layers } = nextProps.pages[nextProps.currentPage]
             if(
-                JSON.stringify(frontLayers) !== JSON.stringify(this.props.frontLayers)
-                || JSON.stringify(backLayers) !== JSON.stringify(this.props.backLayers)
-                || JSON.stringify(cacheLayers) !== JSON.stringify(this.props.cacheLayers)
+                nextProps.currentPage !== this.props.currentPage
+                || !this.props.frontLayers.length
             ) {
-                this.props.updateFrontLayers(frontLayers, this.props.frontLayersPid)
-                this.props.updateBackLayers(backLayers, this.props.backLayersPid)
-                this.props.updateCacheLayers(cacheLayers, this.props.cacheLayersPid)
+                if(this.props.isFrontLayerShown) {
+                    this.props.setBackLayers(layers)
+                    this.props.setIsFrontLayerShown(false)
+                } else {
+                    this.props.setFrontLayers(layers)
+                    this.props.setIsFrontLayerShown(true)
+                }
             }
         }
     }),
