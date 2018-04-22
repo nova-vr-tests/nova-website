@@ -5,9 +5,11 @@ import { initialState } from '../../store.js'
 export type ReduxState = {
       pages: typeof initialState.appReducer.pages,
       currentPage: typeof initialState.appReducer.currentPage,
+      cacheLayers: typeof initialState.bgReducer.cacheLayers,
 }
 
 export type ReduxDispatch = {
+    updateCacheLayers: (layers: typeof initialState.bgReducer.cacheLayers) => void,
 }
 
 export type OwnProps = {}

@@ -9,7 +9,7 @@ import {
 import API from '../../API.js'
 
 
-import { updateAllLayersUrl } from '../../reducer/actions/Bg.js'
+import { updateCacheLayers } from '../../reducer/actions/Bg.js'
 import {
     updateMainPanelContent,
     updateMainPanelIsOpened,
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     goTo: url => dispatch(push(url)),
-    updateBg: url => dispatch(updateAllLayersUrl(url)),
+    updateBg: url => dispatch(updateCacheLayers(url)),
     updateMainPanel: comp => dispatch(updateMainPanelContent(comp)),
     updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
     updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
