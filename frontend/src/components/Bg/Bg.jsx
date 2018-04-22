@@ -11,6 +11,7 @@ import {
 
 import {
     updateCacheLayers,
+    resetCacheLayers,
 } from '../../reducer/actions/Bg.js'
 
 import type {
@@ -37,12 +38,14 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
       currentPage: state.appReducer.currentPage,
       pages: state.appReducer.pages,
       cacheLayers: state.bgReducer.cacheLayers,
+      routing: state.routing,
   }
 }
 
 const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) { // eslint-disable-line no-unused-vars
 	return {
       updateCacheLayers: (l) => dispatch(updateCacheLayers(l)),
+      resetCacheLayers: () => dispatch(resetCacheLayers()),
   }
 }
 
@@ -137,9 +140,11 @@ const HOC = compose(
     lifecycle({
         componentWillUpdate(nextProps) {
             if(
-                nextProps.currentPage !== this.props.currentPage
-                || !this.props.frontLayers.length
+                (nextProps.currentPage !== this.props.currentPage
+                    && nextProps.routing.location.search === "")
+                || (nextProps.routing.location.search === "" && this.props.routing.location.search !== "")
             ) {
+                console.log('asdflkadjfs;lkdasjfakdsfjdalskfjdsalkfjdsalkfjadslkfj sdfdaf---- fs')
                 const { layers } = nextProps.pages[nextProps.currentPage]
 
                 if(this.props.isFrontLayerShown) {
@@ -151,10 +156,10 @@ const HOC = compose(
                 }
             }
 
-            else if(
-                nextProps.cacheLayers !== this.props.cacheLayers
-                && nextProps.cacheLayers.length
-            ) {
+            if(
+                nextProps.cacheLayers.length
+                && nextProps.routing.location.search !== ""
+            ){
                 const layers = this.props.cacheLayers
 
                 if(this.props.isFrontLayerShown) {
@@ -164,6 +169,8 @@ const HOC = compose(
                     this.props.setFrontLayers(layers)
                     this.props.setIsFrontLayerShown(true)
                 }
+
+                this.props.resetCacheLayers()
             }
 
             console.log(this.props.cacheLayers)

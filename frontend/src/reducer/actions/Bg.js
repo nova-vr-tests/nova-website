@@ -8,12 +8,17 @@ import {
     UPDATE_IS_DREAMSCAPING,
     TRANSLATE_X_LAYERS_BGS,
     UPDATE_ALL_LAYERS_URL,
+    RESET_CACHE_LAYERS,
 } from '../Bg'
 
 import type {
     Action as BgAction,
     BgLayer,
 } from '../BgTypes.jsx'
+
+const resetCacheLayers = () => ({
+    type: RESET_CACHE_LAYERS,
+})
 
 const updateIsDreamscaping = isDreamscaping => ({
     type: UPDATE_IS_DREAMSCAPING,
@@ -60,4 +65,5 @@ export {
     updateIsDreamscaping,
     translateXLayersBgs,
     updateAllLayersUrl,
+    resetCacheLayers,
 }

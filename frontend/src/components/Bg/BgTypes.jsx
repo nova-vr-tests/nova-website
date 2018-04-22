@@ -6,10 +6,12 @@ export type ReduxState = {
       pages: typeof initialState.appReducer.pages,
       currentPage: typeof initialState.appReducer.currentPage,
       cacheLayers: typeof initialState.bgReducer.cacheLayers,
+      routing: typeof initialState.routing,
 }
 
 export type ReduxDispatch = {
     updateCacheLayers: (layers: typeof initialState.bgReducer.cacheLayers) => void,
+    resetChacheLayers: () => void,
 }
 
 export type OwnProps = {}
