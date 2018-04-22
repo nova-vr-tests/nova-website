@@ -36,17 +36,8 @@ import type {
 
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
-      slideTransitionProgress: state.bgReducer.transitionProgress,
-      linePosition: state.appReducer.linePosition,
-      cacheLayers: state.bgReducer.cacheLayers,
-      appTheme: state.appReducer.appTheme,
       currentPage: state.appReducer.currentPage,
       pages: state.appReducer.pages,
-      progress: state.bgReducer.progress,
-      frontLayersPid: state.bgReducer.frontLayersPid,
-      backLayersPid: state.bgReducer.backLayersPid,
-      cacheLayersPid: state.bgReducer.cacheLayersPid,
-      isDreamscaping: state.bgReducer.isDreamscaping,
   }
 }
 
@@ -163,7 +154,7 @@ const HOC = compose(
             }
         }
     }),
-    pure
+    pure,
 )(BgDumb)
 
 const ConnectedBg: React.ComponentType<OwnProps> = connect(

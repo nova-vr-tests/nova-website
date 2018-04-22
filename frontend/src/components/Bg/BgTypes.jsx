@@ -3,10 +3,7 @@
 import { initialState } from '../../store.js'
 
 export type ReduxState = {
-      slideTransitionProgress: typeof initialState.bgReducer.transitionProgress,
-      linePosition: typeof initialState.appReducer.linePosition,
-      cacheLayers: typeof initialState.bgReducer.cacheLayers,
-      appTheme: typeof initialState.appReducer.appTheme,
+      pages: typeof initialState.appReducer.pages,
       currentPage: typeof initialState.appReducer.currentPage,
 }
 
