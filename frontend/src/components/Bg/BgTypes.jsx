@@ -5,8 +5,6 @@ import { initialState } from '../../store.js'
 export type ReduxState = {
       slideTransitionProgress: typeof initialState.bgReducer.transitionProgress,
       linePosition: typeof initialState.appReducer.linePosition,
-      frontLayers: typeof initialState.bgReducer.frontLayers,
-      backLayers: typeof initialState.bgReducer.backLayers,
       cacheLayers: typeof initialState.bgReducer.cacheLayers,
       appTheme: typeof initialState.appReducer.appTheme,
       currentPage: typeof initialState.appReducer.currentPage,
@@ -17,7 +15,13 @@ export type ReduxDispatch = {
 
 export type OwnProps = {}
 
-export type Props = OwnProps & ReduxState & ReduxDispatch
+export type State = {
+    frontLayers: typeof initialState.bgReducer.frontLayers,
+    backLayers: typeof initialState.bgReducer.backLayers,
+    isFrontLayerShown: boolean,
+}
+
+export type Props = OwnProps & ReduxState & ReduxDispatch & State
 
 /**
    Layer types
