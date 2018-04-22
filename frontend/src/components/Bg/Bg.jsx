@@ -11,8 +11,6 @@ import {
 
 import {
     updateCacheLayers,
-    updateFrontLayers,
-    updateBackLayers,
 } from '../../reducer/actions/Bg.js'
 
 import type {
@@ -38,14 +36,13 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 	return {
       currentPage: state.appReducer.currentPage,
       pages: state.appReducer.pages,
+      cacheLayers: state.bgReducer.cacheLayers,
   }
 }
 
 const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) { // eslint-disable-line no-unused-vars
 	return {
-      updateFrontLayers: (l, pid) => dispatch(updateFrontLayers(l, pid)),
-      updateBackLayers: (l, pid) => dispatch(updateBackLayers(l, pid)),
-      updateCacheLayers: (l, pid) => dispatch(updateCacheLayers(l, pid)),
+      updateCacheLayers: (l) => dispatch(updateCacheLayers(l)),
   }
 }
 
@@ -139,11 +136,12 @@ const HOC = compose(
     ),
     lifecycle({
         componentWillUpdate(nextProps) {
-            const { layers } = nextProps.pages[nextProps.currentPage]
             if(
                 nextProps.currentPage !== this.props.currentPage
                 || !this.props.frontLayers.length
             ) {
+                const { layers } = nextProps.pages[nextProps.currentPage]
+
                 if(this.props.isFrontLayerShown) {
                     this.props.setBackLayers(layers)
                     this.props.setIsFrontLayerShown(false)
@@ -152,6 +150,23 @@ const HOC = compose(
                     this.props.setIsFrontLayerShown(true)
                 }
             }
+
+            else if(
+                nextProps.cacheLayers !== this.props.cacheLayers
+                && nextProps.cacheLayers.length
+            ) {
+                const layers = this.props.cacheLayers
+
+                if(this.props.isFrontLayerShown) {
+                    this.props.setBackLayers(layers)
+                    this.props.setIsFrontLayerShown(false)
+                } else {
+                    this.props.setFrontLayers(layers)
+                    this.props.setIsFrontLayerShown(true)
+                }
+            }
+
+            console.log(this.props.cacheLayers)
         }
     }),
     pure,

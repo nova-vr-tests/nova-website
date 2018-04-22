@@ -57,8 +57,13 @@ export default (state: State = initialState, action: Action) => {
         case UPDATE_CACHE_LAYERS:
             return {
                 ...state,
-                cacheLayers: action.cacheLayers,
-                cacheLayersPid: action.cacheLayersPid
+                cacheLayers: [
+                    {
+                        imgUrl: action.cacheLayers,
+                        paralax: 0,
+                        opacity: 1,
+                    }
+                ],
             }
         case UPDATE_BACK_LAYERS:
             return {
