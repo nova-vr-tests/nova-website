@@ -12,7 +12,6 @@ import linkedinIcon from '../img/social/linkedin.svg'
 
 import URLSearchParams from 'url-search-params'
 
-import { BG as PanelBg } from '../Presentation/SidePanel/SidePanel.jsx'
 
 import { styles as appStyles } from '../../constants.js'
 
@@ -121,11 +120,6 @@ const Blog = props => {
             style={ styles.wrapper }
             className="Blog--wrapper">
             <div style={ styles.headerWrapper }>
-                <PanelBg
-                    zIndex={ -1 }
-                    bgColor="rgba(255, 255, 255, 0.7)"
-                    type={ 1 }
-                    rightEdgeCoef={ appStyles.sidePanel.openedWidthCoef }  />
                 <Header
                     pictoUrl={ headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
