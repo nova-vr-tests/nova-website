@@ -144,7 +144,6 @@ const HOC = compose(
                     && nextProps.routing.location.search === "")
                 || (nextProps.routing.location.search === "" && this.props.routing.location.search !== "")
             ) {
-                console.log('asdflkadjfs;lkdasjfakdsfjdalskfjdsalkfjdsalkfjadslkfj sdfdaf---- fs')
                 const { layers } = nextProps.pages[nextProps.currentPage]
 
                 if(this.props.isFrontLayerShown) {
@@ -172,8 +171,6 @@ const HOC = compose(
 
                 this.props.resetCacheLayers()
             }
-
-            console.log(this.props.cacheLayers)
         }
     }),
     pure,
