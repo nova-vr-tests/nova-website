@@ -272,8 +272,9 @@ const SmartComp = compose(
         },
         componentWillUpdate(nextProps) {
             initHeader(nextProps.updateSidePanelHeader, nextProps)
-            if(nextProps.drawerPosition < 2)
+            if(nextProps.drawerPosition < 2) {
                 initBg(nextProps)
+            }
 
             if(nextProps.products.length !== this.props.products.length) {
                 createList(nextProps)
