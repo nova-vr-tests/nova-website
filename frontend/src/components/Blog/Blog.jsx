@@ -141,9 +141,9 @@ Blog.defaultProps = {
     sidePanelMode: false,
 }
 
+let postId = 1
 const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     const restApi = new API()
-    let postId = 1
     if(window.location.search.length) {
         postId  = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
     }
