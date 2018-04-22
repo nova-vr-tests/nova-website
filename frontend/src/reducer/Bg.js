@@ -29,6 +29,7 @@ export const UPDATE_CACHE_LAYERS = 'bg/update_cache_layers'
 export const TRANSLATE_X_LAYERS_BGS = 'bg/translateX_all_layers'
 export const UPDATE_IS_DREAMSCAPING = 'bg/update_is_dreamscaping'
 export const UPDATE_ALL_LAYERS_URL = 'bg/update bg url for all layers at current page'
+export const RESET_CACHE_LAYERS = 'bg/reset cache layers'
 
 /**
    Reducer
@@ -65,6 +66,11 @@ export default (state: State = initialState, action: Action) => {
                     }
                 ],
             }
+    case RESET_CACHE_LAYERS:
+        return {
+            ...state,
+            cacheLayers: [],
+        }
         case UPDATE_BACK_LAYERS:
             return {
                 ...state,
