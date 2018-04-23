@@ -45,3 +45,11 @@ body {
         font-size: 10px;
     }
 }
+
+/* markdown */
+.markdown-parser--wrapper:after {
+    content: "";
+    display: block;
+    min-height: 50px;
+    width: 100%;
+}

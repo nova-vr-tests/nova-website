@@ -12,7 +12,7 @@ const BlogPostContent = props => {
     const styles = getStyles(props)
 
     const renderers = {
-        root: props => <div style={ styles.root }>{ props.children }</div>,
+        root: props => <div className="markdown-parser--wrapper" style={ styles.root }>{ props.children }</div>,
         h1: props => <h1 style={{ color: 'red' }}>{ props.children }</h1>,
         table: props =>
             <div style={ styles.tableWrapper }>
