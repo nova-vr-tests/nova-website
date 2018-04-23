@@ -159,27 +159,39 @@ const SmartComp = compose(
     lifecycle({
         componentDidMount() {
             this.mounted = true
-            fetchBlogPosts(
-                this.props.fetchUrl, this.props.setBlogPosts, this)
-            updateDrawerFromUrl(
-                this.props.setDrawerPosition,
-                this.props.routing.location.search,
-                this.props.updateMainPanelIsOpened)
+            this.page = this.props.currentPage
 
-            initHeader(this.props.updateSidePanelHeader, this.props)
-        },
-        componentWillUpdate(nextProps) {
-            if(nextProps.blogPosts.length !== this.props.blogPosts.length) {
-                createList(nextProps)
-            }
-            if(this.props.routing.location.search !== nextProps.routing.location.search) {
+            const shouldRender = this.props.pages[this.page].path.replace("/","") === this.props.routing.location.pathname.replace("/", "")
+
+            if(shouldRender) {
+                fetchBlogPosts(
+                    this.props.fetchUrl, this.props.setBlogPosts, this)
                 updateDrawerFromUrl(
                     this.props.setDrawerPosition,
-                    nextProps.routing.location.search,
+                    this.props.routing.location.search,
                     this.props.updateMainPanelIsOpened)
-            }
 
-            initHeader(nextProps.updateSidePanelHeader, nextProps)
+                initHeader(this.props.updateSidePanelHeader, this.props)
+            }
+        },
+        componentWillUpdate(nextProps) {
+            const shouldRender = nextProps.pages[this.page].path.replace("/","") === this.props.routing.location.pathname.replace("/", "")
+
+            if(shouldRender) {
+                if(nextProps.blogPosts.length !== this.props.blogPosts.length) {
+                    createList(nextProps)
+                }
+                if(this.props.routing.location.search !== nextProps.routing.location.search) {
+                    updateDrawerFromUrl(
+                        this.props.setDrawerPosition,
+                        nextProps.routing.location.search,
+                        this.props.updateMainPanelIsOpened)
+                }
+
+                initHeader(nextProps.updateSidePanelHeader, nextProps)
+
+                console.log(this.props.fetchUrl)
+            }
         },
         componentWillUnmount() {
             this.mounted = false

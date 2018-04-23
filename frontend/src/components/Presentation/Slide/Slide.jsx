@@ -19,7 +19,6 @@ import arrow from '../../img/arrow.svg'
 const mapStateToProps = state => ({
     scrollProgress: state.bgReducer.progress,
     currentUrl: window.location.origin + '/' + state.routing.location.pathname,
-    currentPage: state.appReducer.currentPage,
     goToPage: state.appReducer.goToPage,
 })
 
@@ -173,11 +172,11 @@ const SmartComp = compose(
         },
         componentWillUpdate(nextProps) {
             if(this.props.currentPage !== nextProps.currentPage) {
-            const { pid } = nextProps.pages[nextProps.currentPage]
-            const presSlides = nextProps.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
-            const PageComp = presSlides[0].comp
-            this.props.setCurrentPage(<PageComp />)
-        }
+                const { pid } = nextProps.pages[nextProps.currentPage]
+                const presSlides = nextProps.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
+                const PageComp = presSlides[0].comp
+                this.props.setCurrentPage(<PageComp />)
+            }
         },
         componentWillUnmount() {
         }

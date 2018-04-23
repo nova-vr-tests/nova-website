@@ -27,6 +27,8 @@ import Picto from './HeaderPicto.jsx'
 
 const mapStateToProps = state => ({
     routing: state.routing,
+    currentPage: state.appReducer.currentPage,
+    pages: state.appReducer.pages,
 })
 
 const mapDispatchToProps = () => ({
@@ -164,11 +166,15 @@ const SmartComp = compose(
     lifecycle({
         componentDidMount() {
             this.mounted = true
-            fetchBlogPost(
-                this.props.fetchUrl, this.props.setBlogPost, this)
+            this.page = this.props.currentPage
+            const shouldRender = this.props.pages[this.page].path.replace("/","") === this.props.routing.location.pathname.replace("/", "")
+            if(shouldRender) {
+                fetchBlogPost(this.props.fetchUrl, this.props.setBlogPost, this)
+            }
         },
         componentWillUpdate(nextProps) {
-            if(this.props.routing.location.search !== nextProps.routing.location.search) {
+            const shouldRender = this.props.pages[this.page].path.replace("/","") === this.props.routing.location.pathname.replace("/", "")
+            if(shouldRender && this.props.routing.location.search !== nextProps.routing.location.search) {
                 fetchBlogPost(
                     this.props.fetchUrl, this.props.setBlogPost, this)
             }
