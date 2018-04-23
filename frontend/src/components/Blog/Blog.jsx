@@ -143,7 +143,7 @@ Blog.defaultProps = {
     contentKey: 'content',
     LastComp: () => <div></div>,
     sidePanelMode: false,
-    addTail: false,
+    addTail: true,
 }
 
 let postId = 1
