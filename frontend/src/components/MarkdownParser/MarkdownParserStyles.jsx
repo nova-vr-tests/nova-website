@@ -78,8 +78,9 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     }
 
     const link = {
-        color: textColor,
+        color: 'inherit',
         fontWeight: 'bold',
+        textDecoration: 'none',
     }
 
     const tableWrapper = {
