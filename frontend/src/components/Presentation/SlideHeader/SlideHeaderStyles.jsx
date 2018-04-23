@@ -1,7 +1,7 @@
 import { styles as appStyles } from '../../../constants.js'
 
 const getStyles = (props) => {
-    let customWrapperHeight = 3
+    let customWrapperHeight = 2.5
     // check if TOC is on current page (see TOC.jsx for algo, needs refactor)
     if(props.pages[props.currentPage]) {
         const h2 = props.pages
@@ -10,7 +10,8 @@ const getStyles = (props) => {
 
         const filteredH2 = h2.reduce((acc, e, i) => i > 0 ? (acc.includes(e) ? acc : [...acc, e]) : [...acc, e], [])
 
-        customWrapperHeight = filteredH2.length > 0 ? customWrapperHeight : customWrapperHeight + 1
+        // account for TOC
+        customWrapperHeight = filteredH2.length > 0 ? customWrapperHeight : customWrapperHeight + 1.5
     }
 
     return {
@@ -29,7 +30,7 @@ const getStyles = (props) => {
             height: 'calc(6 * ' + appStyles.unitHeight + ')',
             boxSizing: 'border-box',
             padding: 'calc(1 * ' + appStyles.unitHeight + ') 0',
-            paddingBottom: !props.overrideHeader ? 'calc(1 * ' + appStyles.unitHeight + ')' : 0,
+            paddingBottom: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -38,7 +39,9 @@ const getStyles = (props) => {
         },
         socialWrapper: {
             alignSelf: 'flex-end',
-            paddingTop: 'calc(0.5 * ' + appStyles.unitHeight + ')',
+            height: `calc(${customWrapperHeight} * ${appStyles.unitHeight})`,
+            display: 'flex',
+            alignItems: 'center',
         },
         titleWrapper: {
             marginLeft: appStyles.unitWidth,
