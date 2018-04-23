@@ -44,6 +44,7 @@ const sidePanel = {
 }
 
 // App style constants
+const unitWidthJs = 60 // px
 const styles: AppStyles = {
     themeTypes: {
         defaultTheme: 'default',
@@ -53,9 +54,9 @@ const styles: AppStyles = {
     },
     sidePanel,
     unitHeight: 100/24 + 'vh',
-    unitWidth: '60px',
+    unitWidth: unitWidthJs + 'px',
     unitHeightJs: document.documentElement.clientHeight / 24,  // vh
-    unitWidthJs: 60,   // px
+    unitWidthJs,   // px
     slideTransitionTime: 500, // ms
     slideTransitionFunc: 'linear',
     UI: {
@@ -84,8 +85,8 @@ const styles: AppStyles = {
         'footer-is-opened': defaultTheme,
     },
     mediaQueries: {
-        phone: 1000, // px
-        tablet: 1500, //px
+        phone: screen.width / 3 + 3 * unitWidthJs,
+        tablet: 2 * screen.width / 3 + 3 * unitWidthJs,
     },
     lineDimensions: {
         height: '',
@@ -132,14 +133,10 @@ styles.themes[styles.themeTypes.openedFooterTheme] = {
 window.addEventListener('resize', () => {
     styles.unitHeightJs = document.querySelector('body').clientHeight / 24
 
-    const clientWidth = document.documentElement.clientWidth
     //const coefAbsoluteWidth = 11
-    const coefPercentWidth =  clientWidth / (3 * styles.unitWidthJs)
+    const coefPercentWidth =  screen.width / (3 * styles.unitWidthJs) // clientWidth / (3 * styles.unitWidthJs)
     let openedWidthCoef = coefPercentWidth //coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
-
-    if(clientWidth < styles.mediaQueries.tablet) {
-        openedWidthCoef = 13
-    }
+    console.log(openedWidthCoef, openedWidthCoef * styles.unitWidthJs)
 
     styles.sidePanel = {
         openedWidthCoef, //: 11,
