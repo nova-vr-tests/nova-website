@@ -23,6 +23,8 @@ const BlogPostContent = props => {
                 href={ props.href }
                 target="_blank"
                 style={ styles.link }>{ props.children }</a>,
+        paragraph: props =>
+            <p style={ styles.p }>{ props.children }</p>,
         tableCell: props =>
             React.createElement(
                 `t${props.isHeader ? 'h' : 'd'}`,
