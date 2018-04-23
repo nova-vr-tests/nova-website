@@ -91,20 +91,18 @@ const initHeader = (updateSidePanelHeader, props) => {
 
     let header = () => <div>{ string }</div>
 
-    if(props.routing.location.seach !== '') {
+    if(props.routing.location.search !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const post = props.blogPosts.filter(e => e.id === productNumber)[0]
 
-        if(props.blogPosts.length >= productNumber) {
-            header = () => <SidePanelProductsHeader
-                title={ post ? post.title : "" }
-                subtitle={ post ? post.description : "" }
-                onClickCallback={ () => {
-                    props.goTo(props.pages[props.currentPage].path)
-                    props.updateMainPanelIsOpened(false)
-                }}
-            />
-        }
+        header = () => <SidePanelProductsHeader
+            title={ post ? post.title : "" }
+            subtitle={ post ? post.description : "" }
+            onClickCallback={ () => {
+                props.goTo(props.pages[props.currentPage].path)
+                props.updateMainPanelIsOpened(false)
+            }}
+        />
 
     }
 
@@ -189,8 +187,6 @@ const SmartComp = compose(
                 }
 
                 initHeader(nextProps.updateSidePanelHeader, nextProps)
-
-                console.log(this.props.fetchUrl)
             }
         },
         componentWillUnmount() {

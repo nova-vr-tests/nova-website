@@ -19,6 +19,7 @@ import {
 
 const mapStateToProps = function(state) {
     return {
+        routing: state.routing,
         windowWidth: state.appReducer.windowWidth,
     }
 }
@@ -139,15 +140,24 @@ const HomeMainPanel = () => {
 MainPanel.defaultProps = {
 }
 
-const HomePageSmart = lifecycle({
-    componentDidMount() {
-        this.props.updateSidePanelHeader(() => (
+const initHome = props => {
+    if(props.routing.location.pathname === "/") {
+        props.updateSidePanelHeader(() => (
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                 <h1 style={{ fontStyle: 'italic', letterSpacing: '0.3rem' }}>Dream Awake</h1>
             </div>
         ))
-        this.props.updateMainPanel(HomeMainPanel)
-        this.props.updateMainPanelIsOpened(true)
+        props.updateMainPanel(HomeMainPanel)
+        props.updateMainPanelIsOpened(true)
+    }
+}
+
+const HomePageSmart = lifecycle({
+    componentDidMount() {
+        initHome(this.props)
+    },
+    componentWillReceiveProps(nextProps) {
+        initHome(nextProps)
     },
 })(HomePage)
 
