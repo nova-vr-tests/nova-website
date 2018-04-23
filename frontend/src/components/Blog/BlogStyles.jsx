@@ -33,6 +33,7 @@ const getStyles = props => {
             display: 'flex',
             flexDirection: 'column',
             borderTopLeftRadius: '30px',
+            overflow: 'hidden',
         }
 
     }
