@@ -127,7 +127,9 @@ const Blog = props => {
                     title={ title } />
             </div>
             <div style={ styles.articleWrapper }>
-                <BlogPostContent content={ content } />
+                <BlogPostContent
+                    addTail={ props.addTail }
+                    content={ content } />
                 <LastComp
                     pictoUrl={ squarePictoUrl.origin + squarePictoUrl.pathname }
                     title={ title } />
@@ -141,6 +143,7 @@ Blog.defaultProps = {
     contentKey: 'content',
     LastComp: () => <div></div>,
     sidePanelMode: false,
+    addTail: false,
 }
 
 let postId = 1

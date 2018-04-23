@@ -47,9 +47,13 @@ body {
 }
 
 /* markdown */
-.markdown-parser--wrapper:after {
+.markdown-parser--wrapper.tail:after {
     content: "";
     display: block;
     min-height: 50px;
     width: 100%;
+}
+
+.markdown-parser--wrapper > p:first-child > img {
+    margin-top: -1.5rem!important; /* override inline css from parser */
 }

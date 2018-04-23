@@ -10,9 +10,12 @@ const contentReduxState = () => ({
 
 const BlogPostContent = props => {
     const styles = getStyles(props)
+    console.log(props.addTail)
 
     const renderers = {
-        root: props => <div className="markdown-parser--wrapper" style={ styles.root }>{ props.children }</div>,
+        root: _props => <div
+                           className={ `markdown-parser--wrapper ${props.addTail ? 'tail' : ''}` }
+                           style={ styles.root }>{ _props.children }</div>,
         h1: props => <h1 style={{ color: 'red' }}>{ props.children }</h1>,
         table: props =>
             <div style={ styles.tableWrapper }>
@@ -49,6 +52,7 @@ const BlogPostContent = props => {
 
 BlogPostContent.defaultProps = {
     styles: {},
+    addTail: false,
 }
 
 export default connect(contentReduxState)(BlogPostContent)

@@ -183,7 +183,9 @@ const createAbstract = props => {
         windowWidth: state.appReducer.windowWidth,
     })
 
-    const BlogPostMainPanel = () => <BlogPost fetchUrl={ props.fetchUrl } />
+    const BlogPostMainPanel = () => <BlogPost
+                                        addTail={ true }
+                                        fetchUrl={ props.fetchUrl } />
 
     const connectWidth = (Comp, parentProps) => connect(contentReduxState)(props => {
         const styles = getStyles(parentProps)
