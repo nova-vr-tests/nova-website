@@ -136,7 +136,9 @@ const initBg = props => {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = props.products.filter(e => e.id === productNumber)[0]
 
-        props.updateBg(filterUrl(product.bg_image))
+        if(product) {
+            props.updateBg(filterUrl(product.bg_image))
+        }
     }
 }
 
