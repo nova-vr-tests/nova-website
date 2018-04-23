@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react'
-import store from '../../../store.js'
 
 import Slide from '../Slide/Slide.jsx'
 
@@ -12,119 +11,52 @@ import type {
 
 import type {
     State,
-    TranslationStyles,
 } from './SlideTransitionTypes.jsx'
 
-import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
 
 import SlideHeader from '../SlideHeader/SlideHeader.jsx'
-
-const dispatch = store.dispatch
 
 /**
    Takes slides as props and stores them in state to handle slide transition.
 */
 class SlideTransition extends React.Component<Props, State> {
     state = {
-        currentPage: this.props.currentPage,
-        targetPage: this.props.currentPage,
+        frontPage: this.props.currentPage,
+        backPage: this.props.currentPage,
         transitionProgress: 0,
         transitionDirection: 0,
+        isFrontSlideVisible: true,
     }
-
-    timer: number
-    getTranslationStyles: void => TranslationStyles
-    updateTimerPointer: (p: number) => void
 
     constructor(props: Props) {
         super(props)
-
-
-        this.timer = 0
-
-        this.getTranslationStyles = this.getTranslationStyles.bind(this)
-        this.updateTimerPointer = this.updateTimerPointer.bind(this)
     }
 
     componentDidMount() {
+        // if(this.state.isFrontSlideVisible) {
+        //     this.setState({ frontPage: this.props.currentPage })
+        // } else {
+        //     this.setState({ backPage: this.props.currentPage })
+        // }
     }
 
-    componentWillReceiveProps(newProps: Props) {
-
-        // Check if slide has changed
-        if(newProps.pages[newProps.currentPage].pid !== this.props.pages[this.props.currentPage].pid) {
-            dispatch(translateXLayersBgs(0))
-
-            this.setState({
-                targetPage: newProps.currentPage,
-                transitionProgress: 0,
-                transitionDirection: this.props.currentPage > newProps.currentPage ? -1 : 1,
-            })
-
-            // Start transition
-
-            const startTime = new Date()
-            const deltaTime = 1000
-
-            let rafId = 0
-            const transitionFunction = () => {
-                if(this.state.transitionProgress < 1) {
-                    const deltaProgress = (new Date() - startTime) / deltaTime //- this.state.transitionProgress
-                    const progress = deltaProgress * (2 - deltaProgress)
-
-                    this.setState({
-                        transitionProgress: progress > 0.99 ? 1 : progress
-                    })
-
-                    rafId = requestAnimationFrame(transitionFunction)
-                } else {
-                    this.setState({
-                        transitionProgress: 0,
-                        currentPage: this.state.targetPage,
-                    })
-                    cancelAnimationFrame(rafId)
-                }
-
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.currentPage !== this.props.currentPage) {
+            if(this.state.isFrontSlideVisible) {
+                this.setState({ backPage: nextProps.currentPage })
+            } else {
+                this.setState({ frontPage: nextProps.currentPage })
             }
-            requestAnimationFrame(transitionFunction)
-        } else if(newProps.currentPage !== this.props.currentPage) {
-            this.setState({
-                currentPage: newProps.currentPage,
-                targetPage: newProps.currentPage,
-            })
-            return
-        }
-    }
 
-    updateTimerPointer(timer: number) {
-        window.clearInterval(this.timer)
-        this.timer = timer
-    }
-
-    getTranslationStyles() {
-        let currentSlideTransform = 'translateY(-' + this.state.transitionProgress * 100 + 'vh)'
-        let targetSlideTransform = 'translateY(calc(100vh - ' + this.state.transitionProgress * 100 + 'vh))'
-        if(this.state.transitionDirection < 0) {
-            currentSlideTransform = 'translateY(' + this.state.transitionProgress * 100 + 'vh)'
-            targetSlideTransform = 'translateY(calc(-100vh + ' + this.state.transitionProgress * 100 + 'vh))'
-        }
-
-        return {
-            currentSlide: {
-                position: 'absolute',
-                transform: currentSlideTransform,
-            },
-            targetSlide: {
-                position: 'absolute',
-                transform: targetSlideTransform
-            },
+            this.setState({ isFrontSlideVisible: !this.state.isFrontSlideVisible })
+            console.log(nextProps.currentPage)
         }
     }
 
     render() {
-        const TargetSlide = <Slide
+        const BackSlide = <Slide
             {...this.props}
-            currentPage={ this.state.targetPage }
+            currentPage={ this.state.backPage }
             id='target-slide'
             isTarget={ true }
             scrollEvent={ this.props.scrollEvent }
@@ -134,7 +66,6 @@ class SlideTransition extends React.Component<Props, State> {
         const theme = appStyles.themes[this.props.appTheme]
 
         const fontColorTransition = 'color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc
-
 
         const styles = {
             wrapper: {
@@ -146,15 +77,23 @@ class SlideTransition extends React.Component<Props, State> {
                 height: '100%',
                 backgroundColor: 'rgba(0, 0, 0, 0.4)',
             },
-            currentSlideStyle: {
-                ...this.getTranslationStyles().currentSlide,
+            frontSlide: {
                 height: '100vh',
                 width: '100%',
+                opacity: this.state.isFrontSlideVisible ? 1 : 0,
+                pointerEvents: this.state.isFrontSlideVisible ? 'inherit' : 'none',
+                transition: 'opacity 0.5s linear',
+                position: 'absolute',
+                top: 0,
             },
-            targetSlideStyle: {
-                ...this.getTranslationStyles().targetSlide,
+            backSlide: {
                 height: '100vh',
                 width: '100%',
+                opacity: this.state.isFrontSlideVisible ? 0 : 1,
+                pointerEvents: this.state.isFrontSlideVisible ? 'none' : 'inherit',
+                transition: 'opacity 0.5s linear',
+                position: 'absolute',
+                top: 0,
             },
         }
 
@@ -172,17 +111,17 @@ class SlideTransition extends React.Component<Props, State> {
                 style={ styles.wrapper }
                 key={ 2 }
             >
-                <div className='current-slide--wrapper' style={ styles.currentSlideStyle }>
+                <div className='current-slide--wrapper' style={ styles.frontSlide }>
                     <Slide
                         {...this.props}
-                        currentPage={ this.state.currentPage }
+                        currentPage={ this.state.frontPage }
                         id='current-slide'
                         isTarget={ false }
                         scrollEvent={ this.props.scrollEvent }
                         transitionProgress={ this.state.transitionProgress } />
                 </div>
-                <div className='target-slide--wrapper' style={ styles.targetSlideStyle }>
-                    { TargetSlide }
+                <div className='target-slide--wrapper' style={ styles.backSlide }>
+                    { BackSlide }
                 </div>
             </div>
         ]

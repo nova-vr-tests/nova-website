@@ -2,10 +2,11 @@
 import { initialState } from '../../../store.js'
 
 export type State = {
-    currentPage: number,
-    targetPage: number,
+    frontPage: number,
+    backPage: number,
     transitionProgress: number,
     transitionDirection: number,
+    isFrontSlideVisible: boolean,
 }
 
 type ScrollEvent = {}

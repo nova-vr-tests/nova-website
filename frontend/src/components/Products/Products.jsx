@@ -156,6 +156,8 @@ const createList = props => {
 
         const onClickCallback = () => {
             props.goTo(`${window.location.pathname}?post=${e.id}`)
+            props.updateMainPanel(() => <div></div>)
+            console.log('psdaf')
         }
 
         const filteredPictoUrl = filterUrl(e.picto)
@@ -258,42 +260,47 @@ const SmartComp = compose(
     lifecycle({
         componentDidMount() {
             this.mounted = true
-            fetchProducts(
-                this.props.fetchUrl, this.props.setProducts, this)
-            updateDrawerFromUrl(
-                this.props.setDrawerPosition,
-                this.props.routing.location.search)
 
-            initHeader(this.props.updateSidePanelHeader, this.props)
+            if(this.props.routing.location.pathname.replace("/", "") === "products") {
+                fetchProducts(
+                    this.props.fetchUrl, this.props.setProducts, this)
 
-            this.props.updateMainPanelIsOpened(false)
-
-            createAbstract(this.props)
-        },
-        componentWillUpdate(nextProps) {
-            initHeader(nextProps.updateSidePanelHeader, nextProps)
-            if(nextProps.drawerPosition < 2) {
-                initBg(nextProps)
-            }
-
-            if(nextProps.products.length !== this.props.products.length) {
-                createList(nextProps)
-            }
-
-            if(nextProps.drawerPosition < 2 && nextProps.isDescrShown) {
-                this.props.setIsDescrShown(false)
-            }
-
-            if(nextProps.routing.location.search === ""
-                && this.props.routing.location.search !== "") {
-                this.props.updateMainPanelIsOpened(false)
-            }
-
-            if(this.props.routing.location.search !== nextProps.routing.location.search) {
                 updateDrawerFromUrl(
                     this.props.setDrawerPosition,
-                    nextProps.routing.location.search)
-                createAbstract(nextProps)
+                    this.props.routing.location.search)
+
+                initHeader(this.props.updateSidePanelHeader, this.props)
+
+                this.props.updateMainPanelIsOpened(false)
+
+                createAbstract(this.props)
+            }
+        },
+        componentWillUpdate(nextProps) {
+            if(nextProps.routing.location.pathname.replace("/", "") === "products") {
+                initHeader(nextProps.updateSidePanelHeader, nextProps)
+                if(nextProps.drawerPosition < 2) {
+                    initBg(nextProps)
+                }
+
+                if(nextProps.products.length !== this.props.products.length) {
+                    createList(nextProps)
+                }
+
+                if(nextProps.drawerPosition < 2 && nextProps.isDescrShown) {
+                    this.props.setIsDescrShown(false)
+                }
+
+                if(nextProps.routing.location.search === "") {
+                    this.props.updateMainPanelIsOpened(false)
+                }
+
+                if(this.props.routing.location.search !== nextProps.routing.location.search) {
+                    updateDrawerFromUrl(
+                        this.props.setDrawerPosition,
+                        nextProps.routing.location.search)
+                    createAbstract(nextProps)
+                }
             }
         },
         componentWillUnmount() {
