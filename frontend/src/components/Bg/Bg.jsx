@@ -14,6 +14,8 @@ import {
     resetCacheLayers,
 } from '../../reducer/actions/Bg.js'
 
+import intro from '../img/default.jpg'
+
 import type {
     ReduxState,
     ReduxDispatch,
@@ -125,12 +127,12 @@ const HOC = compose(
     withState(
         'frontLayers',
         'setFrontLayers',
-        [],
+        [{ imgUrl: intro, paralax: 0, opacity: 1 }],
     ),
     withState(
         'backLayers',
         'setBackLayers',
-        [],
+        [{ imgUrl: intro, paralax: 0, opacity: 1 }],
     ),
     withState(
         'isFrontLayerShown',
