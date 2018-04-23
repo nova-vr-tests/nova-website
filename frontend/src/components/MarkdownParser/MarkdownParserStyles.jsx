@@ -6,11 +6,9 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     let textColor = 'rgba(0, 0, 0, 0.7)'
     let rootPadding = '1rem'
     let fontSize = '1.25rem'
-    let headingColor = 'rgba(0, 0, 0, 0.7)'
     if(clientWidth < appStyles.mediaQueries.tablet) {
         textColor = 'white'
         fontSize = '1.5rem'
-        headingColor = textColor
     }
 
     // user overrides
@@ -18,7 +16,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     fontSize = customFontSize || fontSize
 
     const headingDefaultStyles = {
-            color: headingColor,
+            color: 'inherit',
     }
     const headings = [
         {
@@ -27,14 +25,20 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         },
         {
             ...headingDefaultStyles,
-            padding: '1rem 4rem', // h2
-            color: headingColor,
+            padding: '0rem 4rem', // h2
+            fontSize: '2rem',
+            fontWeight: 'normal',
         },
         {
+            ...headingDefaultStyles,
             padding: '0rem 2rem', // h3
+            fontWeight: 'normal',
+            fontSize: '1.5rem',
         },
         {
-            padding: '0rem 1rem', // h4
+            ...headingDefaultStyles,
+            padding: '0rem 0rem', // h4
+            fontWeight: 'normal',
         },
         {
             padding: '0rem 0.5rem', // h5
@@ -86,6 +90,10 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         minHeight: 'min-content',
     }
 
+    const p = {
+        margin: '0.5rem 0',
+    }
+
     return {
         headings,
         root,
@@ -93,6 +101,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         table,
         tableCell,
         tableWrapper,
+        p,
         link,
     }
 }
