@@ -45,6 +45,7 @@ const design: Array<ISlide> = [
                 fetchUrl={ new API().urls.design.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.design.list } />,
+        showNextSectionArrow: false,
         overrideHeader: true,
         paralax: 0,
         theme: appStyles.themeTypes.inverseTheme,

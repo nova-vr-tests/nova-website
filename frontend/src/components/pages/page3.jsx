@@ -112,6 +112,7 @@ const community: Array<ISlide> = [
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.community.list } />,
         overrideHeader: true,
+        showNextSectionArrow: false,
         layers: [
             {
                 imgUrl: communityBg,

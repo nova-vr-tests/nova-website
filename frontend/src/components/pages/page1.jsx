@@ -95,7 +95,6 @@ const consultationIntro: Array<ISlide> = [
         path,
         pid,
         content: () => <DesignInterfaceComp />,
-        showNextSectionArrow: true,
         layers: [
             createLayer(consultationBg, 0, 1),
         ],
