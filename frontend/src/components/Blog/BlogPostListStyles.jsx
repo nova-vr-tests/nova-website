@@ -14,7 +14,7 @@ const getStyles = () => {
             display: 'flex',
             flex: 1,
             flexDirection: 'column',
-            overflowY: 'scroll',
+            overflowY: 'auto',
             height: '100%',
             position: 'absolute',
             bottom: 0,
