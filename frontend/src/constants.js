@@ -85,7 +85,7 @@ const styles: AppStyles = {
         'footer-is-opened': defaultTheme,
     },
     mediaQueries: {
-        phone: screen.width / 3 + 3 * unitWidthJs,
+        phone: screen.width < 1000 ? 1000 : screen.width / 3 + 3 * unitWidthJs,
         tablet: 2 * screen.width / 3 + 3 * unitWidthJs,
     },
     lineDimensions: {
