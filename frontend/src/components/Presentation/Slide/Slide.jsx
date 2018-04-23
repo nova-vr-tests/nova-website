@@ -49,9 +49,7 @@ let el
 
 const scroll = (e, elId, callback = () => {}) => {
     const newDate = new Date()
-    if(!el) {
-        el = document.getElementById(elId)
-    }
+    el = document.getElementById(elId)
 
     // update target scroll
     if(e.deltaY !== 0) {

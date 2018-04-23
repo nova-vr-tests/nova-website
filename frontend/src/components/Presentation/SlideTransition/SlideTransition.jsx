@@ -54,15 +54,6 @@ class SlideTransition extends React.Component<Props, State> {
     }
 
     render() {
-        const BackSlide = <Slide
-            {...this.props}
-            currentPage={ this.state.backPage }
-            id='target-slide'
-            isTarget={ true }
-            scrollEvent={ this.props.scrollEvent }
-            transitionProgress={ this.state.transitionProgress }
-        />
-
         const theme = appStyles.themes[this.props.appTheme]
 
         const fontColorTransition = 'color ' + appStyles.slideTransitionTime / 1000 + 's ' + appStyles.slideTransitionFunc
@@ -100,6 +91,16 @@ class SlideTransition extends React.Component<Props, State> {
         const _slideTitle = this.props.pages[this.props.currentPage].h1
         const slideTitle = _slideTitle === 'Introduction' ? '' : _slideTitle
 
+        const BackSlide = <Slide
+                              {...this.props}
+                              currentPage={ this.state.backPage }
+                              id='target-slide'
+                              isTarget={ this.state.isFrontSlideVisible }
+                              scrollEvent={ this.props.scrollEvent }
+                              transitionProgress={ this.state.transitionProgress }
+        />
+
+
         return [
             <SlideHeader
                 currentPage={ this.props.currentPage }
@@ -116,7 +117,7 @@ class SlideTransition extends React.Component<Props, State> {
                         {...this.props}
                         currentPage={ this.state.frontPage }
                         id='current-slide'
-                        isTarget={ false }
+                        isTarget={ !this.state.isFrontSlideVisible }
                         scrollEvent={ this.props.scrollEvent }
                         transitionProgress={ this.state.transitionProgress } />
                 </div>
