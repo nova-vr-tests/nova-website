@@ -175,7 +175,7 @@ const SmartComp = compose(
             }
         },
         componentWillUpdate(nextProps) {
-            const shouldRender = nextProps.pages[this.page].path.replace("/","") === this.props.routing.location.pathname.replace("/", "")
+            const shouldRender = nextProps.pages[this.page].path.replace("/","") === nextProps.routing.location.pathname.replace("/", "")
 
             if(shouldRender) {
                 if(nextProps.blogPosts.length !== this.props.blogPosts.length) {
