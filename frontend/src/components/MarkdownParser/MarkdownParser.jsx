@@ -10,7 +10,6 @@ const contentReduxState = () => ({
 
 const BlogPostContent = props => {
     const styles = getStyles(props)
-    console.log(props.addTail)
 
     const renderers = {
         root: _props => <div
