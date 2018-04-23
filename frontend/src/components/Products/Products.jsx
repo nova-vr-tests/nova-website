@@ -117,18 +117,15 @@ const initHeader = (updateSidePanelHeader, props) => {
 
     let header = () => <div>{ string }</div>
 
-    if(props.routing.location.seach !== '') {
+
+    if(props.routing.location.search !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = props.products.filter(e => e.id === productNumber)[0]
 
-        if(props.products.length >= productNumber) {
-            header = () => <SidePanelProductsHeader
-                title={ product ? product.title : "" }
-                subtitle={ product ? product.description : "" }
-                onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) }
-            />
-        }
-
+        header = () => <SidePanelProductsHeader
+            title={ product ? product.title : "" }
+            subtitle={ product ? product.description : "" }
+            onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) } />
     }
 
     updateSidePanelHeader(header)
@@ -139,9 +136,7 @@ const initBg = props => {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = props.products.filter(e => e.id === productNumber)[0]
 
-        if(props.products.length >= productNumber) {
-            props.updateBg(filterUrl(product.bg_image))
-        }
+        props.updateBg(filterUrl(product.bg_image))
     }
 }
 
@@ -278,7 +273,9 @@ const SmartComp = compose(
         },
         componentWillUpdate(nextProps) {
             if(nextProps.routing.location.pathname.replace("/", "") === "products") {
+
                 initHeader(nextProps.updateSidePanelHeader, nextProps)
+
                 if(nextProps.drawerPosition < 2) {
                     initBg(nextProps)
                 }
