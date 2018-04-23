@@ -21,7 +21,7 @@ const getStyles = props => {
             transition: 'opacity 0.5s linear',
             position: 'absolute',
             //left,
-            width: '33vw',
+            width: `calc(${ appStyles.sidePanel.openedWidthCoef } * ${ unitWidth })`,
             right,
             top,
             paddingTop,
