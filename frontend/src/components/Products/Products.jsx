@@ -222,6 +222,7 @@ const createAbstract = props => {
         <BlogPost
             fetchUrl={ props.fetchUrl }
             contentKey="abstract"
+            addTail={ false }
             LastComp={ LastComp }
             sidePanelMode={ true }
             showHeader={ false }>
