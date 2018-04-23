@@ -3,11 +3,10 @@ import { styles as appStyles } from '../../../constants.js'
 const getStyles = props => {
     const headerHeightCoef = 3
     const footerHeightCoef = headerHeightCoef
-    const lineHeightCoef = 4 // height of vertical line spanning across screen
     const lineYCoef = 9 + (2 * props.linePosition) // distance from top of screen to top of line
     const titleHeightCoef = 4
     const headHeightCoef = lineYCoef - headerHeightCoef - titleHeightCoef
-    const tailHeightCoef = 24 - lineYCoef - footerHeightCoef - lineHeightCoef
+    const tailHeightCoef = 4 // 24 - lineYCoef - footerHeightCoef - lineHeightCoef
 
     let overflowX = 'hidden'
     let overflowY = 'hidden'
@@ -33,7 +32,7 @@ const getStyles = props => {
             height: appStyles.unitHeightJs * 6,
         },
         slideParagraphs: {
-            height: 'calc(' + (24 - headerHeightCoef - footerHeightCoef) + ' * ' + appStyles.unitHeight + ')',
+            height: 'calc(' + (24 - headerHeightCoef - footerHeightCoef - 4) + ' * ' + appStyles.unitHeight + ')',
             overflowY,
             overflowX,
             // min width greater than container so it doesn't shrink on panel close
