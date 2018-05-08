@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
     pages: state.appReducer.pages,
     header: state.appReducer.sidePanel.header,
     overrideHeader: state.appReducer.sidePanel.overrideHeader,
+    isMainPanelOpened: state.appReducer.mainPanel.isOpened,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -61,11 +62,14 @@ const SlideHeader = props => {
                     { props.title2 }
                 </h2>
             </div>
-            { props.pages[props.currentPage] ?
-                <TOC
-                    goTo={ props.goTo }
-                    pages={ props.pages }
-                    currentPage={ props.currentPage } /> : "" }
+            { props.pages[props.currentPage]  ?
+                <div style={ styles.tocWrapper }>
+                    <TOC
+                        goTo={ props.goTo }
+                        pages={ props.pages }
+                        currentPage={ props.currentPage } />
+                </div>
+            : "" }
             { props.overrideHeader ? <div style={ styles.customHeaderWrapper }><Header /></div> : "" }
             { props.overrideHeader ? "" :
                 <div style={ styles.socialWrapper }>
