@@ -2,6 +2,8 @@ import { styles as appStyles } from '../../../constants.js'
 
 const getStyles = (props) => {
     let customWrapperHeight = 2.5
+    let tocDisplay = 'inherit'
+
     // check if TOC is on current page (see TOC.jsx for algo, needs refactor)
     if(props.pages[props.currentPage]) {
         const h2 = props.pages
@@ -14,6 +16,15 @@ const getStyles = (props) => {
         customWrapperHeight = filteredH2.length > 0 ? customWrapperHeight : customWrapperHeight + 1.5
     }
 
+    const { clientWidth } = document.documentElement
+    if(clientWidth < appStyles.mediaQueries.tablet) {
+        console.log(props.isMainPanelOpened)
+        if(props.isMainPanelOpened) {
+            tocDisplay = 'none'
+            customWrapperHeight = 4
+        }
+    }
+
     return {
         customHeaderWrapper: {
             boxSizing: 'border-box',
@@ -24,6 +35,9 @@ const getStyles = (props) => {
             alignItems: 'center',
             padding: `0 calc(0.5 * ${appStyles.unitWidth})`,
             fontSize: '1.2rem',
+        },
+        tocWrapper: {
+            display: tocDisplay,
         },
         wrapper: {
             width: 'calc(100%)',
