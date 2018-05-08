@@ -20,13 +20,14 @@ const getStyles: GetStyles<Props, Styles> = props => {
         wrapper: {
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: 'flex-end',
+            paddingBottom: `calc(1 * ${appStyles.unitHeight})`,
         },
         img: {
             height: `calc(3.5 * ${appStyles.unitHeight})`,
             width: `calc(3.5 * ${appStyles.unitHeight})`,
             borderRadius: '12.1%',
-            marginLeft: `calc(0.75 * ${appStyles.unitWidth})`,
+            marginLeft: `calc(1 * ${appStyles.unitWidth})`,
         }
     }
 }
