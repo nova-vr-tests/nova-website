@@ -47,6 +47,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
         appTheme: state.appReducer.appTheme,
         windowWidth: state.appReducer.windowWidth,
         windowHeight: state.appReducer.windowHeight,
+        isMainPanelOpened: state.appReducer.mainPanel.isOpened,
     }
 }
 
@@ -184,6 +185,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
                 windowHeight={ props.windowHeight }
                 rightEdgeCoef={ 0 }
                 bgColor={ 'rgba(0, 0, 0, 0.6)' }
+                isMainPanelOpened={ props.isMainPanelOpened }
             />
             <div style={ styles.contentWrapper }>
                 <ToggleButton
