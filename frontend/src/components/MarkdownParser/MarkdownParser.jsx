@@ -41,7 +41,7 @@ const BlogPostContent = props => {
             <img
                 src={ src }
                 style={ styles.image }
-                alt="hello" />
+                alt="figure" />
     }
 
     return <ReactMarkdown

@@ -4,7 +4,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     const { clientWidth } = document.documentElement
 
     let textColor = 'rgba(0, 0, 0, 0.7)'
-    let rootPadding = '1rem'
+    let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.75 * ${appStyles.unitWidth})`
     let fontSize = '1.25rem'
     if(clientWidth < appStyles.mediaQueries.tablet) {
         textColor = 'white'
@@ -25,19 +25,19 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         },
         {
             ...headingDefaultStyles,
-            padding: '0rem 4rem', // h2
-            fontSize: '2rem',
+            margin: `calc(1 * ${appStyles.unitHeight}) 0 calc(0.5 * ${appStyles.unitHeight}) calc(1 * ${appStyles.unitWidth}) `, // h2
+            fontSize: '1.7rem',
             fontWeight: 'normal',
         },
         {
             ...headingDefaultStyles,
-            padding: '0rem 2rem', // h3
+            margin: `0.75rem 0 0.5rem calc(0.5 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
             fontSize: '1.5rem',
         },
         {
             ...headingDefaultStyles,
-            padding: '0rem 0rem', // h4
+            margin: `0.5rem 0 0.5rem calc(0 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
         },
         {
@@ -53,6 +53,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
 
     const root = {
         padding: rootPadding,
+        paddingTop: 0,
         maxWidth: '100%',
         display: 'flex',
         flexDirection: 'column',
