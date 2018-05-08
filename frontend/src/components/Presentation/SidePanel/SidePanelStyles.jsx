@@ -33,10 +33,21 @@ const getStyles: GetStyles<Props, Styles> = props => {
         left = 0
     }
 
+    let bgColor = 'rgba()'
+    if(clientWidth < appStyles.mediaQueries.tablet) {
+        if(props.isMainPanelOpened) {
+            bgColor = 'rgba(0, 0, 0, 0)'
+        }
+    }
+
     return {
         wrapper: {
         },
         isOpened: {
+        },
+        svg: {
+            display: 'none',
+            bgColor,
         },
         contentWrapper: {
             position: 'absolute',
@@ -66,9 +77,19 @@ type BgStyles = {
 export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
     let panelWidth = 'calc(' + props.widthCoef + ' * ' + appStyles.unitWidth + ')'
     const { clientWidth } = document.documentElement
+
+    let opacity = props.isFooterOpened && props.type === sidePanelTypes.DEFAULT  ? 0 : 1
+
     if(clientWidth < appStyles.mediaQueries.phone) {
         panelWidth = clientWidth
     }
+
+    if(clientWidth < appStyles.mediaQueries.tablet) {
+        if(props.isMainPanelOpened) {
+            opacity = 0
+        }
+    }
+
 
     return {
         wrapper: {
@@ -80,7 +101,7 @@ export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
             zIndex: props.zIndex,
         },
         svg: {
-            opacity: props.isFooterOpened && props.type === sidePanelTypes.DEFAULT  ? 0 : 1,
+            opacity,
             transition: 'opacity 0.3s linear',
             width: panelWidth,
         },

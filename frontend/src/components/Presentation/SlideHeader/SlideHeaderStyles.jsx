@@ -3,6 +3,7 @@ import { styles as appStyles } from '../../../constants.js'
 const getStyles = (props) => {
     let customWrapperHeight = 2.5
     let tocDisplay = 'inherit'
+    let customHeaderBackgroundColor = 'rgba(255, 255, 255, 0.05)'
 
     // check if TOC is on current page (see TOC.jsx for algo, needs refactor)
     if(props.pages[props.currentPage]) {
@@ -22,6 +23,7 @@ const getStyles = (props) => {
         if(props.isMainPanelOpened) {
             tocDisplay = 'none'
             customWrapperHeight = 4
+            customHeaderBackgroundColor = "rgba(0, 0, 0, 0)"
         }
     }
 
@@ -29,7 +31,7 @@ const getStyles = (props) => {
         customHeaderWrapper: {
             boxSizing: 'border-box',
             width: '100%',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            backgroundColor: customHeaderBackgroundColor,
             height: `calc(${customWrapperHeight} * ${appStyles.unitHeight})`,
             display: 'flex',
             alignItems: 'center',
