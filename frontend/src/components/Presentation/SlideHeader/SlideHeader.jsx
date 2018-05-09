@@ -28,7 +28,6 @@ const SlideHeader = props => {
     const title0Styles = {
         ...styles.title,
         opacity: !props.currentPage  ? 1 : 0,
-        display: props.windowWidth < 1000 ? 'block' : 'none',
     }
 
     const title1Styles = {
@@ -49,7 +48,7 @@ const SlideHeader = props => {
                 <h2
                     className="above"
                     style={ title0Styles }>
-                    Nova XR Media
+                    XR Media
                 </h2>
                 <h2
                     className="above"

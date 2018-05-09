@@ -110,8 +110,7 @@ class SlideTransition extends React.Component<Props, State> {
             <div
                 className='slide-transition--wrapper'
                 style={ styles.wrapper }
-                key={ 2 }
-            >
+                key={ 2 }>
                 <div className='current-slide--wrapper' style={ styles.frontSlide }>
                     <Slide
                         {...this.props}
@@ -121,7 +120,9 @@ class SlideTransition extends React.Component<Props, State> {
                         scrollEvent={ this.props.scrollEvent }
                         transitionProgress={ this.state.transitionProgress } />
                 </div>
-                <div className='target-slide--wrapper' style={ styles.backSlide }>
+                <div
+                  className='target-slide--wrapper'
+                  style={ styles.backSlide }>
                     { BackSlide }
                 </div>
             </div>

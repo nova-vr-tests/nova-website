@@ -3,12 +3,20 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { lifecycle } from 'recompose'
 
-import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
+import { push } from 'react-router-redux'
+
+import SidePanelLink from '../UI/SidePanelLink.jsx'
 import MainPanel from '../MainPanel/MainPanel.jsx'
+import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
 
 import { styles as appStyles } from '../../constants.js'
 
-import novaLogo from '../img/home/logo.png'
+import SidePanelProductsHeader from '../UI/SidePanelProductsHeader.jsx'
+
+import novaLogo from '../img/nova-logo.svg'
+import aboutUsPicto from '../img/about-us-picto.png'
+
+import { ContentWrapper } from '../Blog/Blog.jsx'
 
 import {
     updateSidePanelHeader,
@@ -26,6 +34,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
     return {
+        goTo: url => dispatch(push(url)),
         updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
         updateMainPanel: comp => dispatch(updateMainPanelContent(comp)),
         updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
@@ -37,17 +46,48 @@ const mapDispatchToProps = function(dispatch) {
    HOME PAGE
 **/
 
-const HomePage = () => {
-    const source = `XR is an abbreviation for “Extended Reality” which is a flexible and far-reaching term for immersive 3D media, inclusive of Virtual and Augmented Reality.
+const HomePageContent = () => {
+    const styles = {
+        wrapper: {
+            color: 'white',
+        },
+    }
 
-XR technologies are already increasing revenue and decreasing internal costs in most industries. Visit our "Consultation" page to read about XR's influence on entertainment, retail, travel, healthcare, journalism, marketing and many others.`
+    const str = `# &laquo;Dream Awake&raquo;
+
+We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry.`
+
+    return (
+        <div style={ styles.wrapper }>
+          <MarkdownParser content={ str } />
+        </div>
+    )
+}
+
+const HomePage = props => {
+    let textDisplay = 'none'
+
+    if(appStyles.mediaQueries.tablet > document.documentElement.clientWidth) {
+        textDisplay = 'block'
+    }
+
+    const styles = {
+        text: {
+            display: textDisplay,
+        }
+    }
 
     return (
         <div
             className={ 'NYEComp--wrapper' }>
-            <MarkdownParser
-                styles={{ textColor: 'white', fontSize: '1.5rem' }}
-                content={ source } />
+            <div style={ styles.text }>
+              <HomePageContent />
+            </div>
+            <SidePanelLink
+                onClickCallback={ () => props.goTo('/about-us')}
+                pictoUrl={ aboutUsPicto }
+                isSquarePicto={ true }
+                title="About Us" />
         </div>
     )
 }
@@ -64,31 +104,18 @@ const HomeMainPanel = () => {
             marginLeft: 'calc(3 * ' + appStyles.unitWidth + ')',
             marginTop: 'calc(4 * ' + appStyles.unitWidth + ')',
         },
-        h1: {
+        introP: {
             height: 'calc(4 * ' + appStyles.unitHeight + ')',
             margin: 0,
             display: 'none',
             alignItems: 'center',
             position: 'absolute',
             transform: 'translateY(-100%)',
-            fontSize: '2.5rem',
             minWidth: `calc(8 * ${appStyles.unitWidth})`,
             justifyContent: 'center',
         },
         pWrapper: {
-            fontSize: '2.5vh',
-            position: 'absolute',
-            top: `calc(11 * ${appStyles.unitHeight})`,
-            height: `calc(4 * ${appStyles.unitHeight})`,
-            margin: '0',
-            width: `calc(100% + 3 * ${appStyles.unitWidth})`,
-            transform: `translateX(calc(-3 * ${appStyles.unitWidth}))`,
-            boxSizing: 'border-box',
-            backgroundColor: 'rgba(255, 255, 255, 0.3)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
+            marginTop: `calc(2 * ${appStyles.unitHeight})`,
         },
         p: {
             maxWidth: `calc(8 * ${appStyles.unitWidth})`,
@@ -109,30 +136,25 @@ const HomeMainPanel = () => {
             width: `calc(4.5 * ${appStyles.unitWidth})`,
             marginBottom: '0.5rem',
             filter: 'invert(100%)',
-        }
+        },
+        headerWrapper: {
+            marginBottom: `calc(1 * ${appStyles.unitHeight})`,
+            filter: 'invert(100%)',
+        },
     }
 
 
     return (
                     <div style={ styles.pWrapper }>
-                        <div
-                            key={ 1 }
-                            style={ styles.logo }>
-                            <img
-                                style={ styles.img }
-                                alt="logo"
-                                src={ novaLogo } />
+                        <div style={ styles.headerWrapper }>
+                            <SidePanelProductsHeader
+                                pictoUrl={ window.origin + novaLogo }
+                                forceShowPicto={ true }
+                                showArrow={ false } />
                         </div>
-                        <h1
-                            key={ 2 }
-                            style={ styles.h1 }>
-                            { 'Dream Awake' }
-                        </h1>
-                        <p
-                            key={ 3 }
-                            style={ styles.p }>
-                            We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry.
-                        </p>
+                        <ContentWrapper>
+                          <HomePageContent />
+                        </ContentWrapper>
                     </div>
     )
 }
@@ -144,7 +166,9 @@ const initHome = props => {
     if(props.routing.location.pathname === "/") {
         props.updateSidePanelHeader(() => (
             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                <h1 style={{ fontStyle: 'italic', letterSpacing: '0.3rem' }}>Dream Awake</h1>
+              <p style={{ padding: `calc(0.5 * ${appStyles.unitWidth})` }}>
+                (XR) Extended Reality refers to immersive digital experiences, such as virtual and augmented reality.
+              </p>
             </div>
         ))
         props.updateMainPanel(HomeMainPanel)

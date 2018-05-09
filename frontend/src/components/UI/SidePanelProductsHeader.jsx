@@ -27,6 +27,7 @@ const SidePanelProductsHeader = props => {
             width: '2rem',
             height: '2rem',
             transform: 'rotateZ(180deg)',
+            display: props.showArrow ? 'block' : 'none',
         },
         wrapper2: {
             display: 'flex',
@@ -34,7 +35,7 @@ const SidePanelProductsHeader = props => {
             position: 'relative',
         },
         picto: {
-            display: showPicto ? 'block' : 'none',
+            display: showPicto || props.forceShowPicto ? 'block' : 'none',
             height: `calc(3 * ${unitHeight})`,
             width: `calc(3 * ${unitHeight})`,
             borderRadius: '20px',
@@ -85,6 +86,8 @@ SidePanelProductsHeader.defaultProps = {
     subtitle: '',
     pictoUrl: '',
     isMainPanelOpened: false,
+    showArrow: true,
+    forceShowPicto: false,
 }
 
 export default SidePanelProductsHeader
