@@ -6,12 +6,9 @@ import {
     lifecycle,
 } from 'recompose'
 
-import facebookIcon from '../img/social/facebook.svg'
-import twitterIcon from '../img/social/twitter.svg'
-import linkedinIcon from '../img/social/linkedin.svg'
-
 import URLSearchParams from 'url-search-params'
 
+import SocialButtons from './SocialButtons.jsx'
 
 import { styles as appStyles } from '../../constants.js'
 
@@ -40,6 +37,7 @@ const Header = props => {
             minHeight: `calc(6 * ${appStyles.unitHeight})`,
             color: 'black',
             display: 'flex',
+            alignItems: 'flex-end',
         },
         textWrapper: {
             display: 'flex',
@@ -49,6 +47,7 @@ const Header = props => {
             color: '#545454',
             position: 'relative',
             flex: 1,
+            height: `calc(4 * ${appStyles.unitHeight})`,
         },
         h1: {
             fontSize: '1.8rem',
@@ -60,34 +59,6 @@ const Header = props => {
             letterSpacing: '0.05rem',
             width: '90%',
         },
-        picto: {
-            height: `calc(5 * ${appStyles.unitHeight})`,
-            width: `calc(5 * ${appStyles.unitHeight})`,
-        },
-        socialWrapper: {
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: '1rem',
-            opacity: '0.4',
-            position: 'absolute',
-            bottom: `calc(2 * ${appStyles.unitHeight})`,
-            transform: 'translateY(100%)',
-            height: `calc(1.25 * ${appStyles.unitHeight})`,
-            width: `calc(2.25 * ${appStyles.unitWidth})`,
-            backgroundColor: 'rgba(0, 0, 0, 0.2)',
-            border: '2px solid rgba(255, 255, 255, 0.4)',
-            borderRight: 'none',
-            borderTopLeftRadius: '1.2rem',
-            borderBottomLeftRadius: '1.2rem',
-            right: '0',
-            padding: '0 0.8rem',
-            boxSizing: 'border-box',
-        },
-        img: {
-            height: `calc(0.6 * ${appStyles.unitHeight})`,
-            width: `calc(0.6 * ${appStyles.unitHeight})`,
-        }
     }
 
     return (
@@ -97,20 +68,7 @@ const Header = props => {
             <Picto url={ props.pictoUrl } />
             <div style={ styles.textWrapper}>
                 <h1 style={ styles.h1 }>{ props.title }</h1>
-                <div style={ styles.socialWrapper }>
-                    <img
-                        style={ styles.img }
-                        alt="FB"
-                        src={ facebookIcon } />
-                    <img
-                        style={ styles.img }
-                        alt="LI"
-                        src={ linkedinIcon } />
-                    <img
-                        style={ styles.img }
-                        alt="TW"
-                        src={ twitterIcon } />
-                </div>
+                <SocialButtons />
             </div>
         </div>
     )
