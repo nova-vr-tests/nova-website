@@ -71,7 +71,6 @@ const SidePanelProductsHeader = props => {
                 style={ styles.picto }
                 src={ pictoUrl } />
                 <h3 style={ styles.title }>{ props.title }</h3>
-                <div>{ props.subtitle }</div>
                 <div style={ styles.socialWrapper } >
                     <SocialButtons />
                 </div>
