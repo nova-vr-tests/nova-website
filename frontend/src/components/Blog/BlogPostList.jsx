@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { styles as appStyles } from '../../constants.js'
 import {
     compose,
     withState,
@@ -30,6 +31,7 @@ const mapStateToProps = state => ({
     pages: state.appReducer.pages,
     currentPage: state.appReducer.currentPage,
     width: state.appReducer.windowWidth,
+    isMainPanelOpened: state.appReducer.mainPanel.isOpened,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -89,7 +91,7 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam, updateMainPanelIsOp
 const initHeader = (updateSidePanelHeader, props) => {
     const string = props.headerText
 
-    let header = () => <div>{ string }</div>
+    let header = () => <div style={{ padding: `0 calc(0.5 * ${appStyles.unitWidth})`}}>{ string }</div>
 
     if(props.routing.location.search !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
@@ -98,6 +100,8 @@ const initHeader = (updateSidePanelHeader, props) => {
         header = () => <SidePanelProductsHeader
             title={ post ? post.title : "" }
             subtitle={ post ? post.description : "" }
+            pictoUrl={ post ? post.picto : "" }
+            isMainPanelOpened={ props.isMainPanelOpened }
             onClickCallback={ () => {
                 props.goTo(props.pages[props.currentPage].path)
                 props.updateMainPanelIsOpened(false)
