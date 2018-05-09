@@ -53,7 +53,6 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
 
     const root = {
         padding: rootPadding,
-        paddingTop: 0,
         maxWidth: '100%',
         display: 'flex',
         flexDirection: 'column',
