@@ -35,7 +35,7 @@ const getStyles = (props) => {
             height: `calc(${customWrapperHeight} * ${appStyles.unitHeight})`,
             display: 'flex',
             alignItems: 'center',
-            padding: `0 calc(0.5 * ${appStyles.unitWidth})`,
+            // padding: `0 calc(0.5 * ${appStyles.unitWidth})`,
             fontSize: '1.2rem',
         },
         tocWrapper: {

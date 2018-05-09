@@ -33,6 +33,7 @@ const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
     currentPage: state.appReducer.currentPage,
+    isMainPanelOpened: state.appReducer.mainPanel.isOpened,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -120,10 +121,13 @@ const initHeader = (updateSidePanelHeader, props) => {
     if(props.routing.location.search !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = props.products.filter(e => e.id === productNumber)[0]
+        console.log(product)
 
         header = () => <SidePanelProductsHeader
             title={ product ? product.title : "" }
             subtitle={ product ? product.description : "" }
+            pictoUrl={ product ? product.squarePicto : "" }
+            isMainPanelOpened={ props.isMainPanelOpened }
             onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) } />
     }
 
