@@ -79,6 +79,43 @@ Header.defaultProps = {
     pictoUrl: '',
 }
 
+const ContentWrapper = props => {
+    const { clientWidth } = document.documentElement
+    const { unitHeight } = appStyles
+
+    let height = `calc(100vh - 11 * ${unitHeight})`
+    let backgroundColor = 'rgba(255, 255, 255, 0.5)'
+    let color = 'black'
+
+    if(clientWidth < appStyles.mediaQueries.phone || props.sidePanelMode) {
+        height = '100%'
+    }
+
+    if(props.sidePanelMode) {
+        backgroundColor = 'rgba(0, 0, 0, 0)'
+        color = 'white'
+    }
+
+    const styles = {
+        articleWrapper: {
+            backgroundColor,
+            height,
+            boxSizing: 'border-box',
+            color,
+            display: 'flex',
+            flexDirection: 'column',
+            borderTopLeftRadius: '30px',
+            overflow: 'hidden',
+        }
+    }
+
+    return (
+        <div style={ styles.articleWrapper }>
+          { props.children }
+        </div>
+    )
+}
+
 const Blog = props => {
     const styles = getStyles(props)
 
@@ -101,14 +138,14 @@ const Blog = props => {
                     pictoUrl={ headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
             </div>
-            <div style={ styles.articleWrapper }>
+            <ContentWrapper sidePanelMode={ props.sidePanelMode }>
                 <BlogPostContent
                     addTail={ props.addTail }
                     content={ content } />
                 <LastComp
                     pictoUrl={ squarePictoUrl.origin + squarePictoUrl.pathname }
                     title={ title } />
-            </div>
+            </ContentWrapper>
         </div>
     )
 }
@@ -176,5 +213,9 @@ const ConnectedComp = connect(
     mapStateToProps,
     mapDispatchToProps
 )(SmartComp)
+
+export {
+    ContentWrapper,
+}
 
 export default ConnectedComp
