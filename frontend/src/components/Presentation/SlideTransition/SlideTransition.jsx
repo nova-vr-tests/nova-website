@@ -66,7 +66,7 @@ class SlideTransition extends React.Component<Props, State> {
                 transition: fontColorTransition,
                 overflow: 'hidden',
                 height: '100%',
-                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                backgroundColor: this.props.isMainPanelOpened && appStyles.mediaQueries.tablet > this.props.windowWidth ?  'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.4)',
             },
             frontSlide: {
                 height: '100vh',

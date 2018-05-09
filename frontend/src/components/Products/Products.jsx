@@ -82,7 +82,6 @@ const Products = props => {
                     connectWidth(() => (<div style={ styles.blogWrapper }>
                         <BlogPost
                             fetchUrl={ props.fetchUrl }
-                            sidePanelMode={ true }
                             showHeader={ false } />
                     </div>), props),
                 ]}

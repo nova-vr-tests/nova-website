@@ -12,9 +12,12 @@ const getStyles = props => {
 
     if(clientWidth < appStyles.mediaQueries.phone || props.sidePanelMode) {
         height = '100%'
-        backgroundColor = 'rgba(0, 0, 0, 0)'
-        color = 'white'
     } else if(clientWidth < appStyles.mediaQueries.tablet) {
+        // backgroundColor = 'rgba(0, 0, 0, 0)'
+        // color = 'white'
+    }
+
+    if(props.sidePanelMode) {
         backgroundColor = 'rgba(0, 0, 0, 0)'
         color = 'white'
     }
