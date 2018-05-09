@@ -13,7 +13,7 @@ import { styles as appStyles } from '../../constants.js'
 
 import SidePanelProductsHeader from '../UI/SidePanelProductsHeader.jsx'
 
-import novaLogo from '../img/nova-logo.svg'
+import novaLogo from '../img/home/logo-home-picto.png'
 import aboutUsPicto from '../img/about-us-picto.png'
 
 import { ContentWrapper } from '../Blog/Blog.jsx'
