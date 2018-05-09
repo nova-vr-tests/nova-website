@@ -324,12 +324,6 @@ class Presentation extends React.Component<Props, State> {
        Attach wheel event to page change
     **/
     attachScrollEvent() {
-        this.detachScrollEvent()
-
-        if(this.props.attachToMouseScroll) {
-            window.addEventListener("wheel", this.onScroll)
-            this.eventCounter++
-        }
     }
 
     /*
