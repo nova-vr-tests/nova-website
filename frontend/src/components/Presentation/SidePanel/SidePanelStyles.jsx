@@ -85,7 +85,7 @@ export const getBgStyles: GetStyles<BgProps, BgStyles> = props => {
     }
 
     if(clientWidth < appStyles.mediaQueries.tablet) {
-        if(props.isMainPanelOpened) {
+        if(props.isMainPanelOpened && window.location.pathname !== "/") {
             opacity = 0
         }
     }
