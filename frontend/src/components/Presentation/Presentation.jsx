@@ -103,6 +103,7 @@ const PresentationDumb: React.StatelessFunctionalComponent<Props> = props => {
                         pages={ props.pages }
                         linePosition={ props.linePosition }
                         scrollEvent={ props.scrollEvent }
+                        isMainPanelOpened={ props.isMainPanelOpened }
                     />
                 </SidePanel>
             </div>
