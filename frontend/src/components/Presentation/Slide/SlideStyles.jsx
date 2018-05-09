@@ -9,7 +9,7 @@ const getStyles = props => {
     const tailHeightCoef = 4 // 24 - lineYCoef - footerHeightCoef - lineHeightCoef
 
     let overflowX = 'hidden'
-    let overflowY = 'hidden'
+    let overflowY = 'auto'
     const sidePanelPadding = '12.5vh' // see SidePanelStyles.jsx
     let minWidth = 'calc(' + appStyles.sidePanel.openedWidthCoef + ' * ' + appStyles.unitWidth + ' - ' + sidePanelPadding + ' * 2)'
     const { clientWidth } = document.documentElement
