@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { styles as appStyles } from '../../constants.js'
 import {
     compose,
     withState,
@@ -115,13 +116,12 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
 const initHeader = (updateSidePanelHeader, props) => {
     const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
 
-    let header = () => <div>{ string }</div>
+    let header = () => <div style={{ padding: `0 calc(0.5 * ${appStyles.unitWidth})`}}>{ string }</div>
 
 
     if(props.routing.location.search !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = props.products.filter(e => e.id === productNumber)[0]
-        console.log(product)
 
         header = () => <SidePanelProductsHeader
             title={ product ? product.title : "" }

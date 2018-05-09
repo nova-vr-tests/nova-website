@@ -24,8 +24,8 @@ const getStyles: GetStyles<Props, Styles> = props => {
             paddingBottom: `calc(1 * ${appStyles.unitHeight})`,
         },
         img: {
-            height: `calc(3.5 * ${appStyles.unitHeight})`,
-            width: `calc(3.5 * ${appStyles.unitHeight})`,
+            height: `calc(3 * ${appStyles.unitHeight})`,
+            width: `calc(3 * ${appStyles.unitHeight})`,
             borderRadius: '12.1%',
             marginLeft: `calc(1 * ${appStyles.unitWidth})`,
         }
