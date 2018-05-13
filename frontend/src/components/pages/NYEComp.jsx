@@ -145,7 +145,6 @@ Anna Irene
         <div
             className={ 'NYEComp--wrapper' }>
             <MarkdownParser
-                styles={{ textColor: 'white', fontSize: '1.5rem' }}
                 content={ source } />
         </div>
     )

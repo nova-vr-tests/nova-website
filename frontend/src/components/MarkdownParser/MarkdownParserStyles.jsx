@@ -1,9 +1,11 @@
 import { styles as appStyles } from '../../constants.js'
 
-const getDefaultStyles = ({ customTextColor, customFontSize }) => {
+const getDefaultStyles = (props) => {
+    const { customTextColor, customFontSize } = props
     const { clientWidth } = document.documentElement
 
-    let textColor = 'rgba(0, 0, 0, 0.7)'
+    let textColor = 'white'
+    let linkColor = 'rgba(255, 255, 255, 0.7)'
     let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth})`
     let fontSize = '1.25rem'
 
@@ -12,8 +14,9 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         fontSize = '1.5rem'
     }
 
-    if(props.isMainPanel) {
-        textColor = 
+    if(!props.useWhiteFont) {
+        textColor = '#3d3f4c'
+        linkColor = '#828a99'
     }
 
     // user overrides
@@ -94,7 +97,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     const link = {
         textDecoration: 'none',
         fontStyle: 'italic',
-        color: '#828a99',
+        color: linkColor,
     }
 
     const tableWrapper = {
@@ -108,12 +111,11 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     const p = {
         margin: '0.5rem 0',
         textAlign: 'justify',
-        color: '#3d3f4c',
+        color: textColor,
     }
 
     const list = {
-        //color: textColor,
-        color: '#3d3f4c',
+        color: textColor,
     }
 
     const listItem = {
@@ -136,9 +138,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
 
 
 const getStyles = props => {
-    const styles = getDefaultStyles({
-        customFontSize: props.styles.fontSize,
-        customTextColor: props.styles.textColor })
+    const styles = getDefaultStyles(props)
 
     if(!props.styles) {
         return styles
