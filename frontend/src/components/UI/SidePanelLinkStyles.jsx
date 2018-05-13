@@ -14,6 +14,12 @@ const getStyles = props => {
     const pictoDisplay = props.pictoUrl === '' ? 'none' : 'inherit' // dont' show pictos if url is empty
     const pictoBgDisplay = props.pictoBgUrl === '' ? 'none' : 'inherit' // dont' show pictos if url is empty
 
+    let titleFontSize = '1.6rem'
+
+    if(document.documentElement.clientWidth < appStyles.mediaQueries.mobile) {
+        titleFontSize = '1.8rem'
+    }
+
     const styles = {
         linkWrapper: {
             display: 'flex',
@@ -21,10 +27,11 @@ const getStyles = props => {
             fontSize: '2rem',
             justifyContent: 'fle',
             border: '1px solid rgba(255, 255, 255, 0.6)',
-            margin: `calc(0.45 * ${appStyles.unitHeight})`,
+            margin: `calc(0.75 * ${appStyles.unitHeight})`,
             cursor: 'pointer',
             ...borderRadius,
             marginRight: 0,
+            marginBottom: 0,
             marginLeft: `calc(0.5 * ${appStyles.unitWidth})`,
             justifySelf: 'flex-end',
             borderRight: 'none',
@@ -51,7 +58,7 @@ const getStyles = props => {
             ...borderRadius,
         },
         title: {
-            fontSize: '1.5rem',
+            fontSize: titleFontSize,
             fontWeight: 'bold',
         },
         subtitle: {
@@ -62,6 +69,7 @@ const getStyles = props => {
             display: 'flex',
             flexDirection: 'column',
             padding: '0.5rem 1.5rem',
+            paddingLeft: `calc(0.75 * ${appStyles.unitWidth})`,
             flex: 1,
             justifyContent: 'center',
         },
