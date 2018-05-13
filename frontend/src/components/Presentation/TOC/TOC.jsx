@@ -56,6 +56,8 @@ const TOC: React.StatelessFunctionalComponent<Props> = props => {
             cursor: 'pointer',
             transition: 'background-color 0.2s linear',
             color: appStyles.themes[props.appTheme].fontColor,
+            fontSize: '1.2rem',
+            fontFamily: 'TTNorms-medium',
         },
         title: {
             display: 'none',
