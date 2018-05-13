@@ -186,3 +186,6 @@ expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
 
 
 
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.tables'
+]
