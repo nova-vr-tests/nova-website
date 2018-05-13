@@ -8,6 +8,7 @@ const getDefaultStyles = (props) => {
     let linkColor = 'rgba(255, 255, 255, 0.7)'
     let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth})`
     let fontSize = '1.25rem'
+    let headingColor = 'white'
 
     if(clientWidth < appStyles.mediaQueries.tablet) {
         textColor = 'white'
@@ -17,6 +18,7 @@ const getDefaultStyles = (props) => {
     if(!props.useWhiteFont) {
         textColor = '#3d3f4c'
         linkColor = '#828a99'
+        headingColor = '#363643'
     }
 
     // user overrides
@@ -24,7 +26,7 @@ const getDefaultStyles = (props) => {
     fontSize = customFontSize || fontSize
 
     const headingDefaultStyles = {
-        color: '#363643',
+        color: headingColor,
         fontFamily: 'TTNorms-medium',
         letterSpacing: '0.08rem',
     }
