@@ -3,6 +3,7 @@
 
 import { styles as appStyles } from '../../constants.js'
 import type { Props } from './AboutTypes.jsx'
+import { getDelta } from '../Presentation/SidePanel/helpers.jsx'
 
 import type {
     CSSStyleDeclaration,
@@ -47,6 +48,11 @@ const getStyles: GetStyles<Props, Styles> = props => {
             backgroundSize: 'cover',
             backgroundPosition: 'bottom',
         },
+        wrapper2: {
+            position: 'absolute',
+            // bottom: `calc(3 * ${appStyles.unitHeight})`,
+            top: `calc(3.25 * ${appStyles.unitHeight} - ${getDelta()}px)`,
+        },
         p: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
@@ -54,19 +60,23 @@ const getStyles: GetStyles<Props, Styles> = props => {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
         h2: {
-            paddingBottom: 'calc(4 * ' + appStyles.unitHeight + ')',
+            // paddingBottom: 'calc(4 * ' + appStyles.unitHeight + ')',
+            // height: `calc(5.7 * ${appStyles.unitHeight} - ${getDelta()}px)`,
+            height: `calc(5.75 * ${appStyles.unitHeight} )`,
             boxSizing: 'border-box',
             fontSize: '2rem',
             margin: 0,
             textAlign: 'center',
         },
         sidePanel: {
-            marginTop: 'calc(1.5 * ' + appStyles.unitHeight + ')',
+            marginTop: 'calc(2.5 * ' + appStyles.unitHeight + ')',
         },
         content: {
             backgroundColor,
-            height: '100%',
             padding: '2rem',
+            height: `calc((24 - 6.75) * ${appStyles.unitHeight})`,
+            // top: `calc(6.75 * ${appStyles.unitHeight})`,
+            // position: 'absolute',
         },
         title: {
         },

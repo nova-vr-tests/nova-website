@@ -17,6 +17,7 @@ import {
     coord2CircDefault,
     coord2CircInverted,
     togglePanel,
+    getDelta,
 } from './helpers.jsx'
 
 import type {
@@ -88,10 +89,16 @@ const BG = (props: BgProps) => {
     let color = props.bgColor
 
     if(props.type === sidePanelTypes.INVERTED) {
+        const delta = getDelta()
+
         p1 = {x: screenRightEdge, y: coord2Circ(clientWidth).y1}
         p2 = {x: 0, y: coord2Circ(clientWidth - widthCoef * appStyles.unitWidthJs).y1}
         p3 = {x: 0, y: clientHeight - p2.y}
         p4 = {x: screenRightEdge, y: clientHeight - p1.y}
+
+        p3 = {x: 0, y: appStyles.unitHeightJs * 9 - delta}
+        p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 9 - delta}
+
         path =
             'M ' + p1.x + ' ' + p1.y
             + ' A ' + r + ' ' + r + ' 0 0 0 ' + p2.x + ' ' + p2.y
