@@ -209,7 +209,7 @@ Last Edited on 2018-02-18
 const legalsContent = (
     <div style={{ overflowY: 'scroll', overflowX: 'none', height: '30rem', padding: 0, margin: '-2rem' }}>
         <MarkdownParser
-            styles={{ textColor: 'white' }}
+            useWhiteFont={ false }
             content={ legalsText } />
     </div>
 )

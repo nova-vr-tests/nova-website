@@ -142,9 +142,9 @@ const Blog = props => {
             <ContentWrapper sidePanelMode={ props.sidePanelMode }>
                 <BlogPostContent
                     addTail={ props.addTail }
+                    useWhiteFont={ props.sidePanelMode }
                     content={ content } />
                 <LastComp
-                    isMainPanel={ true }
                     pictoUrl={ squarePictoUrl.origin + squarePictoUrl.pathname }
                     title={ title } />
             </ContentWrapper>

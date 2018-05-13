@@ -59,7 +59,9 @@ We provide XR Media solutions for businesses. Our work includes sourcing develop
 
     return (
         <div style={ styles.wrapper }>
-          <MarkdownParser content={ str } />
+            <MarkdownParser
+                useWhiteFont={ false }
+                content={ str } />
         </div>
     )
 }
