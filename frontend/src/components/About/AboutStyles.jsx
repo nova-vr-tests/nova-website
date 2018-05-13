@@ -50,7 +50,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
         },
         wrapper2: {
             position: 'absolute',
-            // bottom: `calc(3 * ${appStyles.unitHeight})`,
             top: `calc(3.25 * ${appStyles.unitHeight} - ${getDelta()}px)`,
             right: 0,
             left: 0,
@@ -62,8 +61,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
         h2: {
-            // paddingBottom: 'calc(4 * ' + appStyles.unitHeight + ')',
-            // height: `calc(5.7 * ${appStyles.unitHeight} - ${getDelta()}px)`,
             height: `calc(5.75 * ${appStyles.unitHeight} )`,
             boxSizing: 'border-box',
             fontSize: '2rem',
@@ -77,8 +74,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
             backgroundColor,
             padding: '2rem',
             height: `calc((24 - 6.75) * ${appStyles.unitHeight})`,
-            // top: `calc(6.75 * ${appStyles.unitHeight})`,
-            // position: 'absolute',
         },
         title: {
         },
