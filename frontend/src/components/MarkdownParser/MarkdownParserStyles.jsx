@@ -6,9 +6,14 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     let textColor = 'rgba(0, 0, 0, 0.7)'
     let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth})`
     let fontSize = '1.25rem'
+
     if(clientWidth < appStyles.mediaQueries.tablet) {
         textColor = 'white'
         fontSize = '1.5rem'
+    }
+
+    if(props.isMainPanel) {
+        textColor = 
     }
 
     // user overrides
@@ -39,15 +44,21 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         },
         {
             ...headingDefaultStyles,
-            margin: `0.5rem 0 0.5rem calc(0 * ${appStyles.unitWidth}) `, // h2
+            margin: `0.5rem 0 0rem calc(0 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
             fontSize,
         },
         {
-            padding: '0rem 0.5rem', // h5
+            margin: `0.5rem 0 0rem calc(0 * ${appStyles.unitWidth}) `, // h2
+            color: 'red',
         },
         {
-            padding: '0rem 0.5rem', // h6
+            ...headingDefaultStyles,
+            margin: `0.5rem 0 0rem calc(0 * ${appStyles.unitWidth}) `, // h2
+            fontSize,
+            letterSpacing: 'inherit',
+            color: '#3d3f4c',
+            fontWeight: 'normal',
         },
         {
             padding: '0rem 0.5rem', // h7
@@ -81,9 +92,9 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     }
 
     const link = {
-        color: 'inherit',
-        fontWeight: 'bold',
         textDecoration: 'none',
+        fontStyle: 'italic',
+        color: '#828a99',
     }
 
     const tableWrapper = {
@@ -101,7 +112,8 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     }
 
     const list = {
-        color: textColor,
+        //color: textColor,
+        color: '#3d3f4c',
     }
 
     const listItem = {
