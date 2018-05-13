@@ -56,6 +56,7 @@ const BlogPostContent = props => {
 BlogPostContent.defaultProps = {
     styles: {},
     addTail: true,
+    isMainPanel: false,
 }
 
 export default connect(contentReduxState)(BlogPostContent)

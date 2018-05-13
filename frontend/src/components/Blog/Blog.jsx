@@ -58,6 +58,7 @@ const Header = props => {
             fontWeight: 'normal',
             letterSpacing: '0.05rem',
             width: '90%',
+            fontFamily: 'TTNorms-medium',
         },
     }
 
@@ -143,6 +144,7 @@ const Blog = props => {
                     addTail={ props.addTail }
                     content={ content } />
                 <LastComp
+                    isMainPanel={ true }
                     pictoUrl={ squarePictoUrl.origin + squarePictoUrl.pathname }
                     title={ title } />
             </ContentWrapper>
