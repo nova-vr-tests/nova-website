@@ -46,7 +46,7 @@ const mapDispatchToProps = function(dispatch) {
    HOME PAGE
 **/
 
-const HomePageContent = () => {
+const HomePageContent = props => {
     const styles = {
         wrapper: {
             color: 'white',
@@ -60,10 +60,14 @@ We provide XR Media solutions for businesses. Our work includes sourcing develop
     return (
         <div style={ styles.wrapper }>
             <MarkdownParser
-                useWhiteFont={ false }
+                useWhiteFont={ props.useWhiteFont }
                 content={ str } />
         </div>
     )
+}
+
+HomePageContent.defaultProps = {
+    useWhiteFont: false,
 }
 
 const HomePage = props => {
@@ -83,7 +87,7 @@ const HomePage = props => {
         <div
             className={ 'NYEComp--wrapper' }>
             <div style={ styles.text }>
-              <HomePageContent />
+              <HomePageContent useWhiteFont={ true } />
             </div>
             <SidePanelLink
                 onClickCallback={ () => props.goTo('/about-us')}
