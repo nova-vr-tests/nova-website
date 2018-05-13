@@ -25,6 +25,10 @@ const BlogPostContent = props => {
                 href={ props.href }
                 target="_blank"
                 style={ styles.link }>{ props.children }</a>,
+        list: props =>
+            <ul style={ styles.list }>{ props.children }</ul>,
+        listItem: props =>
+            <li style={ styles.listItem }>{ props.children }</li>,
         paragraph: props =>
             <p style={ styles.p }>{ props.children }</p>,
         tableCell: props =>

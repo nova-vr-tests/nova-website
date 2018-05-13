@@ -84,7 +84,7 @@ const ContentWrapper = props => {
     const { unitHeight } = appStyles
 
     let height = `calc(100vh - 11 * ${unitHeight})`
-    let backgroundColor = 'rgba(255, 255, 255, 0.5)'
+    let backgroundColor = 'rgba(255, 255, 255, 0.6)'
     let color = 'black'
 
     if(clientWidth < appStyles.mediaQueries.phone || props.sidePanelMode) {
@@ -104,7 +104,7 @@ const ContentWrapper = props => {
             color,
             display: 'flex',
             flexDirection: 'column',
-            borderTopLeftRadius: '30px',
+            borderTopLeftRadius: '20px',
             overflow: 'hidden',
         }
     }
