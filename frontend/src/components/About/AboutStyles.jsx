@@ -52,6 +52,8 @@ const getStyles: GetStyles<Props, Styles> = props => {
             position: 'absolute',
             // bottom: `calc(3 * ${appStyles.unitHeight})`,
             top: `calc(3.25 * ${appStyles.unitHeight} - ${getDelta()}px)`,
+            right: 0,
+            left: 0,
         },
         p: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
