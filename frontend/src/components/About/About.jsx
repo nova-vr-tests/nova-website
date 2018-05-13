@@ -252,11 +252,13 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
             <SidePanel
                 marginTop={ styles.sidePanel.marginTop }
                 type={ sidePanelTypes.INVERTED }>
-                <div style={ styles.title }>
-                    <h2 style={ styles.h2 }>{ title }</h2>
-                </div>
-                <div style={ styles.content }>
-                    { content }
+                <div style={ styles.wrapper2 }>
+                    <div style={ styles.title }>
+                        <h2 style={ styles.h2 }>{ title }</h2>
+                    </div>
+                    <div style={ styles.content }>
+                        { content }
+                    </div>
                 </div>
             </SidePanel>
         </div>

@@ -62,8 +62,18 @@ const togglePanel = (initWidth: number, targetWidth: number, progress: number, s
 
 }
 
+
+// calc offset from top of screen to top of footer curve when opened
+const getDelta = () => {
+    const { clientWidth } = document.documentElement
+
+    return coord2CircInverted(clientWidth / 2).y1 - coord2CircInverted(clientWidth - appStyles.unitWidthJs * 3).y1 + coord2CircDefault(clientWidth - appStyles.unitWidthJs * 3).y1
+}
+
+
 export {
     coord2CircDefault,
     coord2CircInverted,
     togglePanel,
+    getDelta,
 }

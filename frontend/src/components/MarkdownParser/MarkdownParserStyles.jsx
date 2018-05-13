@@ -52,8 +52,12 @@ const getDefaultStyles = (props) => {
             fontSize,
         },
         {
+            ...headingDefaultStyles,
             margin: `0.5rem 0 0rem calc(0 * ${appStyles.unitWidth}) `, // h2
-            color: 'red',
+            fontSize,
+            letterSpacing: 'inherit',
+            color: '#3d3f4c',
+            fontWeight: 'normal',
         },
         {
             ...headingDefaultStyles,
@@ -102,7 +106,6 @@ const getDefaultStyles = (props) => {
 
     const tableWrapper = {
         maxWidth: `calc(100% - 0 * ${rootPadding})`,
-        overflowX: 'auto',
         margin: 0,
         boxSizing: 'content-box',
         minHeight: 'min-content',
