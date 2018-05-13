@@ -18,8 +18,10 @@ import type {
 import Login from './Login/Login.jsx'
 
 import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
+import contactPicto from '../img/Contact.png'
 
 import SidePanel, { sidePanelTypes } from '../Presentation/SidePanel/SidePanel.jsx'
+import SidePanelLink from '../UI/SidePanelLink.jsx'
 
 import { footerPage } from '../../reducer/App.js'
 
@@ -31,14 +33,6 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 }
 
 const text = {}
-
-const globalStyles = {
-    a: {
-        color: 'black',
-        fontWeight: 'bold',
-        textDecoration: 'none',
-    }
-}
 
 const legalsText = `
 ## Terms and Conditions of Use
@@ -214,12 +208,26 @@ const legalsContent = (
     </div>
 )
 
+const contactText = `Thank you for your interest in Nova XR Media. Please email us with any question:`
+const contactStyles = {
+    linkWrapper: {
+        marginRight: '-2rem',
+    }
+}
+
 const contactContent = (
     <div>
-        <p style={{ marginTop: 0 }}>
-            Thank you for your interest in Nova XR Media. Please email us with any question:
-        </p>
-        <strong><a href="mailto: joe@novamedia.nyc" style={ globalStyles.a }>joe@novamedia.nyc</a></strong>
+        <MarkdownParser
+            useWhiteFont={ false }
+            content={ contactText } />
+        <div style={ contactStyles.linkWrapper }>
+            <SidePanelLink
+                onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
+                isSquarePicto={ true }
+                pictoUrl={ contactPicto }
+                invertColors={ true }
+                title="Email Us" />
+        </div>
     </div>
 )
 

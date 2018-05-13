@@ -20,13 +20,22 @@ const getStyles = props => {
         titleFontSize = '1.8rem'
     }
 
+    let borderColor = 'rgba(255, 255, 255, 0.6)'
+    let backgroundColor = 'rgba(255, 255, 255, 0.2)'
+    let color = 'white'
+    if(props.invertColors) {
+        borderColor = 'rgba(0, 0, 0, 0.6)'
+        backgroundColor = 'rgba(0, 0, 0, 0.2)'
+        color = 'rgb(54, 54, 67)'
+    }
+
     const styles = {
         linkWrapper: {
             display: 'flex',
             minHeight: linkWrapperHeight,
             fontSize: '2rem',
             justifyContent: 'fle',
-            border: '1px solid rgba(255, 255, 255, 0.6)',
+            border: '1px solid ' + borderColor,
             margin: `calc(0.75 * ${appStyles.unitHeight})`,
             cursor: 'pointer',
             ...borderRadius,
@@ -35,11 +44,12 @@ const getStyles = props => {
             marginLeft: `calc(0.5 * ${appStyles.unitWidth})`,
             justifySelf: 'flex-end',
             borderRight: 'none',
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor,
             position: 'relative',
+            color,
         },
         activeLink: {
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor,
         },
         pictoBg: {
             height: `calc(${linkWrapperHeight} - 0px)`,
