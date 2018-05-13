@@ -7,6 +7,7 @@ import logo from '../img/nova-logo.svg'
 
 import { styles as appStyles } from '../../constants.js'
 import { updateSidebarIntersection } from '../../reducer/actions/Header.js'
+import { updateIsFooterOpened } from '../../reducer/actions/App.js'
 
 import { push } from 'react-router-redux'
 
@@ -44,6 +45,7 @@ const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch)
 	return {
       updateSidebarIntersection: sidebarInterserction => dispatch(updateSidebarIntersection(sidebarInterserction)),
       goTo: url => dispatch(push(url)),
+      closeFooter: () => dispatch(updateIsFooterOpened(false)),
   }
 }
 
@@ -106,7 +108,7 @@ const HeaderDumb = (props: Props) => {
             <img
                 src={ logo }
                 alt="logo"
-                onClick={ () => props.goTo('/') }
+                onClick={ () => { props.goTo('/'); props.closeFooter() } }
                 style={{
                     ...styles.logo,
                     ...(props.isSidebarOpened ? {} : styles.logoSidebarClosed),

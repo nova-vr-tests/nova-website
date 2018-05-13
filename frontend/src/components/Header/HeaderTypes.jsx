@@ -21,6 +21,7 @@ export type ReduxState = {
 export type ReduxDispatch = {
     updateSidebarIntersection: (sidebarIntersection: number) => void,
     goTo: (url: string) => void,
+    closeFooter: () => void,
 }
 
 export type OwnProps = {}
