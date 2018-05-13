@@ -4,7 +4,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     const { clientWidth } = document.documentElement
 
     let textColor = 'rgba(0, 0, 0, 0.7)'
-    let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.75 * ${appStyles.unitWidth})`
+    let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth})`
     let fontSize = '1.25rem'
     if(clientWidth < appStyles.mediaQueries.tablet) {
         textColor = 'white'
@@ -16,7 +16,9 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
     fontSize = customFontSize || fontSize
 
     const headingDefaultStyles = {
-            color: 'inherit',
+        color: '#363643',
+        fontFamily: 'TTNorms-medium',
+        letterSpacing: '0.08rem',
     }
     const headings = [
         {
@@ -25,13 +27,13 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         },
         {
             ...headingDefaultStyles,
-            margin: `calc(1 * ${appStyles.unitHeight}) 0 calc(0.5 * ${appStyles.unitHeight}) calc(1 * ${appStyles.unitWidth}) `, // h2
+            margin: `calc(0.75 * ${appStyles.unitHeight}) 0 calc(0.5 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth}) `, // h2
             fontSize: '1.7rem',
             fontWeight: 'normal',
         },
         {
             ...headingDefaultStyles,
-            margin: `0.75rem 0 0.5rem calc(0.5 * ${appStyles.unitWidth}) `, // h2
+            margin: `0.75 * ${appStyles.unitHeight} 0 0.5 * ${appStyles.unitHeight} calc(0 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
             fontSize: '1.5rem',
         },
@@ -39,6 +41,7 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
             ...headingDefaultStyles,
             margin: `0.5rem 0 0.5rem calc(0 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
+            fontSize,
         },
         {
             padding: '0rem 0.5rem', // h5
@@ -93,6 +96,16 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
 
     const p = {
         margin: '0.5rem 0',
+        textAlign: 'justify',
+        color: '#3d3f4c',
+    }
+
+    const list = {
+        color: textColor,
+    }
+
+    const listItem = {
+        marginBottom: '0.75rem',
     }
 
     return {
@@ -104,6 +117,8 @@ const getDefaultStyles = ({ customTextColor, customFontSize }) => {
         tableWrapper,
         p,
         link,
+        list,
+        listItem,
     }
 }
 
