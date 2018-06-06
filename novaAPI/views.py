@@ -1,6 +1,8 @@
 from .models import BusinessProposition, BlogPost
 from .serializers import *
 from rest_framework import generics
+from django.http import HttpResponse
+
 
 
 ### Business props
@@ -12,6 +14,13 @@ class BusinessPropositionList(generics.ListCreateAPIView):
 class BusinessPropositionDetail(generics.RetrieveAPIView):
     queryset = BusinessProposition.objects.all()
     serializer_class = BusinessPropositionSerializer
+
+    def get(self, req, *args, **kwargs):
+        obj = self.get_object()
+        if obj.password != req.POST.get('password'):
+            raise Exception("Wrong password")
+
+        return self.retrieve(request, *args, **kwargs)
 
 ### Blog posts
 
