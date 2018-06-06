@@ -264,7 +264,7 @@ const SmartComp = compose(
         componentDidMount() {
             this.mounted = true
 
-            if(this.props.routing.location.pathname.replace("/", "") === "products") {
+            if(this.props.routing.location.pathname.replace("/", "") === this.props.clientUrl) {
                 fetchProducts(
                     this.props.fetchUrl, this.props.setProducts, this)
 
@@ -280,7 +280,7 @@ const SmartComp = compose(
             }
         },
         componentWillUpdate(nextProps) {
-            if(nextProps.routing.location.pathname.replace("/", "") === "products") {
+            if(nextProps.routing.location.pathname.replace("/", "") === nextProps.clientUrl) {
 
                 initHeader(nextProps.updateSidePanelHeader, nextProps)
 
@@ -316,6 +316,7 @@ const SmartComp = compose(
 
 SmartComp.defaultProps = {
     fetchUrl: new API().urls.products.list,
+    clientUrl: 'products',
 }
 
 const ConnectedComp = connect(
@@ -323,4 +324,92 @@ const ConnectedComp = connect(
     mapDispatchToProps
 )(SmartComp)
 
+
+const BasicLogIn = props => (
+    <div>
+        <input onChange={ props.onPasswordChange } />
+        <button onClick={ props.checkPassword }>Submit</button>
+    </div>
+)
+
+
+const ProtectedProductDumb = props => {
+    if(props.show404)
+        return <div>This product does not exist</div>
+
+    if(props.isPasswordValid)
+        return <ConnectedComp auth={ true } password={ props.password } />
+
+    return <BasicLogIn
+                onPasswordChange={ props.onPasswordChange }
+                checkPassword={ props.checkPassword } />
+}
+
+class SmartProtectedProduct extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            password: '',
+            show404: true,
+            isPasswordValid: false,
+        }
+
+        this.onPasswordChange = this.onPasswordChange.bind(this)
+        this.checkPassword = this.checkPassword.bind(this)
+        this.check404 = this.check404.bind(this)
+    }
+
+    componentDidMount() {
+        this.check404()
+    }
+
+    onPasswordChange(e) {
+        this.setState({ password: e.target.value })
+    }
+
+    checkPassword() {
+        let isPasswordValid = false
+
+        if(this.state.password === "test")
+            isPasswordValid = true
+
+        this.setState({ isPasswordValid })
+    }
+
+    check404() {
+        let show404 = true
+
+        if(window.location.toString().match(/\?id=[1-9]+/))
+            show404 = false
+
+        this.setState({ show404 })
+    }
+
+    render() {
+        return <ProtectedProductDumb
+                    isPasswordValid={ this.state.isPasswordValid }
+                    checkPassword={ this.checkPassword }
+                    onPasswordChange={ this.onPasswordChange }
+                    show404={ this.state.show404 }
+                    password={ this.state.password } />
+    }
+}
+
+const protectedProductStateToProps = state => ({
+    routing: state.routing,
+})
+
+const protectedProductDispatchToProps = () => ({
+})
+
+const ProtectedProduct = connect(
+    protectedProductStateToProps,
+    protectedProductDispatchToProps,
+)(SmartProtectedProduct)
+
 export default ConnectedComp
+
+export {
+    ProtectedProduct,
+}

@@ -15,7 +15,7 @@ import { styles as appStyles } from '../../constants.js'
 
 import Blog from '../Blog/Blog.jsx'
 import BlogPostList from '../Blog/BlogPostList.jsx'
-import ProductsList from '../Products/Products.jsx'
+import ProductsList , { ProtectedProduct } from '../Products/Products.jsx'
 import API from '../../API.js'
 
 import {
@@ -73,8 +73,8 @@ const BusinessProps: Array<ISlide> = [
         path,
         pid,
         content: () =>
-            <BlogPostList
-                headerText={ `People of every industry are finding solutions to their most stubborn challenges by producing immersive (XR) media content. Share, communicate, and learn faster than ever.` }
+            <ProtectedProduct
+                clientUrl="business-props"
                 fetchUrl={ new API().urls.businessProps.list } />,
         overrideMainPanel: true,
         overrideHeader: true,
