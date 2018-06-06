@@ -15,6 +15,7 @@ class BusinessProposition(models.Model):
     picto = models.ImageField(upload_to='publication_pics')
     pdf = models.FileField(upload_to='publication_pdfs')
     content = MarkdownxField()
+    password = models.CharField(max_length=100, blank=True, default='')
 
     class Meta:
         verbose_name = 'Business Proposition'
