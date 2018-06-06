@@ -4,7 +4,7 @@ import * as React from 'react'
 import Presentation from '../Presentation/Presentation.jsx'
 import transitions from '../Presentation/transitions.js'
 
-import novaXr, { SiteIntro } from './page1.jsx'
+import novaXr, { SiteIntro, BusinessProps } from './page1.jsx'
 import resources from './page2.jsx'
 import partnership from './page3.jsx'
 
@@ -251,7 +251,7 @@ const menuInput = pages.map(makeMenu)
 let slides: Array<ISlide> = flatten(pages)
 
 // Adding site root before all other slides
-slides = [...SiteIntro, ...slides]
+slides = [...SiteIntro, ...BusinessProps, ...slides]
 
 
 const Pages = () => {

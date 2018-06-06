@@ -55,6 +55,33 @@ const SiteIntro: Array<ISlide> = [
     },
 ]
 
+/************************************
+
+   Props
+
+ ***********************************/
+
+
+pid = Symbol('business props')
+h1 = 'Business Props'
+h2 = ''
+path = '/business-props'
+const BusinessProps: Array<ISlide> = [
+    {
+        h1,
+        h2,
+        path,
+        pid,
+        content: () =>
+            <BlogPostList
+                headerText={ `People of every industry are finding solutions to their most stubborn challenges by producing immersive (XR) media content. Share, communicate, and learn faster than ever.` }
+                fetchUrl={ new API().urls.businessProps.list } />,
+        overrideMainPanel: true,
+        overrideHeader: true,
+        showNextSectionArrow: false,
+        layers: [createLayer(productsBg, 0, 1)],
+    },
+]
 
 /************************************
 
@@ -242,4 +269,5 @@ export default page1
 
 export {
     SiteIntro,
+    BusinessProps,
 }
