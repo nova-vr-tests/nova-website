@@ -368,11 +368,51 @@ class SmartProtectedProduct extends React.Component {
         this.setState({ password: e.target.value })
     }
 
-    checkPassword() {
+    async checkPassword() {
         let isPasswordValid = false
 
-        if(this.state.password === "test")
+        // https://docs.djangoproject.com/en/2.0/ref/csrf/
+        function getCookie(name) {
+            var cookieValue = null
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';')
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim()
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+                        break
+                    }
+                }
+            }
+            return cookieValue
+        }
+
+
+        const id = window.location.toString().match(/\?id=[1-9]+/)[0].match(/[1-9]+/)[0]
+        const url = `/api/${this.props.fetchUrl}${id}/`
+        let formData = new FormData()
+        formData.append('name', 'John')
+        const params= {
+            method: 'POST',
+            body: this.state.password,
+            headers:{
+               'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                "X-CSRFToken": getCookie('csrftoken'),
+            },
+            credentials: "same-origin",
+        }
+
+        // parsing if from url
+        let resp = await fetch(url, params)
+        resp = await resp.text()
+
+        console.log(resp)
+
+        // error is what dajngo returns on invalid password for now
+        if(resp !== "error") {
             isPasswordValid = true
+        }
 
         this.setState({ isPasswordValid })
     }
