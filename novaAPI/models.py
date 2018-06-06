@@ -12,10 +12,12 @@ from django.contrib.auth.models import User
 class BusinessProposition(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('publication date', default=datetime.now)
-    picto = models.ImageField(upload_to='publication_pics')
-    pdf = models.FileField(upload_to='publication_pdfs')
+    picto = models.ImageField(upload_to='business_props_pdfs')
+    pdf = models.FileField(upload_to='business_props_pdfs')
     content = MarkdownxField()
     password = models.CharField(max_length=100, blank=True, default='')
+    exec_sum = MarkdownxField()
+    bg_image = models.ImageField(upload_to='business_props_bgs')
 
     class Meta:
         verbose_name = 'Business Proposition'

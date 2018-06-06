@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 default_fields = ('id', 'title', 'date', 'picto', 'content')
 blog_post_fields = default_fields + ('author',)
 products_fields = default_fields + ('abstract', 'bg_image', 'description', 'pictoBg', 'squarePicto')
+business_prop_fields = default_fields + ('exec_sum', 'bg_image')
 publication_fields = default_fields + ('pdf',)
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 class BusinessPropositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = BusinessProposition
-        fields = default_fields
+        fields = business_prop_fields
 
 class BlogPostSerializer(serializers.ModelSerializer):
     child = User.objects.all()
