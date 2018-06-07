@@ -41,7 +41,11 @@ export const initialState: State = {
     mainPanel: {
         isOpened: false,
         content: () => <div></div>,
-    }
+    },
+    imgViewer: {
+        isOpened: false,
+        url: '',
+    },
 }
 
 
@@ -62,12 +66,30 @@ export const UPDATE_WINDOW_HEIGHT = 'app/update_window_height'
 export const UPDATE_MAIN_PANEL_IS_OPENED = 'app/update_main_panel_is_opened'
 export const UPDATE_MAIN_PANEL_CONTENT = 'app/update_mains_panel_content'
 export const UPDATE_SIDE_PANEL_HEADER = 'app/update side panel header'
+export const UPDATE_IMG_VIEWER_URL = 'app/update img viewer url'
+export const UPDATE_IMG_VIEWER_IS_OPENED = 'app/update img viewer is opened'
 
 
 export default (state: State = initialState, action: Action): State => {
   const { openedFooterTheme } = appStyles.themeTypes
 
   switch (action.type) {
+  case UPDATE_IMG_VIEWER_URL:
+      return {
+          ...state,
+          imgViewer: {
+            url: action.url,
+            isOpened: true,
+          }
+      }
+  case UPDATE_IMG_VIEWER_IS_OPENED:
+      return {
+          ...state,
+          imgViewer: {
+              ...state.imgViewer,
+              isOpened: action.isOpened,
+          }
+      }
   case UPDATE_SIDE_PANEL_HEADER_OVERRIDE:
       return {
           ...state,

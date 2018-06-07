@@ -7,7 +7,18 @@ import getStyles from './MarkdownParserStyles.jsx'
 
 import './styles.css'
 
+
+import {
+    updateImgViewerUrl,
+    updateImgViewerIsOpened,
+} from '../../reducer/actions/App.js'
+
 const contentReduxState = () => ({
+})
+
+const contentReduxDispatch = dispatch => ({
+    updateImgViewerUrl: url => dispatch(updateImgViewerUrl(url)),
+    updateImgViewerisOpened: isOpened => dispatch(updateImgViewerIsOpened(isOpened)),
 })
 
 const BlogPostContent = props => {
@@ -21,7 +32,6 @@ const BlogPostContent = props => {
             props.children)
 
     const P = props => {
-        console.log(props.children[0])
         if(props.children[0].length > 4) {
             if(props.children[0].substring(0, 4) === "!!! ") {
                 const importantPStyles = {
@@ -80,6 +90,7 @@ const BlogPostContent = props => {
         image: ({ src }) =>
             <img
                 src={ src }
+                onClick={ () => props.updateImgViewerUrl(src)}
                 style={ styles.image }
                 alt="figure" />
     }
@@ -95,4 +106,4 @@ BlogPostContent.defaultProps = {
     useWhiteFont: true,
 }
 
-export default connect(contentReduxState)(BlogPostContent)
+export default connect(contentReduxState, contentReduxDispatch)(BlogPostContent)
