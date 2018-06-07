@@ -3,7 +3,7 @@ from markdownx.admin import MarkdownxModelAdmin
 from .models import *
 
 class BusinessPropositionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date')
+    list_display = ('title', 'date', 'id')
     list_filter = ['date']
     search_fields = ['title', 'content']
 
