@@ -20,52 +20,6 @@ const BlogPostContent = props => {
             { style: styles.headings[props.level] },
             props.children)
 
-    const Li = props => {
-        let children
-        console.log(props)
-        if(!props.children)
-            return <div></div>
-
-        if(props.children.length > 1) {
-            children = props.children[0]
-            const li = props.children[1]
-
-            return [
-                <li
-                    key={ 0 }
-                    style={ styles.listItem }>
-                    <div style={ styles.bullet }></div>
-                    { children }
-                </li>,
-                <Li
-                    key={ 1 }
-                    level={ 1 }>{li}</Li>
-            ]
-        }
-
-        if(props.level > 0 && props.children.length === 1) {
-            const ul = props.children
-            const lis = props.children.children.map((e, i) => <Li key={ i } level={ 1 }>{ e }</Li>)
-            console.log(lis)
-
-            return <ul
-                       style={ { marginLeft: '10rem' } }>
-                       { lis }
-                   </ul>
-        }
-
-
-        return <li
-                    style={ styles.listItem }>
-                    <div style={ styles.bullet }></div>
-                    { props.children }{ props.level }
-                </li>
-
-    }
-
-    Li.defaultProps = {
-        level: 0,
-    }
 
     const renderers = {
         root: _props => <div
