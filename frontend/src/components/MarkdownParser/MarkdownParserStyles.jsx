@@ -30,6 +30,33 @@ const getDefaultStyles = (props) => {
         fontFamily: 'TTNorms-medium',
         letterSpacing: '0.08rem',
     }
+    const diam1 = '2rem'
+    const diam2 = '1.5rem'
+    const headingsBullet = [
+        {
+            position: 'absolute',
+            height: diam1,
+            width: diam1,
+            borderRadius: '50%',
+            backgroundColor: 'white',
+            left: `calc(-0.5 * ${appStyles.unitWidth} - ${diam1} / 2)`, // h2
+            top: '50%',
+            transform: 'translateY(-50%)',
+        },
+        {
+            position: 'absolute',
+            height: diam2,
+            width: diam2,
+            borderRadius: '50%',
+            backgroundColor: 'white',
+            left: `calc(-0.5 * ${appStyles.unitWidth} - ${diam2} / 2)`, // h2
+            top: '50%',
+            transform: 'translateY(-50%)',
+        },
+    ]
+    const headingWrapper = {
+        position: 'relative',
+    }
     const headings = [
         {
             ...headingDefaultStyles,
@@ -37,13 +64,13 @@ const getDefaultStyles = (props) => {
         },
         {
             ...headingDefaultStyles,
-            margin: `calc(0.75 * ${appStyles.unitHeight}) 0 calc(0.5 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth}) `, // h2
+            margin: `calc(0.75 * ${appStyles.unitHeight}) 0 calc(0.75 * ${appStyles.unitHeight}) calc(0.5 * ${appStyles.unitWidth}) `, // h2
             fontSize: '1.7rem',
             fontWeight: 'normal',
         },
         {
             ...headingDefaultStyles,
-            margin: `0.75 * ${appStyles.unitHeight} 0 0.5 * ${appStyles.unitHeight} calc(0 * ${appStyles.unitWidth}) `, // h2
+            margin: `calc(0.5 * ${appStyles.unitHeight}) 0 calc(0.5 * ${appStyles.unitHeight}) calc(0 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
             fontSize: '1.5rem',
         },
@@ -51,7 +78,7 @@ const getDefaultStyles = (props) => {
             ...headingDefaultStyles,
             margin: `0.5rem 0 0rem calc(0 * ${appStyles.unitWidth}) `, // h2
             fontWeight: 'normal',
-            fontSize,
+            fontSize: '1.3rem',
         },
         {
             ...headingDefaultStyles,
@@ -121,14 +148,33 @@ const getDefaultStyles = (props) => {
 
     const list = {
         color: textColor,
+        padding: 0,
     }
 
     const listItem = {
         marginBottom: '0.75rem',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+    }
+
+    const diam3 = '0.75rem'
+    const bullet = {
+        position: 'absolute',
+        height: diam3,
+        width: diam3,
+        borderRadius: '50%',
+        backgroundColor: 'white',
+        left: `calc(-0.5 * ${appStyles.unitWidth} - ${diam3} / 2)`, // h2
+        top: '50%',
+        transform: 'translateY(-50%)',
     }
 
     return {
         headings,
+        headingsBullet,
+        headingWrapper,
+        bullet,
         root,
         image,
         table,
