@@ -58,15 +58,16 @@ class API {
         }
 
         // parsing if from url
-        let respText
+        let respText, respJSON
         try {
             const resp = await fetch(url, params)
             respText = await resp.text()
+            respJSON = JSON.parse(respText)
         } catch(e) {
             console.log(e)
         }
 
-        return respText
+        return respJSON ? respJSON : respText
     }
 
     async fetchBlogPostList() {
