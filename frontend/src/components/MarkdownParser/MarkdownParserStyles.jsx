@@ -112,6 +112,7 @@ const getDefaultStyles = (props) => {
     }
 
     const image = {
+        cursor: 'pointer',
         maxWidth: `calc(100% + 2rem)`,
         margin: `0 -${rootPadding}`,
         minWidth: `calc(100% + 2rem)`,

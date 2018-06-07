@@ -29,16 +29,47 @@ const ImgViewerDumb = props => {
             bottom: 0,
             left: 0,
             right: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
-            zIndex: props.isOpened ? 1000000 : -100000,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            zIndex: 1000000,
+            pointerEvents: props.isOpened ? 'inherit' : 'none',
             opacity: props.isOpened ? 1 : 0,
+            transition: 'opacity 0.3s ease-in',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
         },
+        closeWrapper: {
+            fontSize: '1.5rem',
+            marginTop: '2rem',
+            cursor: 'pointer',
+        },
+        img: {
+            width: '80vw',
+            pointerEvent: 'none',
+        },
+        overlay: {
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: -1,
+            cursor: 'pointer',
+        }
     }
     return (
-        <div style={ styles.wrapper } className="img-viewer">
-            <img src={ props.url } alt="img" />
+        <div
+            style={ styles.wrapper } className="img-viewer">
             <div
                 onClick={ () => props.updateImgViewerisOpened(false) }
+                style={ styles.overlay }>
+            </div>
+            <img
+                src={ props.url }
+                style={ styles.img }
+                alt="img" />
+            <div
                 style={ styles.closeWrapper }>
                 Close
             </div>
