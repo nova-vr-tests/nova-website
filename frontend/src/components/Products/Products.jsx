@@ -99,6 +99,9 @@ Products.defaultProps = {
 }
 
 const fetchProducts = async (url, setProducts, that) => {
+    if(that.props.auth)
+        return
+
     const restApi = new API()
     const products= await restApi.fetch(url)
 
