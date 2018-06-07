@@ -55,7 +55,7 @@ const HomePageContent = props => {
 
     const str = `# &laquo;Dream Awake&raquo;
 
-We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry.`
+!!! We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry.`
 
     return (
         <div style={ styles.wrapper }>
