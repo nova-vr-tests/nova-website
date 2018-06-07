@@ -166,8 +166,6 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
         postId  = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
     }
 
-    console.log(fetchUrl, that.props.password, that.props.auth)
-
     let blogPost
     if(that.props.auth)
         blogPost = await restApi.fetchDetailAuth(fetchUrl, postId, that.props.password)
