@@ -18,6 +18,7 @@ import Header from './components/Header/Header.jsx'
 import { toggleSidebar } from './reducer/actions/Sidebar.js'
 import { styles as appStyles } from './constants.js'
 import IntroAnimation from './components/IntroAnimation/IntroAnimation.jsx'
+import ImgViewer from './components/ImgViewer.jsx'
 
 const apiTest = async () => {
   const r = await fetch("/api/blogposts/")
@@ -78,6 +79,7 @@ const AppDumb = props => (
         <IntroAnimation />
     </div>
     <Footer />
+    <ImgViewer />
   </div>
 )
 

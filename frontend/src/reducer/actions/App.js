@@ -15,6 +15,8 @@ import {
     UPDATE_WINDOW_HEIGHT,
     UPDATE_MAIN_PANEL_CONTENT,
     UPDATE_MAIN_PANEL_IS_OPENED,
+    UPDATE_IMG_VIEWER_URL,
+    UPDATE_IMG_VIEWER_IS_OPENED,
 } from '../App'
 
 import {
@@ -27,6 +29,16 @@ import type {
 } from '../AppTypes.jsx'
 
 import type { ThemeNames } from '../../constantTypes.jsx'
+
+const updateImgViewerUrl = url => ({
+    type: UPDATE_IMG_VIEWER_URL,
+    url,
+})
+
+const updateImgViewerIsOpened = isOpened => ({
+    type: UPDATE_IMG_VIEWER_IS_OPENED,
+    isOpened,
+})
 
 const updateSidePanelHeaderOverride = overrideHeader => ({
     type: UPDATE_SIDE_PANEL_HEADER_OVERRIDE,
@@ -133,4 +145,6 @@ export {
     updateMainPanelIsOpened,
     updateSidePanelHeader,
     updateSidePanelHeaderOverride,
+    updateImgViewerUrl,
+    updateImgViewerIsOpened,
 }
