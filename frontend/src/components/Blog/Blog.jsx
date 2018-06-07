@@ -135,7 +135,7 @@ const Blog = props => {
             className="Blog--wrapper">
             <div style={ styles.headerWrapper }>
                 <Header
-                    pictoUrl={ headerPictoUrl.origin + headerPictoUrl.pathname }
+                    pictoUrl={ props.auth ? pictoUrl.origin + pictoUrl.pathname : headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
             </div>
             <ContentWrapper sidePanelMode={ props.sidePanelMode }>
@@ -144,7 +144,7 @@ const Blog = props => {
                     useWhiteFont={ props.sidePanelMode }
                     content={ content } />
                 <LastComp
-                    pictoUrl={ squarePictoUrl.origin + squarePictoUrl.pathname }
+                    pictoUrl={ props.auth ? pictoUrl.origin + pictoUrl.pathname : headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
             </ContentWrapper>
         </div>

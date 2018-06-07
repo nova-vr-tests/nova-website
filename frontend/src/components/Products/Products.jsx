@@ -99,11 +99,16 @@ Products.defaultProps = {
 }
 
 const fetchProducts = async (url, setProducts, that) => {
-    if(that.props.auth)
-        return
 
     const restApi = new API()
-    const products= await restApi.fetch(url)
+
+    let products
+    if(that.props.auth) {
+        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
+        const product = await restApi.fetchDetailAuth(url, productNumber, that.props.password)
+        products = [product]
+    } else
+        products = await restApi.fetch(url)
 
     if(that.mounted) {
         setProducts(products)
@@ -140,7 +145,7 @@ const initHeader = (updateSidePanelHeader, props) => {
             showArrow={ props.auth && props.drawerPosition < 2 ? false : true }
             title={ product ? product.title : "" }
             subtitle={ product ? product.description : "" }
-            pictoUrl={ product ? product.squarePicto : "" }
+            pictoUrl={ product ? product.squarePicto || filterUrl(product.picto) : "" }
             isMainPanelOpened={ props.isMainPanelOpened }
             onClickCallback={ onClickCallback } />
     }
