@@ -123,7 +123,6 @@ const Blog = props => {
     const title = props.blogPost.title
     const content = props.blogPost[props.contentKey]
 
-
     const { LastComp } = props
 
     const squarePictoUrl = props.blogPost.squarePicto ? new URL(props.blogPost.squarePicto) : {origin: '', pathname: ''}
@@ -167,7 +166,13 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
         postId  = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
     }
 
-    const blogPost = await restApi.fetchDetail(fetchUrl, postId)
+    console.log(fetchUrl, that.props.password, that.props.auth)
+
+    let blogPost
+    if(that.props.auth)
+        blogPost = await restApi.fetchDetailAuth(fetchUrl, postId, that.props.password)
+    else
+        blogPost = await restApi.fetchDetail(fetchUrl, postId)
 
     if(that.mounted) {
         setBlogPost(blogPost)
@@ -209,6 +214,8 @@ const SmartComp = compose(
 
 SmartComp.defaultProps = {
     fetchUrl: new API().urls.blogPosts.list,
+    auth: false, // should use auth when fetching content
+    password: '', // password for auth, only userd if props.auth = true
 }
 
 const ConnectedComp = connect(
