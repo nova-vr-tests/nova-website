@@ -125,12 +125,21 @@ const initHeader = (updateSidePanelHeader, props) => {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = props.products.filter(e => e.id === productNumber)[0]
 
+        const onClickCallback = () => {
+            if(props.drawerPosition === 1) {
+                props.goTo(props.pages[props.currentPage].path)
+                props.setDrawerPosition(props.drawerPosition - 1)
+            } else
+                props.setDrawerPosition(props.drawerPosition - 1)
+        }
+
         header = () => <SidePanelProductsHeader
+            showArrow={ props.auth && props.drawerPosition < 2 ? false : true }
             title={ product ? product.title : "" }
             subtitle={ product ? product.description : "" }
             pictoUrl={ product ? product.squarePicto : "" }
             isMainPanelOpened={ props.isMainPanelOpened }
-            onClickCallback={ () => props.goTo(props.pages[props.currentPage].path) } />
+            onClickCallback={ onClickCallback } />
     }
 
     updateSidePanelHeader(header)
@@ -285,6 +294,8 @@ const SmartComp = compose(
         componentWillUpdate(nextProps) {
             if(nextProps.routing.location.pathname.replace("/", "") === nextProps.clientUrl) {
 
+                const newProps = nextProps // x key doesn't work on current keyboard, useless otherwise
+
                 initHeader(nextProps.updateSidePanelHeader, nextProps)
 
                 if(nextProps.drawerPosition < 2) {
@@ -299,7 +310,7 @@ const SmartComp = compose(
                     this.props.setIsDescrShown(false)
                 }
 
-                if(nextProps.routing.location.search === "") {
+                if(nextProps.routing.location.search === "" || newProps.drawerPosition < 2) {
                     this.props.updateMainPanelIsOpened(false)
                 }
 
@@ -387,8 +398,7 @@ class SmartProtectedProduct extends React.Component {
     async checkPassword() {
         let isPasswordValid = false
 
-        const id = window.location.toString().match(/\?post=[1-9]+/)[0].match(/[1-9]+/)[0]
-
+        const id = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         // parsing if from url
         let respText
         try {
