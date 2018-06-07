@@ -413,6 +413,9 @@ class SmartProtectedProduct extends React.Component {
 
         // "error" is what dajngo returns on invalid password for now
         this.setState({ isPasswordValid })
+        if(!isPasswordValid) {
+            this.props.updateMainPanelIsOpened(false)
+        }
     }
 
     check404() {
@@ -422,6 +425,7 @@ class SmartProtectedProduct extends React.Component {
             show404 = false
 
         this.setState({ show404 })
+        this.props.updateMainPanelIsOpened(false)
     }
 
     render() {
@@ -440,7 +444,8 @@ const protectedProductStateToProps = state => ({
     routing: state.routing,
 })
 
-const protectedProductDispatchToProps = () => ({
+const protectedProductDispatchToProps = dispatch => ({
+    updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
 })
 
 const ProtectedProduct = connect(
