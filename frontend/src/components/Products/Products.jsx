@@ -30,6 +30,8 @@ import BlogPost from '../Blog/Blog.jsx'
 
 import URLSearchParams from 'url-search-params'
 
+import { getCookie } from '../../helpers.js'
+
 const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
