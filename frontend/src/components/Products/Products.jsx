@@ -30,8 +30,6 @@ import BlogPost from '../Blog/Blog.jsx'
 
 import URLSearchParams from 'url-search-params'
 
-import { getCookie } from '../../helpers.js'
-
 const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
@@ -181,7 +179,6 @@ const createList = props => {
     const styles = getStyles(props)
     props.setList(() => () => <div style={ styles.listWrapper }><List /><div style={ styles.trailingDiv }></div></div>)
 }
-
 
 const createAbstract = props => {
     const contentReduxState = state => ({
@@ -373,36 +370,21 @@ class SmartProtectedProduct extends React.Component {
     async checkPassword() {
         let isPasswordValid = false
 
-
-
         const id = window.location.toString().match(/\?id=[1-9]+/)[0].match(/[1-9]+/)[0]
-        const url = `/api/${this.props.fetchUrl}${id}/`
-        let formData = new FormData()
-        formData.append('name', 'John')
-        const params= {
-            method: 'POST',
-            body: this.state.password,
-            headers:{
-               'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                "X-CSRFToken": getCookie('csrftoken'),
-            },
-            credentials: "same-origin",
-        }
 
         // parsing if from url
+        let respText
         try {
-            const resp = await fetch(url, params)
-            const respText = await resp.text()
+            respText  = await new API().fetchDetailAuth(this.props.fetchUrl, id, this.state.password)
 
-            // "error" is what dajngo returns on invalid password for now
             if(respText !== "error" && respText !== '<h1>Server Error (500)</h1>') {
                 isPasswordValid = true
             }
         } catch(e) {
             isPasswordValid = false
-            console.log(e)
         }
 
+        // "error" is what dajngo returns on invalid password for now
         this.setState({ isPasswordValid })
     }
 

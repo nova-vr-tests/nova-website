@@ -1,3 +1,5 @@
+import { getCookie } from './helpers.js'
+
 const makeUrlObj = url => ({ list: url, detail: url })
 
 const apiCache = {}
@@ -41,6 +43,30 @@ class API {
 
     async fetchDetail(url, postId) {
         return await this.fetch(url + postId + '/')
+    }
+
+    async fetchDetailAuth(fetchUrl, postId, password) {
+        const url = `/api/${fetchUrl}${postId}/`
+        const params = {
+            method: 'POST',
+            body: password,
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                "X-CSRFToken": getCookie('csrftoken'),
+            },
+            credentials: "same-origin",
+        }
+
+        // parsing if from url
+        let respText
+        try {
+            const resp = await fetch(url, params)
+            respText = await resp.text()
+        } catch(e) {
+            console.log(e)
+        }
+
+        return respText
     }
 
     async fetchBlogPostList() {
