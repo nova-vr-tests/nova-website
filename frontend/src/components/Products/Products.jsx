@@ -349,12 +349,56 @@ const ConnectedComp = connect(
 )(SmartComp)
 
 
-const BasicLogIn = props => (
-    <div>
-        <input onChange={ props.onPasswordChange } />
-        <button onClick={ props.checkPassword }>Submit</button>
-    </div>
-)
+const BasicLogIn = props => {
+    const styles = {
+        wrapper: {
+            height: `calc(4 * ${appStyles.unitHeight})`,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        form: {
+            width: `calc(4 * ${appStyles.unitWidth})`,
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        input: {
+            marginBottom: `calc(0.5 * ${appStyles.unitHeight})`,
+            height: `calc(0.75 * ${appStyles.unitHeight})`,
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            border: 'none',
+            borderBottom: '1px solid white',
+            color: 'white',
+        },
+        button: {
+            marginBottom: `calc(0.5 * ${appStyles.unitHeight})`,
+            height: `calc(0.75 * ${appStyles.unitHeight})`,
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            border: 'none',
+            color: 'white',
+            cursor: 'pointer',
+        },
+    }
+
+    return (
+        <div style={ styles.wrapper }>
+                <form
+                    style={ styles.form }
+                    onSubmit={ (e) => { e.preventDefault() ; props.checkPassword() } }>
+                    <input
+                        placeholder="Provide a password"
+                        type="password"
+                        style={ styles.input }
+                        onChange={ props.onPasswordChange } />
+                    <input
+                        type="submit"
+                        value="Submit"
+                        style={ styles.button }
+                        onClick={ props.checkPassword }/>
+                </form>
+        </div>
+    )
+}
 
 
 const ProtectedProductDumb = props => {
