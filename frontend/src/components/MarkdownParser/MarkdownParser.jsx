@@ -5,11 +5,67 @@ import ReactMarkdown from 'react-markdown'
 
 import getStyles from './MarkdownParserStyles.jsx'
 
+import './styles.css'
+
 const contentReduxState = () => ({
 })
 
 const BlogPostContent = props => {
     const styles = getStyles(props)
+
+
+    const Headings = props =>
+        React.createElement(
+            `h${props.level}`,
+            { style: styles.headings[props.level] },
+            props.children)
+
+    const Li = props => {
+        let children
+        console.log(props)
+        if(!props.children)
+            return <div></div>
+
+        if(props.children.length > 1) {
+            children = props.children[0]
+            const li = props.children[1]
+
+            return [
+                <li
+                    key={ 0 }
+                    style={ styles.listItem }>
+                    <div style={ styles.bullet }></div>
+                    { children }
+                </li>,
+                <Li
+                    key={ 1 }
+                    level={ 1 }>{li}</Li>
+            ]
+        }
+
+        if(props.level > 0 && props.children.length === 1) {
+            const ul = props.children
+            const lis = props.children.children.map((e, i) => <Li key={ i } level={ 1 }>{ e }</Li>)
+            console.log(lis)
+
+            return <ul
+                       style={ { marginLeft: '10rem' } }>
+                       { lis }
+                   </ul>
+        }
+
+
+        return <li
+                    style={ styles.listItem }>
+                    <div style={ styles.bullet }></div>
+                    { props.children }{ props.level }
+                </li>
+
+    }
+
+    Li.defaultProps = {
+        level: 0,
+    }
 
     const renderers = {
         root: _props => <div
@@ -28,7 +84,9 @@ const BlogPostContent = props => {
         list: props =>
             <ul style={ styles.list }>{ props.children }</ul>,
         listItem: props =>
-            <li style={ styles.listItem }>{ props.children }</li>,
+            <li className="foobar">{props.children}</li>,
+            //<Li>{ props.children }</Li>,
+            //<li style={ styles.listItem }><div style={ styles.bullet }></div>{ props.children }{ console.log(props.children)}</li>,
         paragraph: props =>
             <p style={ styles.p }>{ props.children }</p>,
         tableCell: props =>
@@ -36,11 +94,13 @@ const BlogPostContent = props => {
                 `t${props.isHeader ? 'h' : 'd'}`,
                 { style: styles.tableCell },
                 props.children),
-        heading: props =>
-            React.createElement(
-                `h${props.level}`,
-                { style: styles.headings[props.level] },
-                props.children),
+        heading: props => (
+            <div style={ styles.headingWrapper }>
+                <div style={ styles.headingsBullet[props.level - 1] }>
+                </div>
+                <Headings level={ props.level }>{ props.children }</Headings>
+            </div>
+        ),
         image: ({ src }) =>
             <img
                 src={ src }
