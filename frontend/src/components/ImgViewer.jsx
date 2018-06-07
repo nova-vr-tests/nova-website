@@ -70,6 +70,7 @@ const ImgViewerDumb = props => {
                 style={ styles.img }
                 alt="img" />
             <div
+                onClick={ () => props.updateImgViewerisOpened(false) }
                 style={ styles.closeWrapper }>
                 Close
             </div>
