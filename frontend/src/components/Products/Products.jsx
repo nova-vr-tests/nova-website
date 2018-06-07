@@ -390,14 +390,17 @@ class SmartProtectedProduct extends React.Component {
         }
 
         // parsing if from url
-        let resp = await fetch(url, params)
-        resp = await resp.text()
+        try {
+            const resp = await fetch(url, params)
+            const respText = await resp.text()
 
-        console.log(resp)
-
-        // error is what dajngo returns on invalid password for now
-        if(resp !== "error") {
-            isPasswordValid = true
+            // "error" is what dajngo returns on invalid password for now
+            if(respText !== "error" && respText !== '<h1>Server Error (500)</h1>') {
+                isPasswordValid = true
+            }
+        } catch(e) {
+            isPasswordValid = false
+            console.log(e)
         }
 
         this.setState({ isPasswordValid })
