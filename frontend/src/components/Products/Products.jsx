@@ -106,8 +106,9 @@ const fetchProducts = async (url, setProducts, that) => {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
         const product = await restApi.fetchDetailAuth(url, productNumber, that.props.password)
         products = [product]
-    } else
+    } else {
         products = await restApi.fetch(url)
+    }
 
     if(that.mounted) {
         setProducts(products)
@@ -135,8 +136,9 @@ const initHeader = (updateSidePanelHeader, props) => {
             if(props.drawerPosition === 1) {
                 props.goTo(props.pages[props.currentPage].path)
                 props.setDrawerPosition(props.drawerPosition - 1)
-            } else
+            } else {
                 props.setDrawerPosition(props.drawerPosition - 1)
+            }
         }
 
         header = () => <SidePanelProductsHeader
@@ -356,15 +358,17 @@ const BasicLogIn = props => (
 
 
 const ProtectedProductDumb = props => {
-    if(props.show404)
+    if(props.show404) {
         return <div>This product does not exist</div>
+    }
 
-    if(props.isPasswordValid)
+    if(props.isPasswordValid) {
         return <ConnectedComp
                    fetchUrl={ props.fetchUrl }
                    clientUrl={ props.clientUrl }
                    auth={ true }
                    password={ props.password } />
+    }
 
     return <BasicLogIn
                 onPasswordChange={ props.onPasswordChange }
@@ -427,8 +431,9 @@ class SmartProtectedProduct extends React.Component {
     check404() {
         let show404 = true
 
-        if(window.location.toString().match(/\?post=[1-9]+/))
+        if(window.location.toString().match(/\?post=[1-9]+/)) {
             show404 = false
+        }
 
         this.setState({ show404 })
         this.props.updateMainPanelIsOpened(false)

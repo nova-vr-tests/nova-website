@@ -167,10 +167,11 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     }
 
     let blogPost
-    if(that.props.auth)
+    if(that.props.auth) {
         blogPost = await restApi.fetchDetailAuth(fetchUrl, postId, that.props.password)
-    else
+    } else {
         blogPost = await restApi.fetchDetail(fetchUrl, postId)
+    }
 
     if(that.mounted) {
         setBlogPost(blogPost)
