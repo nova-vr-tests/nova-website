@@ -20,6 +20,29 @@ const BlogPostContent = props => {
             { style: styles.headings[props.level] },
             props.children)
 
+    const P = props => {
+        console.log(props.children[0])
+        if(props.children[0].length > 4) {
+            if(props.children[0].substring(0, 4) === "!!! ") {
+                const importantPStyles = {
+                    ...styles.p,
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    borderTopRightRadius: '30px',
+                    borderBottomRightRadius: '30px',
+                    padding: '1.5rem',
+                    paddingRight: '1rem',
+                    marginRight: '-1rem',
+                    marginLeft: '-30px',
+                    paddingLeft: '30px',
+                }
+                return <p style={ importantPStyles }>{ props.children[0].substring(4, props.children[0].length) }</p>
+            }
+        }
+        return (
+            <p style={ styles.p }>{ props.children }</p>
+        )
+    }
+
 
     const renderers = {
         root: _props => <div
@@ -41,8 +64,7 @@ const BlogPostContent = props => {
             <li className="foobar">{props.children}</li>,
             //<Li>{ props.children }</Li>,
             //<li style={ styles.listItem }><div style={ styles.bullet }></div>{ props.children }{ console.log(props.children)}</li>,
-        paragraph: props =>
-            <p style={ styles.p }>{ props.children }</p>,
+        paragraph: props => <P>{ props.children }</P>,
         tableCell: props =>
             React.createElement(
                 `t${props.isHeader ? 'h' : 'd'}`,
