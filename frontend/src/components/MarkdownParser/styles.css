@@ -1,0 +1,44 @@
+ul {
+    list-style-type: none;
+}
+
+li.foobar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+li > ul > li.foobar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: calc(50px);
+}
+
+li > ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+li.foobar::before {
+    background-color: white;
+    content: '';
+    height: 1.6rem;
+    width: 1.6rem;
+    position: absolute;
+    border-radius: 50%;
+    left: calc(-0.5 * 60px - 0.8rem);
+    transform: scale(0.5);
+}
+
+li > ul > li.foobar::before {
+    background-color: white;
+    content: '';
+    height: 0.2rem;
+    width: 0.7rem;
+    position: absolute;
+    transform: scale(1);
+    border-radius: 0;
+    margin-top: 0.7rem;
+    box-sizing: border-box;
+}
