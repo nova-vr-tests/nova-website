@@ -51,7 +51,7 @@ const BlogPostContent = props => {
         h1: props => <h1 style={{ color: 'red' }}>{ props.children }</h1>,
         table: props =>
             <div style={ styles.tableWrapper }>
-                <table style={ styles.table }>{ props.children }</table>
+                <table className="zui-table zui-table-rounded" style={ styles.table }>{ props.children }</table>
             </div>,
         link: props =>
             <a

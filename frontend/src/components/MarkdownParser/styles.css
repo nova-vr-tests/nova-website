@@ -1,3 +1,8 @@
+table {
+    font-family: TTNorms-light;
+    border-collapse: separate!important;
+}
+
 ul {
     list-style-type: none;
 }
@@ -41,4 +46,50 @@ li > ul > li.foobar::before {
     border-radius: 0;
     margin-top: 0.7rem;
     box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+/* https://jsfiddle.net/zinoui/3LfE2/ */
+.zui-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+.zui-table thead th {
+    padding: 10px;
+    text-align: left;
+}
+.zui-table tbody td {
+    border: solid 1px red;
+    padding: 10px;
+}
+.zui-table-rounded {
+    border: none;
+}
+.zui-table-rounded thead th {
+    background-color: rgba(0, 0.3, 0.3, 0.1);
+    border: none;
+}
+.zui-table-rounded thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+.zui-table-rounded thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+.zui-table-rounded tbody td {
+    border: none;
+    border-top: solid 1px #957030;
+}
+.zui-table-rounded tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+.zui-table-rounded tbody tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
 }
