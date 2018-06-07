@@ -41,7 +41,7 @@ const ImgViewerDumb = props => {
         },
         closeWrapper: {
             fontSize: '1.5rem',
-            marginTop: '2rem',
+            marginTop: '5rem',
             cursor: 'pointer',
         },
         img: {
