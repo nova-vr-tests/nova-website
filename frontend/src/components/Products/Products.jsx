@@ -9,7 +9,6 @@ import {
 
 import API from '../../API.js'
 
-
 import { updateCacheLayers } from '../../reducer/actions/Bg.js'
 import {
     updateMainPanelContent,
@@ -127,7 +126,6 @@ const initHeader = (updateSidePanelHeader, props) => {
     const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
 
     let header = () => <div style={{ padding: `0 calc(0.5 * ${appStyles.unitWidth})`}}>{ string }</div>
-
 
     if(props.routing.location.search !== '') {
         const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
