@@ -83,6 +83,8 @@ const Products = props => {
                     props.Abstract,
                     connectWidth(() => (<div style={ styles.blogWrapper }>
                         <BlogPost
+                            auth={ props.auth }
+                            password={ props.password }
                             fetchUrl={ props.fetchUrl }
                             showHeader={ false } />
                     </div>), props),
@@ -157,7 +159,6 @@ const createList = props => {
         const onClickCallback = () => {
             props.goTo(`${window.location.pathname}?post=${e.id}`)
             props.updateMainPanel(() => <div></div>)
-            console.log('psdaf')
         }
 
         const filteredPictoUrl = filterUrl(e.picto)
@@ -186,6 +187,8 @@ const createAbstract = props => {
     })
 
     const BlogPostMainPanel = () => <BlogPost
+                                        auth={ props.auth }
+                                        password={ props.password }
                                         addTail={ true }
                                         fetchUrl={ props.fetchUrl } />
 
@@ -219,11 +222,12 @@ const createAbstract = props => {
                 title={ props.title } />
         </div>), props)
 
-
     const ConnectedAbstract = connectWidth(() => <div style={{ height: '5rem', }}>
         <BlogPost
             fetchUrl={ props.fetchUrl }
-            contentKey="abstract"
+            contentKey={ props.auth ? "exec_sum" : "abstract" }
+            auth={ props.auth }
+            password={ props.password }
             addTail={ false }
             LastComp={ LastComp }
             sidePanelMode={ true }
@@ -316,6 +320,8 @@ const SmartComp = compose(
 SmartComp.defaultProps = {
     fetchUrl: new API().urls.products.list,
     clientUrl: 'products',
+    auth: false, // should use auth when fetching content
+    password: '', // password for auth, only userd if props.auth = true
 }
 
 const ConnectedComp = connect(
@@ -337,7 +343,11 @@ const ProtectedProductDumb = props => {
         return <div>This product does not exist</div>
 
     if(props.isPasswordValid)
-        return <ConnectedComp auth={ true } password={ props.password } />
+        return <ConnectedComp
+                   fetchUrl={ props.fetchUrl }
+                   clientUrl={ props.clientUrl }
+                   auth={ true }
+                   password={ props.password } />
 
     return <BasicLogIn
                 onPasswordChange={ props.onPasswordChange }
@@ -363,6 +373,13 @@ class SmartProtectedProduct extends React.Component {
         this.check404()
     }
 
+    componentDidUpdate(newProps) {
+        if(this.props.routing.location.search !== newProps.routing.location.search) {
+            this.check404()
+            this.checkPassword()
+        }
+    }
+
     onPasswordChange(e) {
         this.setState({ password: e.target.value })
     }
@@ -370,7 +387,7 @@ class SmartProtectedProduct extends React.Component {
     async checkPassword() {
         let isPasswordValid = false
 
-        const id = window.location.toString().match(/\?id=[1-9]+/)[0].match(/[1-9]+/)[0]
+        const id = window.location.toString().match(/\?post=[1-9]+/)[0].match(/[1-9]+/)[0]
 
         // parsing if from url
         let respText
@@ -391,7 +408,7 @@ class SmartProtectedProduct extends React.Component {
     check404() {
         let show404 = true
 
-        if(window.location.toString().match(/\?id=[1-9]+/))
+        if(window.location.toString().match(/\?post=[1-9]+/))
             show404 = false
 
         this.setState({ show404 })
@@ -399,6 +416,8 @@ class SmartProtectedProduct extends React.Component {
 
     render() {
         return <ProtectedProductDumb
+                    fetchUrl={ this.props.fetchUrl }
+                    clientUrl={ this.props.clientUrl }
                     isPasswordValid={ this.state.isPasswordValid }
                     checkPassword={ this.checkPassword }
                     onPasswordChange={ this.onPasswordChange }
