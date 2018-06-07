@@ -15,9 +15,14 @@ class BusinessPropositionDetail(generics.RetrieveAPIView):
     queryset = BusinessProposition.objects.all()
     serializer_class = BusinessPropositionSerializer
 
+    # disallow get requests
+    def get(self, req, *args, **kwargs):
+            return HttpResponse('error')
+
     def post(self, req, *args, **kwargs):
         obj = self.get_object()
 
+        # this breaks on empty passwords
         user_password = str([*req.POST][0]) # post data is sent in key of req for some reason
         if obj.password != user_password:
             return HttpResponse('error')
