@@ -29,6 +29,8 @@ import BlogPost from '../Blog/Blog.jsx'
 
 import URLSearchParams from 'url-search-params'
 
+import contactPicto from '../img/Contact.png'
+
 const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
@@ -237,6 +239,11 @@ const createAbstract = props => {
                 isSquarePicto={ true }
                 pictoUrl={ props.pictoUrl }
                 title={ props.title } />
+            <SidePanelLink
+                onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
+                isSquarePicto={ true }
+                pictoUrl={ contactPicto }
+                title="Email Us" />
         </div>), props)
 
     const ConnectedAbstract = connectWidth(() => <div style={{ height: '5rem', }}>
