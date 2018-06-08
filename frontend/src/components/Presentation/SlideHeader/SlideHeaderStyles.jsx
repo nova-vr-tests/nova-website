@@ -19,7 +19,6 @@ const getStyles = (props) => {
 
     const { clientWidth } = document.documentElement
     if(clientWidth < appStyles.mediaQueries.tablet) {
-        console.log(props.isMainPanelOpened)
         if(props.isMainPanelOpened) {
             tocDisplay = 'none'
             customWrapperHeight = 4
