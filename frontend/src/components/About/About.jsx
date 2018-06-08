@@ -37,7 +37,7 @@ const text = {}
 const legalsText = `
 ## Terms and Conditions of Use
 
-We maintain this site as a resource and communication portal. Terms of Service apply to anyone browsing the website. Accessing the site is acceptance without limitation or qualification of the following Terms and Conditions. If you do NOT accept the Terms and Conditions, please discontinue your use of this Site.
+!!! We maintain this site as a resource and communication portal. Terms of Service apply to anyone browsing the website. Accessing the site is acceptance without limitation or qualification of the following Terms and Conditions. If you do NOT accept the Terms and Conditions, please discontinue your use of this Site.
 
 
 ## Privacy Policy
@@ -127,7 +127,7 @@ We have implemented the following:
 
 We, along with third-party vendors such as Google use first-party cookies (such as the Google Analytics cookies) and third-party cookies (such as the DoubleClick cookie) or other third-party identifiers together to compile data regarding user interactions with ad impressions and other ad service functions as they relate to our website.
 
-California Online Privacy Protection Act
+### California Online Privacy Protection Act
 
 CalOPPA is the first state law in the nation to require commercial websites and online services to post a privacy policy. The law's reach stretches well beyond California to require any person or company in the United States (and conceivably the world) that operates websites collecting Personally Identifiable Information from California consumers to post a conspicuous privacy policy on its website stating exactly the information being collected and those individuals or companies with whom it is being shared. - See more at: http://consumercal.org/california-online-privacy-protection-act-caloppa/#sthash.0FdRbT51.dpuf
 
@@ -187,17 +187,13 @@ If at any time you would like to unsubscribe from receiving future emails, you c
 
 If there are any questions regarding this privacy policy, you may contact us using the information below.
 
-novamedia.nyc
+- https://www.novamedia.nyc
+- 481 Van Brunt - 7D
+- Brooklyn, New York 11231
+- USA
+- AnneIrene@novamedia.nyc
 
-481 Van Brunt - 7D
-
-Brooklyn, New York 11231
-
-USA
-
-AnneIrene@novamedia.nyc
-
-Last Edited on 2018-02-18
+**Last Edited on 2018-02-18**
 `
 
 const legalsContent = (
