@@ -21,6 +21,19 @@ const contentReduxDispatch = dispatch => ({
     updateImgViewerisOpened: isOpened => dispatch(updateImgViewerIsOpened(isOpened)),
 })
 
+const YTPlayer = props => {
+    const styles = {
+        wrapper: {
+        },
+    }
+
+    return (
+        <div style={ styles.wrapper }>
+            <iframe width="560" height="315" src={ props.src } frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+        </div>
+    )
+}
+
 const BlogPostContent = props => {
     const styles = getStyles(props)
 
@@ -47,7 +60,15 @@ const BlogPostContent = props => {
                 }
                 return <p style={ importantPStyles }>{ props.children[0].substring(4, props.children[0].length) }</p>
             }
+
+            if(props.children[0].length === 5) {
+                if(props.children[0].substring(0, 5) === "!YT! ") {
+                    const src = props.children[1].props.href
+                    return <YTPlayer src={ src } />
+                }
+            }
         }
+
         return (
             <p style={ styles.p }>{ props.children }</p>
         )
