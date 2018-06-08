@@ -144,6 +144,7 @@ const Blog = props => {
                     useWhiteFont={ props.sidePanelMode }
                     content={ content } />
                 <LastComp
+                    pdf={ props.blogPost['pdf'] }
                     pictoUrl={ props.auth ? pictoUrl.origin + pictoUrl.pathname : headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
             </ContentWrapper>
