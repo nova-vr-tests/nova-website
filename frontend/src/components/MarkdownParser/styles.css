@@ -9,8 +9,6 @@ ul {
 
 li.foobar {
     position: relative;
-    display: flex;
-    flex-direction: column;
 }
 
 li > ul > li.foobar {

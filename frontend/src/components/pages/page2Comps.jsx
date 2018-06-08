@@ -43,7 +43,9 @@ const DevelopIntro = () => {
         }
     }
 
-    const source = `The VR we develop is programmable. Virtual experiences can be manipulated through inputs such as code, player interfacing, or physiological behaviors. Content produced can range from photo-real capture to entirely fictitious dreamscapes.
+    const source = `# Introduction
+
+!!! The VR we develop is programmable. Virtual experiences can be manipulated through inputs such as code, player interfacing, or physiological behaviors. Content produced can range from photo-real capture to entirely fictitious dreamscapes.
 
 "Networking" the software allows multiple people to interact in VR together. Some of its immediate results are market creation, distributed file keeping, and remote access to devices.
 
@@ -53,11 +55,22 @@ Game engines empower developers to custom-design virtual environments. The core 
 
 Nova economizes the Virtual Reality (VR) development process by adapting game engine builds (software executable) to create new VR experiences. By developing with foresight, producers save time and money.
 
-Game Engines you may have heard of are:
+## Game Engines you may have heard of are:
 
-Unity, Unreal, Cryengine, GameMaker Studio, HTML5, Godot, OpenGL, Blender, Source, Lumberyard, Torque, Frostbite, Doom Engine, Havok, MonkeyEngine, Panda3D, PhyreEngine, Ren'Py, ORX, ORGE, HeroEngine, RenderWare, Freescape, LithTech, GoldBox
+- Unity
+- Unreal
+- Cryengine
+- GameMaker Studio
+- Godot
+- OpenGL
+- Blender
+- Source
+- Doom Engine
+- Havok
+- Panda3D
+- ORGE
 
-Please replace current "Develop" intro text with...
+## Please replace current "Develop" intro text with...
 
 They all include advantages and disadvantages (varying features, code, graphical interfaces, etc.). The best way to determine your favorite game engine is by understanding what you want to accomplish and why.`
 
