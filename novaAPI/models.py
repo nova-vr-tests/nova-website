@@ -18,6 +18,7 @@ class BusinessProposition(models.Model):
     password = models.CharField(max_length=100, blank=True, default='')
     exec_sum = MarkdownxField()
     bg_image = models.ImageField(upload_to='business_props_bgs')
+    storage = models.CharField(max_length=100, blank=True, default='')
 
     class Meta:
         verbose_name = 'Business Proposition'
