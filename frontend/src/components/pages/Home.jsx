@@ -80,6 +80,9 @@ const HomePage = props => {
     const styles = {
         text: {
             display: textDisplay,
+        },
+        bottom: {
+            height: `calc(4 * ${appStyles.unitHeight})`,
         }
     }
 
@@ -94,6 +97,13 @@ const HomePage = props => {
                 pictoUrl={ aboutUsPicto }
                 isSquarePicto={ true }
                 title="About Us" />
+            <SidePanelLink
+                onClickCallback={ () => props.goTo('/products?post=4') }
+                pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
+                isSquarePicto={ true }
+                title="New Year's Eve" />
+            <div style={ styles.bottom }>
+            </div>
         </div>
     )
 }
