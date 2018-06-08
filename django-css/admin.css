@@ -1,11 +1,30 @@
-p {
-    color: red;
+.markdownx {
+    display: flex;
 }
 
-body {
-    color: red;
+@media (max-width: 1000px) {
+    .markdownx {
+        display: block;
+
+    }
+    .markdownx > .markdownx-editor {
+        display: block;
+        width: 70vw;
+    }
 }
 
-label.required {
-    color: red!important;
+.markdownx > .markdownx-editor {
+    height: 40rem;
+    display: flex;
+    flex: 1;
+    margin-right: 2rem;
+    max-height: 70vh;
+}
+
+.markdownx-preview {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-height: 70vh;
+    overflow: auto;
 }
