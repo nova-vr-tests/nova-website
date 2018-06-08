@@ -24,12 +24,23 @@ const contentReduxDispatch = dispatch => ({
 const YTPlayer = props => {
     const styles = {
         wrapper: {
+            position: 'relative',
+            width: '100%',
+            height: 0,
+            paddingBottom: '56.25%',
+        },
+        video: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
         },
     }
 
     return (
         <div style={ styles.wrapper }>
-            <iframe width="560" height="315" src={ props.src } frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+            <iframe style={ styles.video } width="560" height="315" src={ props.src } frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
         </div>
     )
 }
