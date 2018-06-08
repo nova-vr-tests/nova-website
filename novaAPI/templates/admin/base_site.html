@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block branding %}
+    <h1 id="site-name">Nova Admin</h1>
+{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}" />
+{% endblock %}
