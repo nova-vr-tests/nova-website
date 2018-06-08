@@ -1,0 +1,11 @@
+p {
+    color: red;
+}
+
+body {
+    color: red;
+}
+
+label.required {
+    color: red!important;
+}
