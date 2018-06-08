@@ -307,10 +307,9 @@ const SmartComp = compose(
             }
         },
         componentWillUpdate(nextProps) {
+            const newProps = nextProps // x key doesn't work on current keyboard, useless otherwise
+
             if(nextProps.routing.location.pathname.replace("/", "") === nextProps.clientUrl) {
-
-                const newProps = nextProps // x key doesn't work on current keyboard, useless otherwise
-
                 initHeader(nextProps.updateSidePanelHeader, nextProps)
 
                 if(nextProps.drawerPosition < 2) {
@@ -335,6 +334,12 @@ const SmartComp = compose(
                         nextProps.routing.location.search)
                     createAbstract(nextProps)
                 }
+
+            }
+
+            // hide when changing url
+            if(this.props.routing.location.pathname !== nextProps.routing.location.pathname) {
+                this.props.setIsDescrShown(false)
             }
         },
         componentWillUnmount() {
