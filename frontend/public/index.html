@@ -59,7 +59,8 @@ window.addEventListener('error', function(e) {
         e.message,
         'URL: ' + e.filename,
         'Line: ' + e.lineno + ', Column: ' + e.colno,
-        'Stack: ' + (e.error && e.error.stack || '(no stack trace)')
+        'Stack: ' + (e.error && e.error.stack || '(no stack trace)'),
+        'Error object: ' + JSON.stringify(e),
     ].join('\n');
 
     // Example: log errors as visual output into the host page.
