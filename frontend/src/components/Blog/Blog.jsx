@@ -145,6 +145,7 @@ const Blog = props => {
                     content={ content } />
                 <LastComp
                     pdf={ props.blogPost['pdf'] }
+                    storage={ props.blogPost['storage'] }
                     pictoUrl={ props.auth ? pictoUrl.origin + pictoUrl.pathname : headerPictoUrl.origin + headerPictoUrl.pathname }
                     title={ title } />
             </ContentWrapper>

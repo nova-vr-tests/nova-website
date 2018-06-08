@@ -246,6 +246,13 @@ const createAbstract = props => {
                     pictoUrl={ props.pictoUrl }
                     title="Download as PDF" />
             </div>
+            <div style={{ display: props.storage ? 'block' : 'none' }}>
+                <SidePanelLink
+                    onClickCallback={ () => props.pdf ? window.open(filterUrl(props.storage), '_blank') : 0 }
+                    isSquarePicto={ true }
+                    pictoUrl={ props.pictoUrl }
+                    title="Associated files" />
+            </div>
             <SidePanelLink
                 onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
                 isSquarePicto={ true }
