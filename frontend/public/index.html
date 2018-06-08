@@ -70,6 +70,7 @@ window.addEventListener('error', function(e) {
     if (!document.getElementById(DOM_ID)) {
         var log = document.createElement('pre');
         log.id = DOM_ID;
+        log.style.color = 'red';
         log.style.whiteSpace = 'pre-wrap';
         log.textContent = errorText;
         if (!document.body) document.body = document.createElement('body');
