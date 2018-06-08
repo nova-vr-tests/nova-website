@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 default_fields = ('id', 'title', 'date', 'picto', 'content')
 blog_post_fields = default_fields + ('author',)
 products_fields = default_fields + ('abstract', 'bg_image', 'description', 'pictoBg', 'squarePicto')
-business_prop_fields = default_fields + ('exec_sum', 'bg_image')
+business_prop_fields = default_fields + ('exec_sum', 'bg_image', 'pdf')
 publication_fields = default_fields + ('pdf',)
 
 class UserSerializer(serializers.ModelSerializer):
