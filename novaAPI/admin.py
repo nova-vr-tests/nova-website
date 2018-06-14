@@ -32,9 +32,45 @@ class BlogPostAdmin(admin.ModelAdmin):
     search_fields = ['title', 'content']
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date')
+    list_display = ('title', 'url', 'picto_img', 'bg_img', 'square_picto_img', 'date')
     list_filter = ['date']
     search_fields = ['title', 'content']
+
+    def url(self, obj):
+        return format_html("<a target='_blank' href='/products?post={0}'>Link</a>", obj.id)
+
+
+    def picto_img(self, obj):
+        pictoBgUrl = ''
+        pictoUrl = ''
+        if obj.pictoBg:
+            pictoBgUrl = obj.pictoBg.url.split('?')[0]
+
+        if obj.picto:
+            pictoUrl = obj.picto.url.split('?')[0]
+
+        return format_html("""<div style='position: relative; height: 5rem; width: 7.5rem;'>
+            <a href='{0}' target='_blank'>
+                <img src='{1}' alt='picto bg' style='height: 5rem; width: 7.5rem; position: absolute' />
+                <img src='{0}' alt='picto' style='height: 5rem; width: 7.5rem; position: absolute; transform: translate(-20px, 20px);' />
+            </a>
+        </div>""", pictoUrl, pictoBgUrl)
+
+
+    def square_picto_img(self, obj):
+        pictoBgUrl = ''
+        if obj.squarePicto:
+            pictoBgUrl = obj.squarePicto.url.split('?')[0]
+        else:
+            return format_html("No square picto")
+
+        return format_html("<a href='{0}' target='_blank'><img src='{0}' alt='picto' style='height: 5rem; width: 5rem;' /></a>", pictoBgUrl)
+
+
+    def bg_img(self, obj):
+        return format_html("<a href='{0}' target='_blank'><img src='{0}' alt='picto' style='height: 5rem; width: 10rem;' /></a>", obj.bg_image.url.split('?')[0])
+
+
 
 class PublicationAdmin(admin.ModelAdmin):
     list_display = ('title', 'date')
