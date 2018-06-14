@@ -4,7 +4,7 @@ from .models import *
 from django.utils.html import format_html
 
 class BusinessPropositionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url', 'picto_img', 'bg_img', 'date', 'pdf_link', 'storage_link')
+    list_display = ('title', 'url', 'picto_img', 'bg_img', 'password', 'date', 'pdf_link', 'storage_link')
     list_filter = ['date']
     search_fields = ['title', 'content']
 
@@ -18,10 +18,13 @@ class BusinessPropositionAdmin(admin.ModelAdmin):
         return format_html("<a href='{0}' target='_blank'><img src='{0}' alt='picto' style='height: 5rem; width: 10rem;' /></a>", obj.bg_image.url.split('?')[0])
 
     def pdf_link(self, obj):
-        return format_html("<a href='{0}'>PDF link</a>", obj.pdf.url.split('?')[0])
+        return format_html("<a target='_blank' href='{0}'>PDF link</a>", obj.pdf.url.split('?')[0])
 
     def storage_link(self, obj):
-        return format_html("<a href='{0}'>Dropbox link</a>", obj.storage.split('?')[0])
+        if obj.storage == '':
+            return format_html("No Dropbox link")
+
+        return format_html("<a target='_blank' href='{0}'>Dropbox link</a>", obj.storage.split('?')[0])
 
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'date')
