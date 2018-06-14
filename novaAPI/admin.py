@@ -1,11 +1,27 @@
 from django.contrib import admin
 from markdownx.admin import MarkdownxModelAdmin
 from .models import *
+from django.utils.html import format_html
 
 class BusinessPropositionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'id')
+    list_display = ('title', 'url', 'picto_img', 'bg_img', 'date', 'pdf_link', 'storage_link')
     list_filter = ['date']
     search_fields = ['title', 'content']
+
+    def url(self, obj):
+        return format_html("<a target='_blank' href='/business-props?post={0}'>Link</a>", obj.id)
+
+    def picto_img(self, obj):
+        return format_html("<a href='{0}' target='_blank'><img src='{0}' alt='picto' style='height: 5rem; width: 5rem;' /></a>", obj.picto.url.split('?')[0])
+
+    def bg_img(self, obj):
+        return format_html("<a href='{0}' target='_blank'><img src='{0}' alt='picto' style='height: 5rem; width: 10rem;' /></a>", obj.bg_image.url.split('?')[0])
+
+    def pdf_link(self, obj):
+        return format_html("<a href='{0}'>PDF link</a>", obj.pdf.url.split('?')[0])
+
+    def storage_link(self, obj):
+        return format_html("<a href='{0}'>Dropbox link</a>", obj.storage.split('?')[0])
 
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'date')
