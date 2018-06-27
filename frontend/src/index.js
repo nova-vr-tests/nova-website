@@ -17,7 +17,7 @@ ReactDOM.render(
             <App />
         </ConnectedRouter>
     </Provider>,
-    mountPoint
+    mountPoint,
 )
 
 registerServiceWorker()
