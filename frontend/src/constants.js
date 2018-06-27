@@ -38,13 +38,14 @@ const header = {
     centerY: headerCenterY,
 }
 
+// App style constants
+const unitWidthJs = 60 // px
+
 const sidePanel = {
-    openedWidthCoef: 11,
+    openedWidthCoef: screen.width / (3 * unitWidthJs),
     transitionTime: 300, //ms
 }
 
-// App style constants
-const unitWidthJs = 60 // px
 const styles: AppStyles = {
     themeTypes: {
         defaultTheme: 'default',
