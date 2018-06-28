@@ -63,7 +63,7 @@ const SiteIntro: Array<ISlide> = [
 
 
 pid = Symbol('business props')
-h1 = 'Business Props'
+h1 = 'Partnership Portal'
 h2 = ''
 path = '/business-props'
 const BusinessProps: Array<ISlide> = [
