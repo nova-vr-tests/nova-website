@@ -107,7 +107,7 @@ const community: Array<ISlide> = [
         pid,
         content: () =>
             <BlogPostList
-                headerText={ `Our open door philosophy attracts a range of people from various communities. This makes the Nova Studios an idea hub to be crafted into market opportunities.` }
+                headerText={ `.A shout out to all our friends, families and loved ones` }
                 fetchUrl={ new API().urls.community.list } />,
         mainPanelContent: () =>
             <Blog fetchUrl={ new API().urls.community.list } />,
