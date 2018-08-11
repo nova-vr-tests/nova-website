@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import ReactMarkdown from 'react-markdown'
+import { PassWindowWidth } from '../HOC/HOC.jsx'
 
+import { styles as appStyles } from '../../constants.js'
 import getStyles from './MarkdownParserStyles.jsx'
 
 import './styles.css'
-
 
 import {
     updateImgViewerUrl,
@@ -85,6 +86,21 @@ const BlogPostContent = props => {
         )
     }
 
+    const Img = props => {
+        const style = {
+            cursor: 'pointer',
+            minWidth: props.windowWidth < appStyles.mediaQueries.phone ? `100vw` : `calc(${window.screen.width}px / 3)`,
+            marginLeft: `-30px`,
+            boxSizing: 'border-box',
+        }
+        return <img
+            alt={ props.alt }
+            onClick={ props.onClick }
+            style={ style }
+            src={ props.src } />
+    }
+    const ImageAutoResize = PassWindowWidth(Img)
+
 
     const renderers = {
         root: _props => <div
@@ -120,10 +136,9 @@ const BlogPostContent = props => {
             </div>
         ),
         image: ({ src }) =>
-            <img
+            <ImageAutoResize
                 src={ src }
                 onClick={ () => props.updateImgViewerUrl(src)}
-                style={ styles.image }
                 alt="figure" />
     }
 
