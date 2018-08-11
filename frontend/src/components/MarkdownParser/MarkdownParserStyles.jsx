@@ -106,17 +106,11 @@ const getDefaultStyles = (props) => {
         maxWidth: '100%',
         display: 'flex',
         flexDirection: 'column',
-        overflowX: 'auto',
+        overflowX: 'hidden',
         fontSize,
         fontFamily: 'caslon',
     }
 
-    const image = {
-        cursor: 'pointer',
-        maxWidth: `calc(100% + 2rem)`,
-        margin: `0 -${rootPadding}`,
-        minWidth: `calc(100% + 2rem)`,
-    }
 
     const table = {
         margin: '2rem auto',
@@ -177,7 +171,6 @@ const getDefaultStyles = (props) => {
         headingWrapper,
         bullet,
         root,
-        image,
         table,
         tableCell,
         tableWrapper,
