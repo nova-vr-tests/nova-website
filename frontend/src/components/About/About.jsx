@@ -16,6 +16,7 @@ import type {
 } from '../../storeTypes.jsx'
 
 import Login from './Login/Login.jsx'
+import BuildXR from '../BuildXR/BuildXR.jsx'
 
 import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
 import contactPicto from '../img/Contact.png'
@@ -229,6 +230,8 @@ const contactContent = (
 
 const loginContent = <Login />
 
+const buildXRContent = <BuildXR />
+
 
 text[footerPage.LEGALS] = {
     title: 'Legals',
@@ -243,6 +246,11 @@ text[footerPage.CONTACT] = {
 text[footerPage.LOGIN] = {
     title: 'Login',
     content: loginContent
+}
+
+text[footerPage.BUILDXR] = {
+    title: 'Build XR',
+    content: buildXRContent,
 }
 
 const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {

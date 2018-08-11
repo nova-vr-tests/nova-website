@@ -14,11 +14,11 @@ export const sectionPosition = {
     BOTTOM: 2,
 }
 
-
 export const footerPage = {
     LEGALS: 1,
     CONTACT: 2,
     LOGIN: 3,
+    BUILDXR: 4,
 }
 
 export const initialState: State = {
