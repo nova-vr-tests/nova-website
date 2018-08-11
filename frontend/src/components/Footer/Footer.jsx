@@ -116,10 +116,19 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
                     className="transform-on-hover" />
             </div>
             <div style={ styles.quickLinks }>
+              <span
+                onClick={ () => openFooter(footerPage.BUILDXR, aboutBg) }
+                style={{
+                    color: props.currentFooterPage === footerPage.LEGALS  && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
+                    transition: 'color 0.1s linear',
+                }}>
+                BuildXR
+              </span>
                 <span
                     onClick={ () => openFooter(footerPage.LEGALS, aboutBg) }
                     style={{
                         color: props.currentFooterPage === footerPage.LEGALS  && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
+                        marginLeft: '1rem',
                         transition: 'color 0.1s linear',
                     }}>
                     Legals
