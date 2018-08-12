@@ -46,10 +46,9 @@ const MultipleChoice = props => {
     const { choices } = props
 
     for(let i in choices) {
-        const checkbox = <div>
+        const checkbox = <div key={ i }>
                 <Checkbox
                     onChange={ () => props.onChange(i) }
-                    key={ i }
                     value={ props.answer.has(i) } />
                 <div>{ choices[i] }</div>
             </div>
@@ -85,6 +84,14 @@ class BuildXR extends React.Component {
         this.submit = this.submit.bind(this)
     }
 
+    componentWillMount() {
+        this.props.setHeaderText(`We'll help your build XR :)`)
+    }
+
+    componentWillUnmount() {
+        this.props.setHeaderText('')
+    }
+
     onTextboxChange(questionId, value) {
         const { formState } = this.state
         formState[questionId].answer = value
@@ -112,7 +119,7 @@ class BuildXR extends React.Component {
         const { formState } = this.state
         for(let i in formState) {
             const { type } = formState[i]
-            const question = <Question title={ formState[i].question } />
+            const question = <Question key={ i + formState.length } title={ formState[i].question } />
 
             let choice
             if(type === questionTypes.TEXTBOX) {
@@ -130,7 +137,7 @@ class BuildXR extends React.Component {
             form.push(choice)
         }
 
-        form.push(<SubmitButton onClick={ this.submit } />)
+        form.push(<SubmitButton key={ -1 } onClick={ this.submit } />)
 
         return form
     }

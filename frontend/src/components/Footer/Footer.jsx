@@ -119,7 +119,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
               <span
                 onClick={ () => openFooter(footerPage.BUILDXR, aboutBg) }
                 style={{
-                    color: props.currentFooterPage === footerPage.LEGALS  && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
+                    color: props.currentFooterPage === footerPage.BUILDXR && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                     transition: 'color 0.1s linear',
                 }}>
                 BuildXR

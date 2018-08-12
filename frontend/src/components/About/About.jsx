@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { connect }from 'react-redux'
+import { withState } from 'recompose'
 
 import getStyles from './AboutStyles.jsx'
 
@@ -197,7 +198,7 @@ If there are any questions regarding this privacy policy, you may contact us usi
 **Last Edited on 2018-02-18**
 `
 
-const legalsContent = (
+const legalsContent = () => (
     <div style={{ overflowY: 'scroll', overflowX: 'none', height: '30rem', padding: 0, margin: '-2rem' }}>
         <MarkdownParser
             useWhiteFont={ false }
@@ -212,7 +213,7 @@ const contactStyles = {
     }
 }
 
-const contactContent = (
+const contactContent = () => (
     <div>
         <MarkdownParser
             useWhiteFont={ false }
@@ -228,9 +229,9 @@ const contactContent = (
     </div>
 )
 
-const loginContent = <Login />
-
-const buildXRContent = <BuildXR />
+// const loginContent = <Login />
+// 
+// const buildXRContent = <BuildXR />
 
 
 text[footerPage.LEGALS] = {
@@ -245,19 +246,20 @@ text[footerPage.CONTACT] = {
 
 text[footerPage.LOGIN] = {
     title: 'Login',
-    content: loginContent
+    content: Login
 }
 
 text[footerPage.BUILDXR] = {
     title: 'Build XR',
-    content: buildXRContent,
+    content: BuildXR,
 }
 
 const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
     const styles = getStyles(props)
 
     const title = text[props.currentFooterPage].title
-    const content = text[props.currentFooterPage].content
+    const Content = text[props.currentFooterPage].content
+    const comp = <Content setHeaderText={ props.setHeaderText } />
 
     return (
         <div style={ styles.wrapper }>
@@ -267,9 +269,10 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
                 <div style={ styles.wrapper2 }>
                     <div style={ styles.title }>
                         <h2 style={ styles.h2 }>{ title }</h2>
+                        <div>{ props.headerText }</div>
                     </div>
                     <div style={ styles.content }>
-                        { content }
+                        { comp }
                     </div>
                 </div>
             </SidePanel>
@@ -281,4 +284,6 @@ const ConnectedAboutUs: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
 )(AboutUs)
 
-export default ConnectedAboutUs
+const StatefulConnectedAboutUs = withState('headerText', 'setHeaderText', '')(ConnectedAboutUs)
+
+export default StatefulConnectedAboutUs
