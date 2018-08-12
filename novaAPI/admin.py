@@ -145,6 +145,11 @@ class CareerAdmin(admin.ModelAdmin):
     list_filter = ['date']
     search_fields = ['title', 'content']
 
+class BuildXRAdmin(admin.ModelAdmin):
+    list_display = ('json',)
+    list_filter = ['date']
+    search_fields = ['json']
+
 # Register your models here.
 admin.site.register(BusinessProposition, BusinessPropositionAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
@@ -165,4 +170,5 @@ admin.site.register(Deploy, DeployAdmin)
 admin.site.register(Production, ProduceAdmin)
 admin.site.register(Partner, PartnerAdmin)
 admin.site.register(Career, CareerAdmin)
+admin.site.register(BuildXR, BuildXRAdmin)
 

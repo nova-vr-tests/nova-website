@@ -25,6 +25,9 @@ class API {
             partners: makeUrlObj('partners/'),
             careers: makeUrlObj('careers/'),
 
+            // Post
+            buildXR: 'api/buildXR/',
+
             // legacy
             blogPostList: 'blogposts/',
             blogPostDetail: 'blogposts/',
@@ -76,6 +79,20 @@ class API {
 
     async fetchBlogPostDetail(postId) {
         return await this.fetch(this.urls.blogPostDetail + postId + '/')
+    }
+
+    async postBuildXR(content) {
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie('csrftoken'),
+            },
+            body: JSON.stringify({
+                json: content
+            })
+        }
+        fetch(this.urls.buildXR, options)
     }
 }
 

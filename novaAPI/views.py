@@ -1,11 +1,18 @@
-from .models import BusinessProposition, BlogPost
+from .models import BusinessProposition, BlogPost, BuildXR
 from .serializers import *
 from rest_framework import generics
 from django.http import HttpResponse
 
 
 
-### Business props
+### BuildXR
+class BuildXRList(generics.ListCreateAPIView):
+    queryset = BuildXR.objects.all()
+    serializer_class = BuildXRSerializer
+
+class BuildXRDetail(generics.RetrieveAPIView):
+    queryset = BuildXR.objects.all()
+    serializer_class = BuildXRSerializer
 
 class BusinessPropositionList(generics.ListCreateAPIView):
     queryset = BusinessProposition.objects.all()

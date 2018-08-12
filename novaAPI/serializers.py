@@ -9,6 +9,11 @@ products_fields = default_fields + ('abstract', 'bg_image', 'description', 'pict
 business_prop_fields = default_fields + ('exec_sum', 'bg_image', 'pdf', 'storage')
 publication_fields = default_fields + ('pdf',)
 
+class BuildXRSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BuildXR
+        fields = ('json',)
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

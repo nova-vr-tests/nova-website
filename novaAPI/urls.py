@@ -52,6 +52,8 @@ urlpatterns = [
 
     url(r'^careers/$', views.CareerList.as_view()),
     url(r'^careers/(?P<pk>[0-9]+)/$', views.CareerDetail.as_view()),
+
+    url(r'^buildXR/$', views.BuildXRList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
