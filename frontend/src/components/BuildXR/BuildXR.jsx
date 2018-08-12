@@ -1,5 +1,6 @@
 // Build XR
 import React from 'react'
+import API from '../../API.js'
 
 const questionTypes = {
     TEXTBOX: 1,
@@ -59,6 +60,10 @@ const MultipleChoice = props => {
     return comp
 }
 
+const SubmitButton = props => {
+    return <button onClick={ props.onClick }>Submit</button>
+}
+
 class BuildXR extends React.Component {
     constructor(props) {
         super(props)
@@ -77,6 +82,7 @@ class BuildXR extends React.Component {
         this.createForm = this.createForm.bind(this)
         this.onTextboxChange = this.onTextboxChange.bind(this)
         this.onCheckboxChange = this.onCheckboxChange.bind(this)
+        this.submit = this.submit.bind(this)
     }
 
     onTextboxChange(questionId, value) {
@@ -124,7 +130,15 @@ class BuildXR extends React.Component {
             form.push(choice)
         }
 
+        form.push(<SubmitButton onClick={ this.submit } />)
+
         return form
+    }
+
+    async submit() {
+        const content =  JSON.stringify(this.state.formState)
+        const resp = await new API().postBuildXR(content)
+        console.log(resp)
     }
 
     render() {

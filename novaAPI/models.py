@@ -8,7 +8,14 @@ from markdownx.models import MarkdownxField
 
 from django.contrib.auth.models import User
 
-# Create your models here.
+class BuildXR(models.Model):
+    json = models.TextField()
+    date = models.DateTimeField('Submission date', default=datetime.now)
+
+    class Meta:
+        verbose_name = 'BuildXR answer'
+        verbose_name_plural = 'BuildXR answers'
+
 class BusinessProposition(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('publication date', default=datetime.now)
@@ -24,7 +31,6 @@ class BusinessProposition(models.Model):
         verbose_name = 'Business Proposition'
         verbose_name_plural = 'Business Propositions'
 
-# Create your models here.
 class BlogPost(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField('date published', default=datetime.now)
