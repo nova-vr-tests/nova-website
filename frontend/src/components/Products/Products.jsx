@@ -385,8 +385,9 @@ const BasicLogIn = props => {
         wrapper: {
             height: `calc(4 * ${appStyles.unitHeight})`,
             display: 'flex',
-            justifyContent: 'center',
             alignItems: 'center',
+            marginTop: `calc(1 * ${appStyles.unitHeight})`,
+            marginLeft: '2rem',
         },
         form: {
             width: `calc(4 * ${appStyles.unitWidth})`,
@@ -420,9 +421,11 @@ const BasicLogIn = props => {
                         isPassword={ true }
                         placeholder="password"
                         value={ props.password }
+                        borderColor="rgba(255, 255, 255, 0.5)"
+                        style={{ color: "white" }}
                         onChange={ props.onPasswordChange } />
                     <SubmitButton
-                        isSubmitting={ false }
+                        isSubmitting={ props.isSubmitting }
                         onClick={ props.checkPassword } />
                 </form>
         </div>
@@ -440,10 +443,12 @@ const ProtectedProductDumb = props => {
                    fetchUrl={ props.fetchUrl }
                    clientUrl={ props.clientUrl }
                    auth={ true }
+                   isSubmitting={ props.isSubmitting }
                    password={ props.password } />
     }
 
     return <BasicLogIn
+                isSubmitting={ props.isSubmitting }
                 onPasswordChange={ props.onPasswordChange }
                 checkPassword={ props.checkPassword } />
 }
@@ -456,6 +461,7 @@ class SmartProtectedProduct extends React.Component {
             password: '',
             show404: true,
             isPasswordValid: false,
+            isSubmitting: false,
         }
 
         this.onPasswordChange = this.onPasswordChange.bind(this)
@@ -479,6 +485,7 @@ class SmartProtectedProduct extends React.Component {
     }
 
     async checkPassword() {
+        this.setState({ isSubmitting: true })
         let isPasswordValid = false
 
         const id = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
@@ -486,6 +493,7 @@ class SmartProtectedProduct extends React.Component {
         let respText
         try {
             respText  = await new API().fetchDetailAuth(this.props.fetchUrl, id, this.state.password)
+            await new Promise(r => setTimeout(r, 3000))
 
             if(respText !== "error" && respText !== '<h1>Server Error (500)</h1>') {
                 isPasswordValid = true
@@ -499,6 +507,7 @@ class SmartProtectedProduct extends React.Component {
         if(!isPasswordValid) {
             this.props.updateMainPanelIsOpened(false)
         }
+        this.setState({ isSubmitting: false })
     }
 
     check404() {
@@ -520,6 +529,7 @@ class SmartProtectedProduct extends React.Component {
                     checkPassword={ this.checkPassword }
                     onPasswordChange={ this.onPasswordChange }
                     show404={ this.state.show404 }
+                    isSubmitting={ this.state.isSubmitting }
                     password={ this.state.password } />
     }
 }

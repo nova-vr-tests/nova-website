@@ -129,7 +129,8 @@ const H2 = (props: UIprops) => {
 }
 
 const Textbox = props => {
-    const borderColor = props.isError ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5)'
+    const normalBorderColor = props.borderColor || 'rgba(0, 0, 0, 0.5)'
+    const borderColor = props.isError ? 'rgba(255, 0, 0, 0.5)' : normalBorderColor
     const styles = {
         input: {
             borderRight: `1px solid ${borderColor}`,
@@ -227,6 +228,7 @@ const SubmitButton = props => {
         color: 'white',
         padding: `calc(0.25 * ${appStyles.unitWidth}) calc(1.5 * ${appStyles.unitWidth})`,
         margin: `calc(0.5 * ${appStyles.unitWidth}) calc(0.25 * ${appStyles.unitWidth})`,
+        marginLeft: 0,
         cursor: 'pointer',
         borderRadius: '0.5rem',
         transition: 'background-color 0.1s linear, opacity 0.1s linear',
@@ -241,6 +243,7 @@ const SubmitButton = props => {
             height: '3rem',
         },
         wrapper: {
+            position: 'absolute',
         },
         imageWrapper: {
             ...buttonStyle,
@@ -255,6 +258,9 @@ const SubmitButton = props => {
             justifyContent: 'center',
             pointerEvents: 'none',
         },
+        mainWrapper: {
+            position: 'relative',
+        }
     }
 
     const Button = props => {
@@ -269,15 +275,17 @@ const SubmitButton = props => {
     const HoverButton = Hover(Button)
 
     return (
-        <div style={ styles.wrapper }>
-            <HoverButton
-                style={ styles.button }
-                onClick={ props.onClick }
-                hoverStyleDiff={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} />
-            <div style={ styles.imageWrapper }>
-                <img
-                    style={ styles.loader }
-                    src={ novaLoader } />
+        <div style={ styles.mainWrapper }>
+            <div style={ styles.wrapper }>
+                <HoverButton
+                    style={ styles.button }
+                    onClick={ props.onClick }
+                    hoverStyleDiff={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} />
+                <div style={ styles.imageWrapper }>
+                    <img
+                        style={ styles.loader }
+                        src={ novaLoader } />
+                </div>
             </div>
         </div>
     )
