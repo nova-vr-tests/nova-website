@@ -42,21 +42,68 @@ const questions = [
 ]
 
 const Question = props => {
-    return <h3>{ props.title } ?</h3>
+    const styles = {
+        wrapper: {
+            position: 'relative',
+        },
+        bullet: {
+            position: 'absolute',
+            height: '1.5rem',
+            width: '1.5rem',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            left: 'calc(-30px - 0.75rem)',
+            top: '50%',
+            transform: 'translateY(-50%)',
+        }
+    }
+    return (
+        <div style={ styles.wrapper }>
+            <h2>{ props.title } ?</h2>
+            <div style={ styles.bullet }>
+            </div>
+        </div>
+    )
 }
 
 const Textbox = props => {
+    const styles = {
+        input: {
+            border: '1px solid rgba(0, 0, 0, 0.5)',
+            width: `calc(6 * ${appStyles.unitWidth})`,
+            borderLeft: 0,
+            borderTopRightRadius: '1rem',
+            borderBottomRightRadius: '1rem',
+            height: '3rem',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            paddingLeft: '2rem',
+            marginLeft: '-2rem',
+        },
+    }
     return <input
         type="textbox"
+        style={ styles.input }
         onChange={ e => props.onChange(e.target.value) }
         value={ props.value } />
 }
 
 const TextArea = props => {
+    const styles = {
+        textarea: {
+            border: '1px solid rgba(0, 0, 0, 0.5)',
+            width: `calc(6 * ${appStyles.unitWidth})`,
+            borderLeft: 0,
+            borderTopRightRadius: '1rem',
+            borderBottomRightRadius: '1rem',
+            height: '10rem',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            padding: '2rem',
+            marginLeft: '-2rem',
+        }
+    }
     return <textarea
-        cols="40"
-        rows="5"
-    onChange={ e => props.onChange(e.target.value) }
+        style={ styles.textarea }
+        onChange={ e => props.onChange(e.target.value) }
         value={ props.value }></textarea>
 }
 
@@ -112,8 +159,9 @@ const SubmitButton = props => {
             border: 'none',
             color: 'white',
             padding: `calc(0.25 * ${appStyles.unitWidth}) calc(1.5 * ${appStyles.unitWidth})`,
-            margin: `calc(0.25 * ${appStyles.unitWidth})`,
+            margin: `calc(0.5 * ${appStyles.unitWidth}) calc(0.25 * ${appStyles.unitWidth})`,
             cursor: 'pointer',
+            borderRadius: '0.5rem',
         }
     }
     return (
