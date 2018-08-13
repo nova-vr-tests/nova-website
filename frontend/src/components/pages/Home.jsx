@@ -23,6 +23,8 @@ import {
     updateMainPanelContent,
     updateMainPanelIsOpened,
     updateLinePosition,
+    updateIsFooterOpened,
+    updateCurrentFooterPage,
 } from '../../reducer/actions/App.js'
 
 const mapStateToProps = function(state) {
@@ -39,6 +41,8 @@ const mapDispatchToProps = function(dispatch) {
         updateMainPanel: comp => dispatch(updateMainPanelContent(comp)),
         updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
         updateLinePosition: position => dispatch(updateLinePosition(position)),
+        updateIsFooterOpened: isOpened => dispatch(updateIsFooterOpened(isOpened)),
+        updateCurrentFooterPage: page => dispatch(updateCurrentFooterPage(page)),
     }
 }
 
@@ -96,12 +100,17 @@ const HomePage = props => {
                 onClickCallback={ () => props.goTo('/about-us')}
                 pictoUrl={ aboutUsPicto }
                 isSquarePicto={ true }
-                title="About Us" />
+                title="Who We Are" />
             <SidePanelLink
-                onClickCallback={ () => props.goTo('/products?post=4') }
+                onClickCallback={ () => props.goTo('/products') }
                 pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
                 isSquarePicto={ true }
-                title="New Year's Eve" />
+                title="What We Do" />
+            <SidePanelLink
+              onClickCallback={ () => { props.updateIsFooterOpened(true); props.updateCurrentFooterPage(4) } }
+                pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
+                isSquarePicto={ true }
+                title="Build XR" />
             <div style={ styles.bottom }>
             </div>
         </div>
