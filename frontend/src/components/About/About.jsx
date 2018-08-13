@@ -269,7 +269,7 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
                 <div style={ styles.wrapper2 }>
                     <div style={ styles.title }>
                         <h2 style={ styles.h2 }>{ title }</h2>
-                        <div>{ props.headerText }</div>
+                        <div style={ styles.headerText }>{ props.headerText }</div>
                     </div>
                     <div style={ styles.content }>
                         { comp }

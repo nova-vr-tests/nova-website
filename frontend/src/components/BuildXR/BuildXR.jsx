@@ -1,6 +1,7 @@
 // Build XR
 import React from 'react'
 import API from '../../API.js'
+import { styles as appStyles } from '../../constants.js'
 
 const questionTypes = {
     TEXTBOX: 1,
@@ -21,6 +22,18 @@ const questions = [
             "$100.000 +",
         ]
     },
+    {
+        type: questionTypes.MULTI,
+        question: 'What industries interest you',
+        choices: [
+            "Aeronautics",
+            "Sports",
+            "Fashion",
+            "Storytelling",
+            "Marketing",
+            "Other",
+        ]
+    },
 ]
 
 const Question = props => {
@@ -37,7 +50,8 @@ const Textbox = props => {
 const Checkbox = props => {
     return <input
         type="checkbox"
-        value={ props.value }
+        checked={ props.checked }
+        style={ props.style }
         onChange={ () => props.onChange(props.id) } />
 }
 
@@ -45,13 +59,29 @@ const MultipleChoice = props => {
     const comp = []
     const { choices } = props
 
+    const styles = {
+        wrapper: {
+            display: 'flex',
+        },
+        checkbox: {
+            marginRight: `calc(0.25 * ${appStyles.unitWidth})`,
+        }
+    }
+
     for(let i in choices) {
-        const checkbox = <div key={ i }>
+        const checkbox = (
+            <div
+              key={ i }
+              style={ styles.wrapper }>
+              <label style={ styles.label }>
                 <Checkbox
+                    style={ styles.checkbox }
                     onChange={ () => props.onChange(i) }
-                    value={ props.answer.has(i) } />
-                <div>{ choices[i] }</div>
+                    checked={ props.answer.has(i) } />
+                  { choices[i] }
+              </label>
             </div>
+        )
 
         comp.push(checkbox)
     }
@@ -60,7 +90,23 @@ const MultipleChoice = props => {
 }
 
 const SubmitButton = props => {
-    return <button onClick={ props.onClick }>Submit</button>
+    const styles = {
+        button: {
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            border: 'none',
+            color: 'white',
+            padding: `calc(0.25 * ${appStyles.unitWidth}) calc(1.5 * ${appStyles.unitWidth})`,
+            margin: `calc(0.25 * ${appStyles.unitWidth})`,
+            cursor: 'pointer',
+        }
+    }
+    return (
+        <button
+            style={ styles.button }
+            onClick={ props.onClick }>
+            Submit
+        </button>
+    )
 }
 
 class BuildXR extends React.Component {
@@ -68,28 +114,41 @@ class BuildXR extends React.Component {
         super(props)
 
         this.questions = questions
-        const formState = this.questions
-        for(let q of formState) {
-            // initing answers
-            q.answer = q.type === questionTypes.TEXTBOX ? '' : new Set()
-        }
 
         this.state = {
-            formState,
+            formState: {},
         }
+
+        this.successMessage = "Form submitted"
 
         this.createForm = this.createForm.bind(this)
         this.onTextboxChange = this.onTextboxChange.bind(this)
         this.onCheckboxChange = this.onCheckboxChange.bind(this)
         this.submit = this.submit.bind(this)
+        this.resetFormState = this.resetFormState.bind(this)
     }
 
     componentWillMount() {
         this.props.setHeaderText(`We'll help your build XR :)`)
     }
 
+    componentDidMount() {
+        this.resetFormState()
+    }
+
     componentWillUnmount() {
         this.props.setHeaderText('')
+    }
+
+    resetFormState() {
+        const { questions }= this
+        const formState = questions
+        for(let q of formState) {
+            // initing answers
+            q.answer = q.type === questionTypes.TEXTBOX ? '' : new Set()
+        }
+
+        this.setState({ formState })
     }
 
     onTextboxChange(questionId, value) {
@@ -123,8 +182,10 @@ class BuildXR extends React.Component {
 
             let choice
             if(type === questionTypes.TEXTBOX) {
+                const value = formState[i].answer
                 choice = <Textbox
                     onChange={ v => this.onTextboxChange(i, v) }
+                    value={ value }
                     key={ i } />
             } else {
                 choice = <MultipleChoice
@@ -142,14 +203,25 @@ class BuildXR extends React.Component {
         return form
     }
 
-    async submit() {
+    async submit(e) {
+        e.preventDefault()
         const content =  JSON.stringify(this.state.formState)
-        const resp = await new API().postBuildXR(content)
-        console.log(resp)
+        try {
+            await new API().postBuildXR(content)
+
+            this.props.setHeaderText(this.successMessage)
+            this.resetFormState()
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     render() {
-        return this.createForm()
+        return (
+            <form>
+              { this.createForm() }
+            </form>
+        )
     }
 }
 

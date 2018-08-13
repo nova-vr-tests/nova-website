@@ -60,13 +60,6 @@ const getStyles: GetStyles<Props, Styles> = props => {
         h1: {
             padding: appStyles.unitHeight + ' ' + sidebarWidth
         },
-        h2: {
-            height: `calc(5.75 * ${appStyles.unitHeight} )`,
-            boxSizing: 'border-box',
-            fontSize: '2rem',
-            margin: 0,
-            textAlign: 'center',
-        },
         sidePanel: {
             marginTop: 'calc(2.5 * ' + appStyles.unitHeight + ')',
         },
@@ -77,6 +70,20 @@ const getStyles: GetStyles<Props, Styles> = props => {
         },
         title: {
         },
+        h2: {
+            height: `calc(2 * ${appStyles.unitHeight} )`,
+            boxSizing: 'border-box',
+            fontSize: '2rem',
+            margin: 0,
+            textAlign: 'center',
+        },
+        headerText: {
+            height: `calc(3.75 * ${appStyles.unitHeight})`,
+            padding: '30px',
+            boxSizing: 'border-box',
+            display: 'flex',
+            alignItems: 'center',
+        }
     }
 }
 
