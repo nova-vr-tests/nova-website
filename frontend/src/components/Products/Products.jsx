@@ -146,7 +146,11 @@ const initHeader = (updateSidePanelHeader, props) => {
             }
         }
 
-        setupSEOTags(product)
+        // don't update seo text for particular entry if on products home
+        // Presentation.jsx will take over
+        if(window.location.search !== "") {
+            setupSEOTags(product)
+        }
 
         header = () => <SidePanelProductsHeader
             showArrow={ props.auth && props.drawerPosition < 2 ? false : true }

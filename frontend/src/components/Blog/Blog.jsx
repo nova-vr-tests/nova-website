@@ -190,7 +190,12 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
         setBlogPost(blogPost)
 
         const seoImgUrl = window.location.origin + that.props.pages[that.props.currentPage].layers[0].imgUrl
-        setupSEOTags(blogPost, seoImgUrl)
+
+        // don't update seo text for particular entry if on products home
+        // Presentation.jsx will take over
+        if(window.location.search !== "") {
+            setupSEOTags(blogPost, seoImgUrl)
+        }
     }
 }
 
