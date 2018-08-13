@@ -21,6 +21,8 @@ import BuildXR from '../BuildXR/BuildXR.jsx'
 
 import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
 import contactPicto from '../img/Contact.png'
+import facebookPicto from '../img/facebook.png'
+import twitterPicto from '../img/twitter.png'
 
 import SidePanel, { sidePanelTypes } from '../Presentation/SidePanel/SidePanel.jsx'
 import SidePanelLink from '../UI/SidePanelLink.jsx'
@@ -243,13 +245,13 @@ class ContactContent extends React.Component {
                     <SidePanelLink
                         onClickCallback={ () => window.open("https://www.facebook.com/N0vamedia/", "_blank") }
                         isSquarePicto={ true }
-                        pictoUrl={ contactPicto }
+                        pictoUrl={ facebookPicto }
                         invertColors={ true }
                         title="Facebook" />
                     <SidePanelLink
                         onClickCallback={ () => window.open("https://twitter.com/N0vaMedia", "_blank") }
                         isSquarePicto={ true }
-                        pictoUrl={ contactPicto }
+                        pictoUrl={ twitterPicto }
                         invertColors={ true }
                         title="Twitter" />
                 </div>
