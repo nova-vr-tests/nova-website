@@ -31,6 +31,11 @@ import URLSearchParams from 'url-search-params'
 
 import contactPicto from '../img/Contact.png'
 
+import {
+    Textbox,
+    SubmitButton,
+} from '../pages/UI.jsx'
+
 const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
@@ -411,16 +416,14 @@ const BasicLogIn = props => {
                 <form
                     style={ styles.form }
                     onSubmit={ (e) => { e.preventDefault() ; props.checkPassword() } }>
-                    <input
-                        placeholder="Provide a password"
-                        type="password"
-                        style={ styles.input }
+                    <Textbox
+                        isPassword={ true }
+                        placeholder="password"
+                        value={ props.password }
                         onChange={ props.onPasswordChange } />
-                    <input
-                        type="submit"
-                        value="Submit"
-                        style={ styles.button }
-                        onClick={ props.checkPassword }/>
+                    <SubmitButton
+                        isSubmitting={ false }
+                        onClick={ props.checkPassword } />
                 </form>
         </div>
     )
@@ -472,7 +475,7 @@ class SmartProtectedProduct extends React.Component {
     }
 
     onPasswordChange(e) {
-        this.setState({ password: e.target.value })
+        this.setState({ password: e })
     }
 
     async checkPassword() {

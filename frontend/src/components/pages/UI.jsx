@@ -241,7 +241,6 @@ const SubmitButton = props => {
             height: '3rem',
         },
         wrapper: {
-            position: 'absolute',
         },
         imageWrapper: {
             ...buttonStyle,
