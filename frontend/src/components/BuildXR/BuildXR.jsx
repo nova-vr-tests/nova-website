@@ -246,6 +246,7 @@ class BuildXR extends React.Component {
                 choice = <TextArea
                     key={ i }
                     onChange={ j => this.onTextboxChange(i, j) }
+                    isError={ isError }
                     value={ value } />
                 break
             default:

@@ -157,9 +157,12 @@ const Textbox = props => {
 }
 
 const TextArea = props => {
+    const borderColor = props.isError ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5)'
     const styles = {
         textarea: {
-            border: '1px solid rgba(0, 0, 0, 0.5)',
+            borderRight: `1px solid ${borderColor}`,
+            borderBottom: `1px solid ${borderColor}`,
+            borderTop: `1px solid ${borderColor}`,
             width: `calc(6 * ${appStyles.unitWidth})`,
             borderLeft: 0,
             borderTopRightRadius: '1rem',
