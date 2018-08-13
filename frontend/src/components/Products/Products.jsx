@@ -148,7 +148,7 @@ const initHeader = (updateSidePanelHeader, props) => {
             }
         }
 
-        document.querySelector("meta[property='og:title']").content = product.title
+        document.querySelector("meta[property='og:title']").content = product ? product.title : ""
 
         header = () => <SidePanelProductsHeader
             showArrow={ props.auth && props.drawerPosition < 2 ? false : true }
