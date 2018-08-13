@@ -136,7 +136,7 @@ const setupSEOTags = product => {
     // FB
     document.querySelector("meta[property='og:title']").content = product ? product.title : ""
     document.querySelector("meta[property='og:url']").content = window.location.href
-    document.querySelector("meta[property='og:image']").content = product ? product.bg_image : ""
+    document.querySelector("meta[property='og:image']").content = product ? filterUrl(product.bg_image) : ""
     document.querySelector("meta[property='og:description']").content = abstract
 }
 
