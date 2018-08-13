@@ -259,6 +259,7 @@ class BuildXR extends React.Component {
 
     componentWillUnmount() {
         this.props.setHeaderText('')
+        this.props.setHeaderTextBgColor('rgba(0, 0, 0, 0.2)')
     }
 
     validateFormState() {

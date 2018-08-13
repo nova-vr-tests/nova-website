@@ -198,13 +198,23 @@ If there are any questions regarding this privacy policy, you may contact us usi
 **Last Edited on 2018-02-18**
 `
 
-const legalsContent = () => (
-    <div style={{ padding: 0, margin: '-2rem' }}>
-        <MarkdownParser
-            useWhiteFont={ false }
-            content={ legalsText } />
-    </div>
-)
+class LegalsContent extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    componentDidMount() {
+        this.props.setHeaderText('')
+    }
+    render() {
+        return (
+            <div style={{ padding: 0, margin: '-2rem' }}>
+              <MarkdownParser
+                useWhiteFont={ false }
+                content={ legalsText } />
+            </div>
+        )
+    }
+}
 
 const contactText = `Thank you for your interest in Nova XR Media. Please email us with any question:`
 const contactStyles = {
@@ -213,21 +223,40 @@ const contactStyles = {
     }
 }
 
-const contactContent = () => (
-    <div>
-        <MarkdownParser
-            useWhiteFont={ false }
-            content={ contactText } />
-        <div style={ contactStyles.linkWrapper }>
-            <SidePanelLink
-                onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
-                isSquarePicto={ true }
-                pictoUrl={ contactPicto }
-                invertColors={ true }
-                title="Email Us" />
-        </div>
-    </div>
-)
+class ContactContent extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    componentDidMount() {
+        this.props.setHeaderText(contactText)
+    }
+    render() {
+        return (
+            <div>
+                <div style={ contactStyles.linkWrapper }>
+                    <SidePanelLink
+                        onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
+                        isSquarePicto={ true }
+                        pictoUrl={ contactPicto }
+                        invertColors={ true }
+                        title="Email Us" />
+                    <SidePanelLink
+                        onClickCallback={ () => window.open("https://www.facebook.com/N0vamedia/", "_blank") }
+                        isSquarePicto={ true }
+                        pictoUrl={ contactPicto }
+                        invertColors={ true }
+                        title="Facebook" />
+                    <SidePanelLink
+                        onClickCallback={ () => window.open("https://twitter.com/N0vaMedia", "_blank") }
+                        isSquarePicto={ true }
+                        pictoUrl={ contactPicto }
+                        invertColors={ true }
+                        title="Twitter" />
+                </div>
+            </div>
+        )
+    }
+}
 
 // const loginContent = <Login />
 // 
@@ -236,12 +265,12 @@ const contactContent = () => (
 
 text[footerPage.LEGALS] = {
     title: 'Legals',
-    content: legalsContent
+    content: LegalsContent
 }
 
 text[footerPage.CONTACT] = {
     title: 'Contact',
-    content: contactContent
+    content: ContactContent
 }
 
 text[footerPage.LOGIN] = {
@@ -290,7 +319,7 @@ const ConnectedAboutUs: React.ComponentType<OwnProps> = connect(
 
 const StatefulConnectedAboutUs = compose(
     withState('headerText', 'setHeaderText', ''),
-    withState('headerTextBgColor', 'setHeaderTextBgColor', 'rgba(0, 0, 0, 0)'),
+    withState('headerTextBgColor', 'setHeaderTextBgColor', 'rgba(0, 0, 0, 0.2)'),
 )(ConnectedAboutUs)
 
 export default StatefulConnectedAboutUs
