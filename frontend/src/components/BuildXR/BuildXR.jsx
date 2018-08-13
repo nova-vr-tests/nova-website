@@ -60,6 +60,9 @@ const TextArea = props => {
         value={ props.value }></textarea>
 }
 
+
+
+
 const Checkbox = props => {
     return <input
         type="checkbox"
@@ -260,7 +263,6 @@ class BuildXR extends React.Component {
         const styles = {
             form: {
                 maxHeight: `calc(12.5 * ${appStyles.unitHeight})`,
-                overflowY: 'auto',
             }
         }
         return (

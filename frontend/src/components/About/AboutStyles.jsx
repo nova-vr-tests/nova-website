@@ -66,7 +66,13 @@ const getStyles: GetStyles<Props, Styles> = props => {
         content: {
             backgroundColor,
             padding: '2rem',
-            height: `calc((24 - 6.75) * ${appStyles.unitHeight})`,
+            height: `calc(13.5 * ${appStyles.unitHeight})`,
+            overflowY: 'auto',
+            boxSizing: 'border-box',
+        },
+        contentEnd: {
+            backgroundColor,
+            height: `calc(1.5 * ${appStyles.unitHeight})`,
         },
         title: {
         },

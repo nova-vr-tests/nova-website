@@ -199,7 +199,7 @@ If there are any questions regarding this privacy policy, you may contact us usi
 `
 
 const legalsContent = () => (
-    <div style={{ overflowY: 'scroll', overflowX: 'none', height: '30rem', padding: 0, margin: '-2rem' }}>
+    <div style={{ padding: 0, margin: '-2rem' }}>
         <MarkdownParser
             useWhiteFont={ false }
             content={ legalsText } />
@@ -273,6 +273,8 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
                     </div>
                     <div style={ styles.content }>
                         { comp }
+                    </div>
+                    <div style={ styles.contentEnd }>
                     </div>
                 </div>
             </SidePanel>
