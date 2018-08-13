@@ -3,6 +3,7 @@ import React from 'react'
 import API from '../../API.js'
 import { styles as appStyles } from '../../constants.js'
 import novaLoader from '../img/nova-loader.gif'
+import { Hover } from '../HOC/HOC.jsx'
 
 const questionTypes = {
     TEXTBOX: 1,
@@ -173,7 +174,7 @@ const SubmitButton = props => {
         margin: `calc(0.5 * ${appStyles.unitWidth}) calc(0.25 * ${appStyles.unitWidth})`,
         cursor: 'pointer',
         borderRadius: '0.5rem',
-        transition: 'opacity 0.1s linear',
+        transition: 'background-color 0.1s linear, opacity 0.1s linear',
         ...props.style,
     }
     const styles = {
@@ -202,13 +203,23 @@ const SubmitButton = props => {
         },
     }
 
+    const Button = props => {
+        return <button
+            style={ props.style }
+            onMouseEnter={ props.onMouseEnter }
+            onMouseLeave={ props.onMouseLeave }
+            onClick={ props.onClick }>
+          Submit
+        </button>
+    }
+    const HoverButton = Hover(Button)
+
     return (
         <div style={ styles.wrapper }>
-            <button
+            <HoverButton
                 style={ styles.button }
-                onClick={ props.onClick }>
-                Submit
-            </button>
+                onClick={ props.onClick }
+                hoverStyleDiff={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} />
             <div style={ styles.imageWrapper }>
                 <img
                     style={ styles.loader }
