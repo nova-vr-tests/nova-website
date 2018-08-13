@@ -422,7 +422,8 @@ const BasicLogIn = props => {
                         placeholder="password"
                         value={ props.password }
                         borderColor="rgba(255, 255, 255, 0.5)"
-                        style={{ color: "white" }}
+                        style={{ color: !props.isError ? "white" : "red" }}
+                        isError={ props.isError }
                         onChange={ props.onPasswordChange } />
                     <SubmitButton
                         isSubmitting={ props.isSubmitting }
@@ -448,6 +449,7 @@ const ProtectedProductDumb = props => {
     }
 
     return <BasicLogIn
+                isError={ props.isError }
                 isSubmitting={ props.isSubmitting }
                 onPasswordChange={ props.onPasswordChange }
                 checkPassword={ props.checkPassword } />
@@ -462,6 +464,7 @@ class SmartProtectedProduct extends React.Component {
             show404: true,
             isPasswordValid: false,
             isSubmitting: false,
+            isError: false,
         }
 
         this.onPasswordChange = this.onPasswordChange.bind(this)
@@ -497,9 +500,13 @@ class SmartProtectedProduct extends React.Component {
 
             if(respText !== "error" && respText !== '<h1>Server Error (500)</h1>') {
                 isPasswordValid = true
+                this.setState({ isError: false })
+            } else {
+                this.setState({ isError: true })
             }
         } catch(e) {
             isPasswordValid = false
+            this.setState({ isError: true })
         }
 
         // "error" is what dajngo returns on invalid password for now
@@ -525,6 +532,7 @@ class SmartProtectedProduct extends React.Component {
         return <ProtectedProductDumb
                     fetchUrl={ this.props.fetchUrl }
                     clientUrl={ this.props.clientUrl }
+                    isError={ this.state.isError }
                     isPasswordValid={ this.state.isPasswordValid }
                     checkPassword={ this.checkPassword }
                     onPasswordChange={ this.onPasswordChange }
