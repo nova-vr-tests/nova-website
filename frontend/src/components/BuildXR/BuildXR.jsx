@@ -191,13 +191,14 @@ const SubmitButton = props => {
             ...buttonStyle,
             opacity: props.isSubmitting ? 1 : 0,
             padding: 0,
-            positions: 'absolute',
+            position: 'absolute',
             top: 0,
             bottom: 0,
             right: 0,
             left: 0,
             display: 'flex',
             justifyContent: 'center',
+            pointerEvents: 'none',
         },
     }
 
@@ -401,6 +402,7 @@ class BuildXR extends React.Component {
         } else {
             try {
                 await new API().postBuildXR(content)
+                await new Promise(r => setTimeout(r, 3000))
 
                 this.props.setHeaderText(this.successMessage)
                 this.resetFormState()
