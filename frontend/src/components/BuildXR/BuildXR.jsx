@@ -12,14 +12,17 @@ const questions = [
     {
         type: questionTypes.TEXTBOX,
         question: `What's your email`,
+        isRequired: true,
     },
     {
         type: questionTypes.TEXTAREA,
         question: 'Why do you want to build',
+        isRequired: true,
     },
     {
         type: questionTypes.MULTI,
         question: 'What is you budget',
+        isRequired: true,
         choices: [
             "< $1.000",
             "$1.000 - $10.000",
@@ -42,16 +45,18 @@ const questions = [
 ]
 
 const Question = props => {
+    const color = props.isError ? '255, 0, 0': '0, 0, 0'
     const styles = {
         wrapper: {
             position: 'relative',
+            color: `rgb(${color})`,
         },
         bullet: {
             position: 'absolute',
             height: '1.5rem',
             width: '1.5rem',
             borderRadius: '50%',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: `rgba(${color}, 0.5)`,
             left: 'calc(-30px - 0.75rem)',
             top: '50%',
             transform: 'translateY(-50%)',
@@ -59,7 +64,7 @@ const Question = props => {
     }
     return (
         <div style={ styles.wrapper }>
-            <h2>{ props.title } ?</h2>
+            <h2>{ props.title } ? { props.isRequired ? '*' : ''}</h2>
             <div style={ styles.bullet }>
             </div>
         </div>
@@ -67,11 +72,14 @@ const Question = props => {
 }
 
 const Textbox = props => {
+    const borderColor = props.isError ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5)'
     const styles = {
         input: {
-            border: '1px solid rgba(0, 0, 0, 0.5)',
+            borderRight: `1px solid ${borderColor}`,
+            borderBottom: `1px solid ${borderColor}`,
+            borderTop: `1px solid ${borderColor}`,
+            borderLeft: `0px solid ${borderColor}`,
             width: `calc(6 * ${appStyles.unitWidth})`,
-            borderLeft: 0,
             borderTopRightRadius: '1rem',
             borderBottomRightRadius: '1rem',
             height: '3rem',
@@ -184,12 +192,14 @@ class BuildXR extends React.Component {
         }
 
         this.successMessage = "Form submitted"
+        this.errorMessage = "Your form contains error!"
 
         this.createForm = this.createForm.bind(this)
         this.onTextboxChange = this.onTextboxChange.bind(this)
         this.onCheckboxChange = this.onCheckboxChange.bind(this)
         this.submit = this.submit.bind(this)
         this.resetFormState = this.resetFormState.bind(this)
+        this.validateFormState = this.validateFormState.bind(this)
     }
 
     componentWillMount() {
@@ -202,6 +212,48 @@ class BuildXR extends React.Component {
 
     componentWillUnmount() {
         this.props.setHeaderText('')
+    }
+
+    validateFormState() {
+        const { formState } = this.state
+
+        let isFormError = false
+        for(let i in formState) {
+            const { isRequired, type }= formState[i]
+
+            switch(type) {
+            case questionTypes.TEXTBOX:
+                if(isRequired && formState[i].answer === '') {
+                    formState[i].isError = true
+                    isFormError = true
+                } else {
+                    formState[i].isError = false
+                }
+                break
+            case questionTypes.MULTI:
+                if(isRequired && !formState[i].answer.size) {
+                    formState[i].isError = true
+                    isFormError = true
+                } else {
+                    formState[i].isError = false
+                }
+                break
+            case questionTypes.TEXTAREA:
+                if(isRequired && formState[i].answer === '') {
+                    formState[i].isError = true
+                    isFormError = true
+                } else {
+                    formState[i].isError = false
+                }
+                break
+            default:
+                break
+            }
+        }
+
+        this.setState({ formState })
+
+        return isFormError
     }
 
     resetFormState() {
@@ -254,8 +306,12 @@ class BuildXR extends React.Component {
 
         const { formState } = this.state
         for(let i in formState) {
-            const { type } = formState[i]
-            const question = <Question key={ i + formState.length } title={ formState[i].question } />
+            const { type, isError, isRequired } = formState[i]
+            const question = <Question
+                key={ i + formState.length }
+                isError={ isError }
+                isRequired={ isRequired }
+                title={ formState[i].question } />
 
             let choice
             let value
@@ -265,6 +321,7 @@ class BuildXR extends React.Component {
                 choice = <Textbox
                     onChange={ v => this.onTextboxChange(i, v) }
                     value={ value }
+                    isError={ isError }
                     key={ i } />
                 break
             case questionTypes.MULTI:
@@ -297,13 +354,20 @@ class BuildXR extends React.Component {
     async submit(e) {
         e.preventDefault()
         const content =  JSON.stringify(this.state.formState)
-        try {
-            await new API().postBuildXR(content)
 
-            this.props.setHeaderText(this.successMessage)
-            this.resetFormState()
-        } catch (e) {
-            console.log(e)
+        const isFormError = this.validateFormState()
+
+        if(isFormError) {
+            this.props.setHeaderText(this.errorMessage)
+        } else {
+            try {
+                await new API().postBuildXR(content)
+
+                this.props.setHeaderText(this.successMessage)
+                this.resetFormState()
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
 
