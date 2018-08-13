@@ -146,7 +146,7 @@ class CareerAdmin(admin.ModelAdmin):
     search_fields = ['title', 'content']
 
 class BuildXRAdmin(admin.ModelAdmin):
-    list_display = ('json',)
+    list_display = ('date',)
     list_filter = ['date']
     search_fields = ['json']
 
