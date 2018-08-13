@@ -20,7 +20,7 @@ import Login from './Login/Login.jsx'
 import BuildXR from '../BuildXR/BuildXR.jsx'
 
 import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
-import contactPicto from '../img/Contact.png'
+import contactPicto from '../img/contact-email.png'
 import facebookPicto from '../img/facebook.png'
 import twitterPicto from '../img/twitter.png'
 
