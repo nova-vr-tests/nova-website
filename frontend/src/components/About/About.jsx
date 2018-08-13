@@ -243,17 +243,17 @@ class ContactContent extends React.Component {
                         invertColors={ true }
                         title="Email Us" />
                     <SidePanelLink
-                        onClickCallback={ () => window.open("https://www.facebook.com/N0vamedia/", "_blank") }
-                        isSquarePicto={ true }
-                        pictoUrl={ facebookPicto }
-                        invertColors={ true }
-                        title="Facebook" />
-                    <SidePanelLink
                         onClickCallback={ () => window.open("https://twitter.com/N0vaMedia", "_blank") }
                         isSquarePicto={ true }
                         pictoUrl={ twitterPicto }
                         invertColors={ true }
                         title="Twitter" />
+                    <SidePanelLink
+                        onClickCallback={ () => window.open("https://www.facebook.com/N0vamedia/", "_blank") }
+                        isSquarePicto={ true }
+                        pictoUrl={ facebookPicto }
+                        invertColors={ true }
+                        title="Facebook" />
                 </div>
             </div>
         )
