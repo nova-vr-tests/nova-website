@@ -59,6 +59,7 @@ MIDDLEWARE = [
 PRERENDER_TOKEN = os.environ.get('PRERENDER_TOKEN', '')
 PRERENDER_PATHS_EXACT = ("/",)
 PRERENDER_PATHS_STARTSWITH = ("/page/", "/news/")
+PRERENDER_GOOGLEBOT=True
 
 ROOT_URLCONF = 'novawebsite.urls'
 
