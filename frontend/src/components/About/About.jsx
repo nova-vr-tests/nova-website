@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { connect }from 'react-redux'
-import { withState } from 'recompose'
+import { compose, withState } from 'recompose'
 
 import getStyles from './AboutStyles.jsx'
 
@@ -259,7 +259,9 @@ const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
 
     const title = text[props.currentFooterPage].title
     const Content = text[props.currentFooterPage].content
-    const comp = <Content setHeaderText={ props.setHeaderText } />
+    const comp = <Content
+        setHeaderTextBgColor={ props.setHeaderTextBgColor }
+        setHeaderText={ props.setHeaderText } />
 
     return (
         <div style={ styles.wrapper }>
@@ -286,6 +288,9 @@ const ConnectedAboutUs: React.ComponentType<OwnProps> = connect(
     mapStateToProps,
 )(AboutUs)
 
-const StatefulConnectedAboutUs = withState('headerText', 'setHeaderText', '')(ConnectedAboutUs)
+const StatefulConnectedAboutUs = compose(
+    withState('headerText', 'setHeaderText', ''),
+    withState('headerTextBgColor', 'setHeaderTextBgColor', 'rgba(0, 0, 0, 0)'),
+)(ConnectedAboutUs)
 
 export default StatefulConnectedAboutUs

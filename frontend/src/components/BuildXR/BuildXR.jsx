@@ -229,8 +229,16 @@ class BuildXR extends React.Component {
             isSubmitting: false,
         }
 
-        this.successMessage = "Thanks for taking the first step toward building your XR solution! Soon we will contact you with a personalized email."
-        this.errorMessage = "Your form contains error!"
+        this.successMessage = (
+            <div style={{ color: 'white', fontSize: '1.4rem' }}>
+                <b>Thank you</b> for taking the first step toward building your XR solution! Soon we will contact you with a <b>personalized email</b>.
+            </div>
+        )
+        this.errorMessage = (
+            <div style={{ color: 'white', fontSize: '1.5rem' }}>
+              Your form contains error!
+            </div>
+        )
         this.introText = "Extended Reality may provide a variety of solutions across a range of industries. By answering these five questions, you provide us with tools for applying XR to your needs. Marketing, training, and internal productivity begin to outline the scope of XR applications."
 
         this.createForm = this.createForm.bind(this)
@@ -399,12 +407,14 @@ class BuildXR extends React.Component {
 
         if(isFormError) {
             this.props.setHeaderText(this.errorMessage)
+            this.props.setHeaderTextBgColor('rgba(255, 0, 0, 0.3)')
         } else {
             try {
                 await new API().postBuildXR(content)
                 await new Promise(r => setTimeout(r, 3000))
 
                 this.props.setHeaderText(this.successMessage)
+                this.props.setHeaderTextBgColor('rgba(0, 0, 0, 0.5)')
                 this.resetFormState()
             } catch (e) {
                 console.log(e)

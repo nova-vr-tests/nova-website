@@ -85,6 +85,8 @@ const getStyles: GetStyles<Props, Styles> = props => {
             textAlign: 'center',
         },
         headerText: {
+            backgroundColor: props.headerTextBgColor,
+            transition: 'background-color 0.1s linear',
             height: `calc(3.75 * ${appStyles.unitHeight})`,
             padding: '30px',
             boxSizing: 'border-box',
