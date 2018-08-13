@@ -159,6 +159,12 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
 
 const footerLifecycle= {
     componentDidMount() {},
+    componentDidUpdate() {
+        // update in case build xr is shown from home page which doesn't update bg on click)
+        if(this.props.currentFooterPage === 4 && this.props.bgUrl !== buildXRBg) {
+            this.props.setBgUrl(buildXRBg)
+        }
+    }
 }
 
 const FooterSmart = compose(
