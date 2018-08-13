@@ -23,6 +23,11 @@ for(let i in answers) {
             html += "<li>" + choice + " / " + (isChecked ? "CHECKED" : "") + "</li>"
         }
         html += "</ul>"
+    } else if(type === 3) {
+        const { answer } = a
+        for(let p of answer.split('\n')) {
+            html += "<p>" + p + "</p>"
+        }
     }
 
 }
