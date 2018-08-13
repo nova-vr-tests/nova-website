@@ -28,3 +28,50 @@
     max-height: 70vh;
     overflow: auto;
 }
+
+.build-xr-answer--wrapper {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+}
+
+.build-xr-answer--wrapper ul {
+    margin-left: 0rem!important; /* overrides form .aligned ul */
+}
+
+.build-xr-answer--wrapper li {
+    display: flex;
+}
+
+.build-xr-answer--wrapper .checked {
+    border: 2px solid black;
+    min-width: 1rem;
+    min-height: 1.3rem;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.build-xr-answer--wrapper h3 {
+    position: relative;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.build-xr-answer--wrapper p {
+    padding-left: 1rem!important; /* overrides form .form-row p */
+}
+
+
+.build-xr-answer--wrapper h3::before {
+    content: '';
+    position: absolute;
+    height: 0.75rem;
+    width: 0.75rem;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: -0.4rem;
+    top: 0.2rem;
+}

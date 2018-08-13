@@ -4,7 +4,7 @@ const jsonTextbox = document.querySelector('textarea#id_json')
 const json = jsonTextbox.value
 const answers = JSON.parse(json)
 console.log(answers)
-let html = ""
+let html = "<div class='build-xr-answer--wrapper'>"
 
 for(let i in answers) {
     const a = answers[i]
@@ -20,7 +20,7 @@ for(let i in answers) {
             const choice = choices[j]
             const multiChoiceAnswers = new Set(a.answer)
             const isChecked = multiChoiceAnswers.has(j)
-            html += "<li>" + choice + " / " + (isChecked ? "CHECKED" : "") + "</li>"
+            html += "<li><span class='checked'>" + (isChecked ? "x" : " ") + "</span>" + choice + "</li>"
         }
         html += "</ul>"
     } else if(type === 3) {
@@ -29,7 +29,8 @@ for(let i in answers) {
             html += "<p>" + p + "</p>"
         }
     }
-
 }
+
+html += "</div>"
 
 jsonTextbox.parentNode.innerHTML = html
