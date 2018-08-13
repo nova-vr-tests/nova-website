@@ -9,10 +9,13 @@ import {
 import getStyles, {
 } from './LoginStyles.jsx'
 
+import {
+    Textbox,
+    SubmitButton,
+} from '../../pages/UI.jsx'
 
 import {
     Form,
-    Text,
 } from 'react-form'
 
 const mapStateToProps = state => ({
@@ -21,48 +24,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = () => ({
 })
-
-const Loading = props => {
-    const styles = {
-        wrapper:{
-            pointerEvents: 'none',
-            opacity: props.show ? 1 : 0,
-            transition: 'opacity 0.2s linear',
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.2)',
-            borderRadius: '1rem',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-        circle: {
-            height: '4rem',
-            width: '4rem',
-            border: '5px solid rgba(0, 0, 0, 0.5)',
-            borderRadius: '50%',
-            animation: 'rotate 1s linear',
-            animationIterationCount: 'infinite',
-            borderLeftColor: 'rgba(0, 0, 0, 0)'
-        }
-    }
-
-    return (
-        <div
-            className={ 'Loading--wrapper' }
-            style={ styles.wrapper }>
-            <div style={ styles.circle }>
-            </div>
-        </div>
-    )
-}
-
-Loading.defaultProps = {
-    show: false,
-}
 
 const LoginForm = props => {
     const borderColor = 'rgba(0, 0, 0, 0.2)'
@@ -95,6 +56,12 @@ const LoginForm = props => {
         error: {
             color: 'red',
             borderColor: 'red',
+        },
+        submitWrapper: {
+            position: 'relative',
+        },
+        username: {
+            marginBottom: '1rem',
         }
     }
 
@@ -108,30 +75,21 @@ const LoginForm = props => {
                 onSubmit={props.formApi.submitForm}
                 id="form2">
 
-                <Loading show={ props.isLoading } />
-
-                <Text
-                    style={ {
-                        ...styles.input,
-                        ...(props.isError ? styles.error : {})
-                    } }
-                    placeholder="Username"
-                    field="username"
-                    id="username" />
-                <Text
-                    style={ {
-                        ...styles.input,
-                        ...(props.isError ? styles.error : {})
-                    } }
-                    type="password"
-                    placeholder="Password"
-                    field="password"
-                    id="password" />
-                <button
-                    type="submit"
-                    style={ styles.button }>
-                    Login
-                </button>
+                <Textbox
+                    isError={ props.isError }
+                    placeholder="username"
+                    style={ styles.username }
+                    onChange={ () => {} }/>
+                <Textbox
+                    isError={ props.isError }
+                    placeholder="password"
+                    isPassword={ true }
+                    onChange={ () => {} }/>
+                  <div style={ styles.submitWrapper }>
+                    <SubmitButton
+                        onClick={ props.submit }
+                        isSubmitting={ props.isLoading } />
+                </div>
             </form>
 
         </div>
@@ -164,6 +122,7 @@ const Login = props => {
                 onSubmit={ submit }>
                 { formApi => <LoginForm
                     formApi={ formApi }
+                    submit={ submit }
                     isError={ props.isError }
                     isLoading={ props.isLoading } /> }
             </Form>

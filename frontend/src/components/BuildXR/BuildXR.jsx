@@ -2,8 +2,12 @@
 import React from 'react'
 import API from '../../API.js'
 import { styles as appStyles } from '../../constants.js'
-import novaLoader from '../img/nova-loader.gif'
-import { Hover } from '../HOC/HOC.jsx'
+import {
+    Textbox,
+    TextArea,
+    MultipleChoice,
+    SubmitButton,
+} from '../pages/UI.jsx'
 
 const questionTypes = {
     TEXTBOX: 1,
@@ -71,159 +75,6 @@ const Question = props => {
         <div style={ styles.wrapper }>
             <h2>{ props.title } ? { props.isRequired ? '*' : ''}</h2>
             <div style={ styles.bullet }>
-            </div>
-        </div>
-    )
-}
-
-const Textbox = props => {
-    const borderColor = props.isError ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.5)'
-    const styles = {
-        input: {
-            borderRight: `1px solid ${borderColor}`,
-            borderBottom: `1px solid ${borderColor}`,
-            borderTop: `1px solid ${borderColor}`,
-            borderLeft: `0px solid ${borderColor}`,
-            width: `calc(6 * ${appStyles.unitWidth})`,
-            borderTopRightRadius: '1rem',
-            borderBottomRightRadius: '1rem',
-            height: '3rem',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            paddingLeft: '2rem',
-            marginLeft: '-2rem',
-        },
-    }
-    return <input
-        type="textbox"
-        style={ styles.input }
-        onChange={ e => props.onChange(e.target.value) }
-        value={ props.value } />
-}
-
-const TextArea = props => {
-    const styles = {
-        textarea: {
-            border: '1px solid rgba(0, 0, 0, 0.5)',
-            width: `calc(6 * ${appStyles.unitWidth})`,
-            borderLeft: 0,
-            borderTopRightRadius: '1rem',
-            borderBottomRightRadius: '1rem',
-            height: '10rem',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            padding: '2rem',
-            marginLeft: '-2rem',
-        }
-    }
-    return <textarea
-        style={ styles.textarea }
-        onChange={ e => props.onChange(e.target.value) }
-        value={ props.value }></textarea>
-}
-
-
-
-
-const Checkbox = props => {
-    return <input
-        type="checkbox"
-        checked={ props.checked }
-        style={ props.style }
-        onChange={ () => props.onChange(props.id) } />
-}
-
-const MultipleChoice = props => {
-    const comp = []
-    const { choices } = props
-
-    const styles = {
-        wrapper: {
-            display: 'flex',
-        },
-        checkbox: {
-            marginRight: `calc(0.25 * ${appStyles.unitWidth})`,
-        }
-    }
-
-    for(let i in choices) {
-        const checkbox = (
-            <div
-              key={ i }
-              style={ styles.wrapper }>
-              <label style={ styles.label }>
-                <Checkbox
-                    style={ styles.checkbox }
-                    onChange={ () => props.onChange(i) }
-                    checked={ props.answer.has(i) } />
-                  { choices[i] }
-              </label>
-            </div>
-        )
-
-        comp.push(checkbox)
-    }
-
-    return comp
-}
-
-const SubmitButton = props => {
-    const buttonStyle = {
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        border: 'none',
-        color: 'white',
-        padding: `calc(0.25 * ${appStyles.unitWidth}) calc(1.5 * ${appStyles.unitWidth})`,
-        margin: `calc(0.5 * ${appStyles.unitWidth}) calc(0.25 * ${appStyles.unitWidth})`,
-        cursor: 'pointer',
-        borderRadius: '0.5rem',
-        transition: 'background-color 0.1s linear, opacity 0.1s linear',
-        ...props.style,
-    }
-    const styles = {
-        button: {
-            ...buttonStyle,
-            opacity: props.isSubmitting ? 0 : 1,
-        },
-        loader: {
-            height: '3rem',
-        },
-        wrapper: {
-            position: 'absolute',
-        },
-        imageWrapper: {
-            ...buttonStyle,
-            opacity: props.isSubmitting ? 1 : 0,
-            padding: 0,
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            pointerEvents: 'none',
-        },
-    }
-
-    const Button = props => {
-        return <button
-            style={ props.style }
-            onMouseEnter={ props.onMouseEnter }
-            onMouseLeave={ props.onMouseLeave }
-            onClick={ props.onClick }>
-          Submit
-        </button>
-    }
-    const HoverButton = Hover(Button)
-
-    return (
-        <div style={ styles.wrapper }>
-            <HoverButton
-                style={ styles.button }
-                onClick={ props.onClick }
-                hoverStyleDiff={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} />
-            <div style={ styles.imageWrapper }>
-                <img
-                    style={ styles.loader }
-                    src={ novaLoader } />
             </div>
         </div>
     )

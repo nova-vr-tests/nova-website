@@ -3,7 +3,7 @@ import { styles as appStyles } from '../../../constants.js'
 const getStyles = () => {
     const { clientWidth } = document.documentElement
 
-    let formPadding = '0 25%'
+    let formPadding = '0'
     if(clientWidth < appStyles.mediaQueries.phone) {
         formPadding = 0
     }
