@@ -93,9 +93,6 @@ const HomePage = props => {
     return (
         <div
             className={ 'NYEComp--wrapper' }>
-            <div style={ styles.text }>
-              <HomePageContent useWhiteFont={ true } />
-            </div>
             <SidePanelLink
                 onClickCallback={ () => props.goTo('/about-us')}
                 pictoUrl={ aboutUsPicto }
@@ -141,6 +138,7 @@ const HomeMainPanel = () => {
         },
         pWrapper: {
             marginTop: `calc(2 * ${appStyles.unitHeight})`,
+            display: 'none',
         },
         p: {
             maxWidth: `calc(8 * ${appStyles.unitWidth})`,
