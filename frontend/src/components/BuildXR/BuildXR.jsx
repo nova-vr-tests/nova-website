@@ -2,6 +2,7 @@
 import React from 'react'
 import API from '../../API.js'
 import { styles as appStyles } from '../../constants.js'
+import novaLoader from '../img/nova-loader.gif'
 
 const questionTypes = {
     TEXTBOX: 1,
@@ -16,13 +17,24 @@ const questions = [
     },
     {
         type: questionTypes.TEXTAREA,
-        question: 'Why do you want to build',
+        question: 'Why build XR',
         isRequired: true,
+    },
+    {
+        type: questionTypes.TEXTAREA,
+        question: 'Who is the audience',
+    },
+    {
+        type: questionTypes.TEXTAREA,
+        question: 'What industry',
+    },
+    {
+        type: questionTypes.TEXTAREA,
+        question: 'What problem do you want to solve',
     },
     {
         type: questionTypes.MULTI,
         question: 'What is you budget',
-        isRequired: true,
         choices: [
             "< $1.000",
             "$1.000 - $10.000",
@@ -31,16 +43,8 @@ const questions = [
         ]
     },
     {
-        type: questionTypes.MULTI,
-        question: 'What industries interest you',
-        choices: [
-            "Aeronautics",
-            "Sports",
-            "Fashion",
-            "Storytelling",
-            "Marketing",
-            "Other",
-        ]
+        type: questionTypes.TEXTAREA,
+        question: 'Describe your idea',
     },
 ]
 
@@ -161,23 +165,55 @@ const MultipleChoice = props => {
 }
 
 const SubmitButton = props => {
+    const buttonStyle = {
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        border: 'none',
+        color: 'white',
+        padding: `calc(0.25 * ${appStyles.unitWidth}) calc(1.5 * ${appStyles.unitWidth})`,
+        margin: `calc(0.5 * ${appStyles.unitWidth}) calc(0.25 * ${appStyles.unitWidth})`,
+        cursor: 'pointer',
+        borderRadius: '0.5rem',
+        transition: 'opacity 0.1s linear',
+        ...props.style,
+    }
     const styles = {
         button: {
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
-            border: 'none',
-            color: 'white',
-            padding: `calc(0.25 * ${appStyles.unitWidth}) calc(1.5 * ${appStyles.unitWidth})`,
-            margin: `calc(0.5 * ${appStyles.unitWidth}) calc(0.25 * ${appStyles.unitWidth})`,
-            cursor: 'pointer',
-            borderRadius: '0.5rem',
-        }
+            ...buttonStyle,
+            opacity: props.isSubmitting ? 0 : 1,
+        },
+        loader: {
+            height: '3rem',
+        },
+        wrapper: {
+            position: 'absolute',
+        },
+        imageWrapper: {
+            ...buttonStyle,
+            opacity: props.isSubmitting ? 1 : 0,
+            padding: 0,
+            positions: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            display: 'flex',
+            justifyContent: 'center',
+        },
     }
+
     return (
-        <button
-            style={ styles.button }
-            onClick={ props.onClick }>
-            Submit
-        </button>
+        <div style={ styles.wrapper }>
+            <button
+                style={ styles.button }
+                onClick={ props.onClick }>
+                Submit
+            </button>
+            <div style={ styles.imageWrapper }>
+                <img
+                    style={ styles.loader }
+                    src={ novaLoader } />
+            </div>
+        </div>
     )
 }
 
@@ -189,10 +225,12 @@ class BuildXR extends React.Component {
 
         this.state = {
             formState: {},
+            isSubmitting: false,
         }
 
-        this.successMessage = <div>Form <b>submitted</b></div>
+        this.successMessage = "Thanks for taking the first step toward building your XR solution! Soon we will contact you with a personalized email."
         this.errorMessage = "Your form contains error!"
+        this.introText = "Extended Reality may provide a variety of solutions across a range of industries. By answering these five questions, you provide us with tools for applying XR to your needs. Marketing, training, and internal productivity begin to outline the scope of XR applications."
 
         this.createForm = this.createForm.bind(this)
         this.onTextboxChange = this.onTextboxChange.bind(this)
@@ -203,7 +241,7 @@ class BuildXR extends React.Component {
     }
 
     componentWillMount() {
-        this.props.setHeaderText(`We'll help your build XR :)`)
+        this.props.setHeaderText(this.introText)
     }
 
     componentDidMount() {
@@ -346,13 +384,14 @@ class BuildXR extends React.Component {
             form.push(choice)
         }
 
-        form.push(<SubmitButton key={ -1 } onClick={ this.submit } />)
 
         return form
     }
 
     async submit(e) {
         e.preventDefault()
+        this.setState({ isSubmitting: true })
+
         const content =  JSON.stringify(this.state.formState)
 
         const isFormError = this.validateFormState()
@@ -369,17 +408,23 @@ class BuildXR extends React.Component {
                 console.log(e)
             }
         }
+
+        this.setState({ isSubmitting: false })
     }
 
     render() {
         const styles = {
             form: {
                 maxHeight: `calc(12.5 * ${appStyles.unitHeight})`,
-            }
+                position: 'relative',
+            },
         }
         return (
             <form style={ styles.form }>
-              { this.createForm() }
+                { this.createForm() }
+                <SubmitButton
+                    isSubmitting={ this.state.isSubmitting }
+                    onClick={ this.submit } />
             </form>
         )
     }

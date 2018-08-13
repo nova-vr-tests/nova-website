@@ -69,6 +69,7 @@ const getStyles: GetStyles<Props, Styles> = props => {
             height: `calc(13.5 * ${appStyles.unitHeight})`,
             overflowY: 'auto',
             boxSizing: 'border-box',
+            position: 'relative',
         },
         contentEnd: {
             backgroundColor,
