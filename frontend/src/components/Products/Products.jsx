@@ -130,6 +130,16 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
     }
 }
 
+const setupSEOTags = product => {
+    let abstract = product ? product.abstract : ""
+
+    // FB
+    document.querySelector("meta[property='og:title']").content = product ? product.title : ""
+    document.querySelector("meta[property='og:url']").content = window.location.href
+    document.querySelector("meta[property='og:image']").content = product ? product.bg_image : ""
+    document.querySelector("meta[property='og:description']").content = abstract
+}
+
 const initHeader = (updateSidePanelHeader, props) => {
     const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
 
@@ -148,7 +158,7 @@ const initHeader = (updateSidePanelHeader, props) => {
             }
         }
 
-        document.querySelector("meta[property='og:title']").content = product ? product.title : ""
+        setupSEOTags(product)
 
         header = () => <SidePanelProductsHeader
             showArrow={ props.auth && props.drawerPosition < 2 ? false : true }
