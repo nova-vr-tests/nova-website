@@ -360,6 +360,15 @@ const SmartComp = compose(
             if(this.props.routing.location.pathname !== nextProps.routing.location.pathname) {
                 this.props.setIsDescrShown(false)
             }
+
+
+            if(
+                nextProps.routing.location.search === ""
+                && nextProps.routing.location.pathname === "/products"
+                && nextProps.drawerPosition !== 0
+            ) {
+                this.props.setDrawerPosition(0)
+            }
         },
         componentWillUnmount() {
             this.mounted = false
