@@ -36,6 +36,8 @@ import {
     SubmitButton,
 } from '../pages/UI.jsx'
 
+import { filterUrl } from '../../helpers.js'
+
 const mapStateToProps = state => ({
     routing: state.routing,
     pages: state.appReducer.pages,
@@ -50,18 +52,6 @@ const mapDispatchToProps = dispatch => ({
     updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
     updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
 })
-
-const filterUrl = url => {
-    let bgUrl
-
-    try {
-        bgUrl = new URL(url)
-    } catch (e) {
-        return ''
-    }
-
-    return bgUrl.origin + bgUrl.pathname
-}
 
 const Products = props => {
     const styles = getStyles(props)
@@ -131,13 +121,11 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
 }
 
 const setupSEOTags = product => {
-    let abstract = product ? product.abstract : ""
-
     // FB
     document.querySelector("meta[property='og:title']").content = product ? product.title : ""
     document.querySelector("meta[property='og:url']").content = window.location.href
     document.querySelector("meta[property='og:image']").content = product ? filterUrl(product.bg_image) : ""
-    document.querySelector("meta[property='og:description']").content = abstract
+    document.querySelector("meta[property='og:description']").content = product ? product.abstract : ""
 }
 
 const initHeader = (updateSidePanelHeader, props) => {

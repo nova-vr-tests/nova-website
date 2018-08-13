@@ -14,3 +14,15 @@ export function getCookie(name) {
     }
     return cookieValue
 }
+
+export const filterUrl = url => {
+    let bgUrl
+
+    try {
+        bgUrl = new URL(url)
+    } catch (e) {
+        return ''
+    }
+
+    return bgUrl.origin + bgUrl.pathname
+}

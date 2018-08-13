@@ -21,7 +21,6 @@ import BlogPostContent from '../MarkdownParser/MarkdownParser.jsx'
 
 import Picto from './HeaderPicto.jsx'
 
-
 const mapStateToProps = state => ({
     routing: state.routing,
     currentPage: state.appReducer.currentPage,
@@ -161,6 +160,17 @@ Blog.defaultProps = {
     addTail: true,
 }
 
+
+const setupSEOTags = (product, imgUrl) => {
+    const content = product ? (product.content ? product.content.substring(0, 100) + "..." : "") : ""
+
+    // FB
+    document.querySelector("meta[property='og:title']").content = product ? product.title : ""
+    document.querySelector("meta[property='og:url']").content = window.location.href
+    document.querySelector("meta[property='og:image']").content = product ? imgUrl : ""
+    document.querySelector("meta[property='og:description']").content = content
+}
+
 let postId = 1
 const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     const restApi = new API()
@@ -175,8 +185,12 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
         blogPost = await restApi.fetchDetail(fetchUrl, postId)
     }
 
+
     if(that.mounted) {
         setBlogPost(blogPost)
+
+        const seoImgUrl = window.location.origin + that.props.pages[that.props.currentPage].layers[0].imgUrl
+        setupSEOTags(blogPost, seoImgUrl)
     }
 }
 
