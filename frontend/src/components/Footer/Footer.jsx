@@ -18,6 +18,7 @@ import { Svg } from '../Header/Header.jsx'
 
 import aboutBg from '../img/footerBgs/contact.png'
 import loginBg from '../img/footerBgs/login.png'
+import buildXRBg from '../img/footerBgs/build-xr.png'
 
 import type {
     ReduxState,
@@ -117,7 +118,7 @@ const FooterDumb: React.StatelessFunctionalComponent<Props> = props => {
             </div>
             <div style={ styles.quickLinks }>
               <span
-                onClick={ () => openFooter(footerPage.BUILDXR, aboutBg) }
+                onClick={ () => openFooter(footerPage.BUILDXR, buildXRBg) }
                 style={{
                     color: props.currentFooterPage === footerPage.BUILDXR && props.isFooterOpened ? 'black' : 'rgba(0, 0, 0, 0.4)',
                     transition: 'color 0.1s linear',

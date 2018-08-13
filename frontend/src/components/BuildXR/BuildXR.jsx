@@ -191,7 +191,7 @@ class BuildXR extends React.Component {
             formState: {},
         }
 
-        this.successMessage = "Form submitted"
+        this.successMessage = <div>Form <b>submitted</b></div>
         this.errorMessage = "Your form contains error!"
 
         this.createForm = this.createForm.bind(this)
