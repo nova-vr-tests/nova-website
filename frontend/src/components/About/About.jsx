@@ -260,6 +260,18 @@ class ContactContent extends React.Component {
     }
 }
 
+class LoginContent extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    componentDidMount() {
+        this.props.setHeaderText('')
+    }
+    render() {
+        return <Login />
+    }
+}
+
 // const loginContent = <Login />
 // 
 // const buildXRContent = <BuildXR />
@@ -277,7 +289,7 @@ text[footerPage.CONTACT] = {
 
 text[footerPage.LOGIN] = {
     title: 'Login',
-    content: Login
+    content: LoginContent,
 }
 
 text[footerPage.BUILDXR] = {
