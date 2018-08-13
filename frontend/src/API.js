@@ -92,7 +92,6 @@ class API {
                 json: content
             })
         }
-        console.log('yo')
         return await fetch(this.urls.buildXR, options)
     }
 }

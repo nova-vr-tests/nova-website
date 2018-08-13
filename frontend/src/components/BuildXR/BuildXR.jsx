@@ -6,10 +6,15 @@ import { styles as appStyles } from '../../constants.js'
 const questionTypes = {
     TEXTBOX: 1,
     MULTI: 2,
+    TEXTAREA: 3,
 }
 const questions = [
     {
         type: questionTypes.TEXTBOX,
+        question: `What's your email`,
+    },
+    {
+        type: questionTypes.TEXTAREA,
         question: 'Why do you want to build',
     },
     {
@@ -45,6 +50,14 @@ const Textbox = props => {
         type="textbox"
         onChange={ e => props.onChange(e.target.value) }
         value={ props.value } />
+}
+
+const TextArea = props => {
+    return <textarea
+        cols="40"
+        rows="5"
+    onChange={ e => props.onChange(e.target.value) }
+        value={ props.value }></textarea>
 }
 
 const Checkbox = props => {
@@ -145,7 +158,20 @@ class BuildXR extends React.Component {
         const formState = questions
         for(let q of formState) {
             // initing answers
-            q.answer = q.type === questionTypes.TEXTBOX ? '' : new Set()
+            switch(q.type) {
+            case questionTypes.TEXBOX:
+                q.answer = ''
+                break
+            case questionTypes.TEXTAREA:
+                q.answer = ''
+                break
+            case questionTypes.MULTI:
+                q.answer = new Set()
+                break
+            default:
+                q.answer = ''
+                break
+            }
         }
 
         this.setState({ formState })
@@ -181,18 +207,32 @@ class BuildXR extends React.Component {
             const question = <Question key={ i + formState.length } title={ formState[i].question } />
 
             let choice
-            if(type === questionTypes.TEXTBOX) {
-                const value = formState[i].answer
+            let value
+            switch(type) {
+            case questionTypes.TEXTBOX:
+                value = formState[i].answer
                 choice = <Textbox
                     onChange={ v => this.onTextboxChange(i, v) }
                     value={ value }
                     key={ i } />
-            } else {
+                break
+            case questionTypes.MULTI:
                 choice = <MultipleChoice
                     key={ i }
                     onChange={ j => this.onCheckboxChange(i, j) }
                     answer={ formState[i].answer }
                     choices={ formState[i].choices } />
+                break
+            case questionTypes.TEXTAREA:
+                value = formState[i].answer
+                choice = <TextArea
+                    key={ i }
+                    onChange={ j => this.onTextboxChange(i, j) }
+                    value={ value } />
+                break
+            default:
+                choice = <div key={ i }></div>
+                break
             }
             form.push(question)
             form.push(choice)
@@ -217,8 +257,14 @@ class BuildXR extends React.Component {
     }
 
     render() {
+        const styles = {
+            form: {
+                maxHeight: `calc(12.5 * ${appStyles.unitHeight})`,
+                overflowY: 'auto',
+            }
+        }
         return (
-            <form>
+            <form style={ styles.form }>
               { this.createForm() }
             </form>
         )
