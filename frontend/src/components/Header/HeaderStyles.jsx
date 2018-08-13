@@ -18,7 +18,7 @@ type Styles = {
     svg: CSSStyleDeclaration,
 }
 
-const getStyles: GetStyles<Props, Styles> = props => {
+const getStyles: GetStyles<Props, Styles> = () => {
     return {
         wrapper: {
             position: 'absolute',
