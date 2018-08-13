@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 
-import intro from '../img/default.jpg'
+import intro from '../img/home.png'
 
 import productsBg from '../img/design/3.png'
 import publicationsBg from '../img/publicationsBg.png'

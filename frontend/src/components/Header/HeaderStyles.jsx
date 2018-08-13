@@ -18,7 +18,7 @@ type Styles = {
     svg: CSSStyleDeclaration,
 }
 
-const getStyles: GetStyles<Props, Styles> = () => {
+const getStyles: GetStyles<Props, Styles> = (props) => {
     return {
         wrapper: {
             position: 'absolute',
@@ -49,6 +49,7 @@ const getStyles: GetStyles<Props, Styles> = () => {
             zIndex: 1,
             transition: 'transform ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type + ', opacity ' + appStyles.sidebar.hoverTransition.length + appStyles.sidebar.hoverTransition.type,
             cursor: 'pointer',
+            opacity: (props.currentPath === '/' && !props.isFooterOpened) && props.windowWidth > appStyles.mediaQueries.tablet ? 0 : 1
         },
         logoSidebarClosed: {
             transform: 'translateX(calc(-' + appStyles.unitHeight + ' / 2))',

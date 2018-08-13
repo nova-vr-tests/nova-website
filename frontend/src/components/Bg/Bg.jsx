@@ -14,7 +14,7 @@ import {
     resetCacheLayers,
 } from '../../reducer/actions/Bg.js'
 
-import intro from '../img/default.jpg'
+import intro from '../img/home.png'
 
 import type {
     ReduxState,
