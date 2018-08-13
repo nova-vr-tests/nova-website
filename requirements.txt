@@ -6,6 +6,8 @@ Django==1.11.3
 django-filter==1.0.4
 django-letsencrypt==3.0.0
 django-markdownx==2.0.22
+django-prerenderio==17.6.1
+django-seo-js==0.3.1
 django-storages==1.6.5
 djangorestframework==3.6.3
 gunicorn==19.7.1
@@ -22,6 +24,7 @@ psycopg2==2.7.1
 ptyprocess==0.5.2
 Pygments==2.2.0
 pytz==2017.3
+requests==2.2.1
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.3.2

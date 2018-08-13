@@ -54,7 +54,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_prerenderio.middleware.PreRender',
 ]
+PRERENDER_TOKEN = os.environ.get('PRERENDER_TOKEN', '')
+PRERENDER_PATHS_EXACT = ("/",)
+PRERENDER_PATHS_STARTSWITH = ("/page/", "/news/")
 
 ROOT_URLCONF = 'novawebsite.urls'
 
