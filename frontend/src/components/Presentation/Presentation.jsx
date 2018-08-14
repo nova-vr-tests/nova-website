@@ -236,10 +236,13 @@ class Presentation extends React.Component<Props, State> {
 
         this.updateLinePosition(nextProps)
 
+        if(this.props.currentPage !== nextProps.currentPage) {
+            this.updateMainPanel(nextProps)
+        }
+
         if(this.props.currentPage !== nextProps.currentPage && window.location.search === "") {
             const { h1, layers } = nextProps.pages[nextProps.currentPage]
             setupSEOTags(h1, window.location.href, window.location.origin + layers[0].imgUrl)
-            this.updateMainPanel(nextProps)
         } else if (nextProps.pathname === "/") {
             const { h1, layers } = nextProps.pages[nextProps.currentPage]
             setupSEOTags(h1, window.location.href, window.location.origin + layers[0].imgUrl)
@@ -256,8 +259,8 @@ class Presentation extends React.Component<Props, State> {
         if(!pages[currentPage].overrideMainPanel) {
             if(pages[currentPage].mainPanelContent) {
                 this.props.updateMainPanelContent(pages[currentPage].mainPanelContent)
-                this.props.updateMainPanelIsOpened(false)
 
+                this.props.updateMainPanelIsOpened(true)
             } else {
                 this.props.updateMainPanelIsOpened(false)
             }
