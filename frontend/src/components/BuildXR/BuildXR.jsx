@@ -15,11 +15,7 @@ const questionTypes = {
     TEXTAREA: 3,
 }
 const questions = [
-    {
-        type: questionTypes.TEXTBOX,
-        question: `What's your email`,
-        isRequired: true,
-    },
+
     {
         type: questionTypes.TEXTAREA,
         question: 'Why build XR',
@@ -38,18 +34,17 @@ const questions = [
         question: 'What problem do you want to solve',
     },
     {
-        type: questionTypes.MULTI,
+        type: questionTypes.TEXTBOX,
         question: 'What is you budget',
-        choices: [
-            "< $1.000",
-            "$1.000 - $10.000",
-            "$10.000 - $100.000",
-            "$100.000 +",
-        ]
     },
     {
         type: questionTypes.TEXTAREA,
         question: 'Describe your idea',
+    },
+    {
+        type: questionTypes.TEXTBOX,
+        question: `What's your email`,
+        isRequired: true,
     },
 ]
 
