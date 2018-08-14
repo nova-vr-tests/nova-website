@@ -234,7 +234,8 @@ class Presentation extends React.Component<Props, State> {
 
         this.updateLinePosition(nextProps)
 
-        const setupSEOTags = (title, url, imgUrl, content) => {
+        const defaultContent= "We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry."
+        const setupSEOTags = (title, url, imgUrl, content = defaultContent) => {
             // FB
             document.querySelector("meta[property='og:title']").content = title
             document.querySelector("meta[property='og:url']").content = url
