@@ -173,6 +173,18 @@ const HOC = compose(
 
                 this.props.resetCacheLayers()
             }
+
+            if(!this.props.pages.length && nextProps.pages.length) {
+                const { layers } = nextProps.pages[nextProps.currentPage]
+
+                if(this.props.isFrontLayerShown) {
+                    this.props.setBackLayers(layers)
+                    this.props.setIsFrontLayerShown(false)
+                } else {
+                    this.props.setFrontLayers(layers)
+                    this.props.setIsFrontLayerShown(true)
+                }
+            }
         }
     }),
     pure,
