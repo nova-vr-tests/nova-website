@@ -240,6 +240,9 @@ class Presentation extends React.Component<Props, State> {
             const { h1, layers } = nextProps.pages[nextProps.currentPage]
             setupSEOTags(h1, window.location.href, window.location.origin + layers[0].imgUrl)
             this.updateMainPanel(nextProps)
+        } else if (nextProps.pathname === "/") {
+            const { h1, layers } = nextProps.pages[nextProps.currentPage]
+            setupSEOTags(h1, window.location.href, window.location.origin + layers[0].imgUrl)
         }
 
         this.updateSlideHeaderOverride(nextProps)
