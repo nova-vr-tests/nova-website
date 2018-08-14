@@ -36,7 +36,10 @@ import {
     SubmitButton,
 } from '../pages/UI.jsx'
 
-import { filterUrl } from '../../helpers.js'
+import {
+    filterUrl,
+    setupSEOTags,
+} from '../../helpers.js'
 
 const mapStateToProps = state => ({
     routing: state.routing,
@@ -120,14 +123,6 @@ const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
     }
 }
 
-const setupSEOTags = product => {
-    // FB
-    document.querySelector("meta[property='og:title']").content = product ? product.title : ""
-    document.querySelector("meta[property='og:url']").content = window.location.href
-    document.querySelector("meta[property='og:image']").content = product ? filterUrl(product.bg_image) : ""
-    document.querySelector("meta[property='og:description']").content = product ? product.abstract : ""
-}
-
 const initHeader = (updateSidePanelHeader, props) => {
     const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
 
@@ -149,7 +144,12 @@ const initHeader = (updateSidePanelHeader, props) => {
         // don't update seo text for particular entry if on products home
         // Presentation.jsx will take over
         if(window.location.search !== "") {
-            setupSEOTags(product)
+            const title = product ? product.title : ""
+            const url = window.location.href
+            const imgUrl = product ? filterUrl(product.bg_image) : ""
+            const content = product ? product.abstract : ""
+            console.log(imgUrl, 'img url')
+            setupSEOTags(title, url, imgUrl, content)
         }
 
         header = () => <SidePanelProductsHeader

@@ -11,6 +11,8 @@ import {
     updateTransitionProgress,
 } from '../../reducer/actions/Bg.js'
 
+import { setupSEOTags } from '../../helpers.js'
+
 import {
     updateLinePosition,
     updateAppTheme,
@@ -234,16 +236,7 @@ class Presentation extends React.Component<Props, State> {
 
         this.updateLinePosition(nextProps)
 
-        const defaultContent= "We provide XR Media solutions for businesses. Our work includes sourcing development, production management, and market entry."
-        const setupSEOTags = (title, url, imgUrl, content = defaultContent) => {
-            // FB
-            document.querySelector("meta[property='og:title']").content = title
-            document.querySelector("meta[property='og:url']").content = url
-            document.querySelector("meta[property='og:image']").content = imgUrl
-            document.querySelector("meta[property='og:description']").content = content
-        }
-
-        if(this.props.currentPage !== nextProps.currentPage) {
+        if(this.props.currentPage !== nextProps.currentPage && window.location.search === "") {
             const { h1, layers } = nextProps.pages[nextProps.currentPage]
             setupSEOTags(h1, window.location.href, window.location.origin + layers[0].imgUrl)
             this.updateMainPanel(nextProps)

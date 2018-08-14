@@ -21,6 +21,8 @@ import BlogPostContent from '../MarkdownParser/MarkdownParser.jsx'
 
 import Picto from './HeaderPicto.jsx'
 
+import { setupSEOTags } from '../../helpers.js'
+
 const mapStateToProps = state => ({
     routing: state.routing,
     currentPage: state.appReducer.currentPage,
@@ -161,16 +163,6 @@ Blog.defaultProps = {
 }
 
 
-const setupSEOTags = (product, imgUrl) => {
-    const content = product ? (product.content ? product.content.substring(0, 100) + "..." : "") : ""
-
-    // FB
-    document.querySelector("meta[property='og:title']").content = product ? product.title : ""
-    document.querySelector("meta[property='og:url']").content = window.location.href
-    document.querySelector("meta[property='og:image']").content = product ? imgUrl : ""
-    document.querySelector("meta[property='og:description']").content = content
-}
-
 let postId = 1
 const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     const restApi = new API()
@@ -189,12 +181,15 @@ const fetchBlogPost = async (fetchUrl, setBlogPost, that) => {
     if(that.mounted) {
         setBlogPost(blogPost)
 
-        const seoImgUrl = window.location.origin + that.props.pages[that.props.currentPage].layers[0].imgUrl
 
         // don't update seo text for particular entry if on products home
         // Presentation.jsx will take over
-        if(window.location.search !== "") {
-            setupSEOTags(blogPost, seoImgUrl)
+        if(window.location.pathname !== "/products") {
+            const content = blogPost ? (blogPost.content ? blogPost.content.substring(0, 100) + "..." : "") : ""
+            const title = blogPost ? blogPost.title : ""
+            const url = window.location.href
+            const imgUrl = window.location.origin + that.props.pages[that.props.currentPage].layers[0].imgUrl
+            setupSEOTags(title, url, imgUrl, content)
         }
     }
 }
