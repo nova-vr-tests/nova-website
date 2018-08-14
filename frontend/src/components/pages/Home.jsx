@@ -99,10 +99,10 @@ const HomePage = props => {
                 isSquarePicto={ true }
                 title="Who We Are" />
             <SidePanelLink
-                onClickCallback={ () => props.goTo('/products') }
+                onClickCallback={ () => props.goTo('/lab-live?post=21') }
                 pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
                 isSquarePicto={ true }
-                title="What We Do" />
+                title="Design in VR" />
             <SidePanelLink
               onClickCallback={ () => { props.updateIsFooterOpened(true); props.updateCurrentFooterPage(4) } }
                 pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
