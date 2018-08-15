@@ -14,7 +14,9 @@ import { styles as appStyles } from '../../constants.js'
 import SidePanelProductsHeader from '../UI/SidePanelProductsHeader.jsx'
 
 import novaLogo from '../img/home/logo-home-picto.png'
-import aboutUsPicto from '../img/about-us-picto.png'
+import whoWeArePicto from '../img/home-squares/who-we-are.png'
+import whatWeDoPicto from '../img/home-squares/what-we-do.png'
+import BuildXRPicto from '../img/home-squares/build.png'
 
 import { ContentWrapper } from '../Blog/Blog.jsx'
 
@@ -95,18 +97,18 @@ const HomePage = props => {
             className={ 'NYEComp--wrapper' }>
             <SidePanelLink
                 onClickCallback={ () => props.goTo('/about-us')}
-                pictoUrl={ aboutUsPicto }
+                pictoUrl={ whoWeArePicto }
                 isSquarePicto={ true }
                 title="Who We Are" />
             <SidePanelLink
-                onClickCallback={ () => props.goTo('/lab-live?post=21') }
-                pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
+                onClickCallback={ () => props.goTo('/products') }
+                pictoUrl={ whatWeDoPicto }
                 isSquarePicto={ true }
-                title="Design in VR" />
+                title="What We Do" />
             <SidePanelLink
               onClickCallback={ () => { props.updateIsFooterOpened(true); props.updateCurrentFooterPage(4) } }
-                pictoUrl='https://novaxrmedia.s3.us-east-2.amazonaws.com/products_pics/4_Square_NYE.png'
                 isSquarePicto={ true }
+                pictoUrl={ BuildXRPicto }
                 title="Build XR" />
             <div style={ styles.bottom }>
             </div>
