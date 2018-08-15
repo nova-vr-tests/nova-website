@@ -1,58 +1,17 @@
 * Frontend
 ** Blog style pages
 *** DONE fetch data from API                                      :blogstyle:
-    CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-04 Sun>
 *** DONE show data in blog style comp                             :blogstyle:
-    CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-04 Sun>
 
 ** blog posts
 *** fetch post                                                         :blog:
-    SCHEDULED: <2018-01-05 Fri>
 *** post list                                                          :blog:
-    SCHEDULED: <2018-01-05 Fri>
 *** show post                                                          :blog:
-    SCHEDULED: <2018-01-05 Fri>
-
 *** responsive
-**** DONE BlogListWrapper
-     CLOSED: [2018-02-20 Tue 21:06]
-- contains BlogList.jsx
-- when clicking on a block:
-  + BlogList disapears to left of screen
-  + BlogPost appears from right of screen
 ** pages
-*** side panel
-**** DONE create responsive styling comp                         :pages:debt:
-     CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-04 Thu>
-**** DONE create new side panel comp  Cannot select individual files in Google Docs/Drive
-     CLOSED: [2018-01-04 Thu 16:34] SCHEDULED: <2018-01-04 Thu>
-**** DONE mobile                                                      :pages:
-     CLOSED: [2018-01-07 Sun 14:30] SCHEDULED: <2018-01-04 Thu>
-**** DONE remove scroll event when footer is up                       :pages:
-     CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-05 Mon>
-**** DONE fix scroll issue when dreamscaping                          :pages:
-     CLOSED: [2018-01-07 Sun 14:32] SCHEDULED: <2018-01-04 Thu>
-**** DONE ease-out animation timing function on toggle sidebar        :pages:
-     CLOSED: [2018-02-20 Tue 21:06] SCHEDULED: <2018-02-04 Sun>
-
 ** BG
-*** DONE redo data structure                                        :bg:debt:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-04 Thu>
-*** DONE calc based on scroll height                                    :bg:
-     CLOSED: [2018-01-04 Thu 16:41] SCHEDULED: <2018-01-04 Thu>
-
-** Footer
-*** DONE update header opacity when footer is up                      :pages:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-11 Thu>
-*** DONE redo footer alignments                                       :pages:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-11 Thu>
 
 * Backend
-** blog posts
-*** DONE admin new / edit blog posts with wiswig markdown              :blog:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
-*** DONE rest api                                                      :blog:
-    CLOSED: [2018-01-24 Wed 14:48] SCHEDULED: <2018-01-05 Fri>
 
 * Other
 *** Prince XML
