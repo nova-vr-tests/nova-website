@@ -184,6 +184,7 @@ const createList = props => {
         const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
 
         const onClickCallback = () => {
+
             props.goTo(`${window.location.pathname}?post=${e.id}`)
             props.updateMainPanel(() => <div></div>)
         }

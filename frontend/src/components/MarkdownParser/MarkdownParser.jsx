@@ -104,7 +104,7 @@ const BlogPostContent = props => {
     const ImageAutoResize = PassWindowWidth(Img)
 
     const NovaLink = props => {
-        if(props.href.includes(window.location.origin)) {
+        if(props.href.includes(window.location.origin) || props.href[0] === '/') {
             const getDiff = (string, diffBy) => string.split(diffBy).join('')
             return <Link to={ getDiff(props.href, window.location.origin) } style={ styles.link }>{ props.children }</Link>
         } else {
