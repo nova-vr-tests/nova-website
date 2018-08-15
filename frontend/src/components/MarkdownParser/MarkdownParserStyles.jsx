@@ -123,6 +123,7 @@ const getDefaultStyles = (props) => {
     }
 
     const link = {
+        cursor: 'pointer',
         textDecoration: 'none',
         fontStyle: 'italic',
         color: linkColor,

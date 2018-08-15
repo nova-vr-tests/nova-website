@@ -14,6 +14,8 @@ import {
     updateImgViewerIsOpened,
 } from '../../reducer/actions/App.js'
 
+import { Link } from 'react-router-dom'
+
 const contentReduxState = () => ({
 })
 
@@ -101,6 +103,18 @@ const BlogPostContent = props => {
     }
     const ImageAutoResize = PassWindowWidth(Img)
 
+    const NovaLink = props => {
+        if(props.href.includes(window.location.origin)) {
+            const getDiff = (string, diffBy) => string.split(diffBy).join('')
+            return <Link to={ getDiff(props.href, window.location.origin) } style={ styles.link }>{ props.children }</Link>
+        } else {
+            return <a
+                target="_blank"
+                href={ props.href }
+                style={ styles.link }>{ props.children }</a>
+        }
+    }
+
 
     const renderers = {
         root: _props => <div
@@ -112,10 +126,7 @@ const BlogPostContent = props => {
                 <table className="zui-table zui-table-rounded" style={ styles.table }>{ props.children }</table>
             </div>,
         link: props =>
-            <a
-                href={ props.href }
-                target="_blank"
-                style={ styles.link }>{ props.children }</a>,
+            <NovaLink {...props} />,
         list: props =>
             <ul style={ styles.list }>{ props.children }</ul>,
         listItem: props =>
