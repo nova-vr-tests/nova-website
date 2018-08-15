@@ -141,10 +141,11 @@ const HOC = compose(
     ),
     lifecycle({
         componentWillUpdate(nextProps) {
+            // presentation page change backgrounds
             if(
-                (nextProps.currentPage !== this.props.currentPage
-                    && nextProps.routing.location.search === "")
+                (nextProps.currentPage !== this.props.currentPage)
                 || (nextProps.routing.location.search === "" && this.props.routing.location.search !== "")
+                || (nextProps.routing.location.search !== "" && this.props.routing.location.search === "")
             ) {
                 const { layers } = nextProps.pages[nextProps.currentPage]
 
@@ -157,6 +158,7 @@ const HOC = compose(
                 }
             }
 
+            // products bakgrounds
             if(
                 nextProps.cacheLayers.length
                 && nextProps.routing.location.search !== ""
