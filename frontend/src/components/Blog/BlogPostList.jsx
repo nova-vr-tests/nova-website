@@ -191,7 +191,15 @@ const SmartComp = compose(
                 }
 
                 initHeader(nextProps.updateSidePanelHeader, nextProps)
+
+
+                if(nextProps.routing.location.search === "" || nextProps.drawerPosition < 1) {
+                    this.props.updateMainPanelIsOpened(false)
+                } else {
+                    this.props.updateMainPanelIsOpened(true)
+                }
             }
+
         },
         componentWillUnmount() {
             this.mounted = false

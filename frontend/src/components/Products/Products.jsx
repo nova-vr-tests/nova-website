@@ -148,7 +148,6 @@ const initHeader = (updateSidePanelHeader, props) => {
             const url = window.location.href
             const imgUrl = product ? filterUrl(product.bg_image) : ""
             const content = product ? product.abstract : ""
-            console.log(imgUrl, 'img url')
             setupSEOTags(title, url, imgUrl, content)
         }
 
