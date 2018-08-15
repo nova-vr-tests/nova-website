@@ -254,6 +254,8 @@ const getSidebarSubSectionStyles: GetStyles<void, SidebarSubSectionStyles> = () 
                 alignItems: 'center',
                 flex: 1,
                 transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
+                color: 'inherit',
+                textDecoration: 'none',
             },
             link: {
                 minHeight: 'calc(' + constants.styles.sidebar.subSectionHeightFactor + ' * ' + unitHeight + ')',
@@ -262,6 +264,8 @@ const getSidebarSubSectionStyles: GetStyles<void, SidebarSubSectionStyles> = () 
                 alignItems: 'center',
                 transition: 'background-color ' + constants.styles.sidebar.hoverTransition.length + constants.styles.sidebar.hoverTransition.type,
                 cursor: 'pointer',
+                color: 'inherit',
+                textDecoration: 'none',
             },
         },
         subSubSection:{

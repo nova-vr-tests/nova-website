@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { connect }from 'react-redux'
-import { push } from 'react-router-redux'
 import './styles/Sidebar.css'
 import {
     initSidebarLinkStates,
@@ -31,6 +30,9 @@ import getStyles, {
     getSidebarSectionStyles,
     getSidebarSubSectionStyles,
 } from './SidebarStyles.jsx'
+
+
+import { Link } from 'react-router-dom'
 
 import type {
     MapStateToProps,
@@ -72,12 +74,13 @@ const SidebarSubSection: React.StatelessFunctionalComponent<SidebarSubSectionPro
         return (
             <div
                 style={ {...styles.subSection.wrapper, ...(props.isOpened ? styles.subSection.opened : {})} }>
-                    <div
-                        style={ styles.subSection.title }
+                    <Link
+                        onClick={ () => goTo() }
+                        to={ subSection.paths[0] }
                         className={ !props.isOpened ? "sidebar-subsection--hover " + props.appTheme : "sidebar-subsection--active " + props.appTheme }
-                        onClick={ () => goTo(subSection.paths[0]) }>
+                        style={ styles.subSection.title }>
                         { subSection.title }
-                    </div>
+                    </Link>
                     <div
                         style={ {...styles.subSubSection.wrapper, ...(props.isOpened ? styles.subSubSection.opened: {})} }>
                         { components }
@@ -86,12 +89,19 @@ const SidebarSubSection: React.StatelessFunctionalComponent<SidebarSubSectionPro
         )
     } else {
         // Return sub section as link
-        return <div
-                   className={ "sidebar-subsection--hover " + props.appTheme }
-                   onClick={ () => goTo(subSection.paths[0]) }
-                   style={ styles.subSection.link }>
-                   { subSection.title }
-               </div>
+        return <Link
+            onClick={ () => goTo() }
+            to={ subSection.paths[0] }
+            className={ "sidebar-subsection--hover " + props.appTheme }
+            style={ styles.subSection.link }>
+                { subSection.title }
+            </Link>
+        // return <div
+        //            className={ "sidebar-subsection--hover " + props.appTheme }
+        //            onClick={ () => goTo(subSection.paths[0]) }
+        //            style={ styles.subSection.link }>
+        //            { subSection.title }
+        //        </div>
     }
 }
 
@@ -228,7 +238,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
 
 const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(dispatch) {
 	return {
-    goTo: page => { dispatch(push(page)); dispatch(updateIsFooterOpened(false)) },
+    goTo: () => { dispatch(updateIsFooterOpened(false)) },
     initLinkStates: links => dispatch(initSidebarLinkStates(links)),
     toggleSection: i => dispatch(toggleSidebarSection(i)),
     toggleSubSection: (i, j) => dispatch(toggleSidebarSubSection(i, j)),
