@@ -123,7 +123,11 @@ const createList = props => {
 
         const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
 
-        const onClickCallback = () => props.goTo(`${window.location.pathname}?post=${e.id}`)
+        // const onClickCallback = () => props.goTo(`${window.location.pathname}?post=${e.id}`)
+        const postUrl = {
+            pathname: window.location.pathname,
+            search: `?post=${e.id}`,
+        }
 
         const pictoUrl = new URL(e.picto)
         const filteredPictoUrl = pictoUrl.origin + pictoUrl.pathname
@@ -131,7 +135,7 @@ const createList = props => {
             <SidePanelLink
                 key={ i }
                 isSquarePicto={ true }
-                onClickCallback={ onClickCallback }
+                to={ postUrl }
                 pictoUrl={ filteredPictoUrl }
                 isActive={ active }
                 title={ e.title } />

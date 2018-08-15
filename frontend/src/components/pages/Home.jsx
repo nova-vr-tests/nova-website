@@ -96,17 +96,17 @@ const HomePage = props => {
         <div
             className={ 'NYEComp--wrapper' }>
             <SidePanelLink
-                onClickCallback={ () => props.goTo('/about-us')}
+                to={{ pathname: '/about-us', search: ''}}
                 pictoUrl={ whoWeArePicto }
                 isSquarePicto={ true }
                 title="Who We Are" />
             <SidePanelLink
-                onClickCallback={ () => props.goTo('/products') }
+                to={{ pathname: '/products', search: ''}}
                 pictoUrl={ whatWeDoPicto }
                 isSquarePicto={ true }
                 title="What We Do" />
             <SidePanelLink
-              onClickCallback={ () => { props.updateIsFooterOpened(true); props.updateCurrentFooterPage(4) } }
+                onClickCallback={ () => { props.updateIsFooterOpened(true); props.updateCurrentFooterPage(4) } }
                 isSquarePicto={ true }
                 pictoUrl={ BuildXRPicto }
                 title="Build XR" />

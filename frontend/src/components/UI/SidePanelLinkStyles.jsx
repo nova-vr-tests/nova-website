@@ -47,6 +47,7 @@ const getStyles = props => {
             backgroundColor,
             position: 'relative',
             color,
+            textDecoration: 'none'
         },
         activeLink: {
             backgroundColor,

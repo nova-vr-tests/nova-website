@@ -2,7 +2,7 @@ import React from 'react'
 
 import getStyles from './SidePanelLinkStyles.jsx'
 
-
+import { Link } from 'react-router-dom'
 
 const SidePanelLink = props => {
     const styles = getStyles(props)
@@ -12,10 +12,18 @@ const SidePanelLink = props => {
         ...(props.isActive ? styles.activeLink : {})
     }
 
+    let Wrapper = props => <div { ...props }>{ props.children }</div>
+
+    if(props.to.pathname != '') {
+        console.log(props.to)
+        Wrapper = props => <Link { ...props } to={ props.to } onClick={ () => {} }>{props.children}</Link>
+    }
+
     return (
-        <div
+        <Wrapper
             style={ wrapperStyle }
             onClick={ props.onClickCallback }
+            to={ props.to }
             className="product-link--wrapper">
             <img
                 src={ props.pictoBgUrl }
@@ -37,11 +45,15 @@ const SidePanelLink = props => {
                     ''
                 }
             </div>
-        </div>
+        </Wrapper>
     )
 }
 
 SidePanelLink.defaultProps = {
+    to: {
+        pathname: '',
+        search: '',
+    },
     onClickCallback: () => {},
     pictoUrl: '',
     pictoBgUrl: '',
