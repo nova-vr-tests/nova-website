@@ -74,8 +74,7 @@ const AppDumb = props => (
       className={
         "router--wrapper " +
         (props.introKeyframe > INTRO_FINISHED ? "transparent" : "")
-      }
-    >
+      }>
       <Header />
       <Bg />
       <Sidebar />
