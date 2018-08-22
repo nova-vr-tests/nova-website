@@ -18,9 +18,7 @@ const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
   };
 };
 
-const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function(
-  dispatch,
-) {
+const mapDispatchToProps: MapDispatchToProps<ReduxDispatch> = function() {
   // eslint-disable-line no-unused-vars
   return {};
 };
