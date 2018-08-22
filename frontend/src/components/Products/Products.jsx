@@ -1,575 +1,638 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { styles as appStyles } from '../../constants.js'
+import React from "react";
+import {connect} from "react-redux";
+import {styles as appStyles} from "../../constants.js";
+import {compose, withState, lifecycle} from "recompose";
+
+import API from "../../API.js";
+
+import {updateCacheLayers} from "../../reducer/actions/Bg.js";
 import {
-    compose,
-    withState,
-    lifecycle,
-} from 'recompose'
+  updateMainPanelContent,
+  updateMainPanelIsOpened,
+  updateSidePanelHeader,
+} from "../../reducer/actions/App.js";
 
-import API from '../../API.js'
+import {push} from "react-router-redux";
 
-import { updateCacheLayers } from '../../reducer/actions/Bg.js'
-import {
-    updateMainPanelContent,
-    updateMainPanelIsOpened,
-    updateSidePanelHeader,
-} from '../../reducer/actions/App.js'
+import getStyles from "./ProductsStyles.jsx";
 
+import SidePanelDrawer from "../UI/SidePanelDrawer.jsx";
+import SidePanelLink from "../UI/SidePanelLink.jsx";
+import SidePanelProductsHeader from "../UI/SidePanelProductsHeader.jsx";
+import BlogPost from "../Blog/Blog.jsx";
 
-import { push } from 'react-router-redux'
+import URLSearchParams from "url-search-params";
 
-import getStyles, {
-} from './ProductsStyles.jsx'
+import contactPicto from "../img/Contact.png";
 
-import SidePanelDrawer from '../UI/SidePanelDrawer.jsx'
-import SidePanelLink from '../UI/SidePanelLink.jsx'
-import SidePanelProductsHeader from '../UI/SidePanelProductsHeader.jsx'
-import BlogPost from '../Blog/Blog.jsx'
+import {Textbox, SubmitButton} from "../pages/UI.jsx";
 
-import URLSearchParams from 'url-search-params'
-
-import contactPicto from '../img/Contact.png'
-
-import {
-    Textbox,
-    SubmitButton,
-} from '../pages/UI.jsx'
-
-import {
-    filterUrl,
-    setupSEOTags,
-} from '../../helpers.js'
+import {filterUrl, setupSEOTags} from "../../helpers.js";
 
 const mapStateToProps = state => ({
-    routing: state.routing,
-    pages: state.appReducer.pages,
-    currentPage: state.appReducer.currentPage,
-    isMainPanelOpened: state.appReducer.mainPanel.isOpened,
-})
+  routing: state.routing,
+  pages: state.appReducer.pages,
+  currentPage: state.appReducer.currentPage,
+  isMainPanelOpened: state.appReducer.mainPanel.isOpened,
+});
 
 const mapDispatchToProps = dispatch => ({
-    goTo: url => dispatch(push(url)),
-    updateBg: url => dispatch(updateCacheLayers(url)),
-    updateMainPanel: comp => dispatch(updateMainPanelContent(comp)),
-    updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
-    updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
-})
+  goTo: url => dispatch(push(url)),
+  updateBg: url => dispatch(updateCacheLayers(url)),
+  updateMainPanel: comp => dispatch(updateMainPanelContent(comp)),
+  updateMainPanelIsOpened: isOpened =>
+    dispatch(updateMainPanelIsOpened(isOpened)),
+  updateSidePanelHeader: header => dispatch(updateSidePanelHeader(header)),
+});
 
 const Products = props => {
-    const styles = getStyles(props)
+  const styles = getStyles(props);
 
-    const contentReduxState = state => ({
-        windowWidth: state.appReducer.windowWidth,
-    })
+  const contentReduxState = state => ({
+    windowWidth: state.appReducer.windowWidth,
+  });
 
-    const connectWidth = (Comp, parentProps) => connect(contentReduxState)(props => {
-        const styles = getStyles(parentProps)
+  const connectWidth = (Comp, parentProps) =>
+    connect(contentReduxState)(props => {
+      const styles = getStyles(parentProps);
 
-        return <Comp styles={ styles } { ...props } />
-    })
+      return <Comp styles={styles} {...props} />;
+    });
 
-    return (
-        <div
-            style={ styles.wrapper }
-            className="Products--wrapper">
-            <SidePanelDrawer
-                desktopLockPosition={ 2 }
-                unlockPosition={ 1 }
-                desktopLockDrawer={ false }
-                comps={[
-                    props.List,
-                    props.Abstract,
-                    connectWidth(() => (<div style={ styles.blogWrapper }>
-                        <BlogPost
-                            auth={ props.auth }
-                            password={ props.password }
-                            fetchUrl={ props.fetchUrl }
-                            showHeader={ false } />
-                    </div>), props),
-                ]}
-                position={ props.drawerPosition }
-            />
-        </div>
-    )
-}
+  return (
+    <div style={styles.wrapper} className="Products--wrapper">
+      <SidePanelDrawer
+        desktopLockPosition={2}
+        unlockPosition={1}
+        desktopLockDrawer={false}
+        comps={[
+          props.List,
+          props.Abstract,
+          connectWidth(
+            () => (
+              <div style={styles.blogWrapper}>
+                <BlogPost
+                  auth={props.auth}
+                  password={props.password}
+                  fetchUrl={props.fetchUrl}
+                  showHeader={false}
+                />
+              </div>
+            ),
+            props,
+          ),
+        ]}
+        position={props.drawerPosition}
+      />
+    </div>
+  );
+};
 
-Products.defaultProps = {
-}
+Products.defaultProps = {};
 
 const fetchProducts = async (url, setProducts, that) => {
+  const restApi = new API();
 
-    const restApi = new API()
+  let products;
+  if (that.props.auth) {
+    const productNumber = parseInt(
+      new URLSearchParams(new URL(document.location.href).search).get("post"),
+      10,
+    );
+    const product = await restApi.fetchDetailAuth(
+      url,
+      productNumber,
+      that.props.password,
+    );
+    products = [product];
+  } else {
+    products = await restApi.fetch(url);
+  }
 
-    let products
-    if(that.props.auth) {
-        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
-        const product = await restApi.fetchDetailAuth(url, productNumber, that.props.password)
-        products = [product]
-    } else {
-        products = await restApi.fetch(url)
-    }
-
-    if(that.mounted) {
-        setProducts(products)
-    }
-}
+  if (that.mounted) {
+    setProducts(products);
+  }
+};
 
 const updateDrawerFromUrl = (setDrawerPosition, urlGetParam) => {
-    if(urlGetParam === '') {
-        setDrawerPosition(0)
-    } else {
-        setDrawerPosition(1)
-    }
-}
+  if (urlGetParam === "") {
+    setDrawerPosition(0);
+  } else {
+    setDrawerPosition(1);
+  }
+};
 
 const initHeader = (updateSidePanelHeader, props) => {
-    const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`
+  const string = `We develop intuitive designs. The following products are powerful resources for artists and businesses to create and deploy virtual and augmented reality content.`;
 
-    let header = () => <div style={{ padding: `0 calc(0.5 * ${appStyles.unitWidth})`}}>{ string }</div>
+  let header = () => (
+    <div style={{padding: `0 calc(0.5 * ${appStyles.unitWidth})`}}>
+      {string}
+    </div>
+  );
 
-    if(props.routing.location.search !== '') {
-        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
-        const product = props.products.filter(e => e.id === productNumber)[0]
+  if (props.routing.location.search !== "") {
+    const productNumber = parseInt(
+      new URLSearchParams(new URL(document.location.href).search).get("post"),
+      10,
+    );
+    const product = props.products.filter(e => e.id === productNumber)[0];
 
-        const onClickCallback = () => {
-            if(props.drawerPosition === 1) {
-                props.goTo(props.pages[props.currentPage].path)
-                props.setDrawerPosition(props.drawerPosition - 1)
-            } else {
-                props.setDrawerPosition(props.drawerPosition - 1)
-            }
-        }
+    const onClickCallback = () => {
+      if (props.drawerPosition === 1) {
+        props.goTo(props.pages[props.currentPage].path);
+        props.setDrawerPosition(props.drawerPosition - 1);
+      } else {
+        props.setDrawerPosition(props.drawerPosition - 1);
+      }
+    };
 
-        // don't update seo text for particular entry if on products home
-        // Presentation.jsx will take over
-        if(window.location.search !== "") {
-            const title = product ? product.title : ""
-            const url = window.location.href
-            const imgUrl = product ? filterUrl(product.bg_image) : ""
-            const content = product ? product.abstract : ""
-            setupSEOTags(title, url, imgUrl, content)
-        }
-
-        header = () => <SidePanelProductsHeader
-            showArrow={ props.auth && props.drawerPosition < 2 ? false : true }
-            title={ product ? product.title : "" }
-            subtitle={ product ? product.description : "" }
-            pictoUrl={ product ? product.squarePicto || filterUrl(product.picto) : "" }
-            isMainPanelOpened={ props.isMainPanelOpened }
-            onClickCallback={ onClickCallback } />
+    // don't update seo text for particular entry if on products home
+    // Presentation.jsx will take over
+    if (window.location.search !== "") {
+      const title = product ? product.title : "";
+      const url = window.location.href;
+      const imgUrl = product ? filterUrl(product.bg_image) : "";
+      const content = product ? product.abstract : "";
+      setupSEOTags(title, url, imgUrl, content);
     }
 
-    updateSidePanelHeader(header)
-}
+    header = () => (
+      <SidePanelProductsHeader
+        showArrow={props.auth && props.drawerPosition < 2 ? false : true}
+        title={product ? product.title : ""}
+        subtitle={product ? product.description : ""}
+        pictoUrl={
+          product ? product.squarePicto || filterUrl(product.picto) : ""
+        }
+        isMainPanelOpened={props.isMainPanelOpened}
+        onClickCallback={onClickCallback}
+      />
+    );
+  }
+
+  updateSidePanelHeader(header);
+};
 
 const initBg = props => {
-    if(props.routing.location.search !== "") {
-        const productNumber = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
-        const product = props.products.filter(e => e.id === productNumber)[0]
+  if (props.routing.location.search !== "") {
+    const productNumber = parseInt(
+      new URLSearchParams(new URL(document.location.href).search).get("post"),
+      10,
+    );
+    const product = props.products.filter(e => e.id === productNumber)[0];
 
-        if(product) {
-            props.updateBg(filterUrl(product.bg_image))
-        }
+    if (product) {
+      props.updateBg(filterUrl(product.bg_image));
     }
-}
+  }
+};
 
 const createList = props => {
-    const List = () => props.products.map((e, i) => {
-        let { content } = e
-        if(content.length > 100) {
-            content = content.substring(0, 70) + '...'
-        }
+  const List = () =>
+    props.products.map((e, i) => {
+      let {content} = e;
+      if (content.length > 100) {
+        content = content.substring(0, 70) + "...";
+      }
 
-        const active = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10) === e.id
+      const active =
+        parseInt(
+          new URLSearchParams(new URL(document.location.href).search).get(
+            "post",
+          ),
+          10,
+        ) === e.id;
 
-        const onClickCallback = () => {
+      const onClickCallback = () => {
+        props.goTo(`${window.location.pathname}?post=${e.id}`);
+        props.updateMainPanel(() => <div />);
+      };
 
-            props.goTo(`${window.location.pathname}?post=${e.id}`)
-            props.updateMainPanel(() => <div></div>)
-        }
+      const filteredPictoUrl = filterUrl(e.picto);
+      const filteredPictoBgUrl = filterUrl(e.pictoBg);
 
-        const filteredPictoUrl = filterUrl(e.picto)
-        const filteredPictoBgUrl = filterUrl(e.pictoBg)
+      return (
+        <SidePanelLink
+          key={i}
+          onClickCallback={onClickCallback}
+          isSquarePicto={false}
+          pictoUrl={filteredPictoUrl}
+          pictoBgUrl={filteredPictoBgUrl}
+          isActive={active}
+          subtitle={e.description}
+          title={e.title}
+        />
+      );
+    });
 
-        return (
-            <SidePanelLink
-                key={ i }
-                onClickCallback={ onClickCallback }
-                isSquarePicto={ false }
-                pictoUrl={ filteredPictoUrl }
-                pictoBgUrl={ filteredPictoBgUrl }
-                isActive={ active }
-                subtitle={ e.description }
-                title={ e.title } />
-        )
-    })
-
-    const styles = getStyles(props)
-    props.setList(() => () => <div style={ styles.listWrapper }><List /><div style={ styles.trailingDiv }></div></div>)
-}
+  const styles = getStyles(props);
+  props.setList(() => () => (
+    <div style={styles.listWrapper}>
+      <List />
+      <div style={styles.trailingDiv} />
+    </div>
+  ));
+};
 
 const createAbstract = props => {
-    const contentReduxState = state => ({
-        windowWidth: state.appReducer.windowWidth,
-    })
+  const contentReduxState = state => ({
+    windowWidth: state.appReducer.windowWidth,
+  });
 
-    const BlogPostMainPanel = () => <BlogPost
-                                        auth={ props.auth }
-                                        password={ props.password }
-                                        addTail={ true }
-                                        fetchUrl={ props.fetchUrl } />
+  const BlogPostMainPanel = () => (
+    <BlogPost
+      auth={props.auth}
+      password={props.password}
+      addTail={true}
+      fetchUrl={props.fetchUrl}
+    />
+  );
 
-    const connectWidth = (Comp, parentProps) => connect(contentReduxState)(props => {
-        const styles = getStyles(parentProps)
+  const connectWidth = (Comp, parentProps) =>
+    connect(contentReduxState)(props => {
+      const styles = getStyles(parentProps);
 
-        return <Comp styles={ styles } { ...props } />
-    })
+      return <Comp styles={styles} {...props} />;
+    });
 
-    const _props = props
-    const LastComp = connectWidth(props => (
-        <div style={{ marginBottom: '4rem' }}>
-            <SidePanelLink
-                onClickCallback={ () => {
-                    if(_props.isDescrShown === true) {
-                        return
-                    }
+  const _props = props;
+  const LastComp = connectWidth(
+    props => (
+      <div style={{marginBottom: "4rem"}}>
+        <SidePanelLink
+          onClickCallback={() => {
+            if (_props.isDescrShown === true) {
+              return;
+            }
 
-                    const cond = true//appStyles.mediaQueries.tablet > props.windowWidth
+            const cond = true; //appStyles.mediaQueries.tablet > props.windowWidth
 
-                    if(cond && !_props.isDescrShown) {
-                        _props.setDrawerPosition(2)
-                    }
+            if (cond && !_props.isDescrShown) {
+              _props.setDrawerPosition(2);
+            }
 
-                    _props.setIsDescrShown(true)
-                    _props.updateMainPanel(BlogPostMainPanel)
-                    _props.updateMainPanelIsOpened(true)
-                }}
-                isSquarePicto={ true }
-                pictoUrl={ props.pictoUrl }
-                title="View online" />
-            <div style={{ display: props.pdf ? 'block' : 'none' }}>
-                <SidePanelLink
-                    onClickCallback={ () => props.pdf ? window.open(filterUrl(props.pdf), '_blank') : 0 }
-                    isSquarePicto={ true }
-                    pictoUrl={ props.pictoUrl }
-                    title="Download as PDF" />
-            </div>
-            <div style={{ display: props.storage ? 'block' : 'none' }}>
-                <SidePanelLink
-                    onClickCallback={ () => props.pdf ? window.open(filterUrl(props.storage), '_blank') : 0 }
-                    isSquarePicto={ true }
-                    pictoUrl={ props.pictoUrl }
-                    title="Associated files" />
-            </div>
-            <SidePanelLink
-                onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
-                isSquarePicto={ true }
-                pictoUrl={ contactPicto }
-                title="Email Us" />
-        </div>), props)
+            _props.setIsDescrShown(true);
+            _props.updateMainPanel(BlogPostMainPanel);
+            _props.updateMainPanelIsOpened(true);
+          }}
+          isSquarePicto={true}
+          pictoUrl={props.pictoUrl}
+          title="View online"
+        />
+        <div style={{display: props.pdf ? "block" : "none"}}>
+          <SidePanelLink
+            onClickCallback={() =>
+              props.pdf ? window.open(filterUrl(props.pdf), "_blank") : 0
+            }
+            isSquarePicto={true}
+            pictoUrl={props.pictoUrl}
+            title="Download as PDF"
+          />
+        </div>
+        <div style={{display: props.storage ? "block" : "none"}}>
+          <SidePanelLink
+            onClickCallback={() =>
+              props.pdf ? window.open(filterUrl(props.storage), "_blank") : 0
+            }
+            isSquarePicto={true}
+            pictoUrl={props.pictoUrl}
+            title="Associated files"
+          />
+        </div>
+        <SidePanelLink
+          onClickCallback={() =>
+            (window.location.href = "mailto:joe@novamedia.nyc")
+          }
+          isSquarePicto={true}
+          pictoUrl={contactPicto}
+          title="Email Us"
+        />
+      </div>
+    ),
+    props,
+  );
 
-    const ConnectedAbstract = connectWidth(() => <div style={{ height: '5rem', }}>
+  const ConnectedAbstract = connectWidth(
+    () => (
+      <div style={{height: "5rem"}}>
         <BlogPost
-            fetchUrl={ props.fetchUrl }
-            contentKey={ props.auth ? "exec_sum" : "abstract" }
-            auth={ props.auth }
-            password={ props.password }
-            addTail={ false }
-            LastComp={ LastComp }
-            sidePanelMode={ true }
-            showHeader={ false }>
-        </BlogPost>
-    </div>, props)
-    props.setAbstract(() => () => <ConnectedAbstract />)
-}
+          fetchUrl={props.fetchUrl}
+          contentKey={props.auth ? "exec_sum" : "abstract"}
+          auth={props.auth}
+          password={props.password}
+          addTail={false}
+          LastComp={LastComp}
+          sidePanelMode={true}
+          showHeader={false}
+        />
+      </div>
+    ),
+    props,
+  );
+  props.setAbstract(() => () => <ConnectedAbstract />);
+};
 
 const SmartComp = compose(
-    withState(
-        'products',
-        'setProducts',
-        [],
-    ),
-    withState(
-        'drawerPosition',
-        'setDrawerPosition',
-        0,
-    ),
-    withState(
-        'isDescrShown',
-        'setIsDescrShown',
-        false,
-    ),
-    withState(
-        'List',
-        'setList',
-        () => () => <div></div>,
-    ),
-    withState(
-        'Abstract',
-        'setAbstract',
-        () => () => <div></div>,
-    ),
-    lifecycle({
-        componentDidMount() {
-            this.mounted = true
+  withState("products", "setProducts", []),
+  withState("drawerPosition", "setDrawerPosition", 0),
+  withState("isDescrShown", "setIsDescrShown", false),
+  withState("List", "setList", () => () => <div />),
+  withState("Abstract", "setAbstract", () => () => <div />),
+  lifecycle({
+    componentDidMount() {
+      this.mounted = true;
 
-            if(this.props.routing.location.pathname.replace("/", "") === this.props.clientUrl) {
-                fetchProducts(
-                    this.props.fetchUrl, this.props.setProducts, this)
+      if (
+        this.props.routing.location.pathname.replace("/", "") ===
+        this.props.clientUrl
+      ) {
+        fetchProducts(this.props.fetchUrl, this.props.setProducts, this);
 
-                updateDrawerFromUrl(
-                    this.props.setDrawerPosition,
-                    this.props.routing.location.search)
+        updateDrawerFromUrl(
+          this.props.setDrawerPosition,
+          this.props.routing.location.search,
+        );
 
-                initHeader(this.props.updateSidePanelHeader, this.props)
+        initHeader(this.props.updateSidePanelHeader, this.props);
 
-                this.props.updateMainPanelIsOpened(false)
+        this.props.updateMainPanelIsOpened(false);
 
-                createAbstract(this.props)
-            }
-        },
-        componentWillUpdate(nextProps) {
-            const newProps = nextProps // x key doesn't work on current keyboard, useless otherwise
+        createAbstract(this.props);
+      }
+    },
+    componentWillUpdate(nextProps) {
+      const newProps = nextProps; // x key doesn't work on current keyboard, useless otherwise
 
-            if(nextProps.routing.location.pathname.replace("/", "") === nextProps.clientUrl) {
-                initHeader(nextProps.updateSidePanelHeader, nextProps)
+      if (
+        nextProps.routing.location.pathname.replace("/", "") ===
+        nextProps.clientUrl
+      ) {
+        initHeader(nextProps.updateSidePanelHeader, nextProps);
 
-                if(nextProps.drawerPosition < 2) {
-                    initBg(nextProps)
-                }
-
-                if(nextProps.products.length !== this.props.products.length) {
-                    createList(nextProps)
-                }
-
-                if(nextProps.drawerPosition < 2 && nextProps.isDescrShown) {
-                    this.props.setIsDescrShown(false)
-                }
-
-                if(nextProps.routing.location.search === "" || newProps.drawerPosition < 2) {
-                    this.props.updateMainPanelIsOpened(false)
-                }
-
-                if(this.props.routing.location.search !== nextProps.routing.location.search) {
-                    updateDrawerFromUrl(
-                        this.props.setDrawerPosition,
-                        nextProps.routing.location.search)
-                    createAbstract(nextProps)
-                }
-
-            }
-
-            // hide when changing url
-            if(this.props.routing.location.pathname !== nextProps.routing.location.pathname) {
-                this.props.setIsDescrShown(false)
-            }
-
-
-            if(
-                nextProps.routing.location.search === ""
-                && nextProps.routing.location.pathname === "/products"
-                && nextProps.drawerPosition !== 0
-            ) {
-                this.props.setDrawerPosition(0)
-            }
-        },
-        componentWillUnmount() {
-            this.mounted = false
+        if (nextProps.drawerPosition < 2) {
+          initBg(nextProps);
         }
-    })
-)(Products)
+
+        if (nextProps.products.length !== this.props.products.length) {
+          createList(nextProps);
+        }
+
+        if (nextProps.drawerPosition < 2 && nextProps.isDescrShown) {
+          this.props.setIsDescrShown(false);
+        }
+
+        if (
+          nextProps.routing.location.search === "" ||
+          newProps.drawerPosition < 2
+        ) {
+          this.props.updateMainPanelIsOpened(false);
+        }
+
+        if (
+          this.props.routing.location.search !==
+          nextProps.routing.location.search
+        ) {
+          updateDrawerFromUrl(
+            this.props.setDrawerPosition,
+            nextProps.routing.location.search,
+          );
+          createAbstract(nextProps);
+        }
+      }
+
+      // hide when changing url
+      if (
+        this.props.routing.location.pathname !==
+        nextProps.routing.location.pathname
+      ) {
+        this.props.setIsDescrShown(false);
+      }
+
+      if (
+        nextProps.routing.location.search === "" &&
+        nextProps.routing.location.pathname === "/products" &&
+        nextProps.drawerPosition !== 0
+      ) {
+        this.props.setDrawerPosition(0);
+      }
+    },
+    componentWillUnmount() {
+      this.mounted = false;
+    },
+  }),
+)(Products);
 
 SmartComp.defaultProps = {
-    fetchUrl: new API().urls.products.list,
-    clientUrl: 'products',
-    auth: false, // should use auth when fetching content
-    password: '', // password for auth, only userd if props.auth = true
-}
+  fetchUrl: new API().urls.products.list,
+  clientUrl: "products",
+  auth: false, // should use auth when fetching content
+  password: "", // password for auth, only userd if props.auth = true
+};
 
 const ConnectedComp = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SmartComp)
-
+  mapStateToProps,
+  mapDispatchToProps,
+)(SmartComp);
 
 const BasicLogIn = props => {
-    const styles = {
-        wrapper: {
-            height: `calc(4 * ${appStyles.unitHeight})`,
-            display: 'flex',
-            alignItems: 'center',
-            marginTop: `calc(1 * ${appStyles.unitHeight})`,
-            marginLeft: '2rem',
-        },
-        form: {
-            width: `calc(4 * ${appStyles.unitWidth})`,
-            display: 'flex',
-            flexDirection: 'column',
-        },
-        input: {
-            marginBottom: `calc(0.5 * ${appStyles.unitHeight})`,
-            height: `calc(0.75 * ${appStyles.unitHeight})`,
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            border: 'none',
-            borderBottom: '1px solid white',
-            color: 'white',
-        },
-        button: {
-            marginBottom: `calc(0.5 * ${appStyles.unitHeight})`,
-            height: `calc(0.75 * ${appStyles.unitHeight})`,
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            border: 'none',
-            color: 'white',
-            cursor: 'pointer',
-        },
-    }
+  const styles = {
+    wrapper: {
+      height: `calc(4 * ${appStyles.unitHeight})`,
+      display: "flex",
+      alignItems: "center",
+      marginTop: `calc(1 * ${appStyles.unitHeight})`,
+      marginLeft: "2rem",
+    },
+    form: {
+      width: `calc(4 * ${appStyles.unitWidth})`,
+      display: "flex",
+      flexDirection: "column",
+    },
+    input: {
+      marginBottom: `calc(0.5 * ${appStyles.unitHeight})`,
+      height: `calc(0.75 * ${appStyles.unitHeight})`,
+      backgroundColor: "rgba(0, 0, 0, 0)",
+      border: "none",
+      borderBottom: "1px solid white",
+      color: "white",
+    },
+    button: {
+      marginBottom: `calc(0.5 * ${appStyles.unitHeight})`,
+      height: `calc(0.75 * ${appStyles.unitHeight})`,
+      backgroundColor: "rgba(0, 0, 0, 0)",
+      border: "none",
+      color: "white",
+      cursor: "pointer",
+    },
+  };
 
-    return (
-        <div style={ styles.wrapper }>
-                <form
-                    style={ styles.form }
-                    onSubmit={ (e) => { e.preventDefault() ; props.checkPassword() } }>
-                    <Textbox
-                        isPassword={ true }
-                        placeholder="password"
-                        value={ props.password }
-                        borderColor="rgba(255, 255, 255, 0.5)"
-                        style={{ color: !props.isError ? "white" : "red" }}
-                        isError={ props.isError }
-                        onChange={ props.onPasswordChange } />
-                    <SubmitButton
-                        isSubmitting={ props.isSubmitting }
-                        onClick={ props.checkPassword } />
-                </form>
-        </div>
-    )
-}
-
+  return (
+    <div style={styles.wrapper}>
+      <form
+        style={styles.form}
+        onSubmit={e => {
+          e.preventDefault();
+          props.checkPassword();
+        }}>
+        <Textbox
+          isPassword={true}
+          placeholder="password"
+          value={props.password}
+          borderColor="rgba(255, 255, 255, 0.5)"
+          style={{color: !props.isError ? "white" : "red"}}
+          isError={props.isError}
+          onChange={props.onPasswordChange}
+        />
+        <SubmitButton
+          isSubmitting={props.isSubmitting}
+          onClick={props.checkPassword}
+        />
+      </form>
+    </div>
+  );
+};
 
 const ProtectedProductDumb = props => {
-    if(props.show404) {
-        return <div>This product does not exist</div>
-    }
+  if (props.show404) {
+    return <div>This product does not exist</div>;
+  }
 
-    if(props.isPasswordValid) {
-        return <ConnectedComp
-                   fetchUrl={ props.fetchUrl }
-                   clientUrl={ props.clientUrl }
-                   auth={ true }
-                   isSubmitting={ props.isSubmitting }
-                   password={ props.password } />
-    }
+  if (props.isPasswordValid) {
+    return (
+      <ConnectedComp
+        fetchUrl={props.fetchUrl}
+        clientUrl={props.clientUrl}
+        auth={true}
+        isSubmitting={props.isSubmitting}
+        password={props.password}
+      />
+    );
+  }
 
-    return <BasicLogIn
-                isError={ props.isError }
-                isSubmitting={ props.isSubmitting }
-                onPasswordChange={ props.onPasswordChange }
-                checkPassword={ props.checkPassword } />
-}
+  return (
+    <BasicLogIn
+      isError={props.isError}
+      isSubmitting={props.isSubmitting}
+      onPasswordChange={props.onPasswordChange}
+      checkPassword={props.checkPassword}
+    />
+  );
+};
 
 class SmartProtectedProduct extends React.Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            password: '',
-            show404: true,
-            isPasswordValid: false,
-            isSubmitting: false,
-            isError: false,
-        }
+    this.state = {
+      password: "",
+      show404: true,
+      isPasswordValid: false,
+      isSubmitting: false,
+      isError: false,
+    };
 
-        this.onPasswordChange = this.onPasswordChange.bind(this)
-        this.checkPassword = this.checkPassword.bind(this)
-        this.check404 = this.check404.bind(this)
+    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.checkPassword = this.checkPassword.bind(this);
+    this.check404 = this.check404.bind(this);
+  }
+
+  componentDidMount() {
+    this.check404();
+  }
+
+  componentDidUpdate(newProps) {
+    if (
+      this.props.routing.location.search !== newProps.routing.location.search
+    ) {
+      this.check404();
+      this.checkPassword();
+    }
+  }
+
+  onPasswordChange(e) {
+    this.setState({password: e});
+  }
+
+  async checkPassword() {
+    this.setState({isSubmitting: true});
+    let isPasswordValid = false;
+
+    const id = parseInt(
+      new URLSearchParams(new URL(document.location.href).search).get("post"),
+      10,
+    );
+    // parsing if from url
+    let respText;
+    try {
+      respText = await new API().fetchDetailAuth(
+        this.props.fetchUrl,
+        id,
+        this.state.password,
+      );
+      await new Promise(r => setTimeout(r, 3000));
+
+      if (respText !== "error" && respText !== "<h1>Server Error (500)</h1>") {
+        isPasswordValid = true;
+        this.setState({isError: false});
+      } else {
+        this.setState({isError: true});
+      }
+    } catch (e) {
+      isPasswordValid = false;
+      this.setState({isError: true});
     }
 
-    componentDidMount() {
-        this.check404()
+    // "error" is what dajngo returns on invalid password for now
+    this.setState({isPasswordValid});
+    if (!isPasswordValid) {
+      this.props.updateMainPanelIsOpened(false);
+    }
+    this.setState({isSubmitting: false});
+  }
+
+  check404() {
+    let show404 = true;
+
+    if (window.location.toString().match(/\?post=[1-9]+/)) {
+      show404 = false;
     }
 
-    componentDidUpdate(newProps) {
-        if(this.props.routing.location.search !== newProps.routing.location.search) {
-            this.check404()
-            this.checkPassword()
-        }
-    }
+    this.setState({show404});
+    this.props.updateMainPanelIsOpened(false);
+  }
 
-    onPasswordChange(e) {
-        this.setState({ password: e })
-    }
-
-    async checkPassword() {
-        this.setState({ isSubmitting: true })
-        let isPasswordValid = false
-
-        const id = parseInt(new URLSearchParams(new URL(document.location.href).search).get('post'), 10)
-        // parsing if from url
-        let respText
-        try {
-            respText  = await new API().fetchDetailAuth(this.props.fetchUrl, id, this.state.password)
-            await new Promise(r => setTimeout(r, 3000))
-
-            if(respText !== "error" && respText !== '<h1>Server Error (500)</h1>') {
-                isPasswordValid = true
-                this.setState({ isError: false })
-            } else {
-                this.setState({ isError: true })
-            }
-        } catch(e) {
-            isPasswordValid = false
-            this.setState({ isError: true })
-        }
-
-        // "error" is what dajngo returns on invalid password for now
-        this.setState({ isPasswordValid })
-        if(!isPasswordValid) {
-            this.props.updateMainPanelIsOpened(false)
-        }
-        this.setState({ isSubmitting: false })
-    }
-
-    check404() {
-        let show404 = true
-
-        if(window.location.toString().match(/\?post=[1-9]+/)) {
-            show404 = false
-        }
-
-        this.setState({ show404 })
-        this.props.updateMainPanelIsOpened(false)
-    }
-
-    render() {
-        return <ProtectedProductDumb
-                    fetchUrl={ this.props.fetchUrl }
-                    clientUrl={ this.props.clientUrl }
-                    isError={ this.state.isError }
-                    isPasswordValid={ this.state.isPasswordValid }
-                    checkPassword={ this.checkPassword }
-                    onPasswordChange={ this.onPasswordChange }
-                    show404={ this.state.show404 }
-                    isSubmitting={ this.state.isSubmitting }
-                    password={ this.state.password } />
-    }
+  render() {
+    return (
+      <ProtectedProductDumb
+        fetchUrl={this.props.fetchUrl}
+        clientUrl={this.props.clientUrl}
+        isError={this.state.isError}
+        isPasswordValid={this.state.isPasswordValid}
+        checkPassword={this.checkPassword}
+        onPasswordChange={this.onPasswordChange}
+        show404={this.state.show404}
+        isSubmitting={this.state.isSubmitting}
+        password={this.state.password}
+      />
+    );
+  }
 }
 
 const protectedProductStateToProps = state => ({
-    routing: state.routing,
-})
+  routing: state.routing,
+});
 
 const protectedProductDispatchToProps = dispatch => ({
-    updateMainPanelIsOpened: isOpened => dispatch(updateMainPanelIsOpened(isOpened)),
-})
+  updateMainPanelIsOpened: isOpened =>
+    dispatch(updateMainPanelIsOpened(isOpened)),
+});
 
 const ProtectedProduct = connect(
-    protectedProductStateToProps,
-    protectedProductDispatchToProps,
-)(SmartProtectedProduct)
+  protectedProductStateToProps,
+  protectedProductDispatchToProps,
+)(SmartProtectedProduct);
 
-export default ConnectedComp
+export default ConnectedComp;
 
-export {
-    ProtectedProduct,
-}
+export {ProtectedProduct};

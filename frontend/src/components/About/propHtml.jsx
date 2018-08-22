@@ -1,5 +1,9 @@
-import React from 'react'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+import React from "react";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2,
+} from "react-html-parser";
 
 export const proposal = `<div id="content">
 <h1 class="title">Doctor Kelly</h1>
@@ -860,14 +864,13 @@ Ad&nbsp;Week.
 <p class="author">Author: Nova Media</p>
 <p class="date">Created: 2017-11-13 Mon 04:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>`
-
+</div>`;
 
 export default class HtmlComponent extends React.Component {
-    render() {
-        const html = proposal
-        console.log(proposal)
+  render() {
+    const html = proposal;
+    console.log(proposal);
 
-        return <div>{ ReactHtmlParser(html) }</div>
-    }
+    return <div>{ReactHtmlParser(html)}</div>;
+  }
 }

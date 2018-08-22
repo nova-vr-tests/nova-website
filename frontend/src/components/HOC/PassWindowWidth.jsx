@@ -1,15 +1,16 @@
-import { connect } from 'react-redux'
+import {connect} from "react-redux";
 
 const PassWindowWidth = Comp => {
-    const reduxState = state => ({
-        windowWidth: state.appReducer.windowWidth,
-    })
+  const reduxState = state => ({
+    windowWidth: state.appReducer.windowWidth,
+  });
 
-    const reduxDispatch = () => ({
-    })
+  const reduxDispatch = () => ({});
 
+  return connect(
+    reduxState,
+    reduxDispatch,
+  )(Comp);
+};
 
-    return connect(reduxState, reduxDispatch)(Comp)
-}
-
-export default PassWindowWidth
+export default PassWindowWidth;

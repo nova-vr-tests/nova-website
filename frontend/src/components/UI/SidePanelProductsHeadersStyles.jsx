@@ -1,15 +1,14 @@
-import { styles as appStyles } from '../../constants'
+import {styles as appStyles} from "../../constants";
 
 const getStyles = props => {
-    const { clientWidth } = document.documentElement
+  const {clientWidth} = document.documentElement;
 
-    if(clientWidth < appStyles.mediaQueries.phone) {
-    }
+  if (clientWidth < appStyles.mediaQueries.phone) {
+  }
 
-    const styles = {
-    }
+  const styles = {};
 
-    return styles
-}
+  return styles;
+};
 
-export default getStyles
+export default getStyles;

@@ -1,192 +1,170 @@
-import * as React from 'react'
-import {
-    compose,
-    lifecycle,
-    withState,
-} from 'recompose'
+import * as React from "react";
+import {compose, lifecycle, withState} from "recompose";
 
-import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
+import {connect} from "react-redux";
+import {push} from "react-router-redux";
 
-import getStyles, {
-    getNextPageStyles,
-} from './SlideStyles.jsx'
+import getStyles, {getNextPageStyles} from "./SlideStyles.jsx";
 
-import { translateXLayersBgs } from '../../../reducer/actions/Bg.js'
+import {translateXLayersBgs} from "../../../reducer/actions/Bg.js";
 
-import arrow from '../../img/arrow.svg'
+import arrow from "../../img/arrow.svg";
 
 const mapStateToProps = state => ({
-    scrollProgress: state.bgReducer.progress,
-    currentUrl: window.location.origin + '/' + state.routing.location.pathname,
-    goToPage: state.appReducer.goToPage,
-})
+  scrollProgress: state.bgReducer.progress,
+  currentUrl: window.location.origin + "/" + state.routing.location.pathname,
+  goToPage: state.appReducer.goToPage,
+});
 
 const mapDispatchToProps = dispatch => ({
-    applyParalax: progress => dispatch(translateXLayersBgs(progress)),
-    goToNextPage: (currentPage=0, pages=[], pushUrl) => {
+  applyParalax: progress => dispatch(translateXLayersBgs(progress)),
+  goToNextPage: (currentPage = 0, pages = [], pushUrl) => {
+    const filteredUrls = pages.filter(
+      (e, i) => e.pid !== pages[currentPage].pid && i > currentPage,
+    );
 
-        const filteredUrls = pages.filter((e, i) => (e.pid !== pages[currentPage].pid && i > currentPage))
-
-        if(filteredUrls.length > 0) {
-            pushUrl(filteredUrls[0].path)
-        }
-    },
-    pushUrl: url => dispatch(push(url)),
-})
+    if (filteredUrls.length > 0) {
+      pushUrl(filteredUrls[0].path);
+    }
+  },
+  pushUrl: url => dispatch(push(url)),
+});
 
 /*
    - e => scrollEvent
    - elId => id of el to scroll
 */
-let oldDate = new Date()
-let currentScroll = 0
-let progress = 0
-let targetScroll = 0
-let rafId = 0
-let dY = 0
-let el
+let oldDate = new Date();
+let currentScroll = 0;
+let progress = 0;
+let targetScroll = 0;
+let rafId = 0;
+let dY = 0;
+let el;
 
 const scroll = (e, elId, callback = () => {}) => {
-    const newDate = new Date()
-    el = document.getElementById(elId)
+  const newDate = new Date();
+  el = document.getElementById(elId);
 
-    // update target scroll
-    if(e.deltaY !== 0) {
+  // update target scroll
+  if (e.deltaY !== 0) {
+    dY = 3 * Math.sign(e.deltaY);
 
-        dY = 3 * Math.sign(e.deltaY)
+    oldDate = new Date();
 
-        oldDate = new Date()
-
-        if(progress !== 0) {
-            currentScroll += (targetScroll - currentScroll) * progress
-            currentScroll = el.scrollTop
-            cancelAnimationFrame(rafId)
-        }
-
-        progress = 0
-        targetScroll = currentScroll + dY * 40
+    if (progress !== 0) {
+      currentScroll += (targetScroll - currentScroll) * progress;
+      currentScroll = el.scrollTop;
+      cancelAnimationFrame(rafId);
     }
 
-    const deltaT = (newDate.getTime() - oldDate.getTime()) / 700
-    progress = Math.sin(Math.PI * deltaT)
-    progress = deltaT*(2-deltaT)
+    progress = 0;
+    targetScroll = currentScroll + dY * 40;
+  }
 
-    el.scrollTop = currentScroll + (targetScroll - currentScroll) * progress
+  const deltaT = (newDate.getTime() - oldDate.getTime()) / 700;
+  progress = Math.sin(Math.PI * deltaT);
+  progress = deltaT * (2 - deltaT);
 
-    if(progress < 0.99) {
-        rafId = requestAnimationFrame(() => {
-            const scrollProgress =
-                (el.scrollTop / (el.scrollHeight - el.offsetHeight))
+  el.scrollTop = currentScroll + (targetScroll - currentScroll) * progress;
 
-            if(el.scrollTop !== 0) {
-                callback(scrollProgress)
-            }
+  if (progress < 0.99) {
+    rafId = requestAnimationFrame(() => {
+      const scrollProgress = el.scrollTop / (el.scrollHeight - el.offsetHeight);
 
-            scroll({ deltaY: 0 }, elId, callback)
-        })
-    } else {
-        currentScroll = targetScroll
-    }
+      if (el.scrollTop !== 0) {
+        callback(scrollProgress);
+      }
 
-}
+      scroll({deltaY: 0}, elId, callback);
+    });
+  } else {
+    currentScroll = targetScroll;
+  }
+};
 
 const Slide = props => {
-    const styles = getStyles(props)
+  const styles = getStyles(props);
 
-    const { id } = props
-    const id1 = id + '-paragraph'
-    const id2 = id + '-scroll'
+  const {id} = props;
+  const id1 = id + "-paragraph";
+  const id2 = id + "-scroll";
 
-    if(props.transitionProgress <= 0 || props.transitionProgress >= 1) {
-        if(props.scrollEvent && !props.isTarget) {
-            scroll(props.scrollEvent, id2, props.applyParalax)
-        }
-
-    } else {
-        window.requestAnimationFrame(() => {
-            document.getElementById(id2).scrollTop = 0
-            props.applyParalax(0)
-        })
+  if (props.transitionProgress <= 0 || props.transitionProgress >= 1) {
+    if (props.scrollEvent && !props.isTarget) {
+      scroll(props.scrollEvent, id2, props.applyParalax);
     }
+  } else {
+    window.requestAnimationFrame(() => {
+      document.getElementById(id2).scrollTop = 0;
+      props.applyParalax(0);
+    });
+  }
 
-
-
-
-
-    const NextPage = props => {
-        const nextPageStyles = getNextPageStyles(props)
-
-        return (
-            <div
-                onClick={ () => props.goToNextPage(props.currentPage + 1, props.pages, props.pushUrl) }
-                style={ nextPageStyles.wrapper }>
-                <img
-                    src={ arrow }
-                    alt="next-page"
-                    style={ nextPageStyles.img }
-                />
-            </div>
-        )
-    }
+  const NextPage = props => {
+    const nextPageStyles = getNextPageStyles(props);
 
     return (
-        <div
-            style={ {...styles.slideParagraphs, position: 'relative'} }
-            id={ id2 }
-            key={ 123 }>
-            <div style={ styles.paragraphsWrapper }>
-                <div
-                    id={ id1 }
-                    style={ styles.allParagraphs }>
-                    { props.CurrentPage }
-                </div>
-                <div
-                    style={ styles.tail }
-                    id='tail'>
-                    <NextPage
-                        pages={ props.pages }
-                        goToNextPage={ props.goToNextPage }
-                        currentPage={ props.currentPage }
-                        pushUrl={ props.pushUrl } />
-                </div>
-            </div>
+      <div
+        onClick={() =>
+          props.goToNextPage(props.currentPage + 1, props.pages, props.pushUrl)
+        }
+        style={nextPageStyles.wrapper}>
+        <img src={arrow} alt="next-page" style={nextPageStyles.img} />
+      </div>
+    );
+  };
+
+  return (
+    <div
+      style={{...styles.slideParagraphs, position: "relative"}}
+      id={id2}
+      key={123}>
+      <div style={styles.paragraphsWrapper}>
+        <div id={id1} style={styles.allParagraphs}>
+          {props.CurrentPage}
         </div>
-    )
-}
+        <div style={styles.tail} id="tail">
+          <NextPage
+            pages={props.pages}
+            goToNextPage={props.goToNextPage}
+            currentPage={props.currentPage}
+            pushUrl={props.pushUrl}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const SmartComp = compose(
-    withState(
-        'CurrentPage',
-        'setCurrentPage',
-        <div></div>,
-    ),
-    lifecycle({
-        componentDidMount() {
-            const { pid } = this.props.pages[this.props.currentPage]
-            const presSlides = this.props.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
-            const PageComp = presSlides[0].comp
-            this.props.setCurrentPage(<PageComp />)
-        },
-        componentWillUpdate(nextProps) {
-            if(this.props.currentPage !== nextProps.currentPage) {
-                const { pid } = nextProps.pages[nextProps.currentPage]
-                const presSlides = nextProps.pages.map((e, i) => ({ ...e, i })).filter(e => e.pid === pid)
-                const PageComp = presSlides[0].comp
-                this.props.setCurrentPage(<PageComp />)
-            }
-        },
-        componentWillUnmount() {
-        }
-    }),
-)(Slide)
+  withState("CurrentPage", "setCurrentPage", <div />),
+  lifecycle({
+    componentDidMount() {
+      const {pid} = this.props.pages[this.props.currentPage];
+      const presSlides = this.props.pages
+        .map((e, i) => ({...e, i}))
+        .filter(e => e.pid === pid);
+      const PageComp = presSlides[0].comp;
+      this.props.setCurrentPage(<PageComp />);
+    },
+    componentWillUpdate(nextProps) {
+      if (this.props.currentPage !== nextProps.currentPage) {
+        const {pid} = nextProps.pages[nextProps.currentPage];
+        const presSlides = nextProps.pages
+          .map((e, i) => ({...e, i}))
+          .filter(e => e.pid === pid);
+        const PageComp = presSlides[0].comp;
+        this.props.setCurrentPage(<PageComp />);
+      }
+    },
+    componentWillUnmount() {},
+  }),
+)(Slide);
 
 const ConnectedSlide = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SmartComp)
+  mapStateToProps,
+  mapDispatchToProps,
+)(SmartComp);
 
-export default ConnectedSlide
-
-
-
+export default ConnectedSlide;

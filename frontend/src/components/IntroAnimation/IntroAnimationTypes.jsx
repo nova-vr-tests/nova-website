@@ -1,15 +1,15 @@
 // @flow
 
-import { initialState } from '../../store.js'
+import {initialState} from "../../store.js";
 
 export type ReduxState = {
-    keyframe: typeof initialState.appReducer.introKeyframe
-}
+  keyframe: typeof initialState.appReducer.introKeyframe,
+};
 
 export type ReduxDispatch = {
-    incrementIntroKeyframe: void => void,
-}
+  incrementIntroKeyframe: void => void,
+};
 
-export type OwnProps = {}
+export type OwnProps = {};
 
-export type Props = OwnProps & ReduxState & ReduxDispatch
+export type Props = OwnProps & ReduxState & ReduxDispatch;

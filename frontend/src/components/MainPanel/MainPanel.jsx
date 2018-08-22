@@ -1,25 +1,22 @@
-import React from 'react'
+import React from "react";
 
-import getStyles, {
-} from './MainPanelStyles.jsx'
+import getStyles from "./MainPanelStyles.jsx";
 
 const MainPanel = props => {
-    const styles = getStyles(props)
+  const styles = getStyles(props);
 
-    const { Content } = props
+  const {Content} = props;
 
-    return (
-        <div
-            style={ styles.wrapper }
-            className="MainPanel--wrapper">
-            <Content />
-        </div>
-    )
-}
+  return (
+    <div style={styles.wrapper} className="MainPanel--wrapper">
+      <Content />
+    </div>
+  );
+};
 
 MainPanel.defaultProps = {
-    Content: () => <div></div>,
-    isOpened: false,
-}
+  Content: () => <div />,
+  isOpened: false,
+};
 
-export default MainPanel
+export default MainPanel;

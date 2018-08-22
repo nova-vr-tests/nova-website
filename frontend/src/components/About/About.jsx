@@ -1,42 +1,38 @@
 // @flow
 
-import * as React from 'react'
-import { connect }from 'react-redux'
-import { compose, withState } from 'recompose'
+import * as React from "react";
+import {connect} from "react-redux";
+import {compose, withState} from "recompose";
 
-import getStyles from './AboutStyles.jsx'
+import getStyles from "./AboutStyles.jsx";
 
-import type {
-    Props,
-    ReduxState,
-    OwnProps,
-} from './AboutTypes.jsx'
+import type {Props, ReduxState, OwnProps} from "./AboutTypes.jsx";
 
-import type {
-    MapStateToProps,
-} from '../../storeTypes.jsx'
+import type {MapStateToProps} from "../../storeTypes.jsx";
 
-import Login from './Login/Login.jsx'
-import BuildXR from '../BuildXR/BuildXR.jsx'
+import Login from "./Login/Login.jsx";
+import BuildXR from "../BuildXR/BuildXR.jsx";
 
-import MarkdownParser from '../MarkdownParser/MarkdownParser.jsx'
-import contactPicto from '../img/contact-email.png'
-import facebookPicto from '../img/facebook.png'
-import twitterPicto from '../img/twitter.png'
+import MarkdownParser from "../MarkdownParser/MarkdownParser.jsx";
+import contactPicto from "../img/contact-email.png";
+import facebookPicto from "../img/facebook.png";
+import twitterPicto from "../img/twitter.png";
 
-import SidePanel, { sidePanelTypes } from '../Presentation/SidePanel/SidePanel.jsx'
-import SidePanelLink from '../UI/SidePanelLink.jsx'
+import SidePanel, {
+  sidePanelTypes,
+} from "../Presentation/SidePanel/SidePanel.jsx";
+import SidePanelLink from "../UI/SidePanelLink.jsx";
 
-import { footerPage } from '../../reducer/App.js'
+import {footerPage} from "../../reducer/App.js";
 
 const mapStateToProps: MapStateToProps<ReduxState> = function(state) {
-    return {
-        currentFooterPage: state.appReducer.currentFooterPage,
-        isSidebarOpened: state.sidebarReducer.isSidebarOpened,
-    }
-}
+  return {
+    currentFooterPage: state.appReducer.currentFooterPage,
+    isSidebarOpened: state.sidebarReducer.isSidebarOpened,
+  };
+};
 
-const text = {}
+const text = {};
 
 const legalsText = `
 ## Terms and Conditions of Use
@@ -198,142 +194,148 @@ If there are any questions regarding this privacy policy, you may contact us usi
 - AnneIrene@novamedia.nyc
 
 **Last Edited on 2018-02-18**
-`
+`;
 
 class LegalsContent extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    componentDidMount() {
-        this.props.setHeaderText('')
-    }
-    render() {
-        return (
-            <div style={{ padding: 0, margin: '-2rem' }}>
-              <MarkdownParser
-                useWhiteFont={ false }
-                content={ legalsText } />
-            </div>
-        )
-    }
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.setHeaderText("");
+  }
+  render() {
+    return (
+      <div style={{padding: 0, margin: "-2rem"}}>
+        <MarkdownParser useWhiteFont={false} content={legalsText} />
+      </div>
+    );
+  }
 }
 
-const contactText = `Thank you for your interest in Nova XR Media. Please email us with any question:`
+const contactText = `Thank you for your interest in Nova XR Media. Please email us with any question:`;
 const contactStyles = {
-    linkWrapper: {
-        marginRight: '-2rem',
-    }
-}
+  linkWrapper: {
+    marginRight: "-2rem",
+  },
+};
 
 class ContactContent extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    componentDidMount() {
-        this.props.setHeaderText(contactText)
-    }
-    render() {
-        return (
-            <div>
-                <div style={ contactStyles.linkWrapper }>
-                    <SidePanelLink
-                        onClickCallback={ () => window.location.href = "mailto:joe@novamedia.nyc" }
-                        isSquarePicto={ true }
-                        pictoUrl={ contactPicto }
-                        invertColors={ true }
-                        title="Email Us" />
-                    <SidePanelLink
-                        onClickCallback={ () => window.open("https://twitter.com/N0vaMedia", "_blank") }
-                        isSquarePicto={ true }
-                        pictoUrl={ twitterPicto }
-                        invertColors={ true }
-                        title="Twitter" />
-                    <SidePanelLink
-                        onClickCallback={ () => window.open("https://www.facebook.com/N0vamedia/", "_blank") }
-                        isSquarePicto={ true }
-                        pictoUrl={ facebookPicto }
-                        invertColors={ true }
-                        title="Facebook" />
-                </div>
-            </div>
-        )
-    }
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.setHeaderText(contactText);
+  }
+  render() {
+    return (
+      <div>
+        <div style={contactStyles.linkWrapper}>
+          <SidePanelLink
+            onClickCallback={() =>
+              (window.location.href = "mailto:joe@novamedia.nyc")
+            }
+            isSquarePicto={true}
+            pictoUrl={contactPicto}
+            invertColors={true}
+            title="Email Us"
+          />
+          <SidePanelLink
+            onClickCallback={() =>
+              window.open("https://twitter.com/N0vaMedia", "_blank")
+            }
+            isSquarePicto={true}
+            pictoUrl={twitterPicto}
+            invertColors={true}
+            title="Twitter"
+          />
+          <SidePanelLink
+            onClickCallback={() =>
+              window.open("https://www.facebook.com/N0vamedia/", "_blank")
+            }
+            isSquarePicto={true}
+            pictoUrl={facebookPicto}
+            invertColors={true}
+            title="Facebook"
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 class LoginContent extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    componentDidMount() {
-        this.props.setHeaderText('')
-    }
-    render() {
-        return <Login />
-    }
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.setHeaderText("");
+  }
+  render() {
+    return <Login />;
+  }
 }
 
 // const loginContent = <Login />
-// 
+//
 // const buildXRContent = <BuildXR />
 
-
 text[footerPage.LEGALS] = {
-    title: 'Legals',
-    content: LegalsContent
-}
+  title: "Legals",
+  content: LegalsContent,
+};
 
 text[footerPage.CONTACT] = {
-    title: 'Contact',
-    content: ContactContent
-}
+  title: "Contact",
+  content: ContactContent,
+};
 
 text[footerPage.LOGIN] = {
-    title: 'Login',
-    content: LoginContent,
-}
+  title: "Login",
+  content: LoginContent,
+};
 
 text[footerPage.BUILDXR] = {
-    title: 'Build XR',
-    content: BuildXR,
-}
+  title: "Build XR",
+  content: BuildXR,
+};
 
-const AboutUs: React.StatelessFunctionalComponent<Props> = (props) => {
-    const styles = getStyles(props)
+const AboutUs: React.StatelessFunctionalComponent<Props> = props => {
+  const styles = getStyles(props);
 
-    const title = text[props.currentFooterPage].title
-    const Content = text[props.currentFooterPage].content
-    const comp = <Content
-        setHeaderTextBgColor={ props.setHeaderTextBgColor }
-        setHeaderText={ props.setHeaderText } />
+  const title = text[props.currentFooterPage].title;
+  const Content = text[props.currentFooterPage].content;
+  const comp = (
+    <Content
+      setHeaderTextBgColor={props.setHeaderTextBgColor}
+      setHeaderText={props.setHeaderText}
+    />
+  );
 
-    return (
-        <div style={ styles.wrapper }>
-            <SidePanel
-                marginTop={ styles.sidePanel.marginTop }
-                type={ sidePanelTypes.INVERTED }>
-                <div style={ styles.wrapper2 }>
-                    <div style={ styles.title }>
-                        <h2 style={ styles.h2 }>{ title }</h2>
-                        <div style={ styles.headerText }>{ props.headerText }</div>
-                    </div>
-                    <div style={ styles.content }>
-                        { comp }
-                    </div>
-                    <div style={ styles.contentEnd }>
-                    </div>
-                </div>
-            </SidePanel>
+  return (
+    <div style={styles.wrapper}>
+      <SidePanel
+        marginTop={styles.sidePanel.marginTop}
+        type={sidePanelTypes.INVERTED}>
+        <div style={styles.wrapper2}>
+          <div style={styles.title}>
+            <h2 style={styles.h2}>{title}</h2>
+            <div style={styles.headerText}>{props.headerText}</div>
+          </div>
+          <div style={styles.content}>{comp}</div>
+          <div style={styles.contentEnd} />
         </div>
-    )
-}
+      </SidePanel>
+    </div>
+  );
+};
 
 const ConnectedAboutUs: React.ComponentType<OwnProps> = connect(
-    mapStateToProps,
-)(AboutUs)
+  mapStateToProps,
+)(AboutUs);
 
 const StatefulConnectedAboutUs = compose(
-    withState('headerText', 'setHeaderText', ''),
-    withState('headerTextBgColor', 'setHeaderTextBgColor', 'rgba(0, 0, 0, 0.2)'),
-)(ConnectedAboutUs)
+  withState("headerText", "setHeaderText", ""),
+  withState("headerTextBgColor", "setHeaderTextBgColor", "rgba(0, 0, 0, 0.2)"),
+)(ConnectedAboutUs);
 
-export default StatefulConnectedAboutUs
+export default StatefulConnectedAboutUs;
