@@ -193,8 +193,7 @@ const initHome = props => {
     props.updateSidePanelHeader(() => (
       <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
         <p style={{padding: `calc(0.5 * ${appStyles.unitWidth})`}}>
-          (XR) Extended Reality refers to immersive digital experiences, such as
-          virtual and augmented reality.
+          We design & build XR (virtual reality)
         </p>
       </div>
     ));
