@@ -120,11 +120,8 @@ Together we're a small part of the 21st century movement into Extended Reality, 
 const NYEStreamComp = () => {
   const source = `# Nova
 
-Nova XR is a team of artists and engineers programming new media. Our specialty is XR (Extended Reality). We develop from the 4th floor of the 19th century Beard Street Warehouses in Brooklyn, New York.
+We design and build virtual reality.  We provide you with access and application to advanced technologies and  adoption of advanced media technologies.    We are a team of artists, engineers and researchers.  We produce XR.  This includes financial strategies, prototypes, and marketing.  We can execute your project in full or assist only where you need an extra hand. We custom spec and have turn-key solutions. Our production studio and lab is located at the edge of Red Hook, Brooklyn. 
 
-!!! Nova provides access to advanced technologies, producing XR media for businesses to reduce internal costs and increase sales.
-
-"Nova" is latin for *new*, contrasting the future with fundamentals. We chose the name because it's simple, versatile, and expressive of our work to innovate media technologies.
 
 ## Live and let
 
