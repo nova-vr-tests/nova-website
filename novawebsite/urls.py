@@ -13,25 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.urls import path, include
 from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    path(r'admin/', admin.site.urls),
 
     # DRF
-    url(r'^api/', include('novaAPI.urls')),
+    path(r'api/', include('novaAPI.urls')),
 
     # BRF login/out
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # Let's encrypt
-    url(r'^\.well-known/', include('letsencrypt.urls')),
+    path(r'.well-known/', include('letsencrypt.urls')),
 
     # Markdownx
-    url(r'^markdownx/', include('markdownx.urls')),
+    path(r'markdownx/', include('markdownx.urls')),
 
     # React frontend
-    url(r'^', views.FrontendAppView.as_view()),
+    path(r'', views.FrontendAppView.as_view()),
 ]
