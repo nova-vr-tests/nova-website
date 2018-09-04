@@ -119,7 +119,7 @@ Together we're a small part of the 21st century movement into Extended Reality, 
 const NYEStreamComp = () => {
   const source = `# Nova
 
-We design and build virtual reality.  We provide you with access and application to advanced technologies and  adoption of advanced media technologies.    We are a team of artists, engineers and researchers.  We produce XR.  This includes financial strategies, prototypes, and marketing.  We can execute your project in full or assist only where you need an extra hand. We custom spec and have turn-key solutions. Our production studio and lab is located at the edge of Red Hook, Brooklyn. 
+We design and build virtual reality. We provide you with access and application to advanced technologies and adoption of advanced media technologies. We are a team of artists, engineers and researchers. We produce XR. This includes financial strategies, prototypes, and marketing. We can execute your project in full or assist only where you need an extra hand. We custom spec and have turn-key solutions. Our production studio and lab is located at the edge of Red Hook, Brooklyn.
 
 
 ## Live and let
