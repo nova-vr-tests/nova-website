@@ -4,7 +4,7 @@ import * as React from "react";
 
 import intro from "../img/home.png";
 
-import productsBg from "../img/design/3.png";
+import productsBg from "../img/products.jpg";
 import publicationsBg from "../img/publicationsBg.png";
 
 import consultationBg from "../img/bgs/consultation-intro.jpeg";
