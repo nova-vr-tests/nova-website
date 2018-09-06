@@ -5,7 +5,7 @@ const getDefaultStyles = props => {
   const {clientWidth} = document.documentElement;
 
   let textColor = "white";
-  let linkColor = "rgba(255, 255, 255, 0.7)";
+  let linkColor = "inherit";
   let rootPadding = `calc(1 * ${appStyles.unitHeight}) calc(0.5 * ${
     appStyles.unitWidth
   })`;
@@ -19,7 +19,7 @@ const getDefaultStyles = props => {
 
   if (!props.useWhiteFont) {
     textColor = "#3d3f4c";
-    linkColor = "#828a99";
+    // linkColor = "#828a99";
     headingColor = "#363643";
   }
 
@@ -129,9 +129,13 @@ const getDefaultStyles = props => {
 
   const link = {
     cursor: "pointer",
-    textDecoration: "none",
-    fontStyle: "italic",
     color: linkColor,
+    textDecoration: "underline",
+    fontStyle: "italic",
+  };
+
+  const hoveredLink = {
+    fontStyle: "inherit",
   };
 
   const tableWrapper = {
@@ -175,6 +179,7 @@ const getDefaultStyles = props => {
     headings,
     headingsBullet,
     headingWrapper,
+    hoveredLink,
     bullet,
     root,
     table,
@@ -196,6 +201,7 @@ const getStyles = props => {
 
   return {
     ...styles,
+    ...props.styles,
   };
 };
 export default getStyles;

@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import ReactMarkdown from "react-markdown";
-import {PassWindowWidth} from "../HOC/HOC.jsx";
+import {PassWindowWidth, Hover} from "../HOC/HOC.jsx";
 
 import {styles as appStyles} from "../../constants.js";
 import getStyles from "./MarkdownParserStyles.jsx";
@@ -120,6 +120,11 @@ const BlogPostContent = props => {
   const ImageAutoResize = PassWindowWidth(Img);
 
   const NovaLink = props => {
+    const style = props.style;
+    const eventBindings = {
+      onMouseEnter: props.onMouseEnter,
+      onMouseLeave: props.onMouseLeave,
+    };
     // internal link using React router
     const emailRe = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     if (props.href.includes(window.location.origin) || props.href[0] === "/") {
@@ -127,26 +132,28 @@ const BlogPostContent = props => {
       return (
         <Link
           to={getDiff(props.href, window.location.origin)}
-          style={styles.link}>
+          style={style}
+          {...eventBindings}>
           {props.children}
         </Link>
       );
     } else if (props.href.match(emailRe)) {
       // Mailto
       return (
-        <a href={"mailto:" + props.href} style={styles.link}>
+        <a href={"mailto:" + props.href} style={style} {...eventBindings}>
           {props.children}
         </a>
       );
     } else {
       // E*ternal link
       return (
-        <a target="_blank" href={props.href} style={styles.link}>
+        <a target="_blank" href={props.href} style={style} {...eventBindings}>
           {props.children}
         </a>
       );
     }
   };
+  const HoverableNovaLink = Hover(NovaLink);
 
   const renderers = {
     root: _props => (
@@ -164,7 +171,13 @@ const BlogPostContent = props => {
         </table>
       </div>
     ),
-    link: props => <NovaLink {...props} />,
+    link: props => (
+      <HoverableNovaLink
+        {...props}
+        style={styles.link}
+        hoverStyleDiff={styles.hoveredLink}
+      />
+    ),
     list: props => <ul style={styles.list}>{props.children}</ul>,
     listItem: props => <li className="foobar">{props.children}</li>,
     //<Li>{ props.children }</Li>,
