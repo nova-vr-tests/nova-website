@@ -1,7 +1,7 @@
 import React from "react";
 
 import MarkdownParser from "../MarkdownParser/MarkdownParser.jsx";
-import GoogleMaps from "../UI/GoogleMaps.jsx";
+import GoogleMaps from "../UI/GoogleMaps.tsx";
 import * as websiteTexts from "./pageTexts.js";
 
 const PartnershipIntro = () => {

@@ -27,6 +27,7 @@
   },
   "plugins": [
       "react",
-      "jest"
+      "jest",
+      "flowtype"
   ]
 }
