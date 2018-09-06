@@ -104,6 +104,9 @@ class App extends Component {
 
   componentDidMount() {
     apiTest();
+
+    document.querySelector("html").style.fontSize =
+      (1.5 * window.screen.height) / 100 + "px";
   }
 
   componentWillUnmount() {
