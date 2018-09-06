@@ -152,16 +152,17 @@ We design and build virtual reality. We provide you with access and application 
 
 ## Live and let
 
-- Twitter: [@N0vamedia](https://twitter.com/n0vamedia)
-- Facebook: https://www.facebook.com/N0vamedia/
-- Email: [AnnaIrene@novamedia.nyc](mailto:AnnaIrene@novamedia.nyc)
-- Linkedin: [/in/jrmecca](https://www.linkedin.com/in/jrmecca/)
-- Instagram: [@novaxrmedia](https://www.instagram.com/novaxrmedia)
-- Github: [@mecs13](https://github.com/mecs13)
-- Steemit: [@novaxr](https://steemit.com/@novaxr)
-- Slack: https://novamedianyc.slack.com
-- Telegram: https://t.me/xrnewyork
-- Telephone: +1 (732) 903-5537
+| | Contacts |
+|--|--|
+|Twitter | [@N0vamedia](https://twitter.com/n0vamedia) |
+| Facebook | https://www.facebook.com/N0vamedia/ |
+| Email | [AnnaIrene@novamedia.nyc](mailto:AnnaIrene@novamedia.nyc) |
+| Linkedin | [/in/jrmecca](https://www.linkedin.com/in/jrmecca/) |
+| Instagram | [@novaxrmedia](https://www.instagram.com/novaxrmedia) |
+| Github | [@mecs13](https://github.com/mecs13) |
+| Steemit | [@novaxr](https://steemit.com/@novaxr) |
+| Slack | https://novamedianyc.slack.com |
+| Phone | +1 (732) 903-5537 |
 `;
 
   return (
