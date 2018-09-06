@@ -18,12 +18,14 @@ import Blog from "../Blog/Blog.jsx";
 import BlogPostList from "../Blog/BlogPostList.jsx";
 import API from "../../API.js";
 
+import * as websiteTexts from "./pageTexts.js";
+
 import {
-  NYEIntroComp,
-  NYEStreamComp,
+  WhoWeAreIntro,
   FindUs as FindUsComp,
   PartnershipIntro,
-} from "./NYEComp.jsx";
+  AboutUsComp,
+} from "./page3Comps.jsx";
 
 /************************************
 
@@ -41,7 +43,7 @@ const whoWeAre: Array<ISlide> = [
     h2,
     path,
     pid,
-    content: () => <NYEIntroComp />,
+    content: () => <WhoWeAreIntro />,
     layers: [
       {
         imgUrl: whoWeAreBg,
@@ -71,7 +73,7 @@ const aboutUs: Array<ISlide> = [
     h2,
     path,
     pid,
-    content: () => <NYEStreamComp />,
+    content: () => <AboutUsComp />,
     layers: [
       {
         imgUrl: aboutUsBg,
@@ -103,7 +105,7 @@ const community: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`.A shout out to all our friends, families and loved ones`}
+        headerText={websiteTexts.page3.headers.community}
         fetchUrl={new API().urls.community.list}
       />
     ),
@@ -131,7 +133,7 @@ const labLive: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`Lab Live publications are casual writings covering the XR world. By creating and publishing original content, we stay in touch with innovators and visionaries who are forging this new industry.`}
+        headerText={websiteTexts.page3.headers.labLive}
         fetchUrl={new API().urls.blogPosts.list}
       />
     ),
@@ -187,7 +189,7 @@ const productions: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`Current XR production is the art of merging video game development with movie production content to achieve a business or artistic goal.`}
+        headerText={websiteTexts.page3.headers.production}
         fetchUrl={new API().urls.productions.list}
       />
     ),
@@ -215,7 +217,7 @@ const partners: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`Just like creating a Hollywood film or an advertising campaign, XR production requires the unification of investors, production studios, innovation labs, writers, and videographers.`}
+        headerText={websiteTexts.page3.headers.partners}
         fetchUrl={new API().urls.partners.list}
       />
     ),
@@ -243,7 +245,7 @@ const careers: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`We seek partners who are active rather than passive, prioritize self education, and are always working to expand their mind. If you're the right fit, please be in touch.`}
+        headerText={websiteTexts.page3.headers.careers}
         fetchUrl={new API().urls.careers.list}
       />
     ),

@@ -18,12 +18,13 @@ import BlogPostList from "../Blog/BlogPostList.jsx";
 import ProductsList, {ProtectedProduct} from "../Products/Products.jsx";
 import API from "../../API.js";
 
-import {HomePage, DesignInterfaceComp} from "./page1Comps.jsx";
+import {HomePage, ConsultationIntro} from "./page1Comps.jsx";
 
 import type {ISlide, IPage} from "./types.jsx";
 
 const createLayer = (imgUrl, paralax, opacity) => ({imgUrl, paralax, opacity});
 
+import * as websiteText from "./pageTexts.js";
 /************************************
 
     SITE INTRO
@@ -80,7 +81,7 @@ const BusinessProps: Array<ISlide> = [
 
 /************************************
 
-    DESIGN
+Products
 
 ***********************************/
 
@@ -112,7 +113,7 @@ const consultationIntro: Array<ISlide> = [
     h2,
     path,
     pid,
-    content: () => <DesignInterfaceComp />,
+    content: () => <ConsultationIntro />,
     layers: [createLayer(consultationBg, 0, 1)],
   },
 ];
@@ -129,7 +130,7 @@ const industry: Array<ISlide> = [
     showNextSectionArrow: false,
     content: () => (
       <BlogPostList
-        headerText={`People of every industry are finding solutions to their most stubborn challenges by producing immersive (XR) media content. Share, communicate, and learn faster than ever.`}
+        headerText={websiteText.page1.headerTexts.industry}
         fetchUrl={new API().urls.industries.list}
       />
     ),
@@ -151,9 +152,7 @@ const crossIndustry: Array<ISlide> = [
     showNextSectionArrow: false,
     content: () => (
       <BlogPostList
-        headerText={
-          "Without regard to geographic location, VR unites people inside the same virtual space. This increases productivity within a business and allows those outside the business to empathize with its mission."
-        }
+        headerText={websiteText.page1.headerTexts.crossIndustry}
         fetchUrl={new API().urls.crossIndustry.list}
       />
     ),
@@ -178,9 +177,7 @@ const learningLab: Array<ISlide> = [
     showNextSectionArrow: false,
     content: () => (
       <BlogPostList
-        headerText={
-          "Understanding the root concepts of this advanced technology is crucial to discovering its mpst practical applications. Here we deliver past studies, simple descriptions, and the latest industry news."
-        }
+        headerText={websiteText.page1.headerTexts.learningLab}
         fetchUrl={new API().urls.learningLab.list}
       />
     ),
@@ -212,9 +209,7 @@ const Publications: Array<ISlide> = [
     overrideHeader: true,
     content: () => (
       <BlogPostList
-        headerText={
-          "These Publications are to serve as in depth resources for better understanding financial strategies and market entry. They are part of the free resources Nova provides to the community at large."
-        }
+        headerText={websiteText.page1.headerTexts.publications}
         fetchUrl={new API().urls.publications.list}
       />
     ),

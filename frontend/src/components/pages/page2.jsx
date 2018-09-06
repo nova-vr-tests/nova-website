@@ -20,6 +20,7 @@ import networkBg from "../img/bgs/network.png";
 import type {ISlide, IPage} from "./types.jsx";
 
 import {DevelopIntro} from "./page2Comps.jsx";
+import * as websiteText from "./pageTexts.js";
 
 /************************************
 
@@ -40,7 +41,7 @@ const design: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`In XR, the term "Design" has two identities. First, we work together with you to design the XR world you wish to build. Next, we design 3D models of your vision to be implemented by the development team.`}
+        headerText={websiteText.page2.headerTexts.design}
         fetchUrl={new API().urls.design.list}
       />
     ),
@@ -98,7 +99,7 @@ const program: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`XR Programming is centralized in a "game engine", a software framework used to create interactive 3D media. This is where we build your XR experiences.`}
+        headerText={websiteText.page2.headerTexts.program}
         fetchUrl={new API().urls.program.list}
       />
     ),
@@ -126,7 +127,7 @@ const produce: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`Peeling back the layers of an Extended Reality experience reveals the various components required to build one. Here are some of the core building blocks of XR.`}
+        headerText={websiteText.page2.headerTexts.produce}
         fetchUrl={new API().urls.produce.list}
       />
     ),
@@ -154,7 +155,7 @@ const network: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`Consider “Network” in this context to be the digital unification of people and industrial products. These are some of the emerging technologies to be integrated with your ideas.`}
+        headerText={websiteText.page2.headerTexts.network}
         fetchUrl={new API().urls.network.list}
       />
     ),
@@ -183,7 +184,7 @@ const deploy: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={`This is the process of presenting your XR content to the right audience with the proper timing. The deployment of XR still abides by traditional marketing basics but requires the navigation of additional 3D software and hardware.`}
+        headerText={websiteText.page2.headerTexts.deploy}
         fetchUrl={new API().urls.deploy.list}
       />
     ),
