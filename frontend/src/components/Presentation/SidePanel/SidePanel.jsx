@@ -89,8 +89,8 @@ const BG = (props: BgProps) => {
     y: coord2Circ(clientWidth - marginRight - widthCoef * appStyles.unitWidthJs)
       .y1,
   };
-  let p3 = {x: 0, y: appStyles.unitHeightJs * 9};
-  let p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 9};
+  let p3 = {x: 0, y: appStyles.unitHeightJs * 24};
+  let p4 = {x: screenRightEdge, y: appStyles.unitHeightJs * 24};
 
   let path =
     "M " +
@@ -252,7 +252,7 @@ const SidePanel: React.StatelessFunctionalComponent<Props> = props => {
         type={props.type}
         windowHeight={props.windowHeight}
         rightEdgeCoef={0}
-        bgColor={"rgba(0, 0, 0, 0.6)"}
+        bgColor={"rgba(0, 0, 0, 0.4)"}
         isMainPanelOpened={props.isMainPanelOpened}
       />
       <div style={styles.contentWrapper}>

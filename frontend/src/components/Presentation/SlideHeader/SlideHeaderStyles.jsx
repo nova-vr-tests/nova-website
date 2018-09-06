@@ -66,6 +66,9 @@ const getStyles = props => {
       height: `calc(${customWrapperHeight} * ${appStyles.unitHeight})`,
       display: "flex",
       alignItems: "center",
+      width: "100%",
+      flexDirection: "row-reverse",
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
     },
     titleWrapper: {
       marginLeft: appStyles.unitWidth,

@@ -104,7 +104,7 @@ const Svg = (props: SvgProps) => {
 };
 
 Svg.defaultProps = {
-  color: "rgba(0, 0, 0, 0.3)",
+  color: "rgba(0, 0, 0, 0.5)",
 };
 
 const HeaderDumb = (props: Props) => {

@@ -70,7 +70,7 @@ class SlideTransition extends React.Component<Props, State> {
           this.props.isMainPanelOpened &&
           appStyles.mediaQueries.tablet > this.props.windowWidth
             ? "rgba(0, 0, 0, 0)"
-            : "rgba(0, 0, 0, 0.4)",
+            : "rgba(0, 0, 0, 0.0)",
       },
       frontSlide: {
         height: "100vh",
