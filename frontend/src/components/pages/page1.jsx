@@ -130,7 +130,7 @@ const industry: Array<ISlide> = [
     showNextSectionArrow: false,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page1.headerTexts.industry}
+        headerText={websiteText.page1.headers.industry}
         fetchUrl={new API().urls.industries.list}
       />
     ),
@@ -152,7 +152,7 @@ const crossIndustry: Array<ISlide> = [
     showNextSectionArrow: false,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page1.headerTexts.crossIndustry}
+        headerText={websiteText.page1.headers.crossIndustry}
         fetchUrl={new API().urls.crossIndustry.list}
       />
     ),
@@ -177,7 +177,7 @@ const learningLab: Array<ISlide> = [
     showNextSectionArrow: false,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page1.headerTexts.learningLab}
+        headerText={websiteText.page1.headers.learningLab}
         fetchUrl={new API().urls.learningLab.list}
       />
     ),
@@ -209,7 +209,7 @@ const Publications: Array<ISlide> = [
     overrideHeader: true,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page1.headerTexts.publications}
+        headerText={websiteText.page1.headers.publications}
         fetchUrl={new API().urls.publications.list}
       />
     ),

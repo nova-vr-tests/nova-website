@@ -41,7 +41,7 @@ const design: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page2.headerTexts.design}
+        headerText={websiteText.page2.headers.design}
         fetchUrl={new API().urls.design.list}
       />
     ),
@@ -99,7 +99,7 @@ const program: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page2.headerTexts.program}
+        headerText={websiteText.page2.headers.program}
         fetchUrl={new API().urls.program.list}
       />
     ),
@@ -127,7 +127,7 @@ const produce: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page2.headerTexts.produce}
+        headerText={websiteText.page2.headers.produce}
         fetchUrl={new API().urls.produce.list}
       />
     ),
@@ -155,7 +155,7 @@ const network: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page2.headerTexts.network}
+        headerText={websiteText.page2.headers.network}
         fetchUrl={new API().urls.network.list}
       />
     ),
@@ -184,7 +184,7 @@ const deploy: Array<ISlide> = [
     pid,
     content: () => (
       <BlogPostList
-        headerText={websiteText.page2.headerTexts.deploy}
+        headerText={websiteText.page2.headers.deploy}
         fetchUrl={new API().urls.deploy.list}
       />
     ),
