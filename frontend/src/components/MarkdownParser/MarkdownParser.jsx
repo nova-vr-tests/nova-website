@@ -120,6 +120,8 @@ const BlogPostContent = props => {
   const ImageAutoResize = PassWindowWidth(Img);
 
   const NovaLink = props => {
+    // internal link using React router
+    const emailRe = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     if (props.href.includes(window.location.origin) || props.href[0] === "/") {
       const getDiff = (string, diffBy) => string.split(diffBy).join("");
       return (
@@ -129,7 +131,15 @@ const BlogPostContent = props => {
           {props.children}
         </Link>
       );
+    } else if (props.href.match(emailRe)) {
+      // Mailto
+      return (
+        <a href={"mailto:" + props.href} style={styles.link}>
+          {props.children}
+        </a>
+      );
     } else {
+      // E*ternal link
       return (
         <a target="_blank" href={props.href} style={styles.link}>
           {props.children}
