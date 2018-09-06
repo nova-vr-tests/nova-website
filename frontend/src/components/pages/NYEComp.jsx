@@ -2,6 +2,7 @@ import React from "react";
 
 import MarkdownParser from "../MarkdownParser/MarkdownParser.jsx";
 
+import {styles as appStyles} from "../../constants.js";
 import {P, FlexColumn} from "./UI.jsx";
 
 const PartnershipIntro = () => {
@@ -19,6 +20,28 @@ Business is conducted among people. We love building relationships with folks fr
   );
 };
 
+const GoogleMaps = () => {
+  const mapsAPIKey = "AIzaSyA3wJRRb7dBTy3qAzb17LEdIKfjqprQTUM";
+  const styles = {
+    iframe: {
+      border: 0,
+      width: "100%",
+      marginBottom: `calc(3 * ${appStyles.unitHeight})`,
+      height: `calc(10 * ${appStyles.unitHeight})`,
+      marginTop: `calc(-1 * ${appStyles.unitHeight})`,
+    },
+  };
+  return (
+    <iframe
+      height="450"
+      frameBorder="0"
+      style={styles.iframe}
+      src={`https://www.google.com/maps/embed/v1/place?key=${mapsAPIKey}&q=481+Van+Brunt+St,+Brooklyn,+NY+11231`}
+      allowFullScreen
+    />
+  );
+};
+
 const FindUs = () => {
   const source = `- 481 Van Brunt Street Brooklyn
 - New York, United States. 11231
@@ -31,9 +54,10 @@ Have an idea you want to explore? Come on by! Fridays are best. Email: joe@novam
   return (
     <div className={"NYEComp--wrapper"}>
       <MarkdownParser
-        styles={{textColor: "white", fontSize: "1.5rem"}}
+        style={{textColor: "white", fontSize: "1.5rem"}}
         content={source}
       />
+      <GoogleMaps />
     </div>
   );
 };
