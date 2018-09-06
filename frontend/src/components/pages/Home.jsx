@@ -193,7 +193,7 @@ const initHome = props => {
     props.updateSidePanelHeader(() => (
       <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
         <p style={{padding: `calc(0.5 * ${appStyles.unitWidth})`}}>
-          We design & build XR (virtual reality)
+          We design & build Extended Reality
         </p>
       </div>
     ));
