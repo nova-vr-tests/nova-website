@@ -45,7 +45,7 @@ const GoogleMaps = () => {
 const FindUs = () => {
   const source = `Our studio and laboratory are located at the edge of Red Hook. When Van Brunt Street meets the Upper Bay, under Liberty's watch. This part of South Brooklyn has a rich history of hard work, innovation, and the American Dream. Our building is Civil War-era, built by Robinson and Beard in the 1860s and 70s. Now it is home to a variety of artists and tradesmen that fuel the innovation Brooklyn is known for.
 
-Have an idea you want to explore? Come on by! Fridays are best ;)
+Have an idea you want to explore? Come on by, Fridays are best!
 
 | |Nova Media|
 |--|--|
