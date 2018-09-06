@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.urls import path, include
+from django.urls import path, re_path, include
 from django.contrib import admin
 from . import views
 
@@ -33,5 +33,5 @@ urlpatterns = [
     path(r'markdownx/', include('markdownx.urls')),
 
     # React frontend
-    path(r'', views.FrontendAppView.as_view()),
+    re_path(r'^', views.FrontendAppView.as_view()),
 ]
