@@ -41,7 +41,7 @@ const WhoWeAreIntro = () => {
 const AboutUsComp = () => {
   return (
     <div className={"NYEComp--wrapper"}>
-      <MarkdownParser content={websiteTexts.page3.texts.whoWeAre} />
+      <MarkdownParser content={websiteTexts.page3.texts.aboutUs} />
     </div>
   );
 };
