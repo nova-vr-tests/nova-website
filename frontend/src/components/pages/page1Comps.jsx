@@ -20,4 +20,19 @@ const ConsultationIntro = () => {
   );
 };
 
-export {HomePage, ConsultationIntro};
+const Comp404Text = () => {
+  const styles = {
+    wrapper: {},
+  };
+
+  return (
+    <div className={"404--wrapper"} style={styles.wrapper}>
+      <MarkdownParser
+        styles={{textColor: "white", fontSize: "1.5rem"}}
+        content={websiteText.incognito.texts.comp404}
+      />
+    </div>
+  );
+};
+
+export {HomePage, ConsultationIntro, Comp404Text};

@@ -229,9 +229,13 @@ class Presentation extends React.Component<Props, State> {
       return 0;
     }
 
-    return this.props.pages
-      .map((e, i) => (pathname === e.path ? i : -1))
-      .filter(e => e >= 0)[0];
+    const COMP_404_INDEX = 1; // Pages.jsx 229:30
+
+    return (
+      this.props.pages
+        .map((e, i) => (pathname === e.path ? i : -1))
+        .filter(e => e >= 0)[0] || COMP_404_INDEX
+    );
   }
 
   componentWillReceiveProps(nextProps: Props) {

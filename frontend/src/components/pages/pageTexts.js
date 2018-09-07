@@ -132,6 +132,26 @@ We design and build virtual reality. We provide you with access and application 
 `;
 
 /********
+         INCOGNITO: Not in sidebar
+********/
+
+const incognitoHeaderTexts = {
+  comp404: `404`,
+};
+
+const comp404 = `# 404: Page not found
+
+The page you are looking for does not exist. Please shoot us an [email](joe@novamedia.nyc) if you think this is a problem!
+
+If you're just looking to learn more about Nova and VR in general, be sure to check out the following pages:
+
+- [Who we are](/about-us)
+- [Our Products](/products)
+- [Our Blog](/lab-live)
+- [How to find us](/find-us)
+`;
+
+/********
          Joey or Kyle, DO NOT EDIT please :)
 ********/
 
@@ -139,6 +159,7 @@ const page1 = {
   headers: page1HeaderTexts,
   texts: {
     consultationIntro,
+    comp404,
   },
 };
 
@@ -159,4 +180,11 @@ const page3 = {
   },
 };
 
-export {page1, page2, page3};
+const incognito = {
+  headers: incognitoHeaderTexts,
+  texts: {
+    comp404,
+  },
+};
+
+export {page1, page2, page3, incognito};

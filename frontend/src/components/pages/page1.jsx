@@ -10,6 +10,7 @@ import publicationsBg from "../img/publicationsBg.png";
 import consultationBg from "../img/bgs/consultation-intro.jpeg";
 import industryBg from "../img/bgs/industry.png";
 import crossIndustriesBg from "../img/bgs/cross-industries.jpeg";
+import comp404Bg from "../img/bgs/404.png";
 import learningLabBg from "../img/bgs/learning-lab.png";
 
 import {styles as appStyles} from "../../constants.js";
@@ -19,7 +20,7 @@ import BlogPostList from "../Blog/BlogPostList.jsx";
 import ProductsList, {ProtectedProduct} from "../Products/Products.jsx";
 import API from "../../API.js";
 
-import {HomePage, ConsultationIntro} from "./page1Comps.jsx";
+import {HomePage, ConsultationIntro, Comp404Text} from "./page1Comps.jsx";
 
 import type {ISlide, IPage} from "./types.jsx";
 
@@ -49,6 +50,30 @@ const SiteIntro: Array<ISlide> = [
     pid,
     linePosition: 0,
     layers: [createLayer(intro, 0, 1)],
+  },
+];
+
+/************************************
+
+   404
+
+***********************************/
+
+pid = Symbol("404");
+h1 = "Error";
+h2 = "";
+path = "/404";
+const Comp404: Array<ISlide> = [
+  {
+    h1,
+    h2,
+    path,
+    pid,
+    content: () => <Comp404Text />,
+    overrideMainPanel: true,
+    overrideHeader: true,
+    showNextSectionArrow: false,
+    layers: [createLayer(comp404Bg, 0, 1)],
   },
 ];
 
@@ -243,4 +268,4 @@ const page1: IPage = [productSlides, consultationSlides, publicationSlides];
 
 export default page1;
 
-export {SiteIntro, BusinessProps};
+export {SiteIntro, BusinessProps, Comp404};
