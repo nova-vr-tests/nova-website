@@ -127,7 +127,7 @@ const BlogPostContent = props => {
       onMouseLeave: props.onMouseLeave,
     };
     // internal link using React router
-    const emailRe = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    const emailRe = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/; // eslint-disable-line no-useless-escape
     if (props.href.includes(window.location.origin) || props.href[0] === "/") {
       const getDiff = (string, diffBy) => string.split(diffBy).join("");
       return (
