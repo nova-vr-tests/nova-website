@@ -287,7 +287,7 @@ const SubmitButton = props => {
           hoverStyleDiff={{backgroundColor: "rgba(0, 0, 0, 0.7)"}}
         />
         <div style={styles.imageWrapper}>
-          <img style={styles.loader} src={novaLoader} />
+          <img style={styles.loader} src={novaLoader} alt="loader" />
         </div>
       </div>
     </div>

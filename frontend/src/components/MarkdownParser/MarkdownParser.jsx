@@ -47,6 +47,7 @@ const YTPlayer = props => {
         style={styles.video}
         width="560"
         height="315"
+        title="youtube video"
         src={props.src}
         frameBorder="0"
         allow="autoplay; encrypted-media"

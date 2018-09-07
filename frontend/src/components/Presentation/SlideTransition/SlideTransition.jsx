@@ -23,18 +23,6 @@ class SlideTransition extends React.Component<Props, State> {
     isFrontSlideVisible: true,
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    // if(this.state.isFrontSlideVisible) {
-    //     this.setState({ frontPage: this.props.currentPage })
-    // } else {
-    //     this.setState({ backPage: this.props.currentPage })
-    // }
-  }
-
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.currentPage !== this.props.currentPage) {
       if (this.state.isFrontSlideVisible) {

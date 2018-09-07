@@ -14,7 +14,7 @@ const SidePanelLink = props => {
 
   let Wrapper = props => <div {...props}>{props.children}</div>;
 
-  if (props.to.pathname != "") {
+  if (props.to.pathname !== "") {
     console.log(props.to);
     Wrapper = props => (
       <Link {...props} to={props.to} onClick={() => {}}>

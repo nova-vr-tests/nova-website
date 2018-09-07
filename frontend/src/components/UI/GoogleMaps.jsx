@@ -15,6 +15,7 @@ const GoogleMaps = () => {
   return (
     <iframe
       height="450"
+      title="Nova Media on Google Maps"
       frameBorder="0"
       style={styles.iframe}
       src={`https://www.google.com/maps/embed/v1/place?key=${mapsAPIKey}&q=481+Van+Brunt+St,+Brooklyn,+NY+11231`}

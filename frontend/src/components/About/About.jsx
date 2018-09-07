@@ -197,9 +197,6 @@ If there are any questions regarding this privacy policy, you may contact us usi
 `;
 
 class LegalsContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.setHeaderText("");
   }
@@ -220,9 +217,6 @@ const contactStyles = {
 };
 
 class ContactContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.setHeaderText(contactText);
   }
@@ -264,9 +258,6 @@ class ContactContent extends React.Component {
 }
 
 class LoginContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.setHeaderText("");
   }
