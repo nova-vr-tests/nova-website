@@ -287,7 +287,11 @@ const SubmitButton = props => {
           hoverStyleDiff={{backgroundColor: "rgba(0, 0, 0, 0.7)"}}
         />
         <div style={styles.imageWrapper}>
-          <img style={styles.loader} src={novaLoader} alt="loader" />
+          <img
+            style={styles.loader}
+            src={novaLoader}
+            alt="loade// eslint-disable-liner"
+          />
         </div>
       </div>
     </div>
