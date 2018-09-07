@@ -8,7 +8,8 @@ import productsBg from "../img/products.jpg";
 import publicationsBg from "../img/publicationsBg.png";
 
 import consultationBg from "../img/bgs/consultation-intro.jpeg";
-import industryBg from "../img/bgs/industry.jpeg";
+import industryBg from "../img/bgs/industry.png";
+import crossIndustriesBg from "../img/bgs/cross-industries.jpeg";
 import learningLabBg from "../img/bgs/learning-lab.png";
 
 import {styles as appStyles} from "../../constants.js";
@@ -142,8 +143,8 @@ const industry: Array<ISlide> = [
 ];
 
 pid = Symbol();
-path = "/cross-industry"; // to differentiate from /partnership-productions
-h2 = "Cross Industry";
+path = "/cross-industries"; // to differentiate from /partnership-productions
+h2 = "Cross Industries";
 const crossIndustry: Array<ISlide> = [
   {
     h1,
@@ -162,7 +163,7 @@ const crossIndustry: Array<ISlide> = [
     ),
     theme: appStyles.themeTypes.noFooterTheme,
     overrideHeader: true,
-    layers: [createLayer(industryBg, 0, 1)],
+    layers: [createLayer(crossIndustriesBg, 0, 1)],
   },
 ];
 
