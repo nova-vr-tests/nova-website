@@ -41,7 +41,7 @@ const header = {
 const unitWidthJs = 60; // px
 
 const sidePanel = {
-  openedWidthCoef: screen.width / (3 * unitWidthJs),
+  openedWidthCoef: window.screen.width / (3 * unitWidthJs),
   transitionTime: 300, //ms
 };
 
@@ -85,8 +85,11 @@ const styles: AppStyles = {
     "footer-is-opened": defaultTheme,
   },
   mediaQueries: {
-    phone: screen.width < 1000 ? 1000 : screen.width / 3 + 3 * unitWidthJs,
-    tablet: (2 * screen.width) / 3 + 3 * unitWidthJs,
+    phone:
+      window.screen.width < 1000
+        ? 1000
+        : window.screen.width / 3 + 3 * unitWidthJs,
+    tablet: (2 * window.screen.width) / 3 + 3 * unitWidthJs,
   },
   lineDimensions: {
     height: "",
@@ -133,7 +136,7 @@ window.addEventListener("resize", () => {
   styles.unitHeightJs = document.querySelector("body").clientHeight / 24;
 
   //const coefAbsoluteWidth = 11
-  const coefPercentWidth = screen.width / (3 * styles.unitWidthJs); // clientWidth / (3 * styles.unitWidthJs)
+  const coefPercentWidth = window.screen.width / (3 * styles.unitWidthJs); // clientWidth / (3 * styles.unitWidthJs)
   let openedWidthCoef = coefPercentWidth; //coefAbsoluteWidth > coefPercentWidth ? coefPercentWidth : coefAbsoluteWidth
   console.log(openedWidthCoef, openedWidthCoef * styles.unitWidthJs);
 

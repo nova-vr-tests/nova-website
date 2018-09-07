@@ -22,9 +22,10 @@ import {HomePage, ConsultationIntro} from "./page1Comps.jsx";
 
 import type {ISlide, IPage} from "./types.jsx";
 
+import * as websiteText from "./pageTexts.js";
+
 const createLayer = (imgUrl, paralax, opacity) => ({imgUrl, paralax, opacity});
 
-import * as websiteText from "./pageTexts.js";
 /************************************
 
     SITE INTRO
