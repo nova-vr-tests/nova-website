@@ -112,8 +112,8 @@ Two of our co founders trace their lineage back to folks who emigrated across th
 Together we're a small part of the 21st century movement into Extended Reality, and we're inviting others to come along.`;
 
 const aboutUs = `# Nova
-
-We design and build virtual reality. We provide you with access and application to advanced technologies and adoption of advanced media technologies. We are a team of artists, engineers and researchers. We produce XR. This includes financial strategies, prototypes, and marketing. We can execute your project in full or assist only where you need an extra hand. We custom spec and have turn-key solutions. Our production studio and lab is located at the edge of Red Hook, Brooklyn.
+ 
+We design and build virtual reality (XR). We produce a range of products that enable users to transcend time and space through virtual worlds and simulated play. Our clients use 3D immersive media to market new products, train employees, gamify education and entertain customers. Nova XR Media guides the development, advises on financial strategies and manages production. Our studio and laboratory is located at the edge of Red Hook, Brooklyn.
 
 
 ## Live and let
