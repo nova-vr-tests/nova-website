@@ -122,18 +122,16 @@ Nova provides access to advanced technologies, producing XR media for businesses
 
 Live and let
 
-- Twitter @Mecs13
-- Linkedin /in/jrmecca
+- Twitter @N0vaMedia
+- Linkedin /company/nova-xr-media/
 - Steem /mecs13
 - Github /mecs13
-- Sketchfab /mecs13
 
-- Email : AnnaIrene@novamedia.nyc
+- Email : joe@novamedia.nyc
 - Telegram : https://t.me/xrnewyork
 - Instagram : @novaxrmedia
 - Facebook : https://www.facebook.com/N0vamedia/
-- Twitter : @N0vamedia
-- GoogleVoice : (732) 903-5537
+
 - slack : novamedianyc.slack.com
 - steemit : @novaxr
 - Sketchfab : /novamedianewyork
