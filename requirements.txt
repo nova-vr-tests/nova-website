@@ -3,6 +3,7 @@ boto==2.48.0
 decorator==4.0.11
 dj-database-url==0.4.2
 Django==2.1.1
+django-heroku==0.3.1
 django-filter==1.0.4
 django-letsencrypt==3.0.0
 django-markdownx==2.0.22
