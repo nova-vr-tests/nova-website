@@ -35,7 +35,7 @@ class SubsectionSerializer(serializers.ModelSerializer):
 class MiniSubsectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subsection
-        fields = ('pk', 'title')
+        fields = ('pk', 'url', 'title')
 
 class SectionSerializer(serializers.ModelSerializer):
     subsection_set = MiniSubsectionSerializer(many=True, read_only=True)
