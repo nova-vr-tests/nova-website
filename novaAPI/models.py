@@ -11,22 +11,23 @@ from django.contrib.auth.models import User
 
 
 class Section(models.Model):
-    title = models.CharField(max_length=100, blank=True, default='')
+    title = models.CharField(unique=True, max_length=100, default='')
 
     def __str__(self):
         return self.title
 
 class Subsection(models.Model):
-    title = models.CharField(max_length=100, blank=True, default='')
+    title = models.CharField(unique=True, max_length=100, default='')
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     introduction = MarkdownxField()
-    content_text = MarkdownxField()
+    content_text = MarkdownxField(blank=True)
 
     def __str__(self):
         return self.title
 
 class Page(models.Model):
-    title = models.CharField(max_length=100, blank=True, default='')
+    title = models.CharField(max_length=100, default='')
+    url = models.CharField(unique=True, max_length=100, default='')
     subsection = models.ForeignKey(Subsection, on_delete=models.CASCADE)
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='imgs')
@@ -45,14 +46,14 @@ class BuildXR(models.Model):
         verbose_name_plural = 'BuildXR answers'
 
 class BusinessProposition(models.Model):
-    title = models.CharField(max_length=100, blank=True, default='')
+    title = models.CharField(max_length=100, default='')
     date = models.DateTimeField('publication date', default=datetime.now)
     picto = models.ImageField(upload_to='business_props_pdfs')
-    pdf = models.FileField(upload_to='business_props_pdfs')
     content = MarkdownxField()
-    password = models.CharField(max_length=100, blank=True, default='')
+    password = models.CharField(max_length=100, default='')
     exec_sum = MarkdownxField()
     bg_image = models.ImageField(upload_to='business_props_bgs')
+    pdf = models.FileField(blank=True, upload_to='business_props_pdfs')
     storage = models.CharField(max_length=100, blank=True, default='')
 
     class Meta:
@@ -61,8 +62,8 @@ class BusinessProposition(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=100, blank=True, default='')
-    description = models.CharField(max_length=250, blank=True, default='')
+    title = models.CharField(max_length=100,default='')
+    description = models.CharField(max_length=250, default='')
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='products_pics')
     pictoBg = models.ImageField(upload_to='products_pics')
@@ -70,6 +71,7 @@ class Product(models.Model):
     content = MarkdownxField()
     abstract = MarkdownxField()
     bg_image = models.ImageField(upload_to='products_bgs')
+    pdf = models.FileField(blank=True, upload_to='business_props_pdfs')
 
     class Meta:
         verbose_name = 'Product'
