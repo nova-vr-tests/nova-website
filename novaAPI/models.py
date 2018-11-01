@@ -17,7 +17,8 @@ class Section(models.Model):
         return self.title
 
 class Subsection(models.Model):
-    title = models.CharField(unique=True, max_length=100, default='')
+    title = models.CharField(max_length=100, default='')
+    url = models.CharField(unique=True, max_length=100)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     introduction = MarkdownxField()
     content_text = MarkdownxField(blank=True)
@@ -27,7 +28,6 @@ class Subsection(models.Model):
 
 class Page(models.Model):
     title = models.CharField(max_length=100, default='')
-    url = models.CharField(unique=True, max_length=100, default='')
     subsection = models.ForeignKey(Subsection, on_delete=models.CASCADE)
     date = models.DateTimeField('date published', default=datetime.now)
     picto = models.ImageField(upload_to='imgs')
