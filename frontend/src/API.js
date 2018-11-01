@@ -10,32 +10,18 @@ class API {
       businessProps: makeUrlObj("businessprops/"),
       blogPosts: makeUrlObj("blogposts/"),
       products: makeUrlObj("products/"),
-      publications: makeUrlObj("publications/"),
-
-      industries: makeUrlObj("industries/"),
-      crossIndustry: makeUrlObj("cross-industry/"),
-      learningLab: makeUrlObj("learning-lab/"),
-      community: makeUrlObj("community/"),
-      design: makeUrlObj("design/"),
-      program: makeUrlObj("program/"),
-      produce: makeUrlObj("produce/"),
-      network: makeUrlObj("network/"),
-      deploy: makeUrlObj("deploy/"),
-      productions: makeUrlObj("productions/"),
-      partners: makeUrlObj("partners/"),
-      careers: makeUrlObj("careers/"),
 
       // Post
       buildXR: "api/buildXR/",
 
-      // legacy
-      blogPostList: "blogposts/",
-      blogPostDetail: "blogposts/",
+      sections: "sections",
+      subsection: "subsection/",
+      page: "page/",
     };
   }
 
   async fetch(url) {
-    const r = await fetch(`/api/${url}`);
+    const r = await fetch(`/api/${url}/`);
     const json = await r.json();
 
     apiCache[url] = json;
@@ -43,10 +29,24 @@ class API {
     return json;
   }
 
+  async fetchPage(n) {
+    return await this.fetch(this.urls.page + n);
+  }
+
+  async fetchSubsection(n) {
+    return await this.fetch(this.url.subsection + n);
+  }
+
+  async fetchSections() {
+    console.log(this.urls.sections);
+    return await this.fetch(this.urls.sections);
+  }
+
   async fetchDetail(url, postId) {
     return await this.fetch(url + postId + "/");
   }
 
+  // business props
   async fetchDetailAuth(fetchUrl, postId, password) {
     const url = `/api/${fetchUrl}${postId}/`;
     const params = {
