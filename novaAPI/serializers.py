@@ -11,7 +11,13 @@ business_prop_fields = default_fields + ('exec_sum', 'bg_image', 'pdf', 'storage
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ('title', 'subsection', 'date', 'picto', 'content')
+        fields = ('pk', 'title', 'subsection', 'date', 'picto', 'content')
+
+
+class MiniPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page
+        fields = ('pk', 'title', 'date', 'picto')
 
 class SectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,9 +26,23 @@ class SectionSerializer(serializers.ModelSerializer):
 
 class SubsectionSerializer(serializers.ModelSerializer):
     section = SectionSerializer(read_only=True)
+    page_set = MiniPageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Subsection
-        fields = ('pk', 'title', 'section', 'introduction', 'content_text')
+        fields = ('pk', 'title', 'section', 'introduction', 'content_text', 'page_set')
+
+class MiniSubsectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subsection
+        fields = ('pk', 'title')
+
+class SectionSerializer(serializers.ModelSerializer):
+    subsection_set = MiniSubsectionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Section
+        fields = ('pk', 'title', 'subsection_set')
 
 class BuildXRSerializer(serializers.ModelSerializer):
     class Meta:

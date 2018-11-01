@@ -6,6 +6,11 @@ from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
+class SectionList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
 class PageList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Page.objects.all()
