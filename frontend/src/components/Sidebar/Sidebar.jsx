@@ -12,6 +12,7 @@ import {
 import {styles} from "../../constants.js";
 import {menuInput} from "../pages/Pages.jsx";
 import {updateIsFooterOpened} from "../../reducer/actions/App.js";
+import API from "../../API.js";
 
 import type {
   ReduxState,
@@ -39,80 +40,28 @@ const SidebarSubSection: React.StatelessFunctionalComponent<
   SidebarSubSectionProps,
 > = props => {
   const {subSection} = props;
-  const _subSubSections = subSection.links;
-  const subSubSections = _subSubSections.slice(1, _subSubSections.length);
-  const _subSubSectionsPaths = subSection.paths;
-  const subSubSectionsPaths = _subSubSectionsPaths.slice(
-    1,
-    _subSubSectionsPaths.length,
-  );
 
   const styles = getSidebarSubSectionStyles();
 
   // don't push page if already on location
   const goTo = path => props.goTo(path);
 
-  if (subSubSections.length > 0) {
-    const components = [];
-
-    // Loop subsub sections
-    for (let i = 0; i < subSubSections.length; i++) {
-      const subSubSection = subSubSections[i];
-      components[i] = (
-        <div
-          className={"sidebar-subsection--hover " + props.appTheme}
-          onClick={() => goTo(subSubSectionsPaths[i])}
-          style={styles.subSubSection.link}
-          key={i}>
-          {subSubSection}
-        </div>
-      );
-    }
-
-    return (
-      <div
-        style={{
-          ...styles.subSection.wrapper,
-          ...(props.isOpened ? styles.subSection.opened : {}),
-        }}>
-        <Link
-          onClick={() => goTo()}
-          to={subSection.paths[0]}
-          className={
-            !props.isOpened
-              ? "sidebar-subsection--hover " + props.appTheme
-              : "sidebar-subsection--active " + props.appTheme
-          }
-          style={styles.subSection.title}>
-          {subSection.title}
-        </Link>
-        <div
-          style={{
-            ...styles.subSubSection.wrapper,
-            ...(props.isOpened ? styles.subSubSection.opened : {}),
-          }}>
-          {components}
-        </div>
-      </div>
-    );
-  } else {
-    // Return sub section as link
-    return (
-      <Link
-        onClick={() => goTo()}
-        to={subSection.paths[0]}
-        className={"sidebar-subsection--hover " + props.appTheme}
-        style={styles.subSection.link}>
-        {subSection.title}
-      </Link>
-    );
-    // return <div
-    //            className={ "sidebar-subsection--hover " + props.appTheme }
-    //            onClick={ () => goTo(subSection.paths[0]) }
-    //            style={ styles.subSection.link }>
-    //            { subSection.title }
-    //        </div>
-  }
+  // Return sub section as link
+  return (
+    <Link
+      onClick={() => goTo()}
+      to={subSection.paths[0]}
+      className={"sidebar-subsection--hover " + props.appTheme}
+      style={styles.subSection.link}>
+      {subSection.title}
+    </Link>
+  );
+  // return <div
+  //            className={ "sidebar-subsection--hover " + props.appTheme }
+  //            onClick={ () => goTo(subSection.paths[0]) }
+  //            style={ styles.subSection.link }>
+  //            { subSection.title }
+  //        </div>
 };
 
 const SidebarSection: React.StatelessFunctionalComponent<
@@ -281,6 +230,26 @@ class Sidebar extends React.Component<Props, State> {
     this.state = {
       links,
     };
+  }
+
+  async componentDidMount() {
+    const links2 = await new API().fetchSections();
+    console.log(links2);
+
+    const cleanLinks = links => {
+      const newLinks = links2.map(l => ({
+        ...l,
+        links: l.subsection_set.map(s => ({
+          ...s,
+          paths: [s.url],
+          title: [s.title],
+        })),
+      }));
+      return newLinks;
+    };
+
+    console.log(cleanLinks(links2));
+    this.setState({links: cleanLinks(links2)});
   }
 
   componentWillMount() {
