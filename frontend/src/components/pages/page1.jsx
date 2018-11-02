@@ -268,4 +268,4 @@ const page1: IPage = [productSlides, consultationSlides, publicationSlides];
 
 export default page1;
 
-export {SiteIntro, BusinessProps, Comp404};
+export {Products, SiteIntro, BusinessProps, Comp404};

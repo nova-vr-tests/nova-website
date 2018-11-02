@@ -4,7 +4,7 @@ import * as React from "react";
 import Presentation from "../Presentation/Presentation.jsx";
 import transitions from "../Presentation/transitions.js";
 
-import novaXr, {Comp404, SiteIntro, BusinessProps} from "./page1.jsx";
+import novaXr, {Products, Comp404, SiteIntro, BusinessProps} from "./page1.jsx";
 import resources from "./page2.jsx";
 import partnership from "./page3.jsx";
 
@@ -243,7 +243,10 @@ const getPages = async () => {
     }));
   console.log([...SiteIntro, ...pages]);
 
-  return [...SiteIntro.map(makePresentationSlide), ...pages];
+  return [
+    ...[...SiteIntro, ...Comp404, ...Products].map(makePresentationSlide),
+    ...pages,
+  ];
 };
 
 const _Pages = () => {};
