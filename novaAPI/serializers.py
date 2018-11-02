@@ -17,7 +17,7 @@ class PageSerializer(serializers.ModelSerializer):
 class MiniPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ('pk', 'title', 'date', 'picto')
+        fields = ('id', 'title', 'date', 'picto')
 
 class SectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,12 +30,20 @@ class SubsectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subsection
-        fields = ('pk', 'title', 'section', 'introduction', 'content_text', 'page_set')
+        fields = (
+            'id',
+            'title',
+            'section',
+            'introduction',
+            'content_text',
+            'page_set',
+            'background_image',
+            )
 
 class MiniSubsectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subsection
-        fields = ('pk', 'url', 'title')
+        fields = ('pk', 'url', 'title', 'background_image', 'introduction')
 
 class SectionSerializer(serializers.ModelSerializer):
     subsection_set = MiniSubsectionSerializer(many=True, read_only=True)

@@ -22,6 +22,7 @@ class Subsection(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     introduction = MarkdownxField()
     content_text = MarkdownxField(blank=True)
+    background_image= models.ImageField(upload_to='imgs')
 
     def __str__(self):
         return self.title
