@@ -9,6 +9,7 @@ import resources from "./page2.jsx";
 import partnership from "./page3.jsx";
 
 import {alignments} from "./UI.jsx";
+import {filterUrl} from "../../helpers.js";
 
 import {styles as appStyles} from "../../constants.js";
 import API from "../../API.js";
@@ -236,7 +237,7 @@ const getPages = async () => {
         />
       ),
       mainPanelContent: Page,
-      layers: [createLayer(s.background_image, 0, 1)],
+      layers: [createLayer(filterUrl(s.background_image), 0, 1)],
       overrideHeader: true,
       overrideMainPanel: false,
       mainPanelContent: () => <Blog fetchUrl={"pages/"} />,
