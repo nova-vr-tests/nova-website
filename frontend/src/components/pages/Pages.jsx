@@ -11,6 +11,9 @@ import partnership from "./page3.jsx";
 import {alignments} from "./UI.jsx";
 
 import {styles as appStyles} from "../../constants.js";
+import API from "../../API.js";
+import BlogPostList from "../Blog/BlogPostList.jsx";
+import Blog from "../Blog/Blog.jsx";
 
 import type {
   IPage,
@@ -108,11 +111,7 @@ const makeMenu = (section: IPage, i: number): IMakeMenuOutput => {
 /**
    Returns a slide linked to surrounding slides with appropriate transitions
 */
-const makePresentationSlide = (
-  slide: ISlide,
-  i: number,
-  slides: Array<ISlide>,
-): IPresentationSlide => {
+const makePresentationSlide = (slide: ISlide): IPresentationSlide => {
   const Text = slide.content || (() => <div />);
   const {
     pid,
@@ -133,34 +132,6 @@ const makePresentationSlide = (
   // Default transitions
   let nextSlideTransition: BgTransitionTypes = transitions.types.BG_SPLIT;
   let previousSlideTransition: BgTransitionTypes = transitions.types.BG_SPLIT;
-
-  if (i === 0) {
-    // Border conditions
-    previousSlideTransition = transitions.types.NONE;
-
-    // Check next slide
-    if (pid === slides[i + 1].pid) {
-      nextSlideTransition = transitions.types.BG_PARALAX;
-    }
-  } else if (i === slides.length - 1) {
-    // Border conditions
-    nextSlideTransition = transitions.types.NONE;
-
-    // Check previous slide
-    if (pid === slides[i - 1].pid) {
-      previousSlideTransition = transitions.types.BG_PARALAX;
-    }
-  } else {
-    // Compare next slide pid
-    if (pid === slides[i + 1].pid) {
-      nextSlideTransition = transitions.types.BG_PARALAX;
-    }
-
-    // Compare previous slide pid
-    if (pid === slides[i - 1].pid) {
-      previousSlideTransition = transitions.types.BG_PARALAX;
-    }
-  }
 
   return {
     comp,
@@ -228,9 +199,72 @@ let slides: Array<ISlide> = flatten(pages);
 // Adding site root before all other slides
 slides = [...SiteIntro, ...Comp404, ...BusinessProps, ...slides];
 
-const Pages = () => {
-  return <Presentation pages={slides.map(makePresentationSlide)} />;
+class Page extends React.Component {
+  render() {
+    return <div>Hello</div>;
+  }
+}
+
+const getPages = async () => {
+  console.log("asdf");
+  // update pages in redux state for BG to have access to
+  const sectionList = await new API().fetchSections();
+  console.log(sectionList);
+  const createLayer = (imgUrl, paralax, opacity) => ({
+    imgUrl,
+    paralax,
+    opacity,
+  });
+  console.log("reducing");
+  const pages = sectionList
+    .reduce(
+      (acc, s) => [
+        ...acc,
+        ...s.subsection_set.map(s2 => ({...s2, section: s.title})),
+      ],
+      [],
+    )
+    .map(s => ({
+      h1: s.section,
+      h2: s.title,
+      path: `/` + s.url,
+      pid: Symbol(),
+      comp: () => (
+        <BlogPostList
+          headerText={s.introduction}
+          fetchUrl={`subsections/${s.pk}`}
+        />
+      ),
+      mainPanelContent: Page,
+      layers: [createLayer(s.background_image, 0, 1)],
+      overrideHeader: true,
+      overrideMainPanel: false,
+      mainPanelContent: () => <Blog fetchUrl={"pages"} />,
+    }));
+  console.log([...SiteIntro, ...pages]);
+
+  return [...SiteIntro.map(makePresentationSlide), ...pages];
 };
+
+const _Pages = () => {};
+
+class Pages extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pages: [],
+    };
+  }
+  async componentWillMount() {
+    const pages = await getPages();
+    this.setState({pages});
+  }
+  render() {
+    if (!this.state.pages.length) return <div />;
+
+    return <Presentation pages={this.state.pages} />;
+  }
+}
 
 export default Pages;
 
