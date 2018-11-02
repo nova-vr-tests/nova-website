@@ -220,7 +220,7 @@ const getPages = async () => {
       [],
     )
     .map(s => ({
-      h1: s.section,
+      h1: s.title,
       h2: s.title,
       path: `/` + s.url,
       pid: Symbol(),
