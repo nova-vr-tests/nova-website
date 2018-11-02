@@ -27,6 +27,7 @@ class SectionSerializer(serializers.ModelSerializer):
 class SubsectionSerializer(serializers.ModelSerializer):
     section = SectionSerializer(read_only=True)
     page_set = MiniPageSerializer(many=True, read_only=True)
+    content = serializers.CharField(source='content_text')
 
     class Meta:
         model = Subsection
@@ -35,7 +36,7 @@ class SubsectionSerializer(serializers.ModelSerializer):
             'title',
             'section',
             'introduction',
-            'content_text',
+            'content',
             'page_set',
             'background_image',
             )
@@ -43,14 +44,14 @@ class SubsectionSerializer(serializers.ModelSerializer):
 class MiniSubsectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subsection
-        fields = ('pk', 'url', 'title', 'background_image', 'introduction')
+        fields = ('id', 'url', 'title', 'background_image', 'introduction')
 
 class SectionSerializer(serializers.ModelSerializer):
     subsection_set = MiniSubsectionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Section
-        fields = ('pk', 'title', 'subsection_set')
+        fields = ('id', 'title', 'subsection_set')
 
 class BuildXRSerializer(serializers.ModelSerializer):
     class Meta:

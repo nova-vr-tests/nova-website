@@ -232,14 +232,14 @@ const getPages = async () => {
       comp: () => (
         <BlogPostList
           headerText={s.introduction}
-          fetchUrl={`subsections/${s.pk}`}
+          fetchUrl={`subsections/${s.id}/`}
         />
       ),
       mainPanelContent: Page,
       layers: [createLayer(s.background_image, 0, 1)],
       overrideHeader: true,
       overrideMainPanel: false,
-      mainPanelContent: () => <Blog fetchUrl={"pages"} />,
+      mainPanelContent: () => <Blog fetchUrl={"pages/"} />,
     }));
   console.log([...SiteIntro, ...pages]);
 

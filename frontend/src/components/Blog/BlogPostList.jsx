@@ -47,9 +47,7 @@ const BlogPostList = props => {
         comps={[
           //() => <div style={ styles.listWrapper }><List2 /></div>,
           List2,
-          () => [
-            <BlogPost key={2} fetchUrl={props.fetchUrl} showHeader={false} />,
-          ],
+          () => [<BlogPost key={2} fetchUrl={`pages/`} showHeader={false} />],
         ]}
         position={props.drawerPosition}
       />
@@ -61,7 +59,10 @@ BlogPostList.defaultProps = {};
 
 const fetchBlogPosts = async (url, setBlogPosts, that) => {
   const restApi = new API();
-  const blogPosts = await restApi.fetch(url);
+  let blogPosts = await restApi.fetch(url);
+  if (url.includes(`subsections`)) {
+    blogPosts = blogPosts.page_set;
+  }
 
   if (that.mounted) {
     setBlogPosts(blogPosts);
@@ -117,7 +118,7 @@ const initHeader = (updateSidePanelHeader, props) => {
 const createList = props => {
   const List = () =>
     props.blogPosts.map((e, i) => {
-      let {content} = e;
+      let content = "";
       if (content.length > 100) {
         content = content.substring(0, 70) + "...";
       }
