@@ -22,8 +22,7 @@ const getStyles = props => {
     );
 
     // account for TOC
-    customWrapperHeight =
-      filteredH2.length > 0 ? customWrapperHeight : customWrapperHeight + 1.5;
+    customWrapperHeight = customWrapperHeight + 1.5;
   }
 
   const {clientWidth} = document.documentElement;
