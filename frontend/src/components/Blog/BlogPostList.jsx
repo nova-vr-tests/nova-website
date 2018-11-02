@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {styles as appStyles} from "../../constants.js";
 import {compose, withState, lifecycle} from "recompose";
+import MarkdownParser from "../MarkdownParser/MarkdownParser.jsx";
 
 import API from "../../API.js";
 
@@ -60,8 +61,11 @@ BlogPostList.defaultProps = {};
 const fetchBlogPosts = async (url, setBlogPosts, that) => {
   const restApi = new API();
   let blogPosts = await restApi.fetch(url);
+
   if (url.includes(`subsections`)) {
+    const content = blogPosts.content;
     blogPosts = blogPosts.page_set;
+    that.props.setContent(content);
   }
 
   if (that.mounted) {
@@ -154,6 +158,15 @@ const createList = props => {
   const styles = getStyles(props);
   props.setList(() => () => (
     <div style={styles.listWrapper}>
+      {props.content === "" ? (
+        <div />
+      ) : (
+        <MarkdownParser
+          addTail={true}
+          useWhiteFont={true}
+          content={props.content}
+        />
+      )}
       <List />
       <div style={styles.trailingDiv} />
     </div>
@@ -162,6 +175,7 @@ const createList = props => {
 
 const SmartComp = compose(
   withState("blogPosts", "setBlogPosts", []),
+  withState("content", "setContent", ""),
   withState("drawerPosition", "setDrawerPosition", 0),
   withState("List", "setList", () => () => <div />),
   lifecycle({
@@ -190,7 +204,10 @@ const SmartComp = compose(
         nextProps.routing.location.pathname.replace("/", "");
 
       if (shouldRender) {
-        if (nextProps.blogPosts.length !== this.props.blogPosts.length) {
+        if (
+          nextProps.blogPosts.length !== this.props.blogPosts.length ||
+          nextProps.content !== this.props.content
+        ) {
           createList(nextProps);
         }
         if (
