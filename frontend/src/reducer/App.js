@@ -167,7 +167,7 @@ export default (state: State = initialState, action: Action): State => {
     case UPDATE_LINE_POSITION:
       return {
         ...state,
-        linePosition: action.linePosition,
+        linePosition: 0, //action.linePosition,
       };
     case INCREMENT_INTRO_KEYFRAME:
       return {
