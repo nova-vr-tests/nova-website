@@ -54,7 +54,7 @@ class BusinessProposition(models.Model):
     password = models.CharField(max_length=100, default='')
     exec_sum = MarkdownxField()
     bg_image = models.ImageField(upload_to='business_props_bgs')
-    pdf = models.FileField(blank=True, upload_to='business_props_pdfs')
+    pdf = models.FileField(upload_to='business_props_pdfs')
     storage = models.CharField(max_length=100, blank=True, default='')
 
     class Meta:
