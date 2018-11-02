@@ -20,8 +20,9 @@ class API {
     };
   }
 
-  async fetch(url) {
-    const r = await fetch(`/api/${url}/`);
+  async fetch(_url) {
+    const url = `/api/${_url}/`.replace(`//`, `/`);
+    const r = await fetch(url);
     const json = await r.json();
 
     apiCache[url] = json;
