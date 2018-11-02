@@ -5,7 +5,6 @@ import {push} from "react-router-redux";
 
 import getStyles from "./SlideHeaderStyles.jsx";
 import Social from "../Social/Social.jsx";
-import TOC from "../TOC/TOC.jsx";
 
 const mapStateToProps = state => ({
   pages: state.appReducer.pages,

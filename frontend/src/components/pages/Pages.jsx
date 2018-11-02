@@ -200,12 +200,6 @@ let slides: Array<ISlide> = flatten(pages);
 // Adding site root before all other slides
 slides = [...SiteIntro, ...Comp404, ...BusinessProps, ...slides];
 
-class Page extends React.Component {
-  render() {
-    return <div>Hello</div>;
-  }
-}
-
 const getPages = async () => {
   console.log("asdf");
   // update pages in redux state for BG to have access to
@@ -236,7 +230,6 @@ const getPages = async () => {
           fetchUrl={`subsections/${s.id}/`}
         />
       ),
-      mainPanelContent: Page,
       layers: [createLayer(filterUrl(s.background_image), 0, 1)],
       overrideHeader: true,
       overrideMainPanel: false,
@@ -249,8 +242,6 @@ const getPages = async () => {
     ...pages,
   ];
 };
-
-const _Pages = () => {};
 
 class Pages extends React.Component {
   constructor(props) {

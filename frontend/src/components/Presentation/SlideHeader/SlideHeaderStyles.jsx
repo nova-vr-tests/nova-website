@@ -7,20 +7,6 @@ const getStyles = props => {
 
   // check if TOC is on current page (see TOC.jsx for algo, needs refactor)
   if (props.pages[props.currentPage]) {
-    const h2 = props.pages
-      .filter(
-        e =>
-          e.h1 === props.pages[props.currentPage].h1 &&
-          (e.h2 !== "" && e.h2 !== "Introduction"),
-      )
-      .map(e => e.h2);
-
-    const filteredH2 = h2.reduce(
-      (acc, e, i) =>
-        i > 0 ? (acc.includes(e) ? acc : [...acc, e]) : [...acc, e],
-      [],
-    );
-
     // account for TOC
     customWrapperHeight = customWrapperHeight + 1.5;
   }
