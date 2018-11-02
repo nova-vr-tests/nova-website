@@ -7,3 +7,4 @@ local.sh
 venv
 *.pdf
 *.swp
+db_backups/
