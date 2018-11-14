@@ -94,7 +94,7 @@ const HomePage = props => {
   return (
     <div className={"NYEComp--wrapper"}>
       <SidePanelLink
-        to={{pathname: "/about-us", search: ""}}
+        to={{pathname: "/whoweare", search: ""}}
         pictoUrl={whoWeArePicto}
         isSquarePicto={true}
         title="Who We Are"
