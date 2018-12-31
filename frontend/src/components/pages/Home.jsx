@@ -94,10 +94,10 @@ const HomePage = props => {
   return (
     <div className={"NYEComp--wrapper"}>
       <SidePanelLink
-        to={{pathname: "/whoweare", search: ""}}
+        to={{pathname: "http://live-xr.com/", search: ""}}
         pictoUrl={whoWeArePicto}
         isSquarePicto={true}
-        title="Who We Are"
+        title="NYE Live Stream"
       />
       <SidePanelLink
         to={{pathname: "/products", search: ""}}
