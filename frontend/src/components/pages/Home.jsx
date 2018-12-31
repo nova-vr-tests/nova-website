@@ -94,7 +94,7 @@ const HomePage = props => {
   return (
     <div className={"NYEComp--wrapper"}>
       <SidePanelLink
-        to={{pathname: "http://live-xr.com/", search: ""}}
+        onClickCallback={()=> window.open("http://live-xr.com/")}
         pictoUrl={whoWeArePicto}
         isSquarePicto={true}
         title="NYE Live Stream"
