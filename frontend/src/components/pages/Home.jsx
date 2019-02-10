@@ -14,7 +14,6 @@ import {styles as appStyles} from "../../constants.js";
 import SidePanelProductsHeader from "../UI/SidePanelProductsHeader.jsx";
 
 import novaLogo from "../img/home/logo-home-picto.png";
-import whoWeArePicto from "../img/home-squares/who-we-are.png";
 import whatWeDoPicto from "../img/home-squares/what-we-do.png";
 import BuildXRPicto from "../img/home-squares/build.png";
 
