@@ -13,7 +13,7 @@ import {styles as appStyles} from "../../constants.js";
 
 import SidePanelProductsHeader from "../UI/SidePanelProductsHeader.jsx";
 
-import novaLogo from "../img/home/logo-home-picto.png";
+import Logo from "../img/home/logo-home-picto.png";
 import whoWeArePicto from "../img/home-squares/who-we-are.png";
 import whatWeDoPicto from "../img/home-squares/what-we-do.png";
 import BuildXRPicto from "../img/home-squares/build.png";
@@ -93,12 +93,6 @@ const HomePage = props => {
 
   return (
     <div className={"NYEComp--wrapper"}>
-      <SidePanelLink
-        onClickCallback={()=> window.open("http://live-xr.com/")}
-        pictoUrl={whoWeArePicto}
-        isSquarePicto={true}
-        title="NYE Live Stream"
-      />
       <SidePanelLink
         to={{pathname: "/products", search: ""}}
         pictoUrl={whatWeDoPicto}
@@ -193,7 +187,7 @@ const initHome = props => {
     props.updateSidePanelHeader(() => (
       <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
         <p style={{padding: `calc(0.5 * ${appStyles.unitWidth})`}}>
-          We design & build Extended Reality
+          
         </p>
       </div>
     ));
