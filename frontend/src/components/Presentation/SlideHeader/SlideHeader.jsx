@@ -41,7 +41,7 @@ const SlideHeader = props => {
     <div style={styles.wrapper}>
       <div style={styles.titleWrapper}>
         <h2 className="above" style={title0Styles}>
-          Nova XR Media
+          
         </h2>
         <h2 className="above" style={title1Styles}>
           {props.title1}
